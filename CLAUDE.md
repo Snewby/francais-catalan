@@ -32,6 +32,11 @@
   the decomposition.
 - taxonomy.json is large. Do NOT read it wholesale into context. Query it
   with scripts or grep for specific IDs/domains.
+- `01-catalan-structural-map-and-build-plan` is reference material for the
+  SEEDING PHASES ONLY. Do NOT read it during Phase 0 or Phase 1: it is full
+  of grammar tables that are not needed yet, and pulling it into context
+  wastes tokens. Open it only once seeding starts, and even then read the
+  specific section required, not the whole document.
 
 ## Conventions
 - Vanilla TS + Vite. No framework unless a task explicitly approves one.
