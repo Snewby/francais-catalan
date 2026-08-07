@@ -1,0 +1,9 @@
+# Force LF in the working tree on every platform. Without this, Windows
+# checkouts get CRLF and `prettier --check` fails against endOfLine: "lf".
+* text=auto eol=lf
+
+# The repo is UTF-8 throughout: French accents and guillemets, Catalan l·l and
+# apostrophes all appear in source, fixtures and test data.
+*.json text eol=lf
+*.md text eol=lf
+*.ts text eol=lf

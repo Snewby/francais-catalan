@@ -1,0 +1,6 @@
+dist/
+coverage/
+node_modules/
+src/api/schema.ts
+src/taxonomy/taxonomy.json
+docs/

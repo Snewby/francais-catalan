@@ -23,3 +23,12 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Claude Code personal state (never commit: may reference key paths)
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/.hook-state/
+
+# Test artefacts
+coverage/
+test/fixtures/live-*.json

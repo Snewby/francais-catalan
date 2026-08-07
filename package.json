@@ -1,0 +1,40 @@
+{
+  "name": "francais-catalan",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Catalan grammar trainer for French speakers. Single-user static web app.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest --run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "gen-schema": "tsx scripts/gen-schema.ts",
+    "validate-ids": "tsx scripts/validate-ids.ts",
+    "check-glosses": "tsx scripts/check-glosses.ts"
+  },
+  "dependencies": {
+    "dexie": "^4.0.11",
+    "ts-fsrs": "^4.6.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "ajv": "^8.17.1",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "fake-indexeddb": "^6.0.0",
+    "globals": "^15.14.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  }
+}
