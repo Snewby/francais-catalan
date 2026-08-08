@@ -6,7 +6,7 @@
       "id": "NOM",
       "kind": "branch",
       "parent": null,
-      "label_fr": "Le nom : genre, nombre et dérivation"
+      "label_fr": "Le nom : genre, nombre et dérivation"
     },
     {
       "id": "NOM.gender",
@@ -22,7 +22,7 @@
       "glosses": { "fr": "formation régulière du féminin par ajout de -a au masculin" },
       "cefr": "A1",
       "examples": ["El gat dorm.", "La gata maula."],
-      "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
+      "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le mécanisme -Ø/-a correspond directement au masculin/féminin français en consonne finale + -e, comme dans étudiant/étudiante."
@@ -42,7 +42,7 @@
       },
       "cefr": "A2",
       "examples": ["El jove estudia dret.", "La jove estudia dret."],
-      "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
+      "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français distingue souvent des formes différentes (jeune homme/jeune fille), alors que le catalan garde une forme unique et déplace toute la charge du genre sur l’article."
@@ -60,10 +60,10 @@
       "glosses": { "fr": "noms en -ista, invariables en genre, marqués par l’article" },
       "cefr": "A2",
       "examples": ["L'artista pinta un quadre.", "La periodista escriu l'article."],
-      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
+      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
+        "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -78,7 +78,7 @@
       "glosses": { "fr": "couples de noms à radical différent selon le sexe" },
       "cefr": "B1",
       "examples": ["L'home parla amb la dona.", "El gendre saluda la nora."],
-      "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
+      "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le français connaît le même procédé pour les mêmes couples (homme/femme, gendre/bru), donc le transfert lexical est direct même si la forme diffère."
@@ -98,7 +98,7 @@
       },
       "cefr": "B1",
       "examples": ["El metge visita el pacient.", "La metgessa visita la pacient."],
-      "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
+      "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Se rapproche du français -esse (comtesse, poétesse), mais le catalan l’emploie plus largement pour des professions ordinaires comme médecin ou juge."
@@ -119,7 +119,7 @@
         "El professor corregeix els exàmens.",
         "La professora corregeix els exàmens."
       ],
-      "notes": "Les noms en -or forment normalement leur féminin en -ora : professor/professora, director/directora.",
+      "notes": "Les noms en -or forment normalement leur féminin en -ora : professor/professora, director/directora.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -eur/-euse ou -eur/-rice selon les mots, avec un mécanisme tout aussi régulier."
@@ -139,7 +139,7 @@
       },
       "cefr": "B1",
       "examples": ["L'actor interpreta el rei.", "L'actriu interpreta la reina."],
-      "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
+      "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -teur/-trice (acteur/actrice), mais la liste des noms concernés ne coïncide pas toujours terme à terme."
@@ -163,10 +163,10 @@
         "El corrent elèctric és fort.",
         "La sal és blanca."
       ],
-      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), el corrent (le courant), la sal (le sel), el dubte (le doute), els afores (les faubourgs).",
+      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), el corrent (le courant), la sal (le sel), el dubte (le doute), els afores (les faubourgs).",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
+        "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -186,7 +186,7 @@
         "El testimoni és la víctima de l'accident.",
         "L'home és una víctima més."
       ],
-      "notes": "Certains noms gardent un genre grammatical fixe quel que soit le sexe du référent : la víctima, la persona, el personatge.",
+      "notes": "Certains noms gardent un genre grammatical fixe quel que soit le sexe du référent : la víctima, la persona, el personatge.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a le même phénomène (la victime, la personne), mais pas toujours pour les mêmes mots que le catalan."
@@ -232,7 +232,7 @@
         "Fes uns quants passos endavant.",
         "Un calaix ple i uns calaixos plens."
       ],
-      "notes": "Les noms terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços.",
+      "notes": "Les noms terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français ajoute -es après un son sifflant final surtout à l’oral, mais le catalan impose systématiquement -os à l’écrit."
@@ -257,7 +257,7 @@
         "Una amiga simpàtica i unes amigues simpàtiques.",
         "Una barca petita i unes barques petites."
       ],
-      "notes": "Les noms terminés par -a non accentué forment leur pluriel en -es, avec les changements orthographiques attendus : c devient qu (barca/barques), g devient gu (amiga/amigues), ç devient c (plaça/places).",
+      "notes": "Les noms terminés par -a non accentué forment leur pluriel en -es, avec les changements orthographiques attendus : c devient qu (barca/barques), g devient gu (amiga/amigues), ç devient c (plaça/places).",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le principe rappelle le pluriel français en -es, mais s’accompagne de changements orthographiques réguliers propres au catalan."
@@ -282,10 +282,10 @@
         "Un pa i uns pans.",
         "Un camí i uns camins."
       ],
-      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, et la classe en -í comme camí/camins ou jardí/jardins, ainsi que bo/bons.",
+      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, et la classe en -í comme camí/camins ou jardí/jardins, ainsi que bo/bons.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
+        "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -307,7 +307,7 @@
         "Un cafè calent.",
         "Uns cafès calents."
       ],
-      "notes": "Une classe héritée de noms en -í accentué prend -ns au pluriel (rubí/rubins), mais les emprunts plus récents en -í prennent un simple -s (esquí/esquís) ; -ú accentué est également partagé entre les deux modèles (tribu/tribus avec un simple -s) ; -é et -à accentués prennent toujours un simple -s (cafè/cafès).",
+      "notes": "Une classe héritée de noms en -í accentué prend -ns au pluriel (rubí/rubins), mais les emprunts plus récents en -í prennent un simple -s (esquí/esquís) ; -ú accentué est également partagé entre les deux modèles (tribu/tribus avec un simple -s) ; -é et -à accentués prennent toujours un simple -s (cafè/cafès).",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français forme ces pluriels avec un simple -s sans jamais ajouter de consonne, contrairement au sous-ensemble catalan en -ins."
@@ -351,7 +351,7 @@
         "Els diners no compren la felicitat.",
         "Els afores de la ciutat."
       ],
-      "notes": "Certains noms n’existent qu’au pluriel : les noces, els diners, els afores, els queviures.",
+      "notes": "Certains noms n’existent qu’au pluriel : les noces, els diners, els afores, els queviures.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a ses propres pluralia tantum (les noces, les fiançailles), mais la liste catalane ne se superpose pas terme à terme avec la liste française."
@@ -365,7 +365,7 @@
       "id": "NOM.adj",
       "kind": "branch",
       "parent": "NOM",
-      "label_fr": "L’adjectif : formes et accord"
+      "label_fr": "L’adjectif : formes et accord"
     },
     {
       "id": "NOM.adj.four_form",
@@ -382,7 +382,7 @@
         "Uns nois alts.",
         "Unes noies altes."
       ],
-      "notes": "La majorité des adjectifs distinguent quatre formes : masculin singulier, féminin singulier, masculin pluriel, féminin pluriel.",
+      "notes": "La majorité des adjectifs distinguent quatre formes : masculin singulier, féminin singulier, masculin pluriel, féminin pluriel.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond exactement au système à quatre formes du français (grand/grande/grands/grandes)."
@@ -405,7 +405,7 @@
         "Uns homes grans.",
         "Unes dones grans."
       ],
-      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier, et n’ajoutent que -s au pluriel : gran, jove, feliç, fàcil.",
+      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier, et n’ajoutent que -s au pluriel : gran, jove, feliç, fàcil.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français marque presque toujours le féminin par -e (grand/grande), alors que ce sous-ensemble catalan reste invariable en genre."
@@ -429,10 +429,10 @@
         "Uns pantalons marró.",
         "Una camisa blau marí."
       ],
-      "notes": "Quelques adjectifs de couleur restent invariables en nombre comme en genre, en particulier les adjectifs composés : blau marí, verd oliva.",
+      "notes": "Quelques adjectifs de couleur restent invariables en nombre comme en genre, en particulier les adjectifs composés : blau marí, verd oliva.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
+        "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -504,7 +504,7 @@
       "glosses": { "fr": "suffixe diminutif -et/-eta" },
       "cefr": "A2",
       "examples": ["Un gat i un gatet.", "Una casa i una caseta."],
-      "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
+      "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme les diminutifs français en -et/-ette (garçonnet, fillette), avec la même valeur affective."
@@ -522,10 +522,10 @@
       "glosses": { "fr": "suffixe augmentatif -às/-assa" },
       "cefr": "B1",
       "examples": ["Un home i un homenàs.", "Una casa i una casassa."],
-      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
+      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
+        "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -540,7 +540,7 @@
       "glosses": { "fr": "suffixe d’agent -dor/-dora sur radical verbal" },
       "cefr": "A2",
       "examples": ["Un jugador de futbol.", "Una jugadora de futbol."],
-      "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
+      "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -eur/-euse formé sur un radical verbal (jouer/joueur)."
@@ -558,7 +558,7 @@
       "glosses": { "fr": "suffixe de métier -er/-era sur radical nominal" },
       "cefr": "B1",
       "examples": ["Un sabater arregla sabates.", "Una lletera ven llet."],
-      "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
+      "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Rappelle le français -ier/-ière formé sur un nom, comme dans laitier/laitière pour lleter/lletera."
@@ -578,7 +578,7 @@
       },
       "cefr": "B1",
       "examples": ["La bellesa del paisatge.", "La riquesa del país."],
-      "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
+      "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -esse (richesse, noblesse), mais la productivité et les mots concrets touchés ne coïncident pas toujours."
@@ -599,7 +599,7 @@
         "La normalitat de la situació.",
         "La felicitat és difícil de mesurar."
       ],
-      "notes": "Le suffixe savant -tat/-etat, ajouté à un adjectif, forme un nom abstrait : normal/normalitat, feliç/felicitat.",
+      "notes": "Le suffixe savant -tat/-etat, ajouté à un adjectif, forme un nom abstrait : normal/normalitat, feliç/felicitat.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond directement au français -té/-ité (normalité, félicité), souvent avec le même mot de base latin."
@@ -623,10 +623,10 @@
         "El naixement d'un infant.",
         "L'acabament de l'obra."
       ],
-      "notes": "Le suffixe -ment, ajouté à un radical verbal, forme un nom d’action ou de résultat : pensar/pensament, néixer/naixement, acabar/acabament.",
+      "notes": "Le suffixe -ment, ajouté à un radical verbal, forme un nom d’action ou de résultat : pensar/pensament, néixer/naixement, acabar/acabament.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
+        "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -641,7 +641,7 @@
       "glosses": { "fr": "suffixe -ista formant un nom de profession ou d’adhérent" },
       "cefr": "A2",
       "examples": ["Un violinista toca el violí.", "Una dentista cuida les dents."],
-      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
+      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -iste sur la même base (violon/violoniste)."
@@ -669,7 +669,7 @@
         "Uns gratacels molt alts.",
         "Un porta-avions de guerra."
       ],
-      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels) ou deux noms reliés par un trait d’union ; beaucoup restent invariables au pluriel : un gratacels, uns gratacels.",
+      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels) ou deux noms reliés par un trait d’union ; beaucoup restent invariables au pluriel : un gratacels, uns gratacels.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a le même type de composé verbe+nom invariable (un gratte-ciel, des gratte-ciel), mais les listes lexicales ne se recouvrent que partiellement."
@@ -697,7 +697,7 @@
       "kind": "leaf",
       "parent": "ART.def.forma",
       "ca": "el / la / els / les",
-      "glosses": { "fr": "paradigme de l’article défini : el, la, els, les" },
+      "glosses": { "fr": "paradigme de l’article défini : el, la, els, les" },
       "cefr": "A1",
       "examples": [
         "El gat dorm.",
@@ -705,7 +705,7 @@
         "Els gats dormen.",
         "Les cases són grans."
       ],
-      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
+      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le système à quatre formes correspond point par point à le/la/les du français, la seule différence étant que le catalan distingue encore els/les au pluriel."
@@ -740,7 +740,7 @@
       "parent": "ART.def.forma",
       "ca": "la universitat",
       "glosses": {
-        "fr": "maintien de « la » devant un i ou un u initial non accentué, et devant une courte liste de mots accentués lexicalisés"
+        "fr": "maintien de « la » devant un i ou un u initial non accentué, et devant une courte liste de mots accentués lexicalisés"
       },
       "cefr": "B2",
       "examples": [
@@ -752,7 +752,7 @@
         "La host avançava lentament.",
         "Ja és la una."
       ],
-      "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
+      "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Comme le français devant un son non vocalique perçu (la ouate, la yourte), l’absence d’élision devant certaines voyelles initiales a un parallèle reconnaissable, même si la répartition précise diffère."
@@ -774,7 +774,7 @@
       "examples": ["El ioga relaxa el cos.", "El iot navega pel port."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme le français devant y consonantique (le yaourt, le yoga), le i de « ioga » se comporte comme une consonne et empêche l’élision de l’article."
+        "note": "Comme le français devant y consonantique (le yaourt, le yoga), le i de « ioga » se comporte comme une consonne et empêche l’élision de l’article."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -799,10 +799,10 @@
         "La meva germana estudia dret.",
         "Els meus pares viuen a Girona."
       ],
-      "notes": "L’article défini précède presque toujours le possessif en catalan : « el meu llibre », « la meva germana », « els meus pares ». Ne pas omettre l’article par calque du français.",
+      "notes": "L’article défini précède presque toujours le possessif en catalan : « el meu llibre », « la meva germana », « els meus pares ». Ne pas omettre l’article par calque du français.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français remplace l’article par l’adjectif possessif (mon livre), alors que le catalan garde l’article devant le possessif (« el meu llibre »)."
+        "note": "Le français remplace l’article par l’adjectif possessif (mon livre), alors que le catalan garde l’article devant le possessif (« el meu llibre »)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -825,7 +825,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Fonctionne exactement comme en français : « el dilluns » correspond à le lundi pour l’habitude, et « dilluns » seul à lundi pour une occurrence précise."
+        "note": "Fonctionne exactement comme en français : « el dilluns » correspond à le lundi pour l’habitude, et « dilluns » seul à lundi pour une occurrence précise."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -838,13 +838,13 @@
       "parent": "ART.def.us",
       "ca": "les tres",
       "glosses": {
-        "fr": "article défini féminin pluriel devant l’heure, « la » au singulier pour une heure"
+        "fr": "article défini féminin pluriel devant l’heure, « la » au singulier pour une heure"
       },
       "cefr": "A2",
       "examples": ["Són les tres.", "Marxo a les cinc.", "Ja és la una."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit l’heure sans article (il est trois heures), alors que le catalan exige l’article défini féminin (« són les tres »)."
+        "note": "Le français dit l’heure sans article (il est trois heures), alors que le catalan exige l’article défini féminin (« són les tres »)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -861,7 +861,7 @@
       "examples": ["Vaig néixer el 1992.", "L'any 2020 va ser dur.", "Estem al 2024."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit en 1992 avec la préposition en et sans article, alors que le catalan dit « el 1992 » avec l’article défini et sans préposition."
+        "note": "Le français dit en 1992 avec la préposition en et sans article, alors que le catalan dit « el 1992 » avec l’article défini et sans préposition."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -888,7 +888,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
+        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -911,7 +911,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
+        "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -928,7 +928,7 @@
       "examples": ["El senyor Puig ha arribat.", "La doctora Riera visita el pacient."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
+        "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -952,7 +952,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
+        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -970,7 +970,7 @@
       "kind": "leaf",
       "parent": "ART.indef",
       "ca": "un / una",
-      "glosses": { "fr": "paradigme de l’article indéfini singulier : un, una" },
+      "glosses": { "fr": "paradigme de l’article indéfini singulier : un, una" },
       "cefr": "A1",
       "examples": ["Un gat dorm al sofà.", "Una gata maula."],
       "contrast_fr": {
@@ -988,13 +988,13 @@
       "parent": "ART.indef",
       "ca": "uns / unes",
       "glosses": {
-        "fr": "article indéfini pluriel « uns »/« unes », sans équivalent direct en français"
+        "fr": "article indéfini pluriel « uns »/« unes », sans équivalent direct en français"
       },
       "cefr": "A2",
       "examples": ["Uns gats juguen al jardí.", "Unes gates dormen al balcó."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
+        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1007,7 +1007,7 @@
       "parent": "ART.indef",
       "ca": "uns deu minuts",
       "glosses": {
-        "fr": "« uns »/« unes » devant un nombre pour marquer une approximation"
+        "fr": "« uns »/« unes » devant un nombre pour marquer une approximation"
       },
       "cefr": "B1",
       "examples": ["Vam esperar uns deu minuts.", "Hi havia unes cinc persones."],
@@ -1026,13 +1026,13 @@
       "parent": "ART.indef",
       "ca": "unes ulleres",
       "glosses": {
-        "fr": "« uns »/« unes » devant un nom d’objet composé de deux parties symétriques"
+        "fr": "« uns »/« unes » devant un nom d’objet composé de deux parties symétriques"
       },
       "cefr": "B1",
       "examples": ["Porta unes ulleres noves.", "Necessito uns pantalons nous."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français connaît aussi un pluriel pour ce type d’objet (des lunettes), mais pas pour les mêmes mots : un pantalon reste singulier en français contre « uns pantalons » en catalan."
+        "note": "Le français connaît aussi un pluriel pour ce type d’objet (des lunettes), mais pas pour les mêmes mots : un pantalon reste singulier en français contre « uns pantalons » en catalan."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1072,7 +1072,7 @@
       "examples": ["Compro pa.", "Bec aigua.", "Menjo formatge."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le catalan ne connaît pas d’article partitif : « compro pa » correspond à j’achète du pain, sans équivalent de ce du."
+        "note": "Le catalan ne connaît pas d’article partitif : « compro pa » correspond à j’achète du pain, sans équivalent de ce du."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1089,7 +1089,7 @@
       "examples": ["No tinc cotxe.", "No menja carn.", "No bec vi."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français garde une trace de l’article sous forme de de (je n’ai pas de voiture), alors que le catalan supprime l’article sans rien le remplacer (« no tinc cotxe »)."
+        "note": "Le français garde une trace de l’article sous forme de de (je n’ai pas de voiture), alors que le catalan supprime l’article sans rien le remplacer (« no tinc cotxe »)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1107,13 +1107,13 @@
       "kind": "leaf",
       "parent": "ART.personal",
       "ca": "en Joan",
-      "glosses": { "fr": "article personnel « en » devant un prénom masculin" },
+      "glosses": { "fr": "article personnel « en » devant un prénom masculin" },
       "cefr": "A2",
       "examples": ["En Joan arriba tard.", "Parlo amb en Marc."],
-      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
+      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
+        "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1125,12 +1125,12 @@
       "kind": "leaf",
       "parent": "ART.personal",
       "ca": "na Maria",
-      "glosses": { "fr": "article personnel « na » devant un prénom féminin" },
+      "glosses": { "fr": "article personnel « na » devant un prénom féminin" },
       "cefr": "A2",
       "examples": ["Na Maria canta bé.", "He vist na Joana."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
+        "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1143,7 +1143,7 @@
       "parent": "ART.personal",
       "ca": "n'Anna",
       "glosses": {
-        "fr": "élision de l’article personnel en/na en « n' » devant une voyelle"
+        "fr": "élision de l’article personnel en/na en « n' » devant une voyelle"
       },
       "cefr": "B1",
       "examples": ["N'Anna estudia medicina.", "He parlat amb n'Oriol."],
@@ -1162,13 +1162,13 @@
       "parent": "ART.personal",
       "ca": "la Maria",
       "glosses": {
-        "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
+        "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
       },
       "cefr": "B1",
       "examples": ["La Maria arriba tard.", "He vist la Joana al mercat."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
+        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1203,13 +1203,13 @@
       "parent": "ART.personal",
       "ca": "d'en Joan",
       "glosses": {
-        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
+        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
       },
       "cefr": "B2",
       "examples": ["El cotxe és d'en Joan.", "Vaig a l'Anna.", "Parlo de la Maria."],
       "contrast_fr": {
         "status": "novel",
-        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
+        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1227,7 +1227,7 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "al mercat",
-      "glosses": { "fr": "contraction obligatoire de « a » + « el » en « al »" },
+      "glosses": { "fr": "contraction obligatoire de « a » + « el » en « al »" },
       "cefr": "A1",
       "examples": ["Vaig al mercat.", "Anem al cinema."],
       "contrast_fr": {
@@ -1244,7 +1244,7 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "als nens",
-      "glosses": { "fr": "contraction obligatoire de « a » + « els » en « als »" },
+      "glosses": { "fr": "contraction obligatoire de « a » + « els » en « als »" },
       "cefr": "A2",
       "examples": ["Ho dono als nens.", "Parlo als alumnes."],
       "contrast_fr": {
@@ -1261,7 +1261,7 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "del poble",
-      "glosses": { "fr": "contraction obligatoire de « de » + « el » en « del »" },
+      "glosses": { "fr": "contraction obligatoire de « de » + « el » en « del »" },
       "cefr": "A1",
       "examples": ["Vinc del poble.", "El llibre del noi."],
       "contrast_fr": {
@@ -1278,7 +1278,7 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "dels amics",
-      "glosses": { "fr": "contraction obligatoire de « de » + « els » en « dels »" },
+      "glosses": { "fr": "contraction obligatoire de « de » + « els » en « dels »" },
       "cefr": "A2",
       "examples": ["Parlo dels amics.", "La casa dels avis."],
       "contrast_fr": {
@@ -1295,12 +1295,12 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "pel carrer",
-      "glosses": { "fr": "contraction obligatoire de « per » + « el » en « pel »" },
+      "glosses": { "fr": "contraction obligatoire de « per » + « el » en « pel »" },
       "cefr": "B1",
       "examples": ["Passegem pel carrer.", "Ho fem pel projecte."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
+        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1312,12 +1312,12 @@
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "pels camps",
-      "glosses": { "fr": "contraction obligatoire de « per » + « els » en « pels »" },
+      "glosses": { "fr": "contraction obligatoire de « per » + « els » en « pels »" },
       "cefr": "B1",
       "examples": ["Caminem pels camps.", "Ho fem pels nens."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
+        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1330,13 +1330,13 @@
       "parent": "ART.contract",
       "ca": "a l'home",
       "glosses": {
-        "fr": "absence de contraction quand l’article est déjà élidé en « l' »"
+        "fr": "absence de contraction quand l’article est déjà élidé en « l' »"
       },
       "cefr": "B1",
       "examples": ["Ho dic a l'home.", "Vinc de l'hospital.", "Ho faig per l'amistat."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme en français (à l’homme, de l’hôpital, sans au ni du), la contraction ne s’applique pas quand l’article est déjà réduit à « l' »."
+        "note": "Comme en français (à l’homme, de l’hôpital, sans au ni du), la contraction ne s’applique pas quand l’article est déjà réduit à « l' »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1349,7 +1349,7 @@
       "parent": "ART.contract",
       "ca": "cap al poble",
       "glosses": {
-        "fr": "maintien de la contraction « al » à l’intérieur de la préposition composée « cap a »"
+        "fr": "maintien de la contraction « al » à l’intérieur de la préposition composée « cap a »"
       },
       "cefr": "B2",
       "examples": ["Anem cap al poble.", "Caminem cap als afores."],
@@ -1374,14 +1374,14 @@
       "parent": "ART.salat",
       "ca": "es cotxe",
       "glosses": {
-        "fr": "article salat « es »/« sa », variante dialectale baléare de l’article défini"
+        "fr": "article salat « es »/« sa », variante dialectale baléare de l’article défini"
       },
       "cefr": "C1",
       "examples": ["Es cotxe és nou.", "Sa casa és gran."],
-      "dialect_note": "Forme baléare : à comprendre à l’écrit et à l’oral, mais pas une forme à produire dans cet apprentissage centré sur le catalan central.",
+      "dialect_note": "Forme baléare : à comprendre à l’écrit et à l’oral, mais pas une forme à produire dans cet apprentissage centré sur le catalan central.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français standard n’a qu’une seule série d’articles définis ; cette variante phonétique baléare n’a pas d’équivalent à transférer."
+        "note": "Le français standard n’a qu’une seule série d’articles définis ; cette variante phonétique baléare n’a pas d’équivalent à transférer."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1393,10 +1393,10 @@
       "kind": "leaf",
       "parent": "ART.salat",
       "ca": "ses cases",
-      "glosses": { "fr": "article salat pluriel « ses »/« es »" },
+      "glosses": { "fr": "article salat pluriel « ses »/« es »" },
       "cefr": "C1",
       "examples": ["Ses cases són velles.", "Es al·lots juguen al carrer."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
+      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
       "contrast_fr": {
         "status": "novel",
         "note": "Aucun équivalent en français, qui ne connaît qu’une seule série d’articles définis quel que soit le dialecte."
@@ -1411,10 +1411,10 @@
       "kind": "leaf",
       "parent": "ART.salat",
       "ca": "s'aigua",
-      "glosses": { "fr": "élision de l’article salat en « s' » devant une voyelle" },
+      "glosses": { "fr": "élision de l’article salat en « s' » devant une voyelle" },
       "cefr": "C1",
       "examples": ["S'aigua és freda.", "S'amo és a fora."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
+      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
       "contrast_fr": {
         "status": "novel",
         "note": "L’élision suit le même principe phonétique que celle de l’article standard français devant voyelle, mais s’applique à une série d’articles absente du français."
@@ -1688,7 +1688,7 @@
       "parent": "PREP.atones",
       "ca": "a, de, en, amb, per, per a",
       "glosses": {
-        "fr": "les six prépositions faibles du catalan, « a », « de », « en », « amb », « per » et « per a »"
+        "fr": "les six prépositions faibles du catalan, « a », « de », « en », « amb », « per » et « per a »"
       },
       "cefr": "A1",
       "examples": [
@@ -1700,7 +1700,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Cinq des six formes correspondent une à une à à, de, en, par et avec. « per a » n’a pas d’équivalent d’un seul mot, et « en » est le principal piège du domaine."
+        "note": "Cinq des six formes correspondent une à une à à, de, en, par et avec. « per a » n’a pas d’équivalent d’un seul mot, et « en » est le principal piège du domaine."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1713,7 +1713,7 @@
       "parent": "PREP.atones",
       "ca": "d'aigua",
       "glosses": {
-        "fr": "seule « de » s’élide devant une voyelle, les autres prépositions faibles restent invariables"
+        "fr": "seule « de » s’élide devant une voyelle, les autres prépositions faibles restent invariables"
       },
       "cefr": "A2",
       "examples": [
@@ -1724,7 +1724,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "L’élision suit celle du français, mais elle est bloquée devant un i ou un u consonantiques, comme dans « de iogurt », ce que rien en français ne prépare."
+        "note": "L’élision suit celle du français, mais elle est bloquée devant un i ou un u consonantiques, comme dans « de iogurt », ce que rien en français ne prépare."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1737,13 +1737,13 @@
       "parent": "PREP.atones",
       "ca": "vinc de Girona",
       "glosses": {
-        "fr": "« de » marque l’origine et le point de départ d’un déplacement"
+        "fr": "« de » marque l’origine et le point de départ d’un déplacement"
       },
       "cefr": "A2",
       "examples": ["Vinc de Girona.", "Surt de casa.", "És d'Olot."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Recouvre exactement l’emploi français de « de » pour la provenance, sans divergence de forme ni d’emploi."
+        "note": "Recouvre exactement l’emploi français de « de » pour la provenance, sans divergence de forme ni d’emploi."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1755,7 +1755,7 @@
       "kind": "leaf",
       "parent": "PREP.atones",
       "ca": "amb",
-      "glosses": { "fr": "« amb » pour l’accompagnement et pour l’instrument" },
+      "glosses": { "fr": "« amb » pour l’accompagnement et pour l’instrument" },
       "cefr": "A2",
       "examples": [
         "Vinc amb tu.",
@@ -1764,7 +1764,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Correspond au français « avec » dans ses deux emplois principaux, l’accompagnement et le moyen instrumental."
+        "note": "Correspond au français « avec » dans ses deux emplois principaux, l’accompagnement et le moyen instrumental."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1776,12 +1776,12 @@
       "kind": "leaf",
       "parent": "PREP.atones",
       "ca": "amb tren",
-      "glosses": { "fr": "« amb », et non « en », devant un moyen de transport" },
+      "glosses": { "fr": "« amb », et non « en », devant un moyen de transport" },
       "cefr": "A2",
       "examples": ["Hi vaig amb tren.", "Va venir amb cotxe.", "Viatgem amb avió."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit en train et en voiture, le catalan « amb tren » et « amb cotxe ». Le calque « en tren » passe inaperçu."
+        "note": "Le français dit en train et en voiture, le catalan « amb tren » et « amb cotxe ». Le calque « en tren » passe inaperçu."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1792,7 +1792,7 @@
       "id": "PREP.a_en",
       "kind": "branch",
       "parent": "PREP",
-      "label_fr": "Les prépositions « a » et « en »"
+      "label_fr": "Les prépositions « a » et « en »"
     },
     {
       "id": "PREP.a_en.lloc",
@@ -1806,7 +1806,7 @@
       "parent": "PREP.a_en.lloc",
       "ca": "a Barcelona",
       "glosses": {
-        "fr": "« a » couvre à la fois le lieu où l’on est et le lieu où l’on va"
+        "fr": "« a » couvre à la fois le lieu où l’on est et le lieu où l’on va"
       },
       "cefr": "A2",
       "examples": [
@@ -1817,7 +1817,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français répartit entre à, en, dans et chez là où le catalan n’a que « a » devant un groupe déterminé. C’est dans qui se transfère à tort."
+        "note": "Le français répartit entre à, en, dans et chez là où le catalan n’a que « a » devant un groupe déterminé. C’est dans qui se transfère à tort."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1830,7 +1830,7 @@
       "parent": "PREP.a_en.lloc",
       "ca": "en una casa gran",
       "glosses": {
-        "fr": "« en » remplace « a » quand le groupe nominal n’est pas introduit par l’article défini"
+        "fr": "« en » remplace « a » quand le groupe nominal n’est pas introduit par l’article défini"
       },
       "cefr": "B1",
       "examples": [
@@ -1841,7 +1841,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. La faute « viu a una casa gran » reste inaperçue."
+        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. La faute « viu a una casa gran » reste inaperçue."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1860,7 +1860,7 @@
       "examples": ["Viu a França.", "Vaig a Portugal.", "Estudia als Estats Units."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français choisit entre en France, au Portugal et aux États-Unis. Le catalan dit « a » dans les trois cas, et le réflexe de choisir survit longtemps."
+        "note": "Le français choisit entre en France, au Portugal et aux États-Unis. Le catalan dit « a » dans les trois cas, et le réflexe de choisir survit longtemps."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1878,12 +1878,12 @@
       "kind": "leaf",
       "parent": "PREP.a_en.temps",
       "ca": "a les tres",
-      "glosses": { "fr": "« a » suivi de l’article pour l’heure" },
+      "glosses": { "fr": "« a » suivi de l’article pour l’heure" },
       "cefr": "A2",
       "examples": ["Ens veiem a les tres.", "El tren surt a les nou en punt."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "« a les tres » se calque sur à trois heures, à ceci près que le catalan garde l’article défini devant le chiffre."
+        "note": "« a les tres » se calque sur à trois heures, à ceci près que le catalan garde l’article défini devant le chiffre."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1896,13 +1896,13 @@
       "parent": "PREP.a_en.temps",
       "ca": "al matí",
       "glosses": {
-        "fr": "« a » suivi de l’article pour les moments de la journée et pour les saisons"
+        "fr": "« a » suivi de l’article pour les moments de la journée et pour les saisons"
       },
       "cefr": "B1",
       "examples": ["Es lleva al matí.", "Treballa a la nit.", "A l'estiu fa calor."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit le matin sans préposition et en été avec une autre. Le catalan demande « al matí » et « a l'estiu » dans les deux cas."
+        "note": "Le français dit le matin sans préposition et en été avec une autre. Le catalan demande « al matí » et « a l'estiu » dans les deux cas."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1925,7 +1925,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« el dilluns » se calque sur le lundi, mais en 2004 devient « el 2004 » sans préposition, et l’ajout d’un « en » est l’erreur attendue."
+        "note": "« el dilluns » se calque sur le lundi, mais en 2004 devient « el 2004 » sans préposition, et l’ajout d’un « en » est l’erreur attendue."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1938,7 +1938,7 @@
       "parent": "PREP.a_en.temps",
       "ca": "en dues hores",
       "glosses": {
-        "fr": "« en » pour le temps que prend une action menée à son terme"
+        "fr": "« en » pour le temps que prend une action menée à son terme"
       },
       "cefr": "B2",
       "examples": [
@@ -1959,14 +1959,14 @@
       "id": "PREP.per_pera",
       "kind": "branch",
       "parent": "PREP",
-      "label_fr": "Les prépositions « per » et « per a »"
+      "label_fr": "Les prépositions « per » et « per a »"
     },
     {
       "id": "PREP.per_pera.causa",
       "kind": "leaf",
       "parent": "PREP.per_pera",
       "ca": "per la pluja",
-      "glosses": { "fr": "« per » marque la cause et le motif" },
+      "glosses": { "fr": "« per » marque la cause et le motif" },
       "cefr": "A2",
       "examples": [
         "No hem sortit per la pluja.",
@@ -1975,7 +1975,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Un seul « per » là où le français répartit entre par, pour et à cause de. Le partage français ne prédit pas l’emploi catalan."
+        "note": "Un seul « per » là où le français répartit entre par, pour et à cause de. Le partage français ne prédit pas l’emploi catalan."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1987,7 +1987,7 @@
       "kind": "leaf",
       "parent": "PREP.per_pera",
       "ca": "escrita per Rodoreda",
-      "glosses": { "fr": "« per » introduit le complément d’agent du passif" },
+      "glosses": { "fr": "« per » introduit le complément d’agent du passif" },
       "cefr": "B1",
       "examples": [
         "La novel·la va ser escrita per Rodoreda.",
@@ -2007,7 +2007,7 @@
       "kind": "leaf",
       "parent": "PREP.per_pera",
       "ca": "per la ciutat",
-      "glosses": { "fr": "« per » pour le déplacement à travers un espace" },
+      "glosses": { "fr": "« per » pour le déplacement à travers un espace" },
       "cefr": "B1",
       "examples": [
         "Passegem per la ciutat.",
@@ -2028,7 +2028,7 @@
       "kind": "leaf",
       "parent": "PREP.per_pera",
       "ca": "per Nadal",
-      "glosses": { "fr": "« per » pour une date approximative ou pour une fête" },
+      "glosses": { "fr": "« per » pour une date approximative ou pour une fête" },
       "cefr": "B1",
       "examples": [
         "Ens veiem per Nadal.",
@@ -2037,7 +2037,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit à Noël ou vers Noël. Le catalan dit « per Nadal », et le calque « a Nadal » est l’erreur à attendre."
+        "note": "Le français dit à Noël ou vers Noël. Le catalan dit « per Nadal », et le calque « a Nadal » est l’erreur à attendre."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2050,7 +2050,7 @@
       "parent": "PREP.per_pera",
       "ca": "per a tu",
       "glosses": {
-        "fr": "« per a » devant un groupe nominal pour la destination et pour le destinataire"
+        "fr": "« per a » devant un groupe nominal pour la destination et pour le destinataire"
       },
       "cefr": "B1",
       "examples": [
@@ -2060,9 +2060,9 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le pour français recouvre à la fois « per » et « per a ». C’est ici que le partage se joue, et rien dans la phrase française ne l’indique."
+        "note": "Le pour français recouvre à la fois « per » et « per a ». C’est ici que le partage se joue, et rien dans la phrase française ne l’indique."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
@@ -2074,7 +2074,7 @@
       "parent": "PREP.per_pera",
       "ca": "per veure't",
       "glosses": {
-        "fr": "le but devant un infinitif prend « per » et non « per a » dans le système de Fabra"
+        "fr": "le but devant un infinitif prend « per » et non « per a » dans le système de Fabra"
       },
       "cefr": "B1",
       "examples": [
@@ -2084,9 +2084,9 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Pour faire se rend par « per fer ». Le français ne distingue rien, donc le choix entre « per » et « per a » bascule ici sans aucun indice."
+        "note": "Pour faire se rend par « per fer ». Le français ne distingue rien, donc le choix entre « per » et « per a » bascule ici sans aucun indice."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
@@ -2104,13 +2104,13 @@
       "parent": "PREP.formes_no_finites",
       "ca": "començar a parlar",
       "glosses": {
-        "fr": "les verbes de commencement, d’aide et de répétition régissent « a » devant l’infinitif"
+        "fr": "les verbes de commencement, d’aide et de répétition régissent « a » devant l’infinitif"
       },
       "cefr": "B1",
       "examples": ["Comença a ploure.", "M'ajuda a estudiar.", "Torna a llegir-ho."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Se calque sur commencer à et aider à, le régime en « a » se transférant presque toujours correctement."
+        "note": "Se calque sur commencer à et aider à, le régime en « a » se transférant presque toujours correctement."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2123,14 +2123,14 @@
       "parent": "PREP.formes_no_finites",
       "ca": "deixar de fumar",
       "glosses": {
-        "fr": "les verbes d’arrêt, d’achèvement et de tentative régissent « de » devant l’infinitif"
+        "fr": "les verbes d’arrêt, d’achèvement et de tentative régissent « de » devant l’infinitif"
       },
       "cefr": "B1",
       "examples": ["Ha deixat de fumar.", "Acabo d'arribar.", "Mira de venir aviat."],
-      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase relève du domaine VERB et non du régime prépositionnel.",
+      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase relève du domaine VERB et non du régime prépositionnel.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le régime se calque sur arrêter de et essayer de, mais « acabar de » se lit finir de et signifie venir de, ce qui inverse un membre très fréquent de la classe."
+        "note": "Le régime se calque sur arrêter de et essayer de, mais « acabar de » se lit finir de et signifie venir de, ce qui inverse un membre très fréquent de la classe."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2143,7 +2143,7 @@
       "parent": "PREP.formes_no_finites",
       "ca": "fàcil de fer",
       "glosses": {
-        "fr": "un adjectif régit « de » devant l’infinitif, et le quantificateur choisit entre « a » et « per »"
+        "fr": "un adjectif régit « de » devant l’infinitif, et le quantificateur choisit entre « a » et « per »"
       },
       "cefr": "B2",
       "examples": [
@@ -2154,7 +2154,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit facile à faire, le catalan « fàcil de fer ». La préposition change alors que le cadre reste identique."
+        "note": "Le français dit facile à faire, le catalan « fàcil de fer ». La préposition change alors que le cadre reste identique."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2167,7 +2167,7 @@
       "parent": "PREP.formes_no_finites",
       "ca": "sense dir res",
       "glosses": {
-        "fr": "« sense » devant l’infinitif, et les mots négatifs qui gardent une valeur positive sous sa portée"
+        "fr": "« sense » devant l’infinitif, et les mots négatifs qui gardent une valeur positive sous sa portée"
       },
       "cefr": "A2",
       "examples": ["Va marxar sense dir res.", "Ho ha fet sense pensar."],
@@ -2186,7 +2186,7 @@
       "parent": "PREP.formes_no_finites",
       "ca": "abans de sortir",
       "glosses": {
-        "fr": "« abans de » et « després de » prennent tous deux l’infinitif simple"
+        "fr": "« abans de » et « després de » prennent tous deux l’infinitif simple"
       },
       "cefr": "B1",
       "examples": [
@@ -2195,7 +2195,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« abans de menjar » se calque sur avant de manger, mais « després de sopar » correspond à après avoir soupé, où le français impose l’infinitif passé."
+        "note": "« abans de menjar » se calque sur avant de manger, mais « després de sopar » correspond à après avoir soupé, où le français impose l’infinitif passé."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2208,7 +2208,7 @@
       "parent": "PREP.formes_no_finites",
       "ca": "en arribar",
       "glosses": {
-        "fr": "« en » suivi de l’infinitif pour un fait immédiatement antérieur à la principale"
+        "fr": "« en » suivi de l’infinitif pour un fait immédiatement antérieur à la principale"
       },
       "cefr": "B2",
       "examples": ["En arribar a casa, es va adormir.", "En sentir-ho, va plorar."],
@@ -2227,7 +2227,7 @@
       "parent": "PREP.formes_no_finites",
       "ca": "tot mirant",
       "glosses": {
-        "fr": "le gérondif ne prend aucune préposition, « tot » en étant le seul renforcement possible"
+        "fr": "le gérondif ne prend aucune préposition, « tot » en étant le seul renforcement possible"
       },
       "cefr": "B1",
       "examples": [
@@ -2235,10 +2235,10 @@
         "Tot mirant la tele, es va adormir.",
         "Escoltant-lo, ho vaig entendre."
       ],
-      "notes": "Symétrique de « en arribar ». La préposition « en » va devant l’infinitif et jamais devant le gérondif, si bien que les deux formes françaises en -ant se répartissent sur deux constructions catalanes distinctes.",
+      "notes": "Symétrique de « en arribar ». La préposition « en » va devant l’infinitif et jamais devant le gérondif, si bien que les deux formes françaises en -ant se répartissent sur deux constructions catalanes distinctes.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "En mangeant se dit « menjant » ou « tot menjant ». La préposition française n’a pas de contrepartie et « en menjant » est agrammatical."
+        "note": "En mangeant se dit « menjant » ou « tot menjant ». La préposition française n’a pas de contrepartie et « en menjant » est agrammatical."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2281,13 +2281,13 @@
       "parent": "PREP.regim",
       "ca": "pensar en",
       "glosses": {
-        "fr": "les verbes régissant « en » là où le français en régit une autre"
+        "fr": "les verbes régissant « en » là où le français en régit une autre"
       },
       "cefr": "B1",
       "examples": ["Penso en tu.", "Confio en ell.", "Insisteix en la mateixa idea."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« pensar en » correspond à penser à et « insistir en » à insister sur. La préposition suggérée par le français est fausse à chaque fois."
+        "note": "« pensar en » correspond à penser à et « insistir en » à insister sur. La préposition suggérée par le français est fausse à chaque fois."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2300,7 +2300,7 @@
       "parent": "PREP.regim",
       "ca": "somiar amb",
       "glosses": {
-        "fr": "les verbes régissant « amb » là où le français en régit une autre"
+        "fr": "les verbes régissant « amb » là où le français en régit une autre"
       },
       "cefr": "B1",
       "examples": [
@@ -2310,7 +2310,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« somiar amb » correspond à rêver de et « parlar amb » à parler à. Le sens est transparent, la préposition ne l’est pas."
+        "note": "« somiar amb » correspond à rêver de et « parlar amb » à parler à. Le sens est transparent, la préposition ne l’est pas."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2323,13 +2323,13 @@
       "parent": "PREP.regim",
       "ca": "oblidar-se de",
       "glosses": {
-        "fr": "les verbes régissant « de » là où le français n’en régit aucune ou en régit une autre"
+        "fr": "les verbes régissant « de » là où le français n’en régit aucune ou en régit une autre"
       },
       "cefr": "B2",
       "examples": ["S'ha oblidat de les claus.", "No es refia de ningú."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« oblidar-se de » correspond à oublier, sans préposition, et « refiar-se de » à se fier à. L’omission du « de » est l’erreur attendue."
+        "note": "« oblidar-se de » correspond à oublier, sans préposition, et « refiar-se de » à se fier à. L’omission du « de » est l’erreur attendue."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2342,7 +2342,7 @@
       "parent": "PREP.regim",
       "ca": "confio que vindrà",
       "glosses": {
-        "fr": "la préposition régie tombe devant une complétive introduite par « que »"
+        "fr": "la préposition régie tombe devant une complétive introduite par « que »"
       },
       "cefr": "B2",
       "examples": [
@@ -2352,7 +2352,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français garde souvent la préposition, comme dans tenir à ce que. Le catalan la supprime, et « confio en que vindrà » est incorrect."
+        "note": "Le français garde souvent la préposition, comme dans tenir à ce que. Le catalan la supprime, et « confio en que vindrà » est incorrect."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2393,7 +2393,7 @@
       "kind": "leaf",
       "parent": "PREP.marcatge",
       "ca": "a la Maria",
-      "glosses": { "fr": "« a » marque le complément d’objet indirect" },
+      "glosses": { "fr": "« a » marque le complément d’objet indirect" },
       "cefr": "A2",
       "examples": ["Dono el llibre a la Maria.", "Li ho he dit al teu germà."],
       "contrast_fr": {
@@ -2411,7 +2411,7 @@
       "parent": "PREP.marcatge",
       "ca": "a mi em sembla",
       "glosses": {
-        "fr": "« a » devant un pronom tonique, en dislocation avec reprise faible et dans la mise en relief"
+        "fr": "« a » devant un pronom tonique, en dislocation avec reprise faible et dans la mise en relief"
       },
       "cefr": "B2",
       "examples": [
@@ -2421,7 +2421,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français disloque sans préposition, moi, il me semble. Le catalan exige « a mi em sembla », et l’omission du « a » s’entend."
+        "note": "Le français disloque sans préposition, moi, il me semble. Le catalan exige « a mi em sembla », et l’omission du « a » s’entend."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2434,7 +2434,7 @@
       "parent": "PREP.marcatge",
       "ca": "tres de vermells",
       "glosses": {
-        "fr": "« de » obligatoire entre un quantificateur ou un pronom indéfini et l’adjectif qui suit"
+        "fr": "« de » obligatoire entre un quantificateur ou un pronom indéfini et l’adjectif qui suit"
       },
       "cefr": "B2",
       "examples": [
@@ -2445,7 +2445,7 @@
       "notes": "Après un pronom indéfini, le français a la même préposition, rien de nouveau ou quoi de neuf, et le transfert est correct. La divergence porte sur le numéral et le quantificateur, où le français ne met rien.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a bien rien de nouveau, mais ne met rien après un numéral, alors que le catalan impose « en tinc tres de vermells »."
+        "note": "Le français a bien rien de nouveau, mais ne met rien après un numéral, alors que le catalan impose « en tinc tres de vermells »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2476,7 +2476,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "« sobre », « sota », « entre », « contra », « segons » et « malgrat » correspondent une à une à sur, sous, entre, contre, selon et malgré."
+        "note": "« sobre », « sota », « entre », « contra », « segons » et « malgrat » correspondent une à une à sur, sous, entre, contre, selon et malgré."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2489,7 +2489,7 @@
       "parent": "PREP.toniques",
       "ca": "cap a, fins a",
       "glosses": {
-        "fr": "« cap » et « fins » exigent « a » devant un groupe déterminé et le perdent ailleurs"
+        "fr": "« cap » et « fins » exigent « a » devant un groupe déterminé et le perdent ailleurs"
       },
       "cefr": "B1",
       "examples": [
@@ -2500,7 +2500,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français garde à dans jusqu’à demain, alors que le catalan dit « fins demà » sans préposition. La chute est réglée par ce qui suit."
+        "note": "Le français garde à dans jusqu’à demain, alors que le catalan dit « fins demà » sans préposition. La chute est réglée par ce qui suit."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2513,7 +2513,7 @@
       "parent": "PREP.toniques",
       "ca": "des del 2010",
       "glosses": {
-        "fr": "« des de » pour un point de départ dans l’espace ou dans le temps"
+        "fr": "« des de » pour un point de départ dans l’espace ou dans le temps"
       },
       "cefr": "B1",
       "examples": ["Viu aquí des del 2010.", "Des de casa es veu el mar."],
@@ -2532,13 +2532,13 @@
       "parent": "PREP.toniques",
       "ca": "des de fa tres anys",
       "glosses": {
-        "fr": "la durée écoulée demande « des de fa », ou la construction avec « fa » et « que »"
+        "fr": "la durée écoulée demande « des de fa », ou la construction avec « fa » et « que »"
       },
       "cefr": "B2",
       "examples": ["Des de fa tres anys no el veig.", "Fa tres anys que no el veig."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit depuis trois ans d’un seul tenant. Le catalan intercale « fa », et « des de tres anys » est agrammatical."
+        "note": "Le français dit depuis trois ans d’un seul tenant. Le catalan intercale « fa », et « des de tres anys » est agrammatical."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -2551,7 +2551,7 @@
       "parent": "PREP.toniques",
       "ca": "a prop de",
       "glosses": {
-        "fr": "les locutions bâties sur « de », et celles où ce « de » est facultatif"
+        "fr": "les locutions bâties sur « de », et celles où ce « de » est facultatif"
       },
       "cefr": "B1",
       "examples": [
@@ -2562,7 +2562,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français fige près de mais exclut toute préposition après devant. Le catalan admet « davant de casa » comme « davant casa », sans équivalent français."
+        "note": "Le français fige près de mais exclut toute préposition après devant. Le catalan admet « davant de casa » comme « davant casa », sans équivalent français."
       },
       "state": {
         "exposure": { "exposure_count": 0 },

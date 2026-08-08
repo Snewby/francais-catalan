@@ -3,7 +3,9 @@
 ## Build / test
 
 - Dev: `npm run dev` Build: `npm run build` Preview: `npm run preview`
-- Test: `npm test` (vitest). Single file: `npm test -- test/foo.test.ts`
+- Test: `npm run test:run` (vitest once, and what CI runs). Single file:
+  `npm run test:run -- test/foo.test.ts`. Bare `npm test` is watch mode, so it
+  never exits and reports nothing.
 - Regenerate schema after taxonomy edits: `npm run gen-schema`
 - Validate IDs: `npm run validate-ids`
 - Check gloss coverage: `npm run check-glosses`

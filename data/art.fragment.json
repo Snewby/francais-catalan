@@ -25,7 +25,7 @@
       "parent": "ART.def.forma",
       "ca": "el / la / els / les",
       "glosses": {
-        "fr": "paradigme de l’article défini : el, la, els, les"
+        "fr": "paradigme de l’article défini : el, la, els, les"
       },
       "cefr": "A1",
       "examples": [
@@ -34,7 +34,7 @@
         "Els gats dormen.",
         "Les cases són grans."
       ],
-      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
+      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le système à quatre formes correspond point par point à le/la/les du français, la seule différence étant que le catalan distingue encore els/les au pluriel."
@@ -81,7 +81,7 @@
       "parent": "ART.def.forma",
       "ca": "la universitat",
       "glosses": {
-        "fr": "maintien de « la » devant un i ou un u initial non accentué, et devant une courte liste de mots accentués lexicalisés"
+        "fr": "maintien de « la » devant un i ou un u initial non accentué, et devant une courte liste de mots accentués lexicalisés"
       },
       "cefr": "B2",
       "examples": [
@@ -93,7 +93,7 @@
         "La host avançava lentament.",
         "Ja és la una."
       ],
-      "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
+      "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Comme le français devant un son non vocalique perçu (la ouate, la yourte), l’absence d’élision devant certaines voyelles initiales a un parallèle reconnaissable, même si la répartition précise diffère."
@@ -121,7 +121,7 @@
       "examples": ["El ioga relaxa el cos.", "El iot navega pel port."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme le français devant y consonantique (le yaourt, le yoga), le i de « ioga » se comporte comme une consonne et empêche l’élision de l’article."
+        "note": "Comme le français devant y consonantique (le yaourt, le yoga), le i de « ioga » se comporte comme une consonne et empêche l’élision de l’article."
       },
       "state": {
         "exposure": {
@@ -154,10 +154,10 @@
         "La meva germana estudia dret.",
         "Els meus pares viuen a Girona."
       ],
-      "notes": "L’article défini précède presque toujours le possessif en catalan : « el meu llibre », « la meva germana », « els meus pares ». Ne pas omettre l’article par calque du français.",
+      "notes": "L’article défini précède presque toujours le possessif en catalan : « el meu llibre », « la meva germana », « els meus pares ». Ne pas omettre l’article par calque du français.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français remplace l’article par l’adjectif possessif (mon livre), alors que le catalan garde l’article devant le possessif (« el meu llibre »)."
+        "note": "Le français remplace l’article par l’adjectif possessif (mon livre), alors que le catalan garde l’article devant le possessif (« el meu llibre »)."
       },
       "state": {
         "exposure": {
@@ -186,7 +186,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Fonctionne exactement comme en français : « el dilluns » correspond à le lundi pour l’habitude, et « dilluns » seul à lundi pour une occurrence précise."
+        "note": "Fonctionne exactement comme en français : « el dilluns » correspond à le lundi pour l’habitude, et « dilluns » seul à lundi pour une occurrence précise."
       },
       "state": {
         "exposure": {
@@ -205,13 +205,13 @@
       "parent": "ART.def.us",
       "ca": "les tres",
       "glosses": {
-        "fr": "article défini féminin pluriel devant l’heure, « la » au singulier pour une heure"
+        "fr": "article défini féminin pluriel devant l’heure, « la » au singulier pour une heure"
       },
       "cefr": "A2",
       "examples": ["Són les tres.", "Marxo a les cinc.", "Ja és la una."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit l’heure sans article (il est trois heures), alors que le catalan exige l’article défini féminin (« són les tres »)."
+        "note": "Le français dit l’heure sans article (il est trois heures), alors que le catalan exige l’article défini féminin (« són les tres »)."
       },
       "state": {
         "exposure": {
@@ -236,7 +236,7 @@
       "examples": ["Vaig néixer el 1992.", "L'any 2020 va ser dur.", "Estem al 2024."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit en 1992 avec la préposition en et sans article, alors que le catalan dit « el 1992 » avec l’article défini et sans préposition."
+        "note": "Le français dit en 1992 avec la préposition en et sans article, alors que le catalan dit « el 1992 » avec l’article défini et sans préposition."
       },
       "state": {
         "exposure": {
@@ -269,7 +269,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
+        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
       },
       "state": {
         "exposure": {
@@ -298,7 +298,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
+        "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
       },
       "state": {
         "exposure": {
@@ -323,7 +323,7 @@
       "examples": ["El senyor Puig ha arribat.", "La doctora Riera visita el pacient."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
+        "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
       },
       "state": {
         "exposure": {
@@ -353,7 +353,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
+        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
       },
       "state": {
         "exposure": {
@@ -378,7 +378,7 @@
       "parent": "ART.indef",
       "ca": "un / una",
       "glosses": {
-        "fr": "paradigme de l’article indéfini singulier : un, una"
+        "fr": "paradigme de l’article indéfini singulier : un, una"
       },
       "cefr": "A1",
       "examples": ["Un gat dorm al sofà.", "Una gata maula."],
@@ -403,13 +403,13 @@
       "parent": "ART.indef",
       "ca": "uns / unes",
       "glosses": {
-        "fr": "article indéfini pluriel « uns »/« unes », sans équivalent direct en français"
+        "fr": "article indéfini pluriel « uns »/« unes », sans équivalent direct en français"
       },
       "cefr": "A2",
       "examples": ["Uns gats juguen al jardí.", "Unes gates dormen al balcó."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
+        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
       },
       "state": {
         "exposure": {
@@ -428,7 +428,7 @@
       "parent": "ART.indef",
       "ca": "uns deu minuts",
       "glosses": {
-        "fr": "« uns »/« unes » devant un nombre pour marquer une approximation"
+        "fr": "« uns »/« unes » devant un nombre pour marquer une approximation"
       },
       "cefr": "B1",
       "examples": ["Vam esperar uns deu minuts.", "Hi havia unes cinc persones."],
@@ -453,13 +453,13 @@
       "parent": "ART.indef",
       "ca": "unes ulleres",
       "glosses": {
-        "fr": "« uns »/« unes » devant un nom d’objet composé de deux parties symétriques"
+        "fr": "« uns »/« unes » devant un nom d’objet composé de deux parties symétriques"
       },
       "cefr": "B1",
       "examples": ["Porta unes ulleres noves.", "Necessito uns pantalons nous."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français connaît aussi un pluriel pour ce type d’objet (des lunettes), mais pas pour les mêmes mots : un pantalon reste singulier en français contre « uns pantalons » en catalan."
+        "note": "Le français connaît aussi un pluriel pour ce type d’objet (des lunettes), mais pas pour les mêmes mots : un pantalon reste singulier en français contre « uns pantalons » en catalan."
       },
       "state": {
         "exposure": {
@@ -513,7 +513,7 @@
       "examples": ["Compro pa.", "Bec aigua.", "Menjo formatge."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le catalan ne connaît pas d’article partitif : « compro pa » correspond à j’achète du pain, sans équivalent de ce du."
+        "note": "Le catalan ne connaît pas d’article partitif : « compro pa » correspond à j’achète du pain, sans équivalent de ce du."
       },
       "state": {
         "exposure": {
@@ -538,7 +538,7 @@
       "examples": ["No tinc cotxe.", "No menja carn.", "No bec vi."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français garde une trace de l’article sous forme de de (je n’ai pas de voiture), alors que le catalan supprime l’article sans rien le remplacer (« no tinc cotxe »)."
+        "note": "Le français garde une trace de l’article sous forme de de (je n’ai pas de voiture), alors que le catalan supprime l’article sans rien le remplacer (« no tinc cotxe »)."
       },
       "state": {
         "exposure": {
@@ -563,14 +563,14 @@
       "parent": "ART.personal",
       "ca": "en Joan",
       "glosses": {
-        "fr": "article personnel « en » devant un prénom masculin"
+        "fr": "article personnel « en » devant un prénom masculin"
       },
       "cefr": "A2",
       "examples": ["En Joan arriba tard.", "Parlo amb en Marc."],
-      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
+      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
+        "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
       },
       "state": {
         "exposure": {
@@ -589,13 +589,13 @@
       "parent": "ART.personal",
       "ca": "na Maria",
       "glosses": {
-        "fr": "article personnel « na » devant un prénom féminin"
+        "fr": "article personnel « na » devant un prénom féminin"
       },
       "cefr": "A2",
       "examples": ["Na Maria canta bé.", "He vist na Joana."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
+        "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
       },
       "state": {
         "exposure": {
@@ -614,7 +614,7 @@
       "parent": "ART.personal",
       "ca": "n'Anna",
       "glosses": {
-        "fr": "élision de l’article personnel en/na en « n' » devant une voyelle"
+        "fr": "élision de l’article personnel en/na en « n' » devant une voyelle"
       },
       "cefr": "B1",
       "examples": ["N'Anna estudia medicina.", "He parlat amb n'Oriol."],
@@ -639,13 +639,13 @@
       "parent": "ART.personal",
       "ca": "la Maria",
       "glosses": {
-        "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
+        "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
       },
       "cefr": "B1",
       "examples": ["La Maria arriba tard.", "He vist la Joana al mercat."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
+        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
       },
       "state": {
         "exposure": {
@@ -692,13 +692,13 @@
       "parent": "ART.personal",
       "ca": "d'en Joan",
       "glosses": {
-        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
+        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
       },
       "cefr": "B2",
       "examples": ["El cotxe és d'en Joan.", "Vaig a l'Anna.", "Parlo de la Maria."],
       "contrast_fr": {
         "status": "novel",
-        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
+        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
       },
       "state": {
         "exposure": {
@@ -723,7 +723,7 @@
       "parent": "ART.contract",
       "ca": "al mercat",
       "glosses": {
-        "fr": "contraction obligatoire de « a » + « el » en « al »"
+        "fr": "contraction obligatoire de « a » + « el » en « al »"
       },
       "cefr": "A1",
       "examples": ["Vaig al mercat.", "Anem al cinema."],
@@ -748,7 +748,7 @@
       "parent": "ART.contract",
       "ca": "als nens",
       "glosses": {
-        "fr": "contraction obligatoire de « a » + « els » en « als »"
+        "fr": "contraction obligatoire de « a » + « els » en « als »"
       },
       "cefr": "A2",
       "examples": ["Ho dono als nens.", "Parlo als alumnes."],
@@ -773,7 +773,7 @@
       "parent": "ART.contract",
       "ca": "del poble",
       "glosses": {
-        "fr": "contraction obligatoire de « de » + « el » en « del »"
+        "fr": "contraction obligatoire de « de » + « el » en « del »"
       },
       "cefr": "A1",
       "examples": ["Vinc del poble.", "El llibre del noi."],
@@ -798,7 +798,7 @@
       "parent": "ART.contract",
       "ca": "dels amics",
       "glosses": {
-        "fr": "contraction obligatoire de « de » + « els » en « dels »"
+        "fr": "contraction obligatoire de « de » + « els » en « dels »"
       },
       "cefr": "A2",
       "examples": ["Parlo dels amics.", "La casa dels avis."],
@@ -823,13 +823,13 @@
       "parent": "ART.contract",
       "ca": "pel carrer",
       "glosses": {
-        "fr": "contraction obligatoire de « per » + « el » en « pel »"
+        "fr": "contraction obligatoire de « per » + « el » en « pel »"
       },
       "cefr": "B1",
       "examples": ["Passegem pel carrer.", "Ho fem pel projecte."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
+        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
       },
       "state": {
         "exposure": {
@@ -848,13 +848,13 @@
       "parent": "ART.contract",
       "ca": "pels camps",
       "glosses": {
-        "fr": "contraction obligatoire de « per » + « els » en « pels »"
+        "fr": "contraction obligatoire de « per » + « els » en « pels »"
       },
       "cefr": "B1",
       "examples": ["Caminem pels camps.", "Ho fem pels nens."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
+        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
       },
       "state": {
         "exposure": {
@@ -873,13 +873,13 @@
       "parent": "ART.contract",
       "ca": "a l'home",
       "glosses": {
-        "fr": "absence de contraction quand l’article est déjà élidé en « l' »"
+        "fr": "absence de contraction quand l’article est déjà élidé en « l' »"
       },
       "cefr": "B1",
       "examples": ["Ho dic a l'home.", "Vinc de l'hospital.", "Ho faig per l'amistat."],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme en français (à l’homme, de l’hôpital, sans au ni du), la contraction ne s’applique pas quand l’article est déjà réduit à « l' »."
+        "note": "Comme en français (à l’homme, de l’hôpital, sans au ni du), la contraction ne s’applique pas quand l’article est déjà réduit à « l' »."
       },
       "state": {
         "exposure": {
@@ -898,7 +898,7 @@
       "parent": "ART.contract",
       "ca": "cap al poble",
       "glosses": {
-        "fr": "maintien de la contraction « al » à l’intérieur de la préposition composée « cap a »"
+        "fr": "maintien de la contraction « al » à l’intérieur de la préposition composée « cap a »"
       },
       "cefr": "B2",
       "examples": ["Anem cap al poble.", "Caminem cap als afores."],
@@ -929,14 +929,14 @@
       "parent": "ART.salat",
       "ca": "es cotxe",
       "glosses": {
-        "fr": "article salat « es »/« sa », variante dialectale baléare de l’article défini"
+        "fr": "article salat « es »/« sa », variante dialectale baléare de l’article défini"
       },
       "cefr": "C1",
       "examples": ["Es cotxe és nou.", "Sa casa és gran."],
-      "dialect_note": "Forme baléare : à comprendre à l’écrit et à l’oral, mais pas une forme à produire dans cet apprentissage centré sur le catalan central.",
+      "dialect_note": "Forme baléare : à comprendre à l’écrit et à l’oral, mais pas une forme à produire dans cet apprentissage centré sur le catalan central.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français standard n’a qu’une seule série d’articles définis ; cette variante phonétique baléare n’a pas d’équivalent à transférer."
+        "note": "Le français standard n’a qu’une seule série d’articles définis ; cette variante phonétique baléare n’a pas d’équivalent à transférer."
       },
       "state": {
         "exposure": {
@@ -955,11 +955,11 @@
       "parent": "ART.salat",
       "ca": "ses cases",
       "glosses": {
-        "fr": "article salat pluriel « ses »/« es »"
+        "fr": "article salat pluriel « ses »/« es »"
       },
       "cefr": "C1",
       "examples": ["Ses cases són velles.", "Es al·lots juguen al carrer."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
+      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
       "contrast_fr": {
         "status": "novel",
         "note": "Aucun équivalent en français, qui ne connaît qu’une seule série d’articles définis quel que soit le dialecte."
@@ -981,11 +981,11 @@
       "parent": "ART.salat",
       "ca": "s'aigua",
       "glosses": {
-        "fr": "élision de l’article salat en « s' » devant une voyelle"
+        "fr": "élision de l’article salat en « s' » devant une voyelle"
       },
       "cefr": "C1",
       "examples": ["S'aigua és freda.", "S'amo és a fora."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
+      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
       "contrast_fr": {
         "status": "novel",
         "note": "L’élision suit le même principe phonétique que celle de l’article standard français devant voyelle, mais s’applique à une série d’articles absente du français."

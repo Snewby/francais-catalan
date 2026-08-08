@@ -213,6 +213,18 @@ See the per-domain table above for where seeding is up to.
   fields only, so `label_fr` on a branch node was unasserted French prose. The
   `ART` seed walked straight into it and wrote seven labels with straight
   apostrophes, corrected by hand; the test now covers all 25 branches too.
+- **The narrow no-break space was a rule nobody followed.** `CLAUDE.md`,
+  `.claude/rules/ui-copy.md` and the `fr-metalanguage` skill all require U+202F
+  inside guillemets and before `: ; ! ?`, and `test/smoke.test.ts` enforced it
+  over `src/i18n/fr.ts`. Nothing enforced it over taxonomy prose, so every
+  domain seeded after phase 1 used an ordinary space: 209 guillemet pairs
+  across `NOM`, `ART` and `PREP` against 14 correct ones in the phase 1 seed
+  and `data/contrast-overrides.json`. All normalised, and
+  `gloss-completeness.test.ts` now asserts both rules over every French field
+  on every node. The tie was broken towards U+202F because the overrides file
+  is applied verbatim and compared by exact string equality, so it would have
+  put both conventions inside a single leaf the first time a `VERB.perf.*`
+  node took its note.
 - `.claude/agents/taxonomy-seeder.md` no longer instructs leaving `glosses` and
   `contrast_fr` empty, which phase 1 made impossible. The seeder now authors a
   British-English marker per leaf, deliberately not French, so that the 2b pass

@@ -118,6 +118,25 @@ describe('French metalanguage conventions in taxonomy prose', () => {
     }
   });
 
+  it('puts a narrow no-break space inside guillemets', () => {
+    // smoke.test.ts asserts this over src/i18n/fr.ts. Taxonomy prose is French
+    // copy on the same terms and was going unasserted, so every domain seeded
+    // after phase 1 drifted to an ordinary space. The difference is invisible
+    // in review and wrong in print.
+    for (const { id, field, text } of frenchProse) {
+      expect(text, `${id} ${field}: ordinary space after «`).not.toMatch(/« /);
+      expect(text, `${id} ${field}: ordinary space before »`).not.toMatch(/ »/);
+    }
+  });
+
+  it('puts a narrow no-break space before : ; ! ?', () => {
+    for (const { id, field, text } of frenchProse) {
+      expect(text, `${id} ${field}: ordinary space before punctuation`).not.toMatch(
+        / [:;!?]/,
+      );
+    }
+  });
+
   it('uses the typographic apostrophe in French prose', () => {
     // A Catalan form cited inside French prose keeps its straight apostrophe,
     // because it is data rather than copy. Citations are delimited by

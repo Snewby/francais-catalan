@@ -5,7 +5,7 @@
       "id": "NOM",
       "kind": "branch",
       "parent": null,
-      "label_fr": "Le nom : genre, nombre et dérivation"
+      "label_fr": "Le nom : genre, nombre et dérivation"
     },
     {
       "id": "NOM.gender",
@@ -23,7 +23,7 @@
       },
       "cefr": "A1",
       "examples": ["El gat dorm.", "La gata maula."],
-      "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
+      "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le mécanisme -Ø/-a correspond directement au masculin/féminin français en consonne finale + -e, comme dans étudiant/étudiante."
@@ -49,7 +49,7 @@
       },
       "cefr": "A2",
       "examples": ["El jove estudia dret.", "La jove estudia dret."],
-      "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
+      "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français distingue souvent des formes différentes (jeune homme/jeune fille), alors que le catalan garde une forme unique et déplace toute la charge du genre sur l’article."
@@ -75,10 +75,10 @@
       },
       "cefr": "A2",
       "examples": ["L'artista pinta un quadre.", "La periodista escriu l'article."],
-      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
+      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
+        "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
       },
       "state": {
         "exposure": {
@@ -101,7 +101,7 @@
       },
       "cefr": "B1",
       "examples": ["L'home parla amb la dona.", "El gendre saluda la nora."],
-      "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
+      "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le français connaît le même procédé pour les mêmes couples (homme/femme, gendre/bru), donc le transfert lexical est direct même si la forme diffère."
@@ -127,7 +127,7 @@
       },
       "cefr": "B1",
       "examples": ["El metge visita el pacient.", "La metgessa visita la pacient."],
-      "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
+      "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Se rapproche du français -esse (comtesse, poétesse), mais le catalan l’emploie plus largement pour des professions ordinaires comme médecin ou juge."
@@ -156,7 +156,7 @@
         "El professor corregeix els exàmens.",
         "La professora corregeix els exàmens."
       ],
-      "notes": "Les noms en -or forment normalement leur féminin en -ora : professor/professora, director/directora.",
+      "notes": "Les noms en -or forment normalement leur féminin en -ora : professor/professora, director/directora.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -eur/-euse ou -eur/-rice selon les mots, avec un mécanisme tout aussi régulier."
@@ -182,7 +182,7 @@
       },
       "cefr": "B1",
       "examples": ["L'actor interpreta el rei.", "L'actriu interpreta la reina."],
-      "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
+      "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -teur/-trice (acteur/actrice), mais la liste des noms concernés ne coïncide pas toujours terme à terme."
@@ -212,10 +212,10 @@
         "El corrent elèctric és fort.",
         "La sal és blanca."
       ],
-      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), el corrent (le courant), la sal (le sel), el dubte (le doute), els afores (les faubourgs).",
+      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), el corrent (le courant), la sal (le sel), el dubte (le doute), els afores (les faubourgs).",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
+        "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
       },
       "state": {
         "exposure": {
@@ -241,7 +241,7 @@
         "El testimoni és la víctima de l'accident.",
         "L'home és una víctima més."
       ],
-      "notes": "Certains noms gardent un genre grammatical fixe quel que soit le sexe du référent : la víctima, la persona, el personatge.",
+      "notes": "Certains noms gardent un genre grammatical fixe quel que soit le sexe du référent : la víctima, la persona, el personatge.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a le même phénomène (la victime, la personne), mais pas toujours pour les mêmes mots que le catalan."
@@ -303,7 +303,7 @@
         "Fes uns quants passos endavant.",
         "Un calaix ple i uns calaixos plens."
       ],
-      "notes": "Les noms terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços.",
+      "notes": "Les noms terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français ajoute -es après un son sifflant final surtout à l’oral, mais le catalan impose systématiquement -os à l’écrit."
@@ -334,7 +334,7 @@
         "Una amiga simpàtica i unes amigues simpàtiques.",
         "Una barca petita i unes barques petites."
       ],
-      "notes": "Les noms terminés par -a non accentué forment leur pluriel en -es, avec les changements orthographiques attendus : c devient qu (barca/barques), g devient gu (amiga/amigues), ç devient c (plaça/places).",
+      "notes": "Les noms terminés par -a non accentué forment leur pluriel en -es, avec les changements orthographiques attendus : c devient qu (barca/barques), g devient gu (amiga/amigues), ç devient c (plaça/places).",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le principe rappelle le pluriel français en -es, mais s’accompagne de changements orthographiques réguliers propres au catalan."
@@ -365,10 +365,10 @@
         "Un pa i uns pans.",
         "Un camí i uns camins."
       ],
-      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, et la classe en -í comme camí/camins ou jardí/jardins, ainsi que bo/bons.",
+      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, et la classe en -í comme camí/camins ou jardí/jardins, ainsi que bo/bons.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
+        "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
       },
       "state": {
         "exposure": {
@@ -396,7 +396,7 @@
         "Un cafè calent.",
         "Uns cafès calents."
       ],
-      "notes": "Une classe héritée de noms en -í accentué prend -ns au pluriel (rubí/rubins), mais les emprunts plus récents en -í prennent un simple -s (esquí/esquís) ; -ú accentué est également partagé entre les deux modèles (tribu/tribus avec un simple -s) ; -é et -à accentués prennent toujours un simple -s (cafè/cafès).",
+      "notes": "Une classe héritée de noms en -í accentué prend -ns au pluriel (rubí/rubins), mais les emprunts plus récents en -í prennent un simple -s (esquí/esquís) ; -ú accentué est également partagé entre les deux modèles (tribu/tribus avec un simple -s) ; -é et -à accentués prennent toujours un simple -s (cafè/cafès).",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français forme ces pluriels avec un simple -s sans jamais ajouter de consonne, contrairement au sous-ensemble catalan en -ins."
@@ -456,7 +456,7 @@
         "Els diners no compren la felicitat.",
         "Els afores de la ciutat."
       ],
-      "notes": "Certains noms n’existent qu’au pluriel : les noces, els diners, els afores, els queviures.",
+      "notes": "Certains noms n’existent qu’au pluriel : les noces, els diners, els afores, els queviures.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a ses propres pluralia tantum (les noces, les fiançailles), mais la liste catalane ne se superpose pas terme à terme avec la liste française."
@@ -476,7 +476,7 @@
       "id": "NOM.adj",
       "kind": "branch",
       "parent": "NOM",
-      "label_fr": "L’adjectif : formes et accord"
+      "label_fr": "L’adjectif : formes et accord"
     },
     {
       "id": "NOM.adj.four_form",
@@ -493,7 +493,7 @@
         "Uns nois alts.",
         "Unes noies altes."
       ],
-      "notes": "La majorité des adjectifs distinguent quatre formes : masculin singulier, féminin singulier, masculin pluriel, féminin pluriel.",
+      "notes": "La majorité des adjectifs distinguent quatre formes : masculin singulier, féminin singulier, masculin pluriel, féminin pluriel.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond exactement au système à quatre formes du français (grand/grande/grands/grandes)."
@@ -524,7 +524,7 @@
         "Uns homes grans.",
         "Unes dones grans."
       ],
-      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier, et n’ajoutent que -s au pluriel : gran, jove, feliç, fàcil.",
+      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier, et n’ajoutent que -s au pluriel : gran, jove, feliç, fàcil.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français marque presque toujours le féminin par -e (grand/grande), alors que ce sous-ensemble catalan reste invariable en genre."
@@ -554,10 +554,10 @@
         "Uns pantalons marró.",
         "Una camisa blau marí."
       ],
-      "notes": "Quelques adjectifs de couleur restent invariables en nombre comme en genre, en particulier les adjectifs composés : blau marí, verd oliva.",
+      "notes": "Quelques adjectifs de couleur restent invariables en nombre comme en genre, en particulier les adjectifs composés : blau marí, verd oliva.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
+        "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
       },
       "state": {
         "exposure": {
@@ -649,7 +649,7 @@
       },
       "cefr": "A2",
       "examples": ["Un gat i un gatet.", "Una casa i una caseta."],
-      "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
+      "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme les diminutifs français en -et/-ette (garçonnet, fillette), avec la même valeur affective."
@@ -675,10 +675,10 @@
       },
       "cefr": "B1",
       "examples": ["Un home i un homenàs.", "Una casa i una casassa."],
-      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
+      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
+        "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
       },
       "state": {
         "exposure": {
@@ -701,7 +701,7 @@
       },
       "cefr": "A2",
       "examples": ["Un jugador de futbol.", "Una jugadora de futbol."],
-      "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
+      "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -eur/-euse formé sur un radical verbal (jouer/joueur)."
@@ -727,7 +727,7 @@
       },
       "cefr": "B1",
       "examples": ["Un sabater arregla sabates.", "Una lletera ven llet."],
-      "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
+      "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Rappelle le français -ier/-ière formé sur un nom, comme dans laitier/laitière pour lleter/lletera."
@@ -753,7 +753,7 @@
       },
       "cefr": "B1",
       "examples": ["La bellesa del paisatge.", "La riquesa del país."],
-      "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
+      "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -esse (richesse, noblesse), mais la productivité et les mots concrets touchés ne coïncident pas toujours."
@@ -782,7 +782,7 @@
         "La normalitat de la situació.",
         "La felicitat és difícil de mesurar."
       ],
-      "notes": "Le suffixe savant -tat/-etat, ajouté à un adjectif, forme un nom abstrait : normal/normalitat, feliç/felicitat.",
+      "notes": "Le suffixe savant -tat/-etat, ajouté à un adjectif, forme un nom abstrait : normal/normalitat, feliç/felicitat.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond directement au français -té/-ité (normalité, félicité), souvent avec le même mot de base latin."
@@ -812,10 +812,10 @@
         "El naixement d'un infant.",
         "L'acabament de l'obra."
       ],
-      "notes": "Le suffixe -ment, ajouté à un radical verbal, forme un nom d’action ou de résultat : pensar/pensament, néixer/naixement, acabar/acabament.",
+      "notes": "Le suffixe -ment, ajouté à un radical verbal, forme un nom d’action ou de résultat : pensar/pensament, néixer/naixement, acabar/acabament.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
+        "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
       },
       "state": {
         "exposure": {
@@ -838,7 +838,7 @@
       },
       "cefr": "A2",
       "examples": ["Un violinista toca el violí.", "Una dentista cuida les dents."],
-      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
+      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -iste sur la même base (violon/violoniste)."
@@ -874,7 +874,7 @@
         "Uns gratacels molt alts.",
         "Un porta-avions de guerra."
       ],
-      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels) ou deux noms reliés par un trait d’union ; beaucoup restent invariables au pluriel : un gratacels, uns gratacels.",
+      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels) ou deux noms reliés par un trait d’union ; beaucoup restent invariables au pluriel : un gratacels, uns gratacels.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a le même type de composé verbe+nom invariable (un gratte-ciel, des gratte-ciel), mais les listes lexicales ne se recouvrent que partiellement."
