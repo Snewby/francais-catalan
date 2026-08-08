@@ -138,12 +138,18 @@ The five docs/01 statuses were treated as fixed, but they predate this tree, so
 they bind the leaves that realise each row rather than propagating like a
 `contrast-overrides` wildcard. Forcing `ART.def`'s `transfer` onto every
 `ART.def.us` leaf would have labelled the domain's sharpest divergences as
-free transfer. `ART.personal.absencia` (inherited `novel`, but it is the one
-case where French and Catalan agree) and `ART.contract.pel`/`pels` (inherited
-`transfer`, though French does not contract `par le`) are the two inherited
-assignments most open to challenge; both were flagged rather than changed.
+free transfer. Two inherited assignments were challenged on review. `ART.contract.pel`/`pels`
+moved to near-miss: French fuses only `à` and `de` with the article, so the
+contraction habit is lexical rather than general and `per el carrer` is the
+error to expect, which is exactly what near-miss is for. The docs/01 row itself
+cites only au, du, aux and des, so this is the same binding rule applied again,
+not an exception to it. `ART.personal.absencia` stayed `novel` despite being the
+one case where French and Catalan agree, because the status feeds scheduling
+rather than description: nobody learns when to omit the personal article except
+while learning the personal article, and `transfer` would sink it away from the
+five siblings it should be reviewed beside.
 
-`ART` came out 16 transfer, 11 near-miss, 9 novel and no false-friend. The empty
+`ART` came out 14 transfer, 13 near-miss, 9 novel and no false-friend. The empty
 false-friend column is expected: nothing in the article system looks French and
 means something else.
 

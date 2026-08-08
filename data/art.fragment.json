@@ -828,8 +828,8 @@
       "cefr": "B1",
       "examples": ["Passegem pel carrer.", "Ho fem pel projecte."],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Le principe de contraction obligatoire rappelle au/du en français, même si le français ne fusionne pas par avec l’article (par le, sans contraction)."
+        "status": "near-miss",
+        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
       },
       "state": {
         "exposure": {
@@ -853,8 +853,8 @@
       "cefr": "B1",
       "examples": ["Caminem pels camps.", "Ho fem pels nens."],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Même mécanisme de contraction que « pel », à rapprocher d’au/du malgré l’absence de fusion équivalente pour par en français."
+        "status": "near-miss",
+        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
       },
       "state": {
         "exposure": {

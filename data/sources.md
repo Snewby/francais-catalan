@@ -69,6 +69,9 @@ domain, so neither the compilation-copyright risk nor the EU database right
 described above is engaged here. All examples and Catalan forms are
 hand-authored for this repo.
 
+<!-- Later domains: follow the NOM or ART section above. Name the source, list
+the facts, and state the licence position explicitly rather than by omission. -->
+
 ### ART (articles)
 
 No dataset from the table above covers article morphology; that table is
@@ -103,6 +106,21 @@ verb-oriented. The facts for this domain are drawn from two sources only:
   collapse applies to `ART.indef.paradigma` (un/una) and `ART.indef.plural`
   (uns/unes, kept as its own leaf because it is itself the near-miss docs/01
   names, not an inflectional cell of the singular).
+
+  Each docs/01 status binds the leaves that realise its row, and does not
+  propagate to every descendant the way a `data/contrast-overrides.json`
+  wildcard does. The rows predate this tree, so a literal wildcard reading
+  would label the domain's sharpest divergences as free transfer. Two
+  consequences worth naming, because they read as drift otherwise:
+
+  - The `ART.def` transfer binds `ART.def.forma.*` only. Every `ART.def.us`
+    leaf was judged on its own, and `abans_possessiu`, `hores`, `anys`,
+    `paisos` and `titols` came out near-miss.
+  - The `ART.contract` transfer binds the `a` and `de` cells, which is what
+    its own parenthetical cites (au, du, aux, des). `pel` and `pels` are
+    near-miss instead: French does not fuse par with the article, so the
+    contraction habit a French speaker already has is lexical to à and de,
+    and the expected error is "per el carrer".
 
 No licensed data file, curated list or database was extracted from for this
 domain, so neither the compilation-copyright risk nor the EU database right
