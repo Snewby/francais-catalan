@@ -22,10 +22,7 @@
         "fr": "formation régulière du féminin par ajout de -a au masculin"
       },
       "cefr": "A1",
-      "examples": [
-        "El gat dorm.",
-        "La gata maula."
-      ],
+      "examples": ["El gat dorm.", "La gata maula."],
       "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
       "contrast_fr": {
         "status": "transfer",
@@ -51,10 +48,7 @@
         "fr": "noms communs à une seule forme, dont le genre est marqué uniquement par l’article"
       },
       "cefr": "A2",
-      "examples": [
-        "El jove estudia dret.",
-        "La jove estudia dret."
-      ],
+      "examples": ["El jove estudia dret.", "La jove estudia dret."],
       "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
       "contrast_fr": {
         "status": "near-miss",
@@ -80,10 +74,7 @@
         "fr": "noms en -ista, invariables en genre, marqués par l’article"
       },
       "cefr": "A2",
-      "examples": [
-        "L'artista pinta un quadre.",
-        "La periodista escriu l'article."
-      ],
+      "examples": ["L'artista pinta un quadre.", "La periodista escriu l'article."],
       "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
       "contrast_fr": {
         "status": "transfer",
@@ -109,10 +100,7 @@
         "fr": "couples de noms à radical différent selon le sexe"
       },
       "cefr": "B1",
-      "examples": [
-        "L'home parla amb la dona.",
-        "El gendre saluda la nora."
-      ],
+      "examples": ["L'home parla amb la dona.", "El gendre saluda la nora."],
       "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
       "contrast_fr": {
         "status": "transfer",
@@ -138,10 +126,7 @@
         "fr": "suffixe féminin -essa pour certains noms de métier ou de titre"
       },
       "cefr": "B1",
-      "examples": [
-        "El metge visita el pacient.",
-        "La metgessa visita la pacient."
-      ],
+      "examples": ["El metge visita el pacient.", "La metgessa visita la pacient."],
       "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
       "contrast_fr": {
         "status": "near-miss",
@@ -196,10 +181,7 @@
         "fr": "féminin savant en -riu pour un sous-ensemble de noms en -or"
       },
       "cefr": "B1",
-      "examples": [
-        "L'actor interpreta el rei.",
-        "L'actriu interpreta la reina."
-      ],
+      "examples": ["L'actor interpreta el rei.", "L'actriu interpreta la reina."],
       "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
       "contrast_fr": {
         "status": "near-miss",
@@ -290,10 +272,7 @@
         "fr": "pluriel régulier par ajout de -s"
       },
       "cefr": "A1",
-      "examples": [
-        "El gat dorm.",
-        "Els gats dormen."
-      ],
+      "examples": ["El gat dorm.", "Els gats dormen."],
       "notes": "Le pluriel régulier s’obtient en ajoutant -s au singulier.",
       "contrast_fr": {
         "status": "transfer",
@@ -637,10 +616,7 @@
         "fr": "accord au masculin pluriel dans une coordination de noms de genres différents"
       },
       "cefr": "B1",
-      "examples": [
-        "El pare i la mare són alts.",
-        "La taula i la cadira són noves."
-      ],
+      "examples": ["El pare i la mare són alts.", "La taula i la cadira són noves."],
       "notes": "Quand un adjectif s’accorde avec plusieurs noms coordonnés de genres différents, il prend la forme du masculin pluriel.",
       "contrast_fr": {
         "status": "transfer",
@@ -672,10 +648,7 @@
         "fr": "suffixe diminutif -et/-eta"
       },
       "cefr": "A2",
-      "examples": [
-        "Un gat i un gatet.",
-        "Una casa i una caseta."
-      ],
+      "examples": ["Un gat i un gatet.", "Una casa i una caseta."],
       "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
       "contrast_fr": {
         "status": "transfer",
@@ -701,10 +674,7 @@
         "fr": "suffixe augmentatif -às/-assa"
       },
       "cefr": "B1",
-      "examples": [
-        "Un home i un homenàs.",
-        "Una casa i una casassa."
-      ],
+      "examples": ["Un home i un homenàs.", "Una casa i una casassa."],
       "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
       "contrast_fr": {
         "status": "novel",
@@ -730,10 +700,7 @@
         "fr": "suffixe d’agent -dor/-dora sur radical verbal"
       },
       "cefr": "A2",
-      "examples": [
-        "Un jugador de futbol.",
-        "Una jugadora de futbol."
-      ],
+      "examples": ["Un jugador de futbol.", "Una jugadora de futbol."],
       "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
       "contrast_fr": {
         "status": "transfer",
@@ -759,10 +726,7 @@
         "fr": "suffixe de métier -er/-era sur radical nominal"
       },
       "cefr": "B1",
-      "examples": [
-        "Un sabater arregla sabates.",
-        "Una lletera ven llet."
-      ],
+      "examples": ["Un sabater arregla sabates.", "Una lletera ven llet."],
       "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
       "contrast_fr": {
         "status": "transfer",
@@ -788,10 +752,7 @@
         "fr": "suffixe abstrait -esa formant un nom de qualité sur un adjectif"
       },
       "cefr": "B1",
-      "examples": [
-        "La bellesa del paisatge.",
-        "La riquesa del país."
-      ],
+      "examples": ["La bellesa del paisatge.", "La riquesa del país."],
       "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
       "contrast_fr": {
         "status": "near-miss",
@@ -876,10 +837,7 @@
         "fr": "suffixe -ista formant un nom de profession ou d’adhérent"
       },
       "cefr": "A2",
-      "examples": [
-        "Un violinista toca el violí.",
-        "Una dentista cuida les dents."
-      ],
+      "examples": ["Un violinista toca el violí.", "Una dentista cuida les dents."],
       "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
       "contrast_fr": {
         "status": "transfer",
