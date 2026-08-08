@@ -27,7 +27,11 @@ if (result.status === 0) process.exit(0);
 const marker = path.join(STATE_DIR, `${sessionId}.stop-blocked`);
 const alreadyBlocked = existsSync(marker);
 
-const output = `${result.stdout}${result.stderr}`.trim().split('\n').slice(-40).join('\n');
+const output = `${result.stdout}${result.stderr}`
+  .trim()
+  .split('\n')
+  .slice(-40)
+  .join('\n');
 
 if (alreadyBlocked) {
   process.stderr.write(

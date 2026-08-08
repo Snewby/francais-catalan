@@ -7,10 +7,22 @@
 import { readPayload, block } from './lib.mjs';
 
 const DENY = [
-  { pattern: /\brm\s+(-[a-zA-Z]*\s+)*-[a-zA-Z]*[rR][a-zA-Z]*f|\brm\s+-fr?\b/, reason: 'recursive force delete' },
-  { pattern: /\bRemove-Item\b[^|;]*-Recurse[^|;]*-Force/i, reason: 'recursive force delete' },
-  { pattern: /\bgit\s+push\b[^|;]*(--force(?!-with-lease)|(?<![\w-])-f(?![\w-]))/, reason: 'force push' },
-  { pattern: /\bgit\s+reset\s+--hard\b/, reason: 'hard reset discards uncommitted work' },
+  {
+    pattern: /\brm\s+(-[a-zA-Z]*\s+)*-[a-zA-Z]*[rR][a-zA-Z]*f|\brm\s+-fr?\b/,
+    reason: 'recursive force delete',
+  },
+  {
+    pattern: /\bRemove-Item\b[^|;]*-Recurse[^|;]*-Force/i,
+    reason: 'recursive force delete',
+  },
+  {
+    pattern: /\bgit\s+push\b[^|;]*(--force(?!-with-lease)|(?<![\w-])-f(?![\w-]))/,
+    reason: 'force push',
+  },
+  {
+    pattern: /\bgit\s+reset\s+--hard\b/,
+    reason: 'hard reset discards uncommitted work',
+  },
   { pattern: /sk-ant-[\w-]+/, reason: 'literal Anthropic API key in a command' },
   { pattern: /\bANTHROPIC_API_KEY\b/, reason: 'API key environment variable' },
   { pattern: /(^|[\s'"`=(])\.env\b/, reason: 'reads or writes a .env file' },

@@ -1,0 +1,29 @@
+{
+  "$comment": "Pre-assigned contrast_fr statuses for high-risk nodes. The gloss-author pass reads this file and applies it verbatim: these assignments are not re-derived by judgement. This is the only place any of them is asserted. Keys may use a trailing .* wildcard, which matches the ID prefix; a wildcard is never itself a node ID.",
+  "overrides": [
+    {
+      "id": "VERB.ind.passat_perifrastic",
+      "status": "false-friend",
+      "note": "« Vaig cantar » signifie « j'ai chanté », et non « je vais chanter ». L'auxiliaire anar marque ici le passé, pas le futur proche.",
+      "rationale": "Highest-risk node in the taxonomy. The French reading of the auxiliary is not merely imprecise, it inverts the tense. The note must state the contrast explicitly."
+    },
+    {
+      "id": "VERB.perf.*",
+      "status": "transfer",
+      "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être.",
+      "rationale": "The aspectual value transfers cleanly; only the auxiliary selection differs, and it differs in the direction of being simpler."
+    },
+    {
+      "id": "VERB.ser_estar",
+      "status": "novel",
+      "note": "Le français ne connaît que être. La distinction ser/estar n'a aucun analogue à transférer et doit s'apprendre pour elle-même.",
+      "rationale": "Novel rather than near-miss: there is no French distinction to be near."
+    },
+    {
+      "id": "VERB.conj.3.incoatiu",
+      "status": "near-miss",
+      "note": "Comparable à finir/finissons, mais l'infixe incoatif catalan couvre un ensemble de verbes plus large qu'en français.",
+      "rationale": "French has the analogue, so partial transfer applies, but the boundary differs and the learner needs the caveat."
+    }
+  ]
+}

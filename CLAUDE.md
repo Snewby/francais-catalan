@@ -1,13 +1,15 @@
 # francais-catalan - project memory
 
 ## Build / test
-- Dev: `npm run dev`  Build: `npm run build`  Preview: `npm run preview`
+
+- Dev: `npm run dev` Build: `npm run build` Preview: `npm run preview`
 - Test: `npm test` (vitest). Single file: `npm test -- test/foo.test.ts`
 - Regenerate schema after taxonomy edits: `npm run gen-schema`
 - Validate IDs: `npm run validate-ids`
 - Check gloss coverage: `npm run check-glosses`
 
 ## Languages (two different things, do not conflate)
+
 - BASE LANGUAGE is FRENCH. All UI copy, all model-generated explanation
   text, all `glosses.fr` and `notes` fields are in French, using French
   grammatical terminology (pronoms faibles, passe periphrastique, gerondif).
@@ -19,6 +21,7 @@
   no-break space before : ; ! ?
 
 ## Hard invariants (enforced by test + hook, not just here)
+
 - The component-ID vocabulary is CLOSED. Every ID emitted by the model,
   referenced in UI, DB, or tests MUST exist in src/taxonomy/taxonomy.json.
   New IDs are added ONLY by editing taxonomy.json then running gen-schema.
@@ -40,10 +43,19 @@
   specific section required, not the whole document.
 
 ## Conventions
+
 - Vanilla TS + Vite. No framework unless a task explicitly approves one.
+- Vite `base` is '/francais-catalan/' and must match the repo name, or every
+  asset 404s on Pages. The build guide's '/catalan-trainer/' is a placeholder.
+- Apostrophes: straight ' in Catalan forms (l'home, s'ha), typographic ’ in
+  French prose. Mixing them breaks exact-match assertions in the golden set.
+  Catalan l·l uses U+00B7. Repo is UTF-8, no BOM.
+- contrast_fr statuses for high-risk nodes are fixed in
+  data/contrast-overrides.json and applied verbatim. Do not re-derive them.
 - API key is runtime-entered into localStorage. NEVER hardcode or commit.
 - Anthropic calls: model claude-haiku-4-5, structured outputs beta header,
   taxonomy sent as a cached prompt prefix.
 
 ## Domains (see catalan-taxonomy skill for full schema)
+
 PHON NOM ART VERB PRON DET PREP ADV CONJ NEG SYN LEX

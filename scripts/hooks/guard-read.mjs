@@ -4,9 +4,18 @@ import path from 'node:path';
 import { readPayload, block } from './lib.mjs';
 
 const DENY = [
-  { test: (base) => base === '.env' || base.startsWith('.env.'), reason: 'environment file' },
-  { test: (base) => base.endsWith('.key') || base.endsWith('.pem'), reason: 'key material' },
-  { test: (base) => base === 'settings.local.json', reason: 'personal Claude Code settings' },
+  {
+    test: (base) => base === '.env' || base.startsWith('.env.'),
+    reason: 'environment file',
+  },
+  {
+    test: (base) => base.endsWith('.key') || base.endsWith('.pem'),
+    reason: 'key material',
+  },
+  {
+    test: (base) => base === 'settings.local.json',
+    reason: 'personal Claude Code settings',
+  },
   { test: (base) => base === 'CLAUDE.local.md', reason: 'personal project memory' },
 ];
 

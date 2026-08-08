@@ -6,7 +6,16 @@
 import path from 'node:path';
 import { readPayload, projectDir, localBin, runNode } from './lib.mjs';
 
-const FORMATTABLE = new Set(['.ts', '.js', '.mjs', '.cjs', '.json', '.md', '.html', '.css']);
+const FORMATTABLE = new Set([
+  '.ts',
+  '.js',
+  '.mjs',
+  '.cjs',
+  '.json',
+  '.md',
+  '.html',
+  '.css',
+]);
 const LINTABLE = new Set(['.ts', '.js', '.mjs']);
 
 // Generated or deliberately unformatted artefacts.
