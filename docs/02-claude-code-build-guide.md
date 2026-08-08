@@ -276,37 +276,52 @@ The keyed gloss map, `contrast_fr`, and the intent/direction/evidence triple mus
 
 The evidence routing itself lives in `src/srs/evidence.ts` as an executable table (`EVIDENCE_EFFECTS`), not as prose in a document. Reference it; do not restate it.
 
-**Phase 2a - Structural seeding (delegate to subagent). [ADAPT]** One domain at a time, `/clear` between domains. Substitute the domain, and read `data/sources.md` first: what facts are available differs per domain, and the prompt below assumes VERB.
+**The unit of work is the domain, not the phase.** 2a and 2b run back to back on one domain and land in a single commit. They are still two passes with two subagents and two review points, but the repo is never committed in the state between them.
+
+This is a correction forced by phase 1, and it matters. The earlier version of 2a below said to leave `glosses.fr` and `contrast_fr` as empty placeholders for 2b to fill. Phase 1 made both fields required with `minLength: 1`, and `check-glosses` additionally rejects anything matching `/^(todo|tbd|placeholder|à faire)/i`. A structure-only fragment therefore fails schema validation, fails `check-glosses`, blocks the seeding subagent's own turn through the `PostToolUse` hook, and reddens CI. It cannot be committed, and that is the invariant working rather than failing: it is refusing to let a half-authored domain look finished.
+
+Do not work around this by excluding un-glossed fragments from the merge or flagging them as drafts. That creates a class of taxonomy data the checks deliberately cannot see.
+
+Run `/clear` between domains, not between 2a and 2b on the same domain: 2b needs 2a's output in context.
+
+**Phase 2a - Structural seeding (delegate to subagent). [ADAPT]** Substitute the domain, and read `data/sources.md` first: what facts are available differs per domain, and the prompt below assumes VERB. Its per-domain notes section is an empty placeholder, so the extraction into it is a real step rather than a formality.
 ```
 Use the taxonomy-seeder subagent. For domain VERB only: read the notes in
 data/sources.md, extract the FACTS we need (lemmas, conjugation classes,
-tense labels) and hand-author original taxonomy leaf nodes in our schema.
-Do NOT copy any source data file verbatim into the repo. Leave glosses.fr
-and contrast_fr as empty placeholders; a separate pass fills those. Emit
-data/verb.fragment.json, then run build-taxonomy and validate-ids. Report
-the node count and any IDs that failed validation.
-```
+tense labels) and hand-author original taxonomy leaf nodes against
+src/taxonomy/taxonomy.schema.json. Do NOT copy any source data file
+verbatim into the repo. Record the extracted facts in data/sources.md under
+a section for this domain.
 
-**Phase 2b - Gloss and contrast authoring (separate pass, separate subagent). [ADAPT]** The pre-assigned nodes listed below now live in `data/contrast-overrides.json` and are applied from there. Do not restate them in the prompt; they are reproduced here only to show what the file contains.
+Author placeholder glosses.fr and contrast_fr good enough to satisfy the
+schema, and mark them for the 2b pass; do NOT leave them empty, and do NOT
+use the words todo, tbd or placeholder, both of which fail check-glosses
+and will block your turn.
+
+Emit data/verb.fragment.json, then run gen-schema and validate-ids. Do not
+edit src/taxonomy/taxonomy.json; it is generated and a hook will block you.
+Report the node count, the tree shape, and any IDs that failed validation.
+```
+Review the node list before running 2b. A wrong ID is a migration later, because IDs are keys in the database, the generated enums and the golden set.
+
+**Phase 2b - Gloss and contrast authoring (separate pass, separate subagent). [ADAPT]** Same session as 2a for that domain. The pre-assigned nodes now live in `data/contrast-overrides.json` and are applied from there. Do not restate them in the prompt; the list below is reproduced only to show what the file contains.
 ```
 Use the gloss-author subagent with the fr-metalanguage skill. For domain
-VERB only: for every leaf in data/verb.fragment.json, author glosses.fr
-using French grammatical terminology, and assign contrast_fr with a status
-and a one-line note explaining the relationship to French.
+VERB only: for every leaf in data/verb.fragment.json, replace the
+placeholder glosses.fr with a real gloss in French grammatical terminology,
+and assign contrast_fr with a status and a one-line note explaining the
+relationship to French.
 
-Apply these known assignments and do not override them:
-- VERB.ind.passat_perifrastic is false-friend. "Vaig cantar" = "j'ai
-  chante", NOT "je vais chanter". This is the highest-risk node in the
-  taxonomy; the note must state the contrast explicitly.
-- VERB.perf.* is transfer (passe compose), with the note that Catalan uses
-  haver throughout where French splits avoir/etre.
-- VERB.ser_estar is novel. French has only etre.
-- VERB.conj.3.incoatiu is near-miss (cf. finir/finissons).
+Apply data/contrast-overrides.json verbatim for the nodes it covers,
+including its wildcards. Do not re-derive those statuses or reword those
+notes; if you think one is wrong, say so rather than changing it.
 
-Then run check-glosses. Output a table of every node with its assigned
-status so I can review the assignments in one place.
+Then run gen-schema and check-glosses. Output a table of every node with
+its assigned status so I can review the assignments in one place.
 ```
 Review that table yourself. This is the step where the model will be confidently wrong in ways no test catches.
+
+Then commit: the fragment, the regenerated `taxonomy.json` and `schema.ts`, the `data/sources.md` section, and the domain's row in `TASKS.md`, together.
 
 Legal note to bake into `data/sources.md`: Apertium is GPL-2+, catalan-dict-tools is dual LGPL-2.1/GPL-2, verbecc is dual LGPL-3.0/GPL-3.0 (Catalan list sourced from catverbs), SUBTLEX-CAT has no reuse grant, verbs.cat has no licence. Extract facts and re-express; do not copy files. GPLv2 reaches "works based on the Program", and facts are not copyrightable under the Feist doctrine, so re-authored facts are generally not derivative. Two dangers remain: verbatim copying of a curated list can carry thin compilation copyright, and the EU sui generis database right (Softcatalà and AnCora are Spain-based) can restrict extraction of a substantial part of a database even of non-copyrightable facts. Keep extraction fact-level and hand-authored.
 
