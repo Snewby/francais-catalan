@@ -45,7 +45,7 @@ against, and a proper 2a pass over that domain is still owed.
 | ------ | ------------------------- | ----------- | ----------- | --------- |
 | `PHON` |                           | not started | not started |           |
 | `NOM`  | `data/nom.fragment.json`  | done        | done        | this pass |
-| `ART`  |                           | not started | not started |           |
+| `ART`  | `data/art.fragment.json`  | done        | done        | this pass |
 | `VERB` | `data/verb.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `PRON` | `data/pron.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `DET`  |                           | not started | not started |           |
@@ -113,6 +113,40 @@ from French, which is the whole reason `docs/01` argues a French speaker starts
 ahead. The practical consequence is that `NOM` will sort low in the phase 6 gaps
 list, and that is correct behaviour, not a bug to be tuned away.
 
+`ART` followed, 36 leaves under 8 branches, and it is the first domain seeded
+with the corrected `taxonomy-seeder`: 2a authored a British-English marker per
+leaf rather than plausible French, so 2b had nothing it could mistake for an
+authored gloss and wrote all 36 from scratch.
+
+Two structural decisions in it are worth knowing before the next domain, because
+both are about what a leaf is for:
+
+- **Paradigm cells are not leaves.** 2a first emitted `ART.def.el`, `.la`,
+  `.els` and `.les`, plus `ART.indef.un/.una/.uns/.unes`. Eight inflectional
+  cells of two transfer-level rules is eight permanent keys that always co-move
+  under FSRS and eight heatmap squares that one lookup of `el gat` turns green
+  at once. They were collapsed to three leaves before glossing, which matches
+  what `NOM` already does: its leaves are rules and classes, never cells. The
+  contraction branch keeps all six cells deliberately, because `a l'home`
+  against `als homes` is a real split.
+- **`ART.def` is split into `forma` and `us`.** For a French speaker the forms
+  are free and the usage is the entire difficulty (`el meu llibre`,
+  `el senyor Puig`, `compro pa`). Flat, the easy half outnumbers the hard half
+  and the domain averages out green. Split, the heatmap can say the true thing.
+
+The five docs/01 statuses were treated as fixed, but they predate this tree, so
+they bind the leaves that realise each row rather than propagating like a
+`contrast-overrides` wildcard. Forcing `ART.def`'s `transfer` onto every
+`ART.def.us` leaf would have labelled the domain's sharpest divergences as
+free transfer. `ART.personal.absencia` (inherited `novel`, but it is the one
+case where French and Catalan agree) and `ART.contract.pel`/`pels` (inherited
+`transfer`, though French does not contract `par le`) are the two inherited
+assignments most open to challenge; both were flagged rather than changed.
+
+`ART` came out 16 transfer, 11 near-miss, 9 novel and no false-friend. The empty
+false-friend column is expected: nothing in the article system looks French and
+means something else.
+
 See the per-domain table above for where seeding is up to.
 
 ## Carried over into later phases
@@ -121,9 +155,14 @@ See the per-domain table above for where seeding is up to.
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- Nine domains remain unseeded. `data/sources.md` now has one worked example of
-  a per-domain notes section (`NOM`), so later passes have a shape to follow
-  rather than an empty placeholder.
+- Eight domains remain unseeded. `data/sources.md` has two worked examples of a
+  per-domain notes section (`NOM` and `ART`), so later passes have a shape to
+  follow rather than an empty placeholder.
+- `test/gloss-completeness.test.ts` asserts French typography over leaf fields
+  only, so `label_fr` on a branch node is unasserted French prose. The `ART`
+  seed walked straight into it and wrote seven labels with straight
+  apostrophes, corrected by hand. `NOM` only escapes because none of its labels
+  contains an apostrophe.
 - `.claude/agents/taxonomy-seeder.md` no longer instructs leaving `glosses` and
   `contrast_fr` empty, which phase 1 made impossible. The seeder now authors a
   British-English marker per leaf, deliberately not French, so that the 2b pass
