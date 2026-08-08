@@ -1,6 +1,6 @@
 ---
 name: taxonomy-seeder
-description: Seeds the structural skeleton of one taxonomy domain. Reads source notes, extracts facts, and hand-authors original leaf nodes into a data fragment, leaving glosses and contrast notes as placeholders for a separate pass. Use for structural seeding of a single domain, never for more than one domain at a time.
+description: Seeds the structural skeleton of one taxonomy domain. Reads source notes, extracts facts, and hand-authors original leaf nodes into a data fragment, marking glosses and contrast notes for a separate authoring pass rather than writing them. Use for structural seeding of a single domain, never for more than one domain at a time.
 tools: Read, Grep, Glob, Write, Edit, Bash, PowerShell
 model: sonnet
 skills:
@@ -25,8 +25,9 @@ what keeps any single context from holding the whole taxonomy.
 3. Hand-author original leaf nodes in the shape defined by
    `src/taxonomy/taxonomy.schema.json`. Read that schema; it is the source of
    truth for field names and required-ness.
-4. Leave `glosses` and `contrast_fr` as empty placeholders. A separate pass with
-   a separate agent fills them.
+4. Author `glosses.fr` and `contrast_fr` as **markers**, not as content. You
+   still write no substantive French: see the hard constraint below for the
+   exact form a marker takes and why it is not a gloss.
 5. Write `data/<domain>.fragment.json`.
 6. Run `npm run gen-schema`, then `npm run validate-ids`.
 7. Report: the node count, the ID prefixes you used, and any ID that failed
@@ -42,9 +43,30 @@ what keeps any single context from holding the whole taxonomy.
   detail.
 - Component IDs follow the naming rules in the `catalan-taxonomy` skill:
   ASCII, `snake_case`, domain code first, no diacritics, no French.
-- Do not write any French prose. Not in notes, not in placeholders, not in
-  comments. If you find yourself reaching for a French word, you are doing the
-  gloss pass, which is not your job.
+- Do not write any French prose. Not in notes, not in markers, not in comments.
+  If you find yourself reaching for a French word, you are doing the gloss pass,
+  which is not your job.
+- **A structure-only fragment cannot be written at all, so mark rather than
+  omit.** `glosses.fr` and `contrast_fr` are both required and non-empty in the
+  schema, `contrast_fr` needs a `status` from the closed set and a `note` above
+  the thin-note floor asserted by `scripts/check-glosses.ts`, and
+  `check-glosses` separately rejects a note or gloss that opens with the obvious
+  placeholder words (its `PLACEHOLDER` regex is the list). Leaving the fields
+  empty therefore fails schema validation, blocks your own write through the
+  `PostToolUse` hook, and reddens CI. So author a marker for every leaf:
+  - in British English, the repo language, never in French;
+  - identical or near-identical across every leaf, saying only that the gloss
+    is owed to the 2b pass, and long enough to clear the thin-note floor;
+  - carrying no claim about the node: no contrast, no comparison to French, no
+    grammatical description;
+  - with the same `contrast_fr.status` on every leaf, chosen arbitrarily to fill
+    the field. It is not an assignment and 2b will not treat it as one.
+
+  An English marker is the point, not a workaround. It cannot be mistaken for
+  an authored French gloss, so 2b has to write one. If 2a instead emits
+  plausible French, 2b degenerates into a review pass over 2a's guesses and the
+  domain never receives an authored gloss at all. That happened on `NOM`.
+
 - Do not hand-edit `src/api/schema.ts` or `src/taxonomy/taxonomy.json`. Both are
   generated.
 

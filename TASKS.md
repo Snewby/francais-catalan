@@ -124,11 +124,11 @@ See the per-domain table above for where seeding is up to.
 - Nine domains remain unseeded. `data/sources.md` now has one worked example of
   a per-domain notes section (`NOM`), so later passes have a shape to follow
   rather than an empty placeholder.
-- `.claude/agents/taxonomy-seeder.md` step 4 still instructs leaving `glosses`
-  and `contrast_fr` empty, which phase 1 made impossible and `docs/02` already
-  corrects. The `NOM` pass worked around it in the prompt. Fix the agent file
-  before the next domain, or every seeding prompt has to carry the same
-  override.
+- `.claude/agents/taxonomy-seeder.md` no longer instructs leaving `glosses` and
+  `contrast_fr` empty, which phase 1 made impossible. The seeder now authors a
+  British-English marker per leaf, deliberately not French, so that the 2b pass
+  has nothing it could mistake for an authored gloss. The `NOM` pass carried
+  that override in the prompt; later seeding prompts do not have to.
 - Intents `teach`, `assess` and `pronounce` are representable but not built.
   `assess` is a selection function over the phase 5b review loop, not a separate
   subsystem.
