@@ -194,6 +194,16 @@ See the per-domain table above for where seeding is up to.
   files are wanted regardless. Recorded here so the commit log is not silently
   wrong.
 
+- **CI was red for the whole of the `NOM` seed, and nobody noticed.** Every run
+  from `57b08f0` to `09dff34` failed, first on `npm run format:check`
+  (`data/nom.fragment.json` was never Prettier-formatted) and then on
+  `npm run typecheck` (`test/closed-vocabulary.test.ts` used
+  `id.split('.')[0]` where `noUncheckedIndexedAccess` types it
+  `string | undefined`). Both steps run before the taxonomy checks, so
+  `validate-ids` and `check-glosses` never executed in CI for that pass. Green
+  again from `14f8078`. Local `npm test` passing is not evidence CI is passing:
+  it skips lint, typecheck and format.
+
 ## Known-bad, not yet fixed
 
 - `test/helpers/taxonomy.ts` computes `repoRoot` from `import.meta.url`, which
