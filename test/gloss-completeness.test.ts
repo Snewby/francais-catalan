@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { BRANCHES, CONTRAST_STATUSES, LEAVES } from '../src/taxonomy';
-import { resolveOverride } from '../src/taxonomy/overrides';
+import { OVERRIDES, resolveOverride } from '../src/taxonomy/overrides';
 import { fr } from '../src/i18n/fr';
 
 describe('every leaf carries a French gloss', () => {
@@ -87,12 +87,12 @@ describe('pre-assigned contrast statuses are applied verbatim', () => {
   });
 });
 
-describe('French metalanguage conventions in taxonomy prose', () => {
+describe('French metalanguage conventions in taxonomy and overrides prose', () => {
   /**
-   * Every French-language string on every node. A branch carries only
-   * `label_fr`, but it is French copy like any other and was going unasserted:
-   * the ART seed wrote seven labels with straight apostrophes because nothing
-   * here looked at them.
+   * Every French-language string on every node, plus the override notes that
+   * become node prose verbatim. A branch carries only `label_fr`, but it is
+   * French copy like any other and was going unasserted: the ART seed wrote
+   * seven labels with straight apostrophes because nothing here looked at them.
    */
   const frenchProse = [
     ...BRANCHES.map((branch) => ({
@@ -110,6 +110,17 @@ describe('French metalanguage conventions in taxonomy prose', () => {
         ? []
         : [{ id: leaf.id, field: 'dialect_note', text: leaf.dialect_note }]),
     ]),
+    // The overrides file is French copy that becomes leaf prose verbatim, so it
+    // is held to the same rules directly rather than only through the leaves
+    // that happen to consume it. An override for an unseeded domain has no such
+    // leaf, which is exactly when a typography slip would go unnoticed and then
+    // arrive pre-broken on the domain that adopts it. `rationale` is excluded:
+    // it is repo-language British English and never reaches the learner.
+    ...OVERRIDES.map((override) => ({
+      id: override.id,
+      field: 'contrast-overrides.note',
+      text: override.note,
+    })),
   ];
 
   it('uses no em-dashes', () => {
