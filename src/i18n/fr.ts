@@ -28,7 +28,7 @@ export const fr = {
     tagline: 'Le catalan expliqué à partir du français',
   },
   status: {
-    scaffold: `Phase 0${NNBSP}: le squelette du projet est en place. La taxonomie arrive à la phase 1.`,
+    scaffold: `Phase 1${NNBSP}: la taxonomie et son schéma sont en place. Les douze domaines seront semés à la phase 2.`,
   },
   apiKey: {
     label: 'Clé API',

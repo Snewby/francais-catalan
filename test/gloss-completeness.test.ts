@@ -107,8 +107,27 @@ describe('French metalanguage conventions in taxonomy prose', () => {
   });
 
   it('uses the typographic apostrophe in French prose', () => {
+    // A Catalan form cited inside French prose keeps its straight apostrophe,
+    // because it is data rather than copy. Citations are delimited by
+    // guillemets, so stripping them leaves the French words alone; any straight
+    // apostrophe surviving that is a French one written the Catalan way.
+    const citation = /«[^»]*»/g;
     for (const { id, field, text } of frenchProse) {
-      expect(text, `${id} ${field}`).not.toContain("'");
+      expect(text.replace(citation, ''), `${id} ${field}`).not.toContain("'");
+    }
+  });
+
+  it('puts a Catalan form cited in French prose inside guillemets', () => {
+    // Otherwise the rule above has no way to tell a cited form from a typo.
+    const catalanApostrophe = /\S*'\S*/g;
+    for (const { id, field, text } of frenchProse) {
+      const citations = text.match(/«[^»]*»/g) ?? [];
+      for (const token of text.match(catalanApostrophe) ?? []) {
+        expect(
+          citations.some((citation) => citation.includes(token)),
+          `${id} ${field}: ${token} is not inside guillemets`,
+        ).toBe(true);
+      }
     }
   });
 

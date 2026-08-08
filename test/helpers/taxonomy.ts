@@ -7,9 +7,10 @@
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
-export const repoRoot = fileURLToPath(new URL('../..', import.meta.url));
+// process.cwd() rather than import.meta.url: under the jsdom environment the
+// module URL is not a file: URL, and fileURLToPath throws on it.
+export const repoRoot = process.cwd();
 
 export const TAXONOMY_PATH = 'src/taxonomy/taxonomy.json';
 export const TAXONOMY_SCHEMA_PATH = 'src/taxonomy/taxonomy.schema.json';

@@ -8,14 +8,27 @@
  * hardcoded, never committed and never written to a file.
  */
 
+import type { ComponentId } from './schema';
+
 const API_KEY_STORAGE_KEY = 'anthropic-api-key';
 
 export const MODEL = 'claude-haiku-4-5';
 export const ANTHROPIC_VERSION = '2023-06-01';
 
+/**
+ * One entry in the decomposition. LANGUAGE-INVARIANT: the ipa is a property of
+ * the Catalan form, not a French rendering of it.
+ */
+export interface ComponentEntry {
+  readonly id: ComponentId;
+  readonly ca: string;
+  readonly ipa?: string;
+}
+
+/** The payload every intent emits. Only the prompt and the logged fields differ. */
 export interface Decomposition {
   /** Component IDs and Catalan surface forms only. Never French prose. */
-  readonly components: readonly string[];
+  readonly decomposition: readonly ComponentEntry[];
   /** The only French-language field in the response. */
   readonly answer: string;
   readonly answer_lang: 'fr';

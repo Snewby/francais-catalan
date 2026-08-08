@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://seandnewman.github.io/francais-catalan/taxonomy.schema.json",
+  "title": "Catalan grammar taxonomy",
+  "$comment": "SINGLE SOURCE OF TRUTH for the taxonomy node shape. CLAUDE.md and the skills name this file and must not restate its content. The component-ID vocabulary is closed: new IDs are added by editing taxonomy.json and running gen-schema, never by widening this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "nodes"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "$comment": "Bumped when the node shape changes in a way that needs a data migration."
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/node" }
+    }
+  },
+  "definitions": {
+    "componentId": {
+      "$comment": "Dot-separated, domain code first, snake_case ASCII thereafter. The twelve domain codes are closed; a thirteenth is a schema change. scripts/lib/scan-ids.ts derives its scanner from this pattern rather than keeping a second copy.",
+      "type": "string",
+      "pattern": "^(PHON|NOM|ART|VERB|PRON|DET|PREP|ADV|CONJ|NEG|SYN|LEX)(\\.[a-z0-9_]+)*$"
+    },
+
+    "frenchProse": {
+      "$comment": "French copy. Typographic apostrophe, guillemets, no em-dash. Enforced in test, not here.",
+      "type": "string",
+      "minLength": 1
+    },
+
+    "catalanForm": {
+      "$comment": "Catalan surface form. Never translated, straight apostrophe, interpunct U+00B7 for l-geminada.",
+      "type": "string",
+      "minLength": 1
+    },
+
+    "glosses": {
+      "$comment": "A KEYED MAP, never a flat field. Retrofitting a second language onto a flat gloss is a whole-taxonomy migration, so the map lands before the data does.",
+      "type": "object",
+      "required": ["fr"],
+      "properties": {
+        "fr": { "$ref": "#/definitions/frenchProse" }
+      },
+      "patternProperties": {
+        "^[a-z]{2}$": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+
+    "contrastFr": {
+      "$comment": "How the Catalan structure relates to French. The status drives initial FSRS difficulty and the ordering of the gaps list, so it is load-bearing rather than descriptive. Statuses for high-risk nodes are fixed in data/contrast-overrides.json.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "note"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["transfer", "near-miss", "false-friend", "novel"]
+        },
+        "note": { "$ref": "#/definitions/frenchProse" }
+      }
+    },
+
+    "state": {
+      "$comment": "EXPOSURE IS NOT MASTERY. The two live in separate objects so that no caller can update one while meaning the other. Which evidence type may move which is defined by EVIDENCE_EFFECTS in src/srs/evidence.ts.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exposure", "mastery"],
+      "properties": {
+        "exposure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["exposure_count"],
+          "properties": {
+            "exposure_count": {
+              "$comment": "Moved by any encounter at all, including a bare lookup.",
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "mastery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["stability", "difficulty", "graded_review_count"],
+          "properties": {
+            "stability": {
+              "$comment": "FSRS stability in days. null until the first graded review.",
+              "type": ["number", "null"],
+              "exclusiveMinimum": 0
+            },
+            "difficulty": {
+              "$comment": "FSRS difficulty, 1 to 10. null until the first graded review.",
+              "type": ["number", "null"],
+              "minimum": 1,
+              "maximum": 10
+            },
+            "graded_review_count": {
+              "$comment": "Moved only by graded evidence. This is the number the mastery heatmap reads.",
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+
+    "node": {
+      "oneOf": [{ "$ref": "#/definitions/branch" }, { "$ref": "#/definitions/leaf" }]
+    },
+
+    "branch": {
+      "$comment": "An interior node. Carries no learner state: nothing is ever reviewed at branch level.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "parent", "label_fr"],
+      "properties": {
+        "id": { "$ref": "#/definitions/componentId" },
+        "kind": { "const": "branch" },
+        "parent": {
+          "oneOf": [{ "$ref": "#/definitions/componentId" }, { "type": "null" }]
+        },
+        "label_fr": { "$ref": "#/definitions/frenchProse" }
+      }
+    },
+
+    "leaf": {
+      "$comment": "A reviewable node. Every leaf must have glosses.fr and contrast_fr; scripts/check-glosses.ts and test/gloss-completeness.test.ts enforce that beyond what required-ness can express.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "parent",
+        "ca",
+        "glosses",
+        "cefr",
+        "examples",
+        "contrast_fr",
+        "state"
+      ],
+      "properties": {
+        "id": { "$ref": "#/definitions/componentId" },
+        "kind": { "const": "leaf" },
+        "parent": { "$ref": "#/definitions/componentId" },
+        "ca": { "$ref": "#/definitions/catalanForm" },
+        "glosses": { "$ref": "#/definitions/glosses" },
+        "cefr": {
+          "type": "string",
+          "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+        },
+        "examples": {
+          "$comment": "Catalan only. A French translation here would put French prose into language-invariant data.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/catalanForm" }
+        },
+        "notes": { "$ref": "#/definitions/frenchProse" },
+        "dialect_note": {
+          "$comment": "Where the Valencian, Balearic or Northern norm differs from the central one.",
+          "$ref": "#/definitions/frenchProse"
+        },
+        "contrast_fr": { "$ref": "#/definitions/contrastFr" },
+        "state": { "$ref": "#/definitions/state" }
+      }
+    }
+  }
+}

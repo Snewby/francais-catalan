@@ -8,7 +8,8 @@
  *    reason contrast_fr has to land in phase 1.
  * 2. The gate rejecting evidence that must not advance FSRS.
  */
-import { advancesFsrs, type Evidence } from './evidence';
+import { advancesFsrs, type Evidence, type Rating } from './evidence';
+import type { LeafState } from '../taxonomy';
 
 export type ContrastStatus = 'transfer' | 'near-miss' | 'false-friend' | 'novel';
 
@@ -42,4 +43,56 @@ export class UngradedEvidenceError extends Error {
 /** Gate every FSRS update through this. Phase 5 implements the update itself. */
 export function assertAdvancesFsrs(evidence: Evidence): void {
   if (!advancesFsrs(evidence)) throw new UngradedEvidenceError(evidence);
+}
+
+/**
+ * Numeric difficulty seeded from the contrast status, on the FSRS 1 to 10 scale.
+ * Only transfer nodes start easy; see INITIAL_DIFFICULTY for why.
+ */
+export const INITIAL_DIFFICULTY_VALUE: Record<ContrastStatus, number> = {
+  transfer: 3,
+  'near-miss': 7,
+  'false-friend': 7,
+  novel: 7,
+};
+
+/**
+ * PLACEHOLDER SCHEDULING. Phase 5 replaces the arithmetic below with ts-fsrs.
+ *
+ * What is not a placeholder is the gate: the wrapper refuses evidence that
+ * EVIDENCE_EFFECTS does not mark FSRS-advancing, and it refuses it here rather
+ * than in the caller, so a future caller cannot route around it.
+ */
+const STABILITY_FACTOR: Record<Rating, number> = {
+  again: 0.5,
+  hard: 1.2,
+  good: 2,
+  easy: 3,
+};
+
+const DIFFICULTY_DELTA: Record<Rating, number> = {
+  again: 1,
+  hard: 0.5,
+  good: 0,
+  easy: -0.5,
+};
+
+const DEFAULT_STABILITY = 1;
+const DEFAULT_DIFFICULTY = 5;
+
+export function advanceFsrs(
+  state: LeafState['mastery'],
+  evidence: Evidence,
+  rating: Rating,
+): LeafState['mastery'] {
+  assertAdvancesFsrs(evidence);
+
+  const difficulty =
+    (state.difficulty ?? DEFAULT_DIFFICULTY) + DIFFICULTY_DELTA[rating];
+
+  return {
+    stability: (state.stability ?? DEFAULT_STABILITY) * STABILITY_FACTOR[rating],
+    difficulty: Math.min(10, Math.max(1, difficulty)),
+    graded_review_count: state.graded_review_count + 1,
+  };
 }

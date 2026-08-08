@@ -4,7 +4,7 @@
     {
       "id": "VERB.ind.passat_perifrastic",
       "status": "false-friend",
-      "note": "« Vaig cantar » signifie « j'ai chanté », et non « je vais chanter ». L'auxiliaire anar marque ici le passé, pas le futur proche.",
+      "note": "« vaig cantar » signifie « j’ai chanté », et non « je vais chanter ». L’auxiliaire anar marque ici le passé, pas le futur proche.",
       "rationale": "Highest-risk node in the taxonomy. The French reading of the auxiliary is not merely imprecise, it inverts the tense. The note must state the contrast explicitly."
     },
     {
@@ -16,13 +16,13 @@
     {
       "id": "VERB.ser_estar",
       "status": "novel",
-      "note": "Le français ne connaît que être. La distinction ser/estar n'a aucun analogue à transférer et doit s'apprendre pour elle-même.",
+      "note": "Le français ne connaît que être. La distinction ser/estar n’a aucun analogue à transférer et doit s’apprendre pour elle-même.",
       "rationale": "Novel rather than near-miss: there is no French distinction to be near."
     },
     {
       "id": "VERB.conj.3.incoatiu",
       "status": "near-miss",
-      "note": "Comparable à finir/finissons, mais l'infixe incoatif catalan couvre un ensemble de verbes plus large qu'en français.",
+      "note": "Comparable à finir/finissons, mais l’infixe inchoatif catalan couvre un ensemble de verbes plus large qu’en français.",
       "rationale": "French has the analogue, so partial transfer applies, but the boundary differs and the learner needs the caveat."
     }
   ]
