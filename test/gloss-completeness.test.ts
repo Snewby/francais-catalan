@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CONTRAST_STATUSES, LEAVES } from '../src/taxonomy';
+import { BRANCHES, CONTRAST_STATUSES, LEAVES } from '../src/taxonomy';
 import { resolveOverride } from '../src/taxonomy/overrides';
 import { fr } from '../src/i18n/fr';
 
@@ -88,17 +88,29 @@ describe('pre-assigned contrast statuses are applied verbatim', () => {
 });
 
 describe('French metalanguage conventions in taxonomy prose', () => {
-  /** Every French-language string on every leaf. */
-  const frenchProse = LEAVES.flatMap((leaf) => [
-    { id: leaf.id, field: 'glosses.fr', text: leaf.glosses.fr },
-    { id: leaf.id, field: 'contrast_fr.note', text: leaf.contrast_fr.note },
-    ...(leaf.notes === undefined
-      ? []
-      : [{ id: leaf.id, field: 'notes', text: leaf.notes }]),
-    ...(leaf.dialect_note === undefined
-      ? []
-      : [{ id: leaf.id, field: 'dialect_note', text: leaf.dialect_note }]),
-  ]);
+  /**
+   * Every French-language string on every node. A branch carries only
+   * `label_fr`, but it is French copy like any other and was going unasserted:
+   * the ART seed wrote seven labels with straight apostrophes because nothing
+   * here looked at them.
+   */
+  const frenchProse = [
+    ...BRANCHES.map((branch) => ({
+      id: branch.id,
+      field: 'label_fr',
+      text: branch.label_fr,
+    })),
+    ...LEAVES.flatMap((leaf) => [
+      { id: leaf.id, field: 'glosses.fr', text: leaf.glosses.fr },
+      { id: leaf.id, field: 'contrast_fr.note', text: leaf.contrast_fr.note },
+      ...(leaf.notes === undefined
+        ? []
+        : [{ id: leaf.id, field: 'notes', text: leaf.notes }]),
+      ...(leaf.dialect_note === undefined
+        ? []
+        : [{ id: leaf.id, field: 'dialect_note', text: leaf.dialect_note }]),
+    ]),
+  ];
 
   it('uses no em-dashes', () => {
     for (const { id, field, text } of frenchProse) {

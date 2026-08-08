@@ -158,11 +158,10 @@ See the per-domain table above for where seeding is up to.
 - Eight domains remain unseeded. `data/sources.md` has two worked examples of a
   per-domain notes section (`NOM` and `ART`), so later passes have a shape to
   follow rather than an empty placeholder.
-- `test/gloss-completeness.test.ts` asserts French typography over leaf fields
-  only, so `label_fr` on a branch node is unasserted French prose. The `ART`
-  seed walked straight into it and wrote seven labels with straight
-  apostrophes, corrected by hand. `NOM` only escapes because none of its labels
-  contains an apostrophe.
+- `test/gloss-completeness.test.ts` used to assert French typography over leaf
+  fields only, so `label_fr` on a branch node was unasserted French prose. The
+  `ART` seed walked straight into it and wrote seven labels with straight
+  apostrophes, corrected by hand; the test now covers all 25 branches too.
 - `.claude/agents/taxonomy-seeder.md` no longer instructs leaving `glosses` and
   `contrast_fr` empty, which phase 1 made impossible. The seeder now authors a
   British-English marker per leaf, deliberately not French, so that the 2b pass
