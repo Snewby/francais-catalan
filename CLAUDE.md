@@ -60,6 +60,10 @@
 
 ## Conventions
 
+- Check staging with `git status`, never `git diff`, before committing.
+  `git diff` does not report untracked files, so a `git add -A` can sweep in
+  another session's in-progress work and the check will look clean. This has
+  already happened once (see Record corrections in TASKS.md).
 - Build status lives in TASKS.md, one line per phase. A phase transition
   updates TASKS.md in the SAME commit as the work. Read it first in a new
   session; it is the only place that records where the build is up to.

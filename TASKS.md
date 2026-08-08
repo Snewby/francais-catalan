@@ -11,7 +11,7 @@ is worse than none, because it still reads as authoritative.
 | ------------------------------------- | ----------- | -------- | ------------------------------- |
 | 0. Scaffold                           | done        | DONE     | `c8a3e14`, `f6d0a21`, `1c4cc7d` |
 | Interaction-model amendment           | done        | n/a      | `d7738c5`                       |
-| 1. Taxonomy schema, closed vocabulary | next        | VERBATIM |                                 |
+| 1. Taxonomy schema, closed vocabulary | in progress | VERBATIM | tests written, red              |
 | 2a. Structural seeding, per domain    | not started | ADAPT    |                                 |
 | 2b. Gloss and contrast authoring      | not started | ADAPT    |                                 |
 | 3. Generated schema enums             | not started | VERBATIM |                                 |
@@ -53,6 +53,27 @@ missing values cannot be reconstructed.
 - Intents `teach`, `assess` and `pronounce` are representable but not built.
   `assess` is a selection function over the phase 5b review loop, not a separate
   subsystem.
+
+## Record corrections
+
+- **`7ddaa48` contains more than its message says.** It is described as a
+  documentation pass over `docs/02`, and it is, but it also contains the six
+  Phase 1 test files (`taxonomy-schema`, `closed-vocabulary`,
+  `gloss-completeness`, `gen-schema`, `evidence-routing` and
+  `helpers/taxonomy.ts`, 765 lines) written concurrently in another session.
+  They were swept in by a `git add -A` whose staging was checked with
+  `git diff --stat`, which does not report untracked files. History was left
+  alone rather than rewritten, since the commit was already pushed and the
+  files are wanted regardless. Recorded here so the commit log is not silently
+  wrong.
+
+## Known-bad, not yet fixed
+
+- `test/helpers/taxonomy.ts` computes `repoRoot` from `import.meta.url`, which
+  is not a `file://` URL under the `jsdom` test environment, so `fileURLToPath`
+  throws `The URL must be of scheme file`. This is distinct from the expected
+  Phase 1 TDD failures and will persist after `src/taxonomy/` exists. Use
+  `process.cwd()` or put the file-reading tests in the `node` environment.
 
 ## Manual steps not yet done
 
