@@ -103,7 +103,11 @@ describe('taxonomy structural integrity', () => {
     // ten leaves). Every seeding pass would have had to edit the numbers, which
     // makes the assertion a changelog rather than a check. What is actually
     // invariant is that leaves only ever appear under a declared domain code.
-    const domains = [...new Set(LEAVES.map((leaf) => leaf.id.split('.')[0]))];
+    // The ?? cannot fire, since split always yields a first element, but
+    // noUncheckedIndexedAccess types it as possibly undefined.
+    const domains = [
+      ...new Set(LEAVES.map((leaf) => leaf.id.split('.')[0] ?? leaf.id)),
+    ];
     const undeclared = domains.filter(
       (domain) => !(DOMAIN_CODES as readonly string[]).includes(domain),
     );
