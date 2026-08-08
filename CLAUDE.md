@@ -30,7 +30,9 @@
   src/srs/evidence.ts.
 - The component-ID vocabulary is CLOSED. Every ID emitted by the model,
   referenced in UI, DB, or tests MUST exist in src/taxonomy/taxonomy.json.
-  New IDs are added ONLY by editing taxonomy.json then running gen-schema.
+  taxonomy.json is GENERATED from data/*.fragment.json, so new IDs are added
+  ONLY by editing the domain fragment then running gen-schema. A PostToolUse
+  hook blocks hand-edits to taxonomy.json outright.
 - Glosses are a KEYED MAP (`glosses: {fr: "..."}`), never a flat field.
 - Every leaf node MUST have `glosses.fr` and `contrast_fr`.
   contrast_fr.status is one of: transfer | near-miss | false-friend | novel.

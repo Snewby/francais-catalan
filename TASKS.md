@@ -45,6 +45,16 @@ from it, and `validate-ids` and `check-glosses` are real checks rather than
 stubs. Phase 3 closed with it, because the logged-query schema needed the
 generated component enum to exist.
 
+The taxonomy build then moved to per-domain fragments, which is what the
+`catalan-taxonomy` skill and `.claude/rules/code-style.md` already assumed.
+`data/*.fragment.json` is the only editable source; `npm run gen-schema` merges
+them into `taxonomy.json` in closed-domain-list order and then regenerates
+`src/api/schema.ts`. Both outputs carry a do-not-edit banner and a drift test,
+and `taxonomy-guard` blocks hand-edits to `taxonomy.json` at write time. The
+block matters because the `Stop` hook that runs the tests does not fire for a
+subagent's turn, so during seeding a write-time refusal is the only feedback a
+seeding agent gets before its work is overwritten.
+
 Phase 2a is next: the remaining ten domains, one per subagent, structure first.
 
 ## Carried over into later phases
@@ -53,9 +63,9 @@ Phase 2a is next: the remaining ten domains, one per subagent, structure first.
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- `gen-schema` reads the hand-authored `taxonomy.json` directly. Merging
-  per-domain fragments under `data/` into it is a phase 2a concern, and the
-  pipeline order in the `catalan-taxonomy` skill assumes that step exists.
+- Ten domains remain unseeded. `data/sources.md` has an empty per-domain notes
+  section, so a seeding pass has to extract the facts into it first rather than
+  finding them already there.
 - Intents `teach`, `assess` and `pronounce` are representable but not built.
   `assess` is a selection function over the phase 5b review loop, not a separate
   subsystem.

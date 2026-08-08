@@ -1,23 +1,31 @@
 /**
- * Regenerates src/api/schema.ts, drawing every component-ID enum from the
- * flattened taxonomy leaf IDs and every interaction-model enum from
- * src/srs/evidence.ts.
+ * The taxonomy build, in two stages.
+ *
+ *   data/<domain>.fragment.json  -> stage 1 -> src/taxonomy/taxonomy.json
+ *                                -> stage 2 -> src/api/schema.ts
+ *
+ * The fragments are the only editable source. Splitting by domain is what keeps
+ * a seeding subagent's context to one domain, and what stops two domains being
+ * authored into the same file and conflicting.
  *
  * Because the generated enums are sent to the model as a constrained output
  * schema, an out-of-vocabulary tag is impossible at decode time. What the
- * generation test guards is the other failure: the committed schema drifting
- * away from the taxonomy it claims to describe.
+ * generation tests guard is the other failure: a committed artefact drifting
+ * away from the fragments it claims to describe.
  *
- * The rendering is a pure function so the test can compare it against the
- * committed file without running the write. Merging the per-domain fragments
- * under data/ into taxonomy.json is a phase 2a concern; until then the seed
- * taxonomy is hand-authored and this script reads it as it stands.
+ * Both renderings are pure functions of the fragments, so the tests can compare
+ * them against the committed files without running the write.
  */
-import { writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import prettier from 'prettier';
-import { LEAF_IDS } from '../src/taxonomy';
+import {
+  DOMAIN_CODES,
+  isLeaf,
+  type DomainCode,
+  type TaxonomyNode,
+} from '../src/taxonomy';
 import {
   DIRECTIONS,
   EVIDENCE_EFFECTS,
@@ -27,17 +35,106 @@ import {
 } from '../src/srs/evidence';
 
 const projectDir = process.env.CLAUDE_PROJECT_DIR ?? process.cwd();
+const FRAGMENT_DIR = path.join(projectDir, 'data');
+const TAXONOMY_PATH = path.join(projectDir, 'src/taxonomy/taxonomy.json');
 const OUTPUT_PATH = path.join(projectDir, 'src/api/schema.ts');
+
+/** The shape of the taxonomy document. taxonomy.schema.json is authoritative. */
+export interface MergedTaxonomy {
+  readonly $generated: string;
+  readonly version: number;
+  readonly nodes: readonly TaxonomyNode[];
+}
+
+export interface Fragment {
+  /** Repo-relative, forward-slashed, for messages that read the same everywhere. */
+  readonly file: string;
+  readonly domain: string;
+  readonly nodes: readonly TaxonomyNode[];
+}
+
+const TAXONOMY_VERSION = 1;
+
+const TAXONOMY_BANNER =
+  'GENERATED FILE. DO NOT EDIT BY HAND. Rebuilt by `npm run gen-schema` from ' +
+  'data/*.fragment.json. Hand-edits here are destroyed on the next generation; ' +
+  'edit the fragment for the domain instead.';
 
 const BANNER = `/**
  * GENERATED FILE. DO NOT EDIT BY HAND.
  *
- * Produced by \`npm run gen-schema\` from src/taxonomy/taxonomy.json and the
+ * Produced by \`npm run gen-schema\` from data/*.fragment.json and the
  * interaction-model enums in src/srs/evidence.ts.
  *
  * Hand-edits are destroyed on the next generation and, worse, temporarily hide
  * the drift that test/gen-schema.test.ts exists to catch.
  */`;
+
+/** Every per-domain fragment on disk, in filename order. */
+export function readFragments(): Fragment[] {
+  return readdirSync(FRAGMENT_DIR)
+    .filter((entry) => entry.endsWith('.fragment.json'))
+    .sort()
+    .map((entry) => {
+      const parsed = JSON.parse(
+        readFileSync(path.join(FRAGMENT_DIR, entry), 'utf8'),
+      ) as { domain: string; nodes: TaxonomyNode[] };
+      return { file: `data/${entry}`, domain: parsed.domain, nodes: parsed.nodes };
+    });
+}
+
+/**
+ * Stage 1. Concatenates the fragments in the order of the closed domain list,
+ * so that adding a fragment later appends rather than reshuffling the file.
+ */
+export function mergeFragments(fragments = readFragments()): MergedTaxonomy {
+  const seenDomains = new Set<string>();
+  for (const fragment of fragments) {
+    if (!DOMAIN_CODES.includes(fragment.domain as DomainCode)) {
+      throw new Error(`${fragment.file}: ${fragment.domain} is not a domain code.`);
+    }
+    if (seenDomains.has(fragment.domain)) {
+      throw new Error(`${fragment.file}: a second fragment claims ${fragment.domain}.`);
+    }
+    seenDomains.add(fragment.domain);
+  }
+
+  const ordered = [...fragments].sort(
+    (a, b) =>
+      DOMAIN_CODES.indexOf(a.domain as DomainCode) -
+      DOMAIN_CODES.indexOf(b.domain as DomainCode),
+  );
+
+  const nodes: TaxonomyNode[] = [];
+  const seenIds = new Set<string>();
+
+  for (const fragment of ordered) {
+    for (const node of fragment.nodes) {
+      const domain = node.id.split('.')[0];
+      if (domain !== fragment.domain) {
+        throw new Error(
+          `${fragment.file}: ${node.id} belongs to ${String(domain)}, not ` +
+            `${fragment.domain}. A node lives in its own domain's fragment.`,
+        );
+      }
+      if (seenIds.has(node.id)) {
+        throw new Error(`${fragment.file}: duplicate node ID ${node.id}.`);
+      }
+      seenIds.add(node.id);
+      nodes.push(node);
+    }
+  }
+
+  return { $generated: TAXONOMY_BANNER, version: TAXONOMY_VERSION, nodes };
+}
+
+/** Stage 1 output: the full text of src/taxonomy/taxonomy.json. */
+export async function renderTaxonomy(
+  taxonomy: MergedTaxonomy = mergeFragments(),
+): Promise<string> {
+  const options = await prettier.resolveConfig(TAXONOMY_PATH);
+  return prettier.format(JSON.stringify(taxonomy), { ...options, parser: 'json' });
+}
 
 function literalArray(values: readonly string[]): string {
   return `[${values.map((value) => JSON.stringify(value)).join(', ')}]`;
@@ -52,12 +149,22 @@ function ratingRequiringEvidence(): readonly string[] {
   return EVIDENCE_TYPES.filter((evidence) => EVIDENCE_EFFECTS[evidence].requiresRating);
 }
 
-/** The full text of src/api/schema.ts for the current taxonomy. */
-export async function renderSchemaModule(): Promise<string> {
+/**
+ * Stage 2 output: the full text of src/api/schema.ts.
+ *
+ * Takes the merged taxonomy rather than importing src/taxonomy, because within
+ * a single run stage 1 has already rewritten taxonomy.json and the import would
+ * still hold the version loaded at startup.
+ */
+export async function renderSchemaModule(
+  taxonomy: MergedTaxonomy = mergeFragments(),
+): Promise<string> {
+  const leafIds = taxonomy.nodes.filter(isLeaf).map((leaf) => leaf.id);
+
   const source = `${BANNER}
 
 /** Every reviewable component, in taxonomy order. */
-export const LEAF_IDS = ${literalArray(LEAF_IDS)} as const;
+export const LEAF_IDS = ${literalArray(leafIds)} as const;
 
 export type ComponentId = (typeof LEAF_IDS)[number];
 
@@ -141,9 +248,17 @@ export const QUERY_LOG_SCHEMA = {
 }
 
 async function main(): Promise<void> {
-  writeFileSync(OUTPUT_PATH, await renderSchemaModule(), 'utf8');
+  const fragments = readFragments();
+  const taxonomy = mergeFragments(fragments);
+
+  writeFileSync(TAXONOMY_PATH, await renderTaxonomy(taxonomy), 'utf8');
+  writeFileSync(OUTPUT_PATH, await renderSchemaModule(taxonomy), 'utf8');
+
+  const leaves = taxonomy.nodes.filter(isLeaf).length;
   console.log(
-    `gen-schema: wrote src/api/schema.ts with ${LEAF_IDS.length} component IDs.`,
+    `gen-schema: merged ${fragments.length} fragment(s) into ` +
+      `${taxonomy.nodes.length} nodes, and wrote src/api/schema.ts with ` +
+      `${leaves} component IDs.`,
   );
 }
 

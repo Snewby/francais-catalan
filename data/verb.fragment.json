@@ -1,0 +1,203 @@
+{
+  "domain": "VERB",
+  "nodes": [
+    {
+      "id": "VERB",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "Le verbe"
+    },
+    {
+      "id": "VERB.ind",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les temps simples de l’indicatif"
+    },
+    {
+      "id": "VERB.ind.imperfet",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "cantava",
+      "glosses": {
+        "fr": "l’imparfait de l’indicatif"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Quan era petit, cantava cada dia.",
+        "Mentre parlàvem, plovia molt fort."
+      ],
+      "notes": "Au premier groupe, les terminaisons sont -ava, -aves, -ava, -àvem, -àveu, -aven. Les deuxième et troisième groupes prennent -ia.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Même valeur aspectuelle que l’imparfait français, et les emplois de description, d’habitude et d’arrière-plan narratif se recouvrent."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "VERB.ind.passat_perifrastic",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "vaig cantar",
+      "glosses": {
+        "fr": "le passé périphrastique, formé de anar au présent suivi de l’infinitif"
+      },
+      "cefr": "A2",
+      "examples": ["Ahir vaig cantar a la festa.", "Vam arribar molt tard."],
+      "notes": "L’auxiliaire prend des formes propres à cet emploi, vaig, vas, va, vam, vau, van, et non les formes ordinaires de anar. C’est le passé narratif ordinaire de la langue parlée.",
+      "dialect_note": "Le catalan central préfère cette forme au passé simple, qui reste vivant surtout à l’écrit et dans certains parlers baléares.",
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« vaig cantar » signifie « j’ai chanté », et non « je vais chanter ». L’auxiliaire anar marque ici le passé, pas le futur proche."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "VERB.perf",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les temps composés"
+    },
+    {
+      "id": "VERB.perf.present",
+      "kind": "leaf",
+      "parent": "VERB.perf",
+      "ca": "he cantat",
+      "glosses": {
+        "fr": "le passé composé, construit avec haver et le participe"
+      },
+      "cefr": "A2",
+      "examples": ["Avui he cantat molt.", "Ha vingut d'hora aquest matí."],
+      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "VERB.conj",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les groupes de conjugaison"
+    },
+    {
+      "id": "VERB.conj.3",
+      "kind": "branch",
+      "parent": "VERB.conj",
+      "label_fr": "Le troisième groupe, en -ir"
+    },
+    {
+      "id": "VERB.conj.3.incoatiu",
+      "kind": "leaf",
+      "parent": "VERB.conj.3",
+      "ca": "serveixo",
+      "glosses": {
+        "fr": "la conjugaison inchoative du troisième groupe, avec l’infixe -eix-"
+      },
+      "cefr": "B1",
+      "examples": ["Jo serveixo el dinar a la una.", "Ells pateixen molt de fred."],
+      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs.",
+      "dialect_note": "Le valencien emploie plutôt les formes en -isc et -ix, comme servisc et servix.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comparable à finir/finissons, mais l’infixe inchoatif catalan couvre un ensemble de verbes plus large qu’en français."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "VERB.mod",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les périphrases modales"
+    },
+    {
+      "id": "VERB.mod.obligacio",
+      "kind": "leaf",
+      "parent": "VERB.mod",
+      "ca": "haver de",
+      "glosses": {
+        "fr": "l’obligation, exprimée par haver de suivi de l’infinitif"
+      },
+      "cefr": "A2",
+      "examples": ["He de marxar ara mateix.", "Hem de parlar amb ella."],
+      "notes": "La tournure impersonnelle cal que, suivie du subjonctif, est l’autre manière courante d’exprimer la nécessité, et caldre se conjugue seulement à la troisième personne.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Proche de devoir, mais haver de couvre aussi la nécessité matérielle que le français rend par il faut, et se conjugue là où il faut reste figé."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "VERB.ser_estar",
+      "kind": "leaf",
+      "parent": "VERB",
+      "ca": "ser / estar",
+      "glosses": {
+        "fr": "l’opposition entre ser et estar, deux verbes là où le français n’en a qu’un"
+      },
+      "cefr": "A1",
+      "examples": ["Sóc de Perpinyà.", "Estic cansat.", "La reunió és a les nou."],
+      "notes": "En première approche, ser porte l’identité, la définition et la localisation d’un événement, estar porte l’état résultant et la présence temporaire. La frontière catalane ne coïncide pas avec la frontière espagnole, et estar y est plus restreint.",
+      "dialect_note": "Le catalan central étend estar à des emplois de localisation que la norme littéraire attribue encore à ser.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français ne connaît que être. La distinction ser/estar n’a aucun analogue à transférer et doit s’apprendre pour elle-même."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    }
+  ]
+}

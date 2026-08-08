@@ -1,0 +1,134 @@
+{
+  "domain": "PRON",
+  "nodes": [
+    {
+      "id": "PRON",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "Le pronom"
+    },
+    {
+      "id": "PRON.fort",
+      "kind": "branch",
+      "parent": "PRON",
+      "label_fr": "Les pronoms forts"
+    },
+    {
+      "id": "PRON.fort.subjecte",
+      "kind": "leaf",
+      "parent": "PRON.fort",
+      "ca": "jo, tu, ell",
+      "glosses": {
+        "fr": "les pronoms sujets forts, facultatifs parce que le catalan omet le sujet"
+      },
+      "cefr": "A1",
+      "examples": ["Canto cada dia.", "Jo canto, ell no.", "Nosaltres hi anirem."],
+      "notes": "La désinence verbale suffit à identifier la personne, si bien que le sujet exprimé sert au contraste, à l’emphase ou à la levée d’une ambiguïté.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Les formes correspondent une à une aux pronoms français, mais le français les exige devant le verbe alors que le catalan ne les emploie que pour contraster."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PRON.feble",
+      "kind": "branch",
+      "parent": "PRON",
+      "label_fr": "Les pronoms faibles"
+    },
+    {
+      "id": "PRON.feble.en",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "en",
+      "glosses": {
+        "fr": "le pronom faible en, reprenant un complément introduit par de ou un partitif"
+      },
+      "cefr": "A2",
+      "examples": ["En vinc ara.", "No en tinc gaires.", "Parla'n amb calma."],
+      "notes": "La forme varie selon l’entourage phonétique, « en », « n' », « ne » et « -ne », et le choix dépend de la place du pronom par rapport au verbe.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a en, mais le catalan l’emploie aussi pour reprendre un lieu d’origine, là où le français doit répéter la préposition et le nom."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PRON.feble.hi",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "hi",
+      "glosses": {
+        "fr": "le pronom faible hi, reprenant un lieu ou un complément introduit par a ou en"
+      },
+      "cefr": "A2",
+      "examples": ["Hi vaig cada dilluns.", "No hi penso mai.", "No hi ha ningú."],
+      "notes": "Hi entre aussi dans des constructions figées, notamment haver-hi pour l’existence et no hi fa res pour l’indifférence.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspond largement à y, mais hi reprend en outre le complément des verbes de perception, comme dans no hi sento, où le français n’emploie pas y."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PRON.feble.combinacio",
+      "kind": "branch",
+      "parent": "PRON.feble",
+      "label_fr": "Les combinaisons de pronoms faibles"
+    },
+    {
+      "id": "PRON.feble.combinacio.ci_cd",
+      "kind": "leaf",
+      "parent": "PRON.feble.combinacio",
+      "ca": "l'hi",
+      "glosses": {
+        "fr": "la combinaison d’un complément d’objet indirect et d’un complément d’objet direct"
+      },
+      "cefr": "B2",
+      "examples": ["El llibre, l'hi dono.", "Les claus, les hi deixo."],
+      "notes": "L’ordre est le complément d’objet indirect avant le complément d’objet direct, et la rencontre de li avec el produit « l'hi » en catalan central, forme qui ne se laisse plus segmenter à l’oreille.",
+      "dialect_note": "Le valencien conserve les combinaisons transparentes « li'l », « li la » et « li els ».",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français combine aussi les pronoms, mais il place le complément d’objet direct en premier dans le lui donne et ne fusionne jamais les deux en une forme unique."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    }
+  ]
+}

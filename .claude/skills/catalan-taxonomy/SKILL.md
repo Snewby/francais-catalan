@@ -1,6 +1,6 @@
 ---
 name: catalan-taxonomy
-description: Conventions for the Catalan grammar taxonomy - the twelve domain codes, component-ID naming, the closed-vocabulary rule, and the build-taxonomy to gen-schema pipeline. Use whenever authoring, seeding, referencing or validating taxonomy component IDs, or when touching data fragments, taxonomy.json or the generated API schema.
+description: Conventions for the Catalan grammar taxonomy - the twelve domain codes, component-ID naming, the closed-vocabulary rule, and the two-stage gen-schema pipeline from data fragments to taxonomy.json to the API schema. Use whenever authoring, seeding, referencing or validating taxonomy component IDs, or when touching data fragments, taxonomy.json or the generated API schema.
 ---
 
 # Catalan taxonomy conventions
@@ -65,10 +65,10 @@ A new ID is added by exactly one route:
    and regenerates `src/api/schema.ts`).
 3. Run `npm run validate-ids`.
 
-There is no other route. In particular, never hand-edit `src/api/schema.ts`: it
-is a generated artefact and carries a banner saying so. Hand-edits are silently
-destroyed on the next generation and, worse, temporarily hide the drift the
-generation test exists to catch.
+There is no other route. In particular, never hand-edit `src/taxonomy/taxonomy.json`
+or `src/api/schema.ts`: both are generated artefacts and both carry a banner
+saying so. Hand-edits are silently destroyed on the next generation and, worse,
+temporarily hide the drift the generation tests exist to catch.
 
 Because the schema enums are generated from the taxonomy and sent to the model
 as a constrained output schema, an out-of-vocabulary tag is impossible at
@@ -78,15 +78,21 @@ not against model misbehaviour. That is a different failure and a real one.
 ## Pipeline order
 
 ```
-data/<domain>.fragment.json
-  -> build-taxonomy   -> src/taxonomy/taxonomy.json
-  -> gen-schema       -> src/api/schema.ts
-  -> validate-ids     (every referenced ID exists)
-  -> check-glosses    (every leaf has glosses.fr and contrast_fr)
+data/<domain>.fragment.json   the only editable source
+  -> gen-schema stage 1  -> src/taxonomy/taxonomy.json   generated
+  -> gen-schema stage 2  -> src/api/schema.ts            generated
+  -> validate-ids        (every referenced ID exists)
+  -> check-glosses       (every leaf has glosses.fr and contrast_fr)
 ```
 
-Run them in that order. Running `validate-ids` before `gen-schema` validates the
-previous generation and will happily pass on a stale taxonomy.
+Both stages are one command, `npm run gen-schema`. Run the checks after it,
+never before: `validate-ids` on a stale `taxonomy.json` validates the previous
+generation and passes happily.
+
+Both outputs carry a do-not-edit banner, and a `PostToolUse` hook blocks any
+write to `taxonomy.json`. That is not belt and braces. During a seeding pass the
+generated file is where nodes visibly live, so reaching for it is the natural
+mistake, and the next generation destroys the edit without a word.
 
 ## Context hygiene: never read taxonomy.json wholesale
 

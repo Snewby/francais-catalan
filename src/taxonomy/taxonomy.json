@@ -1,12 +1,8 @@
 {
+  "$generated": "GENERATED FILE. DO NOT EDIT BY HAND. Rebuilt by `npm run gen-schema` from data/*.fragment.json. Hand-edits here are destroyed on the next generation; edit the fragment for the domain instead.",
   "version": 1,
   "nodes": [
-    {
-      "id": "VERB",
-      "kind": "branch",
-      "parent": null,
-      "label_fr": "Le verbe"
-    },
+    { "id": "VERB", "kind": "branch", "parent": null, "label_fr": "Le verbe" },
     {
       "id": "VERB.ind",
       "kind": "branch",
@@ -157,12 +153,7 @@
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
     },
-    {
-      "id": "PRON",
-      "kind": "branch",
-      "parent": null,
-      "label_fr": "Le pronom"
-    },
+    { "id": "PRON", "kind": "branch", "parent": null, "label_fr": "Le pronom" },
     {
       "id": "PRON.fort",
       "kind": "branch",

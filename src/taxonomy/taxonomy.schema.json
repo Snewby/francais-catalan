@@ -7,6 +7,11 @@
   "additionalProperties": false,
   "required": ["version", "nodes"],
   "properties": {
+    "$generated": {
+      "$comment": "Do-not-edit banner. JSON has no comments, so the warning has to be a field. Present on the built artefact, absent from the fragments it is built from.",
+      "type": "string",
+      "minLength": 1
+    },
     "version": {
       "type": "integer",
       "minimum": 1,

@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE. DO NOT EDIT BY HAND.
  *
- * Produced by `npm run gen-schema` from src/taxonomy/taxonomy.json and the
+ * Produced by `npm run gen-schema` from data/*.fragment.json and the
  * interaction-model enums in src/srs/evidence.ts.
  *
  * Hand-edits are destroyed on the next generation and, worse, temporarily hide
