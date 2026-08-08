@@ -76,9 +76,14 @@ describe('fragment integrity', () => {
   });
 
   it('rejects a node whose domain does not match its fragment', () => {
+    // Take a node from any domain but NOM. NODES.slice(0, 1) would be wrong:
+    // the merge is in domain-list order, so the first node belongs to whichever
+    // domain is seeded earliest, and once NOM is seeded that is NOM itself.
+    const foreign = NODES.find((node) => !node.id.startsWith('NOM'));
+    expect(foreign).toBeDefined();
     expect(() =>
       mergeFragments([
-        { file: 'data/nom.fragment.json', domain: 'NOM', nodes: NODES.slice(0, 1) },
+        { file: 'data/nom.fragment.json', domain: 'NOM', nodes: [foreign!] },
       ]),
     ).toThrow();
   });

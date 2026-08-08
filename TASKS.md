@@ -12,8 +12,8 @@ is worse than none, because it still reads as authoritative.
 | 0. Scaffold                           | done        | DONE     | `c8a3e14`, `f6d0a21`, `1c4cc7d` |
 | Interaction-model amendment           | done        | n/a      | `d7738c5`                       |
 | 1. Taxonomy schema, closed vocabulary | done        | VERBATIM | `7bcb37a`, `bb7ae90`            |
-| 2a. Structural seeding, per domain    | next        | ADAPT    | per domain, see table below     |
-| 2b. Gloss and contrast authoring      | next        | ADAPT    | per domain, see table below     |
+| 2a. Structural seeding, per domain    | in progress | ADAPT    | per domain, see table below     |
+| 2b. Gloss and contrast authoring      | in progress | ADAPT    | per domain, see table below     |
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
 | 4. API client and prompt caching      | not started | ADAPT    |                                 |
 | 5. Persistence, FSRS, Elo             | not started | ADAPT    |                                 |
@@ -44,7 +44,7 @@ against, and a proper 2a pass over that domain is still owed.
 | Domain | Fragment                  | Structure   | Glosses     | Closed by |
 | ------ | ------------------------- | ----------- | ----------- | --------- |
 | `PHON` |                           | not started | not started |           |
-| `NOM`  |                           | not started | not started |           |
+| `NOM`  | `data/nom.fragment.json`  | done        | done        | this pass |
 | `ART`  |                           | not started | not started |           |
 | `VERB` | `data/verb.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `PRON` | `data/pron.fragment.json` | seed only   | seed only   | `7bcb37a` |
@@ -97,7 +97,23 @@ site is live at https://snewby.github.io/francais-catalan/ on the default
 `github.io` domain, with no custom domain configured. If one is ever added, the
 site moves to the domain root and `base` in `vite.config.ts` has to become `/`.
 
-Seeding is next. See the per-domain table above for where it is up to.
+Seeding then started with `NOM`, 30 leaves under 7 branches covering gender,
+number, adjective agreement, derivation and compounding. Two phase 1 tests had
+to be generalised to let it land: `closed-vocabulary` asserted exactly `PRON`
+and `VERB` and exactly ten leaves, and `build-taxonomy` fed the merged
+taxonomy's first node to a fragment claiming domain `NOM`, which only mismatched
+while `NOM` was unseeded. Both were snapshots of the phase 1 seed rather than
+invariants, so both would have broken on whichever domain was seeded first.
+Expect no further breakage of this kind; the remaining assertions are shape, not
+census.
+
+`NOM` came out 13 transfer, 15 near-miss, 1 novel and 1 false-friend. That skew
+is real rather than a lazy pass: Catalan nominal morphology genuinely transfers
+from French, which is the whole reason `docs/01` argues a French speaker starts
+ahead. The practical consequence is that `NOM` will sort low in the phase 6 gaps
+list, and that is correct behaviour, not a bug to be tuned away.
+
+See the per-domain table above for where seeding is up to.
 
 ## Carried over into later phases
 
@@ -105,9 +121,14 @@ Seeding is next. See the per-domain table above for where it is up to.
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- Ten domains remain unseeded. `data/sources.md` has an empty per-domain notes
-  section, so a seeding pass has to extract the facts into it first rather than
-  finding them already there.
+- Nine domains remain unseeded. `data/sources.md` now has one worked example of
+  a per-domain notes section (`NOM`), so later passes have a shape to follow
+  rather than an empty placeholder.
+- `.claude/agents/taxonomy-seeder.md` step 4 still instructs leaving `glosses`
+  and `contrast_fr` empty, which phase 1 made impossible and `docs/02` already
+  corrects. The `NOM` pass worked around it in the prompt. Fix the agent file
+  before the next domain, or every seeding prompt has to carry the same
+  override.
 - Intents `teach`, `assess` and `pronounce` are representable but not built.
   `assess` is a selection function over the phase 5b review loop, not a separate
   subsystem.

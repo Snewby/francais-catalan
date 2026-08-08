@@ -49,4 +49,22 @@ of an external list. The `schema-validator` agent spot-checks for exactly these.
 <!-- Per-domain extracted notes go here as seeding proceeds. One section per
 domain, facts only, with the source named. -->
 
-_No domains seeded yet. Seeding begins in phase 2a._
+### NOM (nouns: gender, number, derivation)
+
+No dataset from the table above covers nominal morphology; that table is
+verb-oriented. The facts for this domain (gender assignment rules, plural
+formation classes, adjective agreement, derivational suffixes) are drawn from
+two sources only:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, lines 86-90, the "NOM"
+  section header and its pointer to gender/number/derivation as the domain's
+  scope.
+- General knowledge of Catalan nominal morphology (GIEC-level facts: -o/-a
+  gender alternation, -essa/-riu feminine suffixes, sibilant and hidden-n
+  plural classes, four-form/two-form adjective agreement, the diminutive,
+  augmentative, agent and abstract noun suffixes).
+
+No licensed data file, curated list or database was extracted from for this
+domain, so neither the compilation-copyright risk nor the EU database right
+described above is engaged here. All examples and Catalan forms are
+hand-authored for this repo.

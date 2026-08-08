@@ -1,6 +1,5 @@
 {
-  "$generated": "GENERATED FILE. DO NOT EDIT BY HAND. Rebuilt by `npm run gen-schema` from data/*.fragment.json. Hand-edits here are destroyed on the next generation; edit the fragment for the domain instead.",
-  "version": 1,
+  "domain": "NOM",
   "nodes": [
     {
       "id": "NOM",
@@ -19,17 +18,28 @@
       "kind": "leaf",
       "parent": "NOM.gender",
       "ca": "gat / gata",
-      "glosses": { "fr": "formation régulière du féminin par ajout de -a au masculin" },
+      "glosses": {
+        "fr": "formation régulière du féminin par ajout de -a au masculin"
+      },
       "cefr": "A1",
-      "examples": ["El gat dorm.", "La gata maula."],
+      "examples": [
+        "El gat dorm.",
+        "La gata maula."
+      ],
       "notes": "Le masculin se termine souvent par une consonne ou une voyelle atone, et le féminin s’obtient en ajoutant -a : gat/gata, noi/noia, gos/gossa.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le mécanisme -Ø/-a correspond directement au masculin/féminin français en consonne finale + -e, comme dans étudiant/étudiante."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -41,15 +51,24 @@
         "fr": "noms communs à une seule forme, dont le genre est marqué uniquement par l’article"
       },
       "cefr": "A2",
-      "examples": ["El jove estudia dret.", "La jove estudia dret."],
+      "examples": [
+        "El jove estudia dret.",
+        "La jove estudia dret."
+      ],
       "notes": "Certains noms ont une forme unique pour les deux genres ; seul l’article la marque : el/la jove, el/la testimoni, el/la cònjuge.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français distingue souvent des formes différentes (jeune homme/jeune fille), alors que le catalan garde une forme unique et déplace toute la charge du genre sur l’article."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -57,17 +76,28 @@
       "kind": "leaf",
       "parent": "NOM.gender",
       "ca": "l'artista",
-      "glosses": { "fr": "noms en -ista, invariables en genre, marqués par l’article" },
+      "glosses": {
+        "fr": "noms en -ista, invariables en genre, marqués par l’article"
+      },
       "cefr": "A2",
-      "examples": ["L'artista pinta un quadre.", "La periodista escriu l'article."],
+      "examples": [
+        "L'artista pinta un quadre.",
+        "La periodista escriu l'article."
+      ],
       "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -75,17 +105,28 @@
       "kind": "leaf",
       "parent": "NOM.gender",
       "ca": "home / dona",
-      "glosses": { "fr": "couples de noms à radical différent selon le sexe" },
+      "glosses": {
+        "fr": "couples de noms à radical différent selon le sexe"
+      },
       "cefr": "B1",
-      "examples": ["L'home parla amb la dona.", "El gendre saluda la nora."],
+      "examples": [
+        "L'home parla amb la dona.",
+        "El gendre saluda la nora."
+      ],
       "notes": "Un petit nombre de noms changent de racine entre le masculin et le féminin : home/dona, gendre/nora, boc/cabra, frare/monja.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le français connaît le même procédé pour les mêmes couples (homme/femme, gendre/bru), donc le transfert lexical est direct même si la forme diffère."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -97,15 +138,24 @@
         "fr": "suffixe féminin -essa pour certains noms de métier ou de titre"
       },
       "cefr": "B1",
-      "examples": ["El metge visita el pacient.", "La metgessa visita la pacient."],
+      "examples": [
+        "El metge visita el pacient.",
+        "La metgessa visita la pacient."
+      ],
       "notes": "Le suffixe -essa forme le féminin de certains noms de profession ou de titre : metge/metgessa, jutge/jutgessa, alcalde/alcaldessa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Se rapproche du français -esse (comtesse, poétesse), mais le catalan l’emploie plus largement pour des professions ordinaires comme médecin ou juge."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -113,7 +163,9 @@
       "kind": "leaf",
       "parent": "NOM.gender",
       "ca": "professor / professora",
-      "glosses": { "fr": "féminin régulier en -ora pour les noms masculins en -or" },
+      "glosses": {
+        "fr": "féminin régulier en -ora pour les noms masculins en -or"
+      },
       "cefr": "A2",
       "examples": [
         "El professor corregeix els exàmens.",
@@ -125,8 +177,14 @@
         "note": "Correspond au français -eur/-euse ou -eur/-rice selon les mots, avec un mécanisme tout aussi régulier."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -138,15 +196,24 @@
         "fr": "féminin savant en -riu pour un sous-ensemble de noms en -or"
       },
       "cefr": "B1",
-      "examples": ["L'actor interpreta el rei.", "L'actriu interpreta la reina."],
+      "examples": [
+        "L'actor interpreta el rei.",
+        "L'actriu interpreta la reina."
+      ],
       "notes": "Un sous-ensemble de noms en -or forme un féminin savant en -riu ou -driu : actor/actriu, emperador/emperadriu.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -teur/-trice (acteur/actrice), mais la liste des noms concernés ne coïncide pas toujours terme à terme."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -169,8 +236,14 @@
         "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -192,8 +265,14 @@
         "note": "Le français a le même phénomène (la victime, la personne), mais pas toujours pour les mêmes mots que le catalan."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -207,17 +286,28 @@
       "kind": "leaf",
       "parent": "NOM.number",
       "ca": "gat / gats",
-      "glosses": { "fr": "pluriel régulier par ajout de -s" },
+      "glosses": {
+        "fr": "pluriel régulier par ajout de -s"
+      },
       "cefr": "A1",
-      "examples": ["El gat dorm.", "Els gats dormen."],
+      "examples": [
+        "El gat dorm.",
+        "Els gats dormen."
+      ],
       "notes": "Le pluriel régulier s’obtient en ajoutant -s au singulier.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Mécanisme identique au pluriel français en -s, à l’oral comme à l’écrit."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -225,7 +315,9 @@
       "kind": "leaf",
       "parent": "NOM.number",
       "ca": "pas / passos",
-      "glosses": { "fr": "pluriel en -os après un son sifflant ou chuintant final" },
+      "glosses": {
+        "fr": "pluriel en -os après un son sifflant ou chuintant final"
+      },
       "cefr": "B1",
       "examples": [
         "Fes un pas endavant.",
@@ -238,8 +330,14 @@
         "note": "Le français ajoute -es après un son sifflant final surtout à l’oral, mais le catalan impose systématiquement -os à l’écrit."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -263,8 +361,14 @@
         "note": "Le principe rappelle le pluriel français en -es, mais s’accompagne de changements orthographiques réguliers propres au catalan."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -288,8 +392,14 @@
         "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -313,8 +423,14 @@
         "note": "Le français forme ces pluriels avec un simple -s sans jamais ajouter de consonne, contrairement au sous-ensemble catalan en -ins."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -322,7 +438,9 @@
       "kind": "leaf",
       "parent": "NOM.number",
       "ca": "el dilluns / els dilluns",
-      "glosses": { "fr": "noms à forme identique au singulier et au pluriel" },
+      "glosses": {
+        "fr": "noms à forme identique au singulier et au pluriel"
+      },
       "cefr": "B1",
       "examples": [
         "El dilluns vaig a la piscina.",
@@ -335,8 +453,14 @@
         "note": "Le français distingue toujours singulier et pluriel par l’article (le lundi/les lundis), là où le catalan ne change même pas le nom lui-même."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -344,7 +468,9 @@
       "kind": "leaf",
       "parent": "NOM.number",
       "ca": "les noces",
-      "glosses": { "fr": "noms n’existant qu’au pluriel" },
+      "glosses": {
+        "fr": "noms n’existant qu’au pluriel"
+      },
       "cefr": "B1",
       "examples": [
         "Les noces van ser precioses.",
@@ -357,8 +483,14 @@
         "note": "Le français a ses propres pluralia tantum (les noces, les fiançailles), mais la liste catalane ne se superpose pas terme à terme avec la liste française."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -388,8 +520,14 @@
         "note": "Correspond exactement au système à quatre formes du français (grand/grande/grands/grandes)."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -397,7 +535,9 @@
       "kind": "leaf",
       "parent": "NOM.adj",
       "ca": "gran / grans",
-      "glosses": { "fr": "adjectifs à forme unique pour le masculin et le féminin" },
+      "glosses": {
+        "fr": "adjectifs à forme unique pour le masculin et le féminin"
+      },
       "cefr": "A2",
       "examples": [
         "Un home gran.",
@@ -411,8 +551,14 @@
         "note": "Le français marque presque toujours le féminin par -e (grand/grande), alors que ce sous-ensemble catalan reste invariable en genre."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -435,8 +581,14 @@
         "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -460,8 +612,14 @@
         "note": "Comme en français (un grand homme/un homme grand), la position peut changer le sens, mais la liste des adjectifs concernés et les nuances ne coïncident pas exactement."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -479,15 +637,24 @@
         "fr": "accord au masculin pluriel dans une coordination de noms de genres différents"
       },
       "cefr": "B1",
-      "examples": ["El pare i la mare són alts.", "La taula i la cadira són noves."],
+      "examples": [
+        "El pare i la mare són alts.",
+        "La taula i la cadira són noves."
+      ],
       "notes": "Quand un adjectif s’accorde avec plusieurs noms coordonnés de genres différents, il prend la forme du masculin pluriel.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Règle identique à celle du français, qui donne également la priorité au masculin pluriel dans une coordination mixte."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -501,17 +668,28 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "gat / gatet",
-      "glosses": { "fr": "suffixe diminutif -et/-eta" },
+      "glosses": {
+        "fr": "suffixe diminutif -et/-eta"
+      },
       "cefr": "A2",
-      "examples": ["Un gat i un gatet.", "Una casa i una caseta."],
+      "examples": [
+        "Un gat i un gatet.",
+        "Una casa i una caseta."
+      ],
       "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme les diminutifs français en -et/-ette (garçonnet, fillette), avec la même valeur affective."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -519,17 +697,28 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "home / homenàs",
-      "glosses": { "fr": "suffixe augmentatif -às/-assa" },
+      "glosses": {
+        "fr": "suffixe augmentatif -às/-assa"
+      },
       "cefr": "B1",
-      "examples": ["Un home i un homenàs.", "Una casa i una casassa."],
+      "examples": [
+        "Un home i un homenàs.",
+        "Una casa i una casassa."
+      ],
       "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -537,17 +726,28 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "jugar / jugador",
-      "glosses": { "fr": "suffixe d’agent -dor/-dora sur radical verbal" },
+      "glosses": {
+        "fr": "suffixe d’agent -dor/-dora sur radical verbal"
+      },
       "cefr": "A2",
-      "examples": ["Un jugador de futbol.", "Una jugadora de futbol."],
+      "examples": [
+        "Un jugador de futbol.",
+        "Una jugadora de futbol."
+      ],
       "notes": "Le suffixe -dor/-dora, ajouté au radical verbal, forme un nom d’agent : jugar/jugador, treballar/treballador.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -eur/-euse formé sur un radical verbal (jouer/joueur)."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -555,17 +755,28 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "sabata / sabater",
-      "glosses": { "fr": "suffixe de métier -er/-era sur radical nominal" },
+      "glosses": {
+        "fr": "suffixe de métier -er/-era sur radical nominal"
+      },
       "cefr": "B1",
-      "examples": ["Un sabater arregla sabates.", "Una lletera ven llet."],
+      "examples": [
+        "Un sabater arregla sabates.",
+        "Una lletera ven llet."
+      ],
       "notes": "Le suffixe -er/-era, ajouté à un nom, forme un nom de métier ou de commerce lié à cet objet : sabata/sabater, llet/lletera.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Rappelle le français -ier/-ière formé sur un nom, comme dans laitier/laitière pour lleter/lletera."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -577,15 +788,24 @@
         "fr": "suffixe abstrait -esa formant un nom de qualité sur un adjectif"
       },
       "cefr": "B1",
-      "examples": ["La bellesa del paisatge.", "La riquesa del país."],
+      "examples": [
+        "La bellesa del paisatge.",
+        "La riquesa del país."
+      ],
       "notes": "Le suffixe abstrait -esa, ajouté à un adjectif, forme un nom de qualité : bell/bellesa, ric/riquesa.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Rappelle le français -esse (richesse, noblesse), mais la productivité et les mots concrets touchés ne coïncident pas toujours."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -593,7 +813,9 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "normal / normalitat",
-      "glosses": { "fr": "suffixe savant -tat/-etat formant un nom abstrait" },
+      "glosses": {
+        "fr": "suffixe savant -tat/-etat formant un nom abstrait"
+      },
       "cefr": "B1",
       "examples": [
         "La normalitat de la situació.",
@@ -605,8 +827,14 @@
         "note": "Correspond directement au français -té/-ité (normalité, félicité), souvent avec le même mot de base latin."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -629,8 +857,14 @@
         "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -638,17 +872,28 @@
       "kind": "leaf",
       "parent": "NOM.deriv",
       "ca": "violí / violinista",
-      "glosses": { "fr": "suffixe -ista formant un nom de profession ou d’adhérent" },
+      "glosses": {
+        "fr": "suffixe -ista formant un nom de profession ou d’adhérent"
+      },
       "cefr": "A2",
-      "examples": ["Un violinista toca el violí.", "Una dentista cuida les dents."],
+      "examples": [
+        "Un violinista toca el violí.",
+        "Una dentista cuida les dents."
+      ],
       "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -iste sur la même base (violon/violoniste)."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     },
     {
@@ -662,7 +907,9 @@
       "kind": "leaf",
       "parent": "NOM.comp",
       "ca": "gratacels",
-      "glosses": { "fr": "noms composés verbe+nom, souvent invariables au pluriel" },
+      "glosses": {
+        "fr": "noms composés verbe+nom, souvent invariables au pluriel"
+      },
       "cefr": "B2",
       "examples": [
         "Un gratacels molt alt.",
@@ -675,259 +922,14 @@
         "note": "Le français a le même type de composé verbe+nom invariable (un gratte-ciel, des gratte-ciel), mais les listes lexicales ne se recouvrent que partiellement."
       },
       "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    { "id": "VERB", "kind": "branch", "parent": null, "label_fr": "Le verbe" },
-    {
-      "id": "VERB.ind",
-      "kind": "branch",
-      "parent": "VERB",
-      "label_fr": "Les temps simples de l’indicatif"
-    },
-    {
-      "id": "VERB.ind.imperfet",
-      "kind": "leaf",
-      "parent": "VERB.ind",
-      "ca": "cantava",
-      "glosses": { "fr": "l’imparfait de l’indicatif" },
-      "cefr": "A2",
-      "examples": [
-        "Quan era petit, cantava cada dia.",
-        "Mentre parlàvem, plovia molt fort."
-      ],
-      "notes": "Au premier groupe, les terminaisons sont -ava, -aves, -ava, -àvem, -àveu, -aven. Les deuxième et troisième groupes prennent -ia.",
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Même valeur aspectuelle que l’imparfait français, et les emplois de description, d’habitude et d’arrière-plan narratif se recouvrent."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "VERB.ind.passat_perifrastic",
-      "kind": "leaf",
-      "parent": "VERB.ind",
-      "ca": "vaig cantar",
-      "glosses": {
-        "fr": "le passé périphrastique, formé de anar au présent suivi de l’infinitif"
-      },
-      "cefr": "A2",
-      "examples": ["Ahir vaig cantar a la festa.", "Vam arribar molt tard."],
-      "notes": "L’auxiliaire prend des formes propres à cet emploi, vaig, vas, va, vam, vau, van, et non les formes ordinaires de anar. C’est le passé narratif ordinaire de la langue parlée.",
-      "dialect_note": "Le catalan central préfère cette forme au passé simple, qui reste vivant surtout à l’écrit et dans certains parlers baléares.",
-      "contrast_fr": {
-        "status": "false-friend",
-        "note": "« vaig cantar » signifie « j’ai chanté », et non « je vais chanter ». L’auxiliaire anar marque ici le passé, pas le futur proche."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "VERB.perf",
-      "kind": "branch",
-      "parent": "VERB",
-      "label_fr": "Les temps composés"
-    },
-    {
-      "id": "VERB.perf.present",
-      "kind": "leaf",
-      "parent": "VERB.perf",
-      "ca": "he cantat",
-      "glosses": { "fr": "le passé composé, construit avec haver et le participe" },
-      "cefr": "A2",
-      "examples": ["Avui he cantat molt.", "Ha vingut d'hora aquest matí."],
-      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être.",
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "VERB.conj",
-      "kind": "branch",
-      "parent": "VERB",
-      "label_fr": "Les groupes de conjugaison"
-    },
-    {
-      "id": "VERB.conj.3",
-      "kind": "branch",
-      "parent": "VERB.conj",
-      "label_fr": "Le troisième groupe, en -ir"
-    },
-    {
-      "id": "VERB.conj.3.incoatiu",
-      "kind": "leaf",
-      "parent": "VERB.conj.3",
-      "ca": "serveixo",
-      "glosses": {
-        "fr": "la conjugaison inchoative du troisième groupe, avec l’infixe -eix-"
-      },
-      "cefr": "B1",
-      "examples": ["Jo serveixo el dinar a la una.", "Ells pateixen molt de fred."],
-      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs.",
-      "dialect_note": "Le valencien emploie plutôt les formes en -isc et -ix, comme servisc et servix.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Comparable à finir/finissons, mais l’infixe inchoatif catalan couvre un ensemble de verbes plus large qu’en français."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "VERB.mod",
-      "kind": "branch",
-      "parent": "VERB",
-      "label_fr": "Les périphrases modales"
-    },
-    {
-      "id": "VERB.mod.obligacio",
-      "kind": "leaf",
-      "parent": "VERB.mod",
-      "ca": "haver de",
-      "glosses": { "fr": "l’obligation, exprimée par haver de suivi de l’infinitif" },
-      "cefr": "A2",
-      "examples": ["He de marxar ara mateix.", "Hem de parlar amb ella."],
-      "notes": "La tournure impersonnelle cal que, suivie du subjonctif, est l’autre manière courante d’exprimer la nécessité, et caldre se conjugue seulement à la troisième personne.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Proche de devoir, mais haver de couvre aussi la nécessité matérielle que le français rend par il faut, et se conjugue là où il faut reste figé."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "VERB.ser_estar",
-      "kind": "leaf",
-      "parent": "VERB",
-      "ca": "ser / estar",
-      "glosses": {
-        "fr": "l’opposition entre ser et estar, deux verbes là où le français n’en a qu’un"
-      },
-      "cefr": "A1",
-      "examples": ["Sóc de Perpinyà.", "Estic cansat.", "La reunió és a les nou."],
-      "notes": "En première approche, ser porte l’identité, la définition et la localisation d’un événement, estar porte l’état résultant et la présence temporaire. La frontière catalane ne coïncide pas avec la frontière espagnole, et estar y est plus restreint.",
-      "dialect_note": "Le catalan central étend estar à des emplois de localisation que la norme littéraire attribue encore à ser.",
-      "contrast_fr": {
-        "status": "novel",
-        "note": "Le français ne connaît que être. La distinction ser/estar n’a aucun analogue à transférer et doit s’apprendre pour elle-même."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    { "id": "PRON", "kind": "branch", "parent": null, "label_fr": "Le pronom" },
-    {
-      "id": "PRON.fort",
-      "kind": "branch",
-      "parent": "PRON",
-      "label_fr": "Les pronoms forts"
-    },
-    {
-      "id": "PRON.fort.subjecte",
-      "kind": "leaf",
-      "parent": "PRON.fort",
-      "ca": "jo, tu, ell",
-      "glosses": {
-        "fr": "les pronoms sujets forts, facultatifs parce que le catalan omet le sujet"
-      },
-      "cefr": "A1",
-      "examples": ["Canto cada dia.", "Jo canto, ell no.", "Nosaltres hi anirem."],
-      "notes": "La désinence verbale suffit à identifier la personne, si bien que le sujet exprimé sert au contraste, à l’emphase ou à la levée d’une ambiguïté.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Les formes correspondent une à une aux pronoms français, mais le français les exige devant le verbe alors que le catalan ne les emploie que pour contraster."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "PRON.feble",
-      "kind": "branch",
-      "parent": "PRON",
-      "label_fr": "Les pronoms faibles"
-    },
-    {
-      "id": "PRON.feble.en",
-      "kind": "leaf",
-      "parent": "PRON.feble",
-      "ca": "en",
-      "glosses": {
-        "fr": "le pronom faible en, reprenant un complément introduit par de ou un partitif"
-      },
-      "cefr": "A2",
-      "examples": ["En vinc ara.", "No en tinc gaires.", "Parla'n amb calma."],
-      "notes": "La forme varie selon l’entourage phonétique, « en », « n' », « ne » et « -ne », et le choix dépend de la place du pronom par rapport au verbe.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Le français a en, mais le catalan l’emploie aussi pour reprendre un lieu d’origine, là où le français doit répéter la préposition et le nom."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "PRON.feble.hi",
-      "kind": "leaf",
-      "parent": "PRON.feble",
-      "ca": "hi",
-      "glosses": {
-        "fr": "le pronom faible hi, reprenant un lieu ou un complément introduit par a ou en"
-      },
-      "cefr": "A2",
-      "examples": ["Hi vaig cada dilluns.", "No hi penso mai.", "No hi ha ningú."],
-      "notes": "Hi entre aussi dans des constructions figées, notamment haver-hi pour l’existence et no hi fa res pour l’indifférence.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Correspond largement à y, mais hi reprend en outre le complément des verbes de perception, comme dans no hi sento, où le français n’emploie pas y."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
-    },
-    {
-      "id": "PRON.feble.combinacio",
-      "kind": "branch",
-      "parent": "PRON.feble",
-      "label_fr": "Les combinaisons de pronoms faibles"
-    },
-    {
-      "id": "PRON.feble.combinacio.ci_cd",
-      "kind": "leaf",
-      "parent": "PRON.feble.combinacio",
-      "ca": "l'hi",
-      "glosses": {
-        "fr": "la combinaison d’un complément d’objet indirect et d’un complément d’objet direct"
-      },
-      "cefr": "B2",
-      "examples": ["El llibre, l'hi dono.", "Les claus, les hi deixo."],
-      "notes": "L’ordre est le complément d’objet indirect avant le complément d’objet direct, et la rencontre de li avec el produit « l'hi » en catalan central, forme qui ne se laisse plus segmenter à l’oreille.",
-      "dialect_note": "Le valencien conserve les combinaisons transparentes « li'l », « li la » et « li els ».",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Le français combine aussi les pronoms, mais il place le complément d’objet direct en premier dans le lui donne et ne fusionne jamais les deux en une forme unique."
-      },
-      "state": {
-        "exposure": { "exposure_count": 0 },
-        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
       }
     }
   ]

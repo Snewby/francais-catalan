@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { ALL_IDS, BRANCHES, LEAVES, NODES, isLeaf, nodeById } from '../src/taxonomy';
+import {
+  ALL_IDS,
+  BRANCHES,
+  DOMAIN_CODES,
+  LEAVES,
+  NODES,
+  isLeaf,
+  nodeById,
+} from '../src/taxonomy';
 import { componentIdPattern, scanReferences } from '../scripts/lib/scan-ids';
 import { OVERRIDES_PATH, readRepoJson } from './helpers/taxonomy';
 
@@ -90,10 +98,17 @@ describe('taxonomy structural integrity', () => {
     expect(childless.map((branch) => branch.id)).toEqual([]);
   });
 
-  it('seeds two domains and ten leaves', () => {
-    const domains = new Set(LEAVES.map((leaf) => leaf.id.split('.')[0]));
-    expect([...domains].sort()).toEqual(['PRON', 'VERB']);
-    expect(LEAVES).toHaveLength(10);
+  it('seeds more than one domain, and only declared ones', () => {
+    // This was a snapshot of the phase 1 seed (exactly PRON and VERB, exactly
+    // ten leaves). Every seeding pass would have had to edit the numbers, which
+    // makes the assertion a changelog rather than a check. What is actually
+    // invariant is that leaves only ever appear under a declared domain code.
+    const domains = [...new Set(LEAVES.map((leaf) => leaf.id.split('.')[0]))];
+    const undeclared = domains.filter(
+      (domain) => !(DOMAIN_CODES as readonly string[]).includes(domain),
+    );
+    expect(undeclared).toEqual([]);
+    expect(domains.length).toBeGreaterThan(1);
   });
 });
 
