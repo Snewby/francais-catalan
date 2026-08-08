@@ -203,6 +203,7 @@ PHON NOM ART VERB PRON DET PREP ADV CONJ NEG SYN LEX
 | Golden-set eval | Subagent (`prompt-eval`) + `/eval` | Isolatable, repeatable |
 | Format/lint on edit | Hook (`PostToolUse`) | Must run every time |
 | Test gate on turn end | Hook (`Stop`) | Cannot finish red |
+| Evidence-to-signal routing | Executable table (`src/srs/evidence.ts`) + test | One authoritative home; prose copies drift and the prose is what gets believed |
 
 Splitting structural seeding from gloss authoring is worth doing deliberately. They fail differently: a bad structural seed produces a missing or duplicated node, which tests catch; a bad gloss produces plausible-looking wrong French, which only you can catch. Keeping them as separate passes means the gloss review is a distinct, reviewable diff rather than buried inside a 400-node structural commit.
 
@@ -213,7 +214,8 @@ Write these tests first, in this order:
 3. **Gloss-completeness test**: every leaf has a non-empty `glosses.fr` and a `contrast_fr` with a status from the allowed enum. Cheap, and catches the commonest French-specific regression.
 4. **Schema-generation test**: assert `gen-schema` output matches committed `schema.ts`.
 5. **Golden-set eval**: 30 to 60 hand-curated Catalan phrases, each with an expected decomposition. Weight the set toward the French-specific risk areas: clitic combinations with both a CI and a CD (where French ordering instinct misfires), passat perifràstic forms (the false friend), and `pas` sentences. Assert: (a) output validates against the schema, (b) no out-of-vocabulary tag ever appears, (c) key expected components are present, (d) `answer_lang` is `fr`. **Do not assert on the French prose itself.** Constrained decoding already makes out-of-vocab enums impossible, so (b) guards against schema/taxonomy drift rather than model misbehaviour.
-6. **FSRS/Elo unit tests**: deterministic state transitions given fixed ratings, including that `contrast_fr.status` maps to the intended initial difficulty.
+6. **Evidence-routing test**: a `lookup` leaves FSRS state byte-identical, a `recall` moves Elo but not FSRS, a `graded` event moves both, and a rating is present exactly when the evidence is `graded`. Assert against `EVIDENCE_EFFECTS` in `src/srs/evidence.ts` rather than restating the rules in the test. This is the invariant most likely to be violated silently: routing lookups into FSRS still produces a heatmap that looks entirely plausible, and no other test would notice.
+7. **FSRS/Elo unit tests**: deterministic state transitions given fixed ratings, including that `contrast_fr.status` maps to the intended initial difficulty.
 
 ### 3. Phased, prompt-level build sequence
 
@@ -234,15 +236,32 @@ taxonomy.schema.json; (2) a closed-vocabulary test scanning src/ and test/
 for component IDs, asserting each exists in taxonomy.json; (3) a
 gloss-completeness test asserting every leaf has a non-empty glosses.fr and
 a contrast_fr whose status is one of transfer|near-miss|false-friend|novel;
-(4) gen-schema output matches committed schema.ts.
+(4) gen-schema output matches committed schema.ts; (5) an evidence-routing
+test asserting a lookup leaves FSRS state byte-identical, a recall moves Elo
+but not FSRS, and a graded event moves both.
 
 Then write taxonomy.schema.json. Leaf nodes carry: id, ca, glosses (a KEYED
 MAP, e.g. {"fr": "..."}, not a flat field), cefr, parent, examples[], notes,
-dialect_note, contrast_fr {status, note}, and mastery state. Then a 10-node
-seed taxonomy.json covering two domains, the gen-schema script, the
-validate-ids script, and the check-glosses script. Make all tests pass.
+dialect_note, contrast_fr {status, note}, and mastery state. Mastery state
+separates EXPOSURE (exposure_count, moved by any encounter) from MASTERY
+(FSRS stability and difficulty, plus graded_review_count, moved only by
+graded evidence).
+
+Then write the logged-query schema. Every logged query carries intent
+(comprehend|produce|teach|assess|pronounce), direction (ca_to_fr|fr_to_ca),
+evidence (lookup|recall|graded), and rating (again|hard|good|easy) if and
+only if evidence is graded. All five intents emit the SAME decomposition
+payload; only the prompt and the surrounding fields differ. Component
+entries may carry an optional language-invariant `ipa`. The MVP will use
+only comprehend and produce, but the schema must accept all five now.
+
+Then a 10-node seed taxonomy.json covering two domains, the gen-schema
+script, the validate-ids script, and the check-glosses script. Make all
+tests pass.
 ```
-The keyed gloss map and `contrast_fr` must land here. Retrofitting either across several hundred nodes later is the one genuinely painful rework in this plan.
+The keyed gloss map, `contrast_fr`, and the intent/direction/evidence triple must all land here. Retrofitting any of them later is the genuinely painful rework in this plan: the first two across several hundred nodes, the third across a live query log where the missing values cannot be reconstructed after the fact.
+
+The evidence routing itself lives in `src/srs/evidence.ts` as an executable table (`EVIDENCE_EFFECTS`), not as prose in a document. Reference it; do not restate it.
 
 **Phase 2a - Structural seeding (delegate to subagent).** One domain at a time, `/clear` between domains.
 ```
@@ -312,24 +331,93 @@ Verify the cache is actually hit: log `cache_read_input_tokens` during developme
 
 **Phase 5 - Persistence, FSRS, Elo (TDD).** `/clear`.
 ```
-TDD. Wrap ts-fsrs for per-component mastery: each logged query updates the
-component's FSRS stability/difficulty plus a simple Elo signal. Seed each
-component's INITIAL difficulty from contrast_fr.status: transfer -> low,
-near-miss and false-friend -> high, novel -> high. Store in Dexie. Add JSON
-export/import. Tests run under fake-indexeddb and must assert the
-contrast_fr-to-initial-difficulty mapping.
+TDD. Wrap ts-fsrs for per-component mastery, routing each logged query by
+its evidence type through EVIDENCE_EFFECTS in src/srs/evidence.ts, which is
+authoritative. The FSRS wrapper accepts ONLY evidence that table marks
+FSRS-advancing and throws otherwise; exposure and Elo update on their own
+paths, independently of FSRS.
+
+Seed each component's INITIAL difficulty from contrast_fr.status: transfer
+-> low, near-miss and false-friend -> high, novel -> high. Store in Dexie,
+keeping exposure_count and graded_review_count as separate fields from the
+FSRS state. Add JSON export/import.
+
+Tests run under fake-indexeddb and must assert both the
+contrast_fr-to-initial-difficulty mapping and the full evidence routing:
+lookup leaves FSRS state byte-identical, recall moves Elo but not FSRS,
+graded moves both.
+```
+The routing is the invariant most likely to be violated silently, because getting it wrong still produces a plausible-looking heatmap. Nothing but the test will catch it.
+
+**Phase 5b - Review loop (TDD). Not optional.** Until this exists, nothing anywhere emits `graded` evidence, so FSRS never advances and the mastery model is inert.
+```
+TDD. Build the review loop: select an item, ask, take the answer, grade it
+again|hard|good|easy. The grade is the ONLY source of graded evidence in the
+whole application.
+
+Selection must be a PLUGGABLE FUNCTION, not hardcoded. Ship one selector,
+`due`, weighting FSRS due dates plus contrast_fr-weighted gaps so novel and
+false-friend nodes surface above transfer ones.
+
+A second selector, `assess`, arrives in a later phase and weights unpractised
+and unexplored nodes instead. That is the whole of the `assess` intent: the
+same asking, answering and grading machinery under a different selection
+function. Do NOT build assessment as a separate subsystem.
+
+Tests assert that a completed review writes exactly one graded event with a
+rating, and that the selector interface admits a second implementation
+without touching the loop.
 ```
 
 **Phase 6 - UI and coverage heatmap (screenshot-and-iterate).**
 ```
 Build the decomposition view and an SVG coverage heatmap over the taxonomy
-tree, colouring by mastery and flagging unexplored nodes. Rank the "gaps"
-list by contrast_fr.status so novel and false-friend gaps sort above
-transfer gaps. All UI copy in French from src/i18n/fr.ts, using guillemets
-and narrow no-break spaces before : ; ! ?. After building, take a
-screenshot and iterate until the heatmap is legible. Check that French
-string lengths do not overflow any container.
+tree. Exposure and mastery are TWO DIMENSIONS, never one colour: hue carries
+mastery, opacity carries exposure. A node known well but rarely met reads as
+pale green; one met often but still weak reads as solid red. Label both
+dimensions in the legend.
+
+The gaps list distinguishes UNEXPLORED (zero exposure) from UNPRACTISED
+(exposure above zero, zero graded reviews). Rank within each by
+contrast_fr.status so novel and false-friend gaps sort above transfer gaps.
+
+Add attempt-then-reveal to the produce view: the user may type a Catalan
+attempt before revealing the answer. The attempt is auto-compared against the
+reference, normalised for case, accents and the straight-apostrophe policy,
+and emits a `recall` event carrying that objective outcome. Never ask the
+user to rate themselves here; an unrated attempt is what keeps recall
+distinct from graded. Revealing without attempting is a `lookup`.
+
+All UI copy in French from src/i18n/fr.ts, using guillemets and narrow
+no-break spaces before : ; ! ?. After building, take a screenshot and iterate
+until the heatmap is legible. Check that French string lengths do not
+overflow any container.
 ```
+
+**Phase 6b - Pronunciation (text first, audio only if a voice exists).**
+```
+For any Catalan word or sentence, return IPA plus a French-oriented
+respelling. IPA attaches PER COMPONENT in the decomposition, where it belongs
+because it is language-invariant. The respelling is whole-utterance and sits
+in a sibling block outside the decomposition, because it is French and the
+decomposition forbids French.
+
+The respelling spells Catalan pronunciation using French spelling
+conventions, so a French reader can simply read it aloud. It must make
+visible the two things a French reader gets wrong:
+- Central Catalan vowel reduction: unstressed a/e -> schwa, written "eu" as
+  in bleu; unstressed o -> [u]. So Barcelona is "beur-seu-LO-neu", never
+  "bar-ce-lo-na".
+- Final devoicing: fred is "frèt" with a hard final [t], not a French -de.
+
+Audio is PROGRESSIVE ENHANCEMENT, not a requirement. Enumerate voices after
+the voiceschanged event, look for a ca-* voice, and when none is found hide
+the audio control and show a French line explaining how to install one.
+NEVER fall back to a Spanish or French voice reading Catalan text: it
+produces confidently wrong pronunciation, which is the worst possible
+outcome for a contrastive tool.
+```
+Browser support was checked rather than assumed, in August 2026. Catalan `ca-ES` voices exist on every major platform: Microsoft Herena on Windows; Montse, Jordi and Pau on macOS and iOS; a Google network voice on Android and Chrome OS; and two Microsoft Online Natural voices at higher quality. **None of them is present by default**, and every one needs an OS-level language or speech pack the app cannot install. A spot check of one Windows runtime found nine voices, none Catalan and none even Spanish. Treat audio as a bonus that is usually absent, and design the text output to stand alone.
 
 **Phase 7 - Vite + GitHub Pages deploy.**
 ```

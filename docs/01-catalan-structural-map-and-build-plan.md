@@ -189,7 +189,7 @@ GIEC advises keeping *no* when these precede the verb (No ho faria mai). *pas* o
 - Intermedi (B2): subjunctive (easy, `transfer`, could move earlier), conditional, `pas` usage and overuse correction.
 - Suficiència (C1): passat simple, register, fine ser/estar.
 
-"Unexplored" = nodes at or below target CEFR level with zero logged encounters, weighted by `contrast_fr.status` so `novel` and `false-friend` gaps surface above `transfer` gaps.
+"Unexplored" = nodes at or below target CEFR level with zero EXPOSURE, that is, never encountered in any way. Distinct from "unpractised" = exposure above zero but zero graded reviews, which is a node you have met without ever being tested on. Both lists are weighted by `contrast_fr.status` so `novel` and `false-friend` gaps surface above `transfer` gaps. The second category only exists because exposure and mastery are tracked separately; it is usually the more actionable of the two.
 
 **Open resources to seed the key (with licences):**
 | Resource | What it gives | Licence | Usability |
@@ -253,10 +253,10 @@ Use IndexedDB via Dexie, with one-click **export/import to JSON** so the whole r
 - **Cost estimate.** With a ~8k-token cached taxonomy, ~300 fresh input tokens and ~450 French output tokens: cache read ~$0.0008, fresh input ~$0.0003, output ~$0.00225. Roughly **$0.0035 per query**, so 500 queries/month is under **$2**.
 
 #### Pedagogical design
-- **Spaced repetition over grammar components.** Treat each taxonomy leaf as a reviewable knowledge component. Use **FSRS** (Anki default since v23.10; roughly 20 to 30% fewer reviews than SM-2 at equal retention on a 500M+ review benchmark). Optimise parameters only after ~1,000 reviews; before that the default population parameters are fine for one learner.
+- **Spaced repetition over grammar components, driven only by graded evidence.** Treat each taxonomy leaf as a reviewable knowledge component. FSRS advances ONLY on a graded review; looking something up tells you the user was curious, not that they know it. The routing from evidence type to signal is defined in `src/srs/evidence.ts` (`EVIDENCE_EFFECTS`), which is authoritative. Use **FSRS** (Anki default since v23.10; roughly 20 to 30% fewer reviews than SM-2 at equal retention on a 500M+ review benchmark). Optimise parameters only after ~1,000 reviews; before that the default population parameters are fine for one learner.
 - **Seed initial difficulty from `contrast_fr`.** FSRS lets you set initial difficulty per item. Map `transfer` to low initial difficulty, `near-miss` and `false-friend` to high. This is a small change that makes the first few weeks of scheduling much better than a cold start.
-- **Lightweight knowledge tracing.** Either Duolingo's half-life regression (Settles & Meeder, ACL 2016; MIT-licensed reference implementation) or a simple Elo rating per component. Bayesian Knowledge Tracing (as in OATutor) is a third option if you want an explicit mastery probability.
-- **Coverage visualisation.** Render the taxonomy as a tree, colour each node by mastery (grey = never seen, red = weak, green = mastered). A second view lists gaps, sorted by `contrast_fr.status` so `novel` and `false-friend` gaps rank above `transfer` gaps. A frequency-weighted "what to learn next" queue ranks unseen high-value nodes.
+- **Lightweight knowledge tracing, on a wider evidence base than FSRS.** Elo moves on both ungraded recall attempts and graded reviews, so the ranking signal keeps updating during review sessions rather than freezing. Either Duolingo's half-life regression (Settles & Meeder, ACL 2016; MIT-licensed reference implementation) or a simple Elo rating per component. Bayesian Knowledge Tracing (as in OATutor) is a third option if you want an explicit mastery probability.
+- **Coverage visualisation: two dimensions, never one colour.** Render the taxonomy as a tree. HUE carries mastery (grey = never seen, red = weak, green = mastered); OPACITY carries exposure. A node known well but rarely met reads as pale green, one met often but still weak as solid red. Collapsing the two into a single colour is what turns a coverage map into a log of your interests wearing the costume of a skill map. A second view lists gaps, sorted by `contrast_fr.status` so `novel` and `false-friend` gaps rank above `transfer` gaps. A frequency-weighted "what to learn next" queue ranks unseen high-value nodes.
 
 #### Reference projects worth studying
 - **vertesia/large-language-tutor**: LLM tutor with message deconstruction, live checking, live dictionary. Closest to your idea.
@@ -321,6 +321,9 @@ Use IndexedDB via Dexie, with one-click **export/import to JSON** so the whole r
   "timestamp": "2026-08-07T10:15:00Z",
   "input": "que veut dire me'n vaig ?",
   "model": "claude-haiku-4-5",
+  "intent": "comprehend",
+  "direction": "ca_to_fr",
+  "evidence": "lookup",
   "answer_lang": "fr",
   "answer": "C'est la 1re personne du singulier du présent du verbe pronominal « anar-se'n » : « je m'en vais ». Structure quasi identique au français.",
   "decomposition": [
@@ -337,6 +340,10 @@ Use IndexedDB via Dexie, with one-click **export/import to JSON** so the whole r
   ]
 }
 ```
+
+`intent` is one of `comprehend | produce | teach | assess | pronounce`, `direction` one of `ca_to_fr | fr_to_ca`, `evidence` one of `lookup | recall | graded`. All five intents emit the same `decomposition` payload; only the prompt and the surrounding fields differ. A `rating` field (`again | hard | good | easy`) is present if and only if `evidence` is `graded`, and a graded event is the only thing that advances FSRS. The example above is a lookup, so it carries no rating and moves no mastery: it increments exposure and nothing else.
+
+Component entries may also carry an optional `ipa`, populated for the `pronounce` intent. It sits inside the decomposition because IPA is language-invariant, like the component IDs and Catalan forms around it. The French-oriented respelling that accompanies it does NOT go here, because it is French; it belongs in a sibling block alongside the decomposition.
 
 **Phased roadmap:**
 1. **Weekend prototype:** static page; paste key into localStorage; one Haiku call returning JSON with a French `answer`; render answer plus tag list; store logs in IndexedDB. Partial hand-authored `taxonomy.json`.

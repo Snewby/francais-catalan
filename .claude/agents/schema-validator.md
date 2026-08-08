@@ -30,13 +30,28 @@ helped write the thing it is checking is not an auditor.
    or in any component ID. Only the `answer` field is French.
 6. **Override compliance.** Every node matched by `data/contrast-overrides.json`
    carries exactly the status the override specifies.
-7. **No verbatim copying.** Spot-check fragments against the source descriptions
-   in `data/sources.md` for signs that a source list was copied wholesale rather
-   than re-authored: identical ordering, identical field naming, suspiciously
-   complete coverage of an external list.
+7. **Exposure is not mastery.** No code path advances FSRS from evidence that
+   `EVIDENCE_EFFECTS` in `src/srs/evidence.ts` does not mark FSRS-advancing.
+   Check that every FSRS update goes through the gate rather than around it,
+   and that exposure counters and FSRS state are stored as separate fields.
+8. **One home per invariant.** No file restates the evidence routing, the node
+   field shape or the contrast overrides in prose. They must reference
+   `src/srs/evidence.ts`, `src/taxonomy/taxonomy.schema.json` and
+   `data/contrast-overrides.json` respectively. A prose copy that has drifted
+   from its executable source is a finding, and the prose is the copy people
+   believe, so report it as such.
+9. **No orphan enum values.** Every `intent` and `evidence` value has either a
+   named producer in the code or an explicit later-phase marker. An enum value
+   nothing writes gets misused.
+10. **No verbatim copying.** Spot-check fragments against the source descriptions
+    in `data/sources.md` for signs that a source list was copied wholesale rather
+    than re-authored: identical ordering, identical field naming, suspiciously
+    complete coverage of an external list.
 
 Run `npm run validate-ids` and `npm run check-glosses` as part of this, but do
-not stop there. The scripts cover 1 and 3; checks 5, 6 and 7 are yours.
+not stop there. The scripts cover checks 1 and 3, and the test suite covers 7.
+Checks 5, 6, 8, 9 and 10 have no automated equivalent and are the reason this
+agent exists.
 
 ## Reporting
 

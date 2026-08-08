@@ -36,6 +36,16 @@ export const fr = {
     hint: 'La clé reste dans le stockage local de ce navigateur. Elle n’est jamais envoyée ailleurs qu’à Anthropic, ni enregistrée dans le dépôt.',
     missing: 'Aucune clé enregistrée pour l’instant.',
   },
+  heatmap: {
+    // Exposure and mastery are two dimensions, never one colour: the teinte
+    // carries mastery, the opacity carries exposure.
+    exposure: 'Exposition',
+    exposureHint: 'Nombre de rencontres, quelle qu’en soit la forme',
+    mastery: 'Maîtrise',
+    masteryHint: 'Fondée uniquement sur les révisions évaluées',
+    unexplored: 'Jamais rencontré',
+    unpractised: 'Rencontré, jamais révisé',
+  },
   contrast: {
     transfer: 'Transfert direct depuis le français',
     'near-miss': 'Proche du français, mais la frontière diffère',

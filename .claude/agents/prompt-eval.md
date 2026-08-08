@@ -19,7 +19,9 @@ schema or the taxonomy to make the eval pass.
    - the output validates against the generated schema;
    - no out-of-vocabulary component ID appears;
    - the key expected components are present;
-   - `answer_lang` is `fr`.
+   - `answer_lang` is `fr`;
+   - `intent`, `direction` and `evidence` are present and in-enum;
+   - `rating` is present if and only if `evidence` is `graded`.
 3. **Do not assert on the French prose itself.** Prose varies between runs and
    asserting on it produces noise, not signal. Judge the structure.
 4. Compare against the previous run and report regressions separately from

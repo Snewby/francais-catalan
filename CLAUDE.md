@@ -22,6 +22,12 @@
 
 ## Hard invariants (enforced by test + hook, not just here)
 
+- SINGLE SOURCE OF TRUTH. Every invariant lives in exactly one executable
+  place. This file and the skills NAME that place and never restate its
+  content, because two copies drift and the prose copy is the one that gets
+  believed. Field shape: src/taxonomy/taxonomy.schema.json. Contrast
+  assignments: data/contrast-overrides.json. Evidence routing:
+  src/srs/evidence.ts.
 - The component-ID vocabulary is CLOSED. Every ID emitted by the model,
   referenced in UI, DB, or tests MUST exist in src/taxonomy/taxonomy.json.
   New IDs are added ONLY by editing taxonomy.json then running gen-schema.
@@ -33,6 +39,16 @@
 - The `decomposition` array is LANGUAGE-INVARIANT: component IDs and Catalan
   forms only. Only the `answer` field is French. Never put French prose in
   the decomposition.
+- EXPOSURE IS NOT MASTERY. Every logged query carries `intent`, `direction`
+  and `evidence`, plus `rating` if and only if evidence is `graded`. Which
+  signal each evidence type may move is defined by EVIDENCE_EFFECTS in
+  src/srs/evidence.ts, which is AUTHORITATIVE; do not restate the routing
+  here or anywhere else. The FSRS wrapper rejects any evidence that table
+  does not mark FSRS-advancing. Without this split the coverage heatmap is a
+  log of your interests presented as a skill map.
+- MVP ships intents `comprehend` and `produce` only, but the schema accepts
+  all five from Phase 1. Retrofitting `intent` across a live query log is the
+  same trap as the gloss map.
 - taxonomy.json is large. Do NOT read it wholesale into context. Query it
   with scripts or grep for specific IDs/domains.
 - `docs/01-catalan-structural-map-and-build-plan.md` (36 KB) is reference
