@@ -26,8 +26,12 @@ jobs:
 
       - run: npm run test:run
 
-      # The invariant machinery. These are stubs until phase 1, at which point
-      # a broken closed vocabulary or a leaf missing glosses.fr fails CI.
+      # The invariant machinery, live since phase 1. A component ID referenced
+      # anywhere but absent from the taxonomy, or a leaf without glosses.fr or
+      # a valid contrast_fr, fails CI here. Both run last, so a red lint,
+      # typecheck, format or test step means they never executed at all: a
+      # green badge on an earlier step is not evidence the taxonomy was
+      # checked. That has already happened once, for the whole NOM seed.
       - run: npm run validate-ids
 
       - run: npm run check-glosses
