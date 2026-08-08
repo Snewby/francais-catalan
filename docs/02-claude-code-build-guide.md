@@ -284,7 +284,9 @@ Do not work around this by excluding un-glossed fragments from the merge or flag
 
 Run `/clear` between domains, not between 2a and 2b on the same domain: 2b needs 2a's output in context.
 
-**Phase 2a - Structural seeding (delegate to subagent). [ADAPT]** Substitute the domain, and read `data/sources.md` first: what facts are available differs per domain, and the prompt below assumes VERB. Its per-domain notes section is an empty placeholder, so the extraction into it is a real step rather than a formality.
+**Phase 2a - Structural seeding (delegate to subagent). [ADAPT]** Substitute the domain, and read `data/sources.md` first: what facts are available differs per domain, and the prompt below assumes VERB. `NOM` and `ART` are worked examples of the per-domain notes section; follow their shape, and state the licence position explicitly rather than by omission.
+
+The marker paragraph in the prompt below is now redundant: `.claude/agents/taxonomy-seeder.md` carries the rule, including that the marker is written in British English precisely so that 2b cannot mistake it for an authored gloss. It is left here because a prompt that silently depends on an agent file is a prompt that breaks quietly when the agent file changes.
 ```
 Use the taxonomy-seeder subagent. For domain VERB only: read the notes in
 data/sources.md, extract the FACTS we need (lemmas, conjugation classes,
@@ -315,6 +317,11 @@ relationship to French.
 Apply data/contrast-overrides.json verbatim for the nodes it covers,
 including its wildcards. Do not re-derive those statuses or reword those
 notes; if you think one is wrong, say so rather than changing it.
+
+Where docs/01 assigns a status to a domain code, that status binds the
+leaves realising that row, and does NOT propagate to every descendant the
+way an overrides wildcard does. The docs/01 rows predate the seeded tree.
+Judge the remaining leaves and mark in your report which is which.
 
 Then run gen-schema and check-glosses. Output a table of every node with
 its assigned status so I can review the assignments in one place.
