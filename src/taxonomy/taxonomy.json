@@ -1674,6 +1674,900 @@
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
+    },
+    { "id": "PREP", "kind": "branch", "parent": null, "label_fr": "Les prépositions" },
+    {
+      "id": "PREP.atones",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Les prépositions faibles"
+    },
+    {
+      "id": "PREP.atones.inventari",
+      "kind": "leaf",
+      "parent": "PREP.atones",
+      "ca": "a, de, en, amb, per, per a",
+      "glosses": {
+        "fr": "les six prépositions faibles du catalan, « a », « de », « en », « amb », « per » et « per a »"
+      },
+      "cefr": "A1",
+      "examples": [
+        "Vaig a Girona.",
+        "Un got de vi.",
+        "Penso en tu.",
+        "Parlo amb ella.",
+        "Ho faig per tu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Cinq des six formes correspondent une à une à à, de, en, par et avec. « per a » n’a pas d’équivalent d’un seul mot, et « en » est le principal piège du domaine."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.atones.elisio_de",
+      "kind": "leaf",
+      "parent": "PREP.atones",
+      "ca": "d'aigua",
+      "glosses": {
+        "fr": "seule « de » s’élide devant une voyelle, les autres prépositions faibles restent invariables"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Un got d'aigua.",
+        "La casa d'en Joan.",
+        "Ve d'Olot.",
+        "De iogurt, no en vull."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "L’élision suit celle du français, mais elle est bloquée devant un i ou un u consonantiques, comme dans « de iogurt », ce que rien en français ne prépare."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.atones.de_origen",
+      "kind": "leaf",
+      "parent": "PREP.atones",
+      "ca": "vinc de Girona",
+      "glosses": {
+        "fr": "« de » marque l’origine et le point de départ d’un déplacement"
+      },
+      "cefr": "A2",
+      "examples": ["Vinc de Girona.", "Surt de casa.", "És d'Olot."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Recouvre exactement l’emploi français de « de » pour la provenance, sans divergence de forme ni d’emploi."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.atones.amb",
+      "kind": "leaf",
+      "parent": "PREP.atones",
+      "ca": "amb",
+      "glosses": { "fr": "« amb » pour l’accompagnement et pour l’instrument" },
+      "cefr": "A2",
+      "examples": [
+        "Vinc amb tu.",
+        "Talla-ho amb el ganivet.",
+        "Amb aquest fred no surto."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond au français « avec » dans ses deux emplois principaux, l’accompagnement et le moyen instrumental."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.atones.amb_mitja",
+      "kind": "leaf",
+      "parent": "PREP.atones",
+      "ca": "amb tren",
+      "glosses": { "fr": "« amb », et non « en », devant un moyen de transport" },
+      "cefr": "A2",
+      "examples": ["Hi vaig amb tren.", "Va venir amb cotxe.", "Viatgem amb avió."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit en train et en voiture, le catalan « amb tren » et « amb cotxe ». Le calque « en tren » passe inaperçu."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Les prépositions « a » et « en »"
+    },
+    {
+      "id": "PREP.a_en.lloc",
+      "kind": "branch",
+      "parent": "PREP.a_en",
+      "label_fr": "Le lieu"
+    },
+    {
+      "id": "PREP.a_en.lloc.a_lloc",
+      "kind": "leaf",
+      "parent": "PREP.a_en.lloc",
+      "ca": "a Barcelona",
+      "glosses": {
+        "fr": "« a » couvre à la fois le lieu où l’on est et le lieu où l’on va"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Visc a Barcelona.",
+        "Vaig a Girona.",
+        "Sóc a casa.",
+        "Puja al tren."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répartit entre à, en, dans et chez là où le catalan n’a que « a » devant un groupe déterminé. C’est dans qui se transfère à tort."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.lloc.en_sense_definit",
+      "kind": "leaf",
+      "parent": "PREP.a_en.lloc",
+      "ca": "en una casa gran",
+      "glosses": {
+        "fr": "« en » remplace « a » quand le groupe nominal n’est pas introduit par l’article défini"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Viu en una casa gran.",
+        "Ho he llegit en aquest llibre.",
+        "En cap moment no ho va dir.",
+        "Pensa en termes absoluts."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. La faute « viu a una casa gran » reste inaperçue."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.lloc.toponims",
+      "kind": "leaf",
+      "parent": "PREP.a_en.lloc",
+      "ca": "a França",
+      "glosses": {
+        "fr": "une seule préposition devant tout nom de pays ou de ville, quel qu’en soit le genre"
+      },
+      "cefr": "B1",
+      "examples": ["Viu a França.", "Vaig a Portugal.", "Estudia als Estats Units."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français choisit entre en France, au Portugal et aux États-Unis. Le catalan dit « a » dans les trois cas, et le réflexe de choisir survit longtemps."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.temps",
+      "kind": "branch",
+      "parent": "PREP.a_en",
+      "label_fr": "Le temps"
+    },
+    {
+      "id": "PREP.a_en.temps.hores",
+      "kind": "leaf",
+      "parent": "PREP.a_en.temps",
+      "ca": "a les tres",
+      "glosses": { "fr": "« a » suivi de l’article pour l’heure" },
+      "cefr": "A2",
+      "examples": ["Ens veiem a les tres.", "El tren surt a les nou en punt."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« a les tres » se calque sur à trois heures, à ceci près que le catalan garde l’article défini devant le chiffre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.temps.parts_del_dia",
+      "kind": "leaf",
+      "parent": "PREP.a_en.temps",
+      "ca": "al matí",
+      "glosses": {
+        "fr": "« a » suivi de l’article pour les moments de la journée et pour les saisons"
+      },
+      "cefr": "B1",
+      "examples": ["Es lleva al matí.", "Treballa a la nit.", "A l'estiu fa calor."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit le matin sans préposition et en été avec une autre. Le catalan demande « al matí » et « a l'estiu » dans les deux cas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.temps.data_sense_prep",
+      "kind": "leaf",
+      "parent": "PREP.a_en.temps",
+      "ca": "el dilluns",
+      "glosses": {
+        "fr": "les jours, les dates et les années prennent l’article et aucune préposition"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Vindré el dilluns.",
+        "Va néixer el 2004.",
+        "El 12 de maig comencem."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« el dilluns » se calque sur le lundi, mais en 2004 devient « el 2004 » sans préposition, et l’ajout d’un « en » est l’erreur attendue."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.a_en.temps.durada",
+      "kind": "leaf",
+      "parent": "PREP.a_en.temps",
+      "ca": "en dues hores",
+      "glosses": {
+        "fr": "« en » pour le temps que prend une action menée à son terme"
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ho va fer en dues hores.",
+        "Torno en un moment.",
+        "En vint anys tot ha canviat."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Recouvre exactement le français en deux heures, y compris l’opposition avec la durée pendant laquelle l’action se déroule."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Les prépositions « per » et « per a »"
+    },
+    {
+      "id": "PREP.per_pera.causa",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "per la pluja",
+      "glosses": { "fr": "« per » marque la cause et le motif" },
+      "cefr": "A2",
+      "examples": [
+        "No hem sortit per la pluja.",
+        "Ho fa per amor.",
+        "Li han donat un premi per la seva obra."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Un seul « per » là où le français répartit entre par, pour et à cause de. Le partage français ne prédit pas l’emploi catalan."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera.agent",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "escrita per Rodoreda",
+      "glosses": { "fr": "« per » introduit le complément d’agent du passif" },
+      "cefr": "B1",
+      "examples": [
+        "La novel·la va ser escrita per Rodoreda.",
+        "El pont va ser construït pels romans."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond au par français du complément d’agent, dans la même position et avec la même valeur."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera.recorregut",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "per la ciutat",
+      "glosses": { "fr": "« per » pour le déplacement à travers un espace" },
+      "cefr": "B1",
+      "examples": [
+        "Passegem per la ciutat.",
+        "Entra per la finestra.",
+        "Va viatjar per tot el país."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Recouvre le par français de entrer par la fenêtre, avec dans comme seul concurrent occasionnel côté français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera.temps_aproximat",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "per Nadal",
+      "glosses": { "fr": "« per » pour une date approximative ou pour une fête" },
+      "cefr": "B1",
+      "examples": [
+        "Ens veiem per Nadal.",
+        "Ho acabaré per Setmana Santa.",
+        "Per aquells anys vivia a Lleida."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit à Noël ou vers Noël. Le catalan dit « per Nadal », et le calque « a Nadal » est l’erreur à attendre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera.finalitat_nominal",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "per a tu",
+      "glosses": {
+        "fr": "« per a » devant un groupe nominal pour la destination et pour le destinataire"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Aquest regal és per a tu.",
+        "Un got per a l'aigua.",
+        "Estudia per a metge."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le pour français recouvre à la fois « per » et « per a ». C’est ici que le partage se joue, et rien dans la phrase française ne l’indique."
+      },
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.per_pera.finalitat_infinitiu",
+      "kind": "leaf",
+      "parent": "PREP.per_pera",
+      "ca": "per veure't",
+      "glosses": {
+        "fr": "le but devant un infinitif prend « per » et non « per a » dans le système de Fabra"
+      },
+      "cefr": "B1",
+      "examples": [
+        "He vingut per veure't.",
+        "Estudia per aprovar.",
+        "Ho diu per molestar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Pour faire se rend par « per fer ». Le français ne distingue rien, donc le choix entre « per » et « per a » bascule ici sans aucun indice."
+      },
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Les prépositions devant une forme non finie"
+    },
+    {
+      "id": "PREP.formes_no_finites.inf_regit_a",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "començar a parlar",
+      "glosses": {
+        "fr": "les verbes de commencement, d’aide et de répétition régissent « a » devant l’infinitif"
+      },
+      "cefr": "B1",
+      "examples": ["Comença a ploure.", "M'ajuda a estudiar.", "Torna a llegir-ho."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Se calque sur commencer à et aider à, le régime en « a » se transférant presque toujours correctement."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.inf_regit_de",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "deixar de fumar",
+      "glosses": {
+        "fr": "les verbes d’arrêt, d’achèvement et de tentative régissent « de » devant l’infinitif"
+      },
+      "cefr": "B1",
+      "examples": ["Ha deixat de fumar.", "Acabo d'arribar.", "Mira de venir aviat."],
+      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase relève du domaine VERB et non du régime prépositionnel.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le régime se calque sur arrêter de et essayer de, mais « acabar de » se lit finir de et signifie venir de, ce qui inverse un membre très fréquent de la classe."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.adjectiu_de",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "fàcil de fer",
+      "glosses": {
+        "fr": "un adjectif régit « de » devant l’infinitif, et le quantificateur choisit entre « a » et « per »"
+      },
+      "cefr": "B2",
+      "examples": [
+        "És fàcil de fer.",
+        "Això és difícil de creure.",
+        "No hi ha res a dir.",
+        "Encara queda molt per fer."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit facile à faire, le catalan « fàcil de fer ». La préposition change alors que le cadre reste identique."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.sense",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "sense dir res",
+      "glosses": {
+        "fr": "« sense » devant l’infinitif, et les mots négatifs qui gardent une valeur positive sous sa portée"
+      },
+      "cefr": "A2",
+      "examples": ["Va marxar sense dir res.", "Ho ha fet sense pensar."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Se calque sur sans rien dire, y compris pour le mot négatif qui garde sa valeur positive après la préposition."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.abans_despres",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "abans de sortir",
+      "glosses": {
+        "fr": "« abans de » et « després de » prennent tous deux l’infinitif simple"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Renta't les mans abans de menjar.",
+        "Després de sopar farem un tomb."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« abans de menjar » se calque sur avant de manger, mais « després de sopar » correspond à après avoir soupé, où le français impose l’infinitif passé."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.en_temporal",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "en arribar",
+      "glosses": {
+        "fr": "« en » suivi de l’infinitif pour un fait immédiatement antérieur à la principale"
+      },
+      "cefr": "B2",
+      "examples": ["En arribar a casa, es va adormir.", "En sentir-ho, va plorar."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français emploie ici le gérondif, en arrivant. Le catalan garde la préposition mais exige l’infinitif, la forme en -ant n’étant pas disponible."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.formes_no_finites.en_gerundi",
+      "kind": "leaf",
+      "parent": "PREP.formes_no_finites",
+      "ca": "tot mirant",
+      "glosses": {
+        "fr": "le gérondif ne prend aucune préposition, « tot » en étant le seul renforcement possible"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Va marxar cantant.",
+        "Tot mirant la tele, es va adormir.",
+        "Escoltant-lo, ho vaig entendre."
+      ],
+      "notes": "Symétrique de « en arribar ». La préposition « en » va devant l’infinitif et jamais devant le gérondif, si bien que les deux formes françaises en -ant se répartissent sur deux constructions catalanes distinctes.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "En mangeant se dit « menjant » ou « tot menjant ». La préposition française n’a pas de contrepartie et « en menjant » est agrammatical."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.regim",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Le régime prépositionnel des verbes"
+    },
+    {
+      "id": "PREP.regim.convergent",
+      "kind": "leaf",
+      "parent": "PREP.regim",
+      "ca": "dependre de",
+      "glosses": {
+        "fr": "la classe large des verbes dont la préposition régie est la même qu’en français"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Depèn de tu.",
+        "Es queixa del soroll.",
+        "Juguen a futbol.",
+        "S'assembla al seu pare."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Dépendre de, jouer à et se plaindre de gardent leur préposition, ce qui rend le transfert fiable pour la majorité des verbes."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.regim.divergent_en",
+      "kind": "leaf",
+      "parent": "PREP.regim",
+      "ca": "pensar en",
+      "glosses": {
+        "fr": "les verbes régissant « en » là où le français en régit une autre"
+      },
+      "cefr": "B1",
+      "examples": ["Penso en tu.", "Confio en ell.", "Insisteix en la mateixa idea."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« pensar en » correspond à penser à et « insistir en » à insister sur. La préposition suggérée par le français est fausse à chaque fois."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.regim.divergent_amb",
+      "kind": "leaf",
+      "parent": "PREP.regim",
+      "ca": "somiar amb",
+      "glosses": {
+        "fr": "les verbes régissant « amb » là où le français en régit une autre"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Somio amb tornar-hi.",
+        "Parla amb el metge.",
+        "S'ha trobat amb un problema."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« somiar amb » correspond à rêver de et « parlar amb » à parler à. Le sens est transparent, la préposition ne l’est pas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.regim.divergent_de",
+      "kind": "leaf",
+      "parent": "PREP.regim",
+      "ca": "oblidar-se de",
+      "glosses": {
+        "fr": "les verbes régissant « de » là où le français n’en régit aucune ou en régit une autre"
+      },
+      "cefr": "B2",
+      "examples": ["S'ha oblidat de les claus.", "No es refia de ningú."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« oblidar-se de » correspond à oublier, sans préposition, et « refiar-se de » à se fier à. L’omission du « de » est l’erreur attendue."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.regim.caiguda_davant_que",
+      "kind": "leaf",
+      "parent": "PREP.regim",
+      "ca": "confio que vindrà",
+      "glosses": {
+        "fr": "la préposition régie tombe devant une complétive introduite par « que »"
+      },
+      "cefr": "B2",
+      "examples": [
+        "Confio que vindrà.",
+        "No s'ha adonat que plovia.",
+        "Estic segur que ho farà."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français garde souvent la préposition, comme dans tenir à ce que. Le catalan la supprime, et « confio en que vindrà » est incorrect."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.marcatge",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Le marquage des compléments"
+    },
+    {
+      "id": "PREP.marcatge.cd_sense_prep",
+      "kind": "leaf",
+      "parent": "PREP.marcatge",
+      "ca": "he vist en Joan",
+      "glosses": {
+        "fr": "le complément d’objet direct ne porte aucune préposition, même quand il désigne une personne"
+      },
+      "cefr": "B1",
+      "examples": [
+        "He vist en Joan.",
+        "Estimo la meva germana.",
+        "Busquem el director."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Le français ne marque pas davantage son objet direct, ce qui met le francophone à l’abri du a personnel de l’espagnol."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.marcatge.datiu_a",
+      "kind": "leaf",
+      "parent": "PREP.marcatge",
+      "ca": "a la Maria",
+      "glosses": { "fr": "« a » marque le complément d’objet indirect" },
+      "cefr": "A2",
+      "examples": ["Dono el llibre a la Maria.", "Li ho he dit al teu germà."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Recouvre exactement le à français du complément d’objet indirect, y compris devant un nom propre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.marcatge.a_pronom_tonic",
+      "kind": "leaf",
+      "parent": "PREP.marcatge",
+      "ca": "a mi em sembla",
+      "glosses": {
+        "fr": "« a » devant un pronom tonique, en dislocation avec reprise faible et dans la mise en relief"
+      },
+      "cefr": "B2",
+      "examples": [
+        "A mi em sembla bé.",
+        "El va veure a ell, no a tu.",
+        "Es critiquen a ells mateixos."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français disloque sans préposition, moi, il me semble. Le catalan exige « a mi em sembla », et l’omission du « a » s’entend."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.marcatge.de_quantitatiu",
+      "kind": "leaf",
+      "parent": "PREP.marcatge",
+      "ca": "tres de vermells",
+      "glosses": {
+        "fr": "« de » obligatoire entre un quantificateur ou un pronom indéfini et l’adjectif qui suit"
+      },
+      "cefr": "B2",
+      "examples": [
+        "En tinc tres de vermells.",
+        "Què hi ha de nou?",
+        "No té res de dolent."
+      ],
+      "notes": "Après un pronom indéfini, le français a la même préposition, rien de nouveau ou quoi de neuf, et le transfert est correct. La divergence porte sur le numéral et le quantificateur, où le français ne met rien.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a bien rien de nouveau, mais ne met rien après un numéral, alors que le catalan impose « en tinc tres de vermells »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.toniques",
+      "kind": "branch",
+      "parent": "PREP",
+      "label_fr": "Les prépositions fortes et les locutions prépositionnelles"
+    },
+    {
+      "id": "PREP.toniques.inventari",
+      "kind": "leaf",
+      "parent": "PREP.toniques",
+      "ca": "sobre, sota, entre, contra, segons, malgrat",
+      "glosses": {
+        "fr": "les prépositions fortes, qui ne se contractent pas avec l’article"
+      },
+      "cefr": "A2",
+      "examples": [
+        "El llibre és sobre la taula.",
+        "El gat dorm sota el llit.",
+        "Entre tu i jo ho farem.",
+        "Va votar contra la proposta.",
+        "Segons ell, tot va bé."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« sobre », « sota », « entre », « contra », « segons » et « malgrat » correspondent une à une à sur, sous, entre, contre, selon et malgré."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.toniques.locucions_amb_a",
+      "kind": "leaf",
+      "parent": "PREP.toniques",
+      "ca": "cap a, fins a",
+      "glosses": {
+        "fr": "« cap » et « fins » exigent « a » devant un groupe déterminé et le perdent ailleurs"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Va cap a casa.",
+        "Camina fins a la plaça.",
+        "Espera fins demà.",
+        "Arribarem cap a les vuit."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français garde à dans jusqu’à demain, alors que le catalan dit « fins demà » sans préposition. La chute est réglée par ce qui suit."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.toniques.des_de_punt",
+      "kind": "leaf",
+      "parent": "PREP.toniques",
+      "ca": "des del 2010",
+      "glosses": {
+        "fr": "« des de » pour un point de départ dans l’espace ou dans le temps"
+      },
+      "cefr": "B1",
+      "examples": ["Viu aquí des del 2010.", "Des de casa es veu el mar."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond au depuis français du point de départ, avec en plus l’article défini devant le millésime."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.toniques.des_de_fa",
+      "kind": "leaf",
+      "parent": "PREP.toniques",
+      "ca": "des de fa tres anys",
+      "glosses": {
+        "fr": "la durée écoulée demande « des de fa », ou la construction avec « fa » et « que »"
+      },
+      "cefr": "B2",
+      "examples": ["Des de fa tres anys no el veig.", "Fa tres anys que no el veig."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit depuis trois ans d’un seul tenant. Le catalan intercale « fa », et « des de tres anys » est agrammatical."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PREP.toniques.locucions_amb_de",
+      "kind": "leaf",
+      "parent": "PREP.toniques",
+      "ca": "a prop de",
+      "glosses": {
+        "fr": "les locutions bâties sur « de », et celles où ce « de » est facultatif"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Viu a prop de l'estació.",
+        "Hi ha un banc davant de casa.",
+        "És dins del calaix.",
+        "Viu lluny de la ciutat."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français fige près de mais exclut toute préposition après devant. Le catalan admet « davant de casa » comme « davant casa », sans équivalent français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
     }
   ]
 }

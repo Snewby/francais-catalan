@@ -49,7 +49,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `VERB` | `data/verb.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `PRON` | `data/pron.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `DET`  |                           | not started | not started |           |
-| `PREP` |                           | not started | not started |           |
+| `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
 | `ADV`  |                           | not started | not started |           |
 | `CONJ` |                           | not started | not started |           |
 | `NEG`  |                           | not started | not started |           |
@@ -153,6 +153,49 @@ five siblings it should be reviewed beside.
 false-friend column is expected: nothing in the article system looks French and
 means something else.
 
+`PREP` followed, 39 leaves under 10 branches, and it is the first domain whose
+2a output was revised against an outside review before 2b ran. Four things in
+it are worth carrying forward:
+
+- **A branch axis can make a status field unable to be true.** 2a organised
+  verb government as `verb_a`, `verb_de`, `verb_en` and `verb_amb`, by the
+  Catalan preposition. On inspection the first two were entirely convergent
+  with French and the last two entirely divergent, so no single `contrast_fr`
+  could be true of any of those leaves. Re-axed to `convergent` plus
+  `divergent_en`, `divergent_amb` and `divergent_de`. Check a new branch this
+  way before glossing: if its members cannot share a status, the axis is
+  wrong, and 2b will paper over it with an average.
+- **Two branches exist that docs/01 does not name.** `PREP.formes_no_finites`
+  and `PREP.marcatge` hold, respectively, the prepositions before an
+  infinitive or gerund and the presence or absence of a preposition on an
+  argument. Both are where French interference is worst and neither is
+  reachable from a tree organised by the Catalan preposition inventory. A
+  docs/01 section is a floor for a domain, not a plan for it.
+- **Declarative knowledge about a norm is not a card.** 2a had a `variants`
+  leaf for the three GIEC-sanctioned per/per a systems. It is knowledge about
+  register rather than a production skill, and it would have co-moved with
+  its neighbours regardless. It became a `dialect_note` on the two
+  `finalitat` leaves, which is the schema field that exists for it.
+- **Preposition plus relative was ruled out of the domain, not forgotten.**
+  `de que`, `amb qui` and the absent `dont` are the relative-pronoun system.
+  The decision is recorded in `data/sources.md` so `PRON` picks it up rather
+  than a second permanent key being minted here.
+
+`PREP` came out 13 transfer, 26 near-miss, and no false-friend or novel at all.
+Both empty columns are claims rather than gaps. Nothing in the Catalan
+preposition system is anchorless, since French has every one of these
+prepositions and uses them for roughly these jobs, so `novel` is genuinely
+unavailable; and nothing here inverts meaning the way `vaig cantar` does. The
+nearest false-friend candidate is `acabar de`, where a French speaker reads
+"finir de" and the sentence means "venir de", but that is a verbal periphrasis
+rather than preposition government, so it sits in `notes` on
+`PREP.formes_no_finites.inf_regit_de` and belongs to `VERB` when `VERB` gets
+its proper pass. The two thirds near-miss share is the domain working as
+briefed rather than a lazy pass: two Romance languages with the same
+preposition inventory and different mappings is what `near-miss` names, and
+`PREP` will consequently sort at the top of the phase 6 gaps list, which is
+correct behaviour and not a bug to tune away.
+
 See the per-domain table above for where seeding is up to.
 
 ## Carried over into later phases
@@ -161,9 +204,11 @@ See the per-domain table above for where seeding is up to.
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- Eight domains remain unseeded. `data/sources.md` has two worked examples of a
-  per-domain notes section (`NOM` and `ART`), so later passes have a shape to
-  follow rather than an empty placeholder.
+- Seven domains remain unseeded. `data/sources.md` has three worked examples of
+  a per-domain notes section (`NOM`, `ART` and `PREP`), so later passes have a
+  shape to follow rather than an empty placeholder. The `PREP` one is the model
+  for a domain whose tree departs from its docs/01 row, because it records what
+  was added, what was re-axed and what was ruled out to another domain.
 - `test/gloss-completeness.test.ts` used to assert French typography over leaf
   fields only, so `label_fr` on a branch node was unasserted French prose. The
   `ART` seed walked straight into it and wrote seven labels with straight

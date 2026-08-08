@@ -126,3 +126,72 @@ No licensed data file, curated list or database was extracted from for this
 domain, so neither the compilation-copyright risk nor the EU database right
 described above is engaged here. All examples and Catalan forms are
 hand-authored for this repo.
+
+### PREP (prepositions)
+
+No dataset from the table above covers prepositions; that table is
+verb-oriented. The facts for this domain are drawn from two sources only:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, lines 163-167, the
+  "PREP" section, which fixes four second-level codes (`PREP.atones`,
+  `PREP.a_en`, `PREP.per_pera`, `PREP.toniques`/`PREP.loc`), names the six
+  unstressed prepositions and the tonic ones seeded here, assigns `near-miss`
+  to `PREP.a_en` and to `PREP.per_pera`, and records that the GIEC sanctions
+  three coexisting per/per a systems of which spontaneous Central and Eastern
+  speech uses only `per`.
+- General knowledge of Catalan prepositional syntax (GIEC-level facts: the
+  a/en alternation conditioned by the following determiner rather than by
+  meaning, `a` before every place name whatever its gender, the a-plus-article
+  time expressions and the bare article before days, dates and years, `en` for
+  the time a completed action takes, the per/per a split across cause, agent,
+  path, approximate date, nominal purpose and infinitival purpose, the verbs
+  governing an infinitive and the adjectival `de` of "facil de fer", the
+  gerund's refusal of any preposition against the `en` plus infinitive
+  construction, verb government and the fall of a governed preposition before
+  a completive `que`, the unmarked direct object, the dative `a`, `a` before
+  a stressed pronoun in dislocation, the obligatory `de` between a quantifier
+  and a following adjective, the blocking of elision before a consonantal i
+  or u, the tonic prepositions, the a-final and de-final locutions, and
+  `des de fa` for elapsed duration).
+
+Four structural decisions, recorded because they read as drift otherwise:
+
+- **`PREP.atones` holds three codes docs/01 does not name** (`elisio_de`,
+  `de_origen`, `amb_mitja`), and `PREP.formes_no_finites` and `PREP.marcatge`
+  are branches with no docs/01 row at all. They exist because the brief
+  weighted this domain towards French interference, and the prepositions
+  before a non-finite form and the presence or absence of a preposition on an
+  argument are where that interference is worst. Neither is reachable from a
+  tree organised by the Catalan preposition inventory.
+- **`PREP.regim` is split by mismatch, not by Catalan surface form.** An
+  earlier draft had `verb_a`, `verb_de`, `verb_en` and `verb_amb`. The first
+  two turned out to be entirely convergent with French and the last two
+  entirely divergent, so the surface-form axis produced leaves whose members
+  could not share one status. `convergent` plus `divergent_en`, `divergent_amb`
+  and `divergent_de` restores that.
+- **Contraction of `a`, `de` and `per` with the article is not here.** It is
+  `ART.contract`, including inside a locution (`fins al`, `des del`), which is
+  the same fact and must not take a second permanent key.
+- **Preposition plus relative (`de que`, `amb qui`, and the absence of any
+  counterpart to French `dont`) is deliberately not here.** A French speaker
+  meets it as a preposition-placement problem, which is the argument for
+  putting it in PREP, but it is the relative-pronoun system and belongs to
+  `PRON` or `SYN`. Recorded so the next seeder finds the decision rather than
+  the gap.
+
+Each docs/01 status binds the leaves that realise its row, and does not
+propagate to every descendant the way a `data/contrast-overrides.json`
+wildcard does; that file covers only `VERB` and asserts nothing about `PREP`.
+The `PREP.a_en` and `PREP.per_pera` rows bind ten of their fourteen children.
+The other four are transfer on their own merits: `hores` (a les tres against
+a trois heures), `durada` (en dues hores against en deux heures), `agent` (the
+passive agent per against par) and `recorregut` (entra per la finestra against
+entrer par la fenetre). Forcing near-miss onto those would make the status
+field describe the branch rather than the leaf, which is not what it is for.
+`de_origen` was moved out of `PREP.a_en` entirely, because a `de` fact does
+not realise the a/en contrast at all.
+
+No licensed data file, curated list or database was extracted from for this
+domain, so neither the compilation-copyright risk nor the EU database right
+described above is engaged here. All examples and Catalan forms are
+hand-authored for this repo.
