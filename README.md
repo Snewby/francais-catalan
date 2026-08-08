@@ -7,9 +7,8 @@ a French gloss plus an explicit statement of how it relates to French.
 
 ## Status
 
-Phase 0 complete: toolchain, agentic scaffolding and an empty app shell. The
-taxonomy, the closed-vocabulary machinery and the API client land in phases 1
-to 4.
+See [TASKS.md](TASKS.md) for which build phases are done and what closed them.
+Phases themselves are defined in `docs/02-claude-code-build-guide.md` section 3.
 
 ## Setup
 

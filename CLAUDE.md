@@ -60,6 +60,9 @@
 
 ## Conventions
 
+- Build status lives in TASKS.md, one line per phase. A phase transition
+  updates TASKS.md in the SAME commit as the work. Read it first in a new
+  session; it is the only place that records where the build is up to.
 - Vanilla TS + Vite. No framework unless a task explicitly approves one.
 - Vite `base` is '/francais-catalan/' and must match the repo name, or every
   asset 404s on Pages. The build guide's '/catalan-trainer/' is a placeholder.
