@@ -1,0 +1,997 @@
+{
+  "domain": "DET",
+  "nodes": [
+    {
+      "id": "DET",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "Les déterminants"
+    },
+    {
+      "id": "DET.dem",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les démonstratifs"
+    },
+    {
+      "id": "DET.poss",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les possessifs"
+    },
+    {
+      "id": "DET.quant",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les quantificateurs"
+    },
+    {
+      "id": "DET.quant.grau",
+      "kind": "branch",
+      "parent": "DET.quant",
+      "label_fr": "Les quantificateurs de degré"
+    },
+    {
+      "id": "DET.quant.polaritat",
+      "kind": "branch",
+      "parent": "DET.quant",
+      "label_fr": "Les quantificateurs de polarité"
+    },
+    {
+      "id": "DET.quant.universal",
+      "kind": "branch",
+      "parent": "DET.quant",
+      "label_fr": "Les quantificateurs universels"
+    },
+    {
+      "id": "DET.identitat",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les déterminants d’identité et d’altérité"
+    },
+    {
+      "id": "DET.num",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les numéraux"
+    },
+    {
+      "id": "DET.interrogatiu",
+      "kind": "branch",
+      "parent": "DET",
+      "label_fr": "Les déterminants interrogatifs et exclamatifs"
+    },
+    {
+      "id": "DET.ordre_intern",
+      "kind": "leaf",
+      "parent": "DET",
+      "ca": "tots els meus amics",
+      "glosses": {
+        "fr": "L’ordre interne du syntagme déterminant, quand quantificateur, article, possessif et numéral se cumulent devant le nom."
+      },
+      "cefr": "B1",
+      "examples": [
+        "tots els meus amics",
+        "tots aquests llibres",
+        "els altres dos",
+        "totes dues mans",
+        "les seves altres germanes"
+      ],
+      "notes": "Gabarit : quantificateur, puis article, puis possessif, puis numéral, puis nom. Ainsi « tots els meus amics », « les seves altres germanes », « totes dues mans ».",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dit « tous mes amis », le catalan intercale l’article : « tots els meus amics », et l’omettre est fautif."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.dem.forma_paradigma",
+      "kind": "leaf",
+      "parent": "DET.dem",
+      "ca": "aquest / aquesta / aquests / aquestes, aquell / aquella / aquells / aquelles",
+      "glosses": {
+        "fr": "Le paradigme des démonstratifs, quatre formes par série accordées en genre et en nombre."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Aquest llibre és meu.",
+        "Aquesta casa és gran.",
+        "Aquells arbres són molt vells.",
+        "Aquestes noies canten bé."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français accorde aussi (ce, cette, ces) mais neutralise le genre au pluriel ; le catalan oppose « aquests » à « aquestes »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.dem.deixi_espacial",
+      "kind": "leaf",
+      "parent": "DET.dem",
+      "ca": "aquest / aquell",
+      "glosses": {
+        "fr": "La déixis spatiale à deux degrés, aquest pour ce qui est proche du locuteur, aquell pour ce qui en est éloigné."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Aquest cotxe d'aquí és nou.",
+        "Aquell cotxe d'allà és vell.",
+        "Vols aquest llibre o aquell llibre?"
+      ],
+      "dialect_note": "Le valencien conserve un troisième degré, médian, aqueix et aqueixa. Le système central standard n’en compte que deux.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a fondu ses deux degrés dans « ce », renforcé au besoin par -ci et -là ; le catalan impose le choix dès le déterminant."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.dem.deixi_discursiva",
+      "kind": "leaf",
+      "parent": "DET.dem",
+      "ca": "aquest, aquell",
+      "glosses": {
+        "fr": "La déixis discursive, reprise anaphorique d’un référent déjà mentionné par aquest ou par aquell."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ens va parlar d'un projecte; aquest projecte encara no ha començat.",
+        "He llegit dos llibres i aquest segon m'ha agradat més.",
+        "Recordes el poble del qual parlàvem? Aquell poble, sí."
+      ],
+      "notes": "« aquest » reprend le référent le plus proche ou le dernier mentionné, « aquell » le plus éloigné.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français reprend par « ce » sans marquer la distance ; le catalan garde ses deux degrés dans le fil du discours et oblige à trancher."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.forma_paradigma",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "el meu / la meva / els meus / les meves",
+      "glosses": {
+        "fr": "Le paradigme du possessif tonique, accordé en genre et en nombre avec l’objet possédé et précédé de l’article défini."
+      },
+      "cefr": "A1",
+      "examples": [
+        "el meu germà",
+        "la meva casa",
+        "els seus amics",
+        "el nostre poble",
+        "les vostres claus"
+      ],
+      "dialect_note": "Valencien et baléare emploient meua, teua, seua contre les formes centrales meva, teva, seva.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le catalan antépose l’article au possessif, « el meu germà », là où le français dit « mon frère » sans déterminant supplémentaire."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.aton",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "mon, ton, son",
+      "glosses": {
+        "fr": "La série des possessifs atones mon, ton, son, antéposés au nom et sans article."
+      },
+      "cefr": "B1",
+      "examples": ["mon pare", "ta mare", "sos germans", "en ma vida"],
+      "notes": "Limités aux termes de parenté et à une liste fermée de tournures figées comme « en ma vida ». La série n’est pas productive : ne pas la généraliser.",
+      "dialect_note": "Nettement plus productive en valencien et en baléare qu’en catalan central.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Formellement identiques aux possessifs français mon, ton, son, mais le catalan les cantonne à un emploi figé, là où le français les emploie partout."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.nu_lexical",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "casa meva",
+      "glosses": {
+        "fr": "Le possessif postposé sans article, dans un ensemble fermé de tournures figées et de vocatifs."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Vine a casa meva.",
+        "Són a casa seva.",
+        "en nom meu",
+        "per culpa seva",
+        "Fill meu!",
+        "Déu meu!"
+      ],
+      "notes": "L’ensemble est lexicalement fermé et ne se déduit pas. La règle générale du maintien de l’article devant le possessif est traitée en « ART.def.us.abans_possessiu ».",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît aussi des tournures sans article (« en mon nom »), mais il antépose le possessif quand le catalan le postpose : « casa meva »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.posposat",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "un amic meu",
+      "glosses": {
+        "fr": "Le possessif postposé après un déterminant indéfini, valeur non identifiante."
+      },
+      "cefr": "B1",
+      "examples": [
+        "un amic meu",
+        "la casa nostra",
+        "una germana teva",
+        "uns veïns vostres"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français rend « un amic meu » par « un ami à moi » : le catalan postpose le possessif lui-même, sans préposition."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.tercera_persona",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "el seu",
+      "glosses": {
+        "fr": "Le possessif de troisième personne, insensible au nombre du possesseur, et ses procédés de désambiguïsation."
+      },
+      "cefr": "B1",
+      "examples": [
+        "el seu cotxe",
+        "els seus pares",
+        "la casa d'ell",
+        "el llibre d'ella",
+        "llur pàtria",
+        "llurs fills"
+      ],
+      "notes": "« el seu » vaut pour un possesseur singulier comme pluriel ; on lève l’ambiguïté par « d'ell », « d'ella », « d'ells », « d'elles ». « llur » est littéraire et quasi mort à l’oral malgré sa ressemblance avec « leur » : l’avoir rencontré une seule fois suffit à le surproduire.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français oppose « son » à « leur » selon le possesseur ; « el seu » couvre les deux et ne dit rien du nombre du possesseur."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.poss.inalienable",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "em rento les mans",
+      "glosses": {
+        "fr": "La possession inaliénable, marquée par l’article défini et un pronom faible plutôt que par un possessif."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Em rento les mans.",
+        "S'ha trencat la cama.",
+        "Es va posar l'abric.",
+        "Es va treure el barret.",
+        "Li fa mal el cap."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Identique au français « je me lave les mains » : article défini et pronom faible, jamais un possessif devant la partie du corps."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.juncio_nominal",
+      "kind": "leaf",
+      "parent": "DET.quant",
+      "ca": "molta aigua",
+      "glosses": {
+        "fr": "La jonction du quantificateur au nom, directe pour molt et massa, médiatisée par de pour una mica et gens."
+      },
+      "cefr": "A2",
+      "examples": [
+        "molta aigua",
+        "molts llibres",
+        "massa gent",
+        "una mica de pa",
+        "gens de son",
+        "tant de temps"
+      ],
+      "notes": "« un munt de » et « una pila de » sont des noms en tête d’un syntagme partitif, non des déterminants : ils relèvent du lexique et n’ont pas de clé propre.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français impose « de » partout (beaucoup de, trop de) ; le catalan accorde le quantificateur directement sur le nom, d’où le calque fautif « massa de gent »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.grau.concordanca",
+      "kind": "leaf",
+      "parent": "DET.quant.grau",
+      "ca": "molt / molta / molts / moltes, bastant / bastants, massa",
+      "glosses": {
+        "fr": "L’accord des quantificateurs de degré, réparti en trois classes selon qu’ils varient en genre, en nombre seulement, ou pas du tout."
+      },
+      "cefr": "A2",
+      "examples": [
+        "molta gent",
+        "poques vegades",
+        "tanta feina",
+        "bastants amics",
+        "gaires cotxes",
+        "massa sal",
+        "prou cadires",
+        "força problemes"
+      ],
+      "notes": "Trois classes : accord en genre et en nombre (molt, poc, tant, quant) ; accord en nombre seul (gaire, bastant) ; invariables (massa, prou, força).",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Les quantificateurs français sont invariables (beaucoup, trop, assez), sauf « tout » ; le catalan accorde « molt » sur quatre formes, d’où l’erreur « molt gent »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.grau.prou_bastant",
+      "kind": "leaf",
+      "parent": "DET.quant.grau",
+      "ca": "prou, bastant",
+      "glosses": {
+        "fr": "Le partage entre prou, quantificateur de suffisance, et bastant, quantificateur de degré moyen."
+      },
+      "cefr": "B1",
+      "examples": [
+        "No tinc prou diners.",
+        "Ja hi ha prou cadires.",
+        "Fa bastant fred.",
+        "Hi havia bastants convidats."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« assez » recouvre les deux cases : « prou » pour la suffisance (« prou cadires ») et « bastant » pour le degré moyen (« fa bastant fred »), et rien dans la phrase française n’indique laquelle choisir."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "Le français n’a qu’une case là où le catalan en a deux : l’ancrage sur « assez » est réel, c’est la frontière qui se déplace."
+    },
+    {
+      "id": "DET.quant.polaritat.cap",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "cap",
+      "glosses": {
+        "fr": "L’item de polarité négative cap, déterminant singulier qui exige un environnement licencieur, les environnements eux-mêmes étant décrits à part."
+      },
+      "cefr": "A2",
+      "examples": [
+        "No hi ha cap problema.",
+        "Tens cap pregunta?",
+        "Si veus cap error, avisa'm."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« aucun » en est l’équivalent sous négation, mais « cap » s’emploie aussi en question et en conditionnelle, où le français dirait « la moindre »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.polaritat.gens",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "gens, gens de",
+      "glosses": {
+        "fr": "Gens, quantificateur de polarité négative portant sur une masse ou un degré, « pas la moindre quantité »."
+      },
+      "cefr": "B1",
+      "examples": ["No en queda gens.", "No tinc gens de son.", "Hi ha gens de pa?"],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Ne pas y lire le nom français « gens » : c’est un quantificateur, et « no en queda gens » signifie « il n’en reste pas du tout »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.polaritat.gaire",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "gaire / gaires",
+      "glosses": {
+        "fr": "Gaire, quantificateur de polarité négative portant sur la quantité et le degré, sans emploi affirmatif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "No tinc gaire temps.",
+        "Hi ha gaires cotxes?",
+        "No queden gaires entrades."
+      ],
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français courant n’a aucune case pour lui : « no tinc gaire temps » se rend par « beaucoup » sous négation, et non par un déterminant dédié."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.polaritat.algun",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "algun / alguna / alguns / algunes",
+      "glosses": {
+        "fr": "Algun, déterminant indéfini de quantité indéterminée, employé en contexte positif comme interrogatif."
+      },
+      "cefr": "A2",
+      "examples": [
+        "algun dia",
+        "alguna cosa",
+        "alguns amics",
+        "algunes vegades",
+        "Que tens algun dubte?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le pluriel « alguns » répond à « quelques », mais le singulier « algun » reste courant là où « quelque jour » est littéraire en français."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.polaritat.qualsevol",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "qualsevol / qualssevol",
+      "glosses": {
+        "fr": "Qualsevol, déterminant de choix libre, invariable en genre, dont le pluriel savant est qualssevol."
+      },
+      "cefr": "B2",
+      "examples": [
+        "qualsevol dia",
+        "en qualsevol cas",
+        "qualssevol que siguin les raons"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Rend « n’importe quel », mais en un seul mot dont le pluriel se forme à l’intérieur : « qualssevol », et non « qualsevols »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.polaritat.contextos",
+      "kind": "leaf",
+      "parent": "DET.quant.polaritat",
+      "ca": "Tens cap pregunta?",
+      "glosses": {
+        "fr": "L’ensemble des environnements qui licencient un item de polarité hors négation, et non l’un de ces items."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Tens cap pregunta?",
+        "Si veus cap error, avisa'm.",
+        "Més que gaire altra cosa.",
+        "abans que vingui cap client",
+        "Dubto que hi hagi gens de pa."
+      ],
+      "notes": "Licencieurs non négatifs : interrogation directe et indirecte, protase conditionnelle en si, comparative, et abans que. Le « no » préverbal, lui, relève du domaine NEG.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français licencie aussi ses items négatifs en question et en conditionnelle (« la moindre erreur »), mais la tournure y est marquée alors qu’en catalan elle est ordinaire."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.universal.tot",
+      "kind": "leaf",
+      "parent": "DET.quant.universal",
+      "ca": "tot / tota / tots / totes",
+      "glosses": {
+        "fr": "Tot, quantificateur universel accordé en genre et en nombre, antéposé à l’article défini."
+      },
+      "cefr": "A1",
+      "examples": [
+        "tot el dia",
+        "tota la nit",
+        "totes les cases",
+        "tots els meus amics"
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Se comporte comme « tout » : même accord et même position devant l’article, « tota la nit » pour « toute la nuit »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.universal.cada",
+      "kind": "leaf",
+      "parent": "DET.quant.universal",
+      "ca": "cada",
+      "glosses": {
+        "fr": "Cada, distributif invariable, suivi d’un nom singulier ou d’un numéral."
+      },
+      "cefr": "A1",
+      "examples": ["cada dia", "cada dos dies", "cada any", "cada vegada"],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme « chaque », invariable et suivi du singulier, mais « cada dos dies » rend « tous les deux jours », tour où le français abandonne « chaque »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.quant.universal.dual",
+      "kind": "leaf",
+      "parent": "DET.quant.universal",
+      "ca": "tots dos, ambdós",
+      "glosses": {
+        "fr": "L’expression du duel, par tots dos en langue courante et ambdós en registre soutenu."
+      },
+      "cefr": "B1",
+      "examples": [
+        "tots dos germans",
+        "totes dues mans",
+        "ambdues propostes",
+        "els dos llibres"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« tous les deux » se dit « tots dos », sans article : le calque « tots els dos » est fautif."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.identitat.mateix_identitat",
+      "kind": "leaf",
+      "parent": "DET.identitat",
+      "ca": "el mateix / la mateixa",
+      "glosses": {
+        "fr": "Mateix déterminant d’identité, placé entre l’article et le nom."
+      },
+      "cefr": "B1",
+      "examples": [
+        "el mateix llibre",
+        "la mateixa hora",
+        "els mateixos problemes",
+        "el mateix dia"
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Fonctionne comme « le même » : article, puis « mateix » accordé, puis le nom, dans cet ordre exactement."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.identitat.mateix_emfatic",
+      "kind": "leaf",
+      "parent": "DET.identitat",
+      "ca": "jo mateix",
+      "glosses": {
+        "fr": "Mateix emphatique postposé, renforçant un pronom ou un nom."
+      },
+      "cefr": "B1",
+      "examples": [
+        "jo mateix",
+        "elles mateixes",
+        "el llibre mateix",
+        "el president mateix ho va dir"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français change de forme selon la personne (« moi-même », « lui-même ») ; le catalan garde « mateix » et l’accorde, sans pronom repris."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.identitat.altres_nu",
+      "kind": "leaf",
+      "parent": "DET.identitat",
+      "ca": "altres",
+      "glosses": {
+        "fr": "Altres employé nu, sans article ni marque partitive, au pluriel indéfini."
+      },
+      "cefr": "B1",
+      "examples": ["altres llibres", "Hi ha altres solucions.", "Vull altres colors."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français exige « d’autres livres » ; le catalan dit « altres llibres » sans marque, d’où l’ajout fautif d’un « de »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.identitat.aproximatius",
+      "kind": "leaf",
+      "parent": "DET.identitat",
+      "ca": "un cert, tal",
+      "glosses": {
+        "fr": "Les déterminants d’indétermination qualitative, un cert accordé en genre et tal invariable en genre."
+      },
+      "cefr": "B2",
+      "examples": ["un cert interès", "una certa por", "tal cosa", "en tal cas"],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« un cert » suit « un certain », mais « tal cosa » se passe d’article là où le français impose « une telle chose »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.num.cardinals_concordanca",
+      "kind": "leaf",
+      "parent": "DET.num",
+      "ca": "un / una, dos / dues, dos-cents / dues-centes",
+      "glosses": {
+        "fr": "Les seuls cardinaux à varier en genre, un, dos et les centaines composées."
+      },
+      "cefr": "A1",
+      "examples": [
+        "un llibre",
+        "una taula",
+        "dues hores",
+        "dos-cents euros",
+        "dues-centes persones"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme « un/une », mais le catalan accorde aussi « dos/dues » et les centaines, « dues-centes persones », ce que « deux cents » ne fait pas."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.num.sistema_decimal",
+      "kind": "leaf",
+      "parent": "DET.num",
+      "ca": "setanta, vuitanta, noranta",
+      "glosses": {
+        "fr": "Le système décimal des dizaines, continu de setanta à noranta, sans base vingt."
+      },
+      "cefr": "A1",
+      "examples": [
+        "setanta anys",
+        "vuitanta euros",
+        "noranta persones",
+        "setanta-cinc"
+      ],
+      "notes": "Le contraste porte sur la base de numération, pas sur l’orthographe : « setanta-cinc » ne fait que montrer la série décimale qui se poursuit. Trait d’union et accentuation relèvent de PHON.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français bascule en base vingt à partir de 70 (soixante-dix, quatre-vingts) ; le catalan reste décimal et forme « setanta », « vuitanta », « noranta »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.num.ordinals",
+      "kind": "leaf",
+      "parent": "DET.num",
+      "ca": "primer, segon, tercer, quart, cinquè, sisè",
+      "glosses": {
+        "fr": "Les ordinaux, tête de série irrégulière puis suffixe régulier sur le cardinal."
+      },
+      "cefr": "A2",
+      "examples": [
+        "el primer dia",
+        "la segona vegada",
+        "el quart pis",
+        "el cinquè capítol",
+        "la sisena planta"
+      ],
+      "dialect_note": "Valencien : cinqué, sisé, contre les formes centrales cinquè, sisè.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Même schéma qu’en français : les premiers rangs sont irréguliers, puis un suffixe régulier prend le relais, « -è » pour « -ième »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.interrogatiu.quin",
+      "kind": "leaf",
+      "parent": "DET.interrogatiu",
+      "ca": "quin / quina / quins / quines",
+      "glosses": {
+        "fr": "Quin, déterminant interrogatif et exclamatif accordé, portant sur l’identité du référent."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Quin llibre vols?",
+        "Quina hora és?",
+        "Quins amics han vingut?",
+        "Quina sort!"
+      ],
+      "notes": "« quin » se construit directement sur le nom, sans « de ». Le « de » de « combien de » ne se transpose ni ici ni sur « quant ».",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Recouvre « quel » : mêmes quatre formes accordées et même double emploi, interrogatif et exclamatif."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "DET.interrogatiu.quant",
+      "kind": "leaf",
+      "parent": "DET.interrogatiu",
+      "ca": "quant / quanta / quants / quantes",
+      "glosses": {
+        "fr": "Quant, interrogatif de quantité, accordé en genre et en nombre avec le nom qu’il détermine."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Quants anys tens?",
+        "Quanta gent hi havia?",
+        "Quantes vegades ho has dit?",
+        "Quant temps queda?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« combien » est invariable et exige « de » ; « quant » s’accorde et se construit à nu, « quants anys », jamais « quants d'anys »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    }
+  ]
+}

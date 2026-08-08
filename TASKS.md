@@ -48,7 +48,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `ART`  | `data/art.fragment.json`  | done        | done        | this pass |
 | `VERB` | `data/verb.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `PRON` | `data/pron.fragment.json` | seed only   | seed only   | `7bcb37a` |
-| `DET`  |                           | not started | not started |           |
+| `DET`  | `data/det.fragment.json`  | done        | done        | this pass |
 | `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
 | `ADV`  |                           | not started | not started |           |
 | `CONJ` |                           | not started | not started |           |
@@ -196,6 +196,53 @@ preposition inventory and different mappings is what `near-miss` names, and
 `PREP` will consequently sort at the top of the phase 6 gaps list, which is
 correct behaviour and not a bug to tune away.
 
+`DET` followed, 31 leaves under 10 branches, and it is the first domain whose
+2a output was revised against an outside review before 2b ran, and the first
+where a docs/01 status was overturned rather than merely bound narrowly. Four
+things in it change how later domains should be seeded:
+
+- **The axis test as PREP stated it was wrong, and the corrected version is
+  now the rule.** "A branch axis is wrong if its leaves cannot share a status"
+  is not what failed in `PREP.regim`; there the axis was orthogonal to what
+  predicted difficulty. Re-axeing until statuses are homogeneous makes the
+  tree a restatement of `contrast_fr`, so the heatmap shows French distance
+  twice and grammatical coverage never. Worse, it makes a permanent key depend
+  on a revisable judgement field. The rule is now: **an axis must be a natural
+  class in Catalan, and must predict something about the status
+  distribution.** A branch that is a coin flip on status is suspect; one that
+  is a coin flip and not a natural class is dead. `DET.indef` was the latter,
+  a residue bucket holding an existential, an alterity item, an identity item,
+  a free-choice item and two approximatives, and it was re-axed into
+  `DET.quant.polaritat` and `DET.identitat`.
+- **A domain boundary you cross three times in your own tree is wrong.** DET
+  opened with "ART owns whether the article is present; DET owns the
+  determiner", and then `poss.nu_lexical`, `poss.inalienable` and
+  `universal.tot` all crossed it in the same pass. In Catalan the article is
+  itself a determiner, so a line drawn at article presence keeps splitting
+  single rules. Amended to: **ART owns the article when it is the sole
+  determiner; DET owns any structure where the article co-occurs with,
+  alternates with, or is suppressed by another determiner.**
+  `ART.def.us.abans_possessiu` is a legacy misfile under the amended line. It
+  is committed and is not being migrated; it is recorded as such in
+  `data/sources.md` so the next reader finds the decision and not an
+  inconsistency.
+- **Rule out a construction, not the member of it you happened to think of.**
+  PREP routed preposition-plus-relative to `PRON`. That covers `el que vaig
+veure` and leaves `el de Barcelona`, `el vermell`, `els dos` and `el meu`
+  homeless, though all five are one construction: article plus a non-nominal
+  remnant. The ruling is now widened to the whole nominal-ellipsis family.
+- **A closed domain has to be closed.** DET was seeded to 32 leaves with no
+  interrogative determiner in it at all, because docs/01 does not name one and
+  the pass was weighted towards divergences. `quin` is A1 and near-universal.
+  Weighting a pass towards interference is right, but coverage of the domain's
+  own inventory is a separate check and has to be run separately.
+
+`DET` came out 5 transfer, 25 near-miss, 2 novel and no false-friend. Both
+rejected false-friend candidates and the reasoning are in `data/sources.md`;
+the short version is that `gens` resembles a French noun rather than a French
+structure, and `mon pare` does mean mon père, so neither fits the definition
+without widening it.
+
 See the per-domain table above for where seeding is up to.
 
 ## Carried over into later phases
@@ -204,11 +251,36 @@ See the per-domain table above for where seeding is up to.
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- Seven domains remain unseeded. `data/sources.md` has three worked examples of
-  a per-domain notes section (`NOM`, `ART` and `PREP`), so later passes have a
-  shape to follow rather than an empty placeholder. The `PREP` one is the model
-  for a domain whose tree departs from its docs/01 row, because it records what
-  was added, what was re-axed and what was ruled out to another domain.
+- Six domains remain unseeded. `data/sources.md` has four worked examples of a
+  per-domain notes section (`NOM`, `ART`, `DET` and `PREP`), so later passes
+  have a shape to follow rather than an empty placeholder. The `PREP` one is
+  the model for a domain whose tree departs from its docs/01 row, because it
+  records what was added, what was re-axed and what was ruled out to another
+  domain. The `DET` one is the model for a domain that also amends a boundary
+  and overturns a docs/01 status, because it records the argument rather than
+  just the outcome.
+- **`contrast_fr` alone will not order the phase 6 gaps list.** `DET` is 25 of
+  31 near-miss and `PREP` is 26 of 39, and both are honest counts rather than
+  lazy passes: two Romance languages sharing a category inventory with shifted
+  boundaries is exactly what near-miss names. But a status that applies to two
+  thirds of a domain cannot rank within it, and
+  `INITIAL_DIFFICULTY_VALUE` in `src/srs/fsrs.ts` already collapses near-miss,
+  false-friend and novel to the same 7, so only `transfer` currently
+  discriminates at all. Phase 6 needs a second dimension, either a frequency
+  or cost weight or a subtyping of near-miss (extra morphology, absent
+  morphology, different distribution, split mapping). Do not solve it by
+  retuning statuses domain by domain, which would make the field describe the
+  ranking rather than the language.
+- `DET.quant.polaritat.contextos` holds the licensing environments and
+  `DET.quant.polaritat.cap` holds an item that needs one, so the two
+  necessarily share examples: an environment can only be shown with an item
+  inside it. The glosses are written against each other, but the pair will
+  surface adjacently in the gaps list and read as one node twice. If phase 6
+  needs a fix, it is a display concern, not a taxonomy one.
+- The `notes` on `DET.interrogatiu.quin` warns that the `de` of combien de
+  transposes to neither interrogative. That is really a fact about
+  `DET.interrogatiu.quant`, which is the leaf a French speaker will put a `de`
+  into. Move it there when `DET` is next touched.
 - `test/gloss-completeness.test.ts` used to assert French typography over leaf
   fields only, so `label_fr` on a branch node was unasserted French prose. The
   `ART` seed walked straight into it and wrote seven labels with straight
