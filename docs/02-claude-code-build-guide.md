@@ -91,7 +91,7 @@ Native `--worktree` support shipped v2.1.49 (February 2026); subagents can set `
 
 #### Proposed repo layout
 ```
-catalan-trainer/
+francais-catalan/
   .claude/
     settings.json            # hooks, permission allow/deny, formatter gates
     settings.local.json      # gitignored: personal overrides
@@ -219,17 +219,28 @@ Write these tests first, in this order:
 
 ### 3. Phased, prompt-level build sequence
 
-**Phase 0 - Scaffold (plan-mode-first, then execute).** `/clear` before starting.
+Each prompt below is labelled for how it should be used:
+
+- **[VERBATIM]** - paste as-is. Every fact in it has been checked against the repo as it currently stands.
+- **[ADAPT]** - read the repo first, then adjust. These depend on outputs that do not exist yet (which domains were seeded, what the taxonomy actually contains, what the previous phase produced), so a prompt claiming to be paste-ready would be false precision.
+- **[DONE]** - already built. Kept for the record; do not re-run.
+
+Two rules apply to every phase and are not repeated in each prompt:
+
+1. **Update `TASKS.md` in the same commit as the work.** It is the only place recording where the build is up to.
+2. **Invariants are referenced, never restated.** Assert against `EVIDENCE_EFFECTS` in `src/srs/evidence.ts`, `taxonomy.schema.json` and `data/contrast-overrides.json` rather than copying their content into a test, a doc or a prompt.
+
+**Phase 0 - Scaffold (plan-mode-first, then execute). [DONE]** Closed by `c8a3e14`, `f6d0a21`, `1c4cc7d`. Kept for the record.
 ```
 Plan only, do not edit yet. Propose a minimal Vite + vanilla-TypeScript
 project scaffold for a single-user static web app deployed to GitHub Pages
-at base path /catalan-trainer/. Include vitest with a fake-indexeddb setup
+at base path /francais-catalan/. Include vitest with a fake-indexeddb setup
 file, Dexie, ts-fsrs, ESLint + Prettier, an src/i18n/fr.ts string table,
 and the .claude/ directory layout from CLAUDE.md. List every file you will
 create and the exact package.json scripts. Do not add any framework.
 ```
 
-**Phase 1 - Taxonomy schema and closed-vocabulary machinery (TDD).** New session, `/clear`.
+**Phase 1 - Taxonomy schema and closed-vocabulary machinery (TDD). [VERBATIM]** New session, `/clear`.
 ```
 TDD. First write failing tests: (1) taxonomy.json validates against
 taxonomy.schema.json; (2) a closed-vocabulary test scanning src/ and test/
@@ -238,7 +249,8 @@ gloss-completeness test asserting every leaf has a non-empty glosses.fr and
 a contrast_fr whose status is one of transfer|near-miss|false-friend|novel;
 (4) gen-schema output matches committed schema.ts; (5) an evidence-routing
 test asserting a lookup leaves FSRS state byte-identical, a recall moves Elo
-but not FSRS, and a graded event moves both.
+but not FSRS, and a graded event moves both. Assert against EVIDENCE_EFFECTS
+in src/srs/evidence.ts rather than restating the routing in the test.
 
 Then write taxonomy.schema.json. Leaf nodes carry: id, ca, glosses (a KEYED
 MAP, e.g. {"fr": "..."}, not a flat field), cefr, parent, examples[], notes,
@@ -255,15 +267,16 @@ payload; only the prompt and the surrounding fields differ. Component
 entries may carry an optional language-invariant `ipa`. The MVP will use
 only comprehend and produce, but the schema must accept all five now.
 
-Then a 10-node seed taxonomy.json covering two domains, the gen-schema
-script, the validate-ids script, and the check-glosses script. Make all
-tests pass.
+Then a 10-node seed taxonomy.json covering two domains. Fill in the bodies of
+scripts/gen-schema.ts, scripts/validate-ids.ts and scripts/check-glosses.ts,
+which already exist as exit-0 stubs; do not recreate them. Make all tests
+pass, then update TASKS.md in the same commit.
 ```
 The keyed gloss map, `contrast_fr`, and the intent/direction/evidence triple must all land here. Retrofitting any of them later is the genuinely painful rework in this plan: the first two across several hundred nodes, the third across a live query log where the missing values cannot be reconstructed after the fact.
 
 The evidence routing itself lives in `src/srs/evidence.ts` as an executable table (`EVIDENCE_EFFECTS`), not as prose in a document. Reference it; do not restate it.
 
-**Phase 2a - Structural seeding (delegate to subagent).** One domain at a time, `/clear` between domains.
+**Phase 2a - Structural seeding (delegate to subagent). [ADAPT]** One domain at a time, `/clear` between domains. Substitute the domain, and read `data/sources.md` first: what facts are available differs per domain, and the prompt below assumes VERB.
 ```
 Use the taxonomy-seeder subagent. For domain VERB only: read the notes in
 data/sources.md, extract the FACTS we need (lemmas, conjugation classes,
@@ -274,7 +287,7 @@ data/verb.fragment.json, then run build-taxonomy and validate-ids. Report
 the node count and any IDs that failed validation.
 ```
 
-**Phase 2b - Gloss and contrast authoring (separate pass, separate subagent).**
+**Phase 2b - Gloss and contrast authoring (separate pass, separate subagent). [ADAPT]** The pre-assigned nodes listed below now live in `data/contrast-overrides.json` and are applied from there. Do not restate them in the prompt; they are reproduced here only to show what the file contains.
 ```
 Use the gloss-author subagent with the fr-metalanguage skill. For domain
 VERB only: for every leaf in data/verb.fragment.json, author glosses.fr
@@ -297,7 +310,7 @@ Review that table yourself. This is the step where the model will be confidently
 
 Legal note to bake into `data/sources.md`: Apertium is GPL-2+, catalan-dict-tools is dual LGPL-2.1/GPL-2, verbecc is dual LGPL-3.0/GPL-3.0 (Catalan list sourced from catverbs), SUBTLEX-CAT has no reuse grant, verbs.cat has no licence. Extract facts and re-express; do not copy files. GPLv2 reaches "works based on the Program", and facts are not copyrightable under the Feist doctrine, so re-authored facts are generally not derivative. Two dangers remain: verbatim copying of a curated list can carry thin compilation copyright, and the EU sui generis database right (Softcatalà and AnCora are Spain-based) can restrict extraction of a substantial part of a database even of non-copyrightable facts. Keep extraction fact-level and hand-authored.
 
-**Phase 3 - JSON schema with hundreds of enums (generate, never hand-write).**
+**Phase 3 - JSON schema with hundreds of enums (generate, never hand-write). [VERBATIM]**
 ```
 Extend gen-schema so the decomposition tool's input_schema draws every
 component-ID field's enum from taxonomy.json (flattened leaf IDs). Add an
@@ -308,7 +321,7 @@ surface forms, never French prose. Regenerate schema.ts and make the
 schema-generation test pass.
 ```
 
-**Phase 4 - API client and prompt caching (plan-mode-first).**
+**Phase 4 - API client and prompt caching (plan-mode-first). [ADAPT]** `src/api/anthropic.ts` already exists with `buildHeaders`, `readApiKey`/`storeApiKey`, the `Decomposition` type and an injectable `fetchFn` on `callHaiku`. Extend it; do not rewrite from scratch. Check the taxonomy's actual token count before assuming the cached prefix clears Haiku's 4,096-token minimum.
 ```
 Plan then implement src/api/anthropic.ts. Headers: x-api-key from
 localStorage, anthropic-version 2023-06-01,
@@ -329,7 +342,7 @@ decomposition. Add a unit test using a recorded fixture, no live call.
 ```
 Verify the cache is actually hit: log `cache_read_input_tokens` during development. If it stays zero, the prefix is not byte-stable or it is under the 4,096-token Haiku minimum.
 
-**Phase 5 - Persistence, FSRS, Elo (TDD).** `/clear`.
+**Phase 5 - Persistence, FSRS, Elo (TDD). [ADAPT]** `/clear`. `src/db/dexie.ts` already defines `ComponentMastery` and `QueryLog` with the exposure, mastery and evidence fields, and `src/srs/fsrs.ts` already carries `INITIAL_DIFFICULTY` and the `assertAdvancesFsrs` gate. Extend those; check them before writing.
 ```
 TDD. Wrap ts-fsrs for per-component mastery, routing each logged query by
 its evidence type through EVIDENCE_EFFECTS in src/srs/evidence.ts, which is
@@ -349,7 +362,7 @@ graded moves both.
 ```
 The routing is the invariant most likely to be violated silently, because getting it wrong still produces a plausible-looking heatmap. Nothing but the test will catch it.
 
-**Phase 5b - Review loop (TDD). Not optional.** Until this exists, nothing anywhere emits `graded` evidence, so FSRS never advances and the mastery model is inert.
+**Phase 5b - Review loop (TDD). [ADAPT] Not optional.** Until this exists, nothing anywhere emits `graded` evidence, so FSRS never advances and the mastery model is inert.
 ```
 TDD. Build the review loop: select an item, ask, take the answer, grade it
 again|hard|good|easy. The grade is the ONLY source of graded evidence in the
@@ -369,7 +382,7 @@ rating, and that the selector interface admits a second implementation
 without touching the loop.
 ```
 
-**Phase 6 - UI and coverage heatmap (screenshot-and-iterate).**
+**Phase 6 - UI and coverage heatmap (screenshot-and-iterate). [ADAPT]** `src/i18n/fr.ts` already holds the heatmap legend strings and a `quote()` helper; add to the table rather than starting one.
 ```
 Build the decomposition view and an SVG coverage heatmap over the taxonomy
 tree. Exposure and mastery are TWO DIMENSIONS, never one colour: hue carries
@@ -394,7 +407,7 @@ until the heatmap is legible. Check that French string lengths do not
 overflow any container.
 ```
 
-**Phase 6b - Pronunciation (text first, audio only if a voice exists).**
+**Phase 6b - Pronunciation (text first, audio only if a voice exists). [ADAPT]**
 ```
 For any Catalan word or sentence, return IPA plus a French-oriented
 respelling. IPA attaches PER COMPONENT in the decomposition, where it belongs
@@ -419,21 +432,18 @@ outcome for a contrastive tool.
 ```
 Browser support was checked rather than assumed, in August 2026. Catalan `ca-ES` voices exist on every major platform: Microsoft Herena on Windows; Montse, Jordi and Pau on macOS and iOS; a Google network voice on Android and Chrome OS; and two Microsoft Online Natural voices at higher quality. **None of them is present by default**, and every one needs an OS-level language or speech pack the app cannot install. A spot check of one Windows runtime found nine voices, none Catalan and none even Spanish. Treat audio as a bonus that is usually absent, and design the text output to stand alone.
 
-**Phase 7 - Vite + GitHub Pages deploy.**
-```
-Plan then implement GitHub Pages deploy. Set base '/catalan-trainer/' in
-vite.config.ts. Ensure .nojekyll ends up in dist (it lives in public/). Add
-.github/workflows/deploy.yml using actions/configure-pages,
-actions/upload-pages-artifact (path ./dist), actions/deploy-pages, with
-permissions pages:write id-token:write and a single concurrency group. Set
-<html lang="fr"> in index.html. Remind me to set Settings > Pages > Source
-to GitHub Actions.
-```
+**Phase 7 - Vite + GitHub Pages deploy. [DONE, except one manual step]** Built in Phase 0 (`1c4cc7d`), pulled forward because the workflow was cheap to add early.
+
+Already in place: `base: '/francais-catalan/'` in `vite.config.ts`, `public/.nojekyll`, `<html lang="fr">`, and `.github/workflows/deploy.yml` using configure-pages, upload-pages-artifact (`./dist`) and deploy-pages, with `contents:read pages:write id-token:write` and a `concurrency: group: pages` block.
+
+**What remains is not a prompt.** Set repo Settings, Pages, Source to "GitHub Actions". No agent can do it, and until it is done the deploy workflow builds successfully and publishes nothing.
+
+> The original prompt for this phase said `base '/catalan-trainer/'`. That was a placeholder from the research draft and is wrong for this repo: the base must match the repository name or every asset 404s. Recorded here because the wrong value is the kind of thing that gets pasted back in from an old note.
 
 ### 4. Specific technical gotchas
 
 **Vite + GitHub Pages.**
-- `base` must be `/<repo>/` (here `/catalan-trainer/`) or all asset URLs 404. Use `/` only for a `user.github.io` root repo.
+- `base` must be `/<repo>/` (here `/francais-catalan/`) or all asset URLs 404. Use `/` only for a `user.github.io` root repo.
 - Set repo Settings, Pages, Source to "GitHub Actions". A manual one-time step the agent cannot do.
 - Workflow needs `permissions: contents:read, pages:write, id-token:write` and a `concurrency: group: pages` block.
 - `.nojekyll`: place it in `public/` so Vite copies it to `dist/`; without it any files or directories starting with `_` are stripped.

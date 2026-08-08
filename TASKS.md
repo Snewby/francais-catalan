@@ -7,20 +7,27 @@ them are done and what closed them.
 **Update this file in the same commit as the work.** A status file that drifts
 is worse than none, because it still reads as authoritative.
 
-| Phase                                 | Status      | Closed by                       |
-| ------------------------------------- | ----------- | ------------------------------- |
-| 0. Scaffold                           | done        | `c8a3e14`, `f6d0a21`, `1c4cc7d` |
-| Interaction-model amendment           | done        | `d7738c5`                       |
-| 1. Taxonomy schema, closed vocabulary | next        |                                 |
-| 2a. Structural seeding, per domain    | not started |                                 |
-| 2b. Gloss and contrast authoring      | not started |                                 |
-| 3. Generated schema enums             | not started |                                 |
-| 4. API client and prompt caching      | not started |                                 |
-| 5. Persistence, FSRS, Elo             | not started |                                 |
-| 5b. Review loop                       | not started |                                 |
-| 6. UI and coverage heatmap            | not started |                                 |
-| 6b. Pronunciation                     | not started |                                 |
-| 7. GitHub Pages deploy                | partial     | `1c4cc7d` (workflow only)       |
+| Phase                                 | Status      | Prompt   | Closed by                       |
+| ------------------------------------- | ----------- | -------- | ------------------------------- |
+| 0. Scaffold                           | done        | DONE     | `c8a3e14`, `f6d0a21`, `1c4cc7d` |
+| Interaction-model amendment           | done        | n/a      | `d7738c5`                       |
+| 1. Taxonomy schema, closed vocabulary | next        | VERBATIM |                                 |
+| 2a. Structural seeding, per domain    | not started | ADAPT    |                                 |
+| 2b. Gloss and contrast authoring      | not started | ADAPT    |                                 |
+| 3. Generated schema enums             | not started | VERBATIM |                                 |
+| 4. API client and prompt caching      | not started | ADAPT    |                                 |
+| 5. Persistence, FSRS, Elo             | not started | ADAPT    |                                 |
+| 5b. Review loop                       | not started | ADAPT    |                                 |
+| 6. UI and coverage heatmap            | not started | ADAPT    |                                 |
+| 6b. Pronunciation                     | not started | ADAPT    |                                 |
+| 7. GitHub Pages deploy                | partial     | DONE     | `1c4cc7d` (workflow only)       |
+
+**Prompt** says how to use that phase's prompt in
+`docs/02-claude-code-build-guide.md` section 3. `VERBATIM` means every fact in
+it has been checked against the repo and it can be pasted as-is. `ADAPT` means
+it depends on outputs that do not exist yet, so read the repo first. The labels
+are only true as long as someone keeps them true; treat a `VERBATIM` prompt that
+mentions a file you cannot find as a bug in this table.
 
 ## Where things stand
 
