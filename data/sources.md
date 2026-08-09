@@ -1450,3 +1450,154 @@ skews high, with eleven of eighteen leaves at B1 or above, which is a claim
 about the domain rather than a hedge: dislocation, clitic placement and the
 sequence of tenses are not A-level material even though the learner meets them
 in A-level input.
+
+### Outside review of CONJ, ADV and SYN, and what it changed
+
+`CONJ`, `ADV` and `SYN` were all seeded with no grammar text retrieved, because
+`giec.iec.cat` and `geiec.iec.cat` are JavaScript-rendered. Those 74 leaves were
+then put to an outside chat with web research, on the model of the `NEG` review.
+It reached GIEC and GEIEC text indirectly, through search snippets and verbatim
+secondary quotation (Optimot, ésAdir, the UB and UPF style guides, UOC, CPNL,
+and scholarly work including Prieto & Rigau 2007 and _Llengua & Literatura_ 35,
+2025), and marked which of its own claims were sourced that way rather than
+retrieved. **No rendered GIEC or GEIEC page was reached by either side**, so the
+evidence position improved from unsourced to indirectly sourced, not to
+verified. Section codes in particular remain unconfirmed, which is why none has
+been written into the data even now.
+
+**Three substantive errors were found and corrected.**
+
+- **`ADV.modalitat.dubte` taught a prescriptive error.** It gave
+  `Potser vingui` and `Tal vegada tinguis raó` as examples and claimed the
+  subjunctive marked stronger doubt. The norm puts these adverbs with the
+  indicative; the subjunctive belongs to the distinct construction
+  `potser que`, which is a softened suggestion (`Potser que vagis marxant`).
+  Examples and note corrected, and the construction moved to a `notes` field.
+  This is the first outright wrong rule taught by any leaf in the taxonomy, as
+  against the wrong statuses and misplaced keys found before.
+- **`ADV.manera.coordinacio_ment` taught the secondary option as the rule.**
+  The leaf was built on two coordinated `-ment` adverbs dropping the suffix on
+  the first. The mechanics are right, but the norm recommends keeping both
+  suffixes, and the reduction is the more literary option. Rewritten so the leaf
+  teaches the norm and presents the reduction as something to recognise in
+  reading rather than to produce. The contrast note now says the norm agrees
+  with French rather than diverging from it.
+- **`ADV.collocacio`'s claim was overstated, exactly as its evidence grade
+  warned.** The leaf said Catalan does not place an adverb between auxiliary and
+  participle. `mai` and `pas` do so freely (`No ha pas vingut`, and free
+  placement for `mai`), so the ban is specific rather than general. The leaf now
+  says the placement is freer than in French and names the two adverbs that
+  intercalate. **The `TASKS.md` entry that recorded this as inferred is what
+  made the correction cheap**, and this is the mechanism working as intended:
+  the claim was flagged before it was believed.
+
+**One structural decision was reversed on better evidence.** The `CONJ` section
+above records that `doncs` and `per tant` were kept under coordination _against_
+a weak search-result summary suggesting GIEC groups illatives with causals and
+finals. The review confirms that grouping with a much stronger chain: GIEC ch. 25
+is coordination, ch. 29 is "Les construccions causals, les finals i les
+il·latives", and GIEC itself is quoted as saying illatives "tenen unes propietats
+que les apropen a les subordinades i, de fet, recomanarem analitzar-les així".
+It further reports that explicatives (`és a dir`, `o sigui`) are analysed as
+parenthetical connectors rather than as coordination. Both leaves therefore left
+`CONJ.coord`:
+
+- `CONJ.coord.illativa` became `CONJ.illativa`
+- `CONJ.coord.explicativa` became `CONJ.explicativa`
+
+Both are now root-level leaves alongside `CONJ.consecutiva`, each carrying a
+`notes` field stating why it sits outside coordination. **The IDs were renamed
+rather than kept, because nothing outside the fragment and this file referenced
+them**: no database, no golden set, no UI. That cost is zero today and rises
+with every pass, which is the argument for taking the migration now. It also
+vindicates the practice of recording a decision made against contrary evidence:
+the note said a later pass could revisit it knowing the evidence had been weak,
+and that is precisely what happened.
+
+**Three `transfer` assignments were downgraded to `near-miss`.**
+
+- `CONJ.temporal.abans_despres`, because `després que` admits either mood and a
+  future-reference clause takes the subjunctive, which is the same trap that
+  already made `CONJ.temporal.quan` a near-miss.
+- `CONJ.consecutiva`, because producing the frame means choosing between `tan`
+  and `tant`, a split French does not have. This is the principle the `SYN`
+  section states: a status has to be true of what the leaf makes the learner
+  produce, not only of the rule named in its gloss.
+- `ADV.grau.mes_menys`, because everyday Catalan often prefers the correlative
+  `com més aviat millor` to the calqued superlative, and nothing in the French
+  sentence indicates which is wanted.
+
+**One factual claim in a note was wrong and is fixed.**
+`CONJ.condicional.exceptiva` said the standard does not accept `a menys que`.
+It does accept it, and merely prefers `llevat que`, `tret que` and
+`si no és que`. The note now says dispreferred rather than rejected. Overstating
+a proscription is the same class of error as overstating a rule, and it is worth
+noting that this one came from reasoning about what a calque from French _ought_
+to be.
+
+**Two examples were replaced.**
+`SYN.dislocacio.focus` had `Molt has trigat!`, which could not be confirmed: the
+documented exclamative degree operator is `que` or `com` (`Que has trigat!`),
+which is a different construction from clitic-less focus fronting. Replaced with
+a second contrastive-focus sentence of the shape the review did confirm as
+native (`Un llibre li va regalar, no un disc`). `CONJ.illativa` had
+`Doncs, què vols que hi fem?`, which is the discourse-marker `doncs`, close to
+French « eh bien », rather than the illative `doncs` the leaf teaches. Replaced
+with `Penso, doncs existeixo`.
+
+**Four findings were declined, and the reasons matter more than the outcomes.**
+
+- **`gaire` is not a gap.** The review reports it missing from `ADV` and
+  proposes it as a strong `novel` candidate. It is already
+  `DET.quant.polaritat.gaire`, and the `ADV` pass declined to mint a second key
+  for it deliberately, on the reasoning recorded above: the polarity restriction
+  is one rule and the determiner/adverb split does not make it two. The review
+  saw three domains and not the other six, which is the predictable cost of
+  scoping an outside review to part of the taxonomy. **When the remaining
+  domains go out for review, send the full leaf list even if only part is under
+  review**, or expect the same false positive.
+- **`SYN.veu.impersonal` stays `near-miss` rather than becoming `novel`.**
+  The argument for `novel` is that French `on` has no Catalan counterpart, which
+  is true. But `novel` means there is no French analogue to transfer, and French
+  has impersonal `se` constructions of exactly this shape (`il se dit que`,
+  `ça ne se fait pas`). An analogue exists and the distribution differs, which
+  is what `near-miss` names. The leaf's note already tells the learner to
+  restructure rather than translate word for word, which is the practical
+  content either status would carry.
+- **The three proposed extra `false-friend` assignments were declined, two of
+  them because the base language is French and not English.** Interrogative
+  `mai` meaning "ever" (`Has estat mai a Roma?`) is not a false friend for a
+  French speaker, because French `jamais` does the same job in a question
+  (`As-tu jamais vu`); the obvious French reading is available and correct.
+  `com que` is a production trap rather than a misreading, and `false-friend` is
+  reserved for a wrong reading, so it stays `near-miss` as the `CONJ` pass
+  argued. `sempre que` was the best of the three, but Catalan itself has both
+  readings, conditional with the subjunctive and temporal with the indicative,
+  so a French speaker's temporal reading is incomplete rather than wrong. Its
+  `notes` field now states the mood split, which is the fact worth teaching.
+- **`ben` as an intensifier was not minted.** It is a real gap in the degree
+  system, but the review marks it as its own knowledge rather than sourced, and
+  this pass does not mint keys on unsourced suggestions. Recorded as owed.
+
+**The comparative expletive `que no pas` is not a gap either**, and the review
+allowed as much: it is `NEG.expletiu`, whose examples already include
+`Fa més calor a dins que no pas a fora`.
+
+**The GIEC chapter map recovered by the review is recorded here and nowhere
+else, deliberately.** Coordination ch. 25, substantive subordinates ch. 26,
+relatives ch. 27, comparatives and consecutives ch. 28, causals, finals and
+illatives ch. 29, conditionals and concessives ch. 30, temporals ch. 31,
+declaratives and marked order ch. 33, interrogatives, exclamatives and
+imperatives ch. 34, negation ch. 35. **None of this is written into the data**,
+because every one of these anchors came from a snippet rather than a rendered
+page, and a section number in a card reads as verified whatever the surrounding
+prose says. It is here so a later pass with the print edition can check a list
+rather than rediscover one.
+
+**Still owed after this review.** `NEG.anticipada`'s wording, unchanged since
+the `NEG` pass and still requiring the print edition around pp. 1310-1313. The
+dialect note on `SYN.interrogativa.particula_que` is now well corroborated,
+Central Catalan plus Majorcan and Eivissan, against Valencian and Minorcan using
+intonation alone; the leaf says "chiefly Central Catalan", which is right but
+less precise than the sources now allow. `ben` as an intensifier. The optative
+`que`, still keyed nowhere.

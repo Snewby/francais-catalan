@@ -446,6 +446,46 @@ what differs is that Catalan treats it as neutral order. The false-friend is
 a completive or exclamative, Catalan has the exclamative use too, and so the
 familiar reading is available and wrong.
 
+`CONJ`, `ADV` and `SYN` were then reviewed together against an outside chat with
+web research, because all three had been seeded with no grammar text retrieved
+at all. It reached GIEC and GEIEC indirectly, through search snippets and
+verbatim secondary quotation, and marked which of its own claims were sourced
+that way. **No rendered GIEC or GEIEC page was reached by either side**, so the
+evidence position moved from unsourced to indirectly sourced, not to verified,
+and no section number has been written into the data even now. Four things it
+changed are worth carrying into the remaining passes:
+
+- **It found the first outright wrong rule in the taxonomy.**
+  `ADV.modalitat.dubte` taught `potser` with the subjunctive and claimed the
+  subjunctive marked stronger doubt. The norm puts these adverbs with the
+  indicative, and the subjunctive belongs to the separate `potser que`
+  construction. Everything earlier reviews caught was a wrong status, a
+  misplaced key or a duplicate; this was a card that would have taught a learner
+  to produce something the standard rejects. **Statuses and boundaries are what
+  self-review catches; whether the rule itself is right needs a source.**
+- **Two more leaves stated the secondary option as the rule.**
+  `ADV.manera.coordinacio_ment` was built on dropping the `-ment` of the first
+  coordinated adverb, which the norm treats as the more literary choice rather
+  than the rule, and `CONJ.condicional.exceptiva` said the standard rejects
+  `a menys que`, which it accepts and merely disprefers. Both came from
+  reasoning about what a French speaker would get wrong rather than from what
+  the norm says, which is a bias worth watching in the remaining domains.
+- **Scoping a review to part of the taxonomy produces false positives.** The
+  review reported `gaire` missing from `ADV` and proposed it as a strong `novel`
+  candidate. It is `DET.quant.polaritat.gaire`, and `ADV` declined to mint a
+  second key for it deliberately. **Send the full leaf list next time even when
+  only part is under review.**
+- **Three `transfer` calls were downgraded** (`CONJ.temporal.abans_despres`,
+  `CONJ.consecutiva`, `ADV.grau.mes_menys`), which is the fourth consecutive
+  pass where challenging `transfer` moved something. No downgraded status has
+  ever been reinstated. Treat `transfer` as the status that needs an argument.
+
+Four of its findings were declined, each argued in `data/sources.md`: `gaire`
+above; `SYN.veu.impersonal` stays `near-miss` because French has impersonal `se`
+constructions and so an analogue exists; and three proposed `false-friend`
+upgrades, two of which fail specifically because the base language is French
+rather than English, since French `jamais` in a question already means "ever".
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -523,28 +563,37 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   `ADV` and `DET`; `CONJ` kept only the frames they open. `SYN` also owes the
   protasis/apodosis tense correlation, which `CONJ.condicional.si` deliberately
   does not carry.
-- **`CONJ.coord.illativa` was placed against weak contrary evidence.** A
-  search-engine synthesis of GIEC snippets, the only thing obtainable while
-  `giec.iec.cat` stays JavaScript-rendered, reports that GIEC groups illatives
-  with causals and finals rather than with coordination. `doncs` and `per tant`
-  were kept under `CONJ.coord` anyway, because second-hand chapter grouping is
-  not enough to override the coordinator/subordinator axis. Revisit with the
-  print edition, alongside the `NEG.anticipada` wording check that is owed to the
-  same volume.
+- **`CONJ.coord.illativa` was placed against weak contrary evidence, and the
+  outside review then reversed it.** The `CONJ` pass had only a search-engine
+  synthesis of GIEC snippets suggesting that GIEC groups illatives with causals
+  and finals rather than with coordination, and kept `doncs` and `per tant`
+  under `CONJ.coord` on the grounds that second-hand chapter grouping is not
+  enough to override the coordinator/subordinator axis. The review confirmed the
+  grouping with a much stronger chain, including GIEC quoted as recommending
+  that illatives be analysed as subordinate-like, and reported that explicatives
+  are treated as parenthetical connectors rather than coordination.
+  `CONJ.coord.illativa` is now `CONJ.illativa` and `CONJ.coord.explicativa` is
+  now `CONJ.explicativa`, both root-level, argued in `data/sources.md`. **The
+  practice is what made the reversal cheap**: the decision was recorded as made
+  against contrary evidence, so the later pass revisited it knowingly instead of
+  rediscovering the question. Keep doing that. Note that renaming was free only
+  because nothing outside the fragment referenced the IDs; after phase 5 it
+  would be a data migration.
 - **`si bé` is a false-friend inside a `near-miss` leaf.** It is concessive and
   renders _quoique_, while `si bien que` in French is consecutive; it sits inside
   the four-member `CONJ.concessiva.tot_i_que`, so the trap is in `notes` and the
   leaf keeps the status that is true of the group. If the status is ever wanted
   for it, split the leaf rather than restating the group's status.
-- **`ADV.collocacio` is kept on inferred evidence and owes a source.** The claim
-  that French intercalates an adverb between auxiliary and participle
-  (`J'ai déjà mangé`) where Catalan does not (`Ja ho he fet`) had no grammar
-  section retrieved behind it, and the French half is the well-attested half. It
-  is kept because it is a high-frequency production error that would otherwise
-  fall between `ADV` and an unseeded `SYN`, which is exactly how the `NEG`
-  section says facts get lost. Same situation as `NEG.anticipada`: right in
-  substance, unverified in sourcing. When `SYN` is seeded, decide whether the
-  leaf moves.
+- **`ADV.collocacio` was kept on inferred evidence, and the review found the
+  claim overstated.** The leaf said Catalan does not place an adverb between
+  auxiliary and participle where French does. `mai` and `pas` do exactly that
+  (`No ha pas vingut`), so the ban is specific rather than general; the leaf now
+  says the placement is freer than in French and names the two adverbs that
+  intercalate. **This is the evidence-grading mechanism paying for itself**: the
+  claim was flagged as inferred before anyone believed it, so correcting it cost
+  one note rather than an argument about a settled fact. Whether `*He ja fet` is
+  itself ungrammatical remains unsourced. The leaf stays in `ADV` per the
+  decision recorded above.
 - **The `NEG` pass's owed facts are discharged except two.** `gairebé` and
   `a penes` are now `ADV.grau.aproximacio`, the answer particle `sí` is
   `ADV.modalitat.si`, and `tampoc`'s categorial status as an additive focal
@@ -560,6 +609,14 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   owns verbal morphology and `PRON` owns pronoun forms and cluster order, while
   `SYN` owns where the clitic attaches and how the clause is voiced.** If a
   later pass wants to move them, the argument to beat is in `data/sources.md`.
+- **`ben` as an intensifier (`ben calent`, `ben aviat`) has no key.** Raised by
+  the outside review as a gap in the degree system, but marked there as its own
+  knowledge rather than sourced, and this repo does not mint keys on unsourced
+  suggestions. Check it when `ADV` is next touched.
+- **`SYN.interrogativa.particula_que`'s dialect note is now under-precise
+  rather than unsourced.** It says "chiefly Central Catalan". Two independent
+  scholarly sources put it in Central, Majorcan and Eivissan, against Valencian
+  and Minorcan using intonation alone. Tighten it when convenient.
 - **The optative `que` is still not keyed anywhere.** `CONJ` routed it to `SYN`
   at medium confidence; the `SYN` pass declined to mint it, because it is a
   direct parallel to `Qu'il entre !` and the leaf would state that nothing

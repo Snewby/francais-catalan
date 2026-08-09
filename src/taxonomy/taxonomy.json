@@ -3400,24 +3400,25 @@
       "id": "ADV.manera.coordinacio_ment",
       "kind": "leaf",
       "parent": "ADV.manera",
-      "ca": "lenta i acuradament",
+      "ca": "lentament i acuradament / lenta i acuradament",
       "glosses": {
-        "fr": "Deux adverbes en « -ment » coordonnés : seul le dernier garde le suffixe."
+        "fr": "Deux adverbes en « -ment » coordonnés, avec ou sans réduction du premier."
       },
       "cefr": "B2",
       "examples": [
-        "Ho va explicar lenta i acuradament.",
-        "Parla clara i pausadament.",
-        "Actua ràpida i eficaçment."
+        "Ho va explicar lentament i acuradament.",
+        "Actua ràpidament i eficaçment.",
+        "Parla clara i pausadament."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français répète le suffixe sur les deux termes (lentement et soigneusement) ; le catalan le supprime sur le premier, qui reste au féminin, « lenta i acuradament »."
+        "note": "Comme en français, la norme garde le suffixe sur les deux termes ; le catalan permet en plus de le supprimer sur le premier, qui reste alors au féminin (« lenta i acuradament »), tour à reconnaître en lecture plutôt qu’à produire."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "La réduction est la solution secondaire, non la règle : la grammaire de référence recommande de conserver les deux suffixes."
     },
     {
       "id": "ADV.manera.adjectiu_adverbial",
@@ -3702,8 +3703,8 @@
         "Cada cop parla menys."
       ],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspondent directement à plus et moins, superlatif compris : « el més aviat possible » se calque sur le plus tôt possible sans réserve."
+        "status": "near-miss",
+        "note": "Correspondent à plus et moins, superlatif compris ; mais le catalan courant préfère souvent la corrélative « com més aviat millor » au superlatif calqué sur le français, et rien dans la phrase française n’indique laquelle des deux tournures est attendue."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3796,23 +3797,24 @@
       "parent": "ADV.modalitat",
       "ca": "potser / tal vegada / segurament",
       "glosses": {
-        "fr": "Adverbes de doute : « potser », « tal vegada », « segurament », suivis de l’indicatif ou du subjonctif."
+        "fr": "Adverbes de doute : « potser », « tal vegada », « segurament », suivis de l’indicatif."
       },
       "cefr": "B1",
       "examples": [
         "Potser vindrà.",
-        "Potser vingui.",
         "Segurament ja ho saben.",
-        "Tal vegada tinguis raó."
+        "Tal vegada tens raó.",
+        "Potser que vagis marxant."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« peut-être » impose en français l’inversion ou « que » (Peut-être viendra-t-il) ; « potser » se contente de l’ordre ordinaire, et le subjonctif y marque un doute plus fort que l’indicatif."
+        "note": "« peut-être » impose en français l’inversion ou « que » (Peut-être viendra-t-il) ; « potser » se contente de l’ordre ordinaire et, à la différence du français, n’entraîne aucun changement de construction."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "Ces adverbes se construisent avec l’indicatif : le subjonctif relève de la tournure « potser que », qui vaut suggestion atténuée (Potser que vagis marxant)."
     },
     {
       "id": "ADV.focus",
@@ -3940,17 +3942,19 @@
       "kind": "leaf",
       "parent": "ADV",
       "ca": "no ho he vist mai",
-      "glosses": { "fr": "Place de l’adverbe autour d’un temps composé." },
+      "glosses": {
+        "fr": "Place de l’adverbe autour d’un temps composé, plus libre qu’en français."
+      },
       "cefr": "B1",
       "examples": [
-        "No ho he vist mai.",
+        "Ja ho havia fet abans.",
+        "No ha pas vingut.",
         "Sempre ho he dit.",
-        "Ho ha fet sovint.",
         "Segurament ja han arribat."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français intercale l’adverbe entre l’auxiliaire et le participe (J’ai déjà mangé) ; le catalan ne le fait pas et le place avant l’auxiliaire ou après le participe, « ja ho he fet » et « no ho he vist mai »."
+        "note": "Le français fixe plusieurs adverbes entre l’auxiliaire et le participe (J’ai déjà mangé) ; le catalan les place ordinairement avant l’auxiliaire ou après le participe, même si « mai » et « pas » s’intercalent librement (No ha pas vingut)."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4060,7 +4064,8 @@
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "Le « no » préverbal reste facultatif avec « ni ... ni » antéposé, comme l’explique CONJ.coord.ni : les deux tours se rencontrent, le registre soutenu gardant « no »."
     },
     {
       "id": "CONJ.coord.adversativa",
@@ -4137,9 +4142,9 @@
       }
     },
     {
-      "id": "CONJ.coord.illativa",
+      "id": "CONJ.illativa",
       "kind": "leaf",
-      "parent": "CONJ.coord",
+      "parent": "CONJ",
       "ca": "doncs / per tant / així doncs",
       "glosses": {
         "fr": "Connecteurs illatifs tirant une conséquence : « doncs », « per tant », « així doncs »."
@@ -4148,21 +4153,22 @@
       "examples": [
         "Ja ho tenim tot: per tant, podem començar.",
         "No ha vingut ningú; així doncs, ho ajornem.",
-        "Doncs, què vols que hi fem?"
+        "Penso, doncs existeixo."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« doncs » traduit le « donc » qui tire une conclusion, mais non le « donc » mobile et emphatique du français, du type « Viens donc » ; l’emploi causal de « doncs », au sens de « car », reste hors norme."
+        "note": "« doncs » traduit le « donc » qui tire une conclusion, mais non le « donc » mobile et emphatique du français, du type « Viens donc » ; l’emploi causal de « doncs », au sens de « car », est hors norme."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "Rangé hors de la coordination : la grammaire de référence traite les illatives avec les causales et les finales, et les rapproche de la subordination."
     },
     {
-      "id": "CONJ.coord.explicativa",
+      "id": "CONJ.explicativa",
       "kind": "leaf",
-      "parent": "CONJ.coord",
+      "parent": "CONJ",
       "ca": "és a dir / o sigui",
       "glosses": {
         "fr": "Connecteurs explicatifs reformulant ce qui précède : « és a dir », « o sigui »."
@@ -4180,7 +4186,8 @@
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "Rangé hors de la coordination : la grammaire de référence analyse ces reformulateurs comme des connecteurs parenthétiques et non comme des conjonctions de coordination."
     },
     {
       "id": "CONJ.completiva",
@@ -4482,7 +4489,8 @@
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      }
+      },
+      "notes": "« sempre que » vaut « pourvu que » avec le subjonctif, mais « chaque fois que » avec l’indicatif : c’est le mode qui tranche, et la lecture temporelle qu’un francophone tire de « sempre » n’est donc pas fausse, seulement incomplète."
     },
     {
       "id": "CONJ.condicional.exceptiva",
@@ -4500,7 +4508,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« à moins que » pousse au calque « a menys que », que la norme n’admet pas : le catalan passe par « llevat que », « tret que » ou « si no és que », sans « ne » explétif."
+        "note": "« à moins que » se rend le plus souvent par « llevat que », « tret que » ou « si no és que », sans « ne » explétif ; « a menys que » est admis par la norme mais reste la solution la moins recommandée."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4574,8 +4582,8 @@
         "Abans que fos tard, van avisar."
       ],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Reprend le partage français : « avant que » avec le subjonctif, éventuellement renforcé d’un « no » explétif, et « després que » avec l’indicatif pour un fait passé, comme « après que »."
+        "status": "near-miss",
+        "note": "« abans que » reprend « avant que » et son subjonctif, éventuellement renforcé d’un « no » explétif ; mais « després que » admet les deux modes, et une subordonnée tournée vers l’avenir passe au subjonctif là où le français met le futur de l’indicatif."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4748,8 +4756,8 @@
         "Ho van explicar de manera que tothom ho entengués."
       ],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Décalque de « si ... que » et « tellement ... que », avec la même alternance sur « de manera que », indicatif pour le résultat et subjonctif pour le but, comme « de sorte que »."
+        "status": "near-miss",
+        "note": "Le cadre reprend « si ... que » et « tellement ... que », mais produire la phrase suppose de choisir entre « tan » devant un adjectif et « tant » avec un verbe, partage que le français ne fait pas."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -5231,7 +5239,7 @@
       "cefr": "B2",
       "examples": [
         "Un llibre li va regalar, no un disc.",
-        "Molt has trigat!",
+        "Aquest llibre vull, no aquell.",
         "Poques vegades l'he vist tan content."
       ],
       "contrast_fr": {

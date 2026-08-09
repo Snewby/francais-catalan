@@ -47,19 +47,19 @@
       "id": "ADV.manera.coordinacio_ment",
       "kind": "leaf",
       "parent": "ADV.manera",
-      "ca": "lenta i acuradament",
+      "ca": "lentament i acuradament / lenta i acuradament",
       "glosses": {
-        "fr": "Deux adverbes en « -ment » coordonnés : seul le dernier garde le suffixe."
+        "fr": "Deux adverbes en « -ment » coordonnés, avec ou sans réduction du premier."
       },
       "cefr": "B2",
       "examples": [
-        "Ho va explicar lenta i acuradament.",
-        "Parla clara i pausadament.",
-        "Actua ràpida i eficaçment."
+        "Ho va explicar lentament i acuradament.",
+        "Actua ràpidament i eficaçment.",
+        "Parla clara i pausadament."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français répète le suffixe sur les deux termes (lentement et soigneusement) ; le catalan le supprime sur le premier, qui reste au féminin, « lenta i acuradament »."
+        "note": "Comme en français, la norme garde le suffixe sur les deux termes ; le catalan permet en plus de le supprimer sur le premier, qui reste alors au féminin (« lenta i acuradament »), tour à reconnaître en lecture plutôt qu’à produire."
       },
       "state": {
         "exposure": {
@@ -70,7 +70,8 @@
           "difficulty": null,
           "graded_review_count": 0
         }
-      }
+      },
+      "notes": "La réduction est la solution secondaire, non la règle : la grammaire de référence recommande de conserver les deux suffixes."
     },
     {
       "id": "ADV.manera.adjectiu_adverbial",
@@ -423,8 +424,8 @@
         "Cada cop parla menys."
       ],
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspondent directement à plus et moins, superlatif compris : « el més aviat possible » se calque sur le plus tôt possible sans réserve."
+        "status": "near-miss",
+        "note": "Correspondent à plus et moins, superlatif compris ; mais le catalan courant préfère souvent la corrélative « com més aviat millor » au superlatif calqué sur le français, et rien dans la phrase française n’indique laquelle des deux tournures est attendue."
       },
       "state": {
         "exposure": {
@@ -541,18 +542,18 @@
       "parent": "ADV.modalitat",
       "ca": "potser / tal vegada / segurament",
       "glosses": {
-        "fr": "Adverbes de doute : « potser », « tal vegada », « segurament », suivis de l’indicatif ou du subjonctif."
+        "fr": "Adverbes de doute : « potser », « tal vegada », « segurament », suivis de l’indicatif."
       },
       "cefr": "B1",
       "examples": [
         "Potser vindrà.",
-        "Potser vingui.",
         "Segurament ja ho saben.",
-        "Tal vegada tinguis raó."
+        "Tal vegada tens raó.",
+        "Potser que vagis marxant."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« peut-être » impose en français l’inversion ou « que » (Peut-être viendra-t-il) ; « potser » se contente de l’ordre ordinaire, et le subjonctif y marque un doute plus fort que l’indicatif."
+        "note": "« peut-être » impose en français l’inversion ou « que » (Peut-être viendra-t-il) ; « potser » se contente de l’ordre ordinaire et, à la différence du français, n’entraîne aucun changement de construction."
       },
       "state": {
         "exposure": {
@@ -563,7 +564,8 @@
           "difficulty": null,
           "graded_review_count": 0
         }
-      }
+      },
+      "notes": "Ces adverbes se construisent avec l’indicatif : le subjonctif relève de la tournure « potser que », qui vaut suggestion atténuée (Potser que vagis marxant)."
     },
     {
       "id": "ADV.focus",
@@ -722,18 +724,18 @@
       "parent": "ADV",
       "ca": "no ho he vist mai",
       "glosses": {
-        "fr": "Place de l’adverbe autour d’un temps composé."
+        "fr": "Place de l’adverbe autour d’un temps composé, plus libre qu’en français."
       },
       "cefr": "B1",
       "examples": [
-        "No ho he vist mai.",
+        "Ja ho havia fet abans.",
+        "No ha pas vingut.",
         "Sempre ho he dit.",
-        "Ho ha fet sovint.",
         "Segurament ja han arribat."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français intercale l’adverbe entre l’auxiliaire et le participe (J’ai déjà mangé) ; le catalan ne le fait pas et le place avant l’auxiliaire ou après le participe, « ja ho he fet » et « no ho he vist mai »."
+        "note": "Le français fixe plusieurs adverbes entre l’auxiliaire et le participe (J’ai déjà mangé) ; le catalan les place ordinairement avant l’auxiliaire ou après le participe, même si « mai » et « pas » s’intercalent librement (No ha pas vingut)."
       },
       "state": {
         "exposure": {
