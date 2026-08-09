@@ -931,3 +931,189 @@ plus` is clean enough to transfer, while the CEFR level reflects that
 
 Net effect on the domain-level count: two `transfer` calls were downgraded to
 `near-miss`, none were upgraded, and no other leaf's status changed.
+
+### CONJ (conjunctions and subordinators)
+
+Both passes ran in one session, structure first and glosses second, with the
+tree shown for review between them. No dataset from the table above covers
+conjunctions, and no licensed data file, curated list or database was
+extracted from for this domain, so neither the compilation-copyright risk nor
+the EU database right described above is engaged. All examples and Catalan
+forms are hand-authored for this repo. The facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, line 171, which is the
+  whole of what that document says about this domain: `CONJ.coord`
+  "(i, o, però, sinó, ni)" and `CONJ.subord`
+  "(que, perquè, si, quan, encara que, malgrat que)", plus the assessment
+  "Mostly `transfer`". Both the inventory and that assessment are departed
+  from below, and the departures are argued rather than assumed.
+- The `NEG` pass's routing decisions, recorded in the `NEG` section above,
+  which hand `ni`, the adversative `sinó` and the `si no`/`sinó` spelling
+  split to this domain and explicitly withhold the restrictive frame
+  `no ... sinó`.
+- General knowledge of Catalan conjunctions and subordination at
+  reference-grammar level, hand-authored into leaves here.
+
+**Evidence grade on the GIEC chapter structure, which is weaker than in
+`NEG`.** Both `giec.iec.cat` and `geiec.iec.cat` are JavaScript-rendered and
+returned no body to any fetch in this pass, exactly as during `NEG`. What was
+obtainable was a search-engine synthesis of snippets, which reports GIEC
+treating coordination in chapter 25 and grouping causals, finals and
+illatives in one chapter, conditionals with concessives in another, and
+temporals in a third. **That is second-hand and unverified, no section was
+read, and consequently no GIEC section number appears anywhere in this
+domain's French prose.** It is recorded here only because one part of it bore
+on a structural decision, and is owed a check against the print edition.
+
+The one decision it bore on was `CONJ.coord.illativa`. If GIEC really does
+file `doncs` and `per tant` alongside causals and finals, that is evidence
+under the `NEG` rule ("where the reference grammar files a phenomenon is
+evidence about which domain owns it") for taking them out of coordination.
+They were kept under `CONJ.coord` anyway, because a second-hand chapter
+grouping is not strong enough to override the coordinator/subordinator axis,
+which is the top-level split of the tree and a natural class in Catalan.
+Recorded so that a later pass with the print edition in hand can revisit it
+knowing the decision was made against weak contrary evidence, not in
+ignorance of it.
+
+**`CONJ.subord` was not minted, though docs/01 names it.** A single
+subordination branch would have held 23 of the 32 leaves under no axis at
+all, which is the residue-bucket failure `DET.indef` was dissolved for. The
+subordinate side is split into `CONJ.completiva` plus seven adverbial
+classes, each of which is a natural class in Catalan and each of which
+predicts something about the status distribution: coordination is where the
+free transfer sits (`i`, `o`, `és a dir`), while `temporal`, `manera` and
+`concessiva` are where the subordinator selects a mood French does not.
+
+**docs/01's "Mostly `transfer`" for this domain is not borne out, and is left
+standing rather than edited.** The pass came out 10 `transfer` against 22
+others before the duplicate below was removed. Following the `pas` precedent
+in the `NEG` section, the docs/01 claim is recorded here beside what
+supersedes it rather than being overwritten, because other passes read that
+document as authoritative and a silent edit reads as drift. The claim is
+defensible at the level of the six forms docs/01 actually lists, most of
+which are indeed transfer; it stops being true as soon as the domain is
+enumerated properly, because what diverges is mood selection, and mood
+selection is invisible at the granularity of a conjunction inventory.
+
+**The mood-selection boundary, stated once here because three leaves depend
+on it.** `CONJ` owns which mood a subordinator selects, on the grounds that
+this is a lexical property of the conjunction. `VERB` owns how the mood is
+formed. `SYN` owns tense sequencing across two clauses, including the
+protasis/apodosis correlation of the conditional period, which docs/01
+assigns to `SYN.conditional`. This is what allows `CONJ.condicional.si`,
+`CONJ.temporal.quan` and `CONJ.manera.com_si` to carry the fact that makes
+them hard without pre-empting `SYN`.
+
+**Ruled out of this domain, argued rather than forgotten:**
+
+- **The restrictive frame `no ... sinó` stays `NEG.restrictiva`**, as the
+  `NEG` section requires in terms. `CONJ` takes the adversative `sinó` and
+  the `si no`/`sinó` spelling split only.
+- **Relative `que`, and `el que`/`el de`/`el meu`, stay with `PRON` and the
+  widened nominal-ellipsis ruling** made in `DET`. Nothing here mints a
+  second key for them.
+- **The interrogative particle `que` (`Que vols venir?`) goes to `SYN`**,
+  with docs/01 assigning interrogatives to `SYN.questions`. **This carries a
+  disagreement with docs/01 worth recording**: line 175 says Catalan has no
+  _est-ce que_, and this particle is functionally close to one. The
+  disagreement is left standing beside the document rather than edited into
+  it, as above. `SYN` will need to decide whether it is a clause-type marker
+  or a conjunction; the argument for `SYN` is that it marks the clause rather
+  than joining two.
+- **The optative `que` (`Que tinguis sort!`) goes to `SYN`** as clause
+  modality. Confidence: medium. It rests on the general principle that
+  main-clause modality is not subordination, not on a retrieved grammar
+  section, and it is the ruling here most likely to be wrong.
+- **`tan`/`tant` selection and the degree words `més`/`menys` go to `ADV` and
+  `DET`.** `CONJ` owns the frames `tan ... com`, `més ... que` and
+  `tan(t) ... que`, that is, the second term of the comparison and the result
+  clause, not the quantifier that opens them.
+- **`abans de` and `després de` plus infinitive, and `tot i` plus gerund,
+  stay with `PREP.formes_no_finites`.**
+
+**The French-to-Catalan sweep, run as a separate mandatory pass, produced
+four of the thirty-two leaves.** The `NEG` section's rule is that a coverage
+check run from the target-language inventory cannot find a construction with
+no target-language marker in it; the same rule here is that it cannot find a
+Catalan conjunction a French speaker will never reach for by enumerating
+Catalan conjunctions. Enumerating French subordinators instead produced
+`CONJ.coord.adversativa.si_no` (from _sinon_), `CONJ.condicional.exceptiva`
+(from _à moins que_, and its calque), `CONJ.manera.com_si` (from _comme si_,
+where the two languages differ in mood) and `CONJ.manera.sense_que` (from
+_sans que_). None is reachable from the Catalan side, because each is either
+a fixed locution or a form whose Catalan counterpart looks unremarkable.
+
+**A duplicate key was caught by the browser review, not by any test.** 2b
+first authored `CONJ.completiva.caiguda_preposicio` for the drop of a governed
+preposition before a completive `que` (`confio que vindrà`). That is
+`PREP.regim.caiguda_davant_que`, already committed, with the same Catalan
+form, the same rule and an overlapping example. The `CONJ` leaf was deleted
+rather than the `PREP` one, because the phenomenon is preposition government
+and `PREP` reached it first; `CONJ.completiva.que` carries a `notes`
+cross-reference so the fact stays findable from this side. Nothing in the
+test suite could have caught this: `validate-ids` checks that IDs resolve and
+`check-glosses` checks that leaves are glossed, and two leaves teaching the
+same rule under different keys satisfy both. **A duplicate-content check
+across domains is the gap this exposes**, and it will get worse as more
+domains land.
+
+**`CONJ.consecutiva` is a root-level leaf** rather than a branch with one
+child, on the `NEG` precedent. Consecutive subordination in Catalan is a
+single frame, intensity plus result clause, and a branch over one leaf would
+be shape without content.
+
+**Two `transfer` assignments were challenged during 2b and both moved to
+`near-miss`**, which is the same count and the same direction as `NEG`.
+
+- **`CONJ.condicional.si` moved.** The `transfer` call rested on `si` being
+  the same form as French `si` and banning the future in the protasis exactly
+  as French does, which is true. What it missed is that the irrealis takes
+  the imperfect subjunctive (`Si tingués temps, hi aniria`) where French takes
+  the indicative imperfect (`Si j'avais le temps`). That is a mood the
+  conjunction selects, so under the boundary stated above it belongs to this
+  leaf and not to `SYN`, and it is precisely the kind of divergence a French
+  speaker will not notice they are getting wrong.
+- **`CONJ.manera.com` moved.** `comme` transfers for a settled manner
+  (`Ho vaig deixar tal com estava`), but an as-yet-undetermined manner takes
+  the subjunctive in Catalan (`Fes-ho com vulguis`) where French keeps the
+  indicative (`comme tu veux`). The leaf covers both, so `transfer` would have
+  been true of half of it.
+
+**The ten surviving `transfer` calls were each re-examined against the fact
+that `INITIAL_DIFFICULTY_VALUE` in `src/srs/fsrs.ts` collapses the other three
+statuses to one value**, so `transfer` is currently the only status that
+discriminates and assigning it is a claim the learner gets the item free. The
+ones worth recording are `CONJ.final.per_tal_que` and `CONJ.causal.ja_que`,
+both of which contain a form with no French counterpart of similar shape
+(`per tal que`, `atès que`). They stayed `transfer` because the status is a
+claim about the rule, not about the vocabulary: the purpose clause takes the
+subjunctive after a conjunctive locution in both languages, and only the
+lexical shape of one member has to be learnt. `CONJ.temporal.abans_despres`
+stayed `transfer` because Catalan reproduces the French asymmetry exactly,
+subjunctive after `abans que` with an optional expletive `no`, indicative
+after `després que` for a past fact.
+
+**A false-friend inside a four-member leaf is recorded rather than split
+out.** `CONJ.concessiva.tot_i_que` covers `tot i que`, `malgrat que`,
+`per bé que` and `si bé`. The last of these is concessive and renders
+_quoique_, while the French string it resembles, `si bien que`, is
+consecutive. That is a false-friend shape, but it is true of one member of a
+four-member leaf, so the leaf keeps `near-miss` and the trap is stated in
+`notes`. If a later pass wants the `false-friend` status for it, the right
+move is to split `si bé` into its own leaf, not to restate the status of the
+group.
+
+**No leaf in this domain is `novel`, and that is a claim.** French has every
+category in the tree: coordination in all five of its Catalan subtypes,
+completives, and all seven adverbial classes. Nothing here is anchorless in
+the way `ser`/`estar` is, so `novel` is genuinely unavailable rather than
+overlooked. This is the same argument `PREP` made, and it is the second
+domain to come out with an empty `novel` column for the same structural
+reason.
+
+**The CEFR column is a hypothesis, as in `NEG`.** The published Catalan L2
+syllabi are organised by communicative function, and nothing in them pins
+most of these locutions to a level. The A1 and A2 calls (`i`, `o`, `que`,
+`si`, `quan`, `però`, `perquè`) are safe; everything at B2 is a judgement
+about register and frequency, not sourced data.

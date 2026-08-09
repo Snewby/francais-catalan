@@ -3365,6 +3365,804 @@
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
     },
+    {
+      "id": "CONJ",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "Les conjonctions et les subordonnants"
+    },
+    {
+      "id": "CONJ.coord",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "La coordination"
+    },
+    {
+      "id": "CONJ.coord.copulativa",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "i",
+      "glosses": {
+        "fr": "Coordination copulative par « i », entre mots, syntagmes ou propositions."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Pa i vi.",
+        "Vaig arribar i em vaig asseure.",
+        "En Joan i jo hi anirem."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond directement au « et » français, y compris devant un mot commençant par i- : le catalan ne connaît pas d’alternance de forme comparable au castillan y/e."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.ni",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "ni",
+      "glosses": {
+        "fr": "« ni » coordonne sous la portée d’une négation, seul ou en couple « ni ... ni »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "No hi ha pa ni vi.",
+        "No m'ha trucat ni m'ha escrit.",
+        "No vull ni sentir-ne parlar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme le « ni » français, il exige un négateur, mais le catalan rend « no » facultatif quand « ni » est déjà préverbal (Ni ell ni jo hi vam anar), là où le français maintient « ne » (Ni lui ni moi n’y sommes allés)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La concordance négative elle-même relève de NEG.concordanca ; ce nœud ne retient que le coordonnant."
+    },
+    {
+      "id": "CONJ.coord.disjuntiva",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "o / o bé",
+      "glosses": { "fr": "Coordination disjonctive par « o », renforcée en « o bé »." },
+      "cefr": "A1",
+      "examples": [
+        "Vols te o cafè?",
+        "Vine dilluns o bé dimarts.",
+        "Ho pots fer avui o demà."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond au « ou » français, et « o bé » à « ou bien », avec la même ambivalence entre lecture inclusive et exclusive."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.distributiva",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "o ... o / ni ... ni / tant ... com / sia ... sia",
+      "glosses": {
+        "fr": "Coordination corrélative : « o ... o », « ni ... ni », « tant ... com », « sia ... sia »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "O véns ara o no véns.",
+        "Ni ell ni ella no ho van dir.",
+        "Tant els grans com els petits hi van participar.",
+        "Sia avui sia demà, ho hem de decidir."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« o ... o » et « ni ... ni » suivent le français, mais « tant ... com » emploie « com » là où « aussi bien ... que » emploie « que », ce qui est l’erreur à attendre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.adversativa",
+      "kind": "branch",
+      "parent": "CONJ.coord",
+      "label_fr": "La coordination adversative"
+    },
+    {
+      "id": "CONJ.coord.adversativa.pero",
+      "kind": "leaf",
+      "parent": "CONJ.coord.adversativa",
+      "ca": "però",
+      "glosses": { "fr": "« però », coordonnant adversatif général." },
+      "cefr": "A2",
+      "examples": [
+        "És car, però el vull.",
+        "Volia venir, però no va poder.",
+        "No ho sabia, però."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme « mais », il oppose deux propositions, mais il peut aussi fermer la phrase (No ho sabia, però), position que « mais » n’occupe jamais en français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.adversativa.sino",
+      "kind": "leaf",
+      "parent": "CONJ.coord.adversativa",
+      "ca": "sinó / sinó que",
+      "glosses": {
+        "fr": "« sinó » rectifie un premier terme nié, et « sinó que » introduit une proposition à verbe conjugué."
+      },
+      "cefr": "B1",
+      "examples": [
+        "No és blanc, sinó negre.",
+        "No ho vaig dir jo, sinó ell.",
+        "No solament plou, sinó que també fa vent."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français rend par « mais » aussi bien « però » que « sinó » ; le catalan impose « sinó » dès qu’une négation précède et que le second terme la corrige (No és blanc, sinó negre)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Le piège orthographique de « sinó » face à « si no » est traité à CONJ.coord.adversativa.si_no."
+    },
+    {
+      "id": "CONJ.coord.adversativa.si_no",
+      "kind": "leaf",
+      "parent": "CONJ.coord.adversativa",
+      "ca": "si no",
+      "glosses": {
+        "fr": "« si no » en deux mots, conditionnel, face à « sinó » en un seul mot, adversatif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Afanya't, que si no arribarem tard.",
+        "Si no plou, sortirem.",
+        "Truca'm abans; si no, no et podré ajudar."
+      ],
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "Le français « sinon » ressemble à « sinó » mais lui correspond rarement : « sinon » se rend par « si no » (« Afanya't, que si no arribarem tard »), alors que « sinó » veut dire « mais »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.illativa",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "doncs / per tant / així doncs",
+      "glosses": {
+        "fr": "Connecteurs illatifs tirant une conséquence : « doncs », « per tant », « així doncs »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ja ho tenim tot: per tant, podem començar.",
+        "No ha vingut ningú; així doncs, ho ajornem.",
+        "Doncs, què vols que hi fem?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« doncs » traduit le « donc » qui tire une conclusion, mais non le « donc » mobile et emphatique du français, du type « Viens donc » ; l’emploi causal de « doncs », au sens de « car », reste hors norme."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.coord.explicativa",
+      "kind": "leaf",
+      "parent": "CONJ.coord",
+      "ca": "és a dir / o sigui",
+      "glosses": {
+        "fr": "Connecteurs explicatifs reformulant ce qui précède : « és a dir », « o sigui »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Hi vam anar de nit, és a dir, quan ja no hi havia ningú.",
+        "Arriba dilluns, o sigui, demà passat.",
+        "Ho farem nosaltres, és a dir, tu i jo."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« és a dir » est le décalque exact de « c’est-à-dire » et s’emploie aux mêmes endroits, « o sigui » en étant la variante orale."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.completiva",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "La subordination complétive"
+    },
+    {
+      "id": "CONJ.completiva.que",
+      "kind": "leaf",
+      "parent": "CONJ.completiva",
+      "ca": "que",
+      "glosses": { "fr": "« que », subordonnant complétif, jamais omis." },
+      "cefr": "A1",
+      "examples": [
+        "Vull que vinguis.",
+        "Diu que plourà.",
+        "Em sap greu que no hi siguis."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Comme en français, la complétive exige « que » et ne peut jamais s’en passer, et le catalan recourt de même à l’infinitif quand les deux sujets coïncident (Vull venir)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La chute de la préposition régie devant une complétive en « que » est traitée à PREP.regim.caiguda_davant_que."
+    },
+    {
+      "id": "CONJ.completiva.interrogativa_indirecta",
+      "kind": "leaf",
+      "parent": "CONJ.completiva",
+      "ca": "si",
+      "glosses": { "fr": "« si » introduisant une interrogative indirecte totale." },
+      "cefr": "A2",
+      "examples": [
+        "No sé si vindrà.",
+        "Pregunta-li si ho vol.",
+        "Vaig demanar si hi havia lloc."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Même forme et même emploi qu’en français, futur compris (No sé si vindrà, « je ne sais pas s’il viendra »)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.causal",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées causales"
+    },
+    {
+      "id": "CONJ.causal.perque",
+      "kind": "leaf",
+      "parent": "CONJ.causal",
+      "ca": "perquè",
+      "glosses": { "fr": "« perquè » causal, suivi de l’indicatif." },
+      "cefr": "A2",
+      "examples": [
+        "No hi vaig anar perquè plovia.",
+        "Ho fa perquè li agrada.",
+        "Per què no véns? Perquè no puc."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Une seule forme catalane couvre « parce que » et « pour que » : c’est le mode qui les sépare, l’indicatif marquant la cause et le subjonctif le but."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Trois graphies sont à distinguer : « per què » interrogatif, « perquè » conjonction, et « el perquè » substantif."
+    },
+    {
+      "id": "CONJ.causal.com_que",
+      "kind": "leaf",
+      "parent": "CONJ.causal",
+      "ca": "com que",
+      "glosses": { "fr": "« com que » en tête de proposition causale." },
+      "cefr": "B1",
+      "examples": [
+        "Com que plovia, no vam sortir.",
+        "Com que no ho sabia, no et vaig dir res.",
+        "Com que era tard, vam agafar un taxi."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français « comme » suffit à exprimer la cause (Comme il pleuvait) ; le catalan exige « com que », et « com plovia » n’est pas grammatical."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.causal.ja_que",
+      "kind": "leaf",
+      "parent": "CONJ.causal",
+      "ca": "ja que / atès que / vist que",
+      "glosses": {
+        "fr": "Locutions causales présentant la cause comme déjà connue : « ja que », « atès que », « vist que »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ja que hi ets, porta'm el diari.",
+        "Atès que no hi ha quòrum, s'ajorna la sessió.",
+        "Vist que ningú no hi posa objeccions, ho aprovem."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspondent segment par segment à « puisque », « attendu que » et « vu que », avec la même valeur de cause admise et le même registre soutenu pour les deux dernières."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.final",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées finales"
+    },
+    {
+      "id": "CONJ.final.perque_subjuntiu",
+      "kind": "leaf",
+      "parent": "CONJ.final",
+      "ca": "perquè vinguis",
+      "glosses": { "fr": "« perquè » final, reconnaissable au subjonctif." },
+      "cefr": "B1",
+      "examples": [
+        "T'ho dic perquè ho sàpigues.",
+        "Ho ha fet perquè estiguem tranquils.",
+        "Obre la finestra perquè entri aire."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français emploie une forme distincte, « pour que » ; le catalan réutilise « perquè » et fait porter toute la différence sur le mode du verbe subordonné."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.final.per_tal_que",
+      "kind": "leaf",
+      "parent": "CONJ.final",
+      "ca": "per tal que / a fi que",
+      "glosses": {
+        "fr": "Locutions finales non ambiguës : « per tal que », « a fi que »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ho han escrit per tal que tothom ho entengui.",
+        "A fi que no hi hagi dubtes, ho repetirem.",
+        "Han posat reixes per tal que ningú no hi entri."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Même construction qu’« afin que », subjonctif compris : seule la forme « per tal que » est à apprendre, la règle, elle, se transfère telle quelle."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.concessiva",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées concessives"
+    },
+    {
+      "id": "CONJ.concessiva.encara_que",
+      "kind": "leaf",
+      "parent": "CONJ.concessiva",
+      "ca": "encara que",
+      "glosses": {
+        "fr": "« encara que », à l’indicatif pour une concession de fait, au subjonctif pour une concession hypothétique."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Encara que plou, hi anirem.",
+        "Encara que plogués, hi aniríem.",
+        "Encara que ho sap, no ho diu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« bien que » impose le subjonctif dans tous les cas ; le catalan se sert du mode pour opposer le fait constaté (Encara que plou) à l’hypothèse (Encara que plogués)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.concessiva.tot_i_que",
+      "kind": "leaf",
+      "parent": "CONJ.concessiva",
+      "ca": "tot i que / malgrat que / per bé que / si bé",
+      "glosses": {
+        "fr": "Autres locutions concessives : « tot i que », « malgrat que », « per bé que », « si bé »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Tot i que era tard, va venir.",
+        "Malgrat que ho havíem avisat, no ho van fer.",
+        "Per bé que el text és llarg, es llegeix de pressa.",
+        "Si bé no hi estic d'acord, ho accepto."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« malgrat que » appartient au catalan standard alors que « malgré que » reste contesté en français, et « tot i que » n’a pas de contrepartie française de forme comparable."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "« si bé » est concessif et se rend par « quoique » : il ne correspond pas au « si bien que » français, qui est consécutif."
+    },
+    {
+      "id": "CONJ.concessiva.per_molt_que",
+      "kind": "leaf",
+      "parent": "CONJ.concessiva",
+      "ca": "per molt que / per més que",
+      "glosses": {
+        "fr": "Cadre concessif scalaire « per molt que », « per més que »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Per molt que ho intentis, no ho aconseguiràs.",
+        "Per més que hi insisteixi, no canviarà d'opinió.",
+        "Per molt car que sigui, el compraré."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français rend cette valeur par « avoir beau » ou par « si ... que » (si dur soit-il), tours dont aucun ne se calque mot à mot sur le catalan."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.condicional",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées conditionnelles"
+    },
+    {
+      "id": "CONJ.condicional.si",
+      "kind": "leaf",
+      "parent": "CONJ.condicional",
+      "ca": "si",
+      "glosses": {
+        "fr": "« si », subordonnant conditionnel, suivi du subjonctif dans l’irréel."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Si vols, hi anem.",
+        "Si tingués temps, hi aniria.",
+        "Si ho haguessis dit abans, t'hauria ajudat."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme en français, « si » exclut le futur et le conditionnel dans la protase, mais l’irréel se construit au subjonctif imparfait (Si tingués temps) là où le français emploie l’imparfait de l’indicatif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La correspondance des temps entre protase et apodose relève de SYN ; ce nœud ne retient que le subordonnant et le mode qu’il sélectionne."
+    },
+    {
+      "id": "CONJ.condicional.locucions",
+      "kind": "leaf",
+      "parent": "CONJ.condicional",
+      "ca": "en cas que / sempre que / posat que / a condició que",
+      "glosses": {
+        "fr": "Locutions conditionnelles autres que « si », toutes au subjonctif : « en cas que », « sempre que », « posat que », « a condició que »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "En cas que plogui, ho ajornarem.",
+        "T'ho deixo sempre que me'l tornis demà.",
+        "Posat que sigui cert, què hi farem?",
+        "Hi vindré a condició que hi siguis tu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« au cas où » demande le conditionnel en français alors qu’« en cas que » demande le subjonctif, et « sempre que », malgré sa forme, correspond à « pourvu que » et non à une valeur temporelle."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.condicional.exceptiva",
+      "kind": "leaf",
+      "parent": "CONJ.condicional",
+      "ca": "llevat que / tret que / si no és que",
+      "glosses": {
+        "fr": "Conditionnelles exceptives : « llevat que », « tret que », « si no és que »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Hi serem demà, llevat que hi hagi vaga.",
+        "No ho farà, tret que li ho demanis tu.",
+        "No ho sabrà, si no és que li ho diguis."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« à moins que » pousse au calque « a menys que », que la norme n’admet pas : le catalan passe par « llevat que », « tret que » ou « si no és que », sans « ne » explétif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.temporal",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées temporelles"
+    },
+    {
+      "id": "CONJ.temporal.quan",
+      "kind": "leaf",
+      "parent": "CONJ.temporal",
+      "ca": "quan",
+      "glosses": {
+        "fr": "« quan », suivi du subjonctif dès que la proposition renvoie à l’avenir."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Quan vulguis, comencem.",
+        "Quan arribi el tren, t'avisaré.",
+        "Quan era petit, hi anava sovint."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français met le futur de l’indicatif après « quand » (Quand le train arrivera) ; le catalan exige le subjonctif présent (Quan arribi el tren), et c’est l’écart le plus coûteux de ce domaine."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.temporal.mentre",
+      "kind": "leaf",
+      "parent": "CONJ.temporal",
+      "ca": "mentre / mentre que",
+      "glosses": {
+        "fr": "« mentre » de simultanéité, valeur conditionnelle au subjonctif, et « mentre que » adversatif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Mentre tu cuines, jo paro taula.",
+        "Mentre no ho diguis, ningú no ho sabrà.",
+        "Ell hi va anar, mentre que jo em vaig quedar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Une seule forme catalane couvre « pendant que », « tant que » et, avec « que », « tandis que » : c’est le mode qui distingue la simultanéité de la condition (Mentre no ho diguis)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.temporal.abans_despres",
+      "kind": "leaf",
+      "parent": "CONJ.temporal",
+      "ca": "abans que / després que",
+      "glosses": {
+        "fr": "« abans que » et « després que », antériorité et postériorité."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ho farem abans que arribin.",
+        "Després que va marxar, tot va canviar.",
+        "Abans que fos tard, van avisar."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Reprend le partage français : « avant que » avec le subjonctif, éventuellement renforcé d’un « no » explétif, et « després que » avec l’indicatif pour un fait passé, comme « après que »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Quand les deux sujets coïncident, le catalan préfère « abans de » et « després de » suivis de l’infinitif ; ces tours relèvent de PREP."
+    },
+    {
+      "id": "CONJ.temporal.locucions",
+      "kind": "leaf",
+      "parent": "CONJ.temporal",
+      "ca": "des que / fins que / així que / tan bon punt",
+      "glosses": {
+        "fr": "Locutions temporelles de point de départ, de limite ou d’immédiateté : « des que », « fins que », « així que », « tan bon punt »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Des que viu aquí, està més tranquil.",
+        "Espera't fins que jo torni.",
+        "Així que arribi, t'ho diré.",
+        "Tan bon punt ho sàpiga, us ho comunicaré."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« depuis que » et « jusqu’à ce que » se transfèrent, mais « dès que » se construit en français au futur de l’indicatif alors qu’« així que » et « tan bon punt » demandent le subjonctif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.manera",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées de manière"
+    },
+    {
+      "id": "CONJ.manera.com",
+      "kind": "leaf",
+      "parent": "CONJ.manera",
+      "ca": "com / tal com / segons com",
+      "glosses": {
+        "fr": "« com », « tal com », « segons com », subordonnants de manière."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Fes-ho com vulguis.",
+        "Ho vaig deixar tal com estava.",
+        "Segons com ho miris, té raó."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« comme » de manière se transfère au passé et au présent, mais une manière encore indéterminée passe au subjonctif en catalan (Fes-ho com vulguis) là où le français garde l’indicatif (comme tu veux)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "« com » seul n’exprime pas la cause, qui relève de CONJ.causal.com_que."
+    },
+    {
+      "id": "CONJ.manera.com_si",
+      "kind": "leaf",
+      "parent": "CONJ.manera",
+      "ca": "com si",
+      "glosses": { "fr": "« com si », suivi de l’imparfait du subjonctif." },
+      "cefr": "B2",
+      "examples": [
+        "Fa com si no ho sabés.",
+        "Em mira com si fos un desconegut.",
+        "Parla com si hi hagués estat."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« comme si » impose l’imparfait de l’indicatif en français (comme s’il ne le savait pas) ; le catalan y met l’imparfait du subjonctif (com si no ho sabés)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.manera.sense_que",
+      "kind": "leaf",
+      "parent": "CONJ.manera",
+      "ca": "sense que",
+      "glosses": {
+        "fr": "« sense que », circonstance concomitante niée, avec le subjonctif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Va marxar sense que ho sabéssim.",
+        "Ho va fer sense que ningú l'ajudés.",
+        "Va entrar sense que el veiessin."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Construction parallèle à « sans que » et même subjonctif : le catalan n’y ajoute simplement pas le « ne » explétif sur lequel le français hésite."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.comparativa",
+      "kind": "branch",
+      "parent": "CONJ",
+      "label_fr": "Les subordonnées comparatives"
+    },
+    {
+      "id": "CONJ.comparativa.igualtat_desigualtat",
+      "kind": "leaf",
+      "parent": "CONJ.comparativa",
+      "ca": "més ... que / tan ... com / tant com",
+      "glosses": {
+        "fr": "Cadres comparatifs : « que » pour l’inégalité, « com » pour l’égalité."
+      },
+      "cefr": "A2",
+      "examples": [
+        "És més alt que jo.",
+        "És tan alt com jo.",
+        "Treballa tant com tu.",
+        "En sap menys que nosaltres."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français emploie « que » dans les deux cas (plus grand que, aussi grand que) ; le catalan bascule sur « com » pour l’égalité, d’où le calque « tan alt que jo »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Le choix entre « tan » et « tant » relève d’ADV et de DET ; ce nœud ne retient que le second terme de la comparaison."
+    },
+    {
+      "id": "CONJ.comparativa.correlativa",
+      "kind": "leaf",
+      "parent": "CONJ.comparativa",
+      "ca": "com més ... més",
+      "glosses": { "fr": "Corrélative proportionnelle « com més ... més »." },
+      "cefr": "B2",
+      "examples": [
+        "Com més corres, més et canses.",
+        "Com menys en parlis, millor.",
+        "Com més gran es fa, més s'assembla al pare."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« plus ... plus » n’a aucun élément répondant au « com » initial du catalan, et c’est précisément cet élément qu’un francophone omet."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "CONJ.consecutiva",
+      "kind": "leaf",
+      "parent": "CONJ",
+      "ca": "tan ... que / tant ... que / de manera que",
+      "glosses": {
+        "fr": "Cadre consécutif : intensité, puis proposition de résultat, « tan(t) ... que », « de manera que »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Era tan tard que ja no hi havia ningú.",
+        "Va ploure tant que es va inundar tot.",
+        "Ho van explicar de manera que tothom ho entengués."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Décalque de « si ... que » et « tellement ... que », avec la même alternance sur « de manera que », indicatif pour le résultat et subjonctif pour le but, comme « de sorte que »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
     { "id": "NEG", "kind": "branch", "parent": null, "label_fr": "La négation" },
     {
       "id": "NEG.simple",

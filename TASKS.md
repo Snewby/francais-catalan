@@ -52,7 +52,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `DET`  | `data/det.fragment.json`  | done        | done        | this pass |
 | `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
 | `ADV`  |                           | not started | not started |           |
-| `CONJ` |                           | not started | not started |           |
+| `CONJ` | `data/conj.fragment.json` | done        | done        | this pass |
 | `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
 | `SYN`  |                           | not started | not started |           |
 | `LEX`  |                           | not started | not started |           |
@@ -313,6 +313,57 @@ expletive `ne` is obligatory in French comparatives (GBU §24.5) and so is a
 live rule gated by register rather than a fossil. That distinction is the
 useful part of the precedent and is recorded in `data/sources.md`.
 
+`CONJ` followed, 32 leaves under 11 branches, and it is the first domain whose
+2a and 2b passes both ran without an outside review to lean on: `giec.iec.cat`
+and `geiec.iec.cat` are JavaScript-rendered and returned nothing fetchable, so
+no section of either was read. The consequence is recorded in `data/sources.md`
+as an evidence grade, and no GIEC section number appears anywhere in the
+domain's French prose. Four things in it change how the remaining domains
+should be seeded:
+
+- **A duplicate key survived every test and was caught by eye in the browser.**
+  2b authored `CONJ.completiva.caiguda_preposicio` for the drop of a governed
+  preposition before a completive `que`. That is `PREP.regim.caiguda_davant_que`,
+  committed two domains earlier, same Catalan form, same rule, overlapping
+  example. `validate-ids` checks that IDs resolve and `check-glosses` checks
+  that leaves are glossed; two leaves teaching one rule under two keys satisfy
+  both, and always will. The `CONJ` leaf was deleted and the completive leaf now
+  cross-references `PREP`. **The seeding checklist is missing a duplicate-content
+  sweep against the already-seeded domains**, and the cost of not having one
+  rises with every domain that lands. Until it exists, the browser review is
+  not optional.
+- **A domain can be "mostly transfer" in a source and not in the tree, without
+  either being wrong.** docs/01 line 171 calls this domain mostly `transfer`,
+  and that is defensible for the six conjunctions it actually lists. It stops
+  being true on a proper enumeration, because what diverges in Catalan
+  subordination is mood selection, and mood selection is invisible at the
+  granularity of a conjunction inventory. Left standing in docs/01 with the
+  disagreement recorded beside it, on the `pas` precedent.
+- **Mood selection needed a boundary before three leaves could be written.**
+  `CONJ` owns which mood a subordinator selects, because that is a lexical
+  property of the conjunction; `VERB` owns how the mood is formed; `SYN` owns
+  tense sequencing across clauses, including the conditional period that docs/01
+  assigns to `SYN.conditional`. Without the line drawn, `CONJ.condicional.si`
+  would have been a green leaf whose only hard fact had been exported to an
+  unseeded domain.
+- **The French-to-Catalan sweep produced four leaves and is now proven twice.**
+  `si no` (from _sinon_), `llevat que`/`tret que` (from _à moins que_), `com si`
+  and `sense que` are all unreachable from an enumeration of Catalan
+  conjunctions. `NEG` learnt this rule from multi-word negation; it generalises,
+  and the second sweep should now be treated as part of the definition of 2a
+  rather than as a lesson from one domain.
+
+`CONJ` came out 10 transfer, 21 near-miss, 1 false-friend and no novel. The
+empty `novel` column is the same claim `PREP` made and rests on the same fact:
+French has every category in this tree, so nothing here is anchorless. The
+single false-friend is `CONJ.coord.adversativa.si_no`, where French _sinon_
+corresponds to Catalan `si no` while the form it resembles, `sinó`, means
+« mais ». Two transfer assignments were challenged and both moved to near-miss,
+the same count and direction as `NEG`: `CONJ.condicional.si`, because the
+irrealis protasis takes the imperfect subjunctive where French takes the
+indicative imperfect, and `CONJ.manera.com`, because an undetermined manner
+takes the subjunctive where French does not.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -369,8 +420,37 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   (French `pas de` against a bare noun or `cap`) is ruled out of `NEG` and split
   across `ART`, `DET` and `NOM`, so it is the one most likely to fall between
   three domains. All four are argued in `data/sources.md`.
-- Five domains remain unseeded. `data/sources.md` has five worked examples of a
-  per-domain notes section (`NOM`, `ART`, `DET`, `PREP` and `NEG`), so later passes
+- **Nothing checks for duplicate content across domains.** `CONJ` minted a leaf
+  that already existed as `PREP.regim.caiguda_davant_que` and every check passed.
+  A cheap version is a script comparing `ca` and `examples` across all leaves and
+  reporting near-identical pairs for a human to judge; it would have caught this
+  one on the first run. Until it exists, the browser review by eye is the only
+  thing standing between the taxonomy and two keys for one rule.
+- **Four facts are ruled out of `CONJ` and owed to domains not yet seeded.** The
+  interrogative particle `que` (`Que vols venir?`) and the optative `que`
+  (`Que tinguis sort!`) both go to `SYN`, the first with a recorded disagreement
+  with docs/01 line 175, which says Catalan has no _est-ce que_, and the second
+  at medium confidence and flagged in `data/sources.md` as the ruling most likely
+  to be wrong. The `tan`/`tant` choice and the degree words `més`/`menys` go to
+  `ADV` and `DET`; `CONJ` kept only the frames they open. `SYN` also owes the
+  protasis/apodosis tense correlation, which `CONJ.condicional.si` deliberately
+  does not carry.
+- **`CONJ.coord.illativa` was placed against weak contrary evidence.** A
+  search-engine synthesis of GIEC snippets, the only thing obtainable while
+  `giec.iec.cat` stays JavaScript-rendered, reports that GIEC groups illatives
+  with causals and finals rather than with coordination. `doncs` and `per tant`
+  were kept under `CONJ.coord` anyway, because second-hand chapter grouping is
+  not enough to override the coordinator/subordinator axis. Revisit with the
+  print edition, alongside the `NEG.anticipada` wording check that is owed to the
+  same volume.
+- **`si bé` is a false-friend inside a `near-miss` leaf.** It is concessive and
+  renders _quoique_, while `si bien que` in French is consecutive; it sits inside
+  the four-member `CONJ.concessiva.tot_i_que`, so the trap is in `notes` and the
+  leaf keeps the status that is true of the group. If the status is ever wanted
+  for it, split the leaf rather than restating the group's status.
+- Four domains remain unseeded. `data/sources.md` has six worked examples of a
+  per-domain notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG` and `CONJ`), so later
+  passes
   have a shape to follow rather than an empty placeholder. The `PREP` one is
   the model for a domain whose tree departs from its docs/01 row, because it
   records what was added, what was re-axed and what was ruled out to another
