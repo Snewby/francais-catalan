@@ -1592,7 +1592,7 @@
       },
       "cefr": "A1",
       "examples": ["Canto cada dia.", "Jo canto, ell no.", "Nosaltres hi anirem."],
-      "notes": "La désinence verbale suffit à identifier la personne, si bien que le sujet exprimé sert au contraste, à l’emphase ou à la levée d’une ambiguïté.",
+      "notes": "La désinence verbale suffit à identifier la personne, si bien que le sujet exprimé sert au contraste, à l’emphase ou à la levée d’une ambiguïté. Cette série couvre jo, tu, ell, ella, etc. ; le choix entre tu, vostè et vós relève du registre d’adresse et se traite à part (PRON.fort.tractament).",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Les formes correspondent une à une aux pronoms français, mais le français les exige devant le verbe alors que le catalan ne les emploie que pour contraster."
@@ -1601,6 +1601,55 @@
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
+    },
+    {
+      "id": "PRON.fort.tonic",
+      "kind": "leaf",
+      "parent": "PRON.fort",
+      "ca": "mi, tu, si",
+      "glosses": {
+        "fr": "les pronoms toniques employés après préposition (mi, tu, si), où seule la première personne et la forme réfléchie changent de forme"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Vine amb mi.",
+        "Ho fa per a tu.",
+        "Pensa només en si mateix.",
+        "Porta els nens amb tu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français possède une série tonique complète (moi, toi, soi, lui...), mais le catalan ne modifie que jo en mi et le réfléchi en si : tu reste identique à la forme sujet."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.fort.tractament",
+      "kind": "leaf",
+      "parent": "PRON.fort",
+      "ca": "tu, vostè, vós",
+      "glosses": {
+        "fr": "le système d’adresse tu / vostè / vós, où vostè correspond au vouvoiement mais commande un verbe à la troisième personne"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Tu vindràs amb mi.",
+        "Vostè ja ho sap.",
+        "Vostès poden seure aquí.",
+        "Vós sabeu com va això."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le vouvoiement français « vous » commande toujours un verbe à la deuxième personne du pluriel. Vostè, qui en tient lieu, se conjugue à la troisième personne du singulier (vostè sap, et non vostè sabeu), accord que l’intuition française ne produit pas spontanément."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Vós, en revanche, se construit bien avec la deuxième personne du pluriel (vós sabeu), comme le vous français, mais il appartient à un registre formel ou administratif et recule devant vostè dans l’usage courant."
     },
     {
       "id": "PRON.feble",
@@ -1649,6 +1698,116 @@
       }
     },
     {
+      "id": "PRON.feble.persona_reflexiu",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "em, et, es, ens, us",
+      "glosses": {
+        "fr": "les pronoms faibles de première et deuxième personne et la forme réfléchie (em, et, es, ens, us), qui servent indifféremment de complément direct, indirect ou réfléchi"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Em dutxo cada matí.",
+        "Et truco després.",
+        "Es renta les mans.",
+        "Ens ajuden molt.",
+        "Us espero a la porta."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français ne distingue pas non plus complément direct et indirect dans cette série (me/te/se/nous/vous), mais nous et vous y servent aussi de formes toniques, alors que le catalan garde ens et us strictement atones face à nosaltres et vosaltres."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.feble.cd_3a",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "el, la, els, les",
+      "glosses": {
+        "fr": "les pronoms faibles de complément d’objet direct à la troisième personne (el, la, els, les), qui s’accordent en genre et en nombre avec l’antécédent"
+      },
+      "cefr": "A2",
+      "examples": [
+        "El compro demà.",
+        "La veig sovint.",
+        "Els conec bé.",
+        "Les he llegides."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français les ne marque pas le genre, mais son équivalent catalan les n’est que le féminin pluriel : le masculin pluriel exige els, absent du système français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.feble.ci_3a",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "li, els",
+      "glosses": {
+        "fr": "les pronoms faibles de complément d’objet indirect à la troisième personne (li, els), invariables en genre"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Li dono el llibre.",
+        "Els explico la situació.",
+        "Els he enviat un correu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspond à lui et leur, mais le catalan emploie la même forme els pour le complément indirect pluriel et pour le masculin pluriel du complément direct, là où le français garde leur et les distincts."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.feble.ho",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "ho",
+      "glosses": {
+        "fr": "le pronom neutre ho, qui reprend une proposition entière, une idée ou un attribut, jamais un nom concret"
+      },
+      "cefr": "B1",
+      "examples": ["Ho sé.", "Vull dir-ho clar.", "No ho puc creure."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français emploie le même le pour un nom masculin et pour un neutre (il l’est, je le crois), alors que le catalan réserve ho au neutre et distingue clairement el pour le masculin défini."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.feble.forma_alomorfs",
+      "kind": "leaf",
+      "parent": "PRON.feble",
+      "ca": "em / me / 'm / m'",
+      "glosses": {
+        "fr": "l’alternance des quatre formes du pronom selon l’environnement phonétique : forme renforcée (em), pleine (me), réduite (« 'm ») et élidée (« m' »)"
+      },
+      "cefr": "B2",
+      "examples": ["Em veu.", "Escriu-me.", "Renta'm.", "M'agrada."],
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français ne connaît qu’une élision binaire (me / « m' ») ; le catalan distingue quatre allomorphes conditionnés à la fois par la position devant ou après le verbe et par le contexte vocalique ou consonantique, système sans équivalent français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
       "id": "PRON.feble.combinacio",
       "kind": "branch",
       "parent": "PRON.feble",
@@ -1669,6 +1828,299 @@
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français combine aussi les pronoms, mais il place le complément d’objet direct en premier dans le lui donne et ne fusionne jamais les deux en une forme unique."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.feble.combinacio.ordre_general",
+      "kind": "leaf",
+      "parent": "PRON.feble.combinacio",
+      "ca": "me'n, te la, se us",
+      "glosses": {
+        "fr": "l’ordre général des pronoms faibles combinés, notamment avec en et hi (« me'n », « te la », « se us »)"
+      },
+      "cefr": "B1",
+      "examples": ["Me'n vaig.", "Dona-me'l.", "Se us presenta demà."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français combine aussi ses pronoms faibles selon un ordre fixe, mais cet ordre diffère de celui du catalan, et certaines combinaisons comme se us n’ont pas d’équivalent à un seul mot en français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.rel",
+      "kind": "branch",
+      "parent": "PRON",
+      "label_fr": "Les pronoms relatifs"
+    },
+    {
+      "id": "PRON.rel.que",
+      "kind": "leaf",
+      "parent": "PRON.rel",
+      "ca": "que",
+      "glosses": {
+        "fr": "le pronom relatif que, invariable, sujet ou complément d’objet direct de la relative"
+      },
+      "cefr": "A2",
+      "examples": [
+        "El llibre que llegeixo és bo.",
+        "La casa que vam veure és cara.",
+        "L'home que parla és el meu veí."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français distingue qui sujet et que objet, alors que le catalan emploie que pour les deux fonctions (« l'home que parla », « el llibre que llegeixo ») ; ne pas confondre avec le que complétif, homonyme distinct traité dans CONJ.completiva.que."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.rel.prep_persona_cosa",
+      "kind": "leaf",
+      "parent": "PRON.rel",
+      "ca": "amb qui, de què",
+      "glosses": {
+        "fr": "le pronom relatif après préposition : qui pour les personnes, què pour les choses (amb qui, de què)"
+      },
+      "cefr": "B1",
+      "examples": [
+        "La persona amb qui parlo és la meva germana.",
+        "No sé de què em parles.",
+        "L'amic amb qui vaig anar-hi."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français distingue aussi qui pour les personnes après préposition, mais réserve quoi aux antécédents vagues et emploie lequel pour une chose concrète, là où le catalan généralise què à toute chose."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.rel.el_qual",
+      "kind": "leaf",
+      "parent": "PRON.rel",
+      "ca": "el qual, la qual, els quals, les quals",
+      "glosses": {
+        "fr": "le pronom relatif tonique el qual / la qual / els quals / les quals, employé après préposition ou pour reprendre toute une proposition (la qual cosa)"
+      },
+      "cefr": "B2",
+      "examples": [
+        "L'empresa per a la qual treballo és gran.",
+        "Els motius pels quals ho va fer són clars.",
+        "Va arribar tard, la qual cosa em va sorprendre."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspond à lequel/laquelle après préposition, mais le catalan emploie aussi la qual cosa pour reprendre une proposition entière là où le français dit ce qui, non lequel."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.rel.on",
+      "kind": "leaf",
+      "parent": "PRON.rel",
+      "ca": "on",
+      "glosses": { "fr": "le pronom relatif de lieu on" },
+      "cefr": "A2",
+      "examples": [
+        "El poble on vaig néixer és petit.",
+        "La casa on visc és antiga.",
+        "No sé el lloc on ho vam deixar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français où s’étend aussi aux antécédents temporels (le jour où), alors que le catalan on reste strictement locatif et cède la place à que pour le temps (el dia que vaig néixer)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.rel.absencia_dont",
+      "kind": "leaf",
+      "parent": "PRON.rel",
+      "ca": "de qui, de què, del qual",
+      "glosses": {
+        "fr": "l’absence d’un pronom relatif unique correspondant à dont : le catalan garde toujours la préposition explicite (de qui, de què, del qual)"
+      },
+      "cefr": "B2",
+      "examples": [
+        "El llibre de què et parlava.",
+        "La persona de qui em fio.",
+        "L'assumpte del qual parlàvem ahir."
+      ],
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "Dont fusionne la préposition de et le relatif en un seul mot, ce qui pousse à l’omettre en catalan ; or le catalan exige toujours de qui, de què ou del qual, jamais un que seul (« el llibre que et parlava » est fautif pour « el llibre de què et parlava »)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.interrogatiu",
+      "kind": "leaf",
+      "parent": "PRON",
+      "ca": "qui, què",
+      "glosses": { "fr": "les pronoms interrogatifs qui (personnes) et què (choses)" },
+      "cefr": "A2",
+      "examples": ["Qui ha trucat?", "Què vols fer?", "Amb qui vius?"],
+      "notes": "Què porte un accent grave et introduit une question ; ne pas confondre avec le que relatif sans accent (PRON.rel.que) ni avec le que complétif (CONJ.completiva.que).",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répartit que devant le verbe et quoi après préposition ou en emploi isolé, alors que le catalan emploie què dans tous ces contextes (què vols ?, amb què ?). L’ordre des mots de la phrase interrogative relève de SYN.interrogativa."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.ellipsi_nominal",
+      "kind": "leaf",
+      "parent": "PRON",
+      "ca": "el que, el de, el vermell, els dos, el meu",
+      "glosses": {
+        "fr": "l’ellipse nominale : l’article défini reprend seul un nom déjà connu, suivi d’un relatif, d’un complément en de, d’un adjectif ou d’un numéral (el que, el de, el vermell, els dos, el meu)"
+      },
+      "cefr": "B1",
+      "examples": [
+        "El que vaig veure em va sorprendre.",
+        "El cotxe de Barcelona és més car que el de Girona.",
+        "M'agrada més el vermell.",
+        "Els dos van arribar tard.",
+        "El meu és aquest."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français réalise la même ellipse au moyen du pronom celui/celle/ceux/celles (celui de Girona), alors que le catalan généralise le simple article défini à tous ces contextes."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.indefinit",
+      "kind": "branch",
+      "parent": "PRON",
+      "label_fr": "Les pronoms indéfinis"
+    },
+    {
+      "id": "PRON.indefinit.persona",
+      "kind": "leaf",
+      "parent": "PRON.indefinit",
+      "ca": "algú, ningú",
+      "glosses": {
+        "fr": "les pronoms indéfinis de personne algú (quelqu’un) et ningú (personne)"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Algú ha trucat.",
+        "Ningú no ha vingut avui.",
+        "Hi ha algú a la sala?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspondent à quelqu’un et personne, mais le de de « quelqu’un d’autre » ne se transpose pas : le catalan dit algú altre ou algú més. La concordance de ningú avec le négateur no relève de NEG.concordanca."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.indefinit.res",
+      "kind": "leaf",
+      "parent": "PRON.indefinit",
+      "ca": "res",
+      "glosses": {
+        "fr": "le pronom indéfini res, rien en contexte négatif mais quelque chose dans une question ou une condition"
+      },
+      "cefr": "A2",
+      "examples": ["No hi ha res aquí.", "Vols res més?", "Res no funciona."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Res correspond à rien dans une phrase négative, mais dans une question il prend le sens positif de quelque chose (vols res més ?), alors que le français rien reste toujours négatif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.indefinit.tothom",
+      "kind": "leaf",
+      "parent": "PRON.indefinit",
+      "ca": "tothom, tot el món",
+      "glosses": {
+        "fr": "tothom, pronom indéfini signifiant tout le monde ; à ne pas confondre avec tot el món, qui désigne la planète entière"
+      },
+      "cefr": "B1",
+      "examples": ["Tothom ho sap.", "Ha vingut tothom.", "Ha viatjat per tot el món."],
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "Le calque littéral de tout le monde donne tot el món, qui signifie le monde entier (la planète) en catalan ; la bonne traduction de tout le monde est tothom."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.indefinit.cadascun",
+      "kind": "leaf",
+      "parent": "PRON.indefinit",
+      "ca": "cadascun, cadascuna, cadascú",
+      "glosses": {
+        "fr": "les pronoms distributifs cadascun, cadascuna (chacun, chacune) et la forme générique invariable cadascú"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Cadascun té la seva opinió.",
+        "Cadascuna de les nenes hi va anar.",
+        "Li vam donar un regal a cadascú."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français n’a que chacun/chacune, marqués en genre en toute position, alors que le catalan réserve une forme distincte et invariable, cadascú, à l’emploi générique sans antécédent exprimé."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "PRON.demostratiu_neutre",
+      "kind": "leaf",
+      "parent": "PRON",
+      "ca": "això, allò",
+      "glosses": { "fr": "les démonstratifs neutres això (proche) et allò (éloigné)" },
+      "cefr": "A2",
+      "examples": [
+        "Això és fantàstic.",
+        "Allò no m'agrada.",
+        "No vull parlar d'això ara."
+      ],
+      "dialect_note": "Certaines variétés distinguent en outre açò, un troisième degré de proximité.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a ceci et cela pour marquer la même opposition de distance, mais l’usage courant les a supplantés par ça, invariant, alors que le catalan maintient activement l’opposition això/allò à l’oral."
       },
       "state": {
         "exposure": { "exposure_count": 0 },

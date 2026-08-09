@@ -1601,3 +1601,159 @@ Central Catalan plus Majorcan and Eivissan, against Valencian and Minorcan using
 intonation alone; the leaf says "chiefly Central Catalan", which is right but
 less precise than the sources now allow. `ben` as an intensifier. The optative
 `que`, still keyed nowhere.
+
+### PRON (pronouns)
+
+The first domain seeded that was already `seed only` rather than unseeded, so
+2a merged into four leaves the phase 1 seed had authored and glossed
+(`PRON.fort.subjecte`, `PRON.feble.en`, `PRON.feble.hi`,
+`PRON.feble.combinacio.ci_cd`) instead of authoring an empty tree. It ends at 6
+branches and 24 leaves, 20 of them new. No licensed data file, curated list or
+database was extracted from, and all Catalan forms and examples are
+hand-authored, so neither the compilation-copyright risk nor the EU database
+right described above is engaged. The facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, the pronoun section at
+  lines 115-151, whose clitic table is the source for the `els` syncretism
+  between third-person plural indirect object and masculine plural direct
+  object.
+- The routing decisions recorded above in the `DET`, `PREP`, `ADV`, `CONJ`,
+  `NEG` and `SYN` sections, which between them hand three groups of facts to
+  this domain and pre-empt a fourth.
+- General knowledge of Catalan pronoun morphology at reference-grammar level.
+  `giec.iec.cat` and `geiec.iec.cat` were not retrieved during this pass, as
+  during `CONJ`, `ADV` and `SYN`, so **no GIEC or GEIEC section number appears
+  anywhere in this domain's prose and every grammatical claim here is
+  unretrieved**. The chapter map recovered by the earlier outside review puts
+  relatives at chapter 27, which is where a later pass with the print edition
+  should start; nothing here rests on it.
+
+**Merging into a glossed domain has a failure mode that authoring an empty one
+does not, and it fired on the first attempt.** The 2a pass reported the four
+pre-existing leaves preserved byte for byte. They were not: every one of the 16
+narrow no-break spaces in the file had been silently degraded to an ordinary
+space, which is precisely the hazard `CLAUDE.md` warns about, and the only thing
+that caught it was `test/gloss-completeness.test.ts` refusing the turn. The
+nodes were restored from `git show HEAD:` rather than repaired by a
+normalisation regex, because a regex is how the same file got doubled spaces
+once before. **A seed-only merge should be verified by diffing the preserved
+nodes against `HEAD` field by field, not by believing the pass's own report.**
+
+**The three owed-fact groups are discharged.** The relative-pronoun system,
+ruled out of `PREP` and of `ADV`, is `PRON.rel.*`: `que`, `qui`/`què` after a
+preposition, the `el qual` series, relative `on`, and the absent counterpart to
+French _dont_. The nominal-ellipsis family, widened by the `DET` pass from
+preposition-plus-relative to the whole construction, is a single
+`PRON.ellipsi_nominal` covering `el que vaig veure`, `el de Barcelona`,
+`el vermell`, `els dos` and `el meu`, kept undivided because `DET` ruled they
+are one Catalan fact. The pronominal series `algú`, `ningú`, `res`, `tothom` and
+`cadascun` is `PRON.indefinit.*`, and the neuter demonstratives are
+`PRON.demostratiu_neutre`. `NEG` keeps the negative-concord behaviour of `ningú`
+and `res`, as its section requires, and `PRON.indefinit.persona` cross-references
+`NEG.concordanca` rather than restating it.
+
+**Neither coverage sweep found the address system, and it was keyed nowhere in
+the entire taxonomy.** `vostè` and `vós` appeared in no fragment of any domain.
+For a French speaker this is not vocabulary: French _vous_ maps onto `vostè`,
+which commands a third-person singular verb, and French has no construction
+where a polite address form changes grammatical person. Added as
+`PRON.fort.tractament`, with a `notes` field recording that `vós` does take
+second-person plural agreement like French but belongs to a formal register.
+This is the `DET`-missing-`quin` failure repeating in a domain that had been
+told twice to run coverage in both directions, which suggests the French-to-
+Catalan sweep is good at finding constructions and bad at finding paradigm
+gaps. **The sweep should be run once more over the paradigm itself, not only
+over the construction inventory.**
+
+**The domain came out with no `transfer` at all, which is a first, and it was
+put to the user rather than recorded quietly.** 0 transfer, 20 near-miss, 2
+false-friend, 1 novel across 24 leaves. `SYN`'s 2 was the previous low. The
+strongest candidate was `PRON.feble.persona_reflexiu` (`em, et, es, ens, us`
+against _me, te, se, nous, vous_), which maps one to one in both form and
+function; it stays `near-miss` because French `nous` and `vous` double as tonic
+forms while Catalan `ens` and `us` are strictly atonic against `nosaltres` and
+`vosaltres`, and because the four-allomorph alternation sitting in the next leaf
+means nothing in this series is free. The decision was accepted knowingly, on
+the same footing as `PREP`'s empty `novel` column: an empty column is a claim,
+and this one says that every part of the Catalan pronoun system a French speaker
+meets has a French analogue whose boundary has moved.
+
+**One `false-friend` was downgraded and two were kept.**
+`PRON.indefinit.tothom` is textbook: `tot el món` is a Catalan form whose
+familiar French reading is available and wrong, the same shape as
+`NEG.aspecte.ja_no`. `PRON.rel.absencia_dont` is kept because the familiar
+reading of Catalan `que` as absorbing _dont_ is available and produces
+`*el llibre que et parlava`. `PRON.fort.tractament` was authored as
+`false-friend` and moved to `near-miss`: no Catalan form is misread there, since
+`vostè` resembles nothing French, and the error is carried agreement rather than
+a wrong reading. That follows the precedent this repo already set twice, when
+`gens` was refused `false-friend` for resembling a French word rather than a
+French structure, and when `com que` was refused it for being a production trap
+rather than a misreading.
+
+**Two contrast notes stated a rule another domain owns, and one contradicted its
+own example.** `PRON.indefinit.persona` claimed `ningú` takes `no` only after
+the verb and then illustrated the claim with the preverbal `ningú no ha vingut`;
+it was also teaching negative concord, which `NEG.concordanca` owns. It now
+states a form fact, that the `de` of _quelqu'un d'autre_ does not transpose
+(`algú altre`), and cross-references `NEG`. `PRON.interrogatiu` claimed Catalan
+fronts an interrogative "sans inversion ni périphrase est-ce que", which is
+doubtful on the inversion and belongs to `SYN.interrogativa` either way; it now
+states that French splits _que_ preverbally from _quoi_ after a preposition
+while Catalan generalises `què`. **Both were caught by reading the authored
+prose, not by any check**, which is the third domain running where that has been
+true.
+
+**Two examples were wrong in ways the checks cannot see.**
+`PRON.rel.absencia_dont` had `La persona de qui et fio`, which is ungrammatical:
+_fiar-se_ needs `em fio` with a first-person verb. `PRON.indefinit.tothom`
+illustrated `tot el món` with `Tot el món en parlava`, which is the exact calque
+the leaf exists to block, so the leaf would have taught the error it warns
+against; replaced with `Ha viatjat per tot el món`, where the phrase genuinely
+means the whole world.
+
+**An allowlist entry was avoided by making a `ca` field precise.** 2a gave
+`PRON.rel.prep_persona_cosa` the bare `ca` of `qui, què`, which collided with
+`PRON.interrogatiu` and was recorded as a legitimate overlap. The leaf is
+specifically the relative after a preposition, so its `ca` is now
+`amb qui, de què`, which is both more accurate and drops the entry.
+`data/duplicate-allowlist.json` should hold irreducible overlaps, not overlaps
+manufactured by an imprecise field. The remaining new entry, `que` shared by
+`CONJ.completiva.que` and `PRON.rel.que`, is a genuine homonym and stays.
+
+**No expired note was found in this pass.** `SYN.clitics.proclisi_enclisi`
+already states its boundary positively rather than by the absence of a seeded
+`PRON`, so the outstanding note of that shape is `VERB`'s alone.
+
+**Ruled out of this domain:**
+
+- **Clitic placement and clause voicing** stay `SYN`'s, per the division
+  recorded in the `SYN` section. `PRON` owns the forms and the internal order of
+  a cluster, so `PRON.feble.combinacio.ordre_general` holds the slot template
+  and `SYN.clitics.proclisi_enclisi` holds proclisis and enclisis. The argument
+  to beat is unchanged and was not challenged here.
+- **Interrogative `quin` and `quant`** stay `DET`'s and interrogative `on`,
+  `quan`, `com` and `per què` stay `ADV`'s, per the part-of-speech split those
+  two domains established against docs/01 line 172. `PRON.interrogatiu` takes
+  the pronominal `qui` and `què` only.
+- **French `on`, reciprocal _l'un l'autre_ and impersonal _il_** map onto
+  `SYN.veu.impersonal` and `SYN.pronominals.reflexiu_reciproc`, both committed.
+  The French-to-Catalan sweep confirmed the boundary here rather than finding a
+  gap.
+
+**Flagged rather than changed.** `PRON.feble.combinacio.ordre_general` and
+`PRON.feble.combinacio.ci_cd` are the likeliest pair in this domain to read as
+one node twice. They are kept distinct on the grounds that `ci_cd` is the `l'hi`
+fusion specifically while `ordre_general` is the slot template that applies when
+nothing fuses, and `check-duplicates` does not fire on them, but the judgement
+that they are two facts is this pass's own. `PRON.ellipsi_nominal` and
+`PRON.rel.el_qual` were both flagged by the gloss pass as arguable between
+`near-miss` and `novel`, the first because French realises the ellipsis with
+_celui_ rather than a bare article, the second because the `la qual cosa`
+clause-anaphora use has no _lequel_-shaped French analogue. Both stayed
+`near-miss` on the grounds that the functional slot is shared.
+
+**The CEFR column is a hypothesis, as in `NEG`, `CONJ` and `ADV`.** The A1 and
+A2 calls are safe. `PRON.feble.forma_alomorfs` at B2 and the relative series at
+B1 and B2 are judgements about when a learner needs the form productively, not
+sourced data.

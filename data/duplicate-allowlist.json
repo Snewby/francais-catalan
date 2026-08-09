@@ -90,6 +90,12 @@
       "value": "penso en tu",
       "ids": ["PREP.atones.inventari", "PREP.regim.divergent_en"],
       "rationale": "Same inventory-versus-detail relation as above: the inventory shows en in use, the government leaf explains why this verb takes en where French takes another preposition."
+    },
+    {
+      "kind": "ca",
+      "value": "que",
+      "ids": ["CONJ.completiva.que", "PRON.rel.que"],
+      "rationale": "A genuine homonym, on the same footing as the recorded si pair. CONJ.completiva.que introduces a completive clause and takes no antecedent; PRON.rel.que is the relative pronoun with an antecedent in the main clause. Same form, two grammatical categories, two rules a learner needs separately."
     }
   ]
 }
