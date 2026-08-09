@@ -51,7 +51,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `PRON` | `data/pron.fragment.json` | seed only   | seed only   | `7bcb37a` |
 | `DET`  | `data/det.fragment.json`  | done        | done        | this pass |
 | `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
-| `ADV`  |                           | not started | not started |           |
+| `ADV`  | `data/adv.fragment.json`  | done        | done        | this pass |
 | `CONJ` | `data/conj.fragment.json` | done        | done        | this pass |
 | `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
 | `SYN`  |                           | not started | not started |           |
@@ -364,6 +364,49 @@ irrealis protasis takes the imperfect subjunctive where French takes the
 indicative imperfect, and `CONJ.manera.com`, because an undetermined manner
 takes the subjunctive where French does not.
 
+`ADV` followed, 24 leaves under 8 branches, and it is the first open class
+seeded. Four things in it change how the remaining domains should be seeded:
+
+- **An open class changes what coverage means.** Every domain before this one
+  had a finite inventory, so "is the domain closed" was a checkable question and
+  `DET` was corrected once for failing it. `-ment` derives an adverb from almost
+  any adjective, so the question cannot be asked here. This tree covers the
+  systems, formation, deixis, degree, focus, modality and placement, not the
+  word list, and an individual adverb earns a leaf only where it carries a rule.
+  Do not read the leaf count as an unfinished domain. `LEX` will have the same
+  problem in a worse form.
+- **The domain boundary is drawn by syntactic behaviour, not by word.** `ADV`
+  shares vocabulary with `PREP`, `CONJ` and `DET` more than any earlier domain
+  shares with anything, so: **a word is `ADV`'s in its bare adverbial use,
+  `PREP` owns it when it governs a complement, and `CONJ` owns it when it
+  introduces a clause.** `abans` and `després` split three ways under that rule
+  and all three parts were already keyed. Stated once in `data/sources.md` and
+  cross-referenced from the leaves.
+- **A second duplicate was caught, and that makes it a process failure rather
+  than two mistakes.** `CONJ` lost a leaf to `PREP.regim.caiguda_davant_que`;
+  `ADV.lloc.amb_complement` was the same rule as
+  `PREP.toniques.locucions_amb_de`, one example identical word for word. This
+  time the check ran between 2a and 2b rather than after glossing, which is
+  where it belongs. 2a reasons from the target language and structurally cannot
+  see what an earlier domain has already keyed, so **the sweep is not optional
+  and should stop being ad hoc**.
+- **Reading the neighbouring domain's committed leaves first is what prevented
+  four more.** Catalan degree words are determiners before a noun and adverbs
+  before an adjective, so the naive split would have given `ADV` a leaf for
+  `gaire`, `prou`, `bastant`, `massa` and `quant`. `DET` already owns all five,
+  and `DET.quant.grau.prou_bastant` had already taken the adverbial use
+  explicitly with `fa bastant fred`. `molt` is the one exception, because
+  `DET`'s three leaves cover agreement and noun junction and none of them states
+  the `très`/`beaucoup` merge that actually catches a French speaker.
+
+`ADV` came out 4 transfer and 20 near-miss, with no false-friend and no novel.
+Both empty columns are claims and both are argued in `data/sources.md`; the
+short version is that French has every adverbial category, and that the Catalan
+adverbs met early are either cognate and concordant or wholly opaque, and an
+opaque form cannot mislead. `ADV.manera.ment` is the strongest transfer call in
+the taxonomy so far, because Catalan is more regular than French here and a
+French speaker over-generalising the rule gets Catalan right.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -420,12 +463,20 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   (French `pas de` against a bare noun or `cap`) is ruled out of `NEG` and split
   across `ART`, `DET` and `NOM`, so it is the one most likely to fall between
   three domains. All four are argued in `data/sources.md`.
-- **Nothing checks for duplicate content across domains.** `CONJ` minted a leaf
-  that already existed as `PREP.regim.caiguda_davant_que` and every check passed.
-  A cheap version is a script comparing `ca` and `examples` across all leaves and
-  reporting near-identical pairs for a human to judge; it would have caught this
-  one on the first run. Until it exists, the browser review by eye is the only
-  thing standing between the taxonomy and two keys for one rule.
+- **Nothing checks for duplicate content across domains, and it has now happened
+  twice.** `CONJ` minted a leaf that already existed as
+  `PREP.regim.caiguda_davant_que`; `ADV` minted one that already existed as
+  `PREP.toniques.locucions_amb_de`. Every check passed both times. A cheap
+  version is a script comparing `ca` and `examples` across all leaves and
+  reporting near-identical pairs for a human to judge; the ad-hoc version run
+  during the `ADV` pass caught the second one on its first run, on the identical
+  example alone. **Make it `npm run check-duplicates` and run it between 2a and
+  2b**, which is where it caught the cheaper of the two. Note that the token
+  overlap half of that check is mostly noise, since function words are shared
+  across every domain; the identical-example signal is what found both.
+  `ADV` also removed a smaller version of the same failure in the other
+  direction: `CONJ.causal.perque` restated the `per què` / `perquè` split that
+  `ADV.interrogatiu.per_que` now owns, and is now a pointer to it.
 - **Four facts are ruled out of `CONJ` and owed to domains not yet seeded.** The
   interrogative particle `que` (`Que vols venir?`) and the optative `que`
   (`Que tinguis sort!`) both go to `SYN`, the first with a recorded disagreement
@@ -448,8 +499,24 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   the four-member `CONJ.concessiva.tot_i_que`, so the trap is in `notes` and the
   leaf keeps the status that is true of the group. If the status is ever wanted
   for it, split the leaf rather than restating the group's status.
-- Four domains remain unseeded. `data/sources.md` has six worked examples of a
-  per-domain notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG` and `CONJ`), so later
+- **`ADV.collocacio` is kept on inferred evidence and owes a source.** The claim
+  that French intercalates an adverb between auxiliary and participle
+  (`J'ai déjà mangé`) where Catalan does not (`Ja ho he fet`) had no grammar
+  section retrieved behind it, and the French half is the well-attested half. It
+  is kept because it is a high-frequency production error that would otherwise
+  fall between `ADV` and an unseeded `SYN`, which is exactly how the `NEG`
+  section says facts get lost. Same situation as `NEG.anticipada`: right in
+  substance, unverified in sourcing. When `SYN` is seeded, decide whether the
+  leaf moves.
+- **The `NEG` pass's owed facts are discharged except two.** `gairebé` and
+  `a penes` are now `ADV.grau.aproximacio`, the answer particle `sí` is
+  `ADV.modalitat.si`, and `tampoc`'s categorial status as an additive focal
+  adverb is stated in `notes` on `ADV.modalitat.additius`. Still owed to `LEX`:
+  `amb prou feines` and the emphatic reply locutions `de cap manera`,
+  `en absolut`, `ni de bon tros`.
+- Three domains remain unseeded. `data/sources.md` has seven worked examples of a
+  per-domain notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ` and
+  `ADV`), so later
   passes
   have a shape to follow rather than an empty placeholder. The `PREP` one is
   the model for a domain whose tree departs from its docs/01 row, because it

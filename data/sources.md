@@ -1117,3 +1117,177 @@ syllabi are organised by communicative function, and nothing in them pins
 most of these locutions to a level. The A1 and A2 calls (`i`, `o`, `que`,
 `si`, `quan`, `però`, `perquè`) are safe; everything at B2 is a judgement
 about register and frequency, not sourced data.
+
+### ADV (adverbs)
+
+Both passes ran in one session, with the tree reviewed between them. No dataset
+from the table above covers adverbs, and no licensed data file, curated list or
+database was extracted from for this domain, so neither the
+compilation-copyright risk nor the EU database right described above is
+engaged. All examples and Catalan forms are hand-authored for this repo. The
+facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, line 170, which gives the
+  domain one line: manner in `-ment` marked `transfer`, then place, time,
+  quantity and affirmation/doubt. That five-way split is taken as the floor for
+  the tree and extended, not replaced.
+- The `NEG` section above, which routes four facts here, and the `CONJ` section,
+  which routes two more.
+- General knowledge of Catalan adverbs at reference-grammar level, hand-authored
+  into leaves here. As in `CONJ`, `giec.iec.cat` and `geiec.iec.cat` are
+  JavaScript-rendered and returned nothing fetchable, so **no GIEC or GEIEC
+  section number appears anywhere in this domain's prose**, and every
+  grammatical claim here is an unretrieved one. That is a weaker evidence
+  position than `NEG` had and the same one `CONJ` had.
+
+**This is the first open class seeded, and it changes what coverage means.**
+`NOM`, `ART`, `DET`, `PREP`, `NEG` and `CONJ` all have finite inventories, so
+"is the domain closed" was a checkable question, and `DET` was corrected once
+for failing it. The adverb inventory is not finite: `-ment` derives an adverb
+from almost any adjective, and the locution frames are productive. **This tree
+therefore covers the systems, formation, deixis, degree, focus, modality and
+placement, and not the word list**, and a later pass should not read the leaf
+count as an unfinished domain. Individual adverbs earn a leaf only where they
+carry a rule; the rest are members of the leaf for their class.
+
+**One boundary does most of the work in this domain, and it is new.** `ADV`
+shares its vocabulary with `PREP`, `CONJ` and `DET` more than any earlier domain
+shares with anything. The line is drawn by syntactic behaviour rather than by
+word:
+
+> A word belongs to `ADV` in its bare adverbial use; `PREP` owns it when it
+> governs a complement; `CONJ` owns it when it introduces a clause.
+
+`abans` and `després` split three ways under that rule and all three parts were
+already keyed before this pass: `ADV.temps.situacio` (`Ho farem després`),
+`PREP.formes_no_finites.abans_despres` (`abans de sortir`),
+`CONJ.temporal.abans_despres` (`abans que arribin`). The same rule governs
+`davant`, `darrere`, `dins`, `fora`, `fins` and `com`. It is stated once here
+and cross-referenced from the leaves rather than restated in each.
+
+**The `DET` boundary is the one that cost the most, and it was settled by
+looking rather than by reasoning.** Catalan degree words are determiners before
+a noun and adverbs before an adjective or verb, so the naive split would give
+`ADV` a leaf for every one of them. Reading the committed `DET` leaves first
+showed that `DET` had already taken the rule in each case, and in one instance
+had taken the adverbial use explicitly: `DET.quant.grau.prou_bastant` uses
+`fa bastant fred` as its own example. **`ADV` therefore mints nothing for
+`gaire`, `prou`, `bastant`, `massa` or `quant`.** The reasoning is the one the
+`CONJ` duplicate taught: the polarity restriction on `gaire` is a single rule,
+and determiner-versus-adverb does not make it two.
+
+`molt` is the exception and the argument for it is worth recording, because it
+looks like the same case and is not. `DET` has three leaves on it and they
+cover agreement (`molta gent`), noun junction (`massa de gent`), and the
+`prou`/`bastant` split. None of them states the thing that actually catches a
+French speaker, which is that one Catalan form covers both `très` and
+`beaucoup` (`és molt alt`, `treballa molt`). That is a distinct rule about
+adverbial modification, so `ADV.grau.molt` exists and carries a `notes`
+cross-reference to `DET.quant.grau.concordanca` so the two cannot be mistaken
+for each other.
+
+**A second duplicate was caught, this time before glossing.** The `CONJ` pass
+recorded that nothing checks for duplicate content across domains, and an
+ad-hoc version of that check was run here between 2a and 2b. It found
+`ADV.lloc.amb_complement` (`davant de casa`, `a prop del riu`) to be the same
+rule as the committed `PREP.toniques.locucions_amb_de`, with one example
+identical word for word and the same French contrast about `devant la maison`
+taking no preposition. The `ADV` leaf was deleted. **Two consecutive domains
+have now minted a leaf that already existed**, which makes this a systematic
+failure of the seeding process rather than two mistakes: 2a reasons from the
+target language and cannot see what an earlier domain already keyed. The check
+is cheap and should become part of the pipeline.
+
+**A restatement was also removed in the other direction.** `CONJ.causal.perque`
+carried a `notes` field spelling out the `per què` / `perquè` / `el perquè`
+three-way split. `ADV.interrogatiu.per_que` now owns the interrogative form, so
+the `CONJ` note was rewritten as a pointer to it. Two leaves stating the same
+distinction is the same failure as two leaves teaching the same rule, one step
+smaller.
+
+**Interrogative adverbs are `ADV`'s, against docs/01, following the precedent
+`DET` already set.** Line 172 assigns `on, quan, com, per què` to `PRON.int`
+along with `qui`, `què`, `quin` and `quant`. `DET` already departed from that
+row by minting `DET.interrogatiu.quin` and `DET.interrogatiu.quant`, so the
+repo has already decided that interrogatives are split by part of speech rather
+than collected under `PRON`. This pass applies the same decision to the
+adverbs. Relative `on` (`el lloc on`) stays with `PRON.rel`, and interrogative
+`quant` stays with `DET` rather than being split again by function, because
+splitting it would recreate exactly the `gaire` problem above.
+
+**Ruled out of this domain:**
+
+- **`hi` and `en` as pro-adverbs** stay with `PRON.feble.hi` and
+  `PRON.feble.en`, which are committed.
+- **`amb prou feines`, `de cap manera`, `en absolut`, `ni de bon tros`** stay
+  `LEX`'s, as the `NEG` section already ruled. `ADV` keeps the productive
+  locution frame (`ADV.manera.locucions`) and not the fixed idioms that fill it.
+- **Certainty locutions (`és clar`, `sens dubte`, `i tant`)** are left to `LEX`
+  on the same grounds. `ADV.modalitat` keeps `potser` and its siblings, which
+  are single adverbs selecting a mood, and `i tant` appears only as an example
+  inside `ADV.modalitat.si`.
+- **`poc` as a marginal initial-position negator** (`Poc s'ho pensava`) is not
+  keyed here either, as the `NEG` section decided. It is register-restricted and
+  `poc` as a quantifier is `DET`'s.
+- **General constituent order** is `SYN`'s. `ADV.collocacio` is a deliberate
+  exception, argued below.
+
+**The `NEG` pass's four owed facts are now discharged or accounted for.**
+`gairebé` and `a penes` landed in `ADV.grau.aproximacio`. The contradictory
+answer particle `sí` landed in `ADV.modalitat.si`. `tampoc`'s categorial status
+as an additive focal adverb rather than a negative quantifier, which the `NEG`
+review recorded as owed, is now stated in `notes` on `ADV.modalitat.additius`
+and cross-referenced to `NEG.concordanca.postverbal`. `amb prou feines` and the
+emphatic reply locutions remain `LEX`'s and are not keyed anywhere yet.
+
+**`ADV.collocacio` is kept on inferred evidence, and the grade is recorded
+here rather than implied.** The claim is that French intercalates an adverb
+between auxiliary and participle (`J'ai déjà mangé`, `Je ne l'ai jamais vu`)
+and Catalan does not, placing it before the auxiliary or after the participle
+(`Ja ho he fet`, `No ho he vist mai`). **No grammar section was retrieved for
+this, and the French half of the contrast is the well-attested half.** It is
+kept because it is a high-frequency production error with no other home, `SYN`
+being unseeded, and because the alternative was to lose it between two domains
+in exactly the way the `NEG` section warns about for article behaviour under
+negation. The leaf carries a `notes` field saying it is placed here for want of
+a seeded `SYN`. This is the `NEG.anticipada` situation repeated: right in
+substance, unverified in sourcing, and recorded as such so it does not harden
+into a fact the first time somebody restates it.
+
+**Four `transfer` assignments survived, and each was tested against the fact
+that it is the only status that discriminates.** `ADV.manera.ment` is the
+strongest transfer call in the taxonomy so far: the rule is identical, feminine
+adjective plus `-ment`, and Catalan is more regular than French because it has
+no counterpart to the `-amment` / `-emment` doublets, so a French speaker
+over-generalising the rule gets Catalan right. `ADV.grau.mes_menys` and
+`ADV.interrogatiu.on_quan_com` map term for term, and the second removes a
+difficulty rather than adding one, since Catalan interrogates without
+`est-ce que` and without inversion. `ADV.grau.aproximacio` stayed `transfer`
+because `quasi` and `a penes` are the French forms themselves and `gairebé`
+behaves exactly as `presque` does, including before a negation; the opacity of
+the form `gairebé` is vocabulary rather than rule, which is the same reasoning
+that kept `CONJ.final.per_tal_que` at `transfer`.
+
+**One assignment was corrected on the browser review, for accuracy rather than
+status.** `ADV.manera.simples` first claimed the suppletion reproduces
+`bien`/`mieux` and `mal`/`pis`. The second half is wrong for the contemporary
+language: the ordinary French comparative of adverbial `mal` is `plus mal`,
+`pis` being archaic, so Catalan `pitjor` has no everyday one-word French
+counterpart. The note now says that, which strengthens rather than weakens the
+`near-miss` call.
+
+**No leaf in this domain is `false-friend` or `novel`, and both are claims.**
+`novel` is unavailable for the same reason it was in `PREP` and `CONJ`: French
+has every adverbial category here. `false-friend` was actively searched for and
+not found, which is worth recording because the empty column will otherwise
+read as a lazy pass. The reason is structural: the Catalan adverbs a French
+speaker meets early are either cognate and concordant (`sovint`, `quasi`,
+`a penes`, `tard`, `encara`, `així`) or opaque (`gairebé`, `aviat`, `força`,
+`enlloc`), and an opaque form cannot mislead. The nearest candidate considered
+and rejected was `així`, on the theory that it resembles `aussi`; it was
+rejected because the true French cognate is `ainsi`, which means the same
+thing, so the resemblance points the learner right rather than wrong.
+
+**The CEFR column is a hypothesis, as in `NEG` and `CONJ`.** The A1 calls
+(`aquí`, `ara`, `molt`, `bé`, `sí`, `on`) are safe. Everything at B1 and B2 is a
+judgement about frequency and register rather than sourced data.

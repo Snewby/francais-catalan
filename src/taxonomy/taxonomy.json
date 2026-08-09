@@ -3365,6 +3365,599 @@
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
     },
+    { "id": "ADV", "kind": "branch", "parent": null, "label_fr": "Les adverbes" },
+    {
+      "id": "ADV.manera",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de manière"
+    },
+    {
+      "id": "ADV.manera.ment",
+      "kind": "leaf",
+      "parent": "ADV.manera",
+      "ca": "ràpidament / clarament",
+      "glosses": {
+        "fr": "Formation de l’adverbe de manière : féminin de l’adjectif plus « -ment »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Parla clarament.",
+        "Ho ha fet ràpidament.",
+        "Viu tranquil·lament.",
+        "Actua honestament."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Règle identique au français, féminin plus « -ment », et le catalan est même plus régulier, puisqu’il ignore les doublets français en « -amment » et « -emment » et forme « constantment » et « evidentment » sans exception."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.manera.coordinacio_ment",
+      "kind": "leaf",
+      "parent": "ADV.manera",
+      "ca": "lenta i acuradament",
+      "glosses": {
+        "fr": "Deux adverbes en « -ment » coordonnés : seul le dernier garde le suffixe."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ho va explicar lenta i acuradament.",
+        "Parla clara i pausadament.",
+        "Actua ràpida i eficaçment."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répète le suffixe sur les deux termes (lentement et soigneusement) ; le catalan le supprime sur le premier, qui reste au féminin, « lenta i acuradament »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.manera.adjectiu_adverbial",
+      "kind": "leaf",
+      "parent": "ADV.manera",
+      "ca": "parla clar / corre ràpid",
+      "glosses": { "fr": "Adjectif employé tel quel comme adverbe, sans accord." },
+      "cefr": "B1",
+      "examples": ["Parla clar.", "Corre ràpid.", "Va treballar dur.", "Canta fort."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît le tour (parler fort, coûter cher) mais sur une liste courte et figée ; le catalan l’étend à bien plus de verbes, si bien que « corre ràpid » est ordinaire là où « court rapide » ne l’est pas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.manera.simples",
+      "kind": "leaf",
+      "parent": "ADV.manera",
+      "ca": "bé / malament / així / millor / pitjor",
+      "glosses": {
+        "fr": "Les adverbes de manière simples et leurs comparatifs supplétifs : « bé », « malament », « així », « millor », « pitjor »."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Ho fa molt bé.",
+        "Ha dormit malament.",
+        "Fes-ho així.",
+        "Ara canta millor que abans.",
+        "Cada dia escriu pitjor."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La supplétion reproduit bien/mieux, mais elle ne s’arrête pas là : le comparatif courant de « mal » est « plus mal » en français, alors que le catalan a la forme unique « pitjor », et « millor » couvre à la fois mieux et meilleur. Le catalan oppose en outre « mal » devant un participe (mal fet) à « malament » adverbe libre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.manera.locucions",
+      "kind": "leaf",
+      "parent": "ADV.manera",
+      "ca": "de pressa / a poc a poc / de sobte",
+      "glosses": {
+        "fr": "Locutions adverbiales de manière, préposition plus nom ou adjectif : « de pressa », « a poc a poc », « de sobte »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Camina de pressa.",
+        "Ho aprendràs a poc a poc.",
+        "De sobte va callar.",
+        "Ho ha cosit a mà."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le cadre existe en français (à la main, peu à peu), mais le choix de la préposition ne se transpose pas et chaque locution est à retenir telle quelle."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.lloc",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de lieu"
+    },
+    {
+      "id": "ADV.lloc.dixi",
+      "kind": "leaf",
+      "parent": "ADV.lloc",
+      "ca": "aquí / allà",
+      "glosses": {
+        "fr": "Deixis spatiale des adverbes de lieu : « aquí » pour le proche, « allà » pour le lointain."
+      },
+      "cefr": "A1",
+      "examples": ["Vine aquí.", "El llibre és allà.", "Aquí fa fred i allà fa calor."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français courant emploie « là » aussi bien pour l’ici que pour le là-bas (Je suis là) ; le catalan maintient l’opposition, et « allà » ne peut pas désigner l’endroit où l’on se trouve."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "dialect_note": "Le valencien distingue trois degrés, « ací », « aquí » et « allí », là où le catalan central en oppose deux."
+    },
+    {
+      "id": "ADV.lloc.posicio",
+      "kind": "leaf",
+      "parent": "ADV.lloc",
+      "ca": "dalt / baix / dins / fora / davant / darrere",
+      "glosses": {
+        "fr": "Adverbes de position employés sans complément : « dalt », « baix », « dins », « fora », « davant », « darrere »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "El gat és a dalt.",
+        "Espera'm a fora.",
+        "Ho he deixat dins.",
+        "Seu davant."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a une série distincte pour l’emploi sans complément (dessus, dedans, dehors) ; le catalan reprend la même forme que la préposition et lui ajoute souvent « a », comme dans « a dalt » et « a fora »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Ces mêmes formes suivies d’un complément relèvent de PREP.toniques.locucions_amb_de."
+    },
+    {
+      "id": "ADV.temps",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de temps"
+    },
+    {
+      "id": "ADV.temps.dixi",
+      "kind": "leaf",
+      "parent": "ADV.temps",
+      "ca": "ara / avui / demà / ahir / demà passat / abans-d'ahir",
+      "glosses": {
+        "fr": "Deixis temporelle : « ara », « avui », « demà », « ahir », et les composés « demà passat » et « abans-d'ahir »."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Ara no puc.",
+        "Demà passat marxo.",
+        "Abans-d'ahir va ploure.",
+        "Avui fa sol."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« abans-d'ahir » se construit comme avant-hier, mais « demà passat » inverse l’ordre d’après-demain, le jour venant d’abord et le repère ensuite."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.temps.frequencia",
+      "kind": "leaf",
+      "parent": "ADV.temps",
+      "ca": "sempre / sovint / de vegades / rarament",
+      "glosses": {
+        "fr": "Adverbes de fréquence : « sempre », « sovint », « de vegades », « rarament », et « mai » au sens de jamais dans une interrogation."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Sempre arriba tard.",
+        "Hi anem sovint.",
+        "De vegades hi penso.",
+        "Has estat mai a Roma?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« sovint » se transpose sans difficulté, mais le français interroge aujourd’hui avec « déjà » (As-tu déjà été à Rome) là où le catalan emploie « mai », si bien que le calque par « ja » manque la tournure usuelle."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Le comportement de concordance négative de « mai » relève de NEG.concordanca.postverbal."
+    },
+    {
+      "id": "ADV.temps.aspecte",
+      "kind": "leaf",
+      "parent": "ADV.temps",
+      "ca": "ja / encara / tot just",
+      "glosses": {
+        "fr": "Adverbes aspectuels : « ja » pour l’état atteint, « encara » pour l’état qui dure, « tot just » pour l’immédiat."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ja ho he fet.",
+        "Encara viu aquí.",
+        "Tot just han sortit.",
+        "Encara em queden dues pàgines."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Deux répartitions françaises ne se recouvrent pas : « toujours » se partage entre « sempre » et « encara », et « encore » entre « encara » et « més » selon qu’il s’agit de durée ou de quantité."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.temps.situacio",
+      "kind": "leaf",
+      "parent": "ADV.temps",
+      "ca": "abans / després / aviat / tard / llavors",
+      "glosses": {
+        "fr": "Adverbes situant l’événement par rapport à un repère : « abans », « després », « aviat », « tard », « llavors »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Ho farem després.",
+        "Arribarà aviat.",
+        "Es va llevar tard.",
+        "Llavors ho va entendre."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Les emplois adverbiaux nus se transposent, mais « aviat » recouvre à la fois bientôt et tôt, et rien dans la phrase française n’indique laquelle des deux valeurs est visée."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "« abans » et « després » se répartissent sur trois domaines : adverbe nu ici, « abans de » plus infinitif à PREP.formes_no_finites.abans_despres, et « abans que » plus proposition à CONJ.temporal.abans_despres."
+    },
+    {
+      "id": "ADV.grau",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de degré"
+    },
+    {
+      "id": "ADV.grau.molt",
+      "kind": "leaf",
+      "parent": "ADV.grau",
+      "ca": "molt",
+      "glosses": {
+        "fr": "« molt » invariable devant un adjectif, un adverbe ou un verbe."
+      },
+      "cefr": "A1",
+      "examples": ["És molt alt.", "Treballa molt.", "M'agrada molt.", "Molt bé."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Une seule forme catalane couvre le partage français entre « très » devant un adjectif et « beaucoup » avec un verbe : « és molt alt » et « treballa molt »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "L’accord de « molt » déterminant du nom (molta gent) relève de DET.quant.grau.concordanca."
+    },
+    {
+      "id": "ADV.grau.tan_tant",
+      "kind": "leaf",
+      "parent": "ADV.grau",
+      "ca": "tan / tant",
+      "glosses": {
+        "fr": "« tan » devant un adjectif ou un adverbe, « tant » avec un verbe ou employé seul."
+      },
+      "cefr": "B1",
+      "examples": ["No siguis tan impacient.", "No corris tant.", "No en vull tant."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répartit autrement : « si » et « tellement » devant l’adjectif, « tant » et « tellement » avec le verbe, si bien que « tellement » recouvre à lui seul les deux cases catalanes."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Les cadres corrélatifs « tan ... com » et « tan ... que » relèvent de CONJ.comparativa et de CONJ.consecutiva ; « tant » déterminant du nom (tanta feina) relève de DET.quant."
+    },
+    {
+      "id": "ADV.grau.mes_menys",
+      "kind": "leaf",
+      "parent": "ADV.grau",
+      "ca": "més / menys",
+      "glosses": {
+        "fr": "« més » et « menys » comme adverbes de degré, et le superlatif relatif « el més ... possible »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Corre més de pressa.",
+        "Menja menys.",
+        "Ho vull el més aviat possible.",
+        "Cada cop parla menys."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspondent directement à plus et moins, superlatif compris : « el més aviat possible » se calque sur le plus tôt possible sans réserve."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.grau.aproximacio",
+      "kind": "leaf",
+      "parent": "ADV.grau",
+      "ca": "gairebé / quasi / a penes",
+      "glosses": {
+        "fr": "Approximation et degré minimal : « gairebé », « quasi », « a penes »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Gairebé hi som.",
+        "Quasi cau.",
+        "A penes el vaig veure.",
+        "Gairebé no hi sent."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« quasi » et « a penes » sont les formes mêmes du français, et « gairebé » se comporte comme presque, y compris devant une négation, « gairebé no hi sent » pour presque pas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.modalitat",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de phrase"
+    },
+    {
+      "id": "ADV.modalitat.si",
+      "kind": "leaf",
+      "parent": "ADV.modalitat",
+      "ca": "sí",
+      "glosses": {
+        "fr": "« sí », particule de réponse affirmative, y compris en réponse à une question négative."
+      },
+      "cefr": "A1",
+      "examples": [
+        "Sí, hi aniré.",
+        "Que no t'agrada? Sí.",
+        "Sí que ho sé.",
+        "No véns? Sí, i tant."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français oppose « oui » et « si » selon que la question est positive ou négative ; le catalan n’a qu’une forme pour les deux, et l’insistance se marque autrement, par « sí que » ou « i tant »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La particule de réponse négative « no » est traitée à NEG.fragment."
+    },
+    {
+      "id": "ADV.modalitat.additius",
+      "kind": "leaf",
+      "parent": "ADV.modalitat",
+      "ca": "també / tampoc",
+      "glosses": {
+        "fr": "Adverbes focaux additifs : « també » et son pendant négatif « tampoc »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Jo també hi vaig.",
+        "Jo tampoc.",
+        "També ho sap ell.",
+        "No hi vaig anar tampoc."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspondent à aussi et non plus, mais « també » se place volontiers en tête (També ho sap ell), position où le français « aussi » change de sens et vaut « donc »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La concordance qu’exige « tampoc » après le verbe relève de NEG.concordanca.postverbal, où il figure par son comportement seul : c’est un adverbe focal additif, non un quantifieur négatif comme « res » ou « ningú »."
+    },
+    {
+      "id": "ADV.modalitat.dubte",
+      "kind": "leaf",
+      "parent": "ADV.modalitat",
+      "ca": "potser / tal vegada / segurament",
+      "glosses": {
+        "fr": "Adverbes de doute : « potser », « tal vegada », « segurament », suivis de l’indicatif ou du subjonctif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Potser vindrà.",
+        "Potser vingui.",
+        "Segurament ja ho saben.",
+        "Tal vegada tinguis raó."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« peut-être » impose en français l’inversion ou « que » (Peut-être viendra-t-il) ; « potser » se contente de l’ordre ordinaire, et le subjonctif y marque un doute plus fort que l’indicatif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.focus",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes de focalisation"
+    },
+    {
+      "id": "ADV.focus.nomes",
+      "kind": "leaf",
+      "parent": "ADV.focus",
+      "ca": "només / sols / solament",
+      "glosses": {
+        "fr": "Focalisation restrictive par un seul adverbe : « només », « sols », « solament »."
+      },
+      "cefr": "A2",
+      "examples": ["Només en queden dos.", "Només vull aigua.", "Ho sap solament ell."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français préfère le cadre « ne ... que » là où le catalan emploie ordinairement « només », et c’est ce décalage qui produit le calque fautif traité à NEG.restrictiva."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.focus.fins_i_tot",
+      "kind": "leaf",
+      "parent": "ADV.focus",
+      "ca": "fins i tot / ni tan sols",
+      "glosses": {
+        "fr": "Focalisation scalaire : « fins i tot » et son pendant négatif « ni tan sols »."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Fins i tot va plorar.",
+        "Hi va anar fins i tot el director.",
+        "Ni tan sols ens va saludar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français « même » est un mot unique qui sert aussi à l’identité (le même livre) ; le catalan sépare les deux, « fins i tot » pour la focalisation et « mateix » pour l’identité."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "« mateix » relève de DET.identitat.mateix_identitat."
+    },
+    {
+      "id": "ADV.focus.almenys",
+      "kind": "leaf",
+      "parent": "ADV.focus",
+      "ca": "almenys / si més no",
+      "glosses": {
+        "fr": "Focalisation minimisante : « almenys », et « si més no » dans la valeur concessive."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Almenys ho ha intentat.",
+        "Si més no, ens ha avisat.",
+        "Trigarà almenys una hora."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« almenys » recouvre « au moins » pour la quantité, alors que la valeur concessive de « du moins » passe par « si més no », et la frontière entre les deux ne se superpose pas exactement à la française."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.interrogatiu",
+      "kind": "branch",
+      "parent": "ADV",
+      "label_fr": "Les adverbes interrogatifs"
+    },
+    {
+      "id": "ADV.interrogatiu.on_quan_com",
+      "kind": "leaf",
+      "parent": "ADV.interrogatiu",
+      "ca": "on / quan / com",
+      "glosses": {
+        "fr": "Les adverbes interrogatifs de lieu, de temps et de manière : « on », « quan », « com »."
+      },
+      "cefr": "A1",
+      "examples": ["On vius?", "Quan arribes?", "Com et dius?", "D'on véns?"],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspondent terme à terme à où, quand et comment, « d'on » compris, et le catalan interroge par le seul adverbe, sans « est-ce que » ni inversion, ce qui retire une difficulté au lieu d’en ajouter une."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "ADV.interrogatiu.per_que",
+      "kind": "leaf",
+      "parent": "ADV.interrogatiu",
+      "ca": "per què",
+      "glosses": {
+        "fr": "« per què » interrogatif, en deux mots et avec accent, en interrogation directe comme indirecte."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Per què no véns?",
+        "No sé per què ho ha fet.",
+        "Com és que no ho sabies?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« pourquoi » s’écrit en un mot et ne ressemble pas à « parce que » ; le catalan oppose au contraire « per què » interrogatif à « perquè » conjonction, deux formes que seul l’écrit distingue."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "La conjonction causale « perquè » est traitée à CONJ.causal.perque ; le substantif « el perquè » n’a pas de nœud propre."
+    },
+    {
+      "id": "ADV.collocacio",
+      "kind": "leaf",
+      "parent": "ADV",
+      "ca": "no ho he vist mai",
+      "glosses": { "fr": "Place de l’adverbe autour d’un temps composé." },
+      "cefr": "B1",
+      "examples": [
+        "No ho he vist mai.",
+        "Sempre ho he dit.",
+        "Ho ha fet sovint.",
+        "Segurament ja han arribat."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français intercale l’adverbe entre l’auxiliaire et le participe (J’ai déjà mangé) ; le catalan ne le fait pas et le place avant l’auxiliaire ou après le participe, « ja ho he fet » et « no ho he vist mai »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      },
+      "notes": "Cette contrainte est posée ici faute d’un domaine SYN semé ; l’ordre des constituants en général lui reviendra."
+    },
     {
       "id": "CONJ",
       "kind": "branch",
@@ -3664,7 +4257,7 @@
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       },
-      "notes": "Trois graphies sont à distinguer : « per què » interrogatif, « perquè » conjonction, et « el perquè » substantif."
+      "notes": "La forme interrogative « per què », en deux mots, est traitée à ADV.interrogatiu.per_que."
     },
     {
       "id": "CONJ.causal.com_que",
