@@ -1,0 +1,565 @@
+{
+  "domain": "SYN",
+  "nodes": [
+    {
+      "id": "SYN",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "La syntaxe"
+    },
+    {
+      "id": "SYN.ordre",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "L’ordre des constituants"
+    },
+    {
+      "id": "SYN.ordre.svo",
+      "kind": "leaf",
+      "parent": "SYN.ordre",
+      "ca": "en Joan llegeix el diari",
+      "glosses": {
+        "fr": "Ordre non marqué sujet, verbe, complément."
+      },
+      "cefr": "A1",
+      "examples": [
+        "En Joan llegeix el diari.",
+        "La Maria ha comprat pa.",
+        "Els nens miren la tele."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Le catalan et le français partagent le même ordre de base, et la phrase simple se construit sans réagencement : « en Joan llegeix el diari » se calque mot pour mot."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.ordre.subjecte_postverbal",
+      "kind": "leaf",
+      "parent": "SYN.ordre",
+      "ca": "ha arribat el tren",
+      "glosses": {
+        "fr": "Sujet postposé au verbe avec les verbes de présentation et les inaccusatifs."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ha arribat el tren.",
+        "Falten dues cadires.",
+        "Va sortir el sol.",
+        "Encara no ha vingut ningú."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français exige un sujet explétif pour le même effet (Il est arrivé un train) ou remonte le sujet devant le verbe ; le catalan postpose simplement, sans rien mettre devant le verbe."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.dislocacio",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "Les dislocations et la structure informationnelle"
+    },
+    {
+      "id": "SYN.dislocacio.esquerra",
+      "kind": "leaf",
+      "parent": "SYN.dislocacio",
+      "ca": "el llibre, ja l'he llegit",
+      "glosses": {
+        "fr": "Dislocation à gauche, avec reprise obligatoire par un pronom faible."
+      },
+      "cefr": "B1",
+      "examples": [
+        "El llibre, ja l'he llegit.",
+        "De pomes, no en vull.",
+        "A la Marta, no li ho diguis."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La construction existe telle quelle en français (Le livre, je l’ai lu), mais elle y relève de l’oral familier alors qu’elle est en catalan l’ordre neutre et courant, y compris à l’écrit soigné."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.dislocacio.dreta",
+      "kind": "leaf",
+      "parent": "SYN.dislocacio",
+      "ca": "ja l'he llegit, el llibre",
+      "glosses": {
+        "fr": "Dislocation à droite, le constituant repris venant après la proposition."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ja l'he llegit, el llibre.",
+        "No en vull, de pomes.",
+        "És molt bo, aquest pa."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Même écart de registre qu’à gauche : « ja l'he llegit, el llibre » est ordinaire en catalan, alors que « je l’ai lu, le livre » reste marqué en français."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.dislocacio.focus",
+      "kind": "leaf",
+      "parent": "SYN.dislocacio",
+      "ca": "un llibre li va regalar",
+      "glosses": {
+        "fr": "Antéposition d’un constituant focalisé, sans reprise pronominale."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Un llibre li va regalar, no un disc.",
+        "Molt has trigat!",
+        "Poques vegades l'he vist tan content."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français focalise en construisant un clivage (C’est un livre qu’il lui a offert) ; le catalan antépose directement, et l’absence de pronom de reprise est ce qui distingue cette construction de la dislocation."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "La dislocation, elle, exige la reprise : voir SYN.dislocacio.esquerra."
+    },
+    {
+      "id": "SYN.interrogativa",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "L’interrogation"
+    },
+    {
+      "id": "SYN.interrogativa.total",
+      "kind": "leaf",
+      "parent": "SYN.interrogativa",
+      "ca": "véns demà?",
+      "glosses": {
+        "fr": "Interrogation totale par la seule intonation, sans changement d’ordre."
+      },
+      "cefr": "A2",
+      "examples": ["Véns demà?", "Has dinat ja?", "Ho saps, això?"],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français dispose de trois tours (intonation, est-ce que, inversion) ; le catalan n’a que l’intonation et la particule traitée au nœud voisin, et l’inversion du sujet clitique n’a pas d’équivalent."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.interrogativa.particula_que",
+      "kind": "leaf",
+      "parent": "SYN.interrogativa",
+      "ca": "que vols venir?",
+      "glosses": {
+        "fr": "La particule interrogative « que », facultative, en tête d’une interrogation totale."
+      },
+      "cefr": "A2",
+      "examples": ["Que vols venir?", "Que no ho sabies?", "Que hi ha algú?"],
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "Un francophone lit ce « que » initial comme un exclamatif ou un complétif, et l’emploi exclamatif existe d’ailleurs aussi en catalan (Que bonic) ; devant une proposition complète, il marque en réalité une question et équivaut à est-ce que."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "dialect_note": "Cette particule est surtout courante en catalan central ; ailleurs, l’intonation seule fait le même travail."
+    },
+    {
+      "id": "SYN.interrogativa.parcial",
+      "kind": "leaf",
+      "parent": "SYN.interrogativa",
+      "ca": "què vol en Joan?",
+      "glosses": {
+        "fr": "Interrogation partielle : le mot interrogatif en tête et le sujet après le verbe."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Què vol en Joan?",
+        "Amb qui has parlat?",
+        "On para la Marta?",
+        "Per què ho has fet?"
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le catalan antépose le mot interrogatif et s’arrête là, sans est-ce que ni inversion clitique ; le sujet, lui, passe après le verbe, ce que le français ne fait qu’avec l’inversion nominale."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "Les mots interrogatifs eux-mêmes relèvent d’ADV.interrogatiu et de DET.interrogatiu."
+    },
+    {
+      "id": "SYN.clitics",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "La place des pronoms faibles"
+    },
+    {
+      "id": "SYN.clitics.proclisi_enclisi",
+      "kind": "leaf",
+      "parent": "SYN.clitics",
+      "ca": "el veig / veure'l / mira'l",
+      "glosses": {
+        "fr": "Pronom faible avant le verbe conjugué, après l’infinitif, le gérondif et l’impératif positif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "El veig cada dia.",
+        "Vull veure'l demà.",
+        "Mira'l bé.",
+        "No el miris."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français est proclitique partout sauf à l’impératif positif, y compris devant l’infinitif (pour le voir) ; le catalan y est enclitique et soude le pronom au verbe, « per veure'l »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "La forme des pronoms faibles et l’ordre interne d’un groupe de pronoms relèvent de PRON.feble."
+    },
+    {
+      "id": "SYN.clitics.ascens",
+      "kind": "leaf",
+      "parent": "SYN.clitics",
+      "ca": "ho vull fer / vull fer-ho",
+      "glosses": {
+        "fr": "Montée du pronom faible devant une périphrase modale ou aspectuelle."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Ho vull fer ara.",
+        "Vull fer-ho ara.",
+        "T'ho he d'explicar.",
+        "He d'explicar-t'ho."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français fixe le pronom sur l’infinitif (je veux le faire) ; le catalan admet les deux places, « ho vull fer » comme « vull fer-ho », la première étant la plus courante."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.veu",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "La voix"
+    },
+    {
+      "id": "SYN.veu.passiva_ser",
+      "kind": "leaf",
+      "parent": "SYN.veu",
+      "ca": "va ser escrit per una dona",
+      "glosses": {
+        "fr": "Passif périphrastique avec ser et le participe, complément d’agent introduit par per."
+      },
+      "cefr": "B2",
+      "examples": [
+        "El llibre va ser escrit per una dona.",
+        "La llei serà aprovada demà.",
+        "Els resultats han estat publicats."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La construction est celle du français, auxiliaire plus participe plus complément d’agent, mais elle est nettement plus rare en catalan ordinaire, qui préfère l’actif ou le passif pronominal : le risque est de la surproduire, non de la manquer."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.veu.passiva_pronominal",
+      "kind": "leaf",
+      "parent": "SYN.veu",
+      "ca": "es venen pisos",
+      "glosses": {
+        "fr": "Passif pronominal : le patient devient sujet et le verbe s’accorde avec lui."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Es venen pisos.",
+        "Aquí es parla català.",
+        "Es va construir fa cent anys."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît le tour (les appartements se vendent bien) mais le réserve à certains verbes ; en catalan c’est la façon ordinaire de faire un passif sans agent, et l’accord du verbe avec le patient est obligatoire."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.veu.impersonal",
+      "kind": "leaf",
+      "parent": "SYN.veu",
+      "ca": "aquí es treballa molt",
+      "glosses": {
+        "fr": "Impersonnel en « es », sans aucun sujet, le verbe restant au singulier."
+      },
+      "cefr": "B1",
+      "examples": ["Aquí es treballa molt.", "Es diu que plourà.", "No es pot fumar."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français passe par « on », qui est un pronom sujet ; le catalan n’a pas de mot correspondant et laisse la place du sujet vide, si bien qu’il faut restructurer la phrase au lieu de traduire un mot par un mot."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.pronominals",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "Les constructions pronominales"
+    },
+    {
+      "id": "SYN.pronominals.reflexiu_reciproc",
+      "kind": "leaf",
+      "parent": "SYN.pronominals",
+      "ca": "rentar-se / escriure's",
+      "glosses": {
+        "fr": "Constructions réfléchies et réciproques."
+      },
+      "cefr": "A2",
+      "examples": ["Es renta cada matí.", "S'escriuen sovint.", "Ens veiem demà."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Construction identique au français, se laver et se voir, y compris pour le réciproque au pluriel : seule la place du pronom peut changer, ce qui relève de SYN.clitics."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.pronominals.inherents",
+      "kind": "leaf",
+      "parent": "SYN.pronominals",
+      "ca": "queixar-se / adonar-se / penedir-se",
+      "glosses": {
+        "fr": "Verbes essentiellement pronominaux, où le pronom ne porte aucune valeur réfléchie."
+      },
+      "cefr": "B1",
+      "examples": ["Es queixa de tot.", "No me n'havia adonat.", "Se'n penedirà."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Les deux langues ont la classe, mais pas les mêmes membres : « recordar » et « marxar » ne sont pas pronominaux là où « se souvenir » et « s’en aller » le sont, et « callar » répond à « se taire »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "SYN.subordinacio",
+      "kind": "branch",
+      "parent": "SYN",
+      "label_fr": "La subordination"
+    },
+    {
+      "id": "SYN.subordinacio.consecutio",
+      "kind": "leaf",
+      "parent": "SYN.subordinacio",
+      "ca": "em va dir que vindria",
+      "glosses": {
+        "fr": "Concordance des temps entre la principale et la subordonnée."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Em va dir que vindria.",
+        "Pensava que ja havien arribat.",
+        "Volia que ho fessis tu."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le report du futur en conditionnel se transfère (Em va dir que vindria) ; ce qui diverge est le subjonctif, le catalan gardant l’imparfait du subjonctif après un passé (Volia que ho fessis) là où le français courant met le présent."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "Le choix du subordonnant et le mode qu’il sélectionne relèvent de CONJ."
+    },
+    {
+      "id": "SYN.subordinacio.periode_condicional",
+      "kind": "leaf",
+      "parent": "SYN.subordinacio",
+      "ca": "si vingués, ho arreglaríem",
+      "glosses": {
+        "fr": "Le système conditionnel, appariement de la protase et de l’apodose."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Si plovia, ens quedàvem a casa.",
+        "Si vingués demà, ho arreglaríem.",
+        "Si ho hagués sabut, no hi hauria anat."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "L’appariement lui-même se transfère, présent avec futur et imparfait avec conditionnel ; mais produire la phrase entière suppose la protase, où le catalan met le subjonctif imparfait (Si vingués) contre l’imparfait de l’indicatif français."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      },
+      "notes": "Le mode que « si » sélectionne est traité à CONJ.condicional.si ; ce nœud tient l’accord des deux propositions."
+    },
+    {
+      "id": "SYN.concordanca_participi",
+      "kind": "leaf",
+      "parent": "SYN",
+      "ca": "les he vistes",
+      "glosses": {
+        "fr": "Accord du participe avec un complément d’objet direct pronominal antéposé."
+      },
+      "cefr": "B2",
+      "examples": [
+        "Les he vistes aquest matí.",
+        "L'he trobada al carrer.",
+        "Les hem comprades avui."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Même règle qu’en français (Je les ai vues), mais elle est facultative en catalan et limitée aux pronoms de troisième personne : « les he vistes » et « les he vist » sont l’un et l’autre reçus."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    }
+  ]
+}

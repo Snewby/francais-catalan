@@ -1291,3 +1291,162 @@ thing, so the resemblance points the learner right rather than wrong.
 **The CEFR column is a hypothesis, as in `NEG` and `CONJ`.** The A1 calls
 (`aquí`, `ara`, `molt`, `bé`, `sí`, `on`) are safe. Everything at B1 and B2 is a
 judgement about frequency and register rather than sourced data.
+
+### SYN (syntax)
+
+Both passes ran in one session, with the tree reviewed between them and
+`check-duplicates` run between 2a and 2b, which is the first pass to have that
+tool available. No dataset from the table above covers syntax, and no licensed
+data file, curated list or database was extracted from for this domain, so
+neither the compilation-copyright risk nor the EU database right described above
+is engaged. All examples and Catalan forms are hand-authored for this repo. The
+facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, line 177, which lists
+  `SYN.word_order`, `SYN.questions`, `SYN.subordination`, `SYN.conditional`,
+  `SYN.passive`, `SYN.pronominal_constr` and `SYN.info_structure`. Every one of
+  those seven is realised here, which is unusual: this is the first domain whose
+  docs/01 row needed extending rather than departing from.
+- The routing decisions recorded above in the `CONJ` and `ADV` sections, which
+  hand four facts to this domain.
+- General knowledge of Catalan syntax at reference-grammar level.
+  `giec.iec.cat` and `geiec.iec.cat` remain JavaScript-rendered and returned
+  nothing fetchable, as during `CONJ` and `ADV`, so **no GIEC or GEIEC section
+  number appears anywhere in this domain's prose and every grammatical claim
+  here is unretrieved**. docs/01 cites GEIEC chapter 33 for information
+  structure; that chapter was not read, and nothing here rests on it.
+
+**This domain is defined by subtraction, which no earlier one was.** Six domains
+were seeded before it and each took something that a naive reading of "syntax"
+would have put here. `CONJ` owns the subordinator inventory and the mood each
+selects, so `SYN.subordinacio` keeps only tense sequencing and the conditional
+period, both explicitly routed here by the mood-selection boundary recorded in
+the `CONJ` section. `ADV` owns adverb placement. `NEG` owns constituent
+negation, reinstated during that pass on the strength of GIEC filing it inside
+the negation chapter. `PRON.fort.subjecte` already owns pro-drop, so
+`SYN.ordre` does not re-mint it and holds only unmarked order and the postverbal
+subject. What is left is genuinely clause-level, and the domain is smaller and
+sharper for it.
+
+**Two boundaries here pre-empt domains that are still seed-only, and both were
+put to the user rather than decided quietly.** `SYN.veu.*` takes the passives
+and `SYN.clitics.*` takes clitic placement, while `VERB` sits at six leaves and
+`PRON` at four, each owing a proper 2a pass. Both were kept on the strength of
+the repo's own documents: docs/01 line 177 names `SYN.passive`, and the domain
+table in `CLAUDE.md` gives `SYN` "word order, clitic ordering, agreement,
+subordination". The division to hold when those passes run is that **`VERB` owns
+verbal morphology and `PRON` owns pronoun forms and the internal order of a
+clitic cluster, while `SYN` owns where the clitic attaches and how the clause is
+voiced.** `SYN.clitics.proclisi_enclisi` carries a `notes` field saying so, and
+`PRON.feble.combinacio.ci_cd` is the committed leaf that fixes the other half of
+that line. If a later pass disagrees, the argument to beat is that proclisis and
+enclisis are a fact about the verb the clitic leans on, not about the clitic.
+
+**`ADV.collocacio`'s justification was retired rather than left to rot.** That
+leaf was placed in `ADV` during its pass with a `notes` field saying it sat
+there "faute d'un domaine SYN semé". Seeding `SYN` makes that sentence false
+whatever else is decided, so the leaf stays in `ADV`, on the grounds that it is
+a fact about where adverbs go and `ADV` owns adverbs, and its note now states
+the boundary positively: general constituent order is `SYN.ordre`'s, and the
+leaf keeps only the adverb's place around the verb. **A note that justifies a
+placement by the absence of a domain has a shelf life, and this is the first
+time one expired.** Two others of the same shape are outstanding and will expire
+when `VERB` and `PRON` are seeded.
+
+**The docs/01 disagreement opened during `CONJ` is now resolved, in favour of
+docs/01 being incomplete rather than wrong.** Line 175 says Catalan has no
+_est-ce que_. The interrogative particle `que` (`Que vols venir?`) is
+functionally very close to one, and it is now
+`SYN.interrogativa.particula_que`. The claim in docs/01 is left standing with
+this recorded beside it, on the `pas` precedent: what line 175 gets right is
+that Catalan has no obligatory, register-neutral interrogative frame the way
+French does, and what it misses is that the particle exists at all. **Evidence
+grade: the particle is well attested to me but nothing was retrieved**, and the
+dialectal restriction written into its `dialect_note`, that it is chiefly
+Central Catalan, is the least certain part of the leaf.
+
+**The particle was split into its own leaf during 2b, which changed a status.**
+2a had it inside `SYN.interrogativa.total` alongside intonation questions. It
+came out as the only `false-friend` in the domain, and a status true of one
+member of a two-member leaf is the `si bé` problem the `CONJ` section records.
+The `si bé` ruling was that if you want the status, split the leaf; here the
+split was independently justified, because the particle was routed to this
+domain from `CONJ` as a fact in its own right. **The `false-friend` call rests
+on the exclamative reading**: a French speaker meets initial `que` as a
+completive or an exclamative, Catalan has the exclamative use too (`Que bonic`),
+and so the familiar reading is available and wrong. That is the definition the
+`fr-metalanguage` skill reserves the status for, rather than merely hard.
+
+**`check-duplicates` caught an error in this pass, on a leaf this pass itself
+had just created.** Splitting the particle out left
+`SYN.interrogativa.total` with `que vols venir?` still as its `ca`, so two
+leaves in the same branch claimed the same Catalan form. The check failed on it
+immediately and it was corrected to `véns demà?`. Worth recording because the
+tool was built for cross-domain collisions with leaves seeded passes earlier,
+and its first live catch was neither: it was a within-branch, within-session
+mistake made while restructuring. The 15 recorded overlaps in
+`data/duplicate-allowlist.json` needed no additions for this domain.
+
+**Ruled out of this domain:**
+
+- **Relative clauses and the missing counterpart to `dont`** stay with `PRON`,
+  as the `PREP` section ruled and the `DET` section widened to the whole
+  nominal-ellipsis family. `SYN.subordinacio` holds no relative-clause leaf.
+- **The optative `que`** (`Que tinguis sort!`) was routed here by `CONJ` at
+  medium confidence as clause modality. **It is not keyed in this pass.** The
+  interrogative particle earned a leaf because it has a French contrast worth
+  teaching; the optative is a direct parallel to French `Qu'il entre !` and
+  would be a `transfer` leaf stating that nothing is different. It is recorded
+  here rather than minted, and if a later pass wants it, `SYN.interrogativa`
+  would need renaming to something covering clause type generally.
+- **Exclamatives** (`Que bonic!`, `Quin dia!`) are not keyed either. `Quin` is
+  `DET.interrogatiu.quin`'s, which the `DET` pass named "interrogatifs et
+  exclamatifs", so the exclamative determiner already has a home.
+- **Word order inside the noun phrase** is `NOM`'s and `DET`'s;
+  `DET.ordre_intern` already owns the determiner stack.
+
+**Only two leaves are `transfer`, which is the lowest share of any domain so
+far, and the reason is structural rather than pessimistic.** `SYN.ordre.svo` and
+`SYN.pronominals.reflexiu_reciproc` are the two places where a French speaker
+can build the Catalan structure by direct transfer. Everywhere else the two
+languages have the same construction available and differ in how often, in what
+register, or with what mood they use it, which is precisely what `near-miss`
+names. The dislocations are the clearest case: `Le livre, je l'ai lu` is
+perfectly good French, so the structure transfers and the register does not,
+and a learner who transfers the French frequency will sound stilted rather than
+wrong. That is recorded in the notes as a register contrast rather than a
+structural one, because overstating it would be as misleading as missing it.
+
+**`SYN.subordinacio.periode_condicional` was argued down from `transfer` to
+`near-miss` on scope grounds.** The tense pairing itself does transfer: present
+with future, imperfect with conditional, pluperfect with past conditional, all
+as in French. But the leaf is the conditional period, and producing one means
+producing the protasis, where Catalan takes the imperfect subjunctive
+(`Si vingués`) against the French indicative imperfect. Marking the leaf
+`transfer` would have told the learner the whole sentence was free when half of
+it is the divergence `CONJ.condicional.si` exists to warn about. **A status has
+to be true of what the leaf makes the learner produce, not only of the rule
+named in its gloss.**
+
+**No leaf is `novel`, and the claim is the same one `PREP`, `CONJ` and `ADV`
+made.** French and Catalan are both Romance languages with largely parallel
+clause architecture, including the `en` and `hi` clitics that Spanish lacks, so
+nothing in this domain is anchorless. The nearest candidate was
+`SYN.veu.impersonal`, on the grounds that French `on` has no Catalan
+counterpart; it was rejected because French also has impersonal `se`
+constructions (`il se dit que`, `ça ne se fait pas`), so an analogue exists and
+the difference is distributional.
+
+**An example was corrected on the browser review for contradicting its own
+leaf.** `SYN.concordanca_participi` had `Quants n'has llegits?` among its
+examples, agreement with the partitive `en`, while the note on the same leaf
+restricts agreement to third-person accusative clitics. Replaced with
+`Les hem comprades avui`. No test could have caught a card whose example
+undercuts its own rule, and this is the second consecutive domain where the eye
+review found an accuracy error rather than a taxonomic one.
+
+**The CEFR column is a hypothesis, as in every domain since `NEG`.** This one
+skews high, with eleven of eighteen leaves at B1 or above, which is a claim
+about the domain rather than a hedge: dislocation, clitic placement and the
+sequence of tenses are not A-level material even though the learner meets them
+in A-level input.

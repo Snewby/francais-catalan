@@ -745,7 +745,7 @@
           "graded_review_count": 0
         }
       },
-      "notes": "Cette contrainte est posée ici faute d’un domaine SYN semé ; l’ordre des constituants en général lui reviendra."
+      "notes": "L’ordre des constituants en général relève de SYN.ordre ; ce nœud ne retient que la place de l’adverbe autour du verbe."
     }
   ]
 }

@@ -54,7 +54,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `ADV`  | `data/adv.fragment.json`  | done        | done        | this pass |
 | `CONJ` | `data/conj.fragment.json` | done        | done        | this pass |
 | `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
-| `SYN`  |                           | not started | not started |           |
+| `SYN`  | `data/syn.fragment.json`  | done        | done        | this pass |
 | `LEX`  |                           | not started | not started |           |
 
 Start on a `not started` domain rather than on `VERB` or `PRON`. Extending a
@@ -407,6 +407,45 @@ opaque form cannot mislead. `ADV.manera.ment` is the strongest transfer call in
 the taxonomy so far, because Catalan is more regular than French here and a
 French speaker over-generalising the rule gets Catalan right.
 
+`SYN` followed, 18 leaves under 8 branches, and it is the first domain seeded
+with `check-duplicates` available. Four things in it are worth carrying forward:
+
+- **A domain can be defined by subtraction, and this one is.** Six domains were
+  seeded before it and each took something a naive reading of "syntax" would
+  have put here: `CONJ` the subordinators and their mood, `ADV` adverb
+  placement, `NEG` constituent negation, `PRON` pro-drop. `SYN` is smaller and
+  sharper for it, and the leaves it keeps are genuinely clause-level. Expect the
+  same for `LEX`, which is last and will be defined almost entirely by what the
+  other eleven declined.
+- **A note that justifies a placement by the absence of a domain has a shelf
+  life, and the first one just expired.** `ADV.collocacio` said it sat in `ADV`
+  "faute d'un domaine SYN semé". Seeding `SYN` makes that false however the
+  question is decided. The leaf stays in `ADV`, and its note now states the
+  boundary positively instead of citing a gap. **Two more of that shape are
+  outstanding** and will expire when `VERB` and `PRON` are seeded.
+- **A status has to be true of what the leaf makes the learner produce, not
+  only of the rule named in its gloss.**
+  `SYN.subordinacio.periode_condicional` was argued down from `transfer` to
+  `near-miss` on exactly that: the tense pairing transfers cleanly, but the leaf
+  is the whole conditional period, and producing one means producing a protasis
+  where Catalan takes the imperfect subjunctive against the French indicative.
+- **`check-duplicates` earned its place on its first live pass, and not in the
+  way it was designed to.** It was built for collisions with domains seeded
+  passes earlier. Its first catch was a within-branch, within-session error:
+  splitting the interrogative particle into its own leaf left
+  `SYN.interrogativa.total` still claiming `que vols venir?` as its Catalan
+  form. Run it after any restructuring, not only at the 2a/2b boundary.
+
+`SYN` came out 2 transfer, 15 near-miss, 1 false-friend and no novel. Two
+transfer is the lowest share of any domain, and the reason is structural: the
+two languages have nearly every clause construction in common and differ in
+register, frequency or mood, which is what `near-miss` names. The dislocations
+are the clearest case, since `Le livre, je l'ai lu` is perfectly good French and
+what differs is that Catalan treats it as neutral order. The false-friend is
+`SYN.interrogativa.particula_que`, where a French speaker meets initial `que` as
+a completive or exclamative, Catalan has the exclamative use too, and so the
+familiar reading is available and wrong.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -512,9 +551,23 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   adverb is stated in `notes` on `ADV.modalitat.additius`. Still owed to `LEX`:
   `amb prou feines` and the emphatic reply locutions `de cap manera`,
   `en absolut`, `ni de bon tros`.
-- Three domains remain unseeded. `data/sources.md` has seven worked examples of a
-  per-domain notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ` and
-  `ADV`), so later
+- **`SYN` pre-empts two domains that are still seed-only, deliberately and with
+  the user's agreement.** `SYN.veu.*` takes the passives and `SYN.clitics.*`
+  takes clitic placement, while `VERB` sits at 6 leaves and `PRON` at 4. Both
+  were kept because the repo's own documents put them there: docs/01 line 177
+  names `SYN.passive`, and the domain table in `CLAUDE.md` gives `SYN` "word
+  order, clitic ordering". The line for those passes to respect is that **`VERB`
+  owns verbal morphology and `PRON` owns pronoun forms and cluster order, while
+  `SYN` owns where the clitic attaches and how the clause is voiced.** If a
+  later pass wants to move them, the argument to beat is in `data/sources.md`.
+- **The optative `que` is still not keyed anywhere.** `CONJ` routed it to `SYN`
+  at medium confidence; the `SYN` pass declined to mint it, because it is a
+  direct parallel to `Qu'il entre !` and the leaf would state that nothing
+  differs. Recorded rather than lost, and taking it would mean renaming
+  `SYN.interrogativa` to cover clause type generally.
+- Two domains remain unseeded. `data/sources.md` has eight worked examples of a
+  per-domain notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`
+  and `SYN`), so later
   passes
   have a shape to follow rather than an empty placeholder. The `PREP` one is
   the model for a domain whose tree departs from its docs/01 row, because it
