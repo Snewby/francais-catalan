@@ -83,7 +83,15 @@ data/<domain>.fragment.json   the only editable source
   -> gen-schema stage 2  -> src/api/schema.ts            generated
   -> validate-ids        (every referenced ID exists)
   -> check-glosses       (every leaf has glosses.fr and contrast_fr)
+  -> check-duplicates    (no two leaves teach one rule under two keys)
 ```
+
+`check-duplicates` is the one to run **between the structural pass and the gloss
+pass**, because a structural pass reasons from the target language and cannot
+see what a domain seeded earlier has already keyed. Two domains have minted a
+leaf that already existed. Legitimate overlaps, such as one sentence
+illustrating gender in `NOM` and the article paradigm in `ART`, are recorded in
+`data/duplicate-allowlist.json` with a rationale; anything unrecorded fails.
 
 Both stages are one command, `npm run gen-schema`. Run the checks after it,
 never before: `validate-ids` on a stale `taxonomy.json` validates the previous

@@ -28,10 +28,16 @@ jobs:
 
       # The invariant machinery, live since phase 1. A component ID referenced
       # anywhere but absent from the taxonomy, or a leaf without glosses.fr or
-      # a valid contrast_fr, fails CI here. Both run last, so a red lint,
+      # a valid contrast_fr, fails CI here. These run last, so a red lint,
       # typecheck, format or test step means they never executed at all: a
       # green badge on an earlier step is not evidence the taxonomy was
       # checked. That has already happened once, for the whole NOM seed.
       - run: npm run validate-ids
 
       - run: npm run check-glosses
+
+      # Two leaves teaching one rule under two keys satisfy both checks above,
+      # and did twice, in the CONJ and ADV seeds. This one fails on an
+      # unrecorded collision; legitimate overlaps live in
+      # data/duplicate-allowlist.json with a rationale each.
+      - run: npm run check-duplicates

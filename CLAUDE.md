@@ -9,6 +9,9 @@
 - Regenerate schema after taxonomy edits: `npm run gen-schema`
 - Validate IDs: `npm run validate-ids`
 - Check gloss coverage: `npm run check-glosses`
+- Check for two keys teaching one rule: `npm run check-duplicates`. Run it
+  between 2a and 2b, not after glossing: a 2a pass cannot see what an earlier
+  domain already keyed, and glossing a duplicate is wasted work.
 
 ## Languages (two different things, do not conflate)
 
@@ -29,7 +32,8 @@
   content, because two copies drift and the prose copy is the one that gets
   believed. Field shape: src/taxonomy/taxonomy.schema.json. Contrast
   assignments: data/contrast-overrides.json. Evidence routing:
-  src/srs/evidence.ts.
+  src/srs/evidence.ts. Legitimate overlaps between two leaves:
+  data/duplicate-allowlist.json.
 - The component-ID vocabulary is CLOSED. Every ID emitted by the model,
   referenced in UI, DB, or tests MUST exist in src/taxonomy/taxonomy.json.
   taxonomy.json is GENERATED from data/*.fragment.json, so new IDs are added

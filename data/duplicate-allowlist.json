@@ -1,0 +1,95 @@
+{
+  "$comment": "Overlaps between two leaves that a human has judged legitimate. scripts/check-duplicates.ts reports an identical Catalan form or an identical example sentence shared by two leaves, and fails on anything not recorded here, so that the judgement is written down rather than made silently. Values are stored normalised: lower case, without punctuation. An entry matches only its exact set of IDs, so adding a third leaf to a recorded pair reopens the question. A stale entry, one that no longer matches any collision, also fails.",
+  "allowed": [
+    {
+      "kind": "ca",
+      "value": "el dilluns",
+      "ids": ["ART.def.us.dates_setmana", "PREP.a_en.temps.data_sense_prep"],
+      "rationale": "The closest of the recorded overlaps and the one to watch. Both leaves take el dilluns as their headline form, but they teach different halves of it: ART owns the article's value, definite for a habit and absent for a specific date, and PREP owns the absence of any preposition before a day or a date. Neither states the other's rule. If either is ever rewritten to state both, they become one leaf and one of them should go."
+    },
+    {
+      "kind": "ca",
+      "value": "si",
+      "ids": ["CONJ.completiva.interrogativa_indirecta", "CONJ.condicional.si"],
+      "rationale": "A genuine homonym, not a duplicate. Interrogative si introduces an indirect question and takes the indicative, conditional si introduces a protasis and takes the subjunctive in the irrealis. Same form, two subordinators, two rules, and a learner needs both keys."
+    },
+    {
+      "kind": "ca",
+      "value": "no",
+      "ids": ["NEG.simple.no", "NEG.fragment"],
+      "rationale": "The preverbal negator and the standalone answer particle are the same word doing two jobs. NEG.simple.no negates a clause, NEG.fragment replies to a question without repeating it. Kept apart deliberately during the NEG pass, and ADV.modalitat.si is the positive counterpart of the second."
+    },
+    {
+      "kind": "example",
+      "value": "el gat dorm",
+      "ids": ["NOM.gender.masc_fem_o", "NOM.number.regular", "ART.def.forma.paradigma"],
+      "rationale": "A deliberately plain sentence carrying gender, number and the article paradigm at once. Reusing it is what makes the three leaves comparable: the learner sees the same frame and one thing changing in it."
+    },
+    {
+      "kind": "example",
+      "value": "els gats dormen",
+      "ids": ["NOM.number.regular", "ART.def.forma.paradigma"],
+      "rationale": "The plural of the frame above, shared for the same reason."
+    },
+    {
+      "kind": "example",
+      "value": "la casa és gran",
+      "ids": ["NOM.number.a_es", "ART.def.forma.paradigma"],
+      "rationale": "Feminine counterpart of the shared frame, illustrating the -a to -es plural in NOM and la in the article paradigm."
+    },
+    {
+      "kind": "example",
+      "value": "les cases són grans",
+      "ids": ["NOM.number.a_es", "ART.def.forma.paradigma"],
+      "rationale": "Plural of the feminine frame, shared for the same reason."
+    },
+    {
+      "kind": "example",
+      "value": "ja és la una",
+      "ids": ["ART.def.forma.la_no_elisio", "ART.def.us.hores"],
+      "rationale": "One o'clock is the standard illustration of both rules at once: la does not elide before unstressed u, and the hour takes the definite article. Within one domain and one branch, and each leaf states only its own half."
+    },
+    {
+      "kind": "example",
+      "value": "tots els meus amics",
+      "ids": ["DET.ordre_intern", "DET.quant.universal.tot"],
+      "rationale": "DET.ordre_intern takes this as its headline form because it is the maximal stack of quantifier, article and possessive; DET.quant.universal.tot needs the same string to show tot preceding the definite article. The ordering rule and the quantifier are different facts about it."
+    },
+    {
+      "kind": "example",
+      "value": "totes dues mans",
+      "ids": ["DET.ordre_intern", "DET.quant.universal.dual"],
+      "rationale": "Same pairing as above for the dual: internal order in one leaf, the dual quantifier itself in the other."
+    },
+    {
+      "kind": "example",
+      "value": "tens cap pregunta",
+      "ids": ["DET.quant.polaritat.cap", "DET.quant.polaritat.contextos"],
+      "rationale": "Recorded in TASKS.md as unavoidable before this check existed: one leaf holds the polarity item and the other holds the environments that license it, and an environment can only be shown with an item inside it. The two are written against each other on purpose."
+    },
+    {
+      "kind": "example",
+      "value": "si veus cap error avisa'm",
+      "ids": ["DET.quant.polaritat.cap", "DET.quant.polaritat.contextos"],
+      "rationale": "The conditional licensing environment for the same pair, shared for the same unavoidable reason."
+    },
+    {
+      "kind": "example",
+      "value": "no en queda gens",
+      "ids": ["DET.quant.polaritat.gens", "NEG.concordanca.postverbal"],
+      "rationale": "Cross-domain and correct: DET owns gens as a quantifier of mass or degree, NEG owns the requirement that a preverbal no accompany it. The NEG pass ruled explicitly that it keeps only the concord behaviour and not the item's own distribution, so this is that boundary showing up in the examples."
+    },
+    {
+      "kind": "example",
+      "value": "vaig a girona",
+      "ids": ["PREP.atones.inventari", "PREP.a_en.lloc.a_lloc"],
+      "rationale": "The inventory leaf illustrates each weak preposition with its most ordinary use, so it necessarily reuses a sentence that a later leaf analyses in detail. Within one domain."
+    },
+    {
+      "kind": "example",
+      "value": "penso en tu",
+      "ids": ["PREP.atones.inventari", "PREP.regim.divergent_en"],
+      "rationale": "Same inventory-versus-detail relation as above: the inventory shows en in use, the government leaf explains why this verb takes en where French takes another preposition."
+    }
+  ]
+}

@@ -16,7 +16,8 @@
     "format:check": "prettier --check .",
     "gen-schema": "tsx scripts/gen-schema.ts",
     "validate-ids": "tsx scripts/validate-ids.ts",
-    "check-glosses": "tsx scripts/check-glosses.ts"
+    "check-glosses": "tsx scripts/check-glosses.ts",
+    "check-duplicates": "tsx scripts/check-duplicates.ts"
   },
   "dependencies": {
     "dexie": "^4.0.11",
