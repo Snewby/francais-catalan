@@ -53,7 +53,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
 | `ADV`  |                           | not started | not started |           |
 | `CONJ` |                           | not started | not started |           |
-| `NEG`  |                           | not started | not started |           |
+| `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
 | `SYN`  |                           | not started | not started |           |
 | `LEX`  |                           | not started | not started |           |
 
@@ -244,6 +244,75 @@ the short version is that `gens` resembles a French noun rather than a French
 structure, and `mon pare` does mean mon père, so neither fits the definition
 without widening it.
 
+`NEG` followed, 15 leaves under 4 branches, and it is the first domain whose 2a
+output was revised against an outside reference grammar rather than against
+review alone. Two rounds of external review against GIEC chapter 35 and GEIEC
+chapter 32 ran between 2a and 2b. Five things in it change how the remaining
+domains should be seeded:
+
+- **A coverage check run in the target language cannot find a gap that has no
+  target-language marker in it.** 2a enumerated the Catalan negation system,
+  found nothing missing, and had in fact missed `ja no` (`ne...plus`),
+  `encara no` (`pas encore`) and `no ... més que` (`ne...que`). None of them
+  contains a negator, so no enumeration of Catalan negators would ever surface
+  them: they are an adverb plus the ordinary `no`. **The coverage check has to
+  be run twice, once from the Catalan inventory and once from a French-to-
+  Catalan mapping**, and the second sweep is the one that finds multi-word and
+  particle-plus-adverb constructions. `DET`'s missing interrogative was the
+  same failure caught one domain earlier and diagnosed only as "run coverage
+  separately from the interference weighting"; that diagnosis was too weak,
+  because it does not say which direction to run it in.
+- **Where the reference grammar files a phenomenon is evidence about which
+  domain owns it.** Constituent negation was seeded, then dropped to `SYN` as
+  a scope fact, then reinstated when the review reported GIEC has it as
+  §35.2.2 inside the negation chapter. The same evidence settled the opposite
+  way for the negative imperative, which GIEC treats at §34.4 under imperative
+  clauses and only mentions in passing in chapter 35, so it stays `VERB`'s.
+  Both had been argued from first principles first, and in one case first
+  principles got it wrong.
+- **A source document in this repo can be out of date, and the fix is to
+  record the disagreement, not to overwrite it.** `docs/01` says `pas` "only
+  reinforces a simple _no_, not an already-double negation". GIEC §35.4.2.2
+  supersedes that and licenses `pas` with negative quantifiers and with
+  constituent negation. The card teaches GIEC; the docs/01 claim is left
+  standing in `data/sources.md` beside what supersedes it, because other
+  passes treat `docs/01` as authoritative and a silent edit would read as
+  drift. Expect more of these as later domains meet the grammar.
+- **An inferred fact must carry its evidence grade into the repo.** GIEC §35.5
+  is "La negació anticipada i la doble negació", and its neg-raising half is
+  the only phenomenon in chapter 35 that had no key, now `NEG.anticipada`. The
+  title is well corroborated, the phenomenon confirmed from GEIEC §20.4, but
+  the section's own wording and canonical example were never retrieved,
+  because giec.iec.cat is JavaScript-rendered. `data/sources.md` records that
+  three-tier grading explicitly. Without it the inference hardens into a fact
+  the moment somebody restates it.
+- **The CEFR column is our hypothesis, not sourced data.** The published
+  Catalan L2 syllabi (Institut Ramon Llull, Generalitat) are organised by
+  communicative function and pin only basic `no` and `tampoc` to A1-A2.
+  Every other level in this domain is a judgement. Recorded in
+  `data/sources.md`, because a field that looks sourced will be trusted later.
+
+Six of the fifteen leaves sit flat at root level, which is unusual against the
+other seeded domains and would normally read as a tree nobody finished. Each
+traces to a distinct GIEC subsection: §35.2.2, §35.2.3, §35.5, §35.6, the
+restrictive frame, and non-finite negation. Catalan negation is a small concord
+core plus a scatter of independent constructions, and the flat shape is that
+fact rather than an unfinished branch pass.
+
+`NEG` came out 10 near-miss, 3 transfer, 1 false-friend and 1 novel. It is the
+first domain outside the phase 1 seed to have a false-friend at all:
+`NEG.aspecte.ja_no`, where `ja` is a cognate of « déjà » so `ja no ho faig`
+invites the reading « je ne le fais déjà pas » for what means « je ne le fais
+plus ». Two transfer assignments were challenged on review and both moved to
+near-miss. `NEG.restrictiva` moved because a shared function with « ne...que »
+is exactly what produces the calque `*no ... que`, which is not Catalan.
+`NEG.expletiu` moved because `transfer` collided with the `gaire` precedent in
+`DET`: a form absent from a contemporary speaker's productive grammar is not an
+anchor. It stopped at near-miss rather than following `gaire` to novel, because
+expletive `ne` is obligatory in French comparatives (GBU §24.5) and so is a
+live rule gated by register rather than a fossil. That distinction is the
+useful part of the precedent and is recorded in `data/sources.md`.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -285,8 +354,23 @@ Three decisions in it are worth knowing before phase 6 touches it:
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
-- Six domains remain unseeded. `data/sources.md` has four worked examples of a
-  per-domain notes section (`NOM`, `ART`, `DET` and `PREP`), so later passes
+- **`NEG` is not verified closed against GIEC chapter 35.** Every subsection was
+  confirmed except §35.5, whose body never surfaced because giec.iec.cat is
+  JavaScript-rendered. `NEG.anticipada` was seeded from the title plus
+  corroborating sources, and its card text is owed a check against the print
+  edition, roughly pp. 1310-1313. Until then the leaf is right in substance and
+  unverified in wording.
+- **Three facts are ruled out of `NEG` and owed to domains not yet seeded.** The
+  negative imperative (`no vinguis`, present subjunctive) belongs to `VERB` and
+  has no key anywhere today. Approximate negation (`gairebé no`, `amb prou
+feines`) splits between `ADV` and `LEX`. The contradictory answer particle
+  `sí`, which a French speaker reaches for from « si », is positive polarity and
+  belongs with response particles in `ADV`. Article behaviour under negation
+  (French `pas de` against a bare noun or `cap`) is ruled out of `NEG` and split
+  across `ART`, `DET` and `NOM`, so it is the one most likely to fall between
+  three domains. All four are argued in `data/sources.md`.
+- Five domains remain unseeded. `data/sources.md` has five worked examples of a
+  per-domain notes section (`NOM`, `ART`, `DET`, `PREP` and `NEG`), so later passes
   have a shape to follow rather than an empty placeholder. The `PREP` one is
   the model for a domain whose tree departs from its docs/01 row, because it
   records what was added, what was re-axed and what was ruled out to another
@@ -374,6 +458,18 @@ Three decisions in it are worth knowing before phase 6 touches it:
   throws `The URL must be of scheme file`. This is distinct from the expected
   Phase 1 TDD failures and will persist after `src/taxonomy/` exists. Use
   `process.cwd()` or put the file-reading tests in the `node` environment.
+
+- **The narrow no-break space assertion has a hole, and `NEG` fell in it.**
+  `test/gloss-completeness.test.ts` checks for U+202F before `: ; ! ?` only
+  where the punctuation follows a letter, so a French field ending
+  `(pas, jamais...);` passes with no space at all. Found by eye during the `NEG`
+  browser review and corrected by hand in `data/neg.fragment.json`, but the test
+  is still the one that let it through, and the same hole covers any punctuation
+  preceded by a bracket, a quotation mark or a digit. The rule is stated in
+  three places and enforced by one assertion, so the assertion is the thing that
+  has to be right. Widen it to "the character before the punctuation is U+202F,
+  whatever it is", and re-run it over every seeded domain, since only `NEG` has
+  been swept by eye.
 
 ## Manual steps
 

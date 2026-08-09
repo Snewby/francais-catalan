@@ -3364,6 +3364,366 @@
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
+    },
+    { "id": "NEG", "kind": "branch", "parent": null, "label_fr": "La négation" },
+    {
+      "id": "NEG.simple",
+      "kind": "branch",
+      "parent": "NEG",
+      "label_fr": "La négation simple et son renforcement"
+    },
+    {
+      "id": "NEG.simple.no",
+      "kind": "leaf",
+      "parent": "NEG.simple",
+      "ca": "no",
+      "glosses": { "fr": "Négation simple par la seule particule préverbale « no »." },
+      "cefr": "A1",
+      "examples": ["No vinc.", "No ho sé.", "No hi és."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répartit la négation entre « ne » et un second élément (pas, jamais…) ; le catalan n’a besoin que d’une seule particule préverbale, « no », qui suffit à elle seule."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.simple.pas",
+      "kind": "leaf",
+      "parent": "NEG.simple",
+      "ca": "no ... pas",
+      "glosses": {
+        "fr": "Renforcement facultatif de la négation par l’adverbe postposé « pas »."
+      },
+      "cefr": "A2",
+      "examples": ["No hi vaig anar pas.", "No és pas fàcil.", "No ho sap pas."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme le pas français, il renforce la négation, mais reste facultatif ; à la différence du français, il peut aussi accompagner un mot déjà négatif (concordance) ou porter sur un seul constituant, ce que le français ne permet pas avec « ne ... pas »."
+      },
+      "notes": "« pas » se place le plus souvent en fin d’énoncé ou de périphrase verbale (« No vaig veure'l pas »), mais un registre plus marqué l’intercale entre l’auxiliaire et le verbe (« No vaig pas veure'l »).",
+      "dialect_note": "Cet emploi renforçateur de « pas » est courant au Principat mais absent du valencien et du baléare, où « no » seul suffit.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.concordanca",
+      "kind": "branch",
+      "parent": "NEG",
+      "label_fr": "La concordance négative"
+    },
+    {
+      "id": "NEG.concordanca.postverbal",
+      "kind": "leaf",
+      "parent": "NEG.concordanca",
+      "ca": "no ... ningú / res / mai / enlloc / tampoc / cap / gens / ni",
+      "glosses": {
+        "fr": "Concordance négative postverbale : « no » préverbal accompagné d’un mot négatif après le verbe."
+      },
+      "cefr": "A2",
+      "examples": [
+        "No he vist ningú.",
+        "No hi ha res.",
+        "No hi ha anat mai.",
+        "No el trobo enlloc.",
+        "No hi vull anar tampoc.",
+        "No té cap dubte.",
+        "No en queda gens.",
+        "No hi vam anar ni ell ni jo."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comme en français soutenu (ne + personne/rien/jamais), « no » est obligatoire devant le verbe et s’accompagne du mot négatif postposé ; mais contrairement au français courant, qui laisse souvent tomber « ne » à l’oral, le catalan ne permet jamais l’omission de « no »."
+      },
+      "notes": "Ces mots négatifs peuvent aussi occuper la position préverbale (voir NEG.concordanca.preverbal), mais avec un rendement inégal : « res », « ningú », « cap » et « mai » s’y prêtent aisément, alors que « gens » et « enlloc » s’y trouvent rarement. « tampoc », bien que rangé ici pour son comportement de concordance, est en réalité un adverbe focal additif et non un quantifieur négatif comme les autres membres de cette liste.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.concordanca.preverbal",
+      "kind": "leaf",
+      "parent": "NEG.concordanca",
+      "ca": "ningú (no) ho sap",
+      "glosses": {
+        "fr": "Concordance négative préverbale : le mot négatif en tête de proposition rend le « no » préverbal facultatif."
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ningú no ho sap.",
+        "Ningú ho sap.",
+        "Mai no hi he anat.",
+        "Res no em fa por.",
+        "Ni ell ni jo hi vam anar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "En français, le sujet négatif « personne »/« rien » maintient obligatoirement « ne » (Personne ne sait) ; en catalan, « no » peut au contraire s’effacer devant un mot négatif déjà préverbal (Ningú ho sap), ce qui n’a pas d’équivalent facultatif en français standard."
+      },
+      "notes": "Les registres soutenus conservent « no » même avec un élément négatif préverbal, y compris « ni » préverbal (« Ni ell ni jo no hi vam anar »), alors que le registre courant l’omet (« Ni ell ni jo hi vam anar »).",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.concordanca.matriu_subordinada",
+      "kind": "leaf",
+      "parent": "NEG.concordanca",
+      "ca": "no vull que vingui ningú",
+      "glosses": {
+        "fr": "Extension de la portée du « no » de la principale à une complétive au subjonctif, qui licencie un mot négatif comme « ningú » sans second « no » local."
+      },
+      "cefr": "B2",
+      "examples": [
+        "No vull que vingui ningú.",
+        "No crec que ho sàpiga ningú.",
+        "No permet que hi entri ningú."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a un mécanisme voisin (une négation de la principale au subjonctif peut licencier un indéfini polarisé dans la subordonnée), mais il change alors de mot (qui que ce soit) plutôt que de réutiliser « personne » sans « ne » local, ce que le catalan fait directement avec « ningú »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.concordanca.minimitzadors",
+      "kind": "leaf",
+      "parent": "NEG.concordanca",
+      "ca": "no ... ni gota / ni un cèntim / ni piu",
+      "glosses": {
+        "fr": "Renforcement emphatique de la négation par un nom minimisateur introduit par « ni » (ni piu, ni un cèntim, ni gota), équivalent à « pas un(e) seul(e) ... »."
+      },
+      "cefr": "C1",
+      "examples": [
+        "No va dir ni piu.",
+        "No en tinc ni un cèntim.",
+        "No en queda ni gota."
+      ],
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français ne connaît que des vestiges isolés et figés de ce procédé (n’y voir goutte), non une classe productive comme en catalan ; la construction doit donc s’apprendre pour elle-même plutôt que par extension d’un patron français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.aspecte",
+      "kind": "branch",
+      "parent": "NEG",
+      "label_fr": "La négation aspectuelle"
+    },
+    {
+      "id": "NEG.aspecte.ja_no",
+      "kind": "leaf",
+      "parent": "NEG.aspecte",
+      "ca": "ja no",
+      "glosses": {
+        "fr": "« ja no » marque la cessation d’un état ou d’une habitude : « ne ... plus »."
+      },
+      "cefr": "A2",
+      "examples": ["Ja no hi vaig.", "Ja no fumo.", "Ja no viu aquí."],
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« ja » est apparenté au français « déjà », ce qui pousse un francophone à lire « ja no » comme une combinaison avec déjà ; en réalité « ja no » signifie « ne ... plus ». Seul, « ja » signifie bien « déjà » (Ja ho sé), mais combiné à « no » il marque la cessation et non l’antériorité."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.aspecte.encara_no",
+      "kind": "leaf",
+      "parent": "NEG.aspecte",
+      "ca": "encara no",
+      "glosses": {
+        "fr": "« encara no » marque qu’un état ou un événement attendu ne s’est pas encore produit : « pas encore »."
+      },
+      "cefr": "A2",
+      "examples": ["Encara no ha arribat.", "Encara no ho sap.", "No ho sap encara."],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Correspond au français « pas encore », mais l’ordre des éléments est inversé : l’adverbe « encara » précède ordinairement « no », alors que le français place « pas » avant « encore » ; « encara » peut aussi suivre en fin de proposition (No ho sap encara)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.aspecte.no_mes",
+      "kind": "leaf",
+      "parent": "NEG.aspecte",
+      "ca": "no ... més",
+      "glosses": {
+        "fr": "« no ... més » marque l’arrêt d’une action répétée ou d’une quantité : « ne ... plus »."
+      },
+      "cefr": "B1",
+      "examples": ["No hi aniré més.", "No en vull més.", "No hi treballa més."],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Structure calquée sur le français « ne ... plus » : « no » préverbal et « més » postverbal occupent les mêmes positions que « ne » et « plus », si bien que l’intuition française transfère sur le plan sémantique ; le niveau B1 tient à la difficulté de placement (No hi aniré més, avec un pronom faible intercalé), non à un écart de structure entre les deux langues."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.expletiu",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "més alt que no sembla",
+      "glosses": {
+        "fr": "« no » explétif, sans valeur négative propre, dans une comparative ou une subordonnée temporelle introduite par « abans que »."
+      },
+      "cefr": "C1",
+      "examples": [
+        "És més alt que no sembla.",
+        "Ho farem abans que no arribi.",
+        "Fa més calor a dins que no pas a fora."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Rappelle le « ne » explétif français des mêmes contextes (plus grand qu’il ne semble, avant qu’il n’arrive), mais ce dernier reste un trait de registre soutenu que beaucoup de locuteurs ne produisent plus spontanément à l’oral, alors que le « no » catalan garde un emploi plus stable à travers les registres."
+      },
+      "notes": "Après un verbe de crainte (tenir por), la négation explétive est possible mais ambiguë avec une négation réelle : « Tinc por que no vingui » se lit soit « j’ai peur qu’il vienne », soit, avec un futur à l’indicatif (Tinc por que no vindrà), une crainte réelle qu’il ne vienne pas ; c’est pourquoi cet emploi n’est pas retenu comme exemple principal ici.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.anticipada",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "no crec que vingui (la negació anticipada)",
+      "glosses": {
+        "fr": "Négation anticipée : le « no » de la principale (creure, pensar, semblar, voler) porte en réalité sur la subordonnée."
+      },
+      "cefr": "C1",
+      "examples": [
+        "No crec que vingui.",
+        "No sembla que ho sàpiguen.",
+        "No penso que tingui raó.",
+        "No em sembla pas que sigui aquí."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Phénomène identique au français avec les mêmes verbes (croire, penser, sembler, vouloir) : « Je ne crois pas qu’il vienne » se lit aussi comme une négation portant sur la subordonnée."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.fragment",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "no",
+      "glosses": {
+        "fr": "« no » comme particule de réponse autonome à une question, sans reprise de la proposition : « non »."
+      },
+      "cefr": "A2",
+      "examples": [
+        "Vols venir? No.",
+        "Que ho has vist? No, no ho he vist.",
+        "Ho saps? No pas."
+      ],
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Correspond directement au « non » français comme particule de réponse ; « pas » peut éventuellement renforcer la réponse (No pas), sans équivalent aussi simple en français où « non » se suffit à lui-même."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.abast_constituent",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "no tots",
+      "glosses": {
+        "fr": "« no » portant sur un seul constituant (quantifieur, adverbe) plutôt que sur toute la proposition, y compris dans le cadre contrastif « no (pas) X sinó Y »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "No tots els alumnes van aprovar.",
+        "No sempre té raó.",
+        "No pas jo, sinó tu.",
+        "Han donat el xec no al conserge sinó a l'administradora."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Rappelle le français à portée restreinte (pas tous les élèves, non pas moi mais toi), mais le catalan réutilise le négateur ordinaire « no » là où le français choisit souvent une forme dédiée (« non », « pas ») distincte de la négation clausale « ne ... pas »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.restrictiva",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "no ... més que / no ... sinó",
+      "glosses": {
+        "fr": "« no ... sinó » / « no ... més que » : négation restrictive signifiant « seulement »."
+      },
+      "cefr": "B2",
+      "examples": [
+        "No en queda més que un.",
+        "No fa sinó plorar.",
+        "No tinc sinó això.",
+        "No l'he vist sinó una vegada."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français « ne ... que » a la même fonction, ce qui pousse à calquer « no ... que », qui n’est pas catalan : il faut dire « no ... sinó » ou « no ... més que ». Dans l’usage courant, cette valeur restrictive s’exprime d’ailleurs le plus souvent par le seul adverbe « només », et non par ce cadre négatif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "NEG.no_finita",
+      "kind": "leaf",
+      "parent": "NEG",
+      "ca": "no fer-ho / no havent avisat",
+      "glosses": {
+        "fr": "« no » se place directement devant un infinitif, un gérondif ou un participe pour nier une forme non finie."
+      },
+      "cefr": "B1",
+      "examples": [
+        "És millor no fer-ho.",
+        "No fumar.",
+        "Per no arribar tard, va sortir aviat.",
+        "Per no haver avisat, el van renyar.",
+        "No havent avisat ningú, va marxar."
+      ],
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Pour l’infinitif, rappelle le français « ne pas » + infinitif (no fumar = ne pas fumer) ; mais pour le gérondif et le participe, le français encadre la forme d’une négation discontinue (en ne le faisant pas) là où le catalan place simplement « no » devant elle (no havent avisat), plus proche par l’ordre du modèle infinitif que du modèle gérondif français."
+      },
+      "notes": "Les grammaires attestent cette négation du gérondif par l’exemple plutôt que par une règle explicite ; la construction est bien réelle mais moins systématiquement formulée que celle de l’infinitif.",
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
     }
   ]
 }

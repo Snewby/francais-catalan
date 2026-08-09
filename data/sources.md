@@ -366,3 +366,568 @@ No licensed data file, curated list or database was extracted from for this
 domain, so neither the compilation-copyright risk nor the EU database right
 described above is engaged here. All examples and Catalan forms are
 hand-authored for this repo.
+
+### NEG (negation)
+
+This is a structure-only pass. Every leaf carries a British-English marker in
+`glosses.fr` and `contrast_fr.note`, and every leaf carries the same
+`contrast_fr.status` (`near-miss`), chosen arbitrarily to satisfy the schema
+rather than derived from a judgement on any individual leaf. None of it is to
+be read as an assignment; the 2b pass for this domain writes the French
+glosses and the real per-leaf status from scratch, exactly as `NOM` and `ART`
+did. `notes` and `dialect_note` are deliberately left off every leaf here,
+even where the structural argument below names a fact that belongs in one
+(the `pas` register split and the several other 2b-owed notes recorded
+below), because those fields are French prose too and authoring them is 2b's
+job, not 2a's.
+
+No dataset from the table above covers negation; that table is verb-oriented,
+and no licensed data file, curated list or database was extracted from for
+this domain. Neither the compilation-copyright risk nor the EU database right
+described above is engaged here. All examples and Catalan forms are
+hand-authored for this repo. The facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, lines 169-175 (the
+  ADV/CONJ/NEG section and the GIEC paragraph beneath it) and lines 49-61 (the
+  status table and the two-traps section). The NEG row names `NEG.no`
+  (near-miss), `NEG.pas` (near-miss, flagged high interference), `NEG.cap`,
+  `NEG.gens`, `NEG.mai`, `NEG.res`, `NEG.ningú`, `NEG.enlloc`, `NEG.tampoc`,
+  and records that `pas` reinforces a simple `no` only, not an already
+  negative-concord sentence, and that it is common in the Principat but
+  absent from Valencian and Balearic speech. Line 171 also fixes `CONJ.coord`
+  at "(i, o, però, sinó, ni)", which matters to the boundary decision below.
+- General knowledge of Catalan negation (GIEC-level facts: the single
+  preverbal particle `no` where French splits negation across `ne` and a
+  second element, negative concord between a preverbal `no` and a postverbal
+  negative item, the optional preverbal `no` when the negative item itself
+  precedes the verb, a negative-polarity item inside a subordinate clause
+  being licensed by negation on the matrix verb without a second local `no`,
+  the negation of a non-finite clause, aspectual negation (`ja no`, `encara
+no`, `no ... més`), verbless/fragment negation including the bare `no`
+  answer particle, constituent negation, restrictive/exceptive negation
+  (`no ... sinó`, `no ... més que`), lexicalised minimiser reinforcement
+  (`no ... gota`, `ni piu`), and expletive or pleonastic `no` in a
+  comparative or a temporal clause).
+- A second and a third pass, both run by outside reviewers with access to
+  GIEC (Gramàtica de la llengua catalana, IEC 2016) chapter 35, GEIEC
+  chapter 32 (and, for the third pass, GEIEC §29.5.1 and §20.4), GBU
+  chapter 24, Optimot, ésAdir, and, for the third pass, Pérez Saldanya's "La
+  negació i la concordança negativa en català antic" and a La Vanguardia
+  language column, checked the domain against those sources and produced the
+  corrections and additions recorded below. Facts are extracted and
+  re-expressed in this repo's own schema, as the licence rule at the top of
+  this file requires; no text from GIEC, GEIEC, GBU, Optimot or ésAdir is
+  reproduced here beyond short quoted fragments cited for traceability.
+
+Structural decisions, recorded because they read as drift or as gaps
+otherwise. This section has been revised three times against outside review
+before 2b runs: once on structure alone, and twice against GIEC chapter 35
+specifically, the second of those closing the remaining open questions from
+the first. The GIEC-review points are marked as such below.
+
+- **Aspectual negation was missing, and it is the domain's highest-frequency
+  gap.** `NEG.aspecte` is new: `ja_no` (`ja no`, "no longer"), `encara_no`
+  (`encara no`, "not yet") and `no_mes` (`no ... més`, "no more"). All three
+  are near-universal, and none is guessable from a Catalan-side enumeration
+  of negators, because `ja` and `encara` and `més` are not negators
+  themselves; they are adverbs that combine with the ordinary negator `no`
+  to mark aspect. `ja no` is also a live **false-friend candidate**, not
+  merely a coverage gap: `ja` is a cognate of French "déjà", so `ja no ho
+faig` reads to a French eye as if it meant "je ne le fais déjà pas" when
+  it means "je ne le fais plus". This pass does not assign that reading a
+  status, since status is 2b's call and every leaf here carries the uniform
+  placeholder, but 2b should weigh `false-friend` for `NEG.aspecte.ja_no`
+  seriously; it would be the domain's first, since `NEG` currently has none
+  among its uniform markers to compare against and `DET` and `PREP` both
+  came out with an empty false-friend column.
+  **Methodological lesson, worth carrying into every domain still
+  unseeded:** the inventory coverage check in the brief for the first draft
+  of this pass was run against an enumeration of Catalan negators, and `ja
+no` was missed by that method precisely because it contains no negator a
+  Catalan-side list would surface, only an adverb plus the ordinary `no`.
+  The coverage check has to be run against a French-to-Catalan mapping of
+  the domain (here: how does a French speaker say "ne...plus", "pas
+  encore", "ne...jamais", "ne...que", and so on) as well as against the
+  Catalan inventory, because a source-language mapping surfaces multi-word
+  and adverb-plus-particle constructions that a target-language enumeration
+  of single lexical items does not. The lesson generalised a second time in
+  this same pass: the GIEC review, working from the grammar rather than from
+  a French-side sweep, independently surfaced `NEG.restrictiva` (below),
+  which the first French-side sweep had also missed. Two different coverage
+  methods missing two different constructions in the same domain is a
+  stronger argument for running both than either miss was alone.
+  **Example correction, third pass:** `NEG.aspecte.ja_no` cited `Ja no el
+veig mai`, which stacks `ja no` with `mai`, a second negator introducing
+  its own concord relation that muddies the pure phasal-cessation point the
+  leaf is for. Replaced with `Ja no fumo`; the other two examples (`Ja no hi
+vaig`, `Ja no viu aquí`) were unaffected.
+- **`NEG.no_finita` was under-described, third pass, and is broadened.**
+  The `ca` field and every example covered `no` plus an infinitive only,
+  which understates the leaf: `no` precedes a negated gerund exactly as it
+  precedes an infinitive, and participial clauses pattern the same way
+  (compare GEIEC §29.5.1). `ca` was broadened from `no fer-ho` to `no
+fer-ho / no havent avisat`, and a gerund example, `No havent avisat
+ningú, va marxar`, was added alongside the existing infinitive examples.
+  The review is high confidence on the usage itself but only medium
+  confidence that an explicit rule statement exists in the grammars, which
+  show the pattern by example rather than stating it as a named rule; that
+  confidence level is recorded here rather than presented as a flatly
+  sourced grammatical statement.
+- **`ni` and `sinó` (the adversative coordinator) are routed out to `CONJ`,
+  not kept here; confirmed on GIEC review.** The first draft minted
+  `NEG.coordinacio_ni` and `NEG.si_no_sino`, crossing a line docs/01 already
+  draws: line 171 assigns both to `CONJ.coord`'s inventory. That is a
+  different situation from `PREP.formes_no_finites` and `PREP.marcatge`,
+  which were added with no docs/01 row claiming them at all; here a row
+  already claims the items, so keeping them would not be filling a gap, it
+  would be pre-empting `CONJ`'s row before `CONJ` is seeded. The DET/NEG
+  line applies instead: DET keeps the determiner's own distribution and NEG
+  keeps only the concord requirement it triggers. Checked against `ni` on
+  those terms, there turned out to be no separate NEG-owned residue to
+  keep: `ni`'s negative-concord behaviour is exactly the same rule
+  `NEG.concordanca.postverbal` and `.preverbal` already state for `cap`,
+  `gens`, `mai`, `res`, `ningú`, `enlloc` and `tampoc`, so `ni` was added to
+  those two leaves as a further member rather than given a key of its own.
+  `sinó` **as the adversative coordinator** ("but rather") fails the same
+  test for a different reason: its NEG-relevant fact, that it requires a
+  preceding negated clause to be grammatical, is a selectional property of
+  the coordinator itself (comparable to `cap`'s own polarity sensitivity,
+  which DET keeps), not a concord requirement NEG adds on top of ordinary
+  `no`. Its remaining content there, the `si no` (conditional "if not")
+  against `sinó` word-boundary and spelling distinction, is orthography over
+  an adversative coordinator. Both stay ruled out of `NEG`: `CONJ`, when
+  seeded, owns the coordinator inventory, the adversative `sinó`'s
+  negation-licensing requirement and the `si no`/`sinó` spelling split.
+  **This paragraph now needs one qualification, added after `NEG.restrictiva`
+  landed (below): `sinó` has a second use, the restrictive/exceptive frame
+  `no ... sinó` meaning "only" (`no fa sinó plorar`), parallel to `no ...
+més que`. That use is NEG's, not CONJ's, because it is not coordinating
+  two constituents at all, it is a fixed exceptive frame built on the
+  negator, the same shape as `no ... més que`. `CONJ`'s row is therefore the
+  adversative coordinator and the `si no`/`sinó` spelling split only; the
+  restrictive frame is kept here as `NEG.restrictiva` and must not be
+  re-claimed by `CONJ` when it is seeded.**
+- **`NEG.enunciat` failed the axis rule and was dissolved, not patched.**
+  The branch grouped `resposta` (the bare `no` answer) and `expletiu` (the
+  pleonastic `no` of `més alt que no sembla`) under "negation above
+  clause-internal concord", which is a residue description rather than a
+  natural class, the same failure mode that killed `DET.indef`. `expletiu`
+  is a genuine natural class by itself and was kept as a root-level
+  singleton leaf, `NEG.expletiu`, on the `DET.ordre_intern` pattern.
+  `resposta` needed a second look once the point below reinstated
+  constituent negation; see that point for where each example now sits.
+- **Constituent negation is reinstated, on GIEC review, and `NEG.fragment`
+  is narrowed to resolve the overlap it creates.** The first revision had
+  dropped the verb-bearing half of the old `abast_constituent`
+  (`No tots els alumnes van aprovar`, `No sempre té raó`) as nearer `SYN`,
+  reasoning that it was a fact about quantifier scope and word order rather
+  than about any one negative item. The GIEC review reports that GIEC gives
+  constituent negation its own named subsection, §35.2.2 "La negació de
+  constituent", inside the negation chapter itself, and cites exactly this
+  pattern plus the contrastive frame `no (pas) X sinó Y` (its example:
+  "Els membres de la direcció han donat el xec no al conserge sinó a
+  l'administradora"). If GIEC files it under negation, this domain's
+  earlier SYN routing does not hold: a fact GIEC treats as a negation fact
+  is this domain's to key, not deferred on the strength of a plausible
+  alternative home. `NEG.abast_constituent` is restored as a root-level
+  leaf, holding both the bare quantifier-scope examples and the
+  `no (pas) X sinó Y` contrastive pattern.
+  This reopens the line between `NEG.abast_constituent` and `NEG.fragment`,
+  because the first draft of `NEG.fragment` also held a contrastive
+  fragment, `No pas jo, sinó tu`. The line drawn here: **`NEG.fragment` is
+  negation with no clause at all, verb elided or never present** (a bare
+  answer to a yes/no question, and nothing else); **`NEG.abast_constituent`
+  is narrow-scope negation of one constituent, whether inside a full clause
+  with a verb (`No tots els alumnes van aprovar`) or inside an elliptical
+  contrastive frame that still has the shape of a clause with something
+  understood (`No pas jo, sinó tu` reads as "[it was] not [pas] me, but
+  you", the ellipsis of an understood copula or verb, not the absence of
+  any clause structure at all)**. `No pas jo, sinó tu` and the GIEC
+  `no al conserge sinó a l'administradora` example accordingly moved to
+  `NEG.abast_constituent`; `NEG.fragment` was left holding only the bare
+  answer-particle examples (`Vols venir? No.`, `Ho saps? No pas.`). Checked
+  against the axis rule on its own: `NEG.fragment` is now a single fact
+  about one construction (the answer particle), so the natural-class limb
+  is trivially satisfied by there being exactly one member, the same way a
+  root-level singleton passes throughout this domain; there is no
+  second-limb question to ask of a one-member class.
+  **Confirmed by the third pass, and not to be re-litigated by a later
+  one.** A further GIEC-access review checked this exact line and reports
+  that GIEC draws it in the same place under two separate named
+  subsections: §35.2.2 "La negació de constituent" for
+  `NEG.abast_constituent`, and §35.2.3 "La negació com a resposta o
+  rèplica" for `NEG.fragment`. `NEG.fragment` is therefore not a taxonomy
+  artefact of collapsing two things into a one-member leaf; it reflects a
+  division GIEC itself makes. The same review also confirms that
+  `NEG.abast_constituent` is one learner fact and must not be split
+  further: GIEC's own §35.2.2 groups quantifier scope (`No tots els alumnes
+van aprovar`), adverb scope (`No sempre té raó`) and the contrastive
+  `no (pas) X sinó Y` frame inside a single subsection, on the shared
+  property that `no` attaches to a constituent rather than to the clause.
+  Splitting those three by surface form, as an earlier draft of this pass
+  nearly did, would re-introduce the axis mistake this domain has already
+  corrected once (`PREP.regim`'s surface-form axis, `DET.indef`'s residue
+  bucket): the grammar's own grouping is the natural-class evidence, and a
+  narrower axis here would cut across it rather than follow it.
+- **`NEG.restrictiva` is new, on GIEC review, and absorbs the one
+  genuinely NEG-shaped fact the old `NEG.si_no_sino` leaf held.**
+  Restrictive/exceptive negation, meaning "only", maps French `ne...que` to
+  Catalan `no ... sinó` and `no ... més que`. This is the second sweep-(b)
+  gap named above. It is kept as a root-level leaf because it is a fixed
+  frame built on the ordinary negator `no`, the same shape as the
+  aspectual and minimiser frames elsewhere in this domain, not a fact about
+  the coordinator `sinó`'s own distribution; see the amendment to the
+  `ni`/`sinó` paragraph above for the boundary this draws against `CONJ`.
+- **`NEG.concordanca.minimitzadors` is new, on GIEC review, and was
+  narrowed on the third pass to the `ni`-reinforced forms only.**
+  Lexicalised minimisers (`ni gota`, `ni un cèntim`, `ni piu`) are
+  postverbal negative-polarity items requiring a preverbal negator, and
+  GIEC treats them as their own class at §35.4.2.3 "Els reforços
+  minimitzadors", separate from the ordinary negative pronouns,
+  determiners and adverbs. The first version of this leaf led with a bare
+  `No hi veig gota`, with no `ni`. The third-pass review reports that bare
+  `gota` is instead a negative-polarity quantifier that GIEC groups with
+  `gens` at §17.3 ("gens de vi, gota de vent"), which `DET` already owns;
+  keeping it here would have restated a fact `DET` states rather than the
+  distinctive one this leaf is for. The bare-quantifier example was
+  dropped and the leaf now leads with the emphatic `ni`-minimiser
+  reinforcement GIEC's §35.4.2.3 actually names (`No va dir ni piu`, `No en
+tinc ni un cèntim`, `No en queda ni gota`), and the `ca` field was
+  amended so it no longer implies a bare `gota` reading. **Axis check:**
+  natural class, yes; these are a closed set of concrete nouns used
+  idiomatically as emphatic minimal-quantity intensifiers under negation,
+  a different lexical origin from `ningú`/`res`/`cap`/`mai` even though the
+  concord mechanics look the same on the surface, which is exactly why GIEC
+  gives them a separate subsection rather than folding them into the general
+  reinforcement class. Predicts a distribution: French has partial
+  analogues in fixed expressions ("n'y voir goutte") but not a productive,
+  synonymous set, so 2b is likely to find this leaf sits apart from
+  `NEG.concordanca.postverbal` on status as well as on form, which is the
+  second limb satisfied. Kept as a sibling of `postverbal` inside
+  `NEG.concordanca` rather than folded into it, because GIEC's own
+  subsectioning is the natural-class evidence and folding it in would lose
+  that distinction the branch is meant to preserve.
+- **`NEG.anticipada` is new, on the third-pass GIEC review.** GIEC §35.5 is
+  titled "La negació anticipada i la doble negació". Its doble negació half
+  is negative concord, already fully keyed by `NEG.concordanca`; its
+  negació anticipada half is neg-raising, matrix negation over `creure`,
+  `pensar`, `semblar`, `voler` interpreted as negating the subordinate
+  clause, so `No crec que vingui` is understood as `crec que no vindrà`.
+  This was the one phenomenon named in chapter 35 with no key before this
+  pass. It is kept as **the scope fact only**: that the matrix negator can
+  take subordinate scope, and how that interacts with `NEG.expletiu`
+  (itself at GIEC §35.6, per the review). The subjunctive morphology the
+  subordinate clause takes under this reading stays `VERB`'s, exactly as
+  the negative imperative's mood switch does; this leaf states the scope
+  relation, not the paradigm cell. **Axis check:** a root-level singleton,
+  the same pattern as `NEG.expletiu` and `NEG.fragment`; the natural-class
+  question is trivially satisfied by there being one member, and GIEC's own
+  chapter structure is independent evidence that this is a distinct, named
+  phenomenon rather than a residue bucket. See the evidence-grading note
+  below on how confidently this leaf's content is sourced.
+- **The `pas` example was wrong, on GIEC review, and is corrected.**
+  `NEG.simple.pas` cited `No hi vaig pas anar`, which intercalates `pas`
+  between the auxiliary and the main verb. GIEC §35.4.2.2, per the review,
+  states the particle generally appears at the end of the periphrasis and
+  that the intercalated slot is a marked variant found in some varieties
+  ("No vaig veure'l pas" as the general case against "No vaig pas veure'l").
+  The example is now `No hi vaig anar pas`, matching the general case; the
+  other two examples (`No és pas fàcil`, `No ho sap pas`) were already
+  unproblematic, since neither has a periphrastic auxiliary to intercalate
+  before. **Recorded for 2b:** the intercalated variant belongs in a `notes`
+  field on `NEG.simple.pas`, as a documented but marked alternative, not as
+  the illustrative example.
+- **A conflict between docs/01 and GIEC on `pas`, recorded rather than
+  silently resolved, and now settled in GIEC's favour with the source text
+  itself.** docs/01's GIEC paragraph (the source cited at the top of this
+  section) states that `pas` "reinforces a simple `no` only, not an
+  already-double negation". The GIEC chapter 35 review reports that GIEC
+  §35.4.2.2 supersedes that older prescriptive norm and explicitly licenses
+  `pas` alongside a negative quantifier and inside constituent negation. The
+  third-pass review supplies the verbatim text: "Notem, finalment, que
+  l'adverbi pas pot usar-se també amb altres mots negatius: Això, no ho pot
+  negar pas ningú; No en fa pas gens, de fred; No he dit pas ni una
+  paraula", plus, for constituent negation, "Parlen de literatura i no pas
+  de política". This repo does not delete or quietly rewrite the docs/01
+  claim: docs/01 is treated as authoritative elsewhere in this taxonomy, and
+  a future reader has to be able to find both the claim and the argument
+  against it rather than a single silently updated line. **Both are
+  recorded here as a documented disagreement, not as drift.** The card for
+  `NEG.simple.pas` will teach the GIEC position (that `pas` co-occurs with a
+  negative quantifier and with constituent negation), because GIEC is the
+  more current and more authoritative grammatical source on this specific
+  point and its own text is now quoted above rather than only reported at
+  one remove. **Flagged for 2b:** the `notes` field on `NEG.simple.pas`
+  must not teach the superseded "simple `no` only" constraint as the rule; if
+  it is mentioned at all, it should be as the older prescriptive norm that
+  GIEC has moved past, not as the current one.
+- **The expletive example was ambiguous, on GIEC review, and is corrected.**
+  `NEG.expletiu` cited `Tinc por que no vingui`. With a fear verb plus the
+  subjunctive this is ambiguous rather than cleanly expletive: the expletive
+  reading equals `Tinc por que vingui`, but the string also supports a
+  true-negation reading, and Catalan disambiguates the true-negation reading
+  with an indicative future (`Tinc por que no vindrà`) rather than leaving it
+  to context the way the cited example does. It is replaced with a
+  comparative, `Fa més calor a dins que no pas a fora`, which the review
+  reports is the clean paradigm case alongside the two examples already kept
+  (`És més alt que no sembla`, `Ho farem abans que no arribi`). **Recorded
+  for 2b:** the fear-verb case is optional expletive negation, real but
+  harder to illustrate cleanly, and belongs in a `notes` field rather than
+  as the headline example.
+- **The negative imperative is ruled out of `NEG` and assigned to `VERB`;
+  this stands against a reviewer counter-proposal, and is now confirmed by
+  where the grammar itself files it.** Catalan `no vinguis` substitutes the
+  present subjunctive for the (non-existent) negative imperative, where
+  French `ne viens pas` keeps the ordinary imperative form. The
+  GIEC-chapter review proposed a `NEG.imperatiu_negatiu` leaf for this, on
+  the grounds that the trigger is negation and `VERB` is unseeded so the
+  fact currently has no home either way. The counter-argument, and the one
+  this repo keeps: there is no NEG-owned concord fact riding on top of the
+  trigger the way there is for `cap` or `ni`, where NEG states an
+  obligatory or optional preverbal `no` that is a genuinely separate fact
+  from the item's own form. Here it is just `no` plus a mood switch, and
+  the mood switch itself, which paradigm cell of which conjugation class
+  stands in for the missing negative imperative, is `VERB`'s morphology and
+  cannot be stated without restating `VERB`'s imperative and subjunctive
+  paradigms. `VERB` being seed-only is a scheduling fact about this repo's
+  build order, not a reason to place a permanent key in the wrong domain; a
+  domain being unseeded is exactly the situation the routing-decision
+  convention (see the `PREP` preposition-plus-relative case) exists for.
+  **The third-pass review adds independent support for this decision from
+  the grammar itself, rather than only from this repo's own reasoning:**
+  GIEC gives the negative imperative no dedicated subsection in chapter 35
+  at all; it is treated at §34.4 "Oracions imperatives" ("Si l'oració
+  imperativa és negativa, el mode verbal és el subjuntiu... No ploris; No
+  es moguin, vostès"), and in the mood material at GEIEC §20.4. Chapter 35
+  touches it only in passing, at §35.1 (`No vinguis tard` as an
+  illustrative example of `no`) and at §35.4.2.2 (`pas` in commands). GIEC
+  filing the fact under the imperative mood chapter rather than under
+  negation is itself evidence for the `VERB` routing: the grammar treats
+  this as a fact about the imperative paradigm that happens to be triggered
+  by negation, not as a fact about negation that happens to involve a verb
+  form. This is recorded here so whichever pass gives `VERB` its proper
+  seeding finds the decision rather than either dropping the fact or a
+  second seeder minting it in `NEG` by accident: it belongs under `VERB`'s
+  imperative branch, as the paradigm's negative-context suppletion rule.
+- **`sense` as a negator is still not here**, for the reason already given:
+  it is `PREP.formes_no_finites.sense`, which states the preposition and the
+  fact that a negative-polarity word in its scope keeps a positive value.
+  Routing it to NEG a second time would key it twice.
+- **`cap`, `gens` and `gaire`'s own polarity-sensitive distribution is still
+  not here.** `data/sources.md`'s DET section already states it, in
+  `DET.quant.polaritat.cap`, `.gens` and the licensing environments in
+  `DET.quant.polaritat.contextos` (questions, conditionals, comparatives,
+  `abans que`). `cap` and `gens` appear in `NEG.concordanca.postverbal` only
+  as members of the general concord rule.
+- **`algú`, `ningú`, `res` and `tothom` are still not here.** PRON owns the
+  pronominal series and the `tot el món` / `tothom` trap, per DET's section.
+  docs/01 nonetheless lists `NEG.res` and `NEG.ningú` in its row. Resolved by
+  splitting the fact: PRON owns form and meaning, NEG owns only the
+  negative-concord behaviour, folded into `NEG.concordanca.postverbal` and
+  `.preverbal` as members. No `NEG.res` or `NEG.ningú` leaf exists.
+- **`mai`, `enlloc` and `tampoc` are one NEG fact, not three, and their own
+  semantics are not here; three further points about them are recorded for
+  2b rather than keyed, per the GIEC review.** All three are adverbs by part
+  of speech, and `ADV` is unseeded. Their negative-concord behaviour is
+  stated once, as membership in `NEG.concordanca.postverbal` and
+  `.preverbal`. The review adds three facts that stay notes rather than
+  keys: **(a)** `tampoc` is categorially an additive focal adverb (GIEC
+  §35.4.2.1), not a negative quantifier, unlike `cap`, `gens`, `res` and
+  `ningú`; it sits in `NEG.concordanca` only by its concord behaviour, and
+  2b should not let the card imply it is grammatically the same kind of
+  word as the others it is listed beside. **(b)** the seven concord members
+  do not share the preverbal slot evenly: `res`, `ningú`, `cap` and `mai`
+  take it readily, `gens` and `enlloc` rarely. This belongs as a `notes`
+  field on `NEG.concordanca.postverbal`, per the review's own placement of
+  it, not as a second key, because `NEG.concordanca.preverbal` already
+  states the general rule the note qualifies. **(c)** in formal registers,
+  preverbal `ni` retains `no` ("Ni ell ni jo no hi vam anar"), unlike the
+  no-less form `NEG.concordanca.preverbal` currently illustrates (`Ni ell ni
+jo hi vam anar`), which stays valid as the general-register form; the
+  register split is a `notes` or `dialect_note` addition for 2b, not a
+  reason to change the example.
+- **`pas`'s dialectal restriction to the Principat is still not a leaf**,
+  and is still not written into a `dialect_note` on `NEG.simple.pas` in this
+  pass, for the reason given at the top of this section. The next pass over
+  this leaf owes it a `dialect_note` for the Principat restriction, a
+  `notes` field for the GIEC-versus-docs/01 point above, and a `notes` field
+  for the intercalated-position variant above; that is three separate
+  2b-owed notes on one leaf, which is worth flagging so 2b does not stop
+  after writing one of them.
+- **Article behaviour under negation is a real interference point and is
+  ruled out of `NEG`, on GIEC review; recorded so it is not lost.** French
+  `pas de` / `pas d'` has no single Catalan counterpart: Catalan uses a bare
+  noun (`No tinc pa`) or `cap` (`No tinc cap llibre`), and a French speaker
+  reliably over-produces a partitive that Catalan does not have (`no tinc
+pas de pa`). The machinery involved, the article's absence, the bare noun
+  under negation and `cap`'s own distribution, is owned by `ART`, `DET` and
+  `NOM` respectively; `NEG` contributes only the ordinary `no` those domains
+  already assume. Ruled out of `NEG` in its entirety and recorded here so
+  the interference point itself is not lost between three domains none of
+  which currently owns "no French `pas de` in Catalan" as a named fact.
+- **Four further facts, surfaced by the French-side sweep or the GIEC
+  review, ruled out of `NEG` on the third pass and recorded so they are not
+  re-found and re-argued by whichever domain seeds next.** **(a)**
+  Approximate negation: `gairebé no`, `amb prou feines`, `a penes` (French
+  `guère`, `presque pas`, `à peine`). Out of `NEG`: `gairebé` is an adverb
+  modifying an already-keyed `no`, and `amb prou feines` is a fixed
+  locution, `LEX`'s. `NEG` adds no independent rule on top of the ordinary
+  negator these combine with. **(b)** The contradictory answer particle
+  `sí` (French `si`, answering a negative question). A real interference
+  point, but positive polarity, so it belongs with response particles in
+  `ADV`, not in a domain scoped to negation. **(c)** The marginal
+  initial-position negator `poc` (`Poc s'ho pensava`, GEIEC §32.2).
+  Register-restricted and largely not produced by a learner, so a note
+  rather than a card; if `NEG` grows a genuinely productive fact that needs
+  it as a member later, it can join one, but it does not justify a leaf of
+  its own now. **(d)** Emphatic reply locutions `de cap manera`, `en
+absolut`, `ni de bon tros`: fixed idioms, `LEX`'s, on the same grounds
+  `amb prou feines` is.
+- **Paradigm cells were not minted for the concord rule.** A draft
+  considered one leaf per negative-polarity item. The concord behaviour is
+  one rule with a closed set of members illustrated in its examples, so it
+  stays a single leaf per position (`postverbal`, `preverbal`), matching the
+  "members, not keys" convention `DET` set for `forca` and `mig`/`mitja`.
+- **Singleton branches were folded to root-level leaves.** `NEG.expletiu`,
+  `NEG.anticipada`, `NEG.fragment`, `NEG.abast_constituent`,
+  `NEG.restrictiva` and `NEG.no_finita` sit directly under `NEG` rather
+  than each under a single-child branch invented to hold them, the same
+  pattern `DET.ordre_intern` uses.
+- **CEFR calls made across this pass, revisited on the third review.**
+  `NEG.aspecte.no_mes` stays at **B1**, but on one argument only, corrected
+  on review: `no ... més` splits around the verb and any clitic that
+  intervenes (`No hi aniré més`, `No en vull més`), which is a harder
+  production task than the compact preverbal `ja no`/`encara no` units, and
+  that structural argument alone justifies B1. The second argument this
+  pass originally gave, that `no_mes`'s near-synonymy with `ja no` argues
+  for B1 because the distinction is subtler, does not hold: the review
+  points out that near-synonymy with an already-A2 form is if anything an
+  argument for scheduling `no_mes` at A2 too, alongside the form it is
+  confusable with, not for placing it later. That second argument is
+  dropped from the reasoning kept here; only the structural one stands.
+  `NEG.simple.pas` stays at **A2** on interference-priority grounds
+  (unchanged from the previous pass), with a caveat the review adds and
+  this pass records for 2b: `pas`'s presuppositional semantics (what its
+  presence versus absence commits the speaker to) are genuinely B1-level
+  material, so the A2 card should aim at recognition and at avoidance of
+  overuse, not at full productive command of when a fluent speaker would
+  and would not choose it; that distinction belongs in the card's scope,
+  not in a CEFR number the schema does not have room to split further.
+  `NEG.fragment`'s CEFR was not set with a stated argument in the previous
+  pass and needed one: the review notes that a bare `No` answering a
+  yes/no question is genuinely A1, and A2 is defensible only if the card
+  also drills the reinforced `No pas`. **The call taken:** `NEG.fragment`
+  stays at **A2**, because its examples already include `Ho saps? No pas.`
+  alongside two bare-`No` examples, so the leaf as seeded does drill both
+  the A1-level bare form and the more marked reinforced form together; a
+  leaf that taught only the bare answer would have been re-set to A1.
+  **A caveat on the whole CEFR column, recorded because a field that looks
+  sourced but is not will be trusted later:** published Catalan L2 syllabi
+  (Institut Ramon Llull, Generalitat de Catalunya) are organised by
+  communicative function rather than by grammatical structure, and between
+  them they pin only basic `no` and `tampoc` to A1-A2 with any documented
+  authority. Every other CEFR value in this domain, including both calls
+  revisited above, is this repo's own defensible hypothesis about
+  acquisition order and exposure priority, not a value read off a sourced
+  syllabus. 2b and any later reviewer should treat the CEFR field
+  accordingly.
+- **Open item, not yet closed, with the evidence behind `NEG.anticipada`
+  graded rather than asserted flat.** The GIEC-chapter review confirmed
+  every subsection of chapter 35 against public sources except §35.5,
+  whose body it could not retrieve directly because the giec.iec.cat app is
+  JavaScript-rendered, so the leaf built from it, `NEG.anticipada`, rests on
+  triangulated rather than directly quoted evidence. The third-pass review
+  grades that evidence rather than presenting it as uniformly solid, and
+  this repo records the grading rather than flattening it: the section
+  **title** ("La negació anticipada i la doble negació") is **high
+  confidence**, corroborated from the chapter's own navigation structure
+  and independently from a La Vanguardia language column by Màrius Serra
+  (26/11/16) that cites chapter 35 by that title; the **phenomenon** itself
+  (neg-raising over `creure`, `pensar`, `semblar`, `voler`) is **medium-high
+  confidence**, confirmed from GEIEC §20.4 and from Pérez Saldanya's "La
+  negació i la concordança negativa en català antic" rather than from GIEC
+  §35.5's own text; the **wording** used for `NEG.anticipada`'s `ca` field
+  and examples is **medium confidence**, since the canonical GIEC §35.5
+  example is inferred from the surrounding grammatical literature rather
+  than quoted from the section itself. This distinction matters because an
+  inferred claim restated enough times without its caveat hardens into an
+  established fact; it is not being allowed to here. `NEG` is not verified
+  closed against chapter 35 until §35.5 is checked directly against the
+  print edition (GIEC, IEC 2016, roughly pp. 1310-1313 in the print
+  edition) rather than the JavaScript-rendered web app; a future pass
+  should do that, and confirm `NEG.anticipada`'s card text against it,
+  before this domain's structure is treated as final against chapter 35.
+
+No `contrast_fr` status differentiation was attempted in this pass; see the
+note at the top of this section. A future 2b pass should expect the domain to
+skew towards `near-miss`, since Catalan's negative-concord machinery has a
+partial structural analogue in French's `ne` plus a negative word, but the
+`ne` side is semantically empty and frequently dropped in speech, which `no`
+is not, and French requires a second `ne` inside an embedded clause where
+Catalan needs no second `no` at all. `transfer` is a plausible candidate for
+`NEG.simple.no` on the basic preverbal-particle mechanics, `false-friend` is
+a plausible and, on the argument above, the likely candidate for
+`NEG.aspecte.ja_no`, and `NEG.restrictiva` is a plausible `novel` or
+`near-miss` candidate depending on how directly 2b judges `no ... sinó`
+against French `ne...que`. All three are 2b's call, not asserted here.
+
+**2b addendum, after coordinator review of the first `contrast_fr` pass.**
+Three status calls were revisited once the pass was checked against the
+`gaire` precedent in the DET section above (the `gaire` novel, kept despite
+French `guère` sharing its exact negative-polarity distribution, on the
+grounds that an anchor the learner cannot currently produce with is not an
+anchor). `INITIAL_DIFFICULTY_VALUE` in `src/srs/fsrs.ts` collapses
+`near-miss`, `false-friend` and `novel` to the same initial difficulty, so
+`transfer` is the only status that discriminates at all, and each `transfer`
+call in this domain has to earn that on its own merits rather than by
+default.
+
+- **`NEG.expletiu` was moved from `transfer` to `near-miss`, partially
+  following the `gaire` precedent and partially departing from it.** French
+  `ne` explétif occupies exactly the same syntactic slot in exactly the same
+  environments (comparatives, `avant que`) as Catalan explétive `no`, which
+  is the same shape of clean-transfer argument `gaire` had against `guère`.
+  The part of the `gaire` reasoning that carries over: expletive `ne` is a
+  register-marked feature in retreat from ordinary spoken French, and a
+  learner who does not spontaneously produce or parse it there is not
+  getting this for free, so `transfer` overclaimed. The part that does not
+  carry over, which is why this leaf lands on `near-miss` rather than
+  following `gaire` all the way to `novel`: `guère` is receding across
+  registers, including formal writing, to the point of being largely a fixed-
+  expression fossil; expletive `ne`, by contrast, remains an actively taught
+  and produced feature of educated written and formal-spoken French, and a
+  second outside reviewer reports GBU §24.5 makes it grammatically obligatory
+  in French comparatives specifically, which is the same environment this
+  leaf's headline example uses. That is a usable anchor, gated by register
+  rather than absent, which is what `near-miss` is for. The note states the
+  register gap rather than claiming either a clean match or no analogue at
+  all.
+- **`NEG.restrictiva` was moved from `transfer` to `near-miss`.** The
+  original `transfer` call rested on the functional match between `no ...
+sinó` / `no ... més que` and French `ne ... que`. On reassessment that
+  functional match is exactly what makes this a silent-error risk rather
+  than a free transfer: a French speaker reaching for the cognate
+  realisation produces `*no ... que`, which is not Catalan, and has to learn
+  `sinó` or `més que` as the obligatory second element instead of `que`
+  alone. This is the near-miss shape by definition, superficially identical
+  function, differing in the exact lexical frame, with the boundary being
+  precisely where the silent error happens. The note also flags that
+  everyday Catalan more often expresses this value with the single adverb
+  `només` than with either negation frame, which further weakens any claim
+  that the negation-frame mapping is the learner's primary, free-riding
+  anchor.
+- **`NEG.aspecte.no_mes` stays `transfer`, with the note now stating
+  explicitly why that does not contradict its B1 CEFR value.** The B1 call,
+  recorded above, rests only on the positional difficulty of splitting `no
+... més` around the verb and any intervening weak pronoun (`No hi aniré
+més`); that is a production-mechanics fact, not a claim about whether the
+  underlying French-to-Catalan mapping is reliable. `transfer` is a claim
+  about the mapping, not about placement difficulty, and the two are
+  independent: the semantic and structural correspondence to French `ne ...
+plus` is clean enough to transfer, while the CEFR level reflects that
+  producing it correctly still requires handling clitic placement, a fact
+  French offers no help with either way. The note now says this explicitly
+  so the two fields do not read as contradicting each other.
+
+Net effect on the domain-level count: two `transfer` calls were downgraded to
+`near-miss`, none were upgraded, and no other leaf's status changed.

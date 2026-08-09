@@ -156,6 +156,21 @@ export const LEAF_IDS = [
   'PREP.toniques.des_de_punt',
   'PREP.toniques.des_de_fa',
   'PREP.toniques.locucions_amb_de',
+  'NEG.simple.no',
+  'NEG.simple.pas',
+  'NEG.concordanca.postverbal',
+  'NEG.concordanca.preverbal',
+  'NEG.concordanca.matriu_subordinada',
+  'NEG.concordanca.minimitzadors',
+  'NEG.aspecte.ja_no',
+  'NEG.aspecte.encara_no',
+  'NEG.aspecte.no_mes',
+  'NEG.expletiu',
+  'NEG.anticipada',
+  'NEG.fragment',
+  'NEG.abast_constituent',
+  'NEG.restrictiva',
+  'NEG.no_finita',
 ] as const;
 
 export type ComponentId = (typeof LEAF_IDS)[number];
