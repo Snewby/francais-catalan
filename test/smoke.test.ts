@@ -15,7 +15,7 @@ import {
 } from '../src/srs/evidence';
 import { buildHeaders } from '../src/api/anthropic';
 
-const NNBSP = String.fromCodePoint(0x202f);
+import { highPunctuationOffenders, NNBSP } from './helpers/typography';
 
 /** Every leaf string in the table, flattened. */
 function allStrings(): string[] {
@@ -34,15 +34,18 @@ describe('scaffold', () => {
 
 describe('French typography', () => {
   it('puts a narrow no-break space before : ; ! ?', () => {
+    // Was `not.toMatch(/ [:;!?]/)`, which rejects an ordinary space but accepts
+    // punctuation written with no space at all. Asserted positively now, from
+    // the same helper the taxonomy prose uses, so UI copy and node prose cannot
+    // drift apart on a rule they share.
     for (const value of allStrings()) {
-      // An ordinary space before French high punctuation is the drift this
-      // guards against: it is invisible in review and wrong in print.
-      expect(value, `ordinary space before punctuation in: ${value}`).not.toMatch(
-        / [:;!?]/,
-      );
+      expect(
+        highPunctuationOffenders(value),
+        `punctuation spacing in: ${value}`,
+      ).toEqual([]);
     }
-    // Positive control. The loop above only proves the ordinary space is
-    // absent, which a table with no colons in it would also satisfy.
+    // Positive control. The loop above is satisfied vacuously by a table with
+    // no colons in it.
     expect(fr.browser.readOnly).toContain(`${NNBSP}:`);
   });
 

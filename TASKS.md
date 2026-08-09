@@ -459,18 +459,6 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   Phase 1 TDD failures and will persist after `src/taxonomy/` exists. Use
   `process.cwd()` or put the file-reading tests in the `node` environment.
 
-- **The narrow no-break space assertion has a hole, and `NEG` fell in it.**
-  `test/gloss-completeness.test.ts` checks for U+202F before `: ; ! ?` only
-  where the punctuation follows a letter, so a French field ending
-  `(pas, jamais...);` passes with no space at all. Found by eye during the `NEG`
-  browser review and corrected by hand in `data/neg.fragment.json`, but the test
-  is still the one that let it through, and the same hole covers any punctuation
-  preceded by a bracket, a quotation mark or a digit. The rule is stated in
-  three places and enforced by one assertion, so the assertion is the thing that
-  has to be right. Widen it to "the character before the punctuation is U+202F,
-  whatever it is", and re-run it over every seeded domain, since only `NEG` has
-  been swept by eye.
-
 ## Manual steps
 
 - **GitHub Pages**: done. Settings, Pages, Source is set to "GitHub Actions", and

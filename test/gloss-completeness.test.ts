@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { BRANCHES, CONTRAST_STATUSES, LEAVES } from '../src/taxonomy';
 import { OVERRIDES, resolveOverride } from '../src/taxonomy/overrides';
 import { fr } from '../src/i18n/fr';
+import { hasHighPunctuation, highPunctuationOffenders } from './helpers/typography';
 
 describe('every leaf carries a French gloss', () => {
   it('keys the gloss by language rather than flattening it', () => {
@@ -141,11 +142,21 @@ describe('French metalanguage conventions in taxonomy and overrides prose', () =
   });
 
   it('puts a narrow no-break space before : ; ! ?', () => {
+    // This was `not.toMatch(/ [:;!?]/)`, which rejects an ordinary space and
+    // says nothing about punctuation written with no space at all. The NEG seed
+    // wrote `(pas, jamais...);` and passed. Assert the rule positively instead:
+    // whatever precedes the mark has to be the narrow no-break space.
     for (const { id, field, text } of frenchProse) {
-      expect(text, `${id} ${field}: ordinary space before punctuation`).not.toMatch(
-        / [:;!?]/,
-      );
+      expect(highPunctuationOffenders(text), `${id} ${field}`).toEqual([]);
     }
+  });
+
+  it('has high punctuation to have checked', () => {
+    // Positive control. The assertion above is satisfied vacuously by prose
+    // containing no colons, which is not the corpus this repo has, and a future
+    // refactor that silently stopped feeding it text would otherwise pass.
+    const checked = frenchProse.filter(({ text }) => hasHighPunctuation(text));
+    expect(checked.length).toBeGreaterThan(50);
   });
 
   it('uses the typographic apostrophe in French prose', () => {
