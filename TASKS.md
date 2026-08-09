@@ -15,6 +15,7 @@ is worse than none, because it still reads as authoritative.
 | 2a. Structural seeding, per domain    | in progress | ADAPT    | per domain, see table below     |
 | 2b. Gloss and contrast authoring      | in progress | ADAPT    | per domain, see table below     |
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
+| Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
 | 4. API client and prompt caching      | not started | ADAPT    |                                 |
 | 5. Persistence, FSRS, Elo             | not started | ADAPT    |                                 |
 | 5b. Review loop                       | not started | ADAPT    |                                 |
@@ -245,8 +246,41 @@ without widening it.
 
 See the per-domain table above for where seeding is up to.
 
+The read-only taxonomy browser then landed, out of sequence and unnumbered,
+between phases 3 and 4. Its immediate job is the one the seeding table above
+implies: eight 2b passes are still owed, 2b is the step where the model is
+confidently wrong in ways no test catches, and until now the only way to review
+one was a pasted markdown table. It lives in `src/ui/` and phase 6 extends the
+same component into the coverage heatmap rather than starting a second one.
+
+Three decisions in it are worth knowing before phase 6 touches it:
+
+- **The top level is built from `DOMAIN_CODES`, not from the data.** Six of the
+  twelve domains have no nodes at all, not empty branches, so a tree built from
+  the taxonomy's roots would show six domains and read as the whole language.
+  The unseeded six render as non-expandable rows saying so in French.
+- **There is no third "seed only" state, deliberately.** `VERB` at 6 leaves and
+  `PRON` at 4 are recorded as seed-only in this file's prose, which is not data
+  the browser can read. A list of thin domains hardcoded in `src/ui/` would be a
+  second source of truth that goes stale the moment `VERB` gets its 2a pass, so
+  the domain rows carry a leaf count instead and let 6 next to `ART`'s 36 say it.
+- **Filters retain ancestors rather than regrouping.** Filtering to a CEFR level
+  or a contrast status hides non-matching leaves and keeps the branches above
+  the ones that match. Grouping the results under `A1` or `novel` headings would
+  be a second pedagogic hierarchy competing with the taxonomy, which is what the
+  axis rule in the `DET` section rules out.
+
 ## Carried over into later phases
 
+- **The browser's no-evidence ban has to survive phase 6, not be deleted by it.**
+  `test/browser-emits-no-evidence.test.ts` walks the module graph from every
+  file in `src/ui/` and asserts it never reaches `src/db/dexie.ts`,
+  `src/srs/apply.ts`, `src/srs/fsrs.ts` or `src/srs/elo.ts`, and that nothing
+  there writes `exposure_count`. Phase 6 needs to READ per-component state to
+  colour a node, which is legitimate; what stays banned is the write path. Put
+  the read queries in their own module and narrow the ban to the writer. A
+  session that meets this test red and deletes it has removed the only thing
+  stopping a browse from incrementing exposure.
 - The FSRS advance in `src/srs/fsrs.ts` and the Elo update in `src/srs/elo.ts`
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which

@@ -343,6 +343,45 @@ surface forms, never French prose. Regenerate schema.ts and make the
 schema-generation test pass.
 ```
 
+**Taxonomy browser, read-only (unnumbered, between 3 and 4). [VERBATIM]** New session, `/clear`. Out of sequence on purpose. Phase 2b is the step where the model is confidently wrong in ways no test catches, so it is reviewed by eye, and eight of the twelve domains still owe that review. Until this existed there was nothing to review them in. Phase 6 extends this same component into the heatmap rather than starting one.
+
+The prompt carries no node census deliberately, so it does not go stale on the next seeding pass.
+```
+Build a read-only taxonomy browser in src/ui/, vanilla TypeScript, no
+framework. A tree over the taxonomy, a detail panel showing ca, glosses.fr,
+cefr, examples, notes, dialect_note and contrast_fr, free-text search, and
+filters on cefr and contrast_fr.status. Import from src/taxonomy/index.ts,
+never from taxonomy.json directly. All copy from src/i18n/fr.ts, in a new
+flat group: fr is exactly two levels deep and test/smoke.test.ts flattens it
+with one Object.values per level, so a third level would skip the typography
+checks silently rather than fail.
+
+BROWSING EMITS NO EVIDENCE. src/ui/ must not reach src/db/dexie.ts or
+src/srs/apply.ts, transitively, and must never write exposure_count. Do not
+add a fourth evidence type; EVIDENCE_EFFECTS in src/srs/evidence.ts is
+unchanged by this phase. Write test/browser-emits-no-evidence.test.ts to
+enforce the no-import rule by walking the module graph from every file in
+src/ui/. Give it positive controls: that the walk found files at all, that it
+recurses rather than reading one level, and that it would flag a banned
+import. A scanner that silently matches nothing passes forever. Resolve the
+repo root from process.cwd(), not import.meta.url, which throws under jsdom.
+
+ONE TREE ONLY. Search and filters are predicates over the existing hierarchy.
+A filter hides non-matching leaves and keeps the branches above the ones that
+match; it never reparents leaves under cefr or status headings. See the axis
+rule in the DET section of TASKS.md.
+
+Build the top level from DOMAIN_CODES, the closed list of twelve, not from
+the domains present in the data. Several domains have no nodes at all rather
+than empty branches; render each as a non-expandable row saying in French
+that it is not yet seeded. Show a leaf count on the domains that do have
+nodes, and do NOT hardcode a "seed only" list for the thinly seeded ones:
+that fact lives in TASKS.md prose, not in the data, and a copy in src/ui/ is
+a second source of truth that goes stale on the next seeding pass.
+
+Then update TASKS.md in the same commit.
+```
+
 **Phase 4 - API client and prompt caching (plan-mode-first). [ADAPT]** `src/api/anthropic.ts` already exists with `buildHeaders`, `readApiKey`/`storeApiKey`, the `Decomposition` type and an injectable `fetchFn` on `callHaiku`. Extend it; do not rewrite from scratch. Check the taxonomy's actual token count before assuming the cached prefix clears Haiku's 4,096-token minimum.
 ```
 Plan then implement src/api/anthropic.ts. Headers: x-api-key from
@@ -404,7 +443,7 @@ rating, and that the selector interface admits a second implementation
 without touching the loop.
 ```
 
-**Phase 6 - UI and coverage heatmap (screenshot-and-iterate). [ADAPT]** `src/i18n/fr.ts` already holds the heatmap legend strings and a `quote()` helper; add to the table rather than starting one.
+**Phase 6 - UI and coverage heatmap (screenshot-and-iterate). [ADAPT]** `src/i18n/fr.ts` already holds the heatmap legend strings and a `quote()` helper; add to the table rather than starting one. `src/ui/` already holds the tree, the detail panel and the filters, from the read-only browser between phases 3 and 4; extend that component rather than starting a second one.
 ```
 Build the decomposition view and an SVG coverage heatmap over the taxonomy
 tree. Exposure and mastery are TWO DIMENSIONS, never one colour: hue carries
@@ -422,6 +461,13 @@ reference, normalised for case, accents and the straight-apostrophe policy,
 and emits a `recall` event carrying that objective outcome. Never ask the
 user to rate themselves here; an unrated attempt is what keeps recall
 distinct from graded. Revealing without attempting is a `lookup`.
+
+Extend the existing read-only taxonomy browser in src/ui/ into the heatmap.
+Do not start a second tree, and do not delete
+test/browser-emits-no-evidence.test.ts when it goes red: add a read-only
+state accessor module and narrow the ban to the evidence write path, because
+reading state to colour a node is legitimate and writing evidence from a
+browse is the thing the test exists to stop.
 
 All UI copy in French from src/i18n/fr.ts, using guillemets and narrow
 no-break spaces before : ; ! ?. After building, take a screenshot and iterate

@@ -41,7 +41,9 @@ describe('French typography', () => {
         / [:;!?]/,
       );
     }
-    expect(fr.status.scaffold).toContain(`${NNBSP}:`);
+    // Positive control. The loop above only proves the ordinary space is
+    // absent, which a table with no colons in it would also satisfy.
+    expect(fr.browser.readOnly).toContain(`${NNBSP}:`);
   });
 
   it('uses no em-dashes anywhere', () => {

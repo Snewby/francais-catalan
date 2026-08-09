@@ -1,0 +1,274 @@
+/*
+ * Layout for the taxonomy browser. Scoped to .tb so it can travel with the
+ * component into the phase 6 heatmap without becoming the app's global sheet.
+ *
+ * French copy runs 15 to 20 per cent longer than the English equivalent, so
+ * every text container here sizes from its content or wraps, and none is given
+ * a fixed width.
+ */
+
+.tb {
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  line-height: 1.5;
+  color: #1c1917;
+}
+
+.tb-heading {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.tb-readonly {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: #57534e;
+}
+
+.tb-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tb-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tb-control-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #57534e;
+}
+
+.tb-search,
+.tb-select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.25rem;
+  font: inherit;
+  background: #fff;
+}
+
+.tb-search {
+  min-width: 18rem;
+}
+
+.tb-toggle {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.25rem;
+  background: #fafaf9;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tb-toggle:hover {
+  background: #f5f5f4;
+}
+
+.tb-results {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  color: #57534e;
+}
+
+.tb-panes {
+  display: grid;
+  grid-template-columns: minmax(20rem, 2fr) minmax(20rem, 3fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* One column below roughly a tablet: two panes of French prose side by side
+   stop being readable well before the grid stops fitting. */
+@media (max-width: 60rem) {
+  .tb-panes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tb-pane {
+  border: 1px solid #e7e5e4;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  background: #fff;
+}
+
+.tb-pane--tree {
+  max-height: 34rem;
+  overflow-y: auto;
+}
+
+.tb-tree,
+.tb-children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tb-children {
+  padding-left: 1rem;
+  border-left: 1px solid #e7e5e4;
+  margin-left: 0.4rem;
+}
+
+.tb summary {
+  cursor: pointer;
+  padding: 0.15rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.tb-code {
+  font-family: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #78716c;
+}
+
+.tb-label {
+  font-weight: 500;
+}
+
+.tb-count,
+.tb-cefr {
+  font-size: 0.75rem;
+  color: #78716c;
+}
+
+.tb-domain--unseeded {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.15rem 0 0.15rem 0;
+  opacity: 0.6;
+}
+
+.tb-badge {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #78716c;
+}
+
+.tb-leaf-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.2rem 0.35rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tb-leaf-button:hover {
+  background: #f5f5f4;
+}
+
+.tb-leaf-button--selected {
+  background: #e7e5e4;
+  font-weight: 600;
+}
+
+.tb-form {
+  font-style: italic;
+}
+
+.tb-no-results,
+.tb-detail-empty {
+  margin: 0.5rem 0 0;
+  color: #57534e;
+  font-size: 0.875rem;
+}
+
+.tb-detail-heading {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+.tb-fields {
+  margin: 0;
+}
+
+.tb-field {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) 1fr;
+  gap: 0.5rem 1rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid #f5f5f4;
+}
+
+@media (max-width: 40rem) {
+  .tb-field {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+.tb-field-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #78716c;
+}
+
+.tb-field-value {
+  margin: 0;
+}
+
+.tb-examples {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.tb-contrast-status {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+  background: #f5f5f4;
+  border: 1px solid #e7e5e4;
+}
+
+/* Hue by status. Deliberately not the heatmap's scale: this says how a form
+   relates to French, which is a property of the language, while the phase 6
+   colours say how well it is known, which is a property of the learner. */
+.tb-contrast[data-status='transfer'] .tb-contrast-status {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.tb-contrast[data-status='near-miss'] .tb-contrast-status {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.tb-contrast[data-status='false-friend'] .tb-contrast-status {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.tb-contrast[data-status='novel'] .tb-contrast-status {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.tb-contrast-note {
+  margin: 0.35rem 0 0;
+}

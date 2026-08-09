@@ -1,4 +1,5 @@
 import { fr } from './i18n/fr';
+import { mountTaxonomyBrowser } from './ui/taxonomy-browser';
 
 const mount = document.querySelector<HTMLDivElement>('#app');
 
@@ -9,8 +10,8 @@ if (mount) {
   const tagline = document.createElement('p');
   tagline.textContent = fr.app.tagline;
 
-  const status = document.createElement('p');
-  status.textContent = fr.status.scaffold;
+  const browser = document.createElement('div');
 
-  mount.replaceChildren(heading, tagline, status);
+  mount.replaceChildren(heading, tagline, browser);
+  mountTaxonomyBrowser(browser);
 }

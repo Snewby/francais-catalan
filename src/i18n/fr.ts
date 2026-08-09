@@ -7,6 +7,11 @@
  * French strings run roughly 15 to 20 per cent longer than the English
  * equivalent, so any container sized against a draft English string will
  * overflow. Check the rendered width rather than assuming it.
+ *
+ * The table is exactly two levels deep, and every group holds strings only.
+ * test/smoke.test.ts flattens it with one Object.values per level to run the
+ * typography checks, so a third level or a bare top-level string would be
+ * skipped silently rather than fail. Add a group, not a nesting.
  */
 
 /**
@@ -27,8 +32,31 @@ export const fr = {
     title: 'Entraîneur de grammaire catalane',
     tagline: 'Le catalan expliqué à partir du français',
   },
-  status: {
-    scaffold: `Phase 1${NNBSP}: la taxonomie et son schéma sont en place. Les douze domaines seront semés à la phase 2.`,
+  browser: {
+    heading: 'Explorateur de la taxonomie',
+    // Stated in the interface, not only in a test: a learner who cannot tell
+    // whether looking counts will treat the coverage map as a record of what
+    // they have read rather than of what they know.
+    readOnly: `Consultation seule${NNBSP}: parcourir l’arbre n’enregistre aucune trace.`,
+    searchLabel: 'Recherche',
+    searchPlaceholder: 'Forme catalane, glose, exemple',
+    filterCefr: 'Niveau CECR',
+    contrast: 'Rapport au français',
+    filterAny: 'Indifférent',
+    resultsLabel: 'notions affichées',
+    noResults: 'Aucune notion ne correspond à ces critères.',
+    unseeded: 'Pas encore semé',
+    leafCountLabel: 'notions',
+    emptyDetail: 'Sélectionnez une notion dans l’arbre pour en afficher le détail.',
+    fieldId: 'Identifiant',
+    fieldCa: 'Forme catalane',
+    fieldGloss: 'Glose',
+    fieldCefr: 'Niveau',
+    fieldExamples: 'Exemples',
+    fieldNotes: 'Remarques',
+    fieldDialect: 'Variation dialectale',
+    expandAll: 'Tout déplier',
+    collapseAll: 'Tout replier',
   },
   apiKey: {
     label: 'Clé API',
