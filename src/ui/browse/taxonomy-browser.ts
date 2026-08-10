@@ -15,7 +15,13 @@
  * data from the shell, and it still cannot reach the store in either direction.
  * The read accessor is src/db/read.ts, which the shell uses and this does not.
  */
-import { CONTRAST_STATUSES, LEAVES, NODES, leafById } from '../../taxonomy';
+import {
+  CONTRAST_STATUSES,
+  LEAVES,
+  NODES,
+  ancestorsOf,
+  leafById,
+} from '../../taxonomy';
 import type { Cefr, ContrastStatus, DomainCode } from '../../taxonomy';
 import { fr } from '../../i18n/fr';
 import { NO_FILTERS, matchingLeaves } from './filter';
@@ -161,9 +167,36 @@ export function mountTaxonomyBrowser(
       else button.removeAttribute('aria-current');
     }
 
+    // Open the path down to the selection without rebuilding anything. A
+    // reference in the notes can land on a leaf in another domain, several
+    // closed branches deep, and leaving the tree where it was would put the
+    // highlight somewhere the reader cannot see. Setting `open` on the
+    // ancestors is not a rebuild, so nothing else collapses.
+    if (selectedId !== null) {
+      for (const branch of ancestorsOf(selectedId)) {
+        treePane
+          .querySelector(`summary[data-node-id="${branch.id}"]`)
+          ?.closest('details')
+          ?.setAttribute('open', '');
+      }
+    }
+
     detailPane.replaceChildren(
-      renderDetail(selectedId === null ? undefined : leafById(selectedId), coverage),
+      renderDetail(selectedId === null ? undefined : leafById(selectedId), {
+        coverage,
+        // Navigation between leaves, and nothing more. The browse view emits no
+        // evidence and moving between two leaves is not an encounter with
+        // either of them.
+        onSelect: selectLeaf,
+      }),
     );
+  }
+
+  /** The one place a selection is made, so the three panes cannot fall out of step. */
+  function selectLeaf(id: string): void {
+    selectedId = id;
+    renderCoverage();
+    renderSelection();
   }
 
   /**
@@ -182,19 +215,11 @@ export function mountTaxonomyBrowser(
           openDomain = domain;
           renderCoverage();
         },
-        onSelectLeaf: (id) => {
-          selectedId = id;
-          renderCoverage();
-          renderSelection();
-        },
+        onSelectLeaf: selectLeaf,
       }),
       renderGaps({
         coverage,
-        onSelect: (id) => {
-          selectedId = id;
-          renderCoverage();
-          renderSelection();
-        },
+        onSelect: selectLeaf,
       }),
     );
   }

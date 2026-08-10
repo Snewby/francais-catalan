@@ -122,10 +122,14 @@ function replyWith(
     cacheReadTokens?: number;
     cacheCreationTokens?: number;
     unverified?: readonly string[];
+    /** Overrides the decomposition entries, for the repeated-component case. */
+    entries?: readonly { id: string; ca: string }[];
   } = {},
 ): CallResult {
   const decomposition = {
-    decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
+    decomposition: (overrides.entries ?? [{ id: leaf.id, ca: leaf.ca }]).map(
+      (entry) => ({ id: entry.id as never, ca: entry.ca }),
+    ),
     direction: DETECTED_DIRECTION,
     answer: overrides.answer ?? leaf.glosses.fr,
     answer_ca: leaf.ca,
@@ -369,6 +373,75 @@ describe('the query view types its own evidence', () => {
     expect(host.querySelectorAll('.ac-answer p')).toHaveLength(2);
   });
 
+  it('puts the authored examples and the contrast behind each grammar point', async () => {
+    // One instance is not a rule. The examples array is the two to eight Catalan
+    // sentences authored to hold this rule constant while everything else
+    // varies, and the contrast note is the authored statement of whether the
+    // French intuition carries. Both were reachable from the reply and rendered
+    // nowhere near it.
+    const host = mountQuery([]);
+    const leaf = subject();
+    await ask(host, { question: leaf.glosses.fr });
+
+    const disclosure = host.querySelector(`.ac-component[data-node-id="${leaf.id}"]`);
+    expect(disclosure).not.toBeNull();
+
+    // Collapsed by default: the answer is what was asked for.
+    expect(disclosure?.hasAttribute('open')).toBe(false);
+
+    const examples = [
+      ...(disclosure?.querySelectorAll('.ac-component-examples li') ?? []),
+    ];
+    expect(examples.map((node) => node.textContent)).toEqual([...leaf.examples]);
+    expect(
+      disclosure?.querySelector('.ac-component-examples')?.getAttribute('lang'),
+    ).toBe('ca');
+
+    const contrast = disclosure?.querySelector('.ac-contrast');
+    expect(contrast?.getAttribute('data-status')).toBe(leaf.contrast_fr.status);
+    expect(contrast?.textContent).toContain(leaf.contrast_fr.note);
+    // The shared French table rather than a second wording written here.
+    expect(contrast?.textContent).toContain(fr.contrast[leaf.contrast_fr.status]);
+
+    // Said out loud, because under « Points de grammaire relevés » these would
+    // otherwise read as variants of the learner's own sentence.
+    expect(disclosure?.textContent).toContain(fr.query.componentExamples);
+  });
+
+  it('mints one block per notion when a reply names the same one twice', async () => {
+    // Two reasons a reply repeats a component, and the display owes the same
+    // answer to both: two forms in the sentence genuinely realising one rule,
+    // and the padding that golden fixture 01 records. Rendering the list raw
+    // duplicated the whole block, which is wrong for the first case and doubly
+    // wrong now a block carries the leaf's entire example set.
+    const host = document.createElement('div');
+    document.body.replaceChildren(host);
+    localStorage.setItem('anthropic-api-key', 'test-key');
+    const leaf = subject();
+    const other = 'una altra forma';
+    mountQueryView(host, {
+      call: () =>
+        Promise.resolve(
+          replyWith(leaf, {
+            entries: [
+              { id: leaf.id, ca: leaf.ca },
+              { id: leaf.id, ca: other },
+            ],
+          }),
+        ),
+    });
+    await ask(host, { question: leaf.glosses.fr });
+
+    expect(
+      host.querySelectorAll(`.ac-component[data-node-id="${leaf.id}"]`),
+    ).toHaveLength(1);
+    expect(host.querySelectorAll('.ac-component-examples')).toHaveLength(1);
+    // Neither form is dropped to achieve it.
+    const form = host.querySelector('.ac-component-form')?.textContent ?? '';
+    expect(form).toContain(leaf.ca);
+    expect(form).toContain(other);
+  });
+
   it('says why the grammar points are missing rather than showing none', async () => {
     // A dropped analysis and a sentence with no grammar in it look identical if
     // the section simply disappears, and only one of those is true.
@@ -481,7 +554,12 @@ describe('the review screen drives the existing loop', () => {
     const host = document.createElement('div');
     document.body.replaceChildren(host);
     mountReviewView(host, {
-      start: () => startReviewSession({ database: db, limit: 2, now: () => NOW }),
+      // Forwards what the view asks for rather than dropping it. A stub that
+      // ignores its options passes every assertion about what the view renders
+      // and none about what it requested, which is how the direction reached
+      // the session as a default for a whole phase.
+      start: (options) =>
+        startReviewSession({ ...options, database: db, limit: 2, now: () => NOW }),
     });
     return host;
   }
@@ -511,6 +589,88 @@ describe('the review screen drives the existing loop', () => {
 
     const state = await readComponentState(graded ?? '', db);
     expect(state.mastery.graded_review_count).toBe(1);
+  });
+
+  it('keeps the rest of the notion behind the reveal, and below the grade', async () => {
+    const host = mountReview();
+    host.querySelector<HTMLButtonElement>('.ac-button--primary')!.click();
+    await until(() => host.querySelector('.ac-card-prompt') !== null, 'the first card');
+
+    // Before the reveal it would give the answer away.
+    expect(host.querySelector('.ac-card-more')).toBeNull();
+
+    host.querySelector<HTMLButtonElement>('.ac-reveal')!.click();
+    const more = host.querySelector('.ac-card-more');
+    expect(more).not.toBeNull();
+
+    const graded = host.querySelector<HTMLElement>('.ac-ratings')!.dataset['nodeId']!;
+    const leaf = LEAVES.find((entry) => entry.id === graded)!;
+
+    // Catalan first, then the French account of it.
+    const shown = [...more!.querySelectorAll('.ac-card-examples li')].map(
+      (node) => node.textContent,
+    );
+    expect(more!.querySelector('.ac-card-examples')?.getAttribute('lang')).toBe('ca');
+    expect(more!.textContent).toContain(leaf.contrast_fr.note);
+    expect(more!.textContent).toContain(fr.contrast[leaf.contrast_fr.status]);
+
+    // The example that was tested is not repeated underneath it, and the rest
+    // are all there. Taken from the item's own index rather than by matching on
+    // the prompt string, which returns everything under fr_to_ca.
+    expect(shown).toHaveLength(leaf.examples.length - 1);
+    expect(shown).not.toContain(host.querySelector('.ac-card-prompt')?.textContent);
+
+    // notes stays out: it carries bare component IDs and a card has nowhere to
+    // send them.
+    if (leaf.notes !== undefined) {
+      expect(more!.textContent).not.toContain(leaf.notes);
+    }
+
+    // THE ORDERING THAT MATTERS. The four grade buttons are the only source of
+    // graded evidence in the application, and a few hundred pixels of reading
+    // above them puts them off a 390 px screen.
+    const ratings = host.querySelector('.ac-ratings')!;
+    expect(
+      ratings.compareDocumentPosition(more!) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it('can ask for the Catalan rather than only for the rule', async () => {
+    // buildReviewItem implemented both directions from 5b and fr.review.askFrToCa
+    // was authored the whole time, and no caller ever passed a direction, so
+    // half the deck was unreachable. Recognising the rule a sentence illustrates
+    // and producing the Catalan form of a rule are different skills.
+    const host = mountReview();
+    const select = host.querySelector<HTMLSelectElement>('.ac-review .ac-select');
+    expect(select).not.toBeNull();
+
+    select!.value = 'fr_to_ca';
+    select!.dispatchEvent(new Event('change'));
+    host.querySelector<HTMLButtonElement>('.ac-button--primary')!.click();
+    await until(() => host.querySelector('.ac-card-prompt') !== null, 'the first card');
+
+    // The prompt is the French gloss and the expected answer is the Catalan.
+    expect(host.querySelector('.ac-card-prompt')?.getAttribute('lang')).toBe('fr');
+    expect(host.textContent).toContain(fr.review.askFrToCa);
+
+    host.querySelector<HTMLButtonElement>('.ac-reveal')!.click();
+    const reference = host.querySelector('.ac-card-reference');
+    expect(reference?.getAttribute('lang')).toBe('ca');
+
+    const graded = host.querySelector<HTMLElement>('.ac-ratings')!.dataset['nodeId']!;
+    expect(reference?.textContent).toBe(LEAVES.find((l) => l.id === graded)!.ca);
+  });
+
+  it('does not let the direction move once the queue is frozen', async () => {
+    const host = mountReview();
+    host.querySelector<HTMLButtonElement>('.ac-button--primary')!.click();
+    await until(() => host.querySelector('.ac-card-prompt') !== null, 'the first card');
+
+    // The queue is built at session start, so a control still on screen would
+    // promise to relabel cards that have already been answered.
+    expect(host.querySelector<HTMLElement>('.ac-review .ac-control')?.hidden).toBe(
+      true,
+    );
   });
 
   it('says a card is about a rule rather than about a translation', () => {

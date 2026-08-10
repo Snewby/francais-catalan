@@ -42,6 +42,16 @@ export interface ReviewItem {
   readonly ca: string;
   /** The French explanation. The only French-language field in the record. */
   readonly answer: string;
+  /**
+   * Which of the leaf's examples this repetition drew on.
+   *
+   * Carried rather than recovered, because the view shows the rest of them
+   * after the reveal and "the rest" cannot be worked out from `prompt`: under
+   * `fr_to_ca` the prompt is the gloss, so filtering the examples by string
+   * equality would silently return all of them. -1 when the leaf has no
+   * examples to rotate through and `exampleFor` fell back to `ca`.
+   */
+  readonly exampleIndex: number;
 }
 
 export interface ItemOptions {
@@ -55,17 +65,24 @@ export interface ItemOptions {
   readonly reviewCount?: number;
 }
 
+/** Which example this repetition shows, or -1 when there are none to rotate. */
+export function exampleIndexFor(leaf: LeafNode, reviewCount: number): number {
+  const examples = leaf.examples;
+  if (examples.length === 0) return -1;
+  return ((reviewCount % examples.length) + examples.length) % examples.length;
+}
+
 /** The example this repetition shows, rotating through the authored list. */
 export function exampleFor(leaf: LeafNode, reviewCount: number): string {
-  const examples = leaf.examples;
-  if (examples.length === 0) return leaf.ca;
-  const index = ((reviewCount % examples.length) + examples.length) % examples.length;
-  return examples[index] ?? leaf.ca;
+  const index = exampleIndexFor(leaf, reviewCount);
+  if (index < 0) return leaf.ca;
+  return leaf.examples[index] ?? leaf.ca;
 }
 
 export function buildReviewItem(leaf: LeafNode, options: ItemOptions = {}): ReviewItem {
   const direction = options.direction ?? 'ca_to_fr';
-  const example = exampleFor(leaf, options.reviewCount ?? 0);
+  const reviewCount = options.reviewCount ?? 0;
+  const example = exampleFor(leaf, reviewCount);
   const gloss = leaf.glosses.fr;
 
   return {
@@ -76,6 +93,7 @@ export function buildReviewItem(leaf: LeafNode, options: ItemOptions = {}): Revi
     reference: direction === 'ca_to_fr' ? gloss : leaf.ca,
     ca: leaf.ca,
     answer: gloss,
+    exampleIndex: exampleIndexFor(leaf, reviewCount),
   };
 }
 

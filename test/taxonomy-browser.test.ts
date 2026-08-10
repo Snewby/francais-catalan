@@ -12,9 +12,13 @@ import {
   DOMAIN_CODES,
   LEAVES,
   NODES,
+  ancestorsOf,
   domainOf,
   isLeaf,
+  leafById,
   nodeById,
+  siblingsOf,
+  splitComponentRefs,
 } from '../src/taxonomy';
 import type { LeafNode } from '../src/taxonomy';
 import { fr } from '../src/i18n/fr';
@@ -204,6 +208,134 @@ describe('the detail pane', () => {
     expect(text).toContain(leaf.contrast_fr.note);
     expect(text).toContain(leaf.notes ?? '');
     for (const example of leaf.examples) expect(text).toContain(example);
+  });
+
+  it('keeps the component ID reachable after demoting it out of the field list', () => {
+    // The ID stopped being a labelled row and did not stop being needed: it is
+    // how a gloss-review pass gets from a rendered card back to
+    // data/*.fragment.json, and filter.ts puts it first in searchableText, so it
+    // is also the only thing on screen saying an ID can be typed into the search
+    // box. Deleting it outright would have cost both.
+    const leaf = richLeaf();
+    host
+      .querySelector<HTMLButtonElement>(`.tb-leaf-button[data-node-id="${leaf.id}"]`)!
+      .click();
+
+    const detail = host.querySelector('.tb-detail');
+    expect(detail?.querySelector('.tb-detail-id')?.textContent).toBe(leaf.id);
+    // And the Catalan form is still there, from the heading rather than from a
+    // row repeating it.
+    expect(detail?.querySelector('.tb-detail-heading')?.textContent).toBe(leaf.ca);
+    expect(detail?.querySelector('.tb-detail-heading')?.getAttribute('lang')).toBe(
+      'ca',
+    );
+  });
+
+  it('puts the gloss, the examples and the contrast in an unbroken run', () => {
+    // The CEFR level used to sit between the gloss and the examples, which put a
+    // two-character metadata field ahead of the Catalan. The gloss stays above
+    // the examples because it names the rule they illustrate.
+    const leaf = richLeaf();
+    host
+      .querySelector<HTMLButtonElement>(`.tb-leaf-button[data-node-id="${leaf.id}"]`)!
+      .click();
+
+    const labels = [...host.querySelectorAll('.tb-detail .tb-field-label')].map(
+      (node) => node.textContent,
+    );
+
+    expect(labels.slice(0, 3)).toEqual([
+      fr.browser.fieldGloss,
+      fr.browser.fieldExamples,
+      fr.browser.contrast,
+    ]);
+  });
+
+  it('makes a component named in the notes tappable, in place', () => {
+    // 61 leaves name another component in their notes, and every one of those
+    // is a judgement somebody made that two rules belong together. Linked in
+    // the sentence that argues for it, rather than collected into a « voir
+    // aussi » row that would keep the edge and throw away the reason.
+    const source = LEAVES.find((leaf) =>
+      splitComponentRefs(leaf.notes ?? '').some(
+        (segment) => segment.id !== undefined && leafById(segment.id) !== undefined,
+      ),
+    );
+    expect(source, 'no leaf links to another leaf from its notes').toBeDefined();
+    const target = splitComponentRefs(source!.notes!).find(
+      (segment) => segment.id !== undefined && leafById(segment.id) !== undefined,
+    )!.id!;
+
+    host
+      .querySelector<HTMLButtonElement>(
+        `.tb-leaf-button[data-node-id="${source!.id}"]`,
+      )!
+      .click();
+
+    const link = host.querySelector<HTMLButtonElement>(
+      `.tb-detail .tb-ref[data-node-id="${target}"]`,
+    );
+    expect(link).not.toBeNull();
+
+    link!.click();
+    expect(host.querySelector('.tb-detail')?.getAttribute('data-node-id')).toBe(target);
+    // And the tree opened the path to it, or the highlight would have moved
+    // somewhere the reader cannot see.
+    for (const branch of ancestorsOf(target)) {
+      const summary = host.querySelector(`summary[data-node-id="${branch.id}"]`);
+      expect(summary?.closest('details')?.hasAttribute('open'), branch.id).toBe(true);
+    }
+  });
+
+  it('leaves a reference to a branch as prose, because selection is leaf-only', () => {
+    // Ten of the 69 references name a branch. leafById returns undefined for all
+    // ten, so a link would clear the highlight and blank the pane being read.
+    const source = LEAVES.find((leaf) =>
+      splitComponentRefs(leaf.notes ?? '').some(
+        (segment) => segment.id !== undefined && leafById(segment.id) === undefined,
+      ),
+    );
+    expect(source, 'no leaf references a branch').toBeDefined();
+    const branchId = splitComponentRefs(source!.notes!).find(
+      (segment) => segment.id !== undefined && leafById(segment.id) === undefined,
+    )!.id!;
+
+    host
+      .querySelector<HTMLButtonElement>(
+        `.tb-leaf-button[data-node-id="${source!.id}"]`,
+      )!
+      .click();
+
+    const detail = host.querySelector('.tb-detail');
+    expect(detail?.querySelector(`.tb-ref[data-node-id="${branchId}"]`)).toBeNull();
+    // Still on screen, as the words the author wrote.
+    expect(detail?.textContent).toContain(branchId);
+  });
+
+  it('offers the sibling leaves, and says nothing at all for an only child', () => {
+    const withSiblings = LEAVES.find((leaf) => siblingsOf(leaf).length > 0);
+    expect(withSiblings).toBeDefined();
+    host
+      .querySelector<HTMLButtonElement>(
+        `.tb-leaf-button[data-node-id="${withSiblings!.id}"]`,
+      )!
+      .click();
+
+    const links = [...host.querySelectorAll('.tb-detail .tb-related-list .tb-ref')].map(
+      (node) => node.getAttribute('data-node-id'),
+    );
+    expect(links).toEqual(siblingsOf(withSiblings!).map((leaf) => leaf.id));
+
+    // Seven leaves are only children. An empty block would read as a gap in the
+    // authoring rather than as a leaf that has no siblings.
+    const onlyChild = LEAVES.find((leaf) => siblingsOf(leaf).length === 0);
+    expect(onlyChild, 'no leaf is an only child').toBeDefined();
+    host
+      .querySelector<HTMLButtonElement>(
+        `.tb-leaf-button[data-node-id="${onlyChild!.id}"]`,
+      )!
+      .click();
+    expect(host.querySelector('.tb-detail .tb-related')).toBeNull();
   });
 
   it('does not collapse the tree when a leaf is selected', () => {

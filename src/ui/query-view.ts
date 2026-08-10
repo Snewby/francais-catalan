@@ -21,7 +21,7 @@ import { callHaiku, readApiKey, type CallResult } from '../api/anthropic';
 import { recordQuery, signalReply } from '../db/persist';
 import { compareAttempt, type AttemptResult } from '../text/attempt';
 import { speakControl, voiceNotice } from './speak';
-import { leafById } from '../taxonomy';
+import { leafById, type LeafNode } from '../taxonomy';
 
 type SignalReply = typeof signalReply;
 
@@ -121,37 +121,139 @@ export function mountQueryView(
     submit.disabled = busy;
   }
 
+  /**
+   * One entry per notion, carrying every form in this énoncé that realised it.
+   *
+   * A reply may name one component twice, and for two different reasons. In
+   * « el gat i la gata » the same rule is realised by two forms and both are
+   * worth showing; golden fixture 01 names one component twice as padding.
+   * Rendering the list raw gave a duplicated block for both cases, which is
+   * wrong for the first and doubly wrong once a block carries the leaf's whole
+   * example set. Grouping keeps every form and mints one block per notion, in
+   * first-mention order, the way componentIdsOf already dedupes for the write.
+   */
+  function groupComponents(
+    result: CallResult,
+  ): { id: string; forms: string[]; ipa?: string }[] {
+    const groups = new Map<string, { id: string; forms: string[]; ipa?: string }>();
+    for (const entry of result.decomposition.decomposition) {
+      const group = groups.get(entry.id) ?? { id: entry.id, forms: [] };
+      if (!group.forms.includes(entry.ca)) group.forms.push(entry.ca);
+      if (group.ipa === undefined && entry.ipa !== undefined && entry.ipa !== '') {
+        group.ipa = entry.ipa;
+      }
+      groups.set(entry.id, group);
+    }
+    return [...groups.values()];
+  }
+
+  /**
+   * The authored material behind one grammar point, opened on request.
+   *
+   * A learner who has just met `vaig cantar` has met one instance, not a rule.
+   * The `examples` array is the two to eight Catalan sentences somebody authored
+   * to hold this one rule constant while everything else varies, which is what a
+   * rule is induced from, and the contrast note is the authored statement of
+   * whether the French intuition carries. Both were sitting in the taxonomy and
+   * reachable from the reply, and neither was rendered anywhere near it.
+   *
+   * Catalan first and the French account of it second, throughout.
+   *
+   * NOTHING HERE IS RECORDED. Exposure is written once, in recordQuery, over the
+   * ids the reply named, and it has already happened by the time this renders.
+   * Opening a disclosure is not an encounter and must never become one: this
+   * module can reach recordQuery, so the only thing stopping that is the
+   * decision, and no existing test would catch it.
+   */
+  function renderComponentBody(leaf: LeafNode): HTMLElement {
+    const body = document.createElement('div');
+    body.className = 'ac-component-body';
+
+    const caption = document.createElement('p');
+    caption.className = 'ac-hint';
+    // Said plainly, because these sit under a heading that reads as "about my
+    // sentence" and they are not: they illustrate the rule in general.
+    caption.textContent = fr.query.componentExamples;
+
+    const examples = document.createElement('ul');
+    examples.className = 'ac-component-examples';
+    examples.lang = 'ca';
+    for (const example of leaf.examples) {
+      const item = document.createElement('li');
+      item.textContent = example;
+      examples.append(item);
+    }
+
+    const contrast = document.createElement('div');
+    contrast.className = 'ac-contrast';
+    contrast.dataset['status'] = leaf.contrast_fr.status;
+
+    const status = document.createElement('span');
+    status.className = 'ac-contrast-status';
+    // The shared French table, so this and the browser cannot drift.
+    status.textContent = fr.contrast[leaf.contrast_fr.status];
+
+    const note = document.createElement('p');
+    note.className = 'ac-contrast-note';
+    note.textContent = leaf.contrast_fr.note;
+
+    contrast.append(status, note);
+    body.append(caption, examples, contrast);
+    return body;
+  }
+
   function renderComponents(result: CallResult): HTMLElement {
     const list = document.createElement('ul');
     list.className = 'ac-components';
-    for (const entry of result.decomposition.decomposition) {
+    for (const group of groupComponents(result)) {
       const item = document.createElement('li');
 
       const form = document.createElement('span');
       form.className = 'ac-component-form';
       form.lang = 'ca';
-      form.textContent = entry.ca;
+      form.textContent = group.forms.join(', ');
 
       const gloss = document.createElement('span');
       gloss.className = 'ac-component-gloss';
+      const leaf = leafById(group.id);
       // The French wording comes from the taxonomy the model was given, not
       // from the reply: the id is drawn from a closed vocabulary, so the gloss
       // is authored rather than generated.
-      gloss.textContent = leafById(entry.id)?.glosses.fr ?? entry.id;
+      gloss.textContent = leaf?.glosses.fr ?? group.id;
 
-      item.append(form, gloss);
+      const head: Node[] = [form, gloss];
 
       // The IPA has been in the schema and in `ComponentEntry` since phase 4
       // and was displayed by nothing. It is per-component and
       // language-invariant, it costs nothing to carry, and on a device with no
       // Catalan voice it is the only pronunciation the learner gets.
-      if (entry.ipa !== undefined && entry.ipa !== '') {
+      if (group.ipa !== undefined) {
         const ipa = document.createElement('span');
         ipa.className = 'ac-component-ipa';
-        ipa.textContent = `[${entry.ipa}]`;
+        ipa.textContent = `[${group.ipa}]`;
         ipa.title = fr.audio.ipa;
-        item.append(ipa);
+        head.push(ipa);
       }
+
+      // Collapsed by default. The answer is what the learner asked for and the
+      // authored material is what they may want next, so it costs no height
+      // until it is wanted. A <details> rather than a button because the open
+      // state is the whole of the state, and it needs no hover to read.
+      if (leaf === undefined) {
+        item.append(...head);
+      } else {
+        const disclosure = document.createElement('details');
+        disclosure.className = 'ac-component';
+        disclosure.dataset['nodeId'] = leaf.id;
+
+        const summary = document.createElement('summary');
+        summary.className = 'ac-component-summary';
+        summary.append(...head);
+
+        disclosure.append(summary, renderComponentBody(leaf));
+        item.append(disclosure);
+      }
+
       list.append(item);
     }
     return list;

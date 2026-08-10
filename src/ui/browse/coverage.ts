@@ -152,6 +152,28 @@ export function domainCoverage(domain: DomainCode, map: CoverageMap): Coverage {
 }
 
 /**
+ * Why the map looks the way it does, as three states rather than two.
+ *
+ * The map is grey until a graded review happens, which is the design working
+ * and reads as a defect to anyone who only asks questions. Explaining that needs
+ * to know WHICH grey is on screen: `empty` is a learner who has done nothing
+ * yet, `ungraded` is one who has been asking questions and has earned exposure
+ * that the hue deliberately refuses to credit. The same sentence cannot be true
+ * of both, so the interface picks. `graded` needs no explanation at all, because
+ * by then the map has colour and says it itself.
+ */
+export type CoverageStance = 'empty' | 'ungraded' | 'graded';
+
+export function coverageStance(map: CoverageMap): CoverageStance {
+  let anyExposure = false;
+  for (const entry of map.values()) {
+    if (masteryOf(entry) !== null) return 'graded';
+    if (entry.exposureCount > 0) anyExposure = true;
+  }
+  return anyExposure ? 'ungraded' : 'empty';
+}
+
+/**
  * The two kinds of gap, which are not the same thing and are not ranked
  * together.
  *

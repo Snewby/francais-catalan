@@ -19,6 +19,12 @@
   --ac-surface: #fff;
   --ac-accent: #1d4ed8;
   --ac-tap: 2.75rem;
+  /* The reading measure, applied to what the learner types into AND to what
+     comes back. The input side was capped at this value and the output side was
+     not, so at 1280 px the answer ran to a 1,097 px line. One token rather than
+     two numbers, because the asymmetry is what went wrong. Only ever applied
+     above 48rem: at 390 px the viewport is already narrower than this. */
+  --ac-measure: 40rem;
 }
 
 body {
@@ -206,8 +212,19 @@ body {
 }
 
 /* Four grades on one row at 390 px, so grading is one tap and no scrolling. */
+/* One row of four at 390 px, which TASKS.md has claimed since phase 6 and which
+   was not true. A flex item's default `min-width: auto` floors it at its content
+   width, and « À revoir » plus 0.9rem of padding each side is wider than the
+   5rem basis, so the shrink never happened and « Facile » wrapped alone onto a
+   second row at full width. Exactly the failure that pushed the Explorer to
+   518 px, in a second place, and no test in this repository can see either.
+   Horizontal padding is reduced with it, so the labels are not clipped once
+   they are allowed to shrink. */
 .ac-rating {
   flex: 1 1 5rem;
+  min-width: 0;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
 }
 
 .ac-panel {
@@ -279,6 +296,66 @@ body {
   font-size: 0.875rem;
 }
 
+.ac-components > li {
+  margin-bottom: 0.35rem;
+}
+
+/* The summary is the tap target, so it gets a thumb's height rather than a line
+   of text's. list-style stays: the native disclosure marker is the only thing
+   saying there is more underneath, and there is no hover to reveal it. */
+.ac-component-summary {
+  min-height: var(--ac-tap);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.4rem;
+  cursor: pointer;
+}
+
+.ac-component-body {
+  border-left: 3px solid var(--ac-line);
+  padding-left: 0.6rem;
+  margin: 0.1rem 0 0.6rem;
+}
+
+.ac-component-examples {
+  margin: 0.2rem 0 0.5rem;
+  padding-left: 1.1rem;
+}
+
+.ac-component-examples li {
+  margin-bottom: 0.15rem;
+}
+
+/* Set apart from the graded part of the card above it, so that what was tested
+   and what is merely being read stay visibly different things. */
+.ac-card-more {
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--ac-line);
+}
+
+.ac-card-examples {
+  margin: 0.2rem 0 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.ac-card-examples li {
+  margin-bottom: 0.15rem;
+}
+
+.ac-contrast-status {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #44403c;
+}
+
+.ac-contrast-note {
+  margin: 0.15rem 0 0;
+  font-size: 0.875rem;
+}
+
 .ac-attempt-result {
   border-left: 3px solid #d6d3d1;
   padding-left: 0.6rem;
@@ -337,6 +414,18 @@ body {
   }
 
   .ac-control {
-    max-width: 40rem;
+    max-width: var(--ac-measure);
+  }
+
+  /* The whole reply, not the explanation alone. Capping .ac-answer by itself
+     would narrow the prose and leave the grammar points, the missing-forms list
+     and the cache line running to the full 72rem beneath it, which reads as a
+     defect rather than as a measure. */
+  .ac-output {
+    max-width: var(--ac-measure);
+  }
+
+  .ac-card {
+    max-width: var(--ac-measure);
   }
 }

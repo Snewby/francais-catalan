@@ -26,6 +26,7 @@ import {
   MASTERED_HUE,
   coverageColour,
   coverageOf,
+  coverageStance,
   coverageSummary,
   domainCoverage,
   exposureOpacity,
@@ -188,6 +189,45 @@ export function renderLegend(): HTMLElement {
   return legend;
 }
 
+/**
+ * Why the map is grey, said in words, and only while it is.
+ *
+ * The grey is the exposure/mastery split showing through: asking questions can
+ * never move mastery, so a learner who only asks questions sees a map that never
+ * changes hue. That is the design refusing to flatter them, and with nothing on
+ * screen saying so it reads as a broken feature. The legend states what the two
+ * dimensions ARE; this states what the learner is currently looking at and what
+ * would change it.
+ *
+ * It returns null once anything is graded, so it is not permanent furniture on a
+ * 390 px screen. `fr.heatmap.exposureHint` and `masteryHint` were authored for
+ * this and had no call site anywhere in src until now.
+ */
+function renderWhyGrey(coverage: CoverageMap): HTMLElement | null {
+  const stance = coverageStance(coverage);
+  if (stance === 'graded') return null;
+
+  const block = document.createElement('div');
+  block.className = 'tb-why-grey';
+  block.dataset['stance'] = stance;
+
+  const lead = document.createElement('p');
+  lead.className = 'tb-why-grey-lead';
+  lead.textContent =
+    stance === 'empty' ? fr.heatmap.whyGreyEmpty : fr.heatmap.whyGreyUngraded;
+
+  const exposure = document.createElement('p');
+  exposure.className = 'tb-hint';
+  exposure.textContent = labelled(fr.heatmap.exposure, fr.heatmap.exposureHint);
+
+  const mastery = document.createElement('p');
+  mastery.className = 'tb-hint';
+  mastery.textContent = labelled(fr.heatmap.mastery, fr.heatmap.masteryHint);
+
+  block.append(lead, exposure, mastery);
+  return block;
+}
+
 export interface HeatmapOptions {
   readonly coverage: CoverageMap;
   /** null shows the twelve domains; a code shows that domain's leaves. */
@@ -271,6 +311,10 @@ export function renderHeatmap(options: HeatmapOptions): HTMLElement {
     hint.className = 'tb-hint';
     hint.textContent = fr.heatmap.domainsHint;
     section.append(hint, renderDomainGrid(options));
+    // Under the grid rather than in the legend, because it explains the grid
+    // the learner is looking at rather than the scale beside it.
+    const why = renderWhyGrey(options.coverage);
+    if (why !== null) section.append(why);
     return section;
   }
 

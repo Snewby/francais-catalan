@@ -21,6 +21,7 @@ import {
   MIN_OPACITY,
   aggregate,
   coverageColour,
+  coverageStance,
   coverageSummary,
   exposureOpacity,
   gapKindOf,
@@ -183,6 +184,86 @@ describe('the legend labels both dimensions', () => {
     // that also changed colour would be a second single scale.
     expect(new Set(opacities.map((entry) => entry.colour)).size).toBe(1);
     expect(new Set(opacities.map((entry) => entry.alpha)).size).toBe(opacities.length);
+  });
+});
+
+describe('the map says why it is grey, and only while it is', () => {
+  function options(map: CoverageMap) {
+    return {
+      coverage: map,
+      domain: null,
+      selectedId: null,
+      width: PHONE,
+      onSelectDomain: () => undefined,
+      onSelectLeaf: () => undefined,
+    };
+  }
+
+  const someLeaf = LEAVES[0]!.id;
+
+  it('distinguishes a learner who has done nothing from one who has only asked', () => {
+    // The same grey for two different reasons, and one sentence cannot be true
+    // of both: telling somebody with 9 encounters that nothing is recorded is
+    // false, and it is the half of the population most likely to read the grey
+    // as a broken feature.
+    expect(coverageStance(new Map())).toBe('empty');
+    expect(coverageStance(new Map([[someLeaf, coverage({ exposureCount: 9 })]]))).toBe(
+      'ungraded',
+    );
+  });
+
+  it('counts a graded review rather than an exposure as what colours the map', () => {
+    const graded = new Map([
+      [someLeaf, coverage({ exposureCount: 0, gradedReviewCount: 1, stability: 4 })],
+    ]);
+    expect(coverageStance(graded)).toBe('graded');
+    // A graded_review_count with no stability is not evidence of mastery, and
+    // masteryOf already refuses it; the stance must refuse it on the same terms
+    // rather than counting the raw number, or a half-written row would silence
+    // the explanation on a map that is still entirely grey.
+    expect(
+      coverageStance(
+        new Map([[someLeaf, coverage({ exposureCount: 2, gradedReviewCount: 1 })]]),
+      ),
+    ).toBe('ungraded');
+  });
+
+  it('explains the grey to the learner who only asks questions', () => {
+    const section = renderHeatmap(
+      options(new Map([[someLeaf, coverage({ exposureCount: 3 })]])),
+    );
+    const why = section.querySelector('.tb-why-grey');
+    expect(why).not.toBeNull();
+    expect(why?.getAttribute('data-stance')).toBe('ungraded');
+
+    const text = why?.textContent ?? '';
+    expect(text).toContain(fr.heatmap.whyGreyUngraded);
+    // The two dimensions named in words. Both hints were authored for this and
+    // had no call site anywhere in src until it was built.
+    expect(text).toContain(fr.heatmap.exposureHint);
+    expect(text).toContain(fr.heatmap.masteryHint);
+  });
+
+  it('says the other thing on a fresh install', () => {
+    const why = renderHeatmap(options(new Map())).querySelector('.tb-why-grey');
+    expect(why?.getAttribute('data-stance')).toBe('empty');
+    expect(why?.textContent).toContain(fr.heatmap.whyGreyEmpty);
+  });
+
+  it('takes itself off the screen once the map has colour to read', () => {
+    // Not permanent furniture. Once anything is graded the map explains itself
+    // in hue, and 390 px of vertical space is worth more than the paragraph.
+    const graded = new Map([
+      [someLeaf, coverage({ exposureCount: 3, gradedReviewCount: 1, stability: 4 })],
+    ]);
+    expect(renderHeatmap(options(graded)).querySelector('.tb-why-grey')).toBeNull();
+  });
+
+  it('leaves the legend at two rows', () => {
+    // The legend is the two dimensions and nothing else. This paragraph explains
+    // the grid, so it must not arrive as a third scale beside them.
+    const section = renderHeatmap(options(new Map()));
+    expect(section.querySelectorAll('.tb-legend-row')).toHaveLength(2);
   });
 });
 

@@ -176,6 +176,30 @@
   color: #78716c;
 }
 
+/* Set off from the grid above it, because it explains that grid rather than
+   captioning it. No colour of its own: hue and opacity are spoken for. */
+.tb-why-grey {
+  /* Three paragraphs of French, and the widest prose in this view. Capped on
+     the same argument as .ac-output: it ran to 1,152 px at 1280 px, which is
+     the measure this pass exists partly to stop. */
+  max-width: 40rem;
+  margin: 0.6rem 0 0;
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid #d6d3d1;
+  background: #f5f5f4;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.tb-why-grey-lead {
+  margin: 0 0 0.35rem;
+  font-size: 0.875rem;
+  color: #44403c;
+}
+
+.tb-why-grey .tb-hint {
+  margin: 0.15rem 0 0;
+}
+
 .tb-heatmap-grid {
   display: block;
   max-width: 100%;
@@ -373,9 +397,59 @@
 }
 
 .tb-detail-heading {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.15rem;
   font-size: 1.125rem;
   font-style: italic;
+}
+
+.tb-breadcrumb {
+  margin: 0 0 0.2rem;
+  font-size: 0.75rem;
+  color: #78716c;
+}
+
+/* A reference inside a sentence, so it sits on the text baseline and keeps the
+   prose readable: no button chrome, no padding that would open gaps in the
+   line. Underlined rather than coloured, because colour is spoken for twice
+   over in this view. */
+.tb-ref {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: #1d4ed8;
+  text-decoration: underline;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.tb-related-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A thumb's height here, unlike an inline reference: these are a list of
+   targets rather than words in a sentence. */
+.tb-related-list .tb-ref {
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Present for authoring and for the search box, quiet enough that a learner
+   reads past it. Wraps rather than truncates: a four-segment ID does not fit
+   342 px and an ellipsis would make it useless for the one job it has. */
+.tb-detail-id {
+  margin: 0 0 0.75rem;
+  font-family: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 0.75rem;
+  color: #78716c;
+  overflow-wrap: anywhere;
 }
 
 .tb-fields {

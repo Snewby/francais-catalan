@@ -23,7 +23,7 @@ is worse than none, because it still reads as authoritative.
 | 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
 | 6b. Pronunciation                     | done        | ADAPT    | this pass                       |
 | 6c. The symmetric answer              | done        | ADAPT    | this pass                       |
-| Visual learning pass                  | planned     | n/a      | `docs/03`, agreed not built     |
+| Visual learning pass                  | done        | n/a      | `docs/03`, this pass            |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 | 8. Golden set and offline evaluation  | done        | ADAPT    | this pass                       |
 | 9. Practice exercises                 | not started | ADAPT    |                                 |
@@ -1374,6 +1374,59 @@ human-checked expectation the phase demands. Five things in it matter later:
 - **The gate now has an end-to-end test on real replies.** Four of the ten are
   rejected by it, and the fixtures name the exact forms, so `src/text/realised.ts`
   is covered by recordings rather than only by cases written to suit it.
+
+## The visual learning pass
+
+Seven changes, argued in `docs/03-visual-learning-pass.md`, which also records
+what was refused and why. The whole pass renders material that was already
+authored and adds navigation along edges the data already held; **it authors no
+teaching content**, which is what keeps it clear of phase 9. Six things in it
+matter later:
+
+- **The interface was making a false impression, and that was the highest-value
+  thing on the list.** The coverage map is grey until a graded review happens,
+  by design, and nothing on screen said so. `fr.heatmap.exposureHint` and
+  `masteryHint` had been authored for exactly that and had **zero call sites in
+  `src/`**, which is the third time this repo has carried a value through an API
+  and consumed it with nothing, after `CallResult.usage` and the IPA. The
+  explanation is conditional on `coverageStance` and disappears once anything is
+  graded, so it is not permanent furniture on a 390 px screen.
+- **The four review grades did not fit one row at 390 px, and this file has
+  claimed since phase 6 that they did.** A flex item's default `min-width: auto`
+  floors it at content width, so `flex: 1 1 5rem` never shrank « À revoir » and
+  « Facile » wrapped alone at full width. **That is the identical failure that
+  pushed the Explorer to 518 px**, in a second place, live since phase 6, and
+  found only by measuring. A layout claim in this file is not evidence; nothing
+  in the repository can check one.
+- **A test stub that ignores its options hides a whole feature.** The review
+  view never passed a `direction`, so `fr_to_ca` was unreachable although
+  `buildReviewItem` implemented it and `fr.review.askFrToCa` was authored. The
+  test helper called `startReviewSession({database, limit, now})` and dropped
+  whatever the view asked for, so no assertion could ever have caught it. It now
+  forwards. **Check what a stub discards, not only what it returns.**
+- **Ten of the 69 authored cross-references name a branch, not a leaf.**
+  Selection is leaf-only from end to end, so linking those would blank the pane
+  being read. They render as plain text. The splitter lives in
+  `src/taxonomy/index.ts` and builds its pattern from `DOMAIN_CODES`, because
+  `scripts/lib/scan-ids.ts` needs `node:fs` and cannot be reached from a browser
+  bundle.
+- **Rendering a `notes` field as links makes a prose convention load-bearing.**
+  A deleted or renamed ID used to leave stale prose and now silently drops an
+  authored edge back to plain text. `test/closed-vocabulary.test.ts` now asserts
+  every reference resolves and that rejoining the split segments reproduces the
+  authored string byte for byte, which is what lets the pane keep asserting it
+  contains `leaf.notes` verbatim.
+- **The review card spends the example rotation, knowingly.** Showing the
+  remaining examples after the reveal means a learner has read every one of them
+  before the second repetition. The trade is that the rotation varies the TEST
+  ITEM while this changes what is TAUGHT once the test is over. Recorded so a
+  later pass can reverse it deliberately rather than rediscover the question.
+
+**Verified by geometry, not by screenshot.** The Browser pane was not displayed,
+so every screenshot timed out, and the page was driven live at 390 and 1280 px
+with a stubbed `fetch` and measured with `getBoundingClientRect`. The measure is
+640 px at 1280 px, down from 1,097. **Nobody has looked at this pass**, which is
+the same debt phase 6c carried and which the query view was already owed.
 
 ## Carried over into later phases
 

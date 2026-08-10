@@ -1,7 +1,30 @@
 # Visual learning support: a UX pass over the four views
 
-Agreed, not yet built. `TASKS.md` carries the row; this document carries the
-argument. Written against `acd5478`.
+Built. `TASKS.md` carries the row; this document carries the argument. Planned
+against `acd5478` and implemented in the commit that follows it.
+
+**Three things came out differently from the plan, and the sections below have
+been corrected rather than left standing.** They are listed here because the
+reasoning is worth more than the outcome.
+
+- **P6 does not put the examples above the gloss.** The plan said examples and
+  contrast should lead. On implementation the gloss turned out to be the topic
+  sentence: it names the rule the examples illustrate, and three Catalan
+  sentences under a bare Catalan heading leave the reader working out what the
+  point is before they can read for it. What actually moved was the CEFR level,
+  which sat between the gloss and the examples and put a two-character metadata
+  field ahead of the Catalan. Gloss, examples, contrast now run unbroken.
+- **The four review grades did not fit one row at 390 px, and `TASKS.md` had
+  claimed since phase 6 that they did.** Found by measuring, not by reading. A
+  flex item's default `min-width: auto` floors it at its content width, so
+  `flex: 1 1 5rem` never shrank « À revoir » and « Facile » wrapped alone onto a
+  second row. That is the identical failure that pushed the Explorer to 518 px,
+  in a second place, and it was live before this pass. Fixed with `min-width: 0`.
+- **The measure cap had to reach further than the answer.** Capping `.ac-answer`
+  alone would have narrowed the prose and left the grammar points beneath it at
+  full width. `.ac-output` is capped instead, and the same argument was then
+  applied to the new coverage explanation in the Explorer, which was running to
+  1,152 px.
 
 ## Why this pass exists
 
@@ -217,10 +240,15 @@ not.
 
 **Risk.** Capping `.ac-answer` alone leaves `.ac-components`,
 `.ac-attempt-missing` and `.ac-usage-counts` running to the full 72 rem, so the
-answer narrows and the list beneath it does not, which reads as a defect. Cap
-`.ac-output` once. And do not put a `max-width` on `.ac-utterance`: it is
-`flex: 1 1 12rem` inside `.ac-utterance-line` and a cap there fights the flex
-basis and strands the audio button mid-row. Cap the line.
+answer narrows and the list beneath it does not, which reads as a defect.
+`.ac-output` is capped once instead. `.ac-utterance` is deliberately not capped:
+it is `flex: 1 1 12rem` inside `.ac-utterance-line`, and a cap there fights the
+flex basis and strands the audio button mid-row.
+
+**Built as a token, not a number.** `--ac-measure` is applied to `.ac-control`,
+`.ac-output` and `.ac-card`, because the asymmetry between a capped input and an
+uncapped output is what went wrong and two literals would let it recur. The same
+argument later took `.tb-why-grey`, the only new prose block in the Explorer.
 
 ### P6. Simplify the detail pane
 
@@ -239,12 +267,19 @@ thing on screen hinting that IDs can be typed into the search box. The « Forme
 catalane » row goes outright: it repeats the `<h2>` directly above it, and that
 `<h2>` already carries `lang="ca"`, so nothing is lost.
 
-**Reordered.** Examples and contrast lead. The gloss is a one-line French
-summary and currently outranks up to eight Catalan sentences.
+**Reordered.** Gloss, examples, contrast, unbroken. The CEFR level moved down to
+sit with the coverage counts, which is the other thing in the pane that is about
+the leaf rather than in it.
+
+The plan said the examples should lead and the gloss follow. That was wrong, and
+the correction is the one place the Catalan-first rule does not apply: the gloss
+names the rule the examples illustrate, so removing it from the top leaves the
+reader deciding what the Catalan is meant to show them. A label before the
+exemplars is what a reference pane is for; pure inductive discovery is not.
 
 **Learning claim.** The two removals are de-duplication and are taste. The
-reordering is a claim: a learner opening a leaf should meet the Catalan first
-and the French account of it second.
+reordering is a claim: nothing may separate the statement of a rule from the
+sentences that realise it, and a CEFR level did.
 
 **Cost.** About 10 lines in `src/ui/browse/detail.ts`, and delete
 `fr.browser.fieldId` and `fr.browser.fieldCa`, which are used nowhere else.
@@ -432,5 +467,31 @@ view with a stubbed `fetch` rather than a live key, as phase 6c did.
   geometry instead and **say that measurement is what was done**, per the phase
   6c precedent.
 
-No browser measurement was taken in the session that produced this plan. Every
-pixel figure above is either arithmetic over the CSS or carried from `TASKS.md`.
+## What was actually verified, and how
+
+**By geometry, not by screenshot.** The Browser pane was not displayed in the
+implementing session, so every `computer{screenshot}` timed out. The page was
+driven live at 390 x 844 and 1280 x 800 with a stubbed `fetch`, and the numbers
+below were read off `getBoundingClientRect`. Nobody has looked at this pass.
+
+- No horizontal overflow at 390 px anywhere: query, review and Explorer all
+  report `scrollWidth === clientWidth`, and the widest element in the detail
+  pane sits at 366 px against a 390 px viewport.
+- The reading measure is **640 px at 1280 px**, down from the recorded 1,097,
+  and `.ac-components` is capped with it at 640 rather than running wide beneath
+  a narrowed answer.
+- The four grade buttons are **one row of four**, none clipped, ending at 487 px
+  of an 844 px viewport, with the enrichment below them.
+- Expanding a grammar point does not move the answer above it.
+- A reply naming one component three times renders **two blocks**, keeping both
+  distinct forms.
+- The domain grid is 6 by 2 at 1280 px and the legend is still two rows.
+- Worst detail panes checked: 8 siblings (wrapping to 3 rows, 40 px tap targets),
+  a 675-character `notes`, the 76-character `ca` of `DET.dem.forma_paradigma`,
+  and a depth-2 leaf whose breadcrumb is one item.
+- All 300 leaf buttons were clicked in sequence with no error and no loss of the
+  tree.
+
+The coverage explanation rendered with stance `ungraded` on the author's own
+profile, which holds 8 components with exposure and none graded. That is exactly
+the population it was written for, met by accident rather than by construction.

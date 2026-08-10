@@ -7,6 +7,7 @@ import {
   NODES,
   isLeaf,
   nodeById,
+  splitComponentRefs,
 } from '../src/taxonomy';
 import { componentIdPattern, scanReferences } from '../scripts/lib/scan-ids';
 import { OVERRIDES_PATH, readRepoJson } from './helpers/taxonomy';
@@ -113,6 +114,68 @@ describe('taxonomy structural integrity', () => {
     );
     expect(undeclared).toEqual([]);
     expect(domains.length).toBeGreaterThan(1);
+  });
+});
+
+describe('the cross-references authored inside notes', () => {
+  /**
+   * 61 leaves name another component in `notes`, and the browser now renders
+   * those as links. That turns a prose convention into a load-bearing one: an ID
+   * deleted or renamed out from under a note used to leave stale prose, and now
+   * leaves a reference the splitter drops back to plain text, which is a silent
+   * loss of an authored edge rather than a visible error.
+   */
+  const referenced = LEAVES.flatMap((leaf) =>
+    splitComponentRefs(leaf.notes ?? '')
+      .filter((segment) => segment.id !== undefined)
+      .map((segment) => ({ from: leaf.id, to: segment.id! })),
+  );
+
+  it('finds edges to check at all', () => {
+    expect(referenced.length).toBeGreaterThan(0);
+    expect(new Set(referenced.map((edge) => edge.from)).size).toBeGreaterThan(0);
+  });
+
+  it('resolves every one of them, so no link is dead', () => {
+    expect(referenced.filter((edge) => !ALL_IDS.includes(edge.to))).toEqual([]);
+  });
+
+  it('leaves the authored prose byte for byte when the segments are rejoined', () => {
+    // The pane asserts it still contains `leaf.notes` verbatim. Nothing may be
+    // inserted around a link, not a bracket and not a space.
+    for (const leaf of LEAVES) {
+      if (leaf.notes === undefined) continue;
+      const rejoined = splitComponentRefs(leaf.notes)
+        .map((segment) => segment.text)
+        .join('');
+      expect(rejoined).toBe(leaf.notes);
+    }
+  });
+
+  it('does not mistake a bare domain code in French prose for a reference', () => {
+    // One segment is required rather than none, which is the same departure
+    // from the schema pattern that scan-ids.ts documents.
+    for (const domain of DOMAIN_CODES) {
+      const segments = splitComponentRefs(`Le domaine ${domain} en entier.`);
+      expect(segments.filter((segment) => segment.id !== undefined)).toEqual([]);
+    }
+  });
+
+  it('reports a token that does not resolve as prose rather than as a link', () => {
+    const invented = `${DOMAIN_CODES[0]!}.pas_une_cle_reelle`;
+    expect(nodeById(invented)).toBeUndefined();
+    const segments = splitComponentRefs(`Voir ${invented} pour la suite.`);
+    expect(segments.filter((segment) => segment.id !== undefined)).toEqual([]);
+  });
+
+  it('includes references to branches, which the browser must not make tappable', () => {
+    // Selection is leaf-only from end to end. Handing a branch id to onSelect
+    // would blank the pane the reader is in the middle of, so those stay text.
+    const branches = referenced.filter((edge) => !LEAVES.some((l) => l.id === edge.to));
+    expect(branches.length).toBeGreaterThan(0);
+    for (const edge of branches) {
+      expect(BRANCHES.some((branch) => branch.id === edge.to)).toBe(true);
+    }
   });
 });
 

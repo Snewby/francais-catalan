@@ -120,3 +120,66 @@ export function domainOf(id: string): DomainCode | undefined {
   const head = id.split('.')[0] as DomainCode | undefined;
   return head !== undefined && DOMAIN_CODES.includes(head) ? head : undefined;
 }
+
+/** The branches above a node, domain root first. Empty for a domain root. */
+export function ancestorsOf(id: string): readonly BranchNode[] {
+  const path: BranchNode[] = [];
+  let current = nodeById(id)?.parent ?? null;
+  while (current !== null) {
+    const node = nodeById(current);
+    if (node === undefined || !isBranch(node)) break;
+    path.unshift(node);
+    current = node.parent;
+  }
+  return path;
+}
+
+/** The other leaves under the same parent, in taxonomy order. */
+export function siblingsOf(leaf: LeafNode): readonly LeafNode[] {
+  return LEAVES.filter((other) => other.parent === leaf.parent && other.id !== leaf.id);
+}
+
+/**
+ * Component IDs embedded in authored French prose, and the prose around them.
+ *
+ * 61 leaves name another component inside `notes`, 69 references in all, and
+ * every one of them is a judgement an author made about which two rules belong
+ * together. Written as bare tokens in a sentence, they are readable and not
+ * reachable; split out, the browser can make them navigable.
+ *
+ * The pattern is built from DOMAIN_CODES rather than from the schema's own
+ * `componentId` pattern, because reading the schema needs `node:fs` and this
+ * runs in the browser. Two deliberate departures from it, the same two
+ * scripts/lib/scan-ids.ts documents: no anchors, since these sit mid-sentence,
+ * and one segment required rather than none, so a bare « VERB » in French prose
+ * is not mistaken for a reference.
+ *
+ * A token that does not resolve in the taxonomy comes back as plain text rather
+ * than as a dead link. Today none of the 69 fails that, which the test asserts.
+ */
+export interface ProseSegment {
+  readonly text: string;
+  /** Set when the segment is a component ID that resolves. */
+  readonly id?: string;
+}
+
+const COMPONENT_REF = new RegExp(
+  `\\b(?:${DOMAIN_CODES.join('|')})(?:\\.[a-z0-9_]+)+\\b`,
+  'g',
+);
+
+export function splitComponentRefs(text: string): readonly ProseSegment[] {
+  const segments: ProseSegment[] = [];
+  let cursor = 0;
+
+  for (const match of text.matchAll(COMPONENT_REF)) {
+    const start = match.index;
+    if (nodeById(match[0]) === undefined) continue;
+    if (start > cursor) segments.push({ text: text.slice(cursor, start) });
+    segments.push({ text: match[0], id: match[0] });
+    cursor = start + match[0].length;
+  }
+
+  if (cursor < text.length) segments.push({ text: text.slice(cursor) });
+  return segments;
+}

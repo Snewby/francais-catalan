@@ -65,12 +65,18 @@ export const fr = {
     unseeded: 'Pas encore renseigné',
     leafCountLabel: 'notions',
     emptyDetail: 'Sélectionnez une notion dans l’arbre pour en afficher le détail.',
-    fieldId: 'Identifiant',
-    fieldCa: 'Forme catalane',
+    // fieldId and fieldCa are gone. The component ID is now an unlabelled
+    // caption under the heading, and « Forme catalane » labelled a row that
+    // repeated the heading immediately above it.
     fieldGloss: 'Glose',
     fieldCefr: 'Niveau',
     fieldExamples: 'Exemples',
     fieldNotes: 'Remarques',
+    // « voisines » rather than « liées »: these share a branch, which is a fact
+    // about the tree rather than a demonstrated affinity. The judged
+    // relationships are the ones in the notes, linked where the prose argues
+    // for them, and the label must not claim more than adjacency.
+    related: 'Notions voisines',
     fieldDialect: 'Variation dialectale',
     expandAll: 'Tout déplier',
     collapseAll: 'Tout replier',
@@ -119,6 +125,14 @@ export const fr = {
     pending: 'Analyse en cours…',
     answerHeading: 'Pourquoi',
     componentsHeading: 'Points de grammaire relevés',
+    // « points de grammaire » and « notions » name two different things on
+    // purpose: a point de grammaire is what this reply picked out of this
+    // utterance, a notion is the permanent taxonomy entry behind it. Expanding
+    // one reveals the other, and its examples were authored for the rule rather
+    // than for the sentence that was asked about. Said out loud, because under
+    // that heading they would otherwise read as variants of what the learner
+    // just typed.
+    componentExamples: 'Exemples rédigés pour cette notion, et non pour votre énoncé.',
     // Shown instead of the list when the reply named a Catalan form its own
     // phrase does not contain. Says what was kept and what was not, because a
     // section that simply disappeared would read as a sentence with no grammar
@@ -165,8 +179,20 @@ export const fr = {
       'Une carte porte sur la règle illustrée, non sur la traduction de l’exemple.',
     askCaToFr: `Quelle règle cet énoncé illustre-t-il${NNBSP}?`,
     askFrToCa: `Quelle forme catalane réalise cette règle${NNBSP}?`,
+    // Both directions were implemented in buildReviewItem from the start and
+    // only one was ever reachable, so half the deck did not exist. Naming the
+    // skill rather than the languages: the two ask for different things, and
+    // « du catalan vers le français » would read as translation, which is what
+    // ruleRecall exists to deny.
+    directionLabel: 'Ce que la carte demande',
+    directionCaToFr: 'Reconnaître la règle illustrée',
+    directionFrToCa: 'Produire la forme catalane',
     reveal: 'Afficher la réponse',
     referenceHeading: 'Réponse attendue',
+    // Shown after the grade, never before it: these are what the notion teaches
+    // beyond the sentence that was tested, and they would give the answer away
+    // above the reveal.
+    otherExamples: 'Autres exemples de cette notion',
     rateHeading: 'Votre rappel était',
     ratingAgain: 'À revoir',
     ratingHard: 'Difficile',
@@ -190,6 +216,18 @@ export const fr = {
     legendUngraded: `Gris${NNBSP}: aucune révision évaluée`,
     legendLow: 'faible',
     legendHigh: 'élevée',
+    // Shown only while the map is still grey, which is exactly the population
+    // that misreads it. Two sentences rather than one because a learner who has
+    // done nothing and a learner who has been asking questions are looking at
+    // the same grey for different reasons, and telling the second one that
+    // nothing is recorded would be false. Both disappear once anything is
+    // graded, because from then on the map explains itself in colour.
+    whyGreyEmpty:
+      'La carte est grise parce que rien n’est encore enregistré. Elle se colore à mesure que vous posez des questions et que vous révisez.',
+    whyGreyUngraded:
+      'La carte reste grise parce qu’aucune révision évaluée n’a encore eu lieu. ' +
+      `Ce n’est pas un mauvais résultat${NNBSP}: poser des questions fait avancer ` +
+      'l’exposition, jamais la maîtrise.',
     // No tooltip anywhere in this component: there is no hover on a touch
     // screen, and the primary device is a telephone.
     domainsHint: 'Touchez un domaine pour en afficher les notions.',
