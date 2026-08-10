@@ -780,6 +780,37 @@ accepted and specified but not yet executed. Four things in it generalise:
   `grand`, `bon`, `jeune`, `vieux` by default where Catalan postposes them,
   which is a first-week error the card could not have prevented.
 
+`DET` and `PREP` closed the review programme, 14 field-level changes and no
+status moved. Three things in it generalise:
+
+- **Two leaves contradicting each other is now a named failure mode with a count
+  of two.** `PREP.marcatge.cd_sense_prep` denied any preposition before a
+  personal direct object while `PREP.marcatge.a_pronom_tonic`, three leaves
+  away, supplied the counterexamples. `NOM` had the same shape one review
+  earlier. **No gate can see this**: `check-duplicates` compares forms and
+  examples, not claims, and a cheap checker for incompatible prose does not
+  exist. Both instances were found by outside readers, which is an argument for
+  reviewing rather than for building another script.
+- **The output contract this repo wrote caused a false positive.** It tells
+  reviewers to ignore typography, because hand-typed narrow no-break spaces
+  corrupt in transit. The reviewer therefore wrote without diacritics, read its
+  own stripped text back, and reported `DET.num.ordinals` as stating the
+  Valencian and Central ordinals identically when the entire contrast is acute
+  against grave. The instruction stays, but **a finding about accents or
+  apostrophes from a review that strips them must be checked against the data
+  before it is believed.**
+- **A decline can depend on work done since the decision was made.**
+  `DET.quant.polaritat.gens` was refused `false-friend` again, but not on the
+  original reasoning: `LEX.fals_amic.noms` now keys the misreading and
+  cross-references `DET`, so the trap is taught and `DET` keeps the polarity
+  distribution. Two keys, two facts, one word. Had `LEX` not been seeded, the
+  answer might have gone the other way.
+
+The count of false claims about French now stands at nine across five reviews,
+none of them ever caught internally. Set against that, `PREP`'s two empty
+columns were checked and confirmed, and no structural defect was found in either
+domain, which is a real result given both had their axes argued during seeding.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -937,20 +968,25 @@ Three decisions in it are worth knowing before phase 6 touches it:
 - **The `VERB` and `PRON` review has been run and applied**, with the full leaf
   list attached, and it produced no false positive of the `gaire` kind. Sending
   the whole list works; keep doing it. Details in `data/sources.md`.
-- **`NOM` and `ART` have now been reviewed; `DET` and `PREP` are the last two.**
-  The pack for them is built and the review is expected. Nothing else is owed a
-  first review.
-- **Six structural changes from the `NOM`/`ART` review are accepted and not yet
-  executed**, specified leaf by leaf at the end of that section in
-  `data/sources.md`. They delete or rename IDs, which is free only until phase 5
-  turns the component vocabulary into stored data, so **they should land before
-  phase 5 starts**. One of them moves `ART.def.us.abans_possessiu` into `DET`,
-  which is why they wait for the `DET`/`PREP` reply rather than touching that
-  domain twice. In short: collapse `ART.contract` from seven leaves to two,
-  collapse `ART.salat` from three to one, migrate `abans_possessiu`, resolve the
-  `NOM.gender.ista`/`NOM.deriv.ista` duplication, fix the single-leaf
+- **All twelve domains have now had an outside review**, across five of them.
+  Nothing is owed a first review.
+- **Six structural changes are accepted, specified and now unblocked**, set out
+  leaf by leaf at the end of the `NOM`/`ART` section in `data/sources.md`. They
+  were waiting on the `DET`/`PREP` reply because one of them migrates a leaf
+  into `DET`; that reply has landed, so **this is the next piece of work**. They
+  delete and rename IDs, which is free only until phase 5 turns the component
+  vocabulary into stored data, so they must land before phase 5 starts. In
+  short: collapse `ART.contract` from seven leaves to two, collapse `ART.salat`
+  from three to one, migrate `ART.def.us.abans_possessiu` into `DET`, resolve
+  the `NOM.gender.ista`/`NOM.deriv.ista` duplication, fix the single-leaf
   `NOM.adj.agree` branch, and place the Catalan quarters system, which is keyed
-  nowhere.
+  nowhere in 306 leaves.
+- **Thirty-four leaves in `DET` and `PREP` were never reached by their review**,
+  named in that section of `data/sources.md`. Two are flagged as priority
+  re-checks: `DET.identitat.altres_nu` and `DET.quant.grau.prou_bastant`. This
+  is recorded rather than treated as coverage, because the reviewer declined to
+  file unearned verdicts and that honesty is only useful if it is carried
+  forward.
 - **The `Ortografia catalana` has never been retrieved as a primary document.**
   `PHON`'s fifteen diacritic pairs, the rule on derivatives and the diaeresis
   exception list all rest on the IEC's announcement plus Optimot and CPNL

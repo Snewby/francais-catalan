@@ -3328,7 +3328,7 @@
       "notes": "« un munt de » et « una pila de » sont des noms en tête d’un syntagme partitif, non des déterminants : ils relèvent du lexique et n’ont pas de clé propre.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français impose « de » partout (beaucoup de, trop de) ; le catalan accorde le quantificateur directement sur le nom, d’où le calque fautif « massa de gent »."
+        "note": "Le français impose « de » après ses quantificateurs adverbiaux, beaucoup de, trop de, assez de, mais pas après ses déterminants quantitatifs, quelques livres, plusieurs livres, chaque jour. Le catalan soude le quantificateur au nom, « molta aigua », « massa gent », et ne demande « de » qu’avec « una mica », « un xic », « gens » et « tant » ; d’où le calque fautif « massa de gent »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3354,7 +3354,7 @@
         "prou cadires",
         "força problemes"
       ],
-      "notes": "Trois classes : accord en genre et en nombre (molt, poc, tant, quant) ; accord en nombre seul (gaire, bastant) ; invariables (massa, prou, força).",
+      "notes": "Trois classes : accord en genre et en nombre (molt, poc, tant, quant) ; accord en nombre seul (gaire) ; invariables (massa, prou, força). « bastant », longtemps rangé avec « gaire », admet aujourd’hui les formes féminines « bastanta » et « bastantes » à côté de « bastant » et « bastants ».",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Les quantificateurs français sont invariables (beaucoup, trop, assez), sauf « tout » ; le catalan accorde « molt » sur quatre formes, d’où l’erreur « molt gent »."
@@ -3379,6 +3379,7 @@
         "Fa bastant fred.",
         "Hi havia bastants convidats."
       ],
+      "notes": "Le français n’a qu’une case là où le catalan en a deux : l’ancrage sur « assez » est réel, c’est la frontière qui se déplace.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "« assez » recouvre les deux cases : « prou » pour la suffisance (« prou cadires ») et « bastant » pour le degré moyen (« fa bastant fred »), et rien dans la phrase française n’indique laquelle choisir."
@@ -3386,8 +3387,7 @@
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
-      },
-      "notes": "Le français n’a qu’une case là où le catalan en a deux : l’ancrage sur « assez » est réel, c’est la frontière qui se déplace."
+      }
     },
     {
       "id": "DET.quant.polaritat.cap",
@@ -3447,7 +3447,7 @@
       ],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français courant n’a aucune case pour lui : « no tinc gaire temps » se rend par « beaucoup » sous négation, et non par un déterminant dédié."
+        "note": "Le français courant n’a pas de déterminant pour lui, et rend « no tinc gaire temps » par beaucoup sous négation. L’ancrage existe pourtant en registre soutenu, où ne... guère est un terme de polarité négative parallèle à « gaire », mais il est sorti de la langue parlée."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3636,7 +3636,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français change de forme selon la personne (« moi-même », « lui-même ») ; le catalan garde « mateix » et l’accorde, sans pronom repris."
+        "note": "Le français postpose un « -même » invariable à un pronom tonique qui, lui, varie, moi-même, lui-même. Le catalan fait varier le pronom de la même façon, « jo », « ell », mais ce qu’il postpose est un adjectif qui s’accorde en genre et en nombre, « jo mateix », « elles mateixes »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3724,7 +3724,7 @@
       "notes": "Le contraste porte sur la base de numération, pas sur l’orthographe : « setanta-cinc » ne fait que montrer la série décimale qui se poursuit. Trait d’union et accentuation relèvent de PHON.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français bascule en base vingt à partir de 70 (soixante-dix, quatre-vingts) ; le catalan reste décimal et forme « setanta », « vuitanta », « noranta »."
+        "note": "Le français de France et du Québec bascule en base vingt à partir de 70, soixante-dix, quatre-vingts, quand le catalan reste décimal. Un francophone de Belgique ou de Suisse dit déjà septante et nonante, et huitante dans une partie de la Suisse, formes décimales pour lesquelles la règle devient un simple transfert."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3967,12 +3967,11 @@
       "examples": [
         "Viu en una casa gran.",
         "Ho he llegit en aquest llibre.",
-        "En cap moment no ho va dir.",
-        "Pensa en termes absoluts."
+        "Treballa en un despatx petit."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. La faute « viu a una casa gran » reste inaperçue."
+        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. Devant un groupe indéfini le catalan préfère « en », sans exclure tout à fait « a », si bien que la frontière est difficile à percevoir et que « viu a una casa gran » passe pour correct."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4033,7 +4032,7 @@
       "examples": ["Es lleva al matí.", "Treballa a la nit.", "A l'estiu fa calor."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit le matin sans préposition et en été avec une autre. Le catalan demande « al matí » et « a l'estiu » dans les deux cas."
+        "note": "Le français dit le matin sans préposition, et emploie en devant la plupart des saisons, en été, en hiver, mais au devant le printemps. Le catalan demande « al matí » comme « a l'estiu », sans exception."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4168,7 +4167,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit à Noël ou vers Noël. Le catalan dit « per Nadal », et le calque « a Nadal » est l’erreur à attendre."
+        "note": "Le français dit à Noël et vers Noël, mais aussi pour Noël. C’est pour Noël qui prédit correctement « per Nadal », tandis que à Noël induit le calque fautif « a Nadal »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4187,13 +4186,13 @@
       "examples": [
         "Aquest regal és per a tu.",
         "Un got per a l'aigua.",
-        "Estudia per a metge."
+        "Un llibre per a nens."
       ],
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le pour français recouvre à la fois « per » et « per a ». C’est ici que le partage se joue, et rien dans la phrase française ne l’indique."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
@@ -4213,11 +4212,11 @@
         "Estudia per aprovar.",
         "Ho diu per molestar."
       ],
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Pour faire se rend par « per fer ». Le français ne distingue rien, donc le choix entre « per » et « per a » bascule ici sans aucun indice."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
@@ -4439,9 +4438,10 @@
         "Parla amb el metge.",
         "S'ha trobat amb un problema."
       ],
+      "notes": "« somiar amb » est admis à côté de « somiar en », et le DIEC retient aussi l’emploi transitif « somiar una cosa » ; ce n’est donc pas la seule forme normative.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« somiar amb » correspond à rêver de et « parlar amb » à parler à. Le sens est transparent, la préposition ne l’est pas."
+        "note": "« somiar amb » correspond à rêver de, et « trobar-se amb » à tomber sur. La divergence est partielle pour « parlar amb », qui recouvre parler avec autant que parler à. Le sens est transparent, la préposition ne l’est pas."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -4502,7 +4502,7 @@
       "parent": "PREP.marcatge",
       "ca": "he vist en Joan",
       "glosses": {
-        "fr": "le complément d’objet direct ne porte aucune préposition, même quand il désigne une personne"
+        "fr": "le complément d’objet direct ne porte en principe aucune préposition, même quand il désigne une personne"
       },
       "cefr": "B1",
       "examples": [
@@ -4510,6 +4510,7 @@
         "Estimo la meva germana.",
         "Busquem el director."
       ],
+      "notes": "La norme admet cependant un « a » marqué dans des cas précis : devant un pronom fort, « el va veure a ell », en construction réciproque, devant « tothom », « tots », « ningú » et « qui », et sous dislocation ou en cas d’ambiguïté. Ces emplois sont traités à PREP.marcatge.a_pronom_tonic.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le français ne marque pas davantage son objet direct, ce qui met le francophone à l’abri du a personnel de l’espagnol."

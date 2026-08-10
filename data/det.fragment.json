@@ -389,7 +389,7 @@
       "notes": "« un munt de » et « una pila de » sont des noms en tête d’un syntagme partitif, non des déterminants : ils relèvent du lexique et n’ont pas de clé propre.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français impose « de » partout (beaucoup de, trop de) ; le catalan accorde le quantificateur directement sur le nom, d’où le calque fautif « massa de gent »."
+        "note": "Le français impose « de » après ses quantificateurs adverbiaux, beaucoup de, trop de, assez de, mais pas après ses déterminants quantitatifs, quelques livres, plusieurs livres, chaque jour. Le catalan soude le quantificateur au nom, « molta aigua », « massa gent », et ne demande « de » qu’avec « una mica », « un xic », « gens » et « tant » ; d’où le calque fautif « massa de gent »."
       },
       "state": {
         "exposure": {
@@ -421,7 +421,7 @@
         "prou cadires",
         "força problemes"
       ],
-      "notes": "Trois classes : accord en genre et en nombre (molt, poc, tant, quant) ; accord en nombre seul (gaire, bastant) ; invariables (massa, prou, força).",
+      "notes": "Trois classes : accord en genre et en nombre (molt, poc, tant, quant) ; accord en nombre seul (gaire) ; invariables (massa, prou, força). « bastant », longtemps rangé avec « gaire », admet aujourd’hui les formes féminines « bastanta » et « bastantes » à côté de « bastant » et « bastants ».",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Les quantificateurs français sont invariables (beaucoup, trop, assez), sauf « tout » ; le catalan accorde « molt » sur quatre formes, d’où l’erreur « molt gent »."
@@ -452,6 +452,7 @@
         "Fa bastant fred.",
         "Hi havia bastants convidats."
       ],
+      "notes": "Le français n’a qu’une case là où le catalan en a deux : l’ancrage sur « assez » est réel, c’est la frontière qui se déplace.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "« assez » recouvre les deux cases : « prou » pour la suffisance (« prou cadires ») et « bastant » pour le degré moyen (« fa bastant fred »), et rien dans la phrase française n’indique laquelle choisir."
@@ -465,8 +466,7 @@
           "difficulty": null,
           "graded_review_count": 0
         }
-      },
-      "notes": "Le français n’a qu’une case là où le catalan en a deux : l’ancrage sur « assez » est réel, c’est la frontière qui se déplace."
+      }
     },
     {
       "id": "DET.quant.polaritat.cap",
@@ -538,7 +538,7 @@
       ],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français courant n’a aucune case pour lui : « no tinc gaire temps » se rend par « beaucoup » sous négation, et non par un déterminant dédié."
+        "note": "Le français courant n’a pas de déterminant pour lui, et rend « no tinc gaire temps » par beaucoup sous négation. L’ancrage existe pourtant en registre soutenu, où ne... guère est un terme de polarité négative parallèle à « gaire », mais il est sorti de la langue parlée."
       },
       "state": {
         "exposure": {
@@ -775,7 +775,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français change de forme selon la personne (« moi-même », « lui-même ») ; le catalan garde « mateix » et l’accorde, sans pronom repris."
+        "note": "Le français postpose un « -même » invariable à un pronom tonique qui, lui, varie, moi-même, lui-même. Le catalan fait varier le pronom de la même façon, « jo », « ell », mais ce qu’il postpose est un adjectif qui s’accorde en genre et en nombre, « jo mateix », « elles mateixes »."
       },
       "state": {
         "exposure": {
@@ -887,7 +887,7 @@
       "notes": "Le contraste porte sur la base de numération, pas sur l’orthographe : « setanta-cinc » ne fait que montrer la série décimale qui se poursuit. Trait d’union et accentuation relèvent de PHON.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français bascule en base vingt à partir de 70 (soixante-dix, quatre-vingts) ; le catalan reste décimal et forme « setanta », « vuitanta », « noranta »."
+        "note": "Le français de France et du Québec bascule en base vingt à partir de 70, soixante-dix, quatre-vingts, quand le catalan reste décimal. Un francophone de Belgique ou de Suisse dit déjà septante et nonante, et huitante dans une partie de la Suisse, formes décimales pour lesquelles la règle devient un simple transfert."
       },
       "state": {
         "exposure": {

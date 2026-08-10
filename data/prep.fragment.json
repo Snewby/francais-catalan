@@ -207,12 +207,11 @@
       "examples": [
         "Viu en una casa gran.",
         "Ho he llegit en aquest llibre.",
-        "En cap moment no ho va dir.",
-        "Pensa en termes absoluts."
+        "Treballa en un despatx petit."
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. La faute « viu a una casa gran » reste inaperçue."
+        "note": "Le français conditionne aussi en et dans par le déterminant, mais en sens inverse, en prison contre dans la prison. Devant un groupe indéfini le catalan préfère « en », sans exclure tout à fait « a », si bien que la frontière est difficile à percevoir et que « viu a una casa gran » passe pour correct."
       },
       "state": {
         "exposure": {
@@ -293,7 +292,7 @@
       "examples": ["Es lleva al matí.", "Treballa a la nit.", "A l'estiu fa calor."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit le matin sans préposition et en été avec une autre. Le catalan demande « al matí » et « a l'estiu » dans les deux cas."
+        "note": "Le français dit le matin sans préposition, et emploie en devant la plupart des saisons, en été, en hiver, mais au devant le printemps. Le catalan demande « al matí » comme « a l'estiu », sans exception."
       },
       "state": {
         "exposure": {
@@ -472,7 +471,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français dit à Noël ou vers Noël. Le catalan dit « per Nadal », et le calque « a Nadal » est l’erreur à attendre."
+        "note": "Le français dit à Noël et vers Noël, mais aussi pour Noël. C’est pour Noël qui prédit correctement « per Nadal », tandis que à Noël induit le calque fautif « a Nadal »."
       },
       "state": {
         "exposure": {
@@ -497,13 +496,13 @@
       "examples": [
         "Aquest regal és per a tu.",
         "Un got per a l'aigua.",
-        "Estudia per a metge."
+        "Un llibre per a nens."
       ],
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le pour français recouvre à la fois « per » et « per a ». C’est ici que le partage se joue, et rien dans la phrase française ne l’indique."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": {
           "exposure_count": 0
@@ -529,11 +528,11 @@
         "Estudia per aprovar.",
         "Ho diu per molestar."
       ],
+      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Pour faire se rend par « per fer ». Le français ne distingue rien, donc le choix entre « per » et « per a » bascule ici sans aucun indice."
       },
-      "dialect_note": "Le catalan central spontané emploie « per » dans tous ces contextes. La GIEC admet trois systèmes concurrents et l’enseignement suit ici la distinction traditionnelle de Fabra.",
       "state": {
         "exposure": {
           "exposure_count": 0
@@ -815,9 +814,10 @@
         "Parla amb el metge.",
         "S'ha trobat amb un problema."
       ],
+      "notes": "« somiar amb » est admis à côté de « somiar en », et le DIEC retient aussi l’emploi transitif « somiar una cosa » ; ce n’est donc pas la seule forme normative.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "« somiar amb » correspond à rêver de et « parlar amb » à parler à. Le sens est transparent, la préposition ne l’est pas."
+        "note": "« somiar amb » correspond à rêver de, et « trobar-se amb » à tomber sur. La divergence est partielle pour « parlar amb », qui recouvre parler avec autant que parler à. Le sens est transparent, la préposition ne l’est pas."
       },
       "state": {
         "exposure": {
@@ -896,7 +896,7 @@
       "parent": "PREP.marcatge",
       "ca": "he vist en Joan",
       "glosses": {
-        "fr": "le complément d’objet direct ne porte aucune préposition, même quand il désigne une personne"
+        "fr": "le complément d’objet direct ne porte en principe aucune préposition, même quand il désigne une personne"
       },
       "cefr": "B1",
       "examples": [
@@ -904,6 +904,7 @@
         "Estimo la meva germana.",
         "Busquem el director."
       ],
+      "notes": "La norme admet cependant un « a » marqué dans des cas précis : devant un pronom fort, « el va veure a ell », en construction réciproque, devant « tothom », « tots », « ningú » et « qui », et sous dislocation ou en cas d’ambiguïté. Ces emplois sont traités à PREP.marcatge.a_pronom_tonic.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le français ne marque pas davantage son objet direct, ce qui met le francophone à l’abri du a personnel de l’espagnol."

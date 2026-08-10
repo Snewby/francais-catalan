@@ -2765,3 +2765,111 @@ which is why that example was replaced rather than corrected; whether
 `an en Joan`. `NOM.gender.suffix_essa` is owed a note that GIEC accepts both
 `la metge` and `la metgessa`, which was not applied only because it needs the
 leaf text checked first.
+
+### Outside review of DET and PREP, and what it changed
+
+The fifth outside review, and the last domain pair to have one. Fourteen
+field-level changes, no status moved, no leaf added or removed. It used the
+requested record format, which made triage roughly three times faster than the
+`NOM`/`ART` reply, and it is the first review to report its own coverage gaps
+honestly instead of filling them.
+
+**Two more false claims about French, bringing the count to nine across five
+reviews.**
+
+- **`DET.quant.juncio_nominal` said French imposes `de` everywhere.** It imposes
+  it after adverbial quantifiers, _beaucoup de_, _trop de_, and not after
+  determiners, _quelques livres_, _plusieurs livres_, _chaque jour_. The Catalan
+  side was right and the contrast was overstated in the learner's favour, which
+  is the more dangerous direction.
+- **`DET.identitat.mateix_emfatic` said Catalan keeps `mateix` "sans pronom
+  repris".** Catalan varies the pronoun exactly as French does, `jo mateix`,
+  `ell mateix`, `elles mateixes`. The real difference is that French appends an
+  invariable _-même_ while Catalan postposes an adjective that agrees.
+
+**The second confirmed case of two leaves contradicting each other.**
+`PREP.marcatge.cd_sense_prep` said the direct object carries no preposition
+"même quand il désigne une personne", full stop, while
+`PREP.marcatge.a_pronom_tonic` sits three leaves away supplying the
+counterexamples: the marked `a` before a tonic pronoun, in reciprocals, before
+`tothom`, `tots`, `ningú` and `qui`, and under dislocation. The first case was
+`NOM.number.hidden_n` against `NOM.number.stressed_vowel`, found in the previous
+review. **Both were found by outside readers and neither is detectable by any
+gate this repo has or could cheaply build**, since `check-duplicates` compares
+forms and examples rather than claims. Two leaves stating incompatible rules is
+now a named failure mode with a count of two.
+
+**One finding was a false positive, and its cause is worth recording because
+this repo created it.** The reviewer marked `DET.num.ordinals`'s `dialect_note`
+WRONG on the ground that it states the Valencian and Central forms identically.
+It does not: it reads "Valencien : cinqué, sisé, contre les formes centrales
+cinquè, sisè", and the whole contrast is acute against grave. The reviewer wrote
+its entire reply without diacritics, because **the output contract this repo
+wrote tells reviewers to ignore typography**, and reading its own stripped text
+back made the distinction vanish. The instruction is still right, since
+hand-typed narrow no-break spaces corrupt in transit, but it has a cost: **a
+finding about accents or apostrophes coming back from a review that strips them
+must be checked against the data before it is believed.** Add that to the
+contract when it is next used.
+
+**Other corrections applied.** `DET.num.sistema_decimal` presented the vigesimal
+system as simply French, when Belgian and Swiss speakers already say _septante_
+and _nonante_, for whom the leaf is a plain transfer; that is a dialect anchor
+worth recording in a French-base application. `DET.quant.grau.concordanca` put
+`bastant` in the number-only class, when the modern standard admits `bastanta`
+and `bastantes`. `DET.quant.polaritat.gaire`'s note claimed French "n'a aucune
+case pour lui", when _ne... guère_ is precisely that case in the formal
+register. `PREP.regim.divergent_amb` presented `parlar amb` as diverging from
+French when it covers _parler avec_ as much as _parler à_, and gave `somiar amb`
+as the norm when `somiar en` and the transitive use are also admitted.
+`PREP.a_en.lloc.en_sense_definit` mixed temporal and figurative uses of `en`
+into a leaf about place, and called `viu a una casa gran` a fault when the norm
+merely disprefers it. `PREP.per_pera.temps_aproximat` gave _à Noël_ as the only
+French model when _pour Noël_ exists and predicts `per Nadal` correctly.
+`PREP.a_en.temps.parts_del_dia` generalised French _en_ across the seasons,
+which fails for _au printemps_. `PREP.per_pera.finalitat_nominal` lost
+`Estudia per a metge`, which is doubtful before a bare profession noun.
+
+**Three findings were declined, each with an argument.**
+
+- **`DET.quant.polaritat.gens` stays `near-miss` rather than becoming
+  `false-friend`.** The reviewer's case is the strongest yet made for it: the
+  written definition is that a familiar French reading is available and wrong,
+  the French noun _gens_ is exactly that, and the leaf's own note tells the
+  learner not to read it. What defeats it is new since the `DET` pass:
+  **`LEX.fals_amic.noms` now keys the misreading**, with `gens` as a member
+  cross-referenced back here. The trap is therefore taught, and `DET` keeps what
+  `DET` owns, which is the quantifier's polarity distribution. Two keys, two
+  facts, one word. Had `LEX` not existed the answer might have gone the other
+  way.
+- **`DET.quant.polaritat.gaire` stays `novel`**, but the tension is real and is
+  recorded rather than smoothed over. The reviewer is right that _ne... guère_
+  is a live negative-polarity item in the formal register, and the
+  `NEG.expletiu` precedent says a rule that is alive but gated by register earns
+  `near-miss`, not `novel`. Against that: `guère` is a determiner nowhere, and
+  the leaf is about a determiner. The note now states the formal-register anchor
+  instead of denying it. **This one matters beyond itself**, because the `gaire`
+  decision is the precedent that `VERB.subj.imperfet` and the `LEX` empty-column
+  argument both lean on. If it is ever revisited, those must be revisited with
+  it.
+- **`DET.num.ordinals` keeps its dialect note**, per the false positive above.
+
+**Coverage, reported rather than faked.** The reviewer named eighteen `DET`
+leaves and sixteen `PREP` leaves it never reached with a targeted search, and
+filed no verdict on them rather than an unearned CORRECT. That is exactly what
+the output contract asked for and the first time a review has done it. The two
+it flagged as priority re-checks are `DET.identitat.altres_nu`, on whether
+`altres llibres` truly needs no `de` against French _d'autres livres_, and
+`DET.quant.grau.prou_bastant`, on the `prou`/`bastant` split against _assez_.
+Both are owed. It also could not close two French questions: _d'autres_ against
+_des autres_, and whether _en prison_ against _dans la prison_ is a fair
+characterisation of the determiner conditioning.
+
+**No structural finding, and that is itself a result.** The reviewer looked for
+paradigm-cell leaves and branch axes that do not work, and reported none in
+either domain. `DET` had already been re-axed once during its own pass, when
+`DET.indef` was dissolved as a residue bucket, and `PREP.regim` had been re-axed
+from the Catalan preposition to convergence against French. Both hold up. The
+contrast with `ART`, seeded in the same early period and carrying seven
+contraction leaves, suggests the difference is not when a domain was seeded but
+whether anything forced its axis to be argued at the time.
