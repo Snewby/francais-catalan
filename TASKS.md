@@ -76,6 +76,55 @@ none of them ever caught internally. What it found beyond that is a single
 pattern rather than six slips, recorded at the end of `data/sources.md`. The
 prompt has been amended against it.
 
+## How the application knows whether an answer is right
+
+It mostly does not, and **the design has to be honest about that** rather than
+imply otherwise. Three tiers, and only the first runs on every reply.
+
+**1. What the running application checks, on every reply, with nobody watching.**
+Only structural claims, never content:
+
+- The component ID exists. Guaranteed twice: constrained decoding cannot emit an
+  out-of-vocabulary tag, and `validate.ts` recompiles the generated schema.
+- The reply has the required fields, `answer_ca` and `answer_fr` are non-empty
+  and one line, and the decomposition carries no French.
+- **Every form the reply names occurs in the sentence it decomposes.** One
+  retry, then the whole analysis is dropped and nothing is credited. This is the
+  only check that has ever caught a content-shaped error, and it catches exactly
+  one kind: a form that is not there.
+
+That is the whole list. **A false claim about the language passes all of it.**
+
+**2. What the golden set will check, offline and per change.** Phase 8 replays
+recorded replies with human-checked expectations. It answers "has this got worse
+than the day someone verified it", for the cases someone once verified. It says
+nothing about a question nobody has asked before, which is every real question.
+
+**3. What nothing checks.** Whether the explanation is true. `Barcelona` tagged
+as regular feminine formation, `cotxe` called feminine, `vingis` given as the
+subjunctive of `venir`. Every one of those passes tier 1 and would pass tier 2.
+**The answer is a periodic human process, not a runtime property**, and the
+practice already exists: six outside reviews, thirteen false claims about French,
+none of them ever caught internally.
+
+Three things follow, and they are why the architecture is shaped as it is.
+
+- **Asking questions can never move mastery.** Generated answers move exposure
+  and the Elo difficulty only. Mastery moves on self-graded review of the
+  AUTHORED taxonomy, which has been reviewed six times. So a wrong explanation
+  can waste a learner's time; it cannot make the coverage map claim they know
+  something. That was designed before any of this was observed and it is the
+  reason the damage is bounded.
+- **Anything unverifiable is made visible instead.** The detected direction is
+  printed under the answer, so a misread is on screen rather than silently
+  shaping the reply; a dropped analysis says so; the cache reading is shown.
+  **Visible beats silent when correct is unavailable.**
+- **What is missing is a way for the learner to flag a suspect reply**, since
+  replies will not keep being pasted into a review chat. A one-tap "signal" that
+  stores the query for later inspection would turn ordinary use into the sampling
+  frame an outside review needs. It is small, it is not built, and it is the
+  cheapest remaining thing that would improve tier 3.
+
 ## Seeding, per domain
 
 Phases 2a and 2b are tracked here rather than in the table above, because one
@@ -1217,6 +1266,29 @@ three things in it are not:
   the difference is exactly the class of defect phase 6 caught by looking, so
   the screenshot is owed. See "Carried over".
 
+The benchmark the review set was then run, and it produced the first runtime
+check on a reply's content. Ten fresh replies: three of the four amended clauses
+worked, the abstention clause failed, and padding survived by changing leaf.
+Seven of 43 decomposition forms were absent from the sentence they claimed to
+decompose. `src/text/realised.ts` now gates that, `callHaiku` retries once and
+then drops the whole analysis, and the translation survives because it is not
+what failed. Three things in it matter beyond this pass:
+
+- **A fallback written before the evidence is a hypothesis.** This file
+  predicted a schema flag for a present-but-unkeyed point. The observed failure
+  was the opposite, keyed-but-absent, and the flag would have caught none of it.
+  The wrong prediction is left standing in `data/sources.md` beside what
+  replaced it, on the `pas` precedent.
+- **The gate is a gate, not a plea.** The prompt already asked for this in
+  prose and the prose is what failed. Same move as `check-duplicates` replacing
+  remembering to check for duplicates. **Expect the next content failure to need
+  the same treatment**, and expect most of them not to be gateable at all.
+- **Declaring a correction raises the cost of getting the correction wrong.**
+  The clause that fixed silent correction produced a reply that announced a
+  fault and then gave `vingis` for `vinguis`. That is a card teaching a form the
+  norm rejects, in the one place the learner is told to pay attention, and it is
+  the strongest argument the build has yet produced for phase 8.
+
 ## Carried over into later phases
 
 - **The prompt cache is VERIFIED against the live API.** A second identical
@@ -1254,13 +1326,15 @@ three things in it are not:
   phase 6c. That is far past a comfortable line length. Not fixed here, because
   capping the reading column is a decision about the whole view; worth taking
   with the screenshot pass above.
-- **The prompt amendment has a stated benchmark, and it is owed.** Ten fresh
-  replies against the amended prompt. **If number or gender IDs still land on
-  singular or invariable nouns, the closed vocabulary is not fixable by prompt
-  alone**, and the next move is a schema flag letting a decomposition entry say
-  "present, no identifier, described in prose". That is the reviewer's own
-  ordering and it is the right one: try the sentence before the schema change.
-  Phase 8 is where the ten replies would come from anyway.
+- **The benchmark has been run and the prompt amendment half failed.** Ten fresh
+  replies. Three of the four clauses worked; the abstention clause did not, and
+  padding survived by changing leaf, with `NOM.gender.masc_fem_o` (`gat / gata`)
+  landing on `Barcelona` and on `ciutat`. **The predicted fallback addressed the
+  wrong half**: a schema flag for a present-but-unkeyed point would not have
+  caught one of the seven forms that were named and absent. What landed instead
+  is the runtime gate in `src/text/realised.ts`. Recorded in full at the end of
+  `data/sources.md`, including the fallback that was wrong, on the `pas`
+  precedent.
 - **`NEG.simple.pas`'s `dialect_note` is incomplete.** It sets the Principat
   against Valencian and Balearic and says nothing about Northern Catalan, where
   `pas` is the ordinary sentential negator rather than a reinforcement. Raised

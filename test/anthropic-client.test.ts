@@ -266,6 +266,91 @@ describe('a successful call', () => {
   });
 });
 
+describe('a decomposition that names a form the sentence does not contain', () => {
+  /** A reply whose decomposition and utterance are set independently. */
+  function reply(entries: { id: string; ca: string }[], answerCa: string) {
+    const payload = {
+      decomposition: entries,
+      direction: 'ca_to_fr',
+      answer: 'Une explication française.',
+      answer_ca: answerCa,
+      answer_fr: 'Une phrase française.',
+      answer_lang: 'fr',
+    };
+    return {
+      status: 200,
+      body: { ...fixture, content: [{ type: 'text', text: JSON.stringify(payload) }] },
+    };
+  }
+
+  const ABSENT = [{ id: 'VERB.perf.present', ca: 'he cantat' }];
+  const PRESENT = [{ id: 'ART.def.forma.elisio', ca: "l'home" }];
+  const UTTERANCE = "L'home ha arribat.";
+
+  it('asks once more before giving up on it', async () => {
+    const { fetchFn, calls } = stubFetch([
+      reply(ABSENT, UTTERANCE),
+      reply(PRESENT, UTTERANCE),
+    ]);
+    const result = await callHaiku({
+      ...CONTEXT,
+      apiKey: API_KEY,
+      evidence: 'lookup',
+      fetchFn,
+    });
+
+    expect(calls).toHaveLength(2);
+    expect(result.unverified).toEqual([]);
+    expect(result.decomposition.decomposition.map((entry) => entry.ca)).toEqual([
+      "l'home",
+    ]);
+  });
+
+  it('retries once and not twice', async () => {
+    const { fetchFn, calls } = stubFetch([
+      reply(ABSENT, UTTERANCE),
+      reply(ABSENT, UTTERANCE),
+    ]);
+    await callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn });
+    expect(calls).toHaveLength(2);
+  });
+
+  it('drops the whole analysis rather than the offending entry', async () => {
+    const { fetchFn } = stubFetch([
+      reply([...PRESENT, ...ABSENT], UTTERANCE),
+      reply([...PRESENT, ...ABSENT], UTTERANCE),
+    ]);
+    const result = await callHaiku({
+      ...CONTEXT,
+      apiKey: API_KEY,
+      evidence: 'lookup',
+      fetchFn,
+    });
+
+    expect(result.unverified).toEqual(['he cantat']);
+    expect(result.decomposition.decomposition).toEqual([]);
+    // Nothing reaches the store, so not one component is credited on the
+    // strength of a reply already known to be wrong about another.
+    expect(result.queryLog.decomposition).toEqual([]);
+  });
+
+  it('keeps the translation, which is not what failed', async () => {
+    const { fetchFn } = stubFetch([reply(ABSENT, UTTERANCE), reply(ABSENT, UTTERANCE)]);
+    const result = await callHaiku({
+      ...CONTEXT,
+      apiKey: API_KEY,
+      evidence: 'lookup',
+      fetchFn,
+    });
+
+    expect(result.decomposition.answer_ca).toBe(UTTERANCE);
+    expect(result.decomposition.answer_fr).toBe('Une phrase française.');
+    expect(result.decomposition.answer).toBe('Une explication française.');
+    expect(result.queryLog.answer_ca).toBe(UTTERANCE);
+    expect(result.queryLog.answer_fr).toBe('Une phrase française.');
+  });
+});
+
 describe('a bad reply', () => {
   it('refuses a component ID that is not in the taxonomy', async () => {
     // Assembled rather than written out: scripts/lib/scan-ids.ts scans every

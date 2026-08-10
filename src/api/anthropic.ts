@@ -13,6 +13,7 @@
 import { DECOMPOSITION_SCHEMA, type ComponentId } from './schema';
 import { validateDecomposition, validateQueryLog } from './validate';
 import { buildSystemBlocks, buildUserContent, type QuestionContext } from './prompt';
+import { unrealisedForms } from '../text/realised';
 import {
   INTENT_FOR_DIRECTION,
   type Direction,
@@ -233,6 +234,16 @@ export interface CallResult {
   /** Schema-valid and ready to persist. Phase 5 stores this, it does not rebuild it. */
   readonly queryLog: QueryLog;
   readonly usage: CacheUsage;
+  /**
+   * Forms the model named that its own `answer_ca` does not contain, after one
+   * retry. Empty on a good reply.
+   *
+   * Non-empty means the decomposition has been DROPPED: `decomposition` is `[]`
+   * here and in the logged record, so not one component is credited. The answer
+   * and the French/Catalan pair survive untouched, because they are what the
+   * learner asked for and they are not what failed.
+   */
+  readonly unverified: readonly string[];
 }
 
 export class AnthropicError extends Error {
@@ -313,19 +324,18 @@ async function post(
   return { ok: response.ok, status: response.status, text: await response.text() };
 }
 
-export async function callHaiku(options: CallOptions): Promise<CallResult> {
-  const fetchFn = options.fetchFn ?? fetch;
-  const context: QuestionContext = {
-    question: options.question,
-    ...(options.intent === undefined ? {} : { intent: options.intent }),
-  };
-
-  let response = await post(fetchFn, options.apiKey, buildRequestBody(context));
+/** One round trip: the request, the legacy-field fallback, and the parse. */
+async function send(
+  fetchFn: typeof fetch,
+  apiKey: string,
+  context: QuestionContext,
+): Promise<{ payload: ApiResponse; decomposition: Decomposition }> {
+  let response = await post(fetchFn, apiKey, buildRequestBody(context));
 
   if (!response.ok && isUnknownOutputConfig(response.status, response.text)) {
     response = await post(
       fetchFn,
-      options.apiKey,
+      apiKey,
       buildRequestBody(context, { legacyOutputFormat: true }),
     );
   }
@@ -344,7 +354,45 @@ export async function callHaiku(options: CallOptions): Promise<CallResult> {
     throw new AnthropicError('The API response was not valid JSON.');
   }
 
-  const decomposition = parseDecomposition(payload);
+  return { payload, decomposition: parseDecomposition(payload) };
+}
+
+/** The forms a reply names that its own utterance does not contain. */
+function unverifiedIn(decomposition: Decomposition): string[] {
+  return unrealisedForms(
+    decomposition.decomposition.map((entry) => entry.ca),
+    decomposition.answer_ca,
+  );
+}
+
+export async function callHaiku(options: CallOptions): Promise<CallResult> {
+  const fetchFn = options.fetchFn ?? fetch;
+  const context: QuestionContext = {
+    question: options.question,
+    ...(options.intent === undefined ? {} : { intent: options.intent }),
+  };
+
+  let sent = await send(fetchFn, options.apiKey, context);
+  let unverified = unverifiedIn(sent.decomposition);
+
+  // ONE retry, not a loop. A decomposition naming a form the sentence does not
+  // contain is usually a bad draw and a second ask fixes it; a second identical
+  // failure is the model failing at the task, and a third call would spend the
+  // learner's wait on the same answer.
+  if (unverified.length > 0) {
+    sent = await send(fetchFn, options.apiKey, context);
+    unverified = unverifiedIn(sent.decomposition);
+  }
+
+  // The analysis fails, the translation does not. Dropping the whole list
+  // rather than the offending entries is deliberate: a reply that named a form
+  // absent from its own sentence has shown the analysis to be untrustworthy,
+  // and keeping the rest would credit components on the strength of a reply
+  // already known to be wrong about others.
+  const decomposition: Decomposition =
+    unverified.length === 0
+      ? sent.decomposition
+      : { ...sent.decomposition, decomposition: [] };
 
   const queryLog: QueryLog = {
     asked_at: (options.now ?? Date.now)(),
@@ -367,5 +415,10 @@ export async function callHaiku(options: CallOptions): Promise<CallResult> {
     );
   }
 
-  return { decomposition, queryLog, usage: readUsage(payload.usage) };
+  return {
+    decomposition,
+    queryLog,
+    usage: readUsage(sent.payload.usage),
+    unverified,
+  };
 }

@@ -100,6 +100,7 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
         evidence: options.evidence,
         ...decomposition,
       },
+      unverified: [],
       // Non-zero on purpose. A stub reporting zeros would let the view drop the
       // usage entirely and still pass, which is exactly what shipped once.
       usage: {
@@ -119,6 +120,7 @@ function replyWith(
     answer?: string;
     cacheReadTokens?: number;
     cacheCreationTokens?: number;
+    unverified?: readonly string[];
   } = {},
 ): CallResult {
   const decomposition = {
@@ -138,6 +140,7 @@ function replyWith(
       evidence: 'lookup' as const,
       ...decomposition,
     },
+    unverified: overrides.unverified ?? [],
     usage: {
       inputTokens: 120,
       outputTokens: 45,
@@ -363,6 +366,28 @@ describe('the query view types its own evidence', () => {
     await ask(host, { question: leaf.glosses.fr });
 
     expect(host.querySelectorAll('.ac-answer p')).toHaveLength(2);
+  });
+
+  it('says why the grammar points are missing rather than showing none', async () => {
+    // A dropped analysis and a sentence with no grammar in it look identical if
+    // the section simply disappears, and only one of those is true.
+    const host = document.createElement('div');
+    document.body.replaceChildren(host);
+    localStorage.setItem('anthropic-api-key', 'test-key');
+    const leaf = subject();
+    mountQueryView(host, {
+      call: () => Promise.resolve(replyWith(leaf, { unverified: ['he cantat'] })),
+    });
+    await ask(host, { question: leaf.ca });
+
+    const notice = host.querySelector<HTMLElement>('[data-unverified]');
+    expect(notice?.textContent).toBe(fr.query.componentsUnverified);
+    expect(host.querySelector('.ac-components')).toBeNull();
+    expect(host.textContent).not.toContain(fr.query.componentsHeading);
+
+    // The translation is not what failed and is still on screen.
+    const lines = [...host.querySelectorAll('.ac-utterance')].map((n) => n.textContent);
+    expect(lines).toEqual([leaf.ca, FRENCH_UTTERANCE]);
   });
 
   it('reports what the prompt cache did, which nothing else can', async () => {

@@ -300,22 +300,40 @@ export function mountQueryView(
     return block;
   }
 
+  /**
+   * The grammar points, or an explanation of their absence.
+   *
+   * A reply that named a Catalan form its own sentence does not contain has had
+   * its whole decomposition dropped by the client, and nothing was credited to
+   * any component. Saying so matters: an empty section reads as "this sentence
+   * has no grammar in it", which is a different and false claim.
+   */
+  function renderComponentSection(result: CallResult): HTMLElement[] {
+    if (result.unverified.length > 0) {
+      const notice = document.createElement('p');
+      notice.className = 'ac-hint';
+      notice.dataset['unverified'] = String(result.unverified.length);
+      notice.textContent = fr.query.componentsUnverified;
+      return [notice];
+    }
+
+    const heading = document.createElement('h3');
+    heading.className = 'ac-subheading';
+    heading.textContent = fr.query.componentsHeading;
+    return [heading, renderComponents(result)];
+  }
+
   function renderResult(result: CallResult, outcome: AttemptResult | null): void {
     const answerHeading = document.createElement('h3');
     answerHeading.className = 'ac-subheading';
     answerHeading.textContent = fr.query.answerHeading;
-
-    const componentsHeading = document.createElement('h3');
-    componentsHeading.className = 'ac-subheading';
-    componentsHeading.textContent = fr.query.componentsHeading;
 
     output.replaceChildren(
       ...(outcome === null ? [] : [renderAttempt(outcome)]),
       renderAnswerCa(result),
       answerHeading,
       renderAnswer(result),
-      componentsHeading,
-      renderComponents(result),
+      ...renderComponentSection(result),
       renderUsage(result),
     );
   }

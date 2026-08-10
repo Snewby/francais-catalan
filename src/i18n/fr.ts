@@ -119,6 +119,12 @@ export const fr = {
     pending: 'Analyse en cours…',
     answerHeading: 'Pourquoi',
     componentsHeading: 'Points de grammaire relevés',
+    // Shown instead of the list when the reply named a Catalan form its own
+    // phrase does not contain. Says what was kept and what was not, because a
+    // section that simply disappeared would read as a sentence with no grammar
+    // in it.
+    componentsUnverified:
+      'L’analyse grammaticale de cet énoncé n’a pas pu être vérifiée, même après une seconde demande. La phrase et sa traduction restent valables, mais aucun point de grammaire n’est affiché ni comptabilisé pour cette question.',
     attemptExact: 'Votre version correspond à la réponse.',
     attemptCorrect:
       'Votre version diffère de la réponse, mais elle contient toutes les formes attendues.',

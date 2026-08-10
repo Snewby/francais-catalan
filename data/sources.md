@@ -3506,3 +3506,125 @@ utterance and the explanation both run to a 1,097 px measure**, which is far pas
 a comfortable line length and was already true of the explanation before this
 phase. Recorded rather than fixed, because capping the reading column is a
 decision about the whole view rather than about this field.
+
+## The benchmark the review set, and the gate it produced
+
+The application review ended with a stated benchmark rather than a
+recommendation: ten fresh replies against the amended prompt, and **if number or
+gender IDs still land on singular or invariable nouns, the closed vocabulary is
+not fixable by prompt alone**. Ten questions were asked in one session, five in
+each direction, spanning ten domains and all four contrast statuses, with one
+carrying a deliberate grammatical error (`vull que vens demà` for `vinguis`).
+
+**The prefix cached exactly as predicted.** The first reply wrote 18,273 tokens
+and read none, the other nine each read 18,273. The prompt had changed twice
+that day, and the single write is what that costs.
+
+### Three clauses of the amendment worked
+
+- **A correction is now declared.** Reply 3 opens « La phrase soumise contient
+  une faute » and gives the corrected form; reply 2 states that the submitted
+  sentence was already correct. The silent-correction defect is gone.
+- **The partitive is now called a partitive.** Reply 2 says « le catalan
+  n'emploie pas d'article partitif » where the old prompt produced « l'article
+  indéfini ». That was one of the review's four errors about French.
+- **The contrast with French is carried, and it settles the one finding that was
+  declined.** Reply 8 states unprompted that the Catalan gerundi is bare where
+  French requires _en_. The reviewer had reported « gérondif » as an unflagged
+  false friend; the decline argued the taxonomy already teaches it in two
+  leaves, and the model now says so out loud. **Declined and confirmed by
+  behaviour, which is better evidence than the argument that declined it.**
+- The « passé récent » mislabel of the periphrastic past did not recur.
+
+### The abstention clause failed, and the failure had a second half nobody had seen
+
+**Padding survived by changing leaf.** Number IDs left `Barcelona`, and
+`NOM.gender.masc_fem_o`, whose reference pair is `gat / gata`, arrived on both
+`Barcelona` and `ciutat`. Neither noun has a masculine counterpart, so the entry
+asserts a rule that cannot apply. `NOM.number.a_es` (`casa / cases`) landed on
+`pa` and on `timbres`, `NOM.comp.verb_nom` (`gratacels`) on `cotxe`. That is the
+benchmark condition met, and the prompt is therefore not the whole fix.
+
+**And seven of the 43 decomposition forms were absent from the sentence they
+claimed to decompose.** `he` and `tingut` in reply 7 are the two words that
+reply's own prose had just rejected. `jo` in reply 9 is absent from `cal que
+marxi demà`. `ràpida` and `la meva` in reply 10 decompose the French sentence
+rather than the Catalan the model produced, which was `és més ràpid que el meu`.
+Reply 8 put the prose `(la notícia - sense pronom antepòsit)` in a `ca` field,
+which the schema permits because it only requires a non-empty string.
+
+**The recorded fallback addressed the wrong half.** `TASKS.md` predicted the
+next move as a schema flag letting an entry say « present, no identifier,
+described in prose ». The model is not failing to key points that are present;
+it is keying forms that are absent, and a flag for the first would not have
+caught one of the seven. **A fallback written before the evidence is a
+hypothesis, and this one was wrong.** It is recorded here rather than quietly
+replaced, on the `pas` precedent.
+
+### The gate
+
+`src/text/realised.ts` answers one question: does every form the reply names
+occur in the reply's own `answer_ca`? `callHaiku` asks it, **retries once**, and
+on a second failure **drops the whole decomposition** while keeping everything
+else. Four things about it are decisions rather than defaults.
+
+- **It is a gate, not a plea.** The prompt already asks for this in prose and
+  the prose is what failed. This repo has made the same move before, when
+  `check-duplicates` replaced remembering to check for duplicates.
+- **One retry, not a loop.** A decomposition naming an absent form is often a
+  bad draw and a second ask fixes it; a second identical failure is the model
+  failing at the task, and a third call spends the learner's wait on the same
+  answer.
+- **The whole list is dropped, not the offending entries.** Keeping the good
+  ones would credit components on the strength of a reply already shown to be
+  wrong about others. The alternative was considered and refused for that
+  reason: an exposure counter moved by an untrustworthy reply is exactly the
+  thing the exposure/mastery split exists to prevent.
+- **The translation survives, because it is not what failed.** `answer_ca`,
+  `answer_fr` and `answer` are rendered as usual and the pair is still stored on
+  the query row, so the phase 9 corpus keeps accumulating. The interface says
+  the analysis could not be verified rather than showing an empty section, since
+  a section that simply vanishes reads as "this sentence has no grammar in it",
+  which is a different and false claim.
+
+Matching is by whole word after the `foldAttempt` fold, splitting on the hyphen
+so an enclitic is its own word. **Substring matching was tried and is wrong**:
+one live reply mangled `-nos` to `ns`, which occurs inside `sense` and would
+have passed for the wrong reason. A discontinuous frame such as `més ... que`
+passes when both halves are present anywhere. The interpunct stays significant,
+so `colleccio` does not match `col·lecció`.
+
+**What the gate cannot see is the larger half.** `Barcelona` tagged as regular
+feminine formation is present in the sentence and passes. Whether a form that IS
+there realises the rule the ID names needs a reader who knows what the rule
+says, and no script will ever do it. The sharpest case is reply 1's `gran`,
+keyed `NOM.adj.four_form` when the vocabulary line the model was handed reads
+`NOM.adj.two_form  gran / grans`, with `gran` as the example; its prose then
+says `gran` has two forms, one masculine and one feminine, both spelled `gran`,
+and invents a neuter gender for good measure. The label was wrong, the prose
+half knew the right answer, and everything about it was present in the sentence.
+
+### Three other things the ten replies showed
+
+- **Declaring a correction raises the cost of getting the correction wrong.**
+  Reply 3 announces the fault and then gives `vingis`, where the second-person
+  present subjunctive of `venir` is `vinguis`, and prints a paradigm wrong at
+  three persons. The clause that fixed the silent-correction defect makes a
+  wrong correction more authoritative, not less. **This is the strongest
+  argument yet for the golden set**, because it is a card that teaches a form
+  the norm rejects, in the one place the learner is told to pay attention.
+- **The direction can be misread.** Reply 3 was given a Catalan sentence and
+  reported `fr_to_ca`. The interface names the detected direction under the
+  answer precisely so this is visible, which is the phase 6 decision working.
+- **`answer_fr` can carry bad French.** Reply 6 rendered `sense dir-nos res` as
+  « sans nous dire rien », where French wants « sans rien nous dire ». The new
+  field is French prose generated by a model, and this project's record is that
+  its French is checked by nobody. Phase 8 should assert something about
+  `answer_fr` beyond non-emptiness.
+
+**One risk in the gate is known and accepted.** A component realised by an
+elided form could be named as `el` where the sentence has `l'`, and the check
+would reject a correct entry. The prompt already demands the form as realised in
+this énoncé, and the phase 4 fixture shows the model doing that. If it ever
+bites, the cost is one dropped analysis and no wrong data, which is the right
+direction to fail in.
