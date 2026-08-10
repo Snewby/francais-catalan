@@ -57,8 +57,9 @@ against, and a proper 2a pass over that domain is still owed.
 | `SYN`  | `data/syn.fragment.json`  | done      | done    | this pass |
 | `LEX`  | `data/lex.fragment.json`  | done      | done    | this pass |
 
-**Seeding is complete and every domain has been reviewed.** All twelve are
-seeded, at 306 leaves and 91 branches, and three outside reviews have covered
+**Seeding is complete, every domain has been reviewed, and the structural work
+is done.** All twelve are seeded, at 300 leaves and 89 branches after the
+structural pass, and five outside reviews have covered
 `CONJ`/`ADV`/`SYN`, `VERB`/`PRON` and `LEX`/`PHON`. The four domains seeded
 earliest, `NOM`, `ART`, `DET` and `PREP`, have had internal review only and are
 the obvious candidates if a fourth review is ever run. What is still owed
@@ -141,7 +142,8 @@ The five docs/01 statuses were treated as fixed, but they predate this tree, so
 they bind the leaves that realise each row rather than propagating like a
 `contrast-overrides` wildcard. Forcing `ART.def`'s `transfer` onto every
 `ART.def.us` leaf would have labelled the domain's sharpest divergences as
-free transfer. Two inherited assignments were challenged on review. `ART.contract.pel`/`pels`
+free transfer. Two inherited assignments were challenged on review. `ART.contract.pel`/`pels`,
+since merged into `ART.contract.per`,
 moved to near-miss: French fuses only `à` and `de` with the article, so the
 contraction habit is lexical rather than general and `per el carrer` is the
 error to expect, which is exactly what near-miss is for. The docs/01 row itself
@@ -225,7 +227,8 @@ things in it change how later domains should be seeded:
   single rules. Amended to: **ART owns the article when it is the sole
   determiner; DET owns any structure where the article co-occurs with,
   alternates with, or is suppressed by another determiner.**
-  `ART.def.us.abans_possessiu` is a legacy misfile under the amended line. It
+  `ART.def.us.abans_possessiu` was a legacy misfile under the amended line, and
+  the structural pass has since migrated it to `DET.poss.article_obligatori`. It
   is committed and is not being migrated; it is recorded as such in
   `data/sources.md` so the next reader finds the decision and not an
   inconsistency.
@@ -970,17 +973,12 @@ Three decisions in it are worth knowing before phase 6 touches it:
   the whole list works; keep doing it. Details in `data/sources.md`.
 - **All twelve domains have now had an outside review**, across five of them.
   Nothing is owed a first review.
-- **Six structural changes are accepted, specified and now unblocked**, set out
-  leaf by leaf at the end of the `NOM`/`ART` section in `data/sources.md`. They
-  were waiting on the `DET`/`PREP` reply because one of them migrates a leaf
-  into `DET`; that reply has landed, so **this is the next piece of work**. They
-  delete and rename IDs, which is free only until phase 5 turns the component
-  vocabulary into stored data, so they must land before phase 5 starts. In
-  short: collapse `ART.contract` from seven leaves to two, collapse `ART.salat`
-  from three to one, migrate `ART.def.us.abans_possessiu` into `DET`, resolve
-  the `NOM.gender.ista`/`NOM.deriv.ista` duplication, fix the single-leaf
-  `NOM.adj.agree` branch, and place the Catalan quarters system, which is keyed
-  nowhere in 306 leaves.
+- **The six structural changes are done**, in the pass recorded at the end of
+  `data/sources.md`. The taxonomy stands at **300 leaves and 89 branches**.
+  Nothing structural is outstanding, and **the window that made it cheap is
+  now closed by choice rather than by deadline**: renaming or deleting a
+  component ID is free only while nothing persists it, so any further change of
+  that kind should be weighed against a data migration once phase 5 lands.
 - **Thirty-four leaves in `DET` and `PREP` were never reached by their review**,
   named in that section of `data/sources.md`. Two are flagged as priority
   re-checks: `DET.identitat.altres_nu` and `DET.quant.grau.prou_bastant`. This

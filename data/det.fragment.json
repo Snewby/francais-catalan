@@ -216,6 +216,36 @@
       }
     },
     {
+      "id": "DET.poss.article_obligatori",
+      "kind": "leaf",
+      "parent": "DET.poss",
+      "ca": "el meu llibre",
+      "glosses": {
+        "fr": "l’article défini obligatoire devant le possessif tonique"
+      },
+      "cefr": "A2",
+      "examples": [
+        "El meu llibre és aquí.",
+        "La meva germana estudia dret.",
+        "Els meus pares viuen a Girona."
+      ],
+      "notes": "L’article ne tombe que dans une série fermée d’expressions lexicalisées, « a casa meva », « en nom meu », traitée à DET.poss.nu_lexical, et avec le possessif atone, traité à DET.poss.aton.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français remplace l’article par le possessif, mon livre, alors que le catalan garde les deux, « el meu llibre ». L’omission par calque est l’erreur à attendre."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
       "id": "DET.poss.aton",
       "kind": "leaf",
       "parent": "DET.poss",
@@ -259,7 +289,7 @@
         "Fill meu!",
         "Déu meu!"
       ],
-      "notes": "L’ensemble est lexicalement fermé et ne se déduit pas. La règle générale du maintien de l’article devant le possessif est traitée en « ART.def.us.abans_possessiu ».",
+      "notes": "L’ensemble est lexicalement fermé et ne se déduit pas. La règle générale du maintien de l’article devant le possessif est traitée en DET.poss.article_obligatori.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français connaît aussi des tournures sans article (« en mon nom »), mais il antépose le possessif quand le catalan le postpose : « casa meva »."

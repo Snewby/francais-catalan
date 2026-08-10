@@ -2873,3 +2873,97 @@ from the Catalan preposition to convergence against French. Both hold up. The
 contrast with `ART`, seeded in the same early period and carrying seven
 contraction leaves, suggests the difference is not when a domain was seeded but
 whether anything forced its axis to be argued at the time.
+
+### The structural pass, and what it settled
+
+The six structural changes accepted from the `NOM`/`ART` review, executed
+together once the `DET`/`PREP` reply had landed. The taxonomy goes from 306
+leaves and 91 branches to **300 leaves and 89 branches**: eleven leaves and two
+branches removed, five leaves added, one leaf migrated between domains, one
+renamed. Nothing outside the fragments referenced any of the deleted IDs except
+the generated `src/api/schema.ts`, which regenerates.
+
+**`ART.contract`, eight leaves to three.** The review counted seven; there was
+also `ART.contract.cap_al`, which it never saw named in its own question. The
+old set was `al`, `als`, `del`, `dels`, `pel`, `pels`, the
+no-contraction-when-elided rule, and the compound-preposition case: six
+inflectional cells and two rules, in the very domain that first established that
+paradigm cells are not leaves. It is now:
+
+- **`ART.contract.a_de`**, `transfer`, covering `a` and `de` with `el` and
+  `els`, with the elided-article block folded in as the exception it always was.
+  Gains two facts the old set never carried: the block before a title keeping
+  its own article, `el llibre de El Periódico`, and the parallel contraction of
+  `ca`, giving `cal metge` and `can Joan`.
+- **`ART.contract.per`**, `near-miss`, because French fuses only _à_ and _de_
+  with the article and never _par_.
+- **`ART.contract.cap_al`**, `near-miss`, kept rather than folded in. The review
+  proposed putting the compound-preposition facts inside the `a_de` leaf; that
+  would have put a `near-miss` fact inside a `transfer` leaf, which is the
+  status-homogeneity problem the two-leaf split exists to avoid. Broadened
+  instead to state the rule for `cap a`, `des de` and `fins a` together.
+
+**The split follows the statuses, and that is the point.** A single
+all-contractions leaf would have had to carry `transfer` and `near-miss` at
+once. Three leaves on the axis "which preposition, and is it simple or
+compound" is a natural class in Catalan and predicts the status distribution,
+which is both limbs of the axis rule satisfied.
+
+**`ART.salat`, three leaves to one.** Three `C1` leaves for a dialect article,
+in a project whose reference variety is Central Catalan and which files dialect
+facts in a `dialect_note` everywhere else, was over-weighting. The branch is
+gone and `ART.salat` is now a single root-level leaf carrying the whole
+paradigm, the `s'` elision and the Majorcan `so`/`sos` after `amb`. The
+geography was wrong and is corrected: the review supplied, and this pass
+accepted, that the salat article is not simply Balearic but survives at Cadaqués
+and in toponyms such as Sant Joan Despí and Sant Esteve Sesrovires.
+
+**`ART.def.us.abans_possessiu` is now `DET.poss.article_obligatori`.** The `DET`
+pass had amended the boundary so that `ART` owns the article only when it is the
+sole determiner; this leaf is the article co-occurring with a possessive, and it
+had been recorded as a legacy misfile and left alone. **The migration turned up
+something the review did not predict.** It proposed adding the exception class
+on arrival, the article dropping in `a casa meva` and `en nom meu`. That class
+is already `DET.poss.nu_lexical`, which owns exactly those forms, and which
+carried a cross-reference pointing back at the old `ART` id. So the migrated
+leaf cross-references it rather than restating it, and the stale pointer is
+fixed in the same move. **Migrating a misfiled leaf is also the moment its
+duplicates become visible**, because the leaf lands next to them.
+
+**`NOM.gender.ista` and `NOM.deriv.ista` were kept, against the review's first
+option.** It offered "keep at most one, or split them explicitly with no shared
+example". They are two facts: that `-ista` nouns are epicene and marked by the
+article, and that `-ista` derives an agent noun from a base. The examples never
+collided; the only overlap was the token `art/artista` sitting in the derivation
+leaf's notes. Removed, and each leaf now names the other. That is the same
+resolution `PRON` used when it made a `ca` field precise rather than allowlist a
+collision, and it is preferred to deletion whenever the two facts are real.
+
+**`NOM.adj.agree` was a branch with one leaf, and is gone.**
+`NOM.adj.agree.coord` is now `NOM.adj.coord` directly under `NOM.adj`. A branch
+that never acquired a sibling is a claim about a subdivision that does not
+exist.
+
+**The Catalan quarters system is keyed, as `LEX.hores_quarts`, `novel`.**
+`un quart de quatre` is 3.15 and `dos quarts de quatre` is 3.30, the quarters
+counting **towards** the hour to come. It was keyed nowhere in 306 leaves, and
+it is the sharpest kind of gap: every word is transparent to a French speaker
+and the natural reading is wrong by a whole hour. Placement was the open
+question. Not `ART`, because it is not about the article; not `DET.num`, because
+`DET` owns determiners rather than reckoning systems. `LEX` takes it on the
+ground that has defined that domain from the start, that it holds what the other
+eleven decline, and the leaf cross-references `ART.def.us.hores` for the article
+itself. A `dialect_note` records that Valencian counts from the hour elapsed,
+like French.
+
+**Two wording slips were caught in the browser review of the new prose**, which
+is the fourth consecutive pass in which reading the rendered cards has found
+something no gate could: a doubled preposition in `ART.contract.a_de`'s contrast
+note, and a strawman in `ART.contract.per` warning against `*pel'amistat`, a
+form no learner would produce.
+
+**This closes the structural work, and the window it depended on.** Renaming and
+deleting component IDs is free today because nothing persists them; after phase
+5 the same six changes would be a data migration against a live query log. That
+was the argument for doing them now rather than later, and it no longer applies
+to anything outstanding.

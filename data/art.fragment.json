@@ -142,36 +142,6 @@
       "label_fr": "L’emploi de l’article défini"
     },
     {
-      "id": "ART.def.us.abans_possessiu",
-      "kind": "leaf",
-      "parent": "ART.def.us",
-      "ca": "el meu llibre",
-      "glosses": {
-        "fr": "article défini maintenu devant l’adjectif possessif"
-      },
-      "cefr": "A2",
-      "examples": [
-        "El meu llibre és aquí.",
-        "La meva germana estudia dret.",
-        "Els meus pares viuen a Girona."
-      ],
-      "notes": "L’article défini précède presque toujours le possessif en catalan : « el meu llibre », « la meva germana », « els meus pares ». Ne pas omettre l’article par calque du français.",
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Le français remplace l’article par l’adjectif possessif (mon livre), alors que le catalan garde l’article devant le possessif (« el meu llibre »)."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
       "id": "ART.def.us.dates_setmana",
       "kind": "leaf",
       "parent": "ART.def.us",
@@ -726,18 +696,25 @@
       "label_fr": "Les contractions de l’article"
     },
     {
-      "id": "ART.contract.al",
+      "id": "ART.contract.a_de",
       "kind": "leaf",
       "parent": "ART.contract",
-      "ca": "al mercat",
+      "ca": "al mercat, del poble",
       "glosses": {
-        "fr": "contraction obligatoire de « a » + « el » en « al »"
+        "fr": "la contraction obligatoire de « a » et de « de » avec l’article masculin, « al », « als », « del », « dels »"
       },
       "cefr": "A1",
-      "examples": ["Vaig al mercat.", "Anem al cinema."],
+      "examples": [
+        "Vaig al mercat.",
+        "Ho dono als nens.",
+        "Vinc del poble.",
+        "La casa dels avis.",
+        "Ho dic a l'home."
+      ],
+      "notes": "La contraction ne se fait pas quand l’article est déjà réduit à « l' », « a l'home », « de l'hospital », ni devant un titre qui garde son propre article, « el llibre de El Periódico ». « ca », au sens de chez, se contracte de la même façon et donne « cal metge » et « can Joan ».",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Correspond exactement au français au (à + le), une contraction obligatoire devant un nom masculin singulier."
+        "note": "Correspond exactement au français au, aux, du et des, caractère obligatoire compris, et le blocage devant un article déjà élidé est celui de à l’homme et de l’hôpital."
       },
       "state": {
         "exposure": {
@@ -751,143 +728,23 @@
       }
     },
     {
-      "id": "ART.contract.als",
-      "kind": "leaf",
-      "parent": "ART.contract",
-      "ca": "als nens",
-      "glosses": {
-        "fr": "contraction obligatoire de « a » + « els » en « als »"
-      },
-      "cefr": "A2",
-      "examples": ["Ho dono als nens.", "Parlo als alumnes."],
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspond au français aux (à + les), la même contraction obligatoire au pluriel."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.contract.del",
-      "kind": "leaf",
-      "parent": "ART.contract",
-      "ca": "del poble",
-      "glosses": {
-        "fr": "contraction obligatoire de « de » + « el » en « del »"
-      },
-      "cefr": "A1",
-      "examples": ["Vinc del poble.", "El llibre del noi."],
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspond exactement au français du (de + le)."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.contract.dels",
-      "kind": "leaf",
-      "parent": "ART.contract",
-      "ca": "dels amics",
-      "glosses": {
-        "fr": "contraction obligatoire de « de » + « els » en « dels »"
-      },
-      "cefr": "A2",
-      "examples": ["Parlo dels amics.", "La casa dels avis."],
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Correspond au français des (de + les), la même contraction obligatoire que del mais au pluriel."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.contract.pel",
+      "id": "ART.contract.per",
       "kind": "leaf",
       "parent": "ART.contract",
       "ca": "pel carrer",
       "glosses": {
-        "fr": "contraction obligatoire de « per » + « el » en « pel »"
+        "fr": "la contraction obligatoire de « per » avec l’article masculin, « pel » et « pels »"
       },
       "cefr": "B1",
-      "examples": ["Passegem pel carrer.", "Ho fem pel projecte."],
+      "examples": [
+        "Passegem pel carrer.",
+        "Caminem pels camps.",
+        "Ho faig per l'amistat."
+      ],
+      "notes": "Le blocage devant l’article élidé vaut ici aussi, « per l'amistat », où la préposition et l’article restent séparés.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et « del » ne se transfère pas ici : l’erreur attendue est « per el carrer » au lieu de « pel carrer »."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.contract.pels",
-      "kind": "leaf",
-      "parent": "ART.contract",
-      "ca": "pels camps",
-      "glosses": {
-        "fr": "contraction obligatoire de « per » + « els » en « pels »"
-      },
-      "cefr": "B1",
-      "examples": ["Caminem pels camps.", "Ho fem pels nens."],
-      "contrast_fr": {
-        "status": "near-miss",
-        "note": "Comme pour « pel », la fusion de per et de l’article est obligatoire au pluriel alors que le français laisse par les en deux mots : l’erreur attendue est « per els camps » au lieu de « pels camps »."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.contract.no_contraccio_elisio",
-      "kind": "leaf",
-      "parent": "ART.contract",
-      "ca": "a l'home",
-      "glosses": {
-        "fr": "absence de contraction quand l’article est déjà élidé en « l' »"
-      },
-      "cefr": "B1",
-      "examples": ["Ho dic a l'home.", "Vinc de l'hospital.", "Ho faig per l'amistat."],
-      "contrast_fr": {
-        "status": "transfer",
-        "note": "Comme en français (à l’homme, de l’hôpital, sans au ni du), la contraction ne s’applique pas quand l’article est déjà réduit à « l' »."
+        "note": "Le français ne fusionne que à et de avec l’article, jamais par, si bien que le mécanisme de « al » et de « del » ne se transfère pas ici : les erreurs attendues sont « per el carrer » pour « pel carrer » et « per els camps » pour « pels camps »."
       },
       "state": {
         "exposure": {
@@ -906,10 +763,16 @@
       "parent": "ART.contract",
       "ca": "cap al poble",
       "glosses": {
-        "fr": "maintien de la contraction « al » à l’intérieur de la préposition composée « cap a »"
+        "fr": "le maintien de la contraction à l’intérieur d’une préposition composée"
       },
       "cefr": "B2",
-      "examples": ["Anem cap al poble.", "Caminem cap als afores."],
+      "examples": [
+        "Anem cap al poble.",
+        "Caminem cap als afores.",
+        "Ho sé des del principi.",
+        "Es queda fins al final."
+      ],
+      "notes": "La contraction porte sur le second élément de la locution : « cap a » donne « cap al », « des de » donne « des del », « fins a » donne « fins al ».",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français contracte aussi certaines prépositions composées (jusqu’au village), mais pas toutes (vers le village ne fusionne pas), d’où un transfert seulement partiel."
@@ -927,76 +790,24 @@
     },
     {
       "id": "ART.salat",
-      "kind": "branch",
+      "kind": "leaf",
       "parent": "ART",
-      "label_fr": "L’article salat"
-    },
-    {
-      "id": "ART.salat.es_sa",
-      "kind": "leaf",
-      "parent": "ART.salat",
-      "ca": "es cotxe",
+      "ca": "es cotxe, sa casa",
       "glosses": {
-        "fr": "article salat « es »/« sa », variante dialectale baléare de l’article défini"
+        "fr": "l’article salat, série d’articles définis propre à une partie du domaine linguistique"
       },
       "cefr": "C1",
-      "examples": ["Es cotxe és nou.", "Sa casa és gran."],
-      "dialect_note": "Forme baléare : à comprendre à l’écrit et à l’oral, mais pas une forme à produire dans cet apprentissage centré sur le catalan central.",
+      "examples": [
+        "Es cotxe és nou.",
+        "Sa casa és gran.",
+        "Ses cases són velles.",
+        "S'aigua és freda."
+      ],
+      "notes": "Le paradigme est « es » au masculin singulier, « sa » au féminin, « es » ou « ets » au masculin pluriel et « ses » au féminin pluriel, avec « s' » devant voyelle. Après « amb », le majorquin donne « so » et « sos ».",
+      "dialect_note": "Ce n’est pas seulement une forme baléare : l’article salat se dit encore à Cadaqués, il a couvert autrefois une bonne part de la côte, et il survit dans des toponymes comme Sant Joan Despí ou Sant Esteve Sesrovires. À comprendre plutôt qu’à produire dans un apprentissage centré sur le catalan central.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français standard n’a qu’une seule série d’articles définis ; cette variante phonétique baléare n’a pas d’équivalent à transférer."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.salat.plural",
-      "kind": "leaf",
-      "parent": "ART.salat",
-      "ca": "ses cases",
-      "glosses": {
-        "fr": "article salat pluriel « ses »/« es »"
-      },
-      "cefr": "C1",
-      "examples": ["Ses cases són velles.", "Es al·lots juguen al carrer."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
-      "contrast_fr": {
-        "status": "novel",
-        "note": "Aucun équivalent en français, qui ne connaît qu’une seule série d’articles définis quel que soit le dialecte."
-      },
-      "state": {
-        "exposure": {
-          "exposure_count": 0
-        },
-        "mastery": {
-          "stability": null,
-          "difficulty": null,
-          "graded_review_count": 0
-        }
-      }
-    },
-    {
-      "id": "ART.salat.elisio",
-      "kind": "leaf",
-      "parent": "ART.salat",
-      "ca": "s'aigua",
-      "glosses": {
-        "fr": "élision de l’article salat en « s' » devant une voyelle"
-      },
-      "cefr": "C1",
-      "examples": ["S'aigua és freda.", "S'amo és a fora."],
-      "dialect_note": "Forme baléare, réceptive uniquement : ne pas la produire hors contexte baléare.",
-      "contrast_fr": {
-        "status": "novel",
-        "note": "L’élision suit le même principe phonétique que celle de l’article standard français devant voyelle, mais s’applique à une série d’articles absente du français."
+        "note": "Le français n’a qu’une seule série d’articles définis et rien qui varie ainsi selon la région : cette série n’a aucun équivalent à transférer."
       },
       "state": {
         "exposure": {

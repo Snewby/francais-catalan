@@ -75,7 +75,7 @@
       },
       "cefr": "A2",
       "examples": ["L'artista pinta un quadre.", "La periodista escriu l'article."],
-      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista.",
+      "notes": "Les noms en -ista sont invariables en genre : « l'artista », el/la periodista, el/la dentista. Leur formation à partir d’un nom de base relève de NOM.deriv.ista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Comparable au français, où les noms en -iste sont eux aussi épicènes : l’artiste, le/la journaliste."
@@ -598,15 +598,9 @@
       }
     },
     {
-      "id": "NOM.adj.agree",
-      "kind": "branch",
-      "parent": "NOM.adj",
-      "label_fr": "L’accord de l’adjectif"
-    },
-    {
-      "id": "NOM.adj.agree.coord",
+      "id": "NOM.adj.coord",
       "kind": "leaf",
-      "parent": "NOM.adj.agree",
+      "parent": "NOM.adj",
       "ca": "el pare i la mare són alts",
       "glosses": {
         "fr": "accord au masculin pluriel dans une coordination de noms de genres différents"
@@ -834,7 +828,7 @@
       },
       "cefr": "A2",
       "examples": ["Un violinista toca el violí.", "Una dentista cuida les dents."],
-      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, art/artista.",
+      "notes": "Le suffixe -ista, ajouté à un nom, forme un nom de profession ou d’adhérent : violí/violinista, dent/dentista, futbol/futbolista. Le fait que ces noms soient épicènes relève de NOM.gender.ista.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au français -iste sur la même base (violon/violoniste)."

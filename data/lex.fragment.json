@@ -372,6 +372,37 @@
           "graded_review_count": 0
         }
       }
+    },
+    {
+      "id": "LEX.hores_quarts",
+      "kind": "leaf",
+      "parent": "LEX",
+      "ca": "dos quarts de quatre",
+      "glosses": {
+        "fr": "le compte des quarts d’heure vers l’heure à venir"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Ens veiem a dos quarts de quatre.",
+        "Va arribar a un quart de nou.",
+        "Són tres quarts de cinc."
+      ],
+      "notes": "« un quart de quatre » est trois heures quinze, « dos quarts de quatre » trois heures trente et « tres quarts de quatre » trois heures quarante-cinq. L’article défini devant l’heure relève de ART.def.us.hores.",
+      "dialect_note": "Le système est celui du catalan central et d’une partie du baléare. Le valencien compte depuis l’heure écoulée, « les tres i quart », comme le français.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français compte depuis l’heure écoulée, trois heures et quart, trois heures et demie. Le catalan central compte vers l’heure à venir, si bien que « dos quarts de quatre » vaut trois heures et demie ; la lecture spontanée d’un francophone se trompe d’une heure entière."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
     }
   ]
 }
