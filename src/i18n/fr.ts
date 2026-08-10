@@ -93,12 +93,15 @@ export const fr = {
   },
   query: {
     heading: 'Analyser un énoncé',
-    directionLabel: 'Sens',
+    // The direction is detected from the question and reported back, never
+    // chosen. It is still named in the interface so a wrong reading is visible
+    // rather than silent.
+    detectedLabel: 'Sens détecté',
     directionCaToFr: 'Du catalan vers le français',
     directionFrToCa: 'Du français vers le catalan',
     questionLabel: 'Question',
-    placeholderCaToFr: 'Un énoncé catalan à expliquer',
-    placeholderFrToCa: 'Ce que vous cherchez à dire en catalan',
+    placeholder: 'Un énoncé catalan à expliquer, ou ce que vous cherchez à dire',
+    answerCaHeading: 'À dire en catalan',
     attemptLabel: 'Votre tentative en catalan',
     attemptOptional: 'facultatif',
     // Says what the affordance is for without restating what each evidence type
@@ -108,9 +111,11 @@ export const fr = {
     submitReveal: 'Afficher la réponse',
     submitCheck: 'Vérifier ma tentative',
     pending: 'Analyse en cours…',
-    answerHeading: 'Explication',
+    answerHeading: 'Pourquoi',
     componentsHeading: 'Points de grammaire relevés',
-    attemptCorrect: 'Vous avez produit toutes les formes attendues.',
+    attemptExact: 'Votre version correspond à la réponse.',
+    attemptCorrect:
+      'Votre version diffère de la réponse, mais elle contient toutes les formes attendues.',
     attemptIncomplete: `Formes attendues qui manquent${NNBSP}:`,
     recordedLookup: 'Consultation enregistrée.',
     recordedRecall: 'Tentative enregistrée.',

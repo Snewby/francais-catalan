@@ -25,12 +25,8 @@ import {
   type SelectionCandidate,
   type Selector,
 } from '../src/review/select';
-import {
-  INTENT_FOR_DIRECTION,
-  buildReviewItem,
-  exampleFor,
-  toGradedQueryLog,
-} from '../src/review/item';
+import { buildReviewItem, exampleFor, toGradedQueryLog } from '../src/review/item';
+import { INTENT_FOR_DIRECTION } from '../src/srs/evidence';
 import {
   NoCurrentItemError,
   ReviewSession,
@@ -497,6 +493,7 @@ describe('the queue reflects what has already been reviewed', () => {
           evidence: 'lookup',
           decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
           answer: leaf.glosses.fr,
+          answer_ca: leaf.ca,
           answer_lang: 'fr',
         },
       },

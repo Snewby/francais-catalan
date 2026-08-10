@@ -101,6 +101,7 @@ describe('the logged-query schema validates rating against evidence', () => {
       direction: 'ca_to_fr' as const,
       decomposition: [{ id: 'VERB.ind.passat_perifrastic', ca: 'vaig cantar' }],
       answer: 'Il s’agit du passé périphrastique.',
+      answer_ca: 'Vaig cantar.',
       answer_lang: 'fr' as const,
     };
 

@@ -13,7 +13,13 @@
 import { DECOMPOSITION_SCHEMA, type ComponentId } from './schema';
 import { validateDecomposition, validateQueryLog } from './validate';
 import { buildSystemBlocks, buildUserContent, type QuestionContext } from './prompt';
-import type { Direction, Evidence, Intent, Rating } from '../srs/evidence';
+import {
+  INTENT_FOR_DIRECTION,
+  type Direction,
+  type Evidence,
+  type Intent,
+  type Rating,
+} from '../srs/evidence';
 
 const API_KEY_STORAGE_KEY = 'anthropic-api-key';
 
@@ -44,8 +50,27 @@ export interface ComponentEntry {
 export interface Decomposition {
   /** Component IDs and Catalan surface forms only. Never French prose. */
   readonly decomposition: readonly ComponentEntry[];
+  /**
+   * Which way round the question ran, as READ OFF THE QUESTION BY THE MODEL
+   * rather than declared by the caller. A learner types Catalan or French and
+   * the difference is plain; asking them to also pick from a menu was the
+   * interface demanding something it could already see.
+   */
+  readonly direction: Direction;
   /** The only French-language field in the response. */
   readonly answer: string;
+  /**
+   * The whole Catalan utterance, on one line: the sentence the learner is
+   * meant to be able to say. A sibling of the decomposition rather than a field
+   * inside it, so the decomposition stays language-invariant and `answer` stays
+   * the single French field.
+   *
+   * Nothing held this before. The only Catalan in a reply was each component's
+   * `ca`, which is the fragment realising one grammar point, and joining those
+   * does not reconstruct a sentence. Pronunciation had nothing to pronounce and
+   * the attempt comparison had nothing to compare against.
+   */
+  readonly answer_ca: string;
   readonly answer_lang: 'fr';
 }
 
@@ -156,13 +181,18 @@ export interface QueryLog extends Decomposition {
   readonly asked_at: number;
   readonly question: string;
   readonly intent: Intent;
-  readonly direction: Direction;
+  // `direction` is inherited from Decomposition, because the model reports it.
   readonly evidence: Evidence;
   readonly rating?: Rating;
 }
 
 export interface CallOptions extends QuestionContext {
   readonly apiKey: string;
+  /**
+   * No `direction` here on purpose. It arrives on the reply, and a caller that
+   * could also assert one would be a second source for a field the model is now
+   * responsible for.
+   */
   /**
    * How much this interaction tells us about what the user knows. Passed
    * through to the logged record; what each type may move is EVIDENCE_EFFECTS'
@@ -268,8 +298,7 @@ export async function callHaiku(options: CallOptions): Promise<CallResult> {
   const fetchFn = options.fetchFn ?? fetch;
   const context: QuestionContext = {
     question: options.question,
-    intent: options.intent,
-    direction: options.direction,
+    ...(options.intent === undefined ? {} : { intent: options.intent }),
   };
 
   let response = await post(fetchFn, options.apiKey, buildRequestBody(context));
@@ -301,8 +330,10 @@ export async function callHaiku(options: CallOptions): Promise<CallResult> {
   const queryLog: QueryLog = {
     asked_at: (options.now ?? Date.now)(),
     question: options.question,
-    intent: options.intent,
-    direction: options.direction,
+    // Derived from the direction the model reported, unless the caller asked
+    // for a specific intent. The mapping is EVIDENCE_EFFECTS' neighbour in
+    // src/srs/evidence.ts, so the review loop and this client cannot disagree.
+    intent: options.intent ?? INTENT_FOR_DIRECTION[decomposition.direction],
     evidence: options.evidence,
     ...(options.rating === undefined ? {} : { rating: options.rating }),
     ...decomposition,

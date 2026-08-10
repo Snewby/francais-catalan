@@ -27,7 +27,6 @@ const API_KEY = 'sk-ant-test-not-a-real-key';
 const CONTEXT = {
   question: "L'home acaba d'arribar",
   intent: 'comprehend',
-  direction: 'ca_to_fr',
 } as const;
 
 interface StubbedCall {
@@ -124,7 +123,11 @@ describe('request shape', () => {
     expect(body.messages[0]?.role).toBe('user');
     expect(body.messages[0]?.content).toContain(CONTEXT.question);
     expect(body.messages[0]?.content).toContain(CONTEXT.intent);
-    expect(body.messages[0]?.content).toContain(CONTEXT.direction);
+    // The direction is deliberately absent: the model reads it off the
+    // question and reports it back, so sending one would be asserting an
+    // answer to the thing being asked.
+    expect(body.messages[0]?.content).not.toContain('ca_to_fr');
+    expect(body.messages[0]?.content).not.toContain('fr_to_ca');
   });
 
   it('never puts the key in the body', () => {
@@ -148,7 +151,6 @@ describe('cached prefix', () => {
       ...CONTEXT,
       question: 'Ho hem vist',
       intent: 'produce',
-      direction: 'fr_to_ca',
     }) as { system: unknown };
     expect(JSON.stringify(a.system)).toBe(JSON.stringify(b.system));
   });

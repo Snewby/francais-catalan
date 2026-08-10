@@ -333,14 +333,30 @@ export const COMPONENT_ENTRY_SCHEMA = {
 /**
  * The decomposition payload. All five intents emit this same shape; only the
  * prompt and the surrounding logged fields differ.
+ *
+ * `answer_ca` is the whole Catalan utterance, and it is a SIBLING of the
+ * decomposition rather than a field inside it, so the language-invariance rule
+ * on `decomposition` is untouched and `answer` stays the single French field.
+ * Without it the reply had no field holding the Catalan the learner is being
+ * told to say: the only Catalan was the per-component `ca`, which is a
+ * fragment realising one grammar point, and joining those does not reconstruct
+ * a sentence. That is the shape phase 6b's audio needs and the shape the
+ * attempt comparison needs.
+ *
+ * `direction` is reported BY THE MODEL rather than asserted by the caller. A
+ * learner types a Catalan sentence or a French one; which way round it is, is
+ * evident from the question, and making them declare it was an interface asking
+ * for something it could already see.
  */
 export const DECOMPOSITION_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['decomposition', 'answer', 'answer_lang'],
+  required: ['decomposition', 'direction', 'answer', 'answer_ca', 'answer_lang'],
   properties: {
     decomposition: { type: 'array', items: COMPONENT_ENTRY_SCHEMA },
+    direction: { type: 'string', enum: ['ca_to_fr', 'fr_to_ca'] },
     answer: { type: 'string', minLength: 1 },
+    answer_ca: { type: 'string', minLength: 1 },
     answer_lang: { type: 'string', enum: ['fr'] },
   },
 } as const;
@@ -363,6 +379,7 @@ export const QUERY_LOG_SCHEMA = {
     'evidence',
     'decomposition',
     'answer',
+    'answer_ca',
     'answer_lang',
   ],
   properties: {
@@ -377,6 +394,7 @@ export const QUERY_LOG_SCHEMA = {
     rating: { type: 'string', enum: ['again', 'hard', 'good', 'easy'] },
     decomposition: DECOMPOSITION_SCHEMA.properties.decomposition,
     answer: DECOMPOSITION_SCHEMA.properties.answer,
+    answer_ca: DECOMPOSITION_SCHEMA.properties.answer_ca,
     answer_lang: DECOMPOSITION_SCHEMA.properties.answer_lang,
   },
   allOf: [

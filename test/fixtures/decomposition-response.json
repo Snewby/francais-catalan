@@ -7,7 +7,7 @@
   "content": [
     {
       "type": "text",
-      "text": "{\"decomposition\":[{\"id\":\"ART.def.forma.elisio\",\"ca\":\"l'home\"},{\"id\":\"VERB.perifrasi.acabar_de\",\"ca\":\"acaba d'arribar\"}],\"answer\":\"L’article défini s’apostrophe devant une voyelle, d’où l'home. La périphrase acabar de marque le passé immédiat, si bien que acaba d'arribar se rend par il vient d’arriver, et non par il finit d’arriver.\",\"answer_lang\":\"fr\"}"
+      "text": "{\"decomposition\":[{\"id\":\"ART.def.forma.elisio\",\"ca\":\"l'home\"},{\"id\":\"VERB.perifrasi.acabar_de\",\"ca\":\"acaba d'arribar\"}],\"direction\":\"ca_to_fr\",\"answer\":\"L’article défini s’apostrophe devant une voyelle, d’où l'home.\\n\\nLa périphrase acabar de marque le passé immédiat, si bien que acaba d'arribar se rend par il vient d’arriver, et non par il finit d’arriver.\",\"answer_ca\":\"L'home acaba d'arribar.\",\"answer_lang\":\"fr\"}"
     }
   ],
   "usage": {

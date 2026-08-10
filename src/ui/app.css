@@ -189,10 +189,38 @@ body {
   margin-top: 0;
 }
 
-.ac-answer,
 .ac-card-prompt,
 .ac-card-reference {
   margin: 0.35rem 0 0.75rem;
+}
+
+/* The Catalan is the answer, so it leads. It used to have nowhere to be: the
+   reply carried French prose and a list of fragments, and the sentence the
+   learner actually wanted was never stated anywhere. */
+.ac-answer-ca {
+  border-left: 3px solid var(--ac-accent);
+  padding-left: 0.7rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.ac-answer-ca .ac-subheading {
+  margin-top: 0;
+}
+
+.ac-utterance {
+  margin: 0.2rem 0 0.3rem;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+/* Paragraphs, because the explanation arrives as paragraphs. A single block of
+   French prose is the thing this replaced and nobody read it. */
+.ac-answer p {
+  margin: 0 0 0.6rem;
+}
+
+.ac-answer p:last-child {
+  margin-bottom: 0;
 }
 
 .ac-card-prompt {

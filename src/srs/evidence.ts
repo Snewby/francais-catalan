@@ -79,6 +79,22 @@ export const EVIDENCE_EFFECTS: Record<Evidence, EvidenceEffect> = {
   },
 };
 
+/**
+ * The intent a direction implies.
+ *
+ * Reading a Catalan énoncé is comprehension; producing Catalan from a French
+ * description is production. It lives here rather than in a caller because the
+ * direction is now REPORTED BY THE MODEL: the API client derives the intent
+ * from the detected direction, and so does the review loop, and two copies of
+ * this mapping would be two things to disagree.
+ *
+ * A caller may still override it, which is how `pronounce` will arrive.
+ */
+export const INTENT_FOR_DIRECTION: Record<Direction, Intent> = {
+  ca_to_fr: 'comprehend',
+  fr_to_ca: 'produce',
+};
+
 /** Intent availability. The MVP ships two; the rest are representable from phase 1. */
 export const INTENT_AVAILABILITY: Record<
   Intent,

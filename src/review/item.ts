@@ -14,7 +14,12 @@
 import type { QueryLog } from '../api/anthropic';
 import type { ComponentId } from '../api/schema';
 import { validateQueryLog } from '../api/validate';
-import type { Direction, Intent, Rating } from '../srs/evidence';
+import {
+  INTENT_FOR_DIRECTION,
+  type Direction,
+  type Intent,
+  type Rating,
+} from '../srs/evidence';
 import type { LeafNode } from '../taxonomy';
 
 /** Thrown when an assembled review record does not satisfy the generated schema. */
@@ -24,19 +29,6 @@ export class MalformedReviewError extends Error {
     this.name = 'MalformedReviewError';
   }
 }
-
-/**
- * The intent a direction is logged under.
- *
- * Reading a Catalan example is comprehension; producing the Catalan from its
- * French description is production. The MVP ships exactly these two. A later
- * selector may log a different intent, which is why the session takes one
- * rather than deriving it here unconditionally.
- */
-export const INTENT_FOR_DIRECTION: Record<Direction, Intent> = {
-  ca_to_fr: 'comprehend',
-  fr_to_ca: 'produce',
-};
 
 export interface ReviewItem {
   readonly componentId: string;
@@ -113,6 +105,9 @@ export function toGradedQueryLog(
     rating,
     decomposition: [{ id: item.componentId as ComponentId, ca: item.ca }],
     answer: item.answer,
+    // The component's own Catalan form is the whole utterance for a review
+    // card, because a card is one rule and its form.
+    answer_ca: item.ca,
     answer_lang: 'fr',
   };
 

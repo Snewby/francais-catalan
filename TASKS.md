@@ -1069,6 +1069,40 @@ naming one component. **No live API call has been made**, so the query view's
 network path is exercised only against a stub, and the prompt cache remains
 unverified exactly as recorded below.
 
+The first round of use then found the hole phase 6 had built around. Three
+pieces of feedback, all landing on the response shape, and the sharpest was a
+question about 6b: what would an audio button pronounce? **Nothing. The reply
+had no Catalan sentence in it.** `answer` is French by schema and the only
+Catalan was each decomposition entry's `ca`, a fragment realising one grammar
+point, so a learner who asked how to say something got a French paragraph about
+it and a list of fragments and never the sentence. Four things changed, argued
+in `data/sources.md`:
+
+- **`answer_ca` is a required sibling of `decomposition`**, holding the whole
+  utterance. This is the shape this file had already predicted twice, once for
+  6b's respelling and once for exercise generation, both recorded as needing "a
+  new sibling structure added to `scripts/gen-schema.ts`". **A gap named in the
+  prose twice and built around anyway is a gap the prose was not going to
+  close.** It also retires the containment-only attempt comparison, which
+  existed solely because there was nothing to compare against.
+- **The direction is reported by the model, not selected by the learner.** Which
+  way round a question runs is evident from the question. The request sends
+  none, the reply carries one, and the client derives `intent` from it through
+  `INTENT_FOR_DIRECTION`, which moved to `src/srs/evidence.ts` so the API client
+  and the review loop cannot keep two copies. The detected direction is shown
+  under the answer, so a misreading is visible rather than silent.
+- **The attempt field can no longer be gated on the direction**, since the
+  direction is unknown until the reply lands. It is always offered, and filling
+  it in is the learner's own declaration that they were producing. That is a
+  better rule than the one it replaces: the old one inferred intent from a menu
+  choice, this one takes it from an action.
+- **The explanation renders as paragraphs and the Catalan leads.** The prompt
+  asks for short blank-line-separated paragraphs; the view renders them as such
+  instead of pouring the reply into one block nobody reads.
+
+**The system prompt changed, so the next live call pays one cache write.**
+Expect a single zero on « Relu du cache » and a read after it.
+
 ## Carried over into later phases
 
 - **The prompt cache is VERIFIED against the live API.** A second identical
@@ -1135,12 +1169,13 @@ unverified exactly as recorded below.
   new authored field or model-generated items. Neither appears in `docs/01`,
   `docs/02`, the schema or any phase, so **whoever builds it is designing it**,
   and four decisions have to be made and recorded before any code:
-  - **The response shape does not exist.** `decomposition` is language-invariant
-    by rule and `answer` is the single French field, pinned to `fr`. A generated
-    exercise needs a French prompt and an expected Catalan answer, so it is a
-    new sibling structure added to `scripts/gen-schema.ts`, reusing the same
-    closed component enum rather than minting a second one. This is the shape
-    problem phase 6b's respelling had, and it takes the same answer.
+  - **Half the response shape now exists.** `answer_ca` was added when the query
+    view turned out to have no Catalan sentence to show, so a reply already
+    carries the whole utterance and 6b already has something to pronounce. What
+    a generated exercise still needs beyond that is a French PROMPT paired with
+    an expected answer, which is a different structure from a reply to a
+    question the learner asked; it is still a new sibling in
+    `scripts/gen-schema.ts`, reusing the same closed component enum.
   - **An auto-marked exercise is `recall`, not `graded`.** 5b is explicit that
     the learner's own grade is the only source of graded evidence. Comparing a
     typed answer against an expected one is an objective outcome with no

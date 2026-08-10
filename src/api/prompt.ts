@@ -39,9 +39,18 @@ const INTENT_GUIDANCE: Record<Intent, string> = {
   pronounce: `décrire la prononciation, et renseigner le champ ${quote('ipa')} de chaque entrée`,
 };
 
+/**
+ * What each direction means, and how to tell which one you were sent.
+ *
+ * The model REPORTS the direction rather than being told it. Which way round a
+ * question runs is evident from the question, so asking the learner to declare
+ * it was an interface demanding something it could already see.
+ */
 const DIRECTION_GUIDANCE: Record<Direction, string> = {
-  ca_to_fr: 'la question est en catalan',
-  fr_to_ca: 'la question est en français, et la réponse doit produire du catalan',
+  ca_to_fr:
+    'l’énoncé soumis est en catalan, et il s’agit de l’expliquer à un francophone',
+  fr_to_ca:
+    'l’énoncé soumis est en français, ou décrit en français ce que l’on cherche à dire, et il s’agit de produire le catalan correspondant',
 };
 
 function guidanceTable<K extends string>(
@@ -64,6 +73,18 @@ export const SYSTEM_INSTRUCTION = [
     `contient aucun français${NNBSP}: uniquement des identifiants de composants et ` +
     `des formes catalanes, laissées en catalan et jamais traduites.`,
   '',
+  `Réponse catalane${NNBSP}: le champ ${quote('answer_ca')} contient l’énoncé ` +
+    `catalan entier, en une seule ligne, sans guillemets ni commentaire. C’est la ` +
+    `phrase que le lecteur doit pouvoir lire à voix haute. Quand la question est ` +
+    `déjà en catalan, reprends-la, corrigée si elle contient une faute. Quand elle ` +
+    `est en français, produis la forme catalane attendue. Ce champ n’est jamais ` +
+    `vide et ne contient jamais de français.`,
+  '',
+  `Lisibilité${NNBSP}: le champ ${quote('answer')} est découpé en courts ` +
+    `paragraphes séparés par une ligne vide, un point par paragraphe. Pas de ` +
+    `titres, pas de listes à puces, pas de bloc unique et compact. Va au fait ` +
+    `d’abord, les précisions ensuite.`,
+  '',
   `Décomposition${NNBSP}: une entrée par point de grammaire réellement présent ` +
     `dans l’énoncé, dans l’ordre où il apparaît. Le champ ${quote('id')} est repris ` +
     `mot pour mot du vocabulaire ci-dessous, qui est clos${NNBSP}: aucun autre ` +
@@ -78,7 +99,8 @@ export const SYSTEM_INSTRUCTION = [
   `Intentions${NNBSP}:`,
   guidanceTable(INTENT_GUIDANCE, Object.keys(INTENT_GUIDANCE) as Intent[]),
   '',
-  `Sens de la question${NNBSP}:`,
+  `Sens de la question${NNBSP}: détermine-le toi-même à partir de la langue de ` +
+    `l’énoncé, et renseigne le champ ${quote('direction')} en conséquence.`,
   guidanceTable(DIRECTION_GUIDANCE, Object.keys(DIRECTION_GUIDANCE) as Direction[]),
 ].join('\n');
 
@@ -123,15 +145,24 @@ export function buildSystemBlocks(): readonly SystemBlock[] {
 
 export interface QuestionContext {
   readonly question: string;
-  readonly intent: Intent;
-  readonly direction: Direction;
+  /**
+   * Overrides the intent the detected direction implies. Omitted by the MVP
+   * views, which ask for `comprehend` or `produce` and get whichever the
+   * direction gives. `pronounce` is the case this exists for.
+   */
+  readonly intent?: Intent;
 }
 
-/** The dynamic suffix. Everything that varies per query lives here and nowhere else. */
+/**
+ * The dynamic suffix. Everything that varies per query lives here and nowhere
+ * else.
+ *
+ * The direction is NOT sent. The model reads it off the question and reports it
+ * back, which is the whole point of dropping the selector from the interface.
+ */
 export function buildUserContent(context: QuestionContext): string {
   return [
-    `intent${FIELD}${context.intent}`,
-    `direction${FIELD}${context.direction}`,
+    ...(context.intent === undefined ? [] : [`intent${FIELD}${context.intent}`]),
     '',
     context.question,
   ].join('\n');

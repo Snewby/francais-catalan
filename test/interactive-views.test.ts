@@ -21,7 +21,7 @@ import { TrainerDatabase } from '../src/db/dexie';
 import { readComponentState } from '../src/db/read';
 import { LEAVES, type LeafNode } from '../src/taxonomy';
 import { fr } from '../src/i18n/fr';
-import { RATINGS } from '../src/srs/evidence';
+import { INTENT_FOR_DIRECTION, RATINGS } from '../src/srs/evidence';
 import { compareAttempt, foldAttempt } from '../src/text/attempt';
 import { mountQueryView } from '../src/ui/query-view';
 import { mountReviewView } from '../src/ui/review-view';
@@ -33,6 +33,15 @@ const NOW = 1_700_000_000_000;
 
 /** What the stub reports the cache read. Any non-zero value would do. */
 const CACHE_READ_TOKENS = 13_104;
+
+/**
+ * What the stub reports as the detected direction. The caller no longer sends
+ * one, so this is the model's answer rather than an echo of the request.
+ */
+const DETECTED_DIRECTION = 'fr_to_ca' as const;
+
+/** Two paragraphs, blank-line separated, which is the shape the prompt asks for. */
+const TWO_PARAGRAPHS = ['Premier point.', 'Second point.'].join('\n\n');
 
 let db: TrainerDatabase;
 let dbIndex = 0;
@@ -69,7 +78,9 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
     seen.push(options);
     const decomposition = {
       decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
+      direction: DETECTED_DIRECTION,
       answer: leaf.glosses.fr,
+      answer_ca: leaf.ca,
       answer_lang: 'fr' as const,
     };
     return Promise.resolve({
@@ -77,8 +88,7 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
       queryLog: {
         asked_at: NOW,
         question: options.question,
-        intent: options.intent,
-        direction: options.direction,
+        intent: INTENT_FOR_DIRECTION[DETECTED_DIRECTION],
         evidence: options.evidence,
         ...decomposition,
       },
@@ -91,6 +101,40 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
         cacheReadTokens: CACHE_READ_TOKENS,
       },
     });
+  };
+}
+
+/** A reply of the real shape, with the fields a single test cares about overridden. */
+function replyWith(
+  leaf: LeafNode,
+  overrides: {
+    answer?: string;
+    cacheReadTokens?: number;
+    cacheCreationTokens?: number;
+  } = {},
+): CallResult {
+  const decomposition = {
+    decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
+    direction: DETECTED_DIRECTION,
+    answer: overrides.answer ?? leaf.glosses.fr,
+    answer_ca: leaf.ca,
+    answer_lang: 'fr' as const,
+  };
+  return {
+    decomposition,
+    queryLog: {
+      asked_at: NOW,
+      question: leaf.ca,
+      intent: INTENT_FOR_DIRECTION[DETECTED_DIRECTION],
+      evidence: 'lookup' as const,
+      ...decomposition,
+    },
+    usage: {
+      inputTokens: 120,
+      outputTokens: 45,
+      cacheCreationTokens: overrides.cacheCreationTokens ?? 0,
+      cacheReadTokens: overrides.cacheReadTokens ?? CACHE_READ_TOKENS,
+    },
   };
 }
 
@@ -123,12 +167,8 @@ async function until(
 
 async function ask(
   host: HTMLElement,
-  values: { direction: string; question: string; attempt?: string },
+  values: { question: string; attempt?: string },
 ): Promise<void> {
-  const select = host.querySelector<HTMLSelectElement>('.ac-select')!;
-  select.value = values.direction;
-  select.dispatchEvent(new Event('change'));
-
   host.querySelector<HTMLTextAreaElement>('.ac-textarea')!.value = values.question;
 
   const attempt = host.querySelector<HTMLInputElement>('input[lang="ca"]')!;
@@ -164,9 +204,28 @@ describe('the answer comparator', () => {
     expect(foldAttempt('col·lecció')).not.toBe(foldAttempt('colleccio'));
   });
 
-  it('counts an attempt correct only when every reference form is produced', () => {
-    expect(compareAttempt('vaig cantar ahir', ['vaig cantar']).correct).toBe(true);
-    const partial = compareAttempt('vaig cantar', ['vaig cantar', 'ahir']);
+  it('matches the whole utterance the reply gave', () => {
+    const outcome = compareAttempt('Vaig cantar.', 'vaig cantar');
+    expect(outcome.exact).toBe(true);
+    expect(outcome.correct).toBe(true);
+  });
+
+  it('still credits a different wording that produces every named form', () => {
+    // The model's phrasing is one option, not the only one. Marking a valid
+    // alternative wrong is what teaches a learner to distrust the tool.
+    const outcome = compareAttempt('ahir vaig cantar molt', 'vaig cantar ahir', [
+      'vaig cantar',
+      'ahir',
+    ]);
+    expect(outcome.exact).toBe(false);
+    expect(outcome.correct).toBe(true);
+  });
+
+  it('reports what is missing when neither test passes', () => {
+    const partial = compareAttempt('vaig cantar', 'vaig cantar ahir', [
+      'vaig cantar',
+      'ahir',
+    ]);
     expect(partial.correct).toBe(false);
     expect(partial.missing).toEqual(['ahir']);
     expect(partial.found).toEqual(['vaig cantar']);
@@ -175,8 +234,8 @@ describe('the answer comparator', () => {
   it('refuses to call an empty attempt, or an empty reference, correct', () => {
     // Both would hand out a free objective outcome, one for typing nothing and
     // one for a reply that named no Catalan at all.
-    expect(compareAttempt('', ['vaig cantar']).correct).toBe(false);
-    expect(compareAttempt('vaig cantar', []).correct).toBe(false);
+    expect(compareAttempt('', 'vaig cantar').correct).toBe(false);
+    expect(compareAttempt('vaig cantar', '').correct).toBe(false);
   });
 });
 
@@ -184,24 +243,25 @@ describe('the query view types its own evidence', () => {
   it('logs a reveal without an attempt as a lookup', async () => {
     const seen: CallOptions[] = [];
     const host = mountQuery(seen);
-    await ask(host, { direction: 'ca_to_fr', question: subject().ca });
+    await ask(host, { question: subject().ca });
 
     expect(seen).toHaveLength(1);
     expect(seen[0]?.evidence).toBe('lookup');
-    expect(seen[0]?.intent).toBe('comprehend');
+    // The view sends no intent and no direction at all now: the model reads the
+    // direction off the question and the client derives the intent from it.
+    expect(seen[0]?.intent).toBeUndefined();
+    expect('direction' in seen[0]!).toBe(false);
   });
 
   it('logs a typed attempt as a recall, with an objective outcome', async () => {
     const seen: CallOptions[] = [];
     const host = mountQuery(seen);
     await ask(host, {
-      direction: 'fr_to_ca',
       question: subject().glosses.fr,
       attempt: subject().ca,
     });
 
     expect(seen[0]?.evidence).toBe('recall');
-    expect(seen[0]?.intent).toBe('produce');
     // The rating field is what separates recall from graded, and an attempt
     // never carries one.
     expect(seen[0]?.rating).toBeUndefined();
@@ -214,7 +274,6 @@ describe('the query view types its own evidence', () => {
     const seen: CallOptions[] = [];
     const host = mountQuery(seen);
     await ask(host, {
-      direction: 'fr_to_ca',
       question: subject().glosses.fr,
       attempt: 'zzz',
     });
@@ -229,7 +288,6 @@ describe('the query view types its own evidence', () => {
     const seen: CallOptions[] = [];
     const host = mountQuery(seen);
     await ask(host, {
-      direction: 'fr_to_ca',
       question: subject().glosses.fr,
       attempt: subject().ca,
     });
@@ -240,10 +298,39 @@ describe('the query view types its own evidence', () => {
     }
   });
 
-  it('offers no attempt field at all on the comprehend side', () => {
+  it('offers the attempt field without asking which way round the query runs', () => {
+    // The direction selector is gone: it asked the learner to declare something
+    // the question already showed. The attempt field is therefore always
+    // available, and filling it in is what makes the event a recall.
     const host = mountQuery([]);
+    expect(host.querySelector('.ac-select')).toBeNull();
     const attempt = host.querySelector<HTMLInputElement>('input[lang="ca"]');
-    expect(attempt?.closest('.ac-control')?.hasAttribute('hidden')).toBe(true);
+    expect(attempt?.closest('.ac-control')?.hasAttribute('hidden')).toBe(false);
+  });
+
+  it('shows the Catalan to say, and names the direction it detected', async () => {
+    const host = mountQuery([]);
+    await ask(host, { question: subject().glosses.fr });
+
+    const utterance = host.querySelector('.ac-utterance');
+    expect(utterance?.textContent).toBe(subject().ca);
+    expect(utterance?.getAttribute('lang')).toBe('ca');
+    expect(host.querySelector('[data-direction]')?.getAttribute('data-direction')).toBe(
+      DETECTED_DIRECTION,
+    );
+  });
+
+  it('breaks the explanation into paragraphs rather than one block', async () => {
+    const host = document.createElement('div');
+    document.body.replaceChildren(host);
+    localStorage.setItem('anthropic-api-key', 'test-key');
+    const leaf = subject();
+    mountQueryView(host, {
+      call: () => Promise.resolve(replyWith(leaf, { answer: TWO_PARAGRAPHS })),
+    });
+    await ask(host, { question: leaf.glosses.fr });
+
+    expect(host.querySelectorAll('.ac-answer p')).toHaveLength(2);
   });
 
   it('reports what the prompt cache did, which nothing else can', async () => {
@@ -252,7 +339,7 @@ describe('the query view types its own evidence', () => {
     // client has carried `usage` since phase 4; until this landed, the one
     // caller dropped it and the check was available to nobody.
     const host = mountQuery([]);
-    await ask(host, { direction: 'ca_to_fr', question: subject().ca });
+    await ask(host, { question: subject().ca });
 
     const usage = host.querySelector<HTMLElement>('.ac-usage');
     expect(usage).not.toBeNull();
@@ -270,32 +357,12 @@ describe('the query view types its own evidence', () => {
     localStorage.setItem('anthropic-api-key', 'test-key');
     const leaf = subject();
     mountQueryView(host, {
-      call: (options) =>
-        Promise.resolve({
-          decomposition: {
-            decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
-            answer: leaf.glosses.fr,
-            answer_lang: 'fr' as const,
-          },
-          queryLog: {
-            asked_at: NOW,
-            question: options.question,
-            intent: options.intent,
-            direction: options.direction,
-            evidence: options.evidence,
-            decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
-            answer: leaf.glosses.fr,
-            answer_lang: 'fr' as const,
-          },
-          usage: {
-            inputTokens: 120,
-            outputTokens: 45,
-            cacheCreationTokens: 37_000,
-            cacheReadTokens: 0,
-          },
-        }),
+      call: () =>
+        Promise.resolve(
+          replyWith(leaf, { cacheReadTokens: 0, cacheCreationTokens: 37_000 }),
+        ),
     });
-    await ask(host, { direction: 'ca_to_fr', question: leaf.ca });
+    await ask(host, { question: leaf.ca });
 
     expect(host.querySelector('.ac-usage')?.textContent).toContain(fr.query.usageHint);
   });
@@ -306,7 +373,7 @@ describe('the query view types its own evidence', () => {
     document.body.replaceChildren(host);
     localStorage.clear();
     mountQueryView(host, { call: stubCall(seen) });
-    await ask(host, { direction: 'ca_to_fr', question: subject().ca });
+    await ask(host, { question: subject().ca });
 
     expect(seen).toHaveLength(0);
     expect(host.querySelector('.ac-status')?.textContent).toBe(fr.apiKey.prompt);

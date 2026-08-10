@@ -3215,3 +3215,59 @@ ranks by it and `src/review/select.ts` ranks by it, and the alternative was a
 second table in `src/ui/`, which is the failure the `ART.personal.absencia`
 finding is about. It carries no import beyond a taxonomy type, so the browse
 view can reach it without reaching the scheduler.
+
+## The reply had no Catalan in it, and the interface asked a question it could answer itself
+
+Three pieces of user feedback on the phase 6 query view, all landing on the same
+place: the response shape.
+
+**There was no field holding the Catalan.** `answer` is pinned to French by the
+schema and the only Catalan in a reply was each decomposition entry's `ca`,
+which the prompt defines as the fragment realising one grammar point in this
+utterance. Joining those does not reconstruct a sentence, because a word
+realising no keyed component has no entry at all. So a learner who asked how to
+say something in Catalan got a French paragraph about it and a list of
+fragments, and never the sentence. The question that surfaced it was about
+phase 6b: what would an audio button pronounce? Nothing. There was nothing to
+pronounce.
+
+`answer_ca` is now a required sibling of `decomposition`, holding the whole
+utterance on one line. A sibling rather than a field inside the decomposition,
+so the language-invariance rule is untouched and `answer` stays the single
+French field. It is the same answer TASKS.md predicted twice: once for phase
+6b's respelling and once for exercise generation, both recorded as needing "a
+new sibling structure added to `scripts/gen-schema.ts`". It also gives the
+attempt comparison a real reference, which retires the containment-only rule
+that shipped as a workaround for its absence.
+
+**The direction was being asked for rather than read.** The query view opened
+with a two-option selector, and which way round a question runs is evident from
+the question: a learner types Catalan or types French. `direction` is now
+REPORTED BY THE MODEL on the reply, the request sends none, and the client
+derives `intent` from the reported direction through `INTENT_FOR_DIRECTION`,
+which moved to `src/srs/evidence.ts` so the API client and the review loop
+cannot hold two copies of it. The detected direction is named in the interface
+under the answer, so a misreading is visible rather than silently shaping the
+reply.
+
+One consequence had to be decided rather than inherited: **the attempt field
+can no longer be gated on the direction**, because the direction is not known
+until the reply arrives. It is therefore always offered, and filling it in is
+the learner's own declaration that they were producing, which is what the
+evidence type turns on. That is a better rule than the one it replaces: the old
+one inferred intent from a menu choice, and this one takes it from an action.
+
+**The explanation was one unbroken block.** The prompt now asks for short
+blank-line-separated paragraphs and the view renders them as paragraphs, with
+the Catalan utterance above as the headline. The reply is read in the order it
+is wanted: what to say, then why.
+
+Two smaller things worth knowing:
+
+- **The comparison now has two ways to pass**, exact match against `answer_ca`
+  or producing every named component form. The second is kept deliberately: the
+  model's phrasing is one valid option and a learner who writes another has not
+  made a mistake. What it still cannot see is extra wrong material around the
+  right forms when only the second passes.
+- **The system prompt changed, so the first call after this lands pays a cache
+  write.** One-off, and the prefix is stable again immediately after.

@@ -48,35 +48,41 @@ export function foldAttempt(text: string): string {
 }
 
 export interface AttemptResult {
-  /** The objective outcome. Every reference form was produced. */
+  /** The objective outcome. */
   readonly correct: boolean;
+  /** True when the attempt matched the reference utterance outright. */
+  readonly exact: boolean;
   readonly found: readonly string[];
   readonly missing: readonly string[];
 }
 
 /**
- * Whether the attempt produced every Catalan form the reply named.
+ * Whether the attempt produced the Catalan the reply gave.
  *
- * Containment rather than whole-string equality, and the reason is the response
- * shape rather than leniency. The reply carries no field holding the expected
- * Catalan sentence: `answer` is pinned to French by the schema, and the only
- * Catalan in it is the `ca` of each decomposition entry, which the prompt
- * defines as the form realising that grammar point in this utterance. Joining
- * them does not reconstruct the sentence, because a word that realises no keyed
- * component has no entry at all, so an equality test would mark a correct
- * attempt wrong.
+ * TWO WAYS TO BE RIGHT, and the second is not leniency for its own sake.
  *
- * The limit that follows is recorded rather than hidden: this cannot see extra
- * wrong material around the right forms. A field holding the expected utterance
- * would fix it, and that field is exercise generation, which TASKS.md puts
- * outside this phase.
+ * The first is matching `answer_ca`, the whole utterance the model returned.
+ * That field did not exist until the query view stopped being able to show the
+ * learner what to say: before it, `answer` was French by schema and the only
+ * Catalan was each component's `ca` fragment, so there was nothing to compare
+ * an attempt against and this function compared by containment alone.
+ *
+ * The second is producing every component form the reply named, which still
+ * counts. A learner who writes a different but valid phrasing of the same
+ * sentence has not made a mistake, and the model's wording is one option rather
+ * than the only one. Marking that wrong is the failure mode that teaches a
+ * learner to distrust the tool, which is worse than crediting a near miss.
+ *
+ * What this still cannot see is extra wrong material around the right forms
+ * when only the second test passes. Recorded rather than hidden.
  */
 export function compareAttempt(
   attempt: string,
-  references: readonly string[],
+  reference: string,
+  componentForms: readonly string[] = [],
 ): AttemptResult {
   const folded = foldAttempt(attempt);
-  const wanted = [...new Set(references.map(foldAttempt))].filter(
+  const wanted = [...new Set(componentForms.map(foldAttempt))].filter(
     (form) => form !== '',
   );
 
@@ -84,12 +90,12 @@ export function compareAttempt(
   const missing: string[] = [];
   for (const form of wanted) (folded.includes(form) ? found : missing).push(form);
 
-  return {
-    // An empty attempt is not a correct one, and neither is one asked about a
-    // reply that named no Catalan at all: with nothing to produce, "produced
-    // everything" is vacuously true and would hand out free Elo.
-    correct: folded !== '' && wanted.length > 0 && missing.length === 0,
-    found,
-    missing,
-  };
+  const target = foldAttempt(reference);
+  const exact = folded !== '' && target !== '' && folded === target;
+  // An empty attempt is not a correct one, and neither is one asked about a
+  // reply that named no Catalan at all: with nothing to produce, "produced
+  // everything" is vacuously true and would hand out free Elo.
+  const producedAll = folded !== '' && wanted.length > 0 && missing.length === 0;
+
+  return { correct: exact || producedAll, exact, found, missing };
 }

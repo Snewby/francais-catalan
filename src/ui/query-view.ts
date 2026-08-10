@@ -20,9 +20,7 @@ import { fr, labelled } from '../i18n/fr';
 import { callHaiku, readApiKey, type CallResult } from '../api/anthropic';
 import { recordQuery } from '../db/persist';
 import { compareAttempt, type AttemptResult } from '../text/attempt';
-import type { Direction } from '../srs/evidence';
 import { leafById } from '../taxonomy';
-import { INTENT_FOR_DIRECTION } from '../review/item';
 
 export interface QueryViewOptions {
   readonly storage?: Storage;
@@ -63,7 +61,6 @@ export function mountQueryView(
   const storage = options.storage ?? localStorage;
   const call = options.call ?? callHaiku;
 
-  let direction: Direction = 'ca_to_fr';
   let busy = false;
 
   const root = document.createElement('section');
@@ -73,21 +70,10 @@ export function mountQueryView(
   heading.className = 'ac-heading';
   heading.textContent = fr.query.heading;
 
-  const directionSelect = document.createElement('select');
-  directionSelect.className = 'ac-select';
-  for (const [value, caption] of [
-    ['ca_to_fr', fr.query.directionCaToFr],
-    ['fr_to_ca', fr.query.directionFrToCa],
-  ] as const) {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = caption;
-    directionSelect.append(option);
-  }
-
   const question = document.createElement('textarea');
   question.className = 'ac-input ac-textarea';
   question.rows = 3;
+  question.placeholder = fr.query.placeholder;
 
   const attempt = document.createElement('input');
   attempt.type = 'text';
@@ -118,23 +104,13 @@ export function mountQueryView(
   output.className = 'ac-output';
 
   /**
-   * The produce side is the only one with an attempt, because producing is the
-   * only thing an attempt can be an attempt at. Reading a Catalan sentence and
-   * being shown its explanation is a lookup however it is dressed up.
+   * The attempt field is always offered, because whether a question is a
+   * production question is no longer known before the reply arrives. Filling it
+   * in is the learner's own declaration that they were producing, which is what
+   * the evidence type turns on; the detected direction does not override it.
    */
-  function applyDirection(): void {
-    const producing = direction === 'fr_to_ca';
-    attemptControl.hidden = !producing;
-    attemptHint.hidden = !producing;
-    question.placeholder = producing
-      ? fr.query.placeholderFrToCa
-      : fr.query.placeholderCaToFr;
-    question.lang = producing ? 'fr' : 'ca';
-    updateSubmit();
-  }
-
   function updateSubmit(): void {
-    const attempting = direction === 'fr_to_ca' && attempt.value.trim() !== '';
+    const attempting = attempt.value.trim() !== '';
     submit.textContent = attempting ? fr.query.submitCheck : fr.query.submitReveal;
     submit.disabled = busy;
   }
@@ -170,9 +146,14 @@ export function mountQueryView(
 
     const verdict = document.createElement('p');
     verdict.className = 'ac-attempt-verdict';
-    verdict.textContent = outcome.correct
-      ? fr.query.attemptCorrect
-      : fr.query.attemptIncomplete;
+    // Three outcomes, not two. "Different wording, same grammar" is a real and
+    // common result, and reporting it as a plain pass would hide that the
+    // reference says something else.
+    verdict.textContent = outcome.exact
+      ? fr.query.attemptExact
+      : outcome.correct
+        ? fr.query.attemptCorrect
+        : fr.query.attemptIncomplete;
     block.append(verdict);
 
     if (!outcome.correct) {
@@ -238,14 +219,67 @@ export function mountQueryView(
     return block;
   }
 
+  /**
+   * The answer, as a Catalan sentence rather than as a paragraph about one.
+   *
+   * This is the headline because it is what was asked for: a learner who typed
+   * a French phrase wants the Catalan, and a learner who typed Catalan wants to
+   * see it written correctly. It is tagged `lang="ca"` so a screen reader, and
+   * later the pronunciation control, treat it as Catalan and not as French.
+   */
+  function renderAnswerCa(result: CallResult): HTMLElement {
+    const block = document.createElement('div');
+    block.className = 'ac-answer-ca';
+
+    const heading = document.createElement('h3');
+    heading.className = 'ac-subheading';
+    heading.textContent = fr.query.answerCaHeading;
+
+    const utterance = document.createElement('p');
+    utterance.className = 'ac-utterance';
+    utterance.lang = 'ca';
+    utterance.textContent = result.decomposition.answer_ca;
+
+    const detected = document.createElement('p');
+    detected.className = 'ac-hint';
+    detected.dataset['direction'] = result.decomposition.direction;
+    // Named rather than assumed: the direction is read off the question now, so
+    // a misreading has to be visible instead of quietly shaping the answer.
+    detected.textContent = labelled(
+      fr.query.detectedLabel,
+      result.decomposition.direction === 'ca_to_fr'
+        ? fr.query.directionCaToFr
+        : fr.query.directionFrToCa,
+    );
+
+    block.append(heading, utterance, detected);
+    return block;
+  }
+
+  /**
+   * The explanation, one paragraph per paragraph.
+   *
+   * The prompt asks for blank-line-separated paragraphs; this renders them as
+   * such instead of pouring the whole reply into a single unbroken block, which
+   * is what it did and which nobody reads.
+   */
+  function renderAnswer(result: CallResult): HTMLElement {
+    const block = document.createElement('div');
+    block.className = 'ac-answer';
+    for (const paragraph of result.decomposition.answer.split(/\n+/)) {
+      const text = paragraph.trim();
+      if (text === '') continue;
+      const line = document.createElement('p');
+      line.textContent = text;
+      block.append(line);
+    }
+    return block;
+  }
+
   function renderResult(result: CallResult, outcome: AttemptResult | null): void {
     const answerHeading = document.createElement('h3');
     answerHeading.className = 'ac-subheading';
     answerHeading.textContent = fr.query.answerHeading;
-
-    const answer = document.createElement('p');
-    answer.className = 'ac-answer';
-    answer.textContent = result.decomposition.answer;
 
     const componentsHeading = document.createElement('h3');
     componentsHeading.className = 'ac-subheading';
@@ -253,8 +287,9 @@ export function mountQueryView(
 
     output.replaceChildren(
       ...(outcome === null ? [] : [renderAttempt(outcome)]),
+      renderAnswerCa(result),
       answerHeading,
-      answer,
+      renderAnswer(result),
       componentsHeading,
       renderComponents(result),
       renderUsage(result),
@@ -276,7 +311,7 @@ export function mountQueryView(
       return;
     }
 
-    const typed = direction === 'fr_to_ca' ? attempt.value.trim() : '';
+    const typed = attempt.value.trim();
     const attempted = typed !== '';
 
     busy = true;
@@ -288,14 +323,17 @@ export function mountQueryView(
       const result = await call({
         apiKey,
         question: asked,
-        direction,
-        intent: INTENT_FOR_DIRECTION[direction],
+        // No direction and no intent: the model reads the first off the
+        // question and the client derives the second from it.
+        //
         // An attempt compared automatically is recall; a reveal is a lookup.
         // Nothing here says what either then moves.
         evidence: attempted ? 'recall' : 'lookup',
       });
 
-      const outcome = attempted ? compareAttempt(typed, referenceForms(result)) : null;
+      const outcome = attempted
+        ? compareAttempt(typed, result.decomposition.answer_ca, referenceForms(result))
+        : null;
 
       await recordQuery(
         outcome === null
@@ -319,10 +357,6 @@ export function mountQueryView(
     }
   }
 
-  directionSelect.addEventListener('change', () => {
-    direction = directionSelect.value as Direction;
-    applyDirection();
-  });
   attempt.addEventListener('input', updateSubmit);
   submit.addEventListener('click', () => {
     void run();
@@ -330,7 +364,6 @@ export function mountQueryView(
 
   root.append(
     heading,
-    labelledControl(fr.query.directionLabel, directionSelect),
     labelledControl(fr.query.questionLabel, question),
     attemptControl,
     attemptHint,
@@ -339,6 +372,6 @@ export function mountQueryView(
     output,
   );
 
-  applyDirection();
+  updateSubmit();
   host.replaceChildren(root);
 }

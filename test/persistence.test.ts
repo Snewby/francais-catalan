@@ -45,6 +45,7 @@ function query(
     direction: 'ca_to_fr',
     evidence,
     ...(rating === undefined ? {} : { rating }),
+    answer_ca: "L'home acaba d'arribar",
     decomposition: componentIds.map((id) => ({
       id: id as DecomposedQuery['decomposition'][number]['id'],
       ca: 'forme',
