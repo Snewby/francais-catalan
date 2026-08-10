@@ -78,7 +78,9 @@ export const SYSTEM_INSTRUCTION = [
     `phrase que le lecteur doit pouvoir lire à voix haute. Quand la question est ` +
     `déjà en catalan, reprends-la, corrigée si elle contient une faute. Quand elle ` +
     `est en français, produis la forme catalane attendue. Ce champ n’est jamais ` +
-    `vide et ne contient jamais de français.`,
+    `vide et ne contient jamais de français. Quand tu corriges une faute de ` +
+    `l’énoncé soumis, dis-le explicitement dans ${quote('answer')} et ne cite ` +
+    `jamais la forme fautive comme si elle était correcte.`,
   '',
   `Lisibilité${NNBSP}: le champ ${quote('answer')} est découpé en courts ` +
     `paragraphes séparés par une ligne vide, un point par paragraphe. Pas de ` +
@@ -95,6 +97,22 @@ export const SYSTEM_INSTRUCTION = [
   '',
   'N’invente pas de point de grammaire pour étoffer la liste, et n’en omets pas ' +
     'un qui est présent. Une entrée par point, sans doublon.',
+  '',
+  `Ne relève un point que si la forme citée réalise vraiment ce que ` +
+    `l’identifiant nomme${NNBSP}: un nom au singulier ne réalise aucune règle de ` +
+    `pluriel, et un participe n’est pas un infinitif. Si un point réellement ` +
+    `présent n’a pas d’identifiant, décris-le en prose dans ${quote('answer')} ` +
+    `sans rien ajouter au tableau. Une liste courte et juste vaut mieux qu’un ` +
+    `identifiant approchant.`,
+  '',
+  `Exactitude${NNBSP}: n’énonce pas comme obligatoire ce qui est facultatif, ni ` +
+    `comme régulier ce qui est irrégulier. Quand un emploi est courant sans être ` +
+    `le seul possible, dis-le. Une explication prudente vaut mieux qu’une règle ` +
+    `générale que tu n’as pas vérifiée.`,
+  '',
+  `Rapport au français${NNBSP}: quand la glose du vocabulaire signale un écart ` +
+    `avec le français, reprends-le. C’est ce que le lecteur ne peut pas deviner ` +
+    `seul, et c’est la raison d’être de la fiche.`,
   '',
   `Intentions${NNBSP}:`,
   guidanceTable(INTENT_GUIDANCE, Object.keys(INTENT_GUIDANCE) as Intent[]),

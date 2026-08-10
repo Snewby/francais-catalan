@@ -3271,3 +3271,179 @@ Two smaller things worth knowing:
   right forms when only the second passes.
 - **The system prompt changed, so the first call after this lands pays a cache
   write.** One-off, and the prefix is stable again immediately after.
+
+## Outside review of the application, and what it changed
+
+The sixth outside review, and the first pointed at the application rather than
+at the authored data. The pack carried every string in `src/i18n/fr.ts`, the
+system prompt as it renders, the phase 6 design decisions, and **six real
+replies captured from the live API**, which is the part no agent can produce
+because the key is the user's. The 300-line vocabulary went as an appendix
+marked reference rather than material.
+
+Six questions were asked in one session, chosen to spread across both directions
+and to hit the periphrastic past, the negation particle, the partitive and the
+possessive. The last carried a deliberate error, `anire` for `aniré`, to answer
+a question the pack asked outright: what happens when the learner's own Catalan
+is wrong.
+
+**The evidence position is the best of any review so far, and it is the domains
+that changed rather than the practice.** `giec.iec.cat` failed again, eight
+attempts from four directions, but the reviewer reached GIEC §35.4.2.2 through
+search-cached copies of that exact page and, more usefully, through Tubau,
+Deprez, Borràs-Comes and Espinal in _Probus_ 30(1) and a 2022 follow-up in
+_Languages_, both of which quote IEC 2017 directly and test the claim
+experimentally. The French side was checked against CNRTL, Le Robert, Larousse
+and the OQLF. **The right source for a claim about a live construction is the
+literature that tested it, not only the reference grammar.**
+
+### What the review found that internal reading did not
+
+Internal reading of the same six replies was done first and deliberately
+withheld from the pack, so as not to prime the reviewer. It found eleven items.
+The review confirmed nine of them and added seven more. Of the seven, **four are
+errors about French**, which brings that count to thirteen across six reviews,
+none of them ever caught internally:
+
+- **`du pain` was called « l'article indéfini ».** It is the partitive, and the
+  vocabulary gloss the model had in front of it says « article partitif ». The
+  model got French wrong while holding the correct French.
+- **« non compté » is not French.** The term is _non comptable_ or _nom massif_.
+  It reads as a calque assembled on the spot.
+- **« hypercoristique » is not a word.** The term is _hypocoristique_. Confirmed
+  against the raw JSON rather than against the pack, so it is generated text and
+  not transit corruption.
+- **« une nuance affective ou hypercoristique, courant en français aussi »**
+  fails to agree with _nuance_. Also confirmed against the raw JSON.
+
+And three about the Catalan or the metalanguage:
+
+- **`cançó` is `NOM.number.hidden_n`, not `NOM.number.a_es`.** Internal reading
+  established that `a_es` was wrong and stopped there. The reviewer named the
+  right leaf, which is the half that matters for a golden-set expectation.
+- **Reply 2 is self-contradictory in four words**: « l'adverbe postposé « pas »
+  devant le verbe conjugué ». Postposed, then before. Neither half is right for
+  `no ha pas vingut`, where `pas` follows the finite auxiliary and precedes the
+  participle.
+- **`NEG.simple.no` is missing from reply 2's decomposition.** The model keyed
+  the optional reinforcement and omitted the base negation it reinforces. So the
+  padding finding has an omission twin, and the prompt is being broken in both
+  directions at once.
+
+### Applied
+
+- **The prompt now licenses abstention.** « Ne relève un point que si la forme
+  citée réalise vraiment ce que l'identifiant nomme », with the two observed
+  failures named as examples, and an instruction to describe an unkeyed point in
+  prose rather than reach for the nearest ID. This is the reviewer's single
+  highest-value recommendation, and the diagnosis behind it is the important
+  part: **the prompt rewarded completeness and fluency and never rewarded
+  abstention**, so a closed vocabulary of 300 plus « n'en omets pas un qui est
+  présent » drove the model to tag every word with something. Five of the six
+  decomposition errors are that one pressure: `Barcelona` and `amic` carrying
+  number rules with no plural in the sentence, `cançó` carrying a plural rule at
+  all, `vingut` keyed as an infinitive, `cansat` keyed as invariable.
+- **The prompt now requires a correction to be declared.** « Quand tu corriges
+  une faute de l'énoncé soumis, dis-le explicitement dans « answer » et ne cite
+  jamais la forme fautive comme si elle était correcte. » Reply 6 corrected
+  `anire` to `aniré` in `answer_ca` while quoting `anire` in the prose as the
+  Catalan future and keeping it in the decomposition, so the only place the
+  correction appeared was the one place a learner comparing their own text does
+  not look, and the explanation confirmed the error. « reprends-la, corrigée si
+  elle contient une faute » licensed exactly that, which makes it a defect in
+  the prompt and not in the model.
+- **The prompt now asks for caution over generality.** « n'énonce pas comme
+  obligatoire ce qui est facultatif, ni comme régulier ce qui est irrégulier ».
+  Both halves are observed: `pas` was called obligatory against its own gloss's
+  « Renforcement facultatif », and `aniré` was called regular when `anar` is one
+  of only two irregular verbs of the first conjugation and the regular model
+  would give `*anaré`. **This is the same weakness the `VERB`/`PRON` review
+  named in the authored data**, a default stated as an exceptionless rule, now
+  confirmed in the generated data by an independent route. It is a property of
+  the model, not of any one authoring pass.
+- **The prompt now asks for the contrast with French to be carried through.**
+  The glosses state it and the replies dropped it: reply 6 said `a` marks
+  destination and never said that Catalan `a` covers location and destination
+  both, which is the entire reason a French speaker needs that leaf.
+- **`Pas encore semé` became `Pas encore renseigné`.** A calque of the
+  repository's English "seeded" that had reached the interface. Graded (c) by
+  the reviewer and applied anyway: a calque in UI copy is a judgement the base
+  language's owner makes, not a claim about the language that needs a source.
+- **`Opacité : exposition, du pâle au franc` became `du pâle à l'intense`.**
+  _Franc_ for a saturated colour is attested and is not the transparent opposite
+  of _pâle_ in a legend that has to be read at a glance.
+- **The `near-miss` string now reads « mais les emplois ne coïncident pas
+  exactement ».** « la frontière diffère » never said the frontier between what.
+  It is the highest-traffic string of the four, since two thirds of the taxonomy
+  carries that status.
+
+### Declined, with the argument
+
+- **« gérondif » as a built-in false friend: declined, and it is a false
+  positive of the same shape as `gaire`.** The finding is that the French
+  _gérondif_ requires _en_ while the Catalan `gerundi` is bare, so fixing the
+  term in the prompt imports a trap. The trap is real and the taxonomy already
+  teaches it twice: `VERB.no_finit.gerundi` carries a `notes` field pointing at
+  `PREP.formes_no_finites.en_gerundi` as the leaf that « porte le contraste avec
+  le gérondif français en en », and that leaf's own `contrast_fr` says
+  « en menjant » is ungrammatical. **The reviewer could not see either field**,
+  because the vocabulary appendix carries `id`, `ca` and `glosses.fr` and
+  nothing else, which is exactly what the prompt sends. The lesson is about the
+  pack rather than about the data: **an appendix sent as reference must say
+  which fields it omits**, or a reviewer will report a gap in the part it cannot
+  see. The `CONJ`/`ADV`/`SYN` review made the same error from the same cause.
+- **« pronoms faibles » to « pronoms clitiques » or « pronoms atones »:
+  declined.** The sources are about naming the French pronoun system, not about
+  naming Catalan's system in French, where _pronoms faibles_ is the established
+  rendering of `pronoms febles`. The term is fixed in `CLAUDE.md`, in the
+  `fr-metalanguage` skill and throughout the authored glosses, so changing it in
+  the prompt alone would put two terminologies inside a single reply. Recorded
+  rather than dismissed: if it is ever changed it is a repo-wide pass, not a
+  prompt edit.
+- **« Entraîneur de grammaire catalane »: declined.** _Entraîneur_ leads on the
+  sports sense in a dictionary, but "entraîneur de vocabulaire" is an
+  established French name for exactly this kind of drill software, and the
+  reviewer grades it not wrong. Its (a) evidence covers the dictionary ordering,
+  not the software usage.
+- **Collapsing « notions » into « points de grammaire »: declined, and the
+  inconsistency is real but is not an inconsistency.** They name two different
+  things. A _notion_ is a taxonomy node, browsable and revisable and countable;
+  a « point de grammaire relevé » is an occurrence of one inside an utterance.
+  One name for both would lose the distinction the whole coverage map rests on.
+- **A schema flag for an unkeyed point: not now.** The reviewer proposes it as a
+  fallback if a fresh batch still pads after the prompt change, which is the
+  right order to try them in. Recorded as the benchmark it named: **ten fresh
+  replies, and if number or gender IDs still land on singular or invariable
+  nouns, the closed vocabulary is not fixable by prompt alone.**
+
+### Not reached, or unsettled
+
+- **« ahir se place en fin de proposition » was not judged.** Internal reading
+  flagged it as a default stated as a rule, since `Ahir vaig comprar pa` is
+  perfectly good, and the review filed no verdict either way. It is covered in
+  kind by the caution clause. It is the one internal finding the review neither
+  confirmed nor contradicted.
+- **`NEG.simple.pas` has a `dialect_note` and it is incomplete.** It records the
+  Principat against Valencian and Balearic, and says nothing about Northern
+  Catalan, where `pas` is the ordinary sentential negator rather than a
+  reinforcement. The reviewer raised it as a caveat on its own correction, so
+  that "always optional" is not itself overstated. Not applied here, because the
+  authored data was not the material under review and the leaf as written is not
+  wrong. Owed when `NEG` is next touched.
+- **`PREP.a_en.lloc.toponims` may fit `a Barcelona` better than
+  `PREP.a_en.lloc.a_lloc`.** Both are defensible, and the reviewer filed it as a
+  note rather than a recommendation. No change.
+- **Reply 4's « dans la prose narrative courante » is half wrong.** The
+  periphrastic past is the ordinary spoken past, but the simple past keeps a
+  real place in formal writing. Model output with no repo consequence, recorded
+  because the golden set will want the expectation.
+
+### The six replies are the golden set's first material
+
+They are real, they were captured whole, and **every defect in them is now
+written down with the argument**, which is the human-checked expectation phase 8
+requires to live in the fixture rather than in the test. Recording a reply is
+not verifying it; these six are verified, once, by this review. The raw JSON was
+deliberately not committed: it carries usage counters and message IDs, and phase
+8 should re-record against the amended prompt rather than fixture replies the
+prompt no longer produces.

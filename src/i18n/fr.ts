@@ -60,7 +60,9 @@ export const fr = {
     filterAny: 'Indifférent',
     resultsLabel: 'notions affichées',
     noResults: 'Aucune notion ne correspond à ces critères.',
-    unseeded: 'Pas encore semé',
+    // Not « semé », which was a calque of the repository's English "seeded" and
+    // says nothing to a French reader about a domain that holds no nodes yet.
+    unseeded: 'Pas encore renseigné',
     leafCountLabel: 'notions',
     emptyDetail: 'Sélectionnez une notion dans l’arbre pour en afficher le détail.',
     fieldId: 'Identifiant',
@@ -164,7 +166,7 @@ export const fr = {
     unexplored: 'Jamais rencontré',
     unpractised: 'Rencontré, jamais révisé',
     legendHue: `Teinte${NNBSP}: maîtrise, du rouge au vert`,
-    legendOpacity: `Opacité${NNBSP}: exposition, du pâle au franc`,
+    legendOpacity: `Opacité${NNBSP}: exposition, du pâle à l’intense`,
     legendUngraded: `Gris${NNBSP}: aucune révision évaluée`,
     legendLow: 'faible',
     legendHigh: 'élevée',
@@ -197,7 +199,10 @@ export const fr = {
   },
   contrast: {
     transfer: 'Transfert direct depuis le français',
-    'near-miss': 'Proche du français, mais la frontière diffère',
+    // Two thirds of the taxonomy carries this status, so it is the one of the
+    // four a learner reads most often. « la frontière diffère » left open the
+    // frontier between what.
+    'near-miss': 'Proche du français, mais les emplois ne coïncident pas exactement',
     'false-friend': `Faux ami${NNBSP}: l’intuition française induit en erreur`,
     novel: 'Sans équivalent en français',
   },

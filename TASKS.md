@@ -25,7 +25,7 @@ is worse than none, because it still reads as authoritative.
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 | 8. Golden set and offline evaluation  | not started | ADAPT    |                                 |
 | 9. Practice exercises                 | not started | ADAPT    |                                 |
-| Outside review of the application     | not started | ADAPT    |                                 |
+| Outside review of the application     | done        | ADAPT    | this pass                       |
 
 **Prompt** says how to use that phase's prompt in
 `docs/02-claude-code-build-guide.md` section 3. `VERBATIM` means every fact in
@@ -66,11 +66,12 @@ Three of those need the caveat stated rather than implied.
   the distance between the review loop and requirement four, and phase 6c is
   what starts closing it without inventing content.
 
-And one thing nobody has done at all: **no outside reader has checked the
-model's Catalan, the French UI copy, or the system prompt.** Every false claim
-about French this project has found came from an outside review of the AUTHORED
-data, and internal review has never caught one. The generated side has had no
-equivalent pass. That is its own row in the phase table now.
+**The generated side has now had its first outside review**, against six real
+replies, and it found what the authored-data reviews always find: four more
+false claims about French, bringing that count to thirteen across six reviews,
+none of them ever caught internally. What it found beyond that is a single
+pattern rather than six slips, recorded at the end of `data/sources.md`. The
+prompt has been amended against it.
 
 ## Seeding, per domain
 
@@ -1145,6 +1146,48 @@ in `data/sources.md`:
 **The system prompt changed, so the next live call pays one cache write.**
 Expect a single zero on « Relu du cache » and a read after it.
 
+The application then had its first outside review, the sixth overall and the
+first pointed at anything other than the authored data. Six real replies were
+captured from the live API and sent whole with the French copy, the rendered
+system prompt and the phase 6 decisions. It is recorded in full at the end of
+`data/sources.md`. Five things in it matter beyond this pass:
+
+- **The findings are one pattern, not six slips, and the pattern is a property
+  of the prompt.** The model optimised for filling the response shape rather
+  than for truth: it padded the decomposition with the nearest available ID when
+  no such point was realised, reached for a confident general rule when it had
+  none, and silently normalised the learner's input. All three trace to a prompt
+  that rewarded completeness and fluency and **never rewarded abstention**. The
+  amendment licenses abstention, requires a correction to be declared, and asks
+  for caution over generality. **A closed vocabulary plus « n'en omets pas un
+  qui est présent » is a standing pressure to tag every word with something**,
+  and it will come back whenever that instruction is edited.
+- **The deliberate error in the sixth question earned its place.** `anire` for
+  `aniré` was typed on purpose, and the reply corrected it in `answer_ca`,
+  quoted the wrong form in the prose as the Catalan future, and kept the wrong
+  form in the decomposition. So the correction appeared only where a learner
+  comparing their own text would not look, and the explanation confirmed the
+  error. **Plant a known error in any future review batch**: nothing else in six
+  reviews has exposed a defect this cleanly.
+- **Internal reading was run first and withheld from the pack, and the score is
+  now measured rather than asserted.** Eleven items found internally, nine
+  confirmed, one unjudged, and seven more found only by the reviewer, of which
+  four were errors about French. That is the same ratio the authored-data
+  reviews produced, so **the "self-review never catches a French error" finding
+  generalises from the data to the application**. Keep withholding the internal
+  list: priming the reviewer would have made the comparison worthless.
+- **The one declined finding was a false positive of a known shape.** The
+  reviewer reported « gérondif » as an unflagged false friend. The taxonomy
+  teaches it in two leaves, in `notes` and `contrast_fr`, and the appendix sent
+  as reference carries only `id`, `ca` and `glosses.fr`. **An appendix sent as
+  reference must say which fields it omits**, or a reviewer reports a gap in the
+  part it cannot see. That is the `gaire` failure again, from the same cause.
+- **The six replies are the first real material phase 8 has.** Every defect in
+  them is now written down with an argument, which is the human-checked
+  expectation phase 8 requires to live in the fixture. The raw JSON was not
+  committed, deliberately: phase 8 should re-record against the amended prompt
+  rather than fixture replies the prompt no longer produces.
+
 ## Carried over into later phases
 
 - **The prompt cache is VERIFIED against the live API.** A second identical
@@ -1170,6 +1213,25 @@ Expect a single zero on « Relu du cache » and a read after it.
     `callHaiku` without reading `CallResult.usage` at all, so the "one-line check"
     this entry promised was available to nobody. **A value carried through an API
     for two phases and consumed by nothing is not a check, it is a plan for one.**
+- **The prompt amendment has a stated benchmark, and it is owed.** Ten fresh
+  replies against the amended prompt. **If number or gender IDs still land on
+  singular or invariable nouns, the closed vocabulary is not fixable by prompt
+  alone**, and the next move is a schema flag letting a decomposition entry say
+  "present, no identifier, described in prose". That is the reviewer's own
+  ordering and it is the right one: try the sentence before the schema change.
+  Phase 8 is where the ten replies would come from anyway.
+- **`NEG.simple.pas`'s `dialect_note` is incomplete.** It sets the Principat
+  against Valencian and Balearic and says nothing about Northern Catalan, where
+  `pas` is the ordinary sentential negator rather than a reinforcement. Raised
+  by the application review as a caveat on its own correction. Not applied,
+  because the authored data was not under review and the leaf is not wrong. Owed
+  when `NEG` is next touched.
+- **« pronoms faibles » was challenged and kept, and the decision is repo-wide
+  if it is ever revisited.** The reviewer argues a French grammar's default
+  label is _clitique_ or _atone_. The term is fixed in `CLAUDE.md`, in the
+  `fr-metalanguage` skill and in the authored glosses, so it is a repo-wide pass
+  or nothing; changing it in the prompt alone would put two terminologies inside
+  one reply.
 - **The browser's no-evidence ban survived phase 6, and is now scoped to
   `src/ui/browse/`.** It walks the module graph from every file in that
   directory and still bans `src/db/dexie.ts`, `src/db/persist.ts`,
