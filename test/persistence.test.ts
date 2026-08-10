@@ -46,6 +46,7 @@ function query(
     evidence,
     ...(rating === undefined ? {} : { rating }),
     answer_ca: "L'home acaba d'arribar",
+    answer_fr: 'L’homme vient d’arriver.',
     decomposition: componentIds.map((id) => ({
       id: id as DecomposedQuery['decomposition'][number]['id'],
       ca: 'forme',
@@ -174,6 +175,25 @@ describe('recording a query', () => {
     expect(stored.componentIds).toEqual(ids);
     expect(stored.evidence).toBe('lookup');
     expect(stored.rating).toBeUndefined();
+  });
+
+  it('keeps the matched pair on the row, and omits the half that is absent', async () => {
+    // The corpus outlives the reply that carried it: phase 9 builds translation
+    // practice from these rows, and nothing else in the application holds a
+    // French rendering of anything.
+    const paired = query([EXEMPLAR.transfer], 'lookup');
+    await recordQuery({ queryLog: paired }, db);
+    const stored = (await db.queries.toArray())[0] as QueryLog;
+    expect(stored.answerCa).toBe(paired.answer_ca);
+    expect(stored.answerFr).toBe(paired.answer_fr);
+
+    // A review record has no translation to give, and the field is then absent
+    // rather than empty, so "has a pair" is a question the corpus can be asked.
+    const { answer_fr: _omitted, ...unpaired } = paired;
+    await recordQuery({ queryLog: unpaired }, db);
+    const second = (await db.queries.toArray())[1] as QueryLog;
+    expect(second.answerCa).toBe(paired.answer_ca);
+    expect('answerFr' in second).toBe(false);
   });
 
   it('counts a component realised twice in one sentence as one encounter', async () => {

@@ -3447,3 +3447,62 @@ not verifying it; these six are verified, once, by this review. The raw JSON was
 deliberately not committed: it carries usage counters and message IDs, and phase
 8 should re-record against the amended prompt rather than fixture replies the
 prompt no longer produces.
+
+## Phase 6c: the symmetric answer
+
+`answer_fr` is now a required sibling of `answer_ca`, holding the same utterance
+in French on one line. The reply shows the pair whichever way the question ran,
+with the explanation underneath, and every logged query carries a matched
+French/Catalan pair. Four decisions in it are worth knowing.
+
+**`answer` is not the translation, and the prompt now says so twice.** The
+schema pins `answer` to French, so a reader meeting three French-ish fields has
+to be told which is which: `answer` explains the structure, `answer_fr` renders
+the sentence, and the prompt states « Ne confonds pas ce champ avec « answer »,
+qui explique la structure et ne traduit rien ». The risk was never that the
+model would fail to produce French; it was that `answer_fr` would come back as a
+summary of the explanation, which is the same field twice and no translation
+pair at all. `test/anthropic-client.test.ts` asserts the two differ and that
+`answer_fr` is one line.
+
+**`answer_fr` is required of the model and optional on the logged record**,
+which is the one place the two schemas differ, and it is deliberate. A review
+item is built from the taxonomy, and the taxonomy holds no French translation of
+any example: a review card asks which rule an énoncé illustrates. Requiring the
+field would have forced `toGradedQueryLog` to put the rule's gloss there, filing
+a description as a translation in the corpus phase 9 reads. **A row either
+carries a real pair or carries none**, so "has a pair" stays a question the
+corpus can be asked. In TypeScript that is `QueryLog extends
+Omit<Decomposition, 'answer_fr'>` with the field re-declared optional, which is
+uglier than inheritance and says the true thing.
+
+**The pair is stored on the query row, and it needs no Dexie version.** Neither
+`answerCa` nor `answerFr` is indexed, and a Dexie version is a schema of indexes
+rather than of fields, so version 2 still describes the store. Both are typed
+optional, for two different reasons: `answerFr` is absent on a review record,
+and both are absent on any row written before this phase. Declaring either
+required would make the type lie about rows already in the user's browser.
+Nothing reads them yet; phase 9 does, and the alternative was regenerating a
+corpus that had already been thrown away one reply at a time.
+
+**Both headings changed, because a pair needs symmetric labels.** « À dire en
+catalan » was right while the Catalan was the only sentence in the reply, and
+reads as lopsided beside its French twin. They are now « En catalan » and « En
+français », with the detected direction underneath, so the direction is stated
+once rather than implied twice by the wording of two captions.
+
+Checked in the browser at 390, 375 and 1280 px with a stubbed `fetch`, since the
+API key is the user's and none is in this environment. Both lines render, each
+tagged with its own `lang` so a screen reader, browser translation and the phase
+6b pronunciation control read each as the language it is in; no width overflows
+horizontally; no control falls under 40 px. **This was measured rather than
+screenshotted**: the browser pane was not displayed in this session, so no frame
+could be composited. Geometry catches overflow, target size and the `hidden`
+failure phase 6 met, and it does not catch what only an eye catches, so the
+screenshot step is owed to the next pass that touches this view.
+
+One thing measurement did find, and it is not 6c's doing: **at 1280 px the
+utterance and the explanation both run to a 1,097 px measure**, which is far past
+a comfortable line length and was already true of the explanation before this
+phase. Recorded rather than fixed, because capping the reading column is a
+decision about the whole view rather than about this field.

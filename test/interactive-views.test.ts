@@ -43,6 +43,13 @@ const DETECTED_DIRECTION = 'fr_to_ca' as const;
 /** Two paragraphs, blank-line separated, which is the shape the prompt asks for. */
 const TWO_PARAGRAPHS = ['Premier point.', 'Second point.'].join('\n\n');
 
+/**
+ * The French half of the pair, deliberately unlike anything else in the reply.
+ * Sharing a string with `answer` would let a test that means "the French
+ * sentence is on screen" pass on the explanation being on screen.
+ */
+const FRENCH_UTTERANCE = 'La phrase française correspondante.';
+
 let db: TrainerDatabase;
 let dbIndex = 0;
 
@@ -81,6 +88,7 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
       direction: DETECTED_DIRECTION,
       answer: leaf.glosses.fr,
       answer_ca: leaf.ca,
+      answer_fr: FRENCH_UTTERANCE,
       answer_lang: 'fr' as const,
     };
     return Promise.resolve({
@@ -118,6 +126,7 @@ function replyWith(
     direction: DETECTED_DIRECTION,
     answer: overrides.answer ?? leaf.glosses.fr,
     answer_ca: leaf.ca,
+    answer_fr: FRENCH_UTTERANCE,
     answer_lang: 'fr' as const,
   };
   return {
@@ -317,6 +326,29 @@ describe('the query view types its own evidence', () => {
     expect(utterance?.getAttribute('lang')).toBe('ca');
     expect(host.querySelector('[data-direction]')?.getAttribute('data-direction')).toBe(
       DETECTED_DIRECTION,
+    );
+  });
+
+  it('shows the pair in both languages, each tagged as its own language', async () => {
+    const host = mountQuery([]);
+    await ask(host, { question: subject().glosses.fr });
+
+    const lines = [...host.querySelectorAll('.ac-utterance')];
+    expect(lines.map((line) => line.getAttribute('lang'))).toEqual(['ca', 'fr']);
+    expect(lines.map((line) => line.textContent)).toEqual([
+      subject().ca,
+      FRENCH_UTTERANCE,
+    ]);
+
+    // The French line is the sentence, not the explanation. Before 6c the only
+    // French in the reply was the explanation, and the meaning of a Catalan
+    // énoncé was buried inside it.
+    const headings = [...host.querySelectorAll('.ac-subheading')].map(
+      (node) => node.textContent,
+    );
+    expect(headings).toContain(fr.query.answerFrHeading);
+    expect(host.querySelector('.ac-answer')?.textContent).not.toContain(
+      FRENCH_UTTERANCE,
     );
   });
 

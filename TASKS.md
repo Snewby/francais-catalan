@@ -21,7 +21,7 @@ is worse than none, because it still reads as authoritative.
 | 5b. Review loop                       | done        | ADAPT    | this pass                       |
 | 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
 | 6b. Pronunciation                     | not started | ADAPT    |                                 |
-| 6c. The symmetric answer              | not started | ADAPT    |                                 |
+| 6c. The symmetric answer              | done        | ADAPT    | this pass                       |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 | 8. Golden set and offline evaluation  | not started | ADAPT    |                                 |
 | 9. Practice exercises                 | not started | ADAPT    |                                 |
@@ -40,31 +40,34 @@ The five things the user asked this to do, and where each stands. **This is the
 scorecard the phase table serves**, and a phase that does not move a row on it
 needs an argument.
 
-| Requirement                                      | State                                         |
-| ------------------------------------------------ | --------------------------------------------- |
-| French to Catalan, with the structure explained  | works                                         |
-| Catalan to French, with the structure explained  | works, but the meaning has no line of its own |
-| Strong, weak and never-met areas of the language | built, and empty until the app is used        |
-| Generated practice exercises                     | not started                                   |
-| Pronunciation                                    | designed, not built (6b)                      |
+| Requirement                                      | State                                  |
+| ------------------------------------------------ | -------------------------------------- |
+| French to Catalan, with the structure explained  | works                                  |
+| Catalan to French, with the structure explained  | works                                  |
+| Strong, weak and never-met areas of the language | built, and empty until the app is used |
+| Generated practice exercises                     | not started                            |
+| Pronunciation                                    | designed, not built (6b)               |
 
 Three of those need the caveat stated rather than implied.
 
-- **The Catalan-to-French side has no translation line.** A French question now
-  leads with `answer_ca`, the Catalan sentence. A Catalan question has no
-  equivalent: `answer` is the explanation, and the meaning of the énoncé is
-  somewhere inside it. That is the same gap phase 6 shipped, fixed on one side
-  and left on the other. Phase 6c closes it.
+- **Both directions now show the pair, and that is what phase 6c did.** A reply
+  carries `answer_ca` and `answer_fr`, the same utterance in both languages, with
+  the explanation underneath. The Catalan-to-French side no longer buries the
+  meaning inside the explanation, which was the same gap phase 6 shipped, fixed
+  on one side and left on the other.
 - **The coverage map cannot show mastery until reviews happen.** Asking
   questions moves exposure and never mastery, which is deliberate and is what
   stops the map flattering the learner, but it means the map stays grey until
   the review screen is used. That is the design working, not a defect, and it
   will read as a defect to anyone who only asks questions.
-- **The review deck is not exercises.** Three hundred authored cards, each
-  asking which rule an énoncé illustrates. It is not translation practice,
-  because the authored data holds no translation of any example. That gap is
-  the distance between the review loop and requirement four, and phase 6c is
-  what starts closing it without inventing content.
+- **The review deck is not exercises, and the material that would make it so is
+  only now starting to accumulate.** Three hundred authored cards, each asking
+  which rule an énoncé illustrates. It is not translation practice, because the
+  authored data holds no translation of any example. Every query logged from now
+  on carries a matched pair, in the learner's own vocabulary, about something
+  they wanted to say. **A corpus of one is still a corpus of one**: the pairs
+  exist only for questions actually asked, so requirement four stays "not
+  started" until phase 9 is built on them.
 
 **The generated side has now had its first outside review**, against six real
 replies, and it found what the authored-data reviews always find: four more
@@ -1188,6 +1191,32 @@ system prompt and the phase 6 decisions. It is recorded in full at the end of
   committed, deliberately: phase 8 should re-record against the amended prompt
   rather than fixture replies the prompt no longer produces.
 
+Phase 6c then made the answer symmetric. `answer_fr` is a required sibling of
+`answer_ca`, both directions show the sentence in both languages with the
+explanation underneath, and the pair is stored on the query row. It is small and
+three things in it are not:
+
+- **`answer_fr` is required of the model and optional on the logged record.**
+  That asymmetry is the phase's one real decision. A review item is built from
+  the taxonomy, which holds no French translation of any example, so requiring
+  the field would have forced the review path to file the rule's gloss as a
+  translation. **A row either carries a real pair or carries none**, which keeps
+  "has a pair" a question phase 9 can ask instead of a filter it has to invent.
+- **No Dexie version bump, and the reason generalises.** `answerCa` and
+  `answerFr` are not indexed, and a Dexie version declares indexes rather than
+  fields. Both are typed optional, for two different reasons: one is absent on a
+  review record, and both are absent on every row written before this phase.
+  **A row shape that is a projection of history cannot be typed as though the
+  history were rewritten.**
+- **The layout was measured, not screenshotted.** The browser pane was not
+  displayed in this session, so no frame could be composited and
+  `computer/screenshot` times out by design. Geometry was checked instead at
+  390, 375 and 1280 px, with a stubbed `fetch` because the API key is the
+  user's: both lines render, each tagged with its own `lang`, nothing overflows
+  horizontally, no control is under 40 px. **That is weaker than looking**, and
+  the difference is exactly the class of defect phase 6 caught by looking, so
+  the screenshot is owed. See "Carried over".
+
 ## Carried over into later phases
 
 - **The prompt cache is VERIFIED against the live API.** A second identical
@@ -1213,6 +1242,18 @@ system prompt and the phase 6 decisions. It is recorded in full at the end of
     `callHaiku` without reading `CallResult.usage` at all, so the "one-line check"
     this entry promised was available to nobody. **A value carried through an API
     for two phases and consumed by nothing is not a check, it is a plan for one.**
+- **The query view is owed a look, not just a measurement.** Phase 6c was
+  verified by geometry because the browser pane could not composite a frame in
+  that session. What geometry cannot see is what phase 6 found by looking: a
+  field that is `hidden` and on screen anyway, or a line that is legible at one
+  width and not at another. **Screenshot the query view at 390 px and 1280 px on
+  the next pass that touches it**, which is 6b, and drive it with a stubbed
+  `fetch` rather than a live key.
+- **At 1280 px the answer runs to a 1,097 px measure.** The utterance lines and
+  the explanation paragraphs both do, and the explanation already did before
+  phase 6c. That is far past a comfortable line length. Not fixed here, because
+  capping the reading column is a decision about the whole view; worth taking
+  with the screenshot pass above.
 - **The prompt amendment has a stated benchmark, and it is owed.** Ten fresh
   replies against the amended prompt. **If number or gender IDs still land on
   singular or invariable nouns, the closed vocabulary is not fixable by prompt
@@ -1273,13 +1314,16 @@ system prompt and the phase 6 decisions. It is recorded in full at the end of
   new authored field or model-generated items. Neither appears in `docs/01`,
   `docs/02`, the schema or any phase, so **whoever builds it is designing it**,
   and four decisions have to be made and recorded before any code:
-  - **Half the response shape now exists.** `answer_ca` was added when the query
-    view turned out to have no Catalan sentence to show, so a reply already
-    carries the whole utterance and 6b already has something to pronounce. What
-    a generated exercise still needs beyond that is a French PROMPT paired with
-    an expected answer, which is a different structure from a reply to a
-    question the learner asked; it is still a new sibling in
-    `scripts/gen-schema.ts`, reusing the same closed component enum.
+  - **The response shape is now complete for this purpose, and the corpus has
+    started.** `answer_ca` and `answer_fr` are both required of the model, both
+    are stored on the query row as `answerCa` and `answerFr`, and **a row
+    carries `answerFr` only when a real pair exists**, so a review record cannot
+    be mistaken for a translation item. What a generated exercise still needs
+    beyond that is a French PROMPT paired with an expected answer, which is a
+    different structure from a reply to a question the learner asked; it is
+    still a new sibling in `scripts/gen-schema.ts`, reusing the same closed
+    component enum. **The pairs accumulate only for questions actually asked**,
+    so the corpus is as small as the use of the app until then.
   - **An auto-marked exercise is `recall`, not `graded`.** 5b is explicit that
     the learner's own grade is the only source of graded evidence. Comparing a
     typed answer against an expected one is an objective outcome with no

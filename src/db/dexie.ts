@@ -60,6 +60,20 @@ export interface QueryLog {
 
   /** Present if and only if evidence is 'graded'. */
   rating?: Rating;
+
+  /**
+   * The matched pair, kept so the corpus survives the reply that carried it.
+   *
+   * Both are optional and for different reasons. `answerFr` is absent on a
+   * review record, which has no translation to give. Both are absent on any row
+   * written before phase 6c, which is why neither can be declared required
+   * without the type lying about rows already in a browser.
+   *
+   * No Dexie version bump: neither is indexed, and a version is a schema of
+   * indexes rather than of fields.
+   */
+  answerCa?: string;
+  answerFr?: string;
 }
 
 /**

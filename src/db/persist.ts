@@ -78,6 +78,10 @@ function toQueryRow(queryLog: DecomposedQuery): QueryLog {
     direction: queryLog.direction,
     evidence: queryLog.evidence,
     ...(queryLog.rating === undefined ? {} : { rating: queryLog.rating }),
+    answerCa: queryLog.answer_ca,
+    // Absent rather than empty when the record carries no translation, so that
+    // "has a pair" is a question the corpus can be asked.
+    ...(queryLog.answer_fr === undefined ? {} : { answerFr: queryLog.answer_fr }),
   };
 }
 

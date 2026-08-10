@@ -219,26 +219,38 @@ export function mountQueryView(
     return block;
   }
 
+  function renderUtterance(
+    language: 'ca' | 'fr',
+    caption: string,
+    text: string,
+  ): HTMLElement[] {
+    const heading = document.createElement('h3');
+    heading.className = 'ac-subheading';
+    heading.textContent = caption;
+
+    const utterance = document.createElement('p');
+    utterance.className = 'ac-utterance';
+    // Tagged so a screen reader, browser translation and the phase 6b
+    // pronunciation control each read the line as the language it is in.
+    utterance.lang = language;
+    utterance.textContent = text;
+
+    return [heading, utterance];
+  }
+
   /**
-   * The answer, as a Catalan sentence rather than as a paragraph about one.
+   * The sentence, in both languages, above the explanation of it.
    *
-   * This is the headline because it is what was asked for: a learner who typed
-   * a French phrase wants the Catalan, and a learner who typed Catalan wants to
-   * see it written correctly. It is tagged `lang="ca"` so a screen reader, and
-   * later the pronunciation control, treat it as Catalan and not as French.
+   * This is the headline because it is what was asked for, and it is a PAIR
+   * because either half alone buries the other side's answer. Phase 6 gave the
+   * reply a Catalan line and left the French meaning somewhere inside the
+   * explanation, which was the same gap it had just closed, fixed on one side.
+   * The Catalan leads in both directions: it is the language being learnt, and
+   * a fixed order is one less thing on screen that moves.
    */
   function renderAnswerCa(result: CallResult): HTMLElement {
     const block = document.createElement('div');
     block.className = 'ac-answer-ca';
-
-    const heading = document.createElement('h3');
-    heading.className = 'ac-subheading';
-    heading.textContent = fr.query.answerCaHeading;
-
-    const utterance = document.createElement('p');
-    utterance.className = 'ac-utterance';
-    utterance.lang = 'ca';
-    utterance.textContent = result.decomposition.answer_ca;
 
     const detected = document.createElement('p');
     detected.className = 'ac-hint';
@@ -252,7 +264,19 @@ export function mountQueryView(
         : fr.query.directionFrToCa,
     );
 
-    block.append(heading, utterance, detected);
+    block.append(
+      ...renderUtterance(
+        'ca',
+        fr.query.answerCaHeading,
+        result.decomposition.answer_ca,
+      ),
+      ...renderUtterance(
+        'fr',
+        fr.query.answerFrHeading,
+        result.decomposition.answer_fr,
+      ),
+      detected,
+    );
     return block;
   }
 

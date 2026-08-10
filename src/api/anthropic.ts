@@ -71,6 +71,16 @@ export interface Decomposition {
    * the attempt comparison had nothing to compare against.
    */
   readonly answer_ca: string;
+  /**
+   * The same utterance in French, on one line. The mirror of `answer_ca`, and
+   * NOT `answer`: one renders the sentence, the other explains its structure.
+   *
+   * With both, the reply shows the pair whichever way the question ran, so the
+   * Catalan-to-French side stops burying the meaning inside the explanation.
+   * The pair is also the only translation material this application will have
+   * that it did not invent, which is what phase 9 builds practice on.
+   */
+  readonly answer_fr: string;
   readonly answer_lang: 'fr';
 }
 
@@ -176,8 +186,17 @@ export function buildRequestBody(
   };
 }
 
-/** A logged query: the decomposition plus the interaction-model triple. */
-export interface QueryLog extends Decomposition {
+/**
+ * A logged query: the decomposition plus the interaction-model triple.
+ *
+ * `answer_fr` is optional here and required of the model, which is the one
+ * place the two shapes differ. A review item is built from the taxonomy, and
+ * the taxonomy holds no French translation of any example, so a review record
+ * has no pair to carry; putting the rule's gloss there instead would file a
+ * description as a translation in the corpus phase 9 reads.
+ */
+export interface QueryLog extends Omit<Decomposition, 'answer_fr'> {
+  readonly answer_fr?: string;
   readonly asked_at: number;
   readonly question: string;
   readonly intent: Intent;

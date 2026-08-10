@@ -197,6 +197,16 @@ export const COMPONENT_ENTRY_SCHEMA = {
  * a sentence. That is the shape phase 6b's audio needs and the shape the
  * attempt comparison needs.
  *
+ * \`answer_fr\` is its mirror: the same utterance in French, one line, no
+ * commentary. \`answer\` is NOT that, and the two must not be conflated:
+ * \`answer\` explains the structure and \`answer_fr\` renders the sentence. With
+ * both siblings present the reply shows the pair whichever way the question
+ * ran, and every logged query carries a matched French/Catalan pair in the
+ * learner's own vocabulary, about something they actually wanted to say. The
+ * authored taxonomy holds no translation of any example, so that pair is the
+ * only translation material this application will ever have that it did not
+ * invent.
+ *
  * \`direction\` is reported BY THE MODEL rather than asserted by the caller. A
  * learner types a Catalan sentence or a French one; which way round it is, is
  * evident from the question, and making them declare it was an interface asking
@@ -205,12 +215,20 @@ export const COMPONENT_ENTRY_SCHEMA = {
 export const DECOMPOSITION_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['decomposition', 'direction', 'answer', 'answer_ca', 'answer_lang'],
+  required: [
+    'decomposition',
+    'direction',
+    'answer',
+    'answer_ca',
+    'answer_fr',
+    'answer_lang',
+  ],
   properties: {
     decomposition: { type: 'array', items: COMPONENT_ENTRY_SCHEMA },
     direction: { type: 'string', enum: ${literalArray(DIRECTIONS)} },
     answer: { type: 'string', minLength: 1 },
     answer_ca: { type: 'string', minLength: 1 },
+    answer_fr: { type: 'string', minLength: 1 },
     answer_lang: { type: 'string', enum: ['fr'] },
   },
 } as const;
@@ -221,6 +239,12 @@ export const DECOMPOSITION_SCHEMA = {
  * \`rating\` is required exactly when \`evidence\` is the one type that
  * EVIDENCE_EFFECTS marks as requiring one, and forbidden otherwise. The
  * conditional is generated from that table rather than written by hand.
+ *
+ * \`answer_fr\` is REQUIRED of the model and OPTIONAL on the logged record. A
+ * review item is built from the taxonomy, which holds no French translation of
+ * any example, so a review record has no pair to carry and supplying the gloss
+ * instead would put a rule description into a translation corpus. Phase 9 reads
+ * that corpus, so a row either carries a real pair or carries none.
  */
 export const QUERY_LOG_SCHEMA = {
   type: 'object',
@@ -246,6 +270,7 @@ export const QUERY_LOG_SCHEMA = {
     decomposition: DECOMPOSITION_SCHEMA.properties.decomposition,
     answer: DECOMPOSITION_SCHEMA.properties.answer,
     answer_ca: DECOMPOSITION_SCHEMA.properties.answer_ca,
+    answer_fr: DECOMPOSITION_SCHEMA.properties.answer_fr,
     answer_lang: DECOMPOSITION_SCHEMA.properties.answer_lang,
   },
   allOf: [

@@ -82,6 +82,13 @@ export const SYSTEM_INSTRUCTION = [
     `l’énoncé soumis, dis-le explicitement dans ${quote('answer')} et ne cite ` +
     `jamais la forme fautive comme si elle était correcte.`,
   '',
+  `Réponse française${NNBSP}: le champ ${quote('answer_fr')} contient le même ` +
+    `énoncé en français, en une seule ligne, sans commentaire et sans ` +
+    `explication. C’est la traduction de ${quote('answer_ca')}, pas un résumé ` +
+    `de ce qui suit${NNBSP}: les deux lignes doivent dire la même chose, l’une ` +
+    `en catalan et l’autre en français. Ne confonds pas ce champ avec ` +
+    `${quote('answer')}, qui explique la structure et ne traduit rien.`,
+  '',
   `Lisibilité${NNBSP}: le champ ${quote('answer')} est découpé en courts ` +
     `paragraphes séparés par une ligne vide, un point par paragraphe. Pas de ` +
     `titres, pas de listes à puces, pas de bloc unique et compact. Va au fait ` +

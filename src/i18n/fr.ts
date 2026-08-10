@@ -103,7 +103,11 @@ export const fr = {
     directionFrToCa: 'Du français vers le catalan',
     questionLabel: 'Question',
     placeholder: 'Un énoncé catalan à expliquer, ou ce que vous cherchez à dire',
-    answerCaHeading: 'À dire en catalan',
+    // A matched pair, so the two headings are symmetric. « À dire en catalan »
+    // was right while the Catalan was the only sentence in the reply and reads
+    // as lopsided beside its French twin.
+    answerCaHeading: 'En catalan',
+    answerFrHeading: 'En français',
     attemptLabel: 'Votre tentative en catalan',
     attemptOptional: 'facultatif',
     // Says what the affordance is for without restating what each evidence type

@@ -216,6 +216,48 @@ describe('a successful call', () => {
     expect(result.usage.cacheReadTokens).toBe(13104);
   });
 
+  it('carries the matched pair, and keeps it apart from the explanation', async () => {
+    const { fetchFn } = stubFetch([okFixture()]);
+    const result = await callHaiku({
+      ...CONTEXT,
+      apiKey: API_KEY,
+      evidence: 'lookup',
+      fetchFn,
+    });
+
+    const { answer, answer_ca, answer_fr } = result.decomposition;
+    expect(answer_ca).toBe("L'home acaba d'arribar.");
+    expect(answer_fr).toBe('L’homme vient d’arriver.');
+    // Both are one line, and neither is the explanation. `answer` explains the
+    // structure; these two are the same utterance in two languages, and phase 9
+    // reads them as a translation pair.
+    expect(answer_fr).not.toContain('\n');
+    expect(answer_fr).not.toBe(answer);
+    expect(result.queryLog.answer_fr).toBe(answer_fr);
+  });
+
+  it('refuses a reply that gives the Catalan and not the French', async () => {
+    const payload = {
+      decomposition: [{ id: 'ART.def.forma.elisio', ca: "l'home" }],
+      direction: 'ca_to_fr',
+      answer: 'Une explication.',
+      answer_ca: "L'home.",
+      answer_lang: 'fr',
+    };
+    const { fetchFn } = stubFetch([
+      {
+        status: 200,
+        body: {
+          ...fixture,
+          content: [{ type: 'text', text: JSON.stringify(payload) }],
+        },
+      },
+    ]);
+    await expect(
+      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
+    ).rejects.toThrow(AnthropicError);
+  });
+
   it('posts to the messages endpoint with the key in the headers only', async () => {
     const { fetchFn, calls } = stubFetch([okFixture()]);
     await callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn });
