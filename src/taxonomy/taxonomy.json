@@ -28,10 +28,10 @@
         "Al maig tot floreix.",
         "Va apagar el llum del despatx."
       ],
-      "notes": "Un piège dépasse la simple méconnaissance : « ll » vaut le mouillé de fille, alors qu’en français ll se lit le plus souvent comme un l simple, dans aller ou belle. « llibre » lu à la française est donc une lecture disponible et fausse, la seule de ce genre dans le domaine.",
+      "notes": "Un piège dépasse la simple méconnaissance : « ll » note un l palatal que le français a perdu, sa graphie ill valant aujourd’hui un yod et son ll ordinaire un l simple, dans aller ou belle. « llibre » lu à la française est donc une lecture disponible et fausse, la seule de ce genre dans le domaine.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a le procédé et jusqu’aux mêmes sons, mais pas les mêmes lettres : « ny » vaut gn, « ig » et « tx » valent tch, « tj » et « tg » valent dj. Chaque correspondance est à réapprendre, aucune n’est à deviner."
+        "note": "Le français a le procédé et jusqu’aux mêmes sons, mais pas les mêmes lettres, et la position compte : « ny » vaut gn ; « tx » vaut tch partout, « cotxe », « despatx » ; « ig » vaut le même tch mais seulement en finale après voyelle, « maig », « lleig » ; « tj » et « tg » valent dj, « tj » devant a, o et u, « mitja », « tg » devant e et i, « metge »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -152,7 +152,7 @@
       "notes": "Le système est même plus régulier qu’en français, puisque « a » ne prend jamais que le grave et « i » et « u » jamais que l’aigu. Il n’y a donc de choix à faire que sur « e » et « o », et il porte sur l’ouverture.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Exactement la logique française de é contre è : l’aigu note la voyelle fermée, le grave l’ouverte. Un francophone lit « cafè » et « més » avec la bonne qualité vocalique sans rien apprendre."
+        "note": "C’est en gros la logique française de é contre è : l’aigu note la voyelle fermée, le grave l’ouverte, et un francophone lit « cafè » et « més » avec à peu près la bonne qualité. L’appui n’est toutefois que partiel, puisqu’en français un e ouvert peut rester sans accent, dans mer, et que le grave de à ou de où est purement distinctif."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -173,7 +173,7 @@
         "Ell copia els deures.",
         "Ahir copià tot el text."
       ],
-      "notes": "Le catalan appelle « agudes » les mots accentués sur la dernière syllabe, « planes » ceux qui le sont sur l’avant-dernière et « esdrúixoles » les autres. Les « agudes » prennent l’accent écrit quand elles finissent par une voyelle, par une voyelle suivie de -s, ou par -en ou -in ; les « planes » le prennent dans tous les autres cas ; les « esdrúixoles » le prennent toujours. C’est donc une règle et non une liste, mais elle suppose de savoir d’abord où tombe l’accent, ce qui est la vraie difficulté.",
+      "notes": "Le catalan appelle « agudes » les mots accentués sur la dernière syllabe, « planes » ceux qui le sont sur l’avant-dernière et « esdrúixoles » les autres. Les « agudes » prennent l’accent écrit quand elles finissent par une voyelle, par une voyelle suivie de -s, ou par -en ou -in ; les « planes » le prennent dans tous les autres cas ; les « esdrúixoles » le prennent toujours. Deux pièges : la seconde voyelle d’une diphtongue décroissante ne compte pas, si bien que « canteu » et « remei » ne s’accentuent pas, et une plane sans accent au singulier peut en prendre un au pluriel, « examen » contre « examens ». La vraie difficulté reste de savoir d’abord où tombe l’accent.",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français n’a pas d’accent tonique lexical : il accentue la fin du groupe et rien ne distingue deux mots par la seule place de l’accent. En catalan, « còpia », « copia » et « copià » sont trois mots différents, et il n’y a rien à transférer."
@@ -189,7 +189,7 @@
       "parent": "PHON.accent",
       "ca": "sòl / sol, són / son",
       "glosses": {
-        "fr": "l’accent diacritique, qui sépare quinze paires d’homographes depuis 2017"
+        "fr": "l’accent diacritique, réduit à quinze paires d’homographes par la réforme de 2016"
       },
       "cefr": "B2",
       "examples": [
@@ -197,7 +197,7 @@
         "El sol escalfa la terra.",
         "Són les tres tocades."
       ],
-      "notes": "Les paires les plus courantes sont « sòl » et « sol », « són » et « son », « més » et « mes », « bé » et « be », « què » et « que ». Hors de la liste des quinze, l’accent diacritique a disparu, y compris sur des mots où il paraissait utile.",
+      "notes": "Les paires les plus courantes sont « sòl » et « sol », « són » et « son », « més » et « mes », « bé » et « be », « què » et « que ». Hors de la liste des quinze, l’accent diacritique a disparu. Les composés et dérivés soudés le perdent aussi, « rodamon », « entresol », « subsol », « a contrapel », tandis que ceux à trait d’union le gardent, « pèl-roig », « déu-n'hi-do », l’élément accentué y conservant sa forme. La norme a été approuvée en 2016 et publiée dans l’Ortografia catalana en 2017.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français fait la même chose avec à contre a et où contre ou, mais la liste catalane est autre et elle a changé : la réforme de 2017 l’a réduite à quinze paires, si bien que des accents encore présents dans les textes anciens sont aujourd’hui des fautes."
@@ -244,7 +244,7 @@
       },
       "cefr": "B1",
       "examples": ["Aquest pa és fred.", "La nit és freda.", "El camí és massa llarg."],
-      "notes": "Même chose pour « llarg », qui finit sur le son de c, contre « llarga ». La graphie note la consonne sous-jacente et non ce qui s’entend, ce qui en fait une aide plutôt qu’un obstacle une fois la règle sue.",
+      "notes": "Même chose pour « llarg », qui finit sur le son de c, contre « llarga ». La graphie note la consonne sous-jacente et non ce qui s’entend, ce qui en fait une aide une fois la règle sue. Le test du féminin ne vaut cependant que là où il y a un féminin ou un dérivé : un nom comme « serp » ou un mot invariable comme « amb » n’en offre aucun, et la graphie s’y retient par le mot.",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français garde ses finales sonores, grande et grand différant par la présence de la consonne et non par sa sonorité. Le catalan assourdit la finale, si bien que « fred » se dit avec un t final ; c’est le féminin « freda » qui montre la consonne réelle."
@@ -286,11 +286,11 @@
         "Vol cantar una cançó.",
         "El cor li bategava fort."
       ],
-      "notes": "La lettre s’écrit toujours, même muette, et elle se prononce à nouveau au féminin et au pluriel de certains mots. Le partage exact entre les mots qui la font sonner et les autres se retient par l’usage.",
+      "notes": "La lettre s’écrit toujours, même muette. Le r tombe à l’infinitif, dans les suffixes -ar, -er et -or, et dans les adjectifs à féminin en r, « clara », « dura » ; il se prononce dans une série lexicale de noms que rien de régulier ne signale et qui se retiennent par l’usage.",
       "dialect_note": "Le valencien et une partie du baléare prononcent le r final là où le catalan central le laisse tomber.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français connaît déjà la chute, chanter et aimer se disant sans r. Le catalan l’étend bien au-delà de l’infinitif, à des noms comme « carrer » ou « primer », mais la garde dans la plupart des monosyllabes, « cor », « mar », « dur »."
+        "note": "Le français connaît déjà la chute, chanter et aimer se disant sans r. Le catalan l’étend bien au-delà de l’infinitif, aux noms en -er comme « carrer » et « primer », et aux adjectifs qui ont un féminin en r, « clar » et « dur » contre « clara » et « dura ». Le partage n’est pas affaire de longueur : « cor », « mar », « amor » et « futur » gardent un r sonore, alors que « por » l’a muet."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -311,10 +311,10 @@
         "Quina qüestió tan difícil!",
         "Vam veure un pingüí."
       ],
-      "notes": "Le tréma disparaît quand un accent écrit occupe déjà la voyelle, et il ne s’écrit pas sur les terminaisons d’infinitif, de gérondif, de futur et de conditionnel, « traduir » sans tréma contre « traduïm » avec.",
+      "notes": "Le tréma disparaît quand un accent écrit occupe déjà la voyelle. Il ne s’écrit pas non plus sur la i de l’infinitif, du gérondif, du futur et du conditionnel des verbes en -ir, « traduir » et « traduint » contre « traduïm ». Autres exceptions : les suffixes -isme et -ista, « egoisme », « egoista » ; les terminaisons latines -us et -um ; et la voyelle qui suit les préfixes co-, re-, auto- et contra-, « coincidir », « reunir ».",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a le tréma et l’emploie déjà pour séparer deux voyelles, dans maïs ou Noël. Le catalan lui ajoute un second emploi que le français n’a pas : faire prononcer le « u » de « güe », « güi », « qüe » et « qüi », qui serait muet sans lui."
+        "note": "Le français a le tréma et l’emploie pour séparer deux voyelles, dans maïs ou Noël, mais aussi, contrairement à ce qu’on croit souvent, pour faire sonner un u après g, dans ambiguïté et, depuis les rectifications de 1990, dans aigüe. La différence n’est donc pas la fonction mais son étendue : le catalan la systématise à « güe », « güi », « qüe » et « qüi »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -6919,7 +6919,7 @@
         "Sents aquesta música?",
         "Vols tastar el pastís?"
       ],
-      "notes": "Même piège avec « tastar », qui vaut goûter et non tâter, « acostar », approcher et non accoster, « esperar », qui couvre attendre autant qu’espérer, et « parar », arrêter et non parer.",
+      "notes": "Même piège avec « tastar », qui vaut goûter et non tâter, et « acostar », approcher et non accoster. « esperar » couvre attendre autant qu’espérer. « parar » en revanche n’est pas un faux ami : le français parer veut dire orner ou détourner un coup, et n’offre donc aucune lecture disponible du catalan, qui vaut arrêter, mais aussi dresser, « parar taula », et tendre, « parar la mà ».",
       "contrast_fr": {
         "status": "false-friend",
         "note": "« entendre » vaut comprendre et « sentir » vaut entendre, les deux verbes échangeant leurs valeurs : « No t'entenc » ne dit pas je ne t’entends pas mais je ne te comprends pas."
@@ -6946,7 +6946,7 @@
       "notes": "S’y ajoutent « carrer », qui vaut rue et non carrière, et « gens », qui vaut pas du tout et n’a rien du nom français. La distribution de « gens » comme quantificateur relève de DET.quant.polaritat.gens ; seule la lecture fautive est ici.",
       "contrast_fr": {
         "status": "false-friend",
-        "note": "« llarg » vaut long et non large, qui se dit « ample » ; « constipat » vaut enrhumé ; « embarassada » vaut enceinte. Dans les trois cas le mot français existe, se lit sans effort, et donne un contresens."
+        "note": "« llarg » vaut long et non large, qui se dit « ample » ; « constipat » vaut enrhumé et non constipé, qui se dit « restret » ; « embarassada » vaut enceinte. Dans les trois cas le mot français existe, se lit sans effort, et donne un contresens."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -6967,7 +6967,7 @@
         "Va demanar un cafè.",
         "La foto ha sortit moguda."
       ],
-      "notes": "En sens inverse, « sortir » est plus large que sortir et vaut aussi paraître ou se révéler, « Ha sortit al diari ».",
+      "notes": "En sens inverse, « sortir » est plus large que sortir et vaut aussi paraître ou se révéler, « Ha sortit al diari ». De même, « truita » recouvre à la fois l’omelette et la truite, que le français sépare.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français demander couvre la question et la requête ; le catalan les sépare, « preguntar » pour interroger et « demanar » pour réclamer. Aucune lecture n’est franchement fausse, mais le partage est à apprendre."
@@ -7111,10 +7111,10 @@
         "Se n'ha endut les claus.",
         "Duia un abric blau."
       ],
-      "notes": "« portar » vaut aussi porter au sens vestimentaire. « dur » en est un synonyme, plus fréquent à l’écrit et dans certains parlers, et sa conjugaison est irrégulière.",
+      "notes": "« portar » vaut aussi porter au sens vestimentaire. « dur » en est un synonyme presque total, interchangeable dans la plupart des emplois, la préférence étant surtout géographique et de registre, et sa conjugaison est irrégulière.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français grammaticalise la direction, apporter contre emporter, amener contre emmener ; le catalan emploie « portar » ou « dur » dans tous les cas et ne marque l’éloignement que par la forme pronominale, « endur-se »."
+        "note": "Le français grammaticalise la direction, apporter contre emporter, amener contre emmener ; le catalan emploie « portar » ou « dur » dans tous les cas et marque l’éloignement par la forme pronominale, « emportar-se » ou « endur-se »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -7180,7 +7180,7 @@
       "notes": "S’y ajoutent « vaixell » contre barco et « gaudir » contre disfrutar. L’obligation elle-même est traitée à VERB.mod.obligacio ; ce nœud ne porte que le rejet normatif des formes concurrentes.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Ces fautes viennent de l’espagnol et non du français : « haver de » contre tenir que, « adonar-se » contre donar-se compte, « vacances » contre vacacions. Le francophone les entendra sans les produire, et sur « vacances » son intuition donne directement la forme correcte."
+        "note": "Ces fautes viennent de l’espagnol plus que du français : « vaixell » contre barco, « gaudir » contre disfrutar, « vacances » contre vacacions, où l’intuition française donne directement la forme correcte. La protection n’est pourtant pas totale : la structure de se rendre compte peut soutenir le calque « donar-se compte » là où le catalan veut « adonar-se »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },

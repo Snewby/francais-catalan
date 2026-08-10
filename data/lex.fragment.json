@@ -27,7 +27,7 @@
         "Sents aquesta música?",
         "Vols tastar el pastís?"
       ],
-      "notes": "Même piège avec « tastar », qui vaut goûter et non tâter, « acostar », approcher et non accoster, « esperar », qui couvre attendre autant qu’espérer, et « parar », arrêter et non parer.",
+      "notes": "Même piège avec « tastar », qui vaut goûter et non tâter, et « acostar », approcher et non accoster. « esperar » couvre attendre autant qu’espérer. « parar » en revanche n’est pas un faux ami : le français parer veut dire orner ou détourner un coup, et n’offre donc aucune lecture disponible du catalan, qui vaut arrêter, mais aussi dresser, « parar taula », et tendre, « parar la mà ».",
       "contrast_fr": {
         "status": "false-friend",
         "note": "« entendre » vaut comprendre et « sentir » vaut entendre, les deux verbes échangeant leurs valeurs : « No t'entenc » ne dit pas je ne t’entends pas mais je ne te comprends pas."
@@ -60,7 +60,7 @@
       "notes": "S’y ajoutent « carrer », qui vaut rue et non carrière, et « gens », qui vaut pas du tout et n’a rien du nom français. La distribution de « gens » comme quantificateur relève de DET.quant.polaritat.gens ; seule la lecture fautive est ici.",
       "contrast_fr": {
         "status": "false-friend",
-        "note": "« llarg » vaut long et non large, qui se dit « ample » ; « constipat » vaut enrhumé ; « embarassada » vaut enceinte. Dans les trois cas le mot français existe, se lit sans effort, et donne un contresens."
+        "note": "« llarg » vaut long et non large, qui se dit « ample » ; « constipat » vaut enrhumé et non constipé, qui se dit « restret » ; « embarassada » vaut enceinte. Dans les trois cas le mot français existe, se lit sans effort, et donne un contresens."
       },
       "state": {
         "exposure": {
@@ -87,7 +87,7 @@
         "Va demanar un cafè.",
         "La foto ha sortit moguda."
       ],
-      "notes": "En sens inverse, « sortir » est plus large que sortir et vaut aussi paraître ou se révéler, « Ha sortit al diari ».",
+      "notes": "En sens inverse, « sortir » est plus large que sortir et vaut aussi paraître ou se révéler, « Ha sortit al diari ». De même, « truita » recouvre à la fois l’omelette et la truite, que le français sépare.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français demander couvre la question et la requête ; le catalan les sépare, « preguntar » pour interroger et « demanar » pour réclamer. Aucune lecture n’est franchement fausse, mais le partage est à apprendre."
@@ -271,10 +271,10 @@
         "Se n'ha endut les claus.",
         "Duia un abric blau."
       ],
-      "notes": "« portar » vaut aussi porter au sens vestimentaire. « dur » en est un synonyme, plus fréquent à l’écrit et dans certains parlers, et sa conjugaison est irrégulière.",
+      "notes": "« portar » vaut aussi porter au sens vestimentaire. « dur » en est un synonyme presque total, interchangeable dans la plupart des emplois, la préférence étant surtout géographique et de registre, et sa conjugaison est irrégulière.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français grammaticalise la direction, apporter contre emporter, amener contre emmener ; le catalan emploie « portar » ou « dur » dans tous les cas et ne marque l’éloignement que par la forme pronominale, « endur-se »."
+        "note": "Le français grammaticalise la direction, apporter contre emporter, amener contre emmener ; le catalan emploie « portar » ou « dur » dans tous les cas et marque l’éloignement par la forme pronominale, « emportar-se » ou « endur-se »."
       },
       "state": {
         "exposure": {
@@ -360,7 +360,7 @@
       "notes": "S’y ajoutent « vaixell » contre barco et « gaudir » contre disfrutar. L’obligation elle-même est traitée à VERB.mod.obligacio ; ce nœud ne porte que le rejet normatif des formes concurrentes.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Ces fautes viennent de l’espagnol et non du français : « haver de » contre tenir que, « adonar-se » contre donar-se compte, « vacances » contre vacacions. Le francophone les entendra sans les produire, et sur « vacances » son intuition donne directement la forme correcte."
+        "note": "Ces fautes viennent de l’espagnol plus que du français : « vaixell » contre barco, « gaudir » contre disfrutar, « vacances » contre vacacions, où l’intuition française donne directement la forme correcte. La protection n’est pourtant pas totale : la structure de se rendre compte peut soutenir le calque « donar-se compte » là où le catalan veut « adonar-se »."
       },
       "state": {
         "exposure": {

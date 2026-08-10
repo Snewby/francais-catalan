@@ -2451,3 +2451,139 @@ unusually defensible here for the A2 rows, since digraphs, the interpunct and
 vowel reduction are met in the first weeks whether or not anyone teaches them,
 and unusually weak for `PHON.accent.diacritic` at B2, which is a proofreading
 skill rather than a production one and could sit anywhere from B1 to C1.
+
+### Outside review of LEX and PHON, and what it changed
+
+The third outside review, and the last two domains to have one. Seventeen
+field-level changes, no status moved, no leaf added or removed.
+
+**The evidence position improved for the first time.** Every previous attempt on
+`giec.iec.cat` and `geiec.iec.cat` failed and this one failed too, which is now
+seven attempts from three directions. But `PHON` and `LEX` do not depend on the
+grammars: their authorities are the orthographic norm, Optimot and the
+dictionaries, and those rendered. The reviewer read `iec.cat`'s announcement of
+the diacritic reform, the Optimot blog on the diacritic in derivatives, the DCVB
+entry for `endur-se`, and on the French side CNRTL, Larousse, the Académie's
+ninth edition and the 1990 rectifications in the _Journal officiel_. **The right
+source for a domain is not always the reference grammar**, and two passes spent
+failing to reach GIEC could have reached Optimot instead.
+
+**A pattern is now confirmed rather than suspected: this project gets French
+wrong more often than it gets Catalan wrong.** The `VERB`/`PRON` review found
+two such errors; this one found two more, and they are the two `WRONG` verdicts
+in the whole reply.
+
+- **`PHON.dieresi` claimed the u-sounding tréma is "un second emploi que le
+  français n'a pas".** French has exactly it, in _ambiguïté_ and _aiguille_, and
+  the 1990 rectifications moved the mark onto the u itself, _aigüe_. The
+  reviewer quoted the _Journal officiel_ text. The real difference is extent,
+  not function: Catalan systematises it to `güe`, `güi`, `qüe`, `qüi`. Rewritten
+  to say so.
+- **`LEX.fals_amic.verbs` listed `parar` as "arrêter et non parer".** French
+  _parer_ means to adorn or to ward off a blow and never to stop, so it offers
+  no available reading of the Catalan at all and `parar` is not a false friend.
+  The note now says that explicitly and adds the senses the leaf was missing,
+  `parar taula` and `parar la mà`.
+
+**Four claims about Catalan were wrong or too narrow.**
+
+- **`PHON.so.erra_final` had the partition backwards for the words it named.**
+  It said the final r is silent in infinitives and many nouns but kept "dans la
+  plupart des monosyllabes, `cor`, `mar`, `dur`". Per Optimot, `dur` and `clar`
+  drop it, patterning with the adjectives that have an r-bearing feminine
+  (`dura`, `clara`), and `por` drops it too, while `cor`, `mar`, `amor` and
+  `futur` keep it. **The conditioning is lexical, not a matter of syllable
+  count**, and the leaf now says so. This is the single worst factual error the
+  three reviews have found in a card, because it was stated as a rule and the
+  rule was the wrong rule.
+- **`LEX.camp.portar_dur` named `endur-se` as the only directional marker.** The
+  IEC treats `emportar-se` as the main form with `endur-se` as a cross-reference
+  to it. Both are named now.
+- **`PHON.accent.regles` gave the accentuation rule without its exception
+  class**, which is this project's documented weakness appearing for the fifth
+  time. The rule as stated is correct and incomplete: the second vowel of a
+  falling diphthong does not count, so `canteu` and `remei` take no accent, and
+  a `plana` unaccented in the singular can take one in the plural, `examen`
+  against `examens`. Those two are where writers actually fail.
+- **`PHON.accent.diacritic` omitted the derivative rule.** Compounds and
+  derivatives written solid lose the diacritic, `rodamon`, `entresol`,
+  `subsol`, `a contrapel`, while hyphenated ones keep it, `pèl-roig`,
+  `déu-n'hi-do`. Added, along with the dating: approved 2016, published in the
+  _Ortografia catalana_ 2017, where the leaf had said only "depuis 2017".
+
+**Three notes were completed rather than corrected.**
+`LEX.fals_amic.noms` gave the right gloss for `constipat` without naming the
+French reading it inverts, so the card stated the answer without the trap.
+`PHON.grafia.digrafs` gave `ig` and `tx` the same value with no positional
+restriction, when `ig` has it only word-finally after a vowel and `tj`/`tg`
+alternate by following vowel. `PHON.so.ensordiment` implied the feminine always
+reveals the underlying consonant, which holds only where a feminine or
+derivative exists; `serp` and `amb` offer none.
+
+**Three findings were declined or adapted rather than taken verbatim.**
+
+- **`LEX.castellanismes` keeps `transfer`.** The reviewer marked the status
+  arguable at medium confidence and proposed no change, and its stated reason is
+  muddled: it says French _il faut_ and _devoir_ "reinforce the calque", but
+  those support the correct `haver de`, not `tenir que`. One half of the point
+  survives and was taken: the structure of _se rendre compte_ can support
+  `donar-se compte` against the correct `adonar-se`, so the claim that a French
+  speaker hears these without producing them is too absolute. The note now says
+  the protection is real but not total. **A finding can be right about the data
+  and wrong about the reasoning, and only the first part should be applied.**
+- **`PHON.accent.agut_greu` keeps `transfer`.** The challenge is good: French
+  é/è is not a clean closed-open mapping, since an open e can go unaccented in
+  _mer_, and the grave of _à_ and _où_ is purely distinctive. But that means
+  French has cases the mapping does not cover, not that the mapping fails to
+  carry over; the sign-to-aperture convention is exactly what transfers. The
+  status stands and the note no longer claims the francophone has "rien à
+  apprendre".
+- **The reviewer's list of diacritic-losing derivatives was pruned.** It came
+  from an Optimot blog post titled "Redéu, adéu a l'accent dels derivats", and
+  the reply listed `adéu` and `adéu-siau` among the words that lose the
+  diacritic. That looks like the article's own pun read as data: `adéu` is the
+  standard spelling. Only the examples that could be checked independently were
+  kept. **A retrieved source can still be misread, and a verbatim-looking list
+  is the easiest thing to over-trust.**
+
+**One member was added on this pass's own judgement.** The reviewer proposed
+`truita`, which covers both omelette and trout where French separates _truite_
+from _omelette_, but graded it LOW purely for want of remaining budget. The fact
+is not in doubt, and it was added as a member of `LEX.fals_amic.abast` rather
+than as a key, which is the form the pack asked for. This is not the `ben`
+precedent: that was an unsourced suggestion of a new key, this is a well-known
+lexical fact joining a leaf that already exists.
+
+**One field label in the reply was wrong and it mattered.** The `ll`-as-French-l
+observation was filed against `PHON.grafia.digrafs`'s `glosses.fr`, and it is in
+that leaf's `notes`. The edit script asserts the text it expects before writing,
+so it would have refused rather than silently written to the wrong field, but
+**a reply in a machine-shaped format still needs its field names checked against
+the data**. The phonetic point behind it was taken: describing Catalan `ll` as
+"le mouillé de fille" is dated, since French _ill_ is now a yod, so the note now
+says French has lost the palatal lateral instead of pretending it still has one.
+
+**Verified and left alone.** Recorded because a review that lists only problems
+cannot distinguish a checked claim from an unexamined one. Confirmed correct as
+written: the `entendre`/`sentir` swap and its `false-friend` status; `carrer`
+and `gens` as false friends, `gens` against Larousse; the `demanar`/`preguntar`
+split; `si us plau` and `de res` as word-for-word French and the `transfer` that
+rests on them; the four-way greeting split and the claim that French _bonne
+nuit_ only takes leave; `sens dubte` as fully affirmative against a weakened
+_sans doute_, confirmed against the Académie's ninth edition; `en absolut` as a
+false friend; `amb prou feines` and `si fa no fa` as opaque; `fer` as the
+default light verb; the Gallo-Romance cognate claim; the `l·l` node as `novel`;
+the graphic alternation; the numeral hyphen; the b/v merge and the cognate
+strategy that mitigates it; the fifteen diacritic pairs and their membership;
+vowel reduction as `novel`; final devoicing as `novel`, checked against the
+observation that standard French preserves final voicing; and the s/ss/ç rule
+as a clean transfer from _poison_ against _poisson_.
+
+**Still not verified.** The `Ortografia catalana` itself was not retrieved as a
+rendered primary document, so the fifteen-pair list, the derivative rule and the
+diaeresis exceptions rest on the IEC announcement plus Optimot and CPNL
+reproductions that agree with each other. Whether `dur` is genuinely more
+frequent in writing than `portar` was not settled and the claim has been dropped
+from the leaf rather than softened. A systematic account of which Catalan
+monosyllables sound the final r would need the CTILC corpus. And GIEC chapter
+35's scope remains unconfirmed, as it has since the `VERB`/`PRON` review.

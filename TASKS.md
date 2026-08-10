@@ -57,11 +57,12 @@ against, and a proper 2a pass over that domain is still owed.
 | `SYN`  | `data/syn.fragment.json`  | done      | done    | this pass |
 | `LEX`  | `data/lex.fragment.json`  | done      | done    | this pass |
 
-**Seeding is complete.** All twelve domains are seeded, at 306 leaves and 91
-branches. No domain is `seed only` and none is owed a 2a or 2b pass. What
-remains is review, not seeding: `LEX` and `PHON` have not been through an
-outside review, and the `NEG.anticipada` wording is still owed a check against
-the printed GIEC.
+**Seeding is complete and every domain has been reviewed.** All twelve are
+seeded, at 306 leaves and 91 branches, and three outside reviews have covered
+`CONJ`/`ADV`/`SYN`, `VERB`/`PRON` and `LEX`/`PHON`. The four domains seeded
+earliest, `NOM`, `ART`, `DET` and `PREP`, have had internal review only and are
+the obvious candidates if a fourth review is ever run. What is still owed
+against a printed source is listed under "Carried over".
 
 The domain order above is the closed domain list, which is also the order
 `gen-schema` merges fragments in. It is not a recommended seeding order.
@@ -712,6 +713,42 @@ rather than a confident wrong reading, and the one real exception, `ll` read as
 a simple French `l`, sits in `notes` on `PHON.grafia.digrafs` under the `si bé`
 precedent.
 
+`LEX` and `PHON` were then reviewed together against an outside chat with web
+research, with the full 306-leaf list attached. Seventeen field-level changes,
+no status moved. Four things it changed matter beyond these two domains:
+
+- **The evidence position improved for the first time, by going somewhere
+  else.** `giec.iec.cat` and `geiec.iec.cat` failed again, seven attempts from
+  three directions now. But these two domains do not depend on the grammars, and
+  their authorities did render: the IEC announcement of the diacritic reform,
+  the Optimot blog, the DCVB, and on the French side CNRTL, Larousse, the
+  Académie and the 1990 rectifications. **The right source for a domain is not
+  always the reference grammar.**
+- **This project gets French wrong more often than it gets Catalan wrong, and
+  that is now confirmed rather than suspected.** Both `WRONG` verdicts in the
+  reply were about French: `PHON.dieresi` denied French the u-sounding tréma it
+  has had since before 1990, and `LEX.fals_amic.verbs` claimed French _parer_
+  means to stop. That is four such errors across two reviews and none ever
+  caught internally. **Whatever a card asserts about French deserves the same
+  check as what it asserts about Catalan, and gets less.**
+- **A finding can be right about the data and wrong about its reasoning.** The
+  challenge to `LEX.castellanismes`'s `transfer` argued that French _il faut_
+  and _devoir_ reinforce the calque `tenir que`, which is backwards, since they
+  support the correct `haver de`. Half of it was sound and was taken: the shape
+  of _se rendre compte_ can support `donar-se compte`. Apply the half that
+  holds, not the verdict.
+- **A retrieved source can still be misread.** The reviewer's list of
+  derivatives that lose the diacritic came from an Optimot post titled "Redéu,
+  adéu a l'accent dels derivats" and included `adéu` itself, which looks like
+  the article's pun read as data. Only the independently checkable examples were
+  kept. A verbatim-looking list is the easiest thing to over-trust.
+
+The worst single card error the three reviews have found was here:
+`PHON.so.erra_final` had the final-r partition backwards for the words it named,
+putting `dur` and `clar` among the monosyllables that keep the r when they drop
+it, and the conditioning is lexical rather than a matter of syllable count. It
+was stated as a rule, and the rule was the wrong rule.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -869,16 +906,17 @@ Three decisions in it are worth knowing before phase 6 touches it:
 - **The `VERB` and `PRON` review has been run and applied**, with the full leaf
   list attached, and it produced no false positive of the `gaire` kind. Sending
   the whole list works; keep doing it. Details in `data/sources.md`.
-- **`LEX` and `PHON` are owed an outside review, and they should go together.**
-  Neither has had one, and they are the two domains whose claims are least like
-  the rest: `LEX` is checkable against a dictionary rather than against GIEC,
-  and `PHON` is checkable against the orthographic norm. Send
-  `LEX.castellanismes`'s `transfer` and the `portar`/`dur`/`endur-se` field
-  description, which are the least sourced things in `LEX`; and for `PHON`, the
-  2017 diacritic list and the accentuation rules, which are the two claims
-  stated most like a norm and retrieved least. Attach the full leaf list, as the
-  `VERB`/`PRON` review did, since that is what stopped the `gaire` class of
-  false positive.
+- **Every domain has now been outside-reviewed except the first four.** `NOM`,
+  `ART`, `DET` and `PREP` were seeded before the review habit existed and have
+  had internal review only. They are also the four seeded when the conventions
+  were least settled, so they are where a fourth review would pay best. Attach
+  the full leaf list, which has now prevented the `gaire` class of false
+  positive twice running.
+- **The `Ortografia catalana` has never been retrieved as a primary document.**
+  `PHON`'s fifteen diacritic pairs, the rule on derivatives and the diaeresis
+  exception list all rest on the IEC's announcement plus Optimot and CPNL
+  reproductions which agree with each other. That is better than the GIEC
+  position but it is not the norm itself.
 - Every domain is seeded and none is owed a 2a
   pass. `data/sources.md` has twelve worked examples of a per-domain
   notes section, one for each domain, so later passes
