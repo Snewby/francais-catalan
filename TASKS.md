@@ -1043,6 +1043,46 @@ browser test's cases under the importing file.
     screenshot and iterate until the heatmap is legible; legible at 1280 px and
     legible at 390 px are two different findings, and only the second one is
     about how this app is actually read.
+- **Rich exercise generation is not designed anywhere, and is not phase 6's
+  job.** Phase 6 is a UI over machinery that already exists; it adds nothing to
+  what an exercise can be. What 5b ships is a rule-recall card built from the
+  authored data, and the limit is recorded there: no French translation of any
+  example exists anywhere in the data, so a translation exercise needs either a
+  new authored field or model-generated items. Neither appears in `docs/01`,
+  `docs/02`, the schema or any phase, so **whoever builds it is designing it**,
+  and four decisions have to be made and recorded before any code:
+  - **The response shape does not exist.** `decomposition` is language-invariant
+    by rule and `answer` is the single French field, pinned to `fr`. A generated
+    exercise needs a French prompt and an expected Catalan answer, so it is a
+    new sibling structure added to `scripts/gen-schema.ts`, reusing the same
+    closed component enum rather than minting a second one. This is the shape
+    problem phase 6b's respelling had, and it takes the same answer.
+  - **An auto-marked exercise is `recall`, not `graded`.** 5b is explicit that
+    the learner's own grade is the only source of graded evidence. Comparing a
+    typed answer against an expected one is an objective outcome with no
+    self-rating, which is what `recall` names. Getting this wrong lets generated
+    content advance FSRS, and the heatmap would still look plausible.
+  - **"One component per grade" collides with sentence-level exercises.** 5b
+    narrowed a grade to the single component under review deliberately, because
+    crediting everything incidentally present in a sentence moves mastery for
+    structures the learner never demonstrated. A sentence-translation exercise
+    exercises a dozen at once. Decide attribution explicitly: target one and
+    treat the rest as context, or invent a partial-credit rule and defend it.
+    This is the one most likely to be got wrong invisibly.
+  - **The golden set stops being optional.** A wrong explanation is a bad card;
+    a wrong expected answer marks a right answer wrong and teaches the error.
+    `docs/01` already warns that French-Catalan resources are thin and the model
+    is the main source rather than a lookup table.
+  - Generated items probably want persisting rather than regenerating, which is
+    a new store and a Dexie version 3. Cost is not the argument; reproducibility
+    is, since an item the learner is graded against should not silently change
+    between repetitions.
+  - **Order: phase 6 first, then the golden set, then this as its own phase.**
+    Until the authored cards have been used for a fortnight, nobody knows
+    whether they are insufficient, and phase 6 builds the answer-normalising
+    comparator that any auto-marked exercise needs anyway. **Do not bolt this
+    onto the query view during phase 6**, which is where it would do the most
+    damage to the evidence model.
 - **Phase 6b drops the French respelling. Audio is the pronunciation output,
   and IPA is what remains when there is no voice.** The user asked for this and
   the availability question that was blocking it is now answered both ways:
