@@ -975,6 +975,40 @@ after phase 6 meets the test red.
   the read queries in their own module and narrow the ban to the writer. A
   session that meets this test red and deletes it has removed the only thing
   stopping a browse from incrementing exposure.
+- **The app is used mostly on a phone, and the desktop site has to be good too.**
+  Recorded because it is a fact about the user rather than about the code, so
+  nothing in the repo implies it and a phase 6 session will otherwise design for
+  the screen it happens to be screenshotting. **Design mobile first and widen**,
+  rather than building for a desktop and shrinking, which is how a tree of 300
+  leaves and an SVG heatmap end up unusable on the surface they are actually
+  used on. Specifics that follow from it:
+  - **There is no hover on a touch screen.** The heatmap carries two dimensions
+    in hue and opacity, and the gaps list ranks by two more. If reading any of
+    that depends on a tooltip or a hover state, it is unreadable on the primary
+    device. Tapping a node already selects it, so the detail pane is the place
+    that must say in words what the colour says in paint.
+  - **Touch targets, not mouse targets.** The existing tree renders one button
+    per leaf, 300 of them, sized for a pointer. Check them at a thumb's width.
+  - **French strings run 15 to 20 per cent longer than the English equivalent**,
+    which `src/i18n/fr.ts` already warns about and which bites hardest in a
+    narrow container. Check the rendered width at phone width, not just at
+    desktop width.
+  - **Screenshot and iterate at both widths.** The phase 6 prompt says to take a
+    screenshot and iterate until the heatmap is legible; legible at 1280 px and
+    legible at 390 px are two different findings, and only the second one is
+    about how this app is actually read.
+- **Pronunciation on mobile depends on an OS voice pack, not on the browser.**
+  Chrome on Android carries no voices itself; `speechSynthesis` hands off to the
+  system engine, so a Catalan voice exists only if Google Text-to-speech has
+  downloaded the Català voice data, and on iOS only if Spoken Content has. A web
+  page cannot install either. This makes the phase 6b audio control worth
+  building for this user, and does not make it reliable for a machine that has
+  not been set up: a spot check of the Windows runtime in this repo's own
+  environment found nine voices, none Catalan and none Spanish. The standing ban
+  holds and matters more on a phone, where `es-ES` is commonly installed:
+  **never fall back to a Spanish or French voice**, because it produces
+  confidently wrong pronunciation, which is the worst outcome a contrastive tool
+  can produce. Absent voice means hide the control.
 - **Both placeholders are gone**: `src/srs/fsrs.ts` wraps `ts-fsrs` and
   `src/srs/elo.ts` does a two-sided update. What phase 1 fixed was the routing
   and the gate, and neither needed changing to take the real arithmetic, which
