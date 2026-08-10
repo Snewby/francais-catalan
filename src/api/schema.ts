@@ -291,6 +291,18 @@ export const LEAF_IDS = [
   'SYN.subordinacio.consecutio',
   'SYN.subordinacio.periode_condicional',
   'SYN.concordanca_participi',
+  'LEX.fals_amic.verbs',
+  'LEX.fals_amic.noms',
+  'LEX.fals_amic.abast',
+  'LEX.locucions.cortesia',
+  'LEX.locucions.salutacions',
+  'LEX.locucions.certesa',
+  'LEX.locucions.negacio_emfatica',
+  'LEX.locucions.aproximacio',
+  'LEX.camp.portar_dur',
+  'LEX.camp.fer',
+  'LEX.cognats',
+  'LEX.castellanismes',
 ] as const;
 
 export type ComponentId = (typeof LEAF_IDS)[number];

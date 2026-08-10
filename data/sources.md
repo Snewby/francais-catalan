@@ -2152,3 +2152,169 @@ rests on usage and academic sources rather than a clean IEC ruling and which
 `VERB.perf.present`, `VERB.ind.passat_perifrastic`). The merge discipline says a
 diff on a preserved node must be intentional and named, not that preserved nodes
 are frozen; all three are named above.
+
+### LEX (lexis and register)
+
+The eleventh domain seeded and the smallest but one, at 4 branches and 12
+leaves. Authored from nothing, so none of the merge hazards that governed `PRON`
+and `VERB` apply. No licensed data file, curated list or database was extracted
+from, and every Catalan form and example is hand-authored, which matters more
+here than anywhere else in the taxonomy and is argued below. The facts are drawn
+from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, the lexis section at line
+  179, which proposes five branches. Two were built roughly as named
+  (`fals_amic`, `castellanismes`), one was rebuilt on a different axis
+  (`cognats`), and **two were declined outright**, for reasons given below.
+- The routing decisions recorded above in the `DET`, `NEG` and `ADV` sections,
+  which between them ruled four groups of fixed locutions into this domain, plus
+  the `PRON` decision from the outside review.
+- General knowledge of Catalan and French lexis. No grammar was retrieved during
+  this pass and none was sought, since almost nothing here is a rule a grammar
+  states. **The evidence grade for this domain is different in kind from every
+  other one**: the claims are lexical rather than normative, so they are
+  checkable against a dictionary rather than against GIEC, and no GIEC or GEIEC
+  section is cited or implied anywhere in the domain.
+
+**Two of docs/01's five branches were declined, and the reasons generalise.**
+
+- **`LEX.freq`, frequency-ranked core vocabulary, is not a taxonomy branch.**
+  docs/01 proposes seeding it from SUBTLEX-CAT, Leipzig or wordfreq. It fails on
+  two independent grounds and either would be enough. First, it is a word list:
+  one key per word is the paradigm-cell error at the largest possible scale, and
+  it would fill the coverage heatmap with thousands of squares that say nothing
+  about grammar. **The rule that paradigm cells are not leaves generalises to
+  vocabulary items are not leaves.** Second, the licensing table at the top of
+  this file records SUBTLEX-CAT as having no reuse grant, and the compilation
+  and database-right discussion above applies directly to a frequency-ordered
+  list, whose ordering is the compiled thing. A frequency signal belongs in the
+  scheduler as a weight on existing nodes, which is what the phase 6 note in
+  `TASKS.md` already asks for, not in the component vocabulary.
+- **`LEX.false_friends.es`, a Spanish-interference branch, is unrepresentable.**
+  docs/01 offers it as optional if Spanish is also in play. The schema has one
+  contrast field, `contrast_fr`, and it is keyed to French by name and by
+  definition. A node whose difficulty comes from Spanish has no true value for
+  it, so the branch would either carry a false `contrast_fr` or need a second
+  contrast dimension, which is a schema change and a whole-taxonomy migration.
+  The Spanish-facing facts that do matter reach the learner through
+  `LEX.castellanismes`, which states them as norm facts about Catalan rather
+  than as interference from a language the base speaker may not have.
+
+**`LEX.cognats` is docs/01's `cognates_fr` rebuilt as a strategy rather than a
+list.** The proposal was positive-transfer vocabulary, "a cheap early win",
+which invites exactly the word list declined above. The leaf instead states the
+structural fact that generates the list: Catalan's core vocabulary is
+Gallo-Romance where Spanish is not, so `menjar`, `taula`, `finestra`, `parlar`,
+`formatge`, `mirall`, `ocell` and `blau` answer to the French words and not to
+`comer`, `mesa`, `ventana`, `hablar`. Its members are illustrative and
+deliberately few. This is knowingly close to the line `PREP` drew when it
+refused a leaf for declarative knowledge about the per/per a norm, and it is
+kept on the other side of it: knowing to trust a French guess on core vocabulary
+changes what the learner produces, where knowing that three per/per a systems
+exist does not.
+
+**The domain is defined by subtraction, as `SYN` was and more so.** Eleven
+domains were seeded before it. `NOM` took derivation and compounding, `ADV` the
+productive adverbial locution frame, `DET` quantification, `VERB` the
+grammatical-verb splits, `NEG` and `CONJ` and `SYN` everything clause-level.
+What was left is genuinely lexical, and the twelve leaves are smaller and
+sharper for it. **Do not read the leaf count as an unfinished domain**, on the
+same terms `ADV` established for an open class: `LEX`'s inventory is not finite
+and cannot be enumerated, so the tree covers the systems (false friends,
+cognates, fixed formulae, collocation, re-cut lexical fields, normative
+pressure) and not the vocabulary.
+
+**A boundary had to be drawn inside verb lexis, and it is new.** `VERB` already
+owns `VERB.ser_estar` and `VERB.haver_tenir`, which are lexical-choice leaves in
+a morphology domain. `LEX.camp.portar_dur` is the same shape and sits here. The
+line is that **`VERB` owns splits in the grammatical verbs, the copula and the
+auxiliary, and `LEX` owns splits in the lexical verbs.** Without it, either
+domain could have taken both, and the next pass that meets a Catalan verb pair
+would have had to decide again from scratch.
+
+**Facts owed by other domains are discharged or explicitly declined.**
+
+- **`amb prou feines`** is `LEX.locucions.aproximacio`, ruled out of `NEG` and
+  then again out of `ADV` as a fixed locution. The leaf cross-references
+  `ADV.grau.aproximacio`, which keeps the productive adverbs `gairebé`, `quasi`
+  and `a penes`.
+- **`de cap manera`, `en absolut`, `ni de bon tros`** are
+  `LEX.locucions.negacio_emfatica`, ruled out of `NEG` on the same grounds.
+- **`és clar`, `sens dubte`, `i tant`** are `LEX.locucions.certesa`, ruled out of
+  `ADV`. `ADV.modalitat.si` keeps `i tant` as an example without a key of its
+  own, and the leaf says so.
+- **`gens` as a French homograph** is a member of `LEX.fals_amic.noms`. The `DET`
+  pass refused it `false-friend` status there, on the ground that it resembles a
+  French noun rather than a French structure, and recorded that the trap
+  "belongs to `LEX` if it is ever keyed". It is keyed here as a misreading, and
+  the leaf cross-references `DET.quant.polaritat.gens`, which keeps the
+  quantifier's distribution. The two are different facts about one word.
+- **`hom` stays unkeyed**, as decided when the `VERB`/`PRON` review raised it.
+  `SYN.veu.impersonal` already owns the fact that French _on_ has no everyday
+  Catalan counterpart, and `hom` on top of that is vocabulary plus a register
+  label.
+- **`un munt de` and `una pila de` stay unkeyed.** `DET.quant.juncio_nominal`
+  notes that they are nouns heading a partitive phrase and "n'ont pas de clé
+  propre". They still do not, and this pass declines them: French has the
+  identical construction, _un tas de_, _une pile de_, so a leaf would state that
+  nothing differs. Same refusal as `hi ha` and `saber`/`poder` in `VERB`.
+
+**Statuses.** 3 `transfer`, 6 `near-miss`, 3 `false-friend`, 0 `novel`. Two
+things about that distribution are claims rather than counts.
+
+- **Three `false-friend` is the highest count in the taxonomy**, against two in
+  `VERB` and `PRON` and at most one everywhere else. That is not status
+  inflation, it is what the domain is: `false-friend` is defined as a familiar
+  French reading of a Catalan form that is available and wrong, and a lexical
+  domain is where forms are read. `LEX.fals_amic.verbs` has the
+  `entendre`/`sentir` swap, `LEX.fals_amic.noms` has `llarg`, `constipat` and
+  `embarassada`, and `LEX.locucions.negacio_emfatica` has `en absolut`, which
+  resembles _absolument_ and inverts it. Each meets the bar the `gens`,
+  `com que`, `PRON.fort.tractament` and `VERB.perifrasi.imminent` refusals set:
+  the wrong reading is available and grammatical, not merely a production error.
+- **The empty `novel` column is a claim and follows from how the domain is
+  built.** Every leaf here states a relation between a French item and a Catalan
+  one, so an anchor exists by construction. A Catalan word with no French anchor
+  at all is not a `novel` node, it is vocabulary, and this domain deliberately
+  does not key vocabulary. `PREP` and `ADV` made emptiness claims of the same
+  shape for different reasons.
+
+**Both `transfer` assignments outside `cognats` were challenged.**
+`LEX.locucions.cortesia` stays `transfer`: `si us plau` is _s'il vous plaît_
+subordinate clause and all, and `de res` is _de rien_, where Spanish builds both
+differently. `LEX.castellanismes` is the most arguable status in the domain and
+is flagged as such. The leaf's claim is that these errors come from Spanish and
+not from French, so a French speaker will hear them without producing them, and
+that on `vacances` the French intuition gives the correct Catalan form outright.
+That is a real contrastive claim and `transfer` sinks the node down the gaps
+list, which is the right scheduling behaviour for a French speaker even though
+it would be wrong for a Spanish speaker. **Put this one to the outside review.**
+
+**The browser review caught seven things, and one of them was serious.**
+`LEX.castellanismes` had `tenir que, vacacions` in its `ca` field, which are
+precisely the forms the norm rejects. Every other leaf in the taxonomy heads its
+card with a correct Catalan form, and `ca` feeds the decomposition machinery, so
+this leaf would have taught the error it exists to block. It now reads
+`adonar-se, vacances` and the rejected forms appear only in the contrast note.
+**A leaf whose subject is a proscribed form must still be headed by the correct
+one.** The other six were smaller: a claim that French _bonne nuit_ greets as
+well as takes leave, which it does not, and which turned out to be a better
+contrast once corrected; an overstatement about Spanish courtesy formulae; a
+gloss promising one Catalan verb while the form field showed three; a
+too-strong claim that the preverbal `no` is always required with the emphatic
+locutions, which is false of the standalone reply; a note re-quoting its own
+leaf's example; and a thin example sentence.
+
+**Three glosses were written with literal guillemets and ordinary spaces**, and
+`test/gloss-completeness.test.ts` refused the turn. The seeding script builds
+U+202F from its code point and substitutes it for a placeholder, exactly as
+`CLAUDE.md` requires, and these three had been typed directly into the gloss
+strings instead. That is the third time this repo has lost narrow no-break
+spaces and the second time a test caught it rather than a human. The rule stands
+and has now paid for itself twice: **never type the character, always build it.**
+
+**The CEFR column is a hypothesis, as everywhere since `NEG`**, and it is
+weaker here than usual. A1 on `LEX.locucions.cortesia` and `LEX.cognats` is
+safe. The B1 and B2 calls across the false friends and the locutions are
+judgements about when a learner meets the item often enough to need it, and a
+frequency source would settle them properly if one were ever licensed.

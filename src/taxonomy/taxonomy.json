@@ -6573,6 +6573,300 @@
         "exposure": { "exposure_count": 0 },
         "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
       }
+    },
+    {
+      "id": "LEX",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "Le lexique et les registres"
+    },
+    {
+      "id": "LEX.fals_amic",
+      "kind": "branch",
+      "parent": "LEX",
+      "label_fr": "Les faux amis du français"
+    },
+    {
+      "id": "LEX.fals_amic.verbs",
+      "kind": "leaf",
+      "parent": "LEX.fals_amic",
+      "ca": "entendre, sentir",
+      "glosses": {
+        "fr": "les verbes dont la lecture française est disponible et fausse, à commencer par l’échange entre « entendre » et « sentir »"
+      },
+      "cefr": "B1",
+      "examples": [
+        "No entenc res del que dius.",
+        "Sents aquesta música?",
+        "Vols tastar el pastís?"
+      ],
+      "notes": "Même piège avec « tastar », qui vaut goûter et non tâter, « acostar », approcher et non accoster, « esperar », qui couvre attendre autant qu’espérer, et « parar », arrêter et non parer.",
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« entendre » vaut comprendre et « sentir » vaut entendre, les deux verbes échangeant leurs valeurs : « No t'entenc » ne dit pas je ne t’entends pas mais je ne te comprends pas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.fals_amic.noms",
+      "kind": "leaf",
+      "parent": "LEX.fals_amic",
+      "ca": "llarg, constipat",
+      "glosses": {
+        "fr": "les noms et les adjectifs dont la lecture française est disponible et fausse"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Aquest carrer és molt llarg.",
+        "Estic constipat des de dilluns.",
+        "Està embarassada de cinc mesos."
+      ],
+      "notes": "S’y ajoutent « carrer », qui vaut rue et non carrière, et « gens », qui vaut pas du tout et n’a rien du nom français. La distribution de « gens » comme quantificateur relève de DET.quant.polaritat.gens ; seule la lecture fautive est ici.",
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« llarg » vaut long et non large, qui se dit « ample » ; « constipat » vaut enrhumé ; « embarassada » vaut enceinte. Dans les trois cas le mot français existe, se lit sans effort, et donne un contresens."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.fals_amic.abast",
+      "kind": "leaf",
+      "parent": "LEX.fals_amic",
+      "ca": "demanar / preguntar",
+      "glosses": {
+        "fr": "les mots français qui se partagent entre deux mots catalans, et les mots catalans de portée plus large"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Li vaig preguntar l'hora.",
+        "Va demanar un cafè.",
+        "La foto ha sortit moguda."
+      ],
+      "notes": "En sens inverse, « sortir » est plus large que sortir et vaut aussi paraître ou se révéler, « Ha sortit al diari ».",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français demander couvre la question et la requête ; le catalan les sépare, « preguntar » pour interroger et « demanar » pour réclamer. Aucune lecture n’est franchement fausse, mais le partage est à apprendre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.locucions",
+      "kind": "branch",
+      "parent": "LEX",
+      "label_fr": "Les formules et les locutions figées"
+    },
+    {
+      "id": "LEX.locucions.cortesia",
+      "kind": "leaf",
+      "parent": "LEX.locucions",
+      "ca": "si us plau, de res",
+      "glosses": {
+        "fr": "les formules de politesse, calquées presque mot pour mot sur le français"
+      },
+      "cefr": "A1",
+      "examples": ["Tanca la porta, si us plau.", "Moltes gràcies. De res."],
+      "notes": "« Bon profit » répond à bon appétit sans le calquer, et « perdoni » est la forme d’adresse polie, dont l’accord relève de PRON.fort.tractament.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« si us plau » est mot pour mot s’il vous plaît, subordonnée comprise, et « de res » de rien. L’espagnol construit tout autrement, por favor, de nada, si bien que le francophone n’a ici rien à apprendre."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.locucions.salutacions",
+      "kind": "leaf",
+      "parent": "LEX.locucions",
+      "ca": "bon dia, bona tarda, bon vespre",
+      "glosses": {
+        "fr": "les salutations, réparties sur quatre moments de la journée contre trois en français"
+      },
+      "cefr": "A1",
+      "examples": [
+        "Bon dia, com va?",
+        "Bona tarda a tothom.",
+        "Bon vespre, ja és fosc."
+      ],
+      "notes": "« bona nit » sert aussi bien à saluer en arrivant tard qu’à prendre congé, là où le français bonne nuit ne sert qu’à partir. Le partage exact entre « bona tarda » et « bon vespre » flotte selon les locuteurs, autour de la tombée du jour.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français oppose bonjour, bonsoir et bonne nuit ; le catalan intercale « bona tarda » entre « bon dia » et « bon vespre », si bien que bonjour se rend par deux formes selon l’heure."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.locucions.certesa",
+      "kind": "leaf",
+      "parent": "LEX.locucions",
+      "ca": "és clar, sens dubte",
+      "glosses": { "fr": "les locutions de certitude et d’adhésion" },
+      "cefr": "B1",
+      "examples": [
+        "És clar que hi anirem.",
+        "Sens dubte és la millor opció.",
+        "Vindràs? I tant!"
+      ],
+      "notes": "« és clar » s’écrit en deux mots et vaut bien sûr. La particule de réponse affirmative « sí » relève de ADV.modalitat.si, qui cite « i tant » en exemple sans lui donner de clé propre.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le cadre existe, bien sûr et sans doute, mais les pièces ne se transposent pas : « sens dubte » est pleinement affirmatif là où le français sans doute s’est affaibli jusqu’à valoir probablement, et « i tant » n’a pas de contrepartie littérale."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.locucions.negacio_emfatica",
+      "kind": "leaf",
+      "parent": "LEX.locucions",
+      "ca": "de cap manera, en absolut",
+      "glosses": {
+        "fr": "les locutions de refus catégorique, dont « en absolut », qui inverse la lecture française"
+      },
+      "cefr": "B2",
+      "examples": [
+        "No penso fer-ho de cap manera.",
+        "No m'ha agradat en absolut.",
+        "No és ni de bon tros el millor."
+      ],
+      "notes": "« de cap manera » répond à en aucun cas, « ni de bon tros » à loin de là, et « ni parlar-ne » à pas question. Dans une phrase verbale, toutes demandent le « no » préverbal, ce qui relève de NEG.concordanca ; employées seules en réponse, elles s’en passent.",
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« en absolut » ressemble à absolument et signifie le contraire, pas du tout : « No m'ha agradat en absolut » est un refus, et employé seul en réponse, « En absolut! » veut dire absolument pas."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.locucions.aproximacio",
+      "kind": "leaf",
+      "parent": "LEX.locucions",
+      "ca": "amb prou feines, si fa no fa",
+      "glosses": { "fr": "les locutions d’approximation et de petite quantité" },
+      "cefr": "B2",
+      "examples": ["Amb prou feines el vaig sentir.", "Costa si fa no fa vint euros."],
+      "notes": "Les adverbes productifs du même champ, « gairebé », « quasi » et « a penes », relèvent de ADV.grau.aproximacio ; ce nœud ne garde que les locutions figées, suivant la décision prise au semis de NEG.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a à peine et plus ou moins, mais les locutions catalanes ne s’en déduisent pas : « amb prou feines », littéralement avec assez de peines, et « si fa no fa », littéralement s’il fait il ne fait pas, sont opaques et se retiennent telles quelles."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.camp",
+      "kind": "branch",
+      "parent": "LEX",
+      "label_fr": "Les champs lexicaux redécoupés"
+    },
+    {
+      "id": "LEX.camp.portar_dur",
+      "kind": "leaf",
+      "parent": "LEX.camp",
+      "ca": "portar / dur / endur-se",
+      "glosses": {
+        "fr": "le champ du transport, où le catalan ne grammaticalise pas la direction que le français marque"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Porta el pa a taula.",
+        "Se n'ha endut les claus.",
+        "Duia un abric blau."
+      ],
+      "notes": "« portar » vaut aussi porter au sens vestimentaire. « dur » en est un synonyme, plus fréquent à l’écrit et dans certains parlers, et sa conjugaison est irrégulière.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français grammaticalise la direction, apporter contre emporter, amener contre emmener ; le catalan emploie « portar » ou « dur » dans tous les cas et ne marque l’éloignement que par la forme pronominale, « endur-se »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.camp.fer",
+      "kind": "leaf",
+      "parent": "LEX.camp",
+      "ca": "fer tard, fer una foto",
+      "glosses": { "fr": "« fer » comme verbe support par défaut" },
+      "cefr": "A2",
+      "examples": ["Fem tard, afanya't.", "Em fas una foto?", "Fa cara de cansat."],
+      "notes": "L’emploi impersonnel de « fer », pour le temps qu’il fait et le temps écoulé, relève de VERB.impersonal. Ce nœud ne porte que le choix du verbe support dans une collocation.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français répartit ses verbes supports entre faire, prendre et avoir ; le catalan met « fer » presque partout, « fer una foto » pour prendre une photo, « fer tard » pour être en retard, « fer cara de » pour avoir l’air."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.cognats",
+      "kind": "leaf",
+      "parent": "LEX",
+      "ca": "menjar, taula, finestra",
+      "glosses": {
+        "fr": "le fonds gallo-roman que le catalan partage avec le français et que l’espagnol n’a pas"
+      },
+      "cefr": "A1",
+      "examples": [
+        "Menjarem a taula, no al sofà.",
+        "La finestra és oberta.",
+        "Parlem-ne demà al matí."
+      ],
+      "notes": "Le catalan distingue « matí » et « demà » comme le français matin et demain, quand l’espagnol n’a qu’un mot. C’est la raison structurelle pour laquelle un francophone part en avance, et elle vaut d’être sue comme stratégie et non comme liste.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "« menjar », « taula », « finestra », « parlar », « formatge », « mirall », « ocell » et « blau » répondent à manger, table, fenêtre, parler, fromage, miroir, oiseau et bleu, là où l’espagnol dit comer, mesa, ventana, hablar. Sur ce fonds, l’intuition française est la bonne."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "LEX.castellanismes",
+      "kind": "leaf",
+      "parent": "LEX",
+      "ca": "adonar-se, vacances",
+      "glosses": {
+        "fr": "les formes correctes face aux calques de l’espagnol que la norme écarte"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Has de venir aviat.",
+        "Me n'he adonat tard.",
+        "Aquestes vacances aniré a Menorca."
+      ],
+      "notes": "S’y ajoutent « vaixell » contre barco et « gaudir » contre disfrutar. L’obligation elle-même est traitée à VERB.mod.obligacio ; ce nœud ne porte que le rejet normatif des formes concurrentes.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Ces fautes viennent de l’espagnol et non du français : « haver de » contre tenir que, « adonar-se » contre donar-se compte, « vacances » contre vacacions. Le francophone les entendra sans les produire, et sur « vacances » son intuition donne directement la forme correcte."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
     }
   ]
 }

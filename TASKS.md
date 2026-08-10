@@ -55,11 +55,11 @@ against, and a proper 2a pass over that domain is still owed.
 | `CONJ` | `data/conj.fragment.json` | done        | done        | this pass |
 | `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
 | `SYN`  | `data/syn.fragment.json`  | done        | done        | this pass |
-| `LEX`  |                           | not started | not started |           |
+| `LEX`  | `data/lex.fragment.json`  | done        | done        | this pass |
 
-No `seed only` domain remains. `PHON` and `LEX` are the last two unseeded, and
-both are authored from nothing, so the merge hazard that governed the `PRON` and
-`VERB` passes does not apply to either.
+No `seed only` domain remains and `PHON` is the last unseeded one. It is
+authored from nothing, so the merge hazard that governed the `PRON` and `VERB`
+passes does not apply to it.
 
 The domain order above is the closed domain list, which is also the order
 `gen-schema` merges fragments in. It is not a recommended seeding order.
@@ -623,6 +623,51 @@ flagged that its two strongest citations rested on a second-hand verification
 pass rather than its own fetch. **No GIEC or GEIEC section number is written
 into the data, and that still holds.**
 
+`LEX` followed, 12 leaves under 4 branches, and it is the eleventh domain and
+the one most defined by subtraction. Five things in it matter for `PHON`, the
+last one:
+
+- **Two of docs/01's five proposed branches were declined**, and both refusals
+  generalise. `LEX.freq`, frequency-ranked core vocabulary, is a word list: one
+  key per word is the paradigm-cell error at the largest possible scale, and
+  the licensing table records SUBTLEX-CAT as having no reuse grant, whose
+  compiled ordering is exactly the protected thing. **The rule that paradigm
+  cells are not leaves generalises to vocabulary items are not leaves**, and a
+  frequency signal belongs in the scheduler as a weight, not in the component
+  vocabulary. `LEX.false_friends.es`, the optional Spanish-interference branch,
+  is unrepresentable: the schema has one contrast field and it is keyed to
+  French by name, so a Spanish-driven node has no true value for it.
+- **A proposed word list was rebuilt as a strategy.** docs/01's `cognates_fr`
+  invited a vocabulary dump. `LEX.cognats` states the structural fact that
+  generates the list instead, that Catalan's core is Gallo-Romance where Spanish
+  is not, with a handful of illustrative members. That is knowingly close to the
+  line `PREP` drew against declarative knowledge, and it is kept on the other
+  side of it because trusting a French guess changes what the learner produces.
+- **A new boundary was drawn inside verb lexis.** `VERB` owns `ser`/`estar` and
+  `haver`/`tenir`, which are lexical-choice leaves in a morphology domain, and
+  `LEX.camp.portar_dur` is the same shape. The line is that **`VERB` owns splits
+  in the grammatical verbs, the copula and the auxiliary, and `LEX` owns splits
+  in the lexical verbs.**
+- **A leaf about a proscribed form must still be headed by the correct one.**
+  `LEX.castellanismes` had `tenir que, vacacions` in `ca`, the very forms the
+  norm rejects. `ca` feeds the decomposition machinery and heads the card, so
+  the leaf would have taught the error it exists to block. Caught by eye in the
+  browser, by nothing else, and fixed to `adonar-se, vacances`.
+- **The narrow no-break space was lost for the third time**, in three glosses
+  written with literal guillemets instead of the placeholder the seeding script
+  substitutes. `test/gloss-completeness.test.ts` refused the turn, the second
+  time a test has caught this rather than a human. **Never type the character,
+  always build it from its code point.**
+
+`LEX` came out 3 transfer, 6 near-miss, 3 false-friend and no novel. Three
+false-friend is the highest count in the taxonomy, and it is what the domain is
+rather than status inflation: the status is defined as a familiar French reading
+that is available and wrong, and a lexical domain is where forms get read. The
+empty novel column follows from construction, since every leaf states a relation
+between a French item and a Catalan one. `LEX.castellanismes` is the most
+arguable status in the domain, `transfer` on the ground that these errors come
+from Spanish and French is a protection, and it is flagged for outside review.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -745,12 +790,12 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
 - **The `NEG` pass's owed facts are discharged except two.** `gairebé` and
   `a penes` are now `ADV.grau.aproximacio`, the answer particle `sí` is
   `ADV.modalitat.si`, and `tampoc`'s categorial status as an additive focal
-  adverb is stated in `notes` on `ADV.modalitat.additius`. Still owed to `LEX`:
-  `amb prou feines` and the emphatic reply locutions `de cap manera`,
-  `en absolut`, `ni de bon tros`. The `VERB`/`PRON` review adds `hom`, the
-  literary indefinite subject pronoun, which is declined as a `PRON` key because
-  `SYN.veu.impersonal` already owns the fact that French _on_ has no everyday
-  Catalan counterpart.
+  adverb is stated in `notes` on `ADV.modalitat.additius`. All of it is now
+  discharged: `amb prou feines` is `LEX.locucions.aproximacio` and the emphatic
+  reply locutions `de cap manera`, `en absolut` and `ni de bon tros` are
+  `LEX.locucions.negacio_emfatica`. `hom`, raised by the `VERB`/`PRON` review,
+  stays unkeyed in both domains, because `SYN.veu.impersonal` already owns the
+  fact that French _on_ has no everyday Catalan counterpart.
 - **`SYN` pre-empted `VERB` and `PRON`, and both halves are now settled.**
   `SYN.veu.*` takes the passives and `SYN.clitics.*` takes clitic placement. The
   line is that **`VERB` owns verbal morphology and `PRON` owns pronoun forms and
@@ -776,10 +821,16 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
 - **The `VERB` and `PRON` review has been run and applied**, with the full leaf
   list attached, and it produced no false positive of the `gaire` kind. Sending
   the whole list works; keep doing it. Details in `data/sources.md`.
-- Two domains remain unseeded, `PHON` and `LEX`, and no domain is owed a 2a
-  pass. `data/sources.md` has ten worked examples of a per-domain
+- **`LEX` is owed an outside review, and `PHON` will be too.** `LEX` is the only
+  domain whose claims are lexical rather than normative, so it is checkable
+  against a dictionary rather than against GIEC, and it is the cheapest review
+  in the set. Send `LEX.castellanismes`'s `transfer` specifically, and the
+  `portar`/`dur`/`endur-se` field description, which is the least sourced thing
+  in the domain.
+- One domain remains unseeded, `PHON`, and no domain is owed a 2a
+  pass. `data/sources.md` has eleven worked examples of a per-domain
   notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`, `SYN`,
-  `PRON` and `VERB`), so later passes
+  `PRON`, `VERB` and `LEX`), so later passes
   have a shape to follow rather than an empty placeholder. The `PRON` and `VERB`
   ones are the
   models for a domain that was already seed-only, because they record what a
