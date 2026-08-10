@@ -1043,18 +1043,43 @@ browser test's cases under the importing file.
     screenshot and iterate until the heatmap is legible; legible at 1280 px and
     legible at 390 px are two different findings, and only the second one is
     about how this app is actually read.
-- **Pronunciation on mobile depends on an OS voice pack, not on the browser.**
-  Chrome on Android carries no voices itself; `speechSynthesis` hands off to the
-  system engine, so a Catalan voice exists only if Google Text-to-speech has
-  downloaded the Català voice data, and on iOS only if Spoken Content has. A web
-  page cannot install either. This makes the phase 6b audio control worth
-  building for this user, and does not make it reliable for a machine that has
-  not been set up: a spot check of the Windows runtime in this repo's own
-  environment found nine voices, none Catalan and none Spanish. The standing ban
-  holds and matters more on a phone, where `es-ES` is commonly installed:
-  **never fall back to a Spanish or French voice**, because it produces
-  confidently wrong pronunciation, which is the worst outcome a contrastive tool
-  can produce. Absent voice means hide the control.
+- **Phase 6b drops the French respelling. Audio is the pronunciation output,
+  and IPA is what remains when there is no voice.** The user asked for this and
+  the availability question that was blocking it is now answered both ways:
+  **the Catalan voice is confirmed installed on the Android phone**, which is
+  the primary device, and it is confirmed absent from the Windows desktop, where
+  a check of this repo's own runtime found nine voices, none Catalan and none
+  Spanish. Same app, same user, audio on one device and none on the other.
+  - **This overrides the phase 6b prompt in `docs/02`**, which specifies the
+    respelling in detail and with worked examples (`Barcelona` as
+    "beur-seu-LO-neu", `fred` as "frèt"). The disagreement is recorded here
+    rather than edited into `docs/02`, on the `pas` precedent that has been
+    applied to every other source disagreement in this repo.
+  - **The cost is real and is being accepted, not overlooked.** The respelling
+    existed to make two things visible to a French reader in text: Central
+    Catalan vowel reduction and final devoicing. Audio makes them audible
+    instead, which is better where there is a voice. Where there is not, IPA
+    carries them, and IPA is less legible to an untrained French reader than
+    "beur-seu-LO-neu" is. A later reader should know this was a choice about
+    what to build, not a gap.
+  - **Keep the IPA.** It is per-component, language-invariant, already in
+    `ComponentEntry` in `src/api/anthropic.ts` and in the generated schema, and
+    costs nothing to carry. Dropping both would leave the desktop with nothing
+    at all.
+  - **Pronunciation depends on an OS voice pack, not on the browser.** Chrome on
+    Android carries no voices itself; `speechSynthesis` hands off to the system
+    engine, so a Catalan voice exists only if Google Text-to-speech has
+    downloaded the Català voice data, and on iOS only if Spoken Content has. A
+    web page cannot install either, so the control has to be built to be absent.
+  - **The standing ban holds and matters more on a phone**, where `es-ES` is
+    commonly installed alongside Català: **never fall back to a Spanish or
+    French voice.** It produces confidently wrong pronunciation, which is the
+    worst outcome a contrastive tool can produce. Absent voice means hide the
+    control, not substitute a neighbour.
+  - The three `PHON` leaves phase 6b attaches to are unchanged:
+    `PHON.so.reduccio_vocalica`, `PHON.so.ensordiment` and `PHON.so.erra_final`,
+    which were kept in a text-only application precisely because each has an
+    immediate written consequence.
 - **Both placeholders are gone**: `src/srs/fsrs.ts` wraps `ts-fsrs` and
   `src/srs/elo.ts` does a two-sided update. What phase 1 fixed was the routing
   and the gate, and neither needed changing to take the real arithmetic, which
