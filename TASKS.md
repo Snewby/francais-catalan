@@ -18,7 +18,7 @@ is worse than none, because it still reads as authoritative.
 | Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
 | 4. API client and prompt caching      | done        | ADAPT    | this pass                       |
 | 5. Persistence, FSRS, Elo             | done        | ADAPT    | this pass                       |
-| 5b. Review loop                       | not started | ADAPT    |                                 |
+| 5b. Review loop                       | done        | ADAPT    | this pass                       |
 | 6. UI and coverage heatmap            | not started | ADAPT    |                                 |
 | 6b. Pronunciation                     | not started | ADAPT    |                                 |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
@@ -956,6 +956,52 @@ in both and a half-applied import would strand the learner rating.
 `test/browser-emits-no-evidence.test.ts` from the moment it existed, rather than
 after phase 6 meets the test red.
 
+Phase 5b then made the mastery half of the model move at all. `src/review/` is
+three modules and no interface: `select.ts` ranks, `item.ts` builds a card from
+the taxonomy and assembles its logged record, and `session.ts` is the loop that
+asks, takes a grade and writes it once through `recordQuery`. It is headless,
+and phase 6 puts a face on it. Five things in it matter later:
+
+- **A review makes no API call, and the reason it can is the authored data.**
+  All 300 leaves carry `examples` and a `ca` form, so an item needs no new
+  response shape and nothing further the model can get wrong. The limit is
+  recorded rather than left to be discovered: there is no French translation of
+  any example anywhere in the data, so a review is a rule-recall item and not a
+  translation exercise. A translation card needs a new field or a generated
+  item, and both are new work rather than a tweak.
+- **The `answer` field being French by definition decided the produce
+  direction.** A `fr_to_ca` review expects a Catalan answer, which cannot go in
+  a field the schema pins to `fr`. It travels in the decomposition, where
+  Catalan forms belong, and `answer` carries the French gloss in both
+  directions. The language-invariance rule did real work here rather than being
+  restated. The full field mapping is in `data/sources.md` under phase 5b.
+- **One component per grade.** `recordQuery` applies a record to every component
+  it lists and an example sentence realises many, so an item names exactly the
+  component under review. A grade is a judgement about one recalled answer, and
+  spreading it would move mastery for structures the learner never demonstrated.
+- **The selector's contrast weights are a second table, not a reuse of
+  `INITIAL_DIFFICULTY_VALUE`.** That one collapses near-miss, false-friend and
+  novel to a single 7, which is the right prior for FSRS and cannot express the
+  ordering this phase was asked for. `CONTRAST_SELECTION_WEIGHT` is separate,
+  which is the `ART.personal.absencia` conclusion applied again: a second
+  ordering gets its own field and is never obtained by retuning one that means
+  something else.
+- **`assess` needs no seam of its own, and that is now demonstrated rather than
+  asserted.** It is a selector plus an intent, both already parameters of
+  `startReviewSession`. The test drives the whole loop from a second selector
+  written inside the test file, logging under the `assess` intent, with no
+  change to `session.ts`.
+
+Two smaller things. `readAllComponentStates` in `src/db/persist.ts` reads every
+leaf's state in one query, unmet components at their seed state, because a
+selector ranks the whole taxonomy and the alternative is 300 single-key gets per
+session; phase 6 will want it moved when it narrows the browser ban. And
+`test/helpers/source.ts` now holds `stripComments` and `sourceFiles`, which
+`browser-emits-no-evidence.test.ts` used to own: the review test needs the same
+source scan to assert that exactly one module emits a graded event, and
+importing one test file from another silently re-registered all seven of the
+browser test's cases under the importing file.
+
 ## Carried over into later phases
 
 - **The prompt cache is unverified against the live API.** Everything phase 4
@@ -1020,12 +1066,16 @@ after phase 6 meets the test red.
   docs/01 is explicit that optimising them needs on the order of a thousand
   reviews, and this application has none. Revisit only with that many in the
   query log, and treat any earlier tuning as fitting noise.
-- **Nothing emits `graded` evidence yet.** Phase 5b is what makes the mastery
-  half of the model move at all: until the review loop exists, every path
-  produces `lookup`, FSRS never advances, and the heatmap is all exposure. The
-  persistence layer is exercised for all three evidence types by
-  `test/persistence.test.ts`, which is not the same as the application
-  producing them.
+- **`graded` evidence now has exactly one producer, and it is headless.**
+  `src/review/` emits it and nothing else does, which
+  `test/review-loop.test.ts` asserts structurally over `src/`. What that scan
+  cannot see is a caller passing a variable through to the API client's
+  `evidence` option, so `EVIDENCE_EFFECTS` still names the producer of each type
+  in prose. Nothing is wired into the interface yet: a review can only be run
+  from a test or a console until phase 6 mounts it.
+- **The `recall` producer named in `EVIDENCE_EFFECTS` still does not exist.** It
+  is the attempt-then-reveal affordance, and it is phase 6's. Until then the
+  application emits `lookup` and `graded` and nothing in between.
 - **That GIEC chapter 35 is the negation chapter is still unverified**, and two
   claims lean on it. The `VERB`/`PRON` review confirmed §34.4 on the negative
   imperative with a verbatim snippet of that section, but could confirm nothing

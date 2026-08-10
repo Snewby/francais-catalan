@@ -3056,3 +3056,73 @@ afterwards. That is the honest reading of "seed the initial difficulty" inside
 FSRS: the seed is a prior from the contrast status, and the first rating is
 evidence. It is stated in a test rather than only in a comment, because the
 overwrite otherwise reads as a bug.
+
+## Phase 5b: the review loop
+
+Recorded here for the two decisions the phase brief asked to be settled
+deliberately rather than discovered in a type error, plus two that follow from
+them.
+
+**A review is a locally generated item and makes no API call.** All 300 leaves
+carry authored `examples` and a `ca` form, so an item can be built from the
+taxonomy alone: no new response shape, no new schema, and nothing further the
+model can get wrong. Generating exercises would have meant designing a response
+shape that exists nowhere in `docs/01`, `docs/02` or the schema, which is a
+design decision this phase declined to make on the way past.
+
+**The limit of that choice, stated rather than left to be found.** The authored
+data holds no French translation of any example. A review is therefore a
+rule-recall item and not a translation exercise: shown a Catalan example, the
+learner recalls what rule is at work, and the reference answer is the leaf's
+French gloss. If a later phase wants "translate this sentence", it needs either
+a translation field on the leaf or a generated item, and both are new work
+rather than a tweak to this loop.
+
+**What a review event holds in the phase 4 `QueryLog` shape.** `recordQuery`
+takes that shape and it requires `question`, `decomposition`, `answer` and
+`answer_lang`, none of which a locally generated item obviously supplies. The
+mapping is:
+
+- `question` is what the learner was shown: the Catalan example for `ca_to_fr`,
+  the French gloss for `fr_to_ca`.
+- `decomposition` is exactly one entry, the component under review, with the
+  leaf's own `ca` form. It is not the example sentence, because the field is
+  defined as the component's surface form rather than as the string it appeared
+  in.
+- `answer` is the French gloss, in both directions. The field is the only
+  French-language field in the record by definition, so the Catalan side of a
+  `fr_to_ca` item cannot go there; it travels in the decomposition, which is
+  where Catalan forms belong. That is the language-invariance rule doing real
+  work rather than being restated.
+- `evidence` is `graded` and `rating` is the grade. The "present if and only if"
+  rule is not re-implemented: the assembled record is run through
+  `validateQueryLog`, which compiles the generated conditional.
+
+**One component per grade, not everything the sentence realises.**
+`recordQuery` applies a record to every component it lists, and an example
+sentence realises many. A grade is the learner's judgement of one recalled
+answer, so crediting the rules incidentally present in the sentence would move
+mastery for structures they never demonstrated. The item names one component and
+the test asserts it.
+
+**The selector's contrast weights are not `INITIAL_DIFFICULTY_VALUE`.** That
+table collapses near-miss, false-friend and novel to a single 7, which is right
+for FSRS, since a card only needs to start easy or hard, and wrong for a
+ranking: a selector reusing it could not put a novel node above a near-miss one,
+which is the ordering the phase asked for. `CONTRAST_SELECTION_WEIGHT` in
+`src/review/select.ts` is a separate table for a separate job. This is the same
+conclusion the `ART.personal.absencia` finding reached from the other direction:
+when a second ordering is needed it gets its own field, and is never obtained by
+retuning a field that means something else.
+
+**A scheduled card is not offered before it falls due, and a gap ranks below any
+due card.** Both are one line in `dueScore` and both are claims worth stating.
+Asking for a card early is what FSRS exists to prevent. A gap ranks below a due
+card because a gap has never been forgotten, having never been learnt, while a
+due card is about to be; the gaps only come up once the schedule is empty, which
+for a new database is immediately.
+
+**`assess` needed no seam of its own.** It is a selector plus an intent, both
+already parameters of `startReviewSession`, and the test drives the loop with a
+second selector written inside the test file to prove the loop does not have to
+change. Nothing about assessment is a subsystem.

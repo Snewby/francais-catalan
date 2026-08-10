@@ -7,7 +7,7 @@
  * that is `applyEvidence`, which reads EVIDENCE_EFFECTS.
  */
 import type { QueryLog as DecomposedQuery } from '../api/anthropic';
-import { leafById } from '../taxonomy';
+import { LEAVES, leafById } from '../taxonomy';
 import { DEFAULT_RATING } from '../srs/elo';
 import { applyEvidence, initialStateFor, type ComponentState } from '../srs/apply';
 import { freshMastery } from '../srs/fsrs';
@@ -87,6 +87,28 @@ export async function readComponentState(
 ): Promise<ComponentState> {
   const row = await database.mastery.get(componentId);
   return row === undefined ? seedStateFor(componentId) : fromRow(row);
+}
+
+/**
+ * Every leaf's state in one read, unmet components included at their seed state.
+ *
+ * A selector ranks the whole taxonomy, so the alternative is 300 single-key
+ * gets per session. Keyed on LEAVES rather than on the stored rows, because a
+ * component that has never been met has a seed state and no row, and it is
+ * exactly those that a gaps ranking is about.
+ */
+export async function readAllComponentStates(
+  database: TrainerDatabase = defaultDatabase,
+): Promise<Map<string, ComponentState>> {
+  const stored = new Map(
+    (await database.mastery.toArray()).map((row) => [row.componentId, row]),
+  );
+  return new Map(
+    LEAVES.map((leaf) => {
+      const row = stored.get(leaf.id);
+      return [leaf.id, row === undefined ? initialStateFor(leaf) : fromRow(row)];
+    }),
+  );
 }
 
 export interface RecordedQuery {

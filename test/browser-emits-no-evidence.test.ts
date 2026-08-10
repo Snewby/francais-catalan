@@ -17,9 +17,10 @@
  * putting the read queries in their own module. Do not delete this test.
  */
 import { describe, expect, it } from 'vitest';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { repoRoot } from './helpers/taxonomy';
+import { readSource, sourceFiles, stripComments } from './helpers/source';
 
 const UI_DIR = 'src/ui';
 
@@ -34,26 +35,8 @@ const BANNED = [
 
 const IMPORT_PATTERN = /(?:from|import)\s*['"](\.[^'"]+)['"]/g;
 
-/**
- * Comments removed, so that a file explaining the ban does not trip it. The
- * assertion below is looking for a hand-rolled write, and prose about exposure
- * counting is the opposite of one: it is the reason the rule exists.
- */
-export function stripComments(source: string): string {
-  return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
-}
-
 function posix(relative: string): string {
   return relative.split(path.sep).join('/');
-}
-
-function sourceFiles(dir: string): string[] {
-  const absolute = path.join(repoRoot, dir);
-  return readdirSync(absolute, { recursive: true, withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.ts'))
-    .map((entry) =>
-      posix(path.relative(repoRoot, path.join(entry.parentPath, entry.name))),
-    );
 }
 
 /**
@@ -155,7 +138,7 @@ describe('the taxonomy browser emits no evidence', () => {
     // Catches a write that bypasses those modules entirely, which the import
     // ban above cannot see.
     const offenders = uiFiles.filter((file) => {
-      const source = stripComments(readFileSync(path.join(repoRoot, file), 'utf8'));
+      const source = stripComments(readSource(file));
       return source.includes('exposure_count') || source.includes('exposureCount');
     });
     expect(offenders).toEqual([]);
