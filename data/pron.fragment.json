@@ -54,6 +54,7 @@
         "Pensa només en si mateix.",
         "Porta els nens amb tu."
       ],
+      "notes": "Trois prépositions font exception et sélectionnent la forme sujet : « segons jo », « malgrat jo », « mitjançant jo ». Elle revient aussi en coordination, « entre tu i jo », et devant un infinitif régi, « sense jo dir-li res ». Le français met moi après toute préposition, selon moi comme malgré moi.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français possède une série tonique complète (moi, toi, soi, lui...), mais le catalan ne modifie que jo en mi et le réfléchi en si : tu reste identique à la forme sujet."
@@ -84,6 +85,7 @@
         "Vostès poden seure aquí.",
         "Vós sabeu com va això."
       ],
+      "notes": "Vós, en revanche, se construit bien avec la deuxième personne du pluriel (vós sabeu), comme le vous français, mais il appartient à un registre formel ou administratif et recule devant vostè dans l’usage courant. L’adjectif et le participe restent au singulier avec vós, « Esteu preparat per marxar », exactement comme dans vous êtes prêt.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le vouvoiement français « vous » commande toujours un verbe à la deuxième personne du pluriel. Vostè, qui en tient lieu, se conjugue à la troisième personne du singulier (vostè sap, et non vostè sabeu), accord que l’intuition française ne produit pas spontanément."
@@ -97,8 +99,7 @@
           "difficulty": null,
           "graded_review_count": 0
         }
-      },
-      "notes": "Vós, en revanche, se construit bien avec la deuxième personne du pluriel (vós sabeu), comme le vous français, mais il appartient à un registre formel ou administratif et recule devant vostè dans l’usage courant."
+      }
     },
     {
       "id": "PRON.feble",
@@ -115,11 +116,16 @@
         "fr": "le pronom faible en, reprenant un complément introduit par de ou un partitif"
       },
       "cefr": "A2",
-      "examples": ["En vinc ara.", "No en tinc gaires.", "Parla'n amb calma."],
+      "examples": [
+        "En vinc ara.",
+        "En vénen tres.",
+        "No en tinc gaires.",
+        "Parla'n amb calma."
+      ],
       "notes": "La forme varie selon l’entourage phonétique, « en », « n' », « ne » et « -ne », et le choix dépend de la place du pronom par rapport au verbe.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a en, mais le catalan l’emploie aussi pour reprendre un lieu d’origine, là où le français doit répéter la préposition et le nom."
+        "note": "Le français a lui aussi en et l’emploie pour les mêmes valeurs, partitif, complément en de, et jusqu’au lieu d’origine, puisque j’en viens est correct. Ce qui diverge est la portée : le catalan reprend en outre le sujet des verbes inaccusatifs et existentiels, « En vénen tres », « No en queda cap », sans le sujet explétif que le français y place."
       },
       "state": {
         "exposure": {
@@ -145,7 +151,7 @@
       "notes": "Hi entre aussi dans des constructions figées, notamment haver-hi pour l’existence et no hi fa res pour l’indifférence.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Correspond largement à y, mais hi reprend en outre le complément des verbes de perception, comme dans no hi sento, où le français n’emploie pas y."
+        "note": "Correspond largement à y, verbes de perception compris, puisque le français dit aussi je n’y vois rien. Ce qui diverge est que le catalan a lexicalisé le tour : « veure-hi » et « sentir-hi » valent simplement voir et entendre, hors de toute négation, « Hi sent molt bé »."
       },
       "state": {
         "exposure": {
@@ -285,7 +291,7 @@
       "examples": ["Em veu.", "Escriu-me.", "Renta'm.", "M'agrada."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français ne connaît qu’une élision binaire (me / « m' ») ; le catalan distingue quatre allomorphes conditionnés à la fois par la position devant ou après le verbe et par le contexte vocalique ou consonantique, système sans équivalent français."
+        "note": "Le français fait varier son clitique selon la position, me, « m' », et lui substitue la forme tonique moi à l’impératif positif ; mais moi est un pronom fort et non un allomorphe, si bien que le clitique français n’en a que deux. Le catalan en a quatre pour un même pronom, conditionnées à la fois par la position et par le contexte vocalique."
       },
       "state": {
         "exposure": {
@@ -314,8 +320,8 @@
       },
       "cefr": "B2",
       "examples": ["El llibre, l'hi dono.", "Les claus, les hi deixo."],
-      "notes": "L’ordre est le complément d’objet indirect avant le complément d’objet direct, et la rencontre de li avec el produit « l'hi » en catalan central, forme qui ne se laisse plus segmenter à l’oreille.",
-      "dialect_note": "Le valencien conserve les combinaisons transparentes « li'l », « li la » et « li els ».",
+      "notes": "L’ordre est le complément d’objet indirect avant le complément d’objet direct, et la rencontre de li avec el produit « l'hi » en catalan central, forme qui ne se laisse plus segmenter à l’oreille. « els hi » pour un datif pluriel relève de l’usage familier et s’écarte des registres formels.",
+      "dialect_note": "Le valencien conserve les combinaisons transparentes « li'l », « li la », « li'ls » et « li les ».",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français combine aussi les pronoms, mais il place le complément d’objet direct en premier dans le lui donne et ne fusionne jamais les deux en une forme unique."

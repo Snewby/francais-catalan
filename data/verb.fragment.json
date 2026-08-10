@@ -81,7 +81,7 @@
       },
       "cefr": "A2",
       "examples": ["Dormo vuit hores.", "Sortim a les vuit."],
-      "notes": "La classe est petite et fermée : « dormir », « sentir », « sortir », « obrir », « omplir », « collir », « tossir », « fugir » et leurs composés. Hors de cette liste, un verbe en -ir prend l’infixe, ce qui est traité à VERB.conj.3.incoatiu.",
+      "notes": "La classe est fermée et ses membres les plus courants sont « dormir », « sentir », « sortir », « obrir », « omplir », « collir », « morir », « bullir », « escopir », « fugir », « tenir » et « venir ». La plupart de leurs composés suivent, mais pas tous, « assentir » et « dissentir » étant inchoatifs. Hors de cette liste, un verbe en -ir prend l’infixe, ce qui est traité à VERB.conj.3.incoatiu.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français connaît la même partition, dormir et sortir sans -iss- contre finir avec ; mais les deux listes ne coïncident pas, et « servir » ou « partir », purs en français, sont inchoatifs en catalan."
@@ -107,7 +107,7 @@
       },
       "cefr": "B1",
       "examples": ["Jo serveixo el dinar a la una.", "Ells pateixen molt de fred."],
-      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs.",
+      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs. Il apparaît aux mêmes personnes du subjonctif présent, « serveixi », « serveixin », et à l’impératif singulier, « serveix ».",
       "dialect_note": "Le valencien emploie plutôt les formes en -isc et -ix, comme servisc et servix.",
       "contrast_fr": {
         "status": "near-miss",
@@ -137,7 +137,7 @@
       "notes": "La prononciation du radical ne change pas ; seule la graphie s’adapte à la voyelle qui suit. « buscar » donne « busco » mais « busques », « començar » donne « començo » mais « comences », « pagar » donne « pago » mais « pagues ».",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français fait la même chose dans mangeons, plaçons et lançais, mais les couples catalans sont autres : c et qu, ç et c, g et gu, j et g, gu et gü."
+        "note": "Le français fait la même chose dans mangeons, plaçons et lançais, mais les couples catalans sont autres : c et qu, ç et c, g et gu, j et g, gu et gü, qu et qü."
       },
       "state": {
         "exposure": {
@@ -195,7 +195,7 @@
         "Fent el sopar, va sentir la notícia.",
         "Sentint aquell soroll, es va aixecar."
       ],
-      "notes": "Formes irrégulières : « dient », « fent », « veient », « podent », « sent ». L’absence de préposition devant le gérondif est traitée à PREP.formes_no_finites.en_gerundi, qui porte le contraste avec le gérondif français en en.",
+      "notes": "Formes irrégulières : « dient », « fent », « veient », « podent », « sent ». Le gérondif prédicatif après un verbe de perception reste admis, « He vist un home fumant » ; seul celui qui qualifie un nom est écarté. L’absence de préposition devant le gérondif est traitée à PREP.formes_no_finites.en_gerundi, qui porte le contraste avec le gérondif français en en.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "La formation se calque sur le participe présent français, mais la norme catalane refuse le gérondif de postériorité, « Va caure trencant-se el braç », et le gérondif qui qualifie un nom, « una llei prohibint el tabac », que le français admet tous les deux."
@@ -336,7 +336,7 @@
       },
       "cefr": "A2",
       "examples": ["Ahir vaig cantar a la festa.", "Vam arribar molt tard."],
-      "notes": "L’auxiliaire prend des formes propres à cet emploi, vaig, vas, va, vam, vau, van, et non les formes ordinaires de anar. C’est le passé narratif ordinaire de la langue parlée.",
+      "notes": "L’auxiliaire prend des formes propres à cet emploi, vaig, vas, va, vam, vau, van, et non les formes ordinaires de anar. Les variantes vares, vàrem, vàreu et varen sont également normatives. C’est le passé narratif ordinaire de la langue parlée.",
       "dialect_note": "Le catalan central préfère cette forme au passé simple, qui reste vivant surtout à l’écrit et dans certains parlers baléares.",
       "contrast_fr": {
         "status": "false-friend",
@@ -363,7 +363,7 @@
       },
       "cefr": "A2",
       "examples": ["Demà plourà.", "Ho farem dilluns."],
-      "notes": "Le futur de conjecture existe aussi, « Seran les tres » pour il doit être trois heures, mais le catalan lui préfère souvent « deure ». L’exclusion du futur après « quan » et « si » relève de CONJ.",
+      "notes": "Le futur de conjecture existe, mais la norme l’écarte des registres formels et renvoie à « deure », « Ara deuen ser les tres » plutôt que « Ara seran les tres ». L’exclusion du futur après « quan » et « si » relève de CONJ.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "La formation se transfère, l’infinitif suivi des désinences de « haver », radicaux irréguliers compris, « faré » et « diré » répondant à ferai et dirai. Ce qui diverge est la distribution : le français parlé confie le futur proche à aller suivi de l’infinitif, tour dont le catalan ne dispose pas, si bien que le futur simple y couvre les deux emplois."
@@ -421,7 +421,7 @@
       },
       "cefr": "B1",
       "examples": ["Espero que vinguin aviat.", "No crec que parlin gaire."],
-      "notes": "Le -i marque le singulier et la troisième personne du pluriel, « canti », « cantis », « cantin ». Les deux premières personnes du pluriel reprennent telles quelles celles de l’indicatif, « cantem » et « canteu », « dormim » et « dormiu ». Le choix du mode après un subordonnant relève de CONJ, non d’ici.",
+      "notes": "Le -i marque le singulier et la troisième personne du pluriel, « canti », « cantis », « cantin ». Aux deux premières personnes du pluriel, les désinences sont celles de l’indicatif, -em et -eu au premier et au deuxième groupe, -im et -iu au troisième, mais les formes ne coïncident avec l’indicatif que si le radical est régulier : les verbes à incrément vélaire gardent le leur, « prenguem » et non « prenem », « diguem » et non « diem ». Le choix du mode après un subordonnant relève de CONJ, non d’ici.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le mode existe des deux côtés, mais la marque diverge : au premier groupe, le subjonctif français ne s’entend pas, la forme d’indicatif et celle de subjonctif étant homophones, alors que le catalan y met un -i audible. Le radical, en outre, est celui de « dic » ou de « prenc », non celui de l’infinitif."
@@ -479,7 +479,7 @@
       },
       "cefr": "A2",
       "examples": ["Obre la finestra.", "Segui, si us plau."],
-      "notes": "« canta » reprend la troisième personne du présent et « canteu » la deuxième du pluriel. La place du pronom faible, enclitique ici, relève de SYN.clitics.proclisi_enclisi, et les formes d’adresse de PRON.fort.tractament.",
+      "notes": "« canta » reprend la troisième personne du présent et « canteu » la deuxième du pluriel, mais la règle ne vaut que pour les verbes réguliers : les plus fréquents ont des formes propres, « digues », « fes », « sigues », « vine », « vés », « estigues ». La place du pronom faible, enclitique ici, relève de SYN.clitics.proclisi_enclisi, et les formes d’adresse de PRON.fort.tractament.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "L’impératif existe des deux côtés, mais le catalan n’a de formes propres qu’aux deuxièmes personnes ; l’adresse polie passe par le subjonctif, « Segui » et « Seguin », là où le français garde l’impératif ordinaire pour vous."
@@ -537,7 +537,7 @@
       },
       "cefr": "A2",
       "examples": ["Avui he cantat molt.", "Ha vingut d'hora aquest matí."],
-      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être. Son emploi est en outre borné à un laps de temps qui inclut le présent, aujourd’hui, ce matin, cette semaine ; au-delà, le catalan passe au passé périphrastique, alors que le passé composé français couvre les deux.",
+      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être. Son emploi tend en outre à se borner à un laps de temps qui inclut le présent, aujourd’hui, ce matin, cette semaine ; au-delà, le catalan passe ordinairement au passé périphrastique, alors que le passé composé français couvre les deux. Un fait très récent y reste malgré tout, « fa una estona ha trucat ».",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être."
@@ -624,10 +624,10 @@
       },
       "cefr": "B1",
       "examples": ["Prenc el cafè sense sucre.", "Vol que li digui la veritat."],
-      "notes": "Il apparaît à la première personne du présent, « prenc », « bec », « dic », « visc », dans tout le subjonctif présent, « prengui », « begui », « digui », « visqui », et dans tout l’imparfait du subjonctif, « prengués ». L’infinitif et le participe n’en portent aucune trace.",
+      "notes": "Il apparaît à la première personne du présent, « prenc », « bec », « dic », « visc », dans tout le subjonctif présent, « prengui », « begui », « digui », « visqui », dans tout l’imparfait du subjonctif, « prengués », au passé simple, « prengué », et à l’impératif de plusieurs verbes, « digues », « tingues ». L’infinitif et le gérondif ne vélarisent jamais, mais le participe le fait souvent, « begut », « viscut », « tingut », « vingut », « volgut », « pogut » ; « pres » et « dit » sont les exceptions à retenir.",
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’a rien de tel. Ce n’est ni une irrégularité isolée ni un simple changement de radical, mais une pièce de conjugaison à part entière, qui commande une personne de l’indicatif et deux subjonctifs entiers, sans le moindre analogue à transférer."
+        "note": "Le français n’a rien de tel. Ce n’est ni une irrégularité isolée ni un simple changement de radical, mais une pièce de conjugaison à part entière, qui commande une personne de l’indicatif, deux subjonctifs entiers, le passé simple et le participe de beaucoup de verbes, sans le moindre analogue à transférer."
       },
       "state": {
         "exposure": {
@@ -714,10 +714,10 @@
       },
       "cefr": "B1",
       "examples": ["Anava a sortir quan va trucar.", "Està a punt de ploure."],
-      "notes": "À lire avec VERB.ind.passat_perifrastic, dont c’est l’envers : le francophone qui calque aller suivi de l’infinitif ne produit pas un futur mais un passé.",
+      "notes": "« vaig a cantar » et le passé périphrastique « vaig cantar » ne diffèrent que par la préposition, ce qui est une raison de plus de ne pas calquer le futur proche français. Le passé lui-même est traité à VERB.ind.passat_perifrastic.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le futur proche français, aller suivi de l’infinitif, n’a pas de contrepartie directe : au présent, « vaig a cantar » heurte le passé périphrastique et la langue l’évite. Le catalan répartit entre le futur simple et « estar a punt de », et ne garde « anar a » que là où l’ambiguïté est levée, à l’imparfait surtout."
+        "note": "Le futur proche français, aller suivi de l’infinitif, n’a pas de contrepartie : la norme ne retient « anar a » que pour une imminence située dans le passé, « anava a caure », ou quand « anar » garde son sens de déplacement. Employé pour l’avenir, le tour est tenu pour un castillanisme, et le catalan met le futur simple ou « estar a punt de »."
       },
       "state": {
         "exposure": {
@@ -871,7 +871,7 @@
       },
       "cefr": "A1",
       "examples": ["Tinc dos germans.", "He arribat ara mateix."],
-      "notes": "Même figure que VERB.ser_estar, un verbe français pour deux verbes catalans, mais la frontière est ici nette et lexicale plutôt qu’aspectuelle. « tenir » rend aussi les tours de sensation, « tinc gana », « tinc fred ». L’existentiel « hi ha » est le seul emploi non auxiliaire de « haver » et suit fidèlement il y a.",
+      "notes": "Même figure que VERB.ser_estar, un verbe français pour deux verbes catalans, mais la frontière est ici nette et lexicale plutôt qu’aspectuelle. « tenir » rend aussi les tours de sensation, « tinc gana », « tinc fred ». Hors des temps composés, « haver » ne sert qu’à l’existentiel « hi ha », qui suit fidèlement il y a et ne se conjugue qu’à la troisième personne, et à l’obligation « haver de ».",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français avoir fait les deux. Le catalan les sépare strictement : « tinc un cotxe » pour la possession, « he arribat » pour l’auxiliaire, et « he un cotxe » est agrammatical."

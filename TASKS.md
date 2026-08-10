@@ -583,6 +583,46 @@ _finir d'arriver_ and means _venir d'arriver_, against docs/01 line 112 which
 calls it a clean transfer; the disagreement is recorded in `data/sources.md` on
 the `pas` precedent.
 
+`VERB` and `PRON` were then reviewed together against an outside chat with web
+research, with the full 281-leaf list attached. It made 22 field-level changes
+and moved no status. Four things it changed matter beyond these two domains:
+
+- **The recurring weakness is stating a default as an exceptionless rule**, and
+  it found four in `VERB` alone: the present-subjunctive plural persons, the
+  velar increment's absence from the participle, the imperative derived from the
+  indicative, and the `-eix-` infix confined to the present indicative. Each was
+  right for the regular core and wrong for the velar and irregular verbs, which
+  are the verbs a learner meets first. **Check for the missing exception class
+  when seeding `PHON` and `LEX`**: a rule stated without it reads as complete.
+- **Two claims were wrong about French rather than about Catalan**, which for a
+  French-base app is the worst category there is. `PRON.feble.en` said French
+  must repeat the preposition for a place of origin when _j'en viens_ is
+  standard, and `PRON.feble.hi` said French does not use _y_ with perception
+  verbs when _je n'y vois rien_ is ordinary. Both notes now grant the parallel
+  and state the divergence that is actually there. **Self-review has never
+  caught an error on the French side**, because the French side is the side
+  nobody checks.
+- **A card can reach the right behaviour through the wrong reason.**
+  `VERB.perifrasi.imminent` restricted `anar a` plus infinitive for the right
+  practical outcome but explained it by a collision with the periphrastic past.
+  The two do not collide, since the periphrasis has no preposition, and the
+  norm's own objection is that the futurate use is a castellanism. Only a source
+  catches this class of error.
+- **The one status the review challenged was defended and kept.**
+  `PRON.feble.forma_alomorfs` stays `novel`: French clitics do alternate
+  positionally, but `moi` is a tonic pronoun substituting for the clitic rather
+  than a fourth allomorph of it. Two other findings were declined, `hom` and
+  `segons jo`, both because an existing leaf already owns the fact. The
+  arguments are in `data/sources.md`.
+
+The evidence position is unchanged in kind. The reviewer could not render
+`giec.iec.cat` or `geiec.iec.cat` either, which is six consecutive failures from
+two independent directions, and reached both grammars only through verbatim
+snippets carrying section URLs. It graded its own claims three ways as asked and
+flagged that its two strongest citations rested on a second-hand verification
+pass rather than its own fetch. **No GIEC or GEIEC section number is written
+into the data, and that still holds.**
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -627,6 +667,14 @@ Three decisions in it are worth knowing before phase 6 touches it:
   are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
   a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
   is the part that is expensive to retrofit.
+- **That GIEC chapter 35 is the negation chapter is still unverified**, and two
+  claims lean on it. The `VERB`/`PRON` review confirmed §34.4 on the negative
+  imperative with a verbatim snippet of that section, but could confirm nothing
+  about chapter 35's scope, so the "§34.4 rather than chapter 35" contrast used
+  to route the negative imperative to `VERB` is half-sourced. The routing itself
+  does not depend on the other half. The chapter map recovered by the
+  `CONJ`/`ADV`/`SYN` review, recorded in `data/sources.md` and nowhere else,
+  remains snippet-grade throughout.
 - **`NEG` is not verified closed against GIEC chapter 35.** Every subsection was
   confirmed except §35.5, whose body never surfaced because giec.iec.cat is
   JavaScript-rendered. `NEG.anticipada` was seeded from the title plus
@@ -699,7 +747,10 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   `ADV.modalitat.si`, and `tampoc`'s categorial status as an additive focal
   adverb is stated in `notes` on `ADV.modalitat.additius`. Still owed to `LEX`:
   `amb prou feines` and the emphatic reply locutions `de cap manera`,
-  `en absolut`, `ni de bon tros`.
+  `en absolut`, `ni de bon tros`. The `VERB`/`PRON` review adds `hom`, the
+  literary indefinite subject pronoun, which is declined as a `PRON` key because
+  `SYN.veu.impersonal` already owns the fact that French _on_ has no everyday
+  Catalan counterpart.
 - **`SYN` pre-empted `VERB` and `PRON`, and both halves are now settled.**
   `SYN.veu.*` takes the passives and `SYN.clitics.*` takes clitic placement. The
   line is that **`VERB` owns verbal morphology and `PRON` owns pronoun forms and
@@ -722,12 +773,9 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   direct parallel to `Qu'il entre !` and the leaf would state that nothing
   differs. Recorded rather than lost, and taking it would mean renaming
   `SYN.interrogativa` to cover clause type generally.
-- **`VERB` and `PRON` are owed an outside review, together.** Both were seeded
-  with no GIEC or GEIEC page retrieved, and `VERB` is the domain where an
-  unsourced rule costs most, because it is rules rather than boundaries. **Attach
-  the full taxonomy leaf list, not only the two domains under review**: scoping
-  the last review to three domains produced a false positive, reporting `gaire`
-  missing when `DET` already owned it.
+- **The `VERB` and `PRON` review has been run and applied**, with the full leaf
+  list attached, and it produced no false positive of the `gaire` kind. Sending
+  the whole list works; keep doing it. Details in `data/sources.md`.
 - Two domains remain unseeded, `PHON` and `LEX`, and no domain is owed a 2a
   pass. `data/sources.md` has ten worked examples of a per-domain
   notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`, `SYN`,

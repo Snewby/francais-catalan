@@ -1983,3 +1983,172 @@ field. No entry was added and the allowlist stands at 16.
 are safe. The `C1` on `VERB.ind.passat_simple` is a claim about register rather
 than about difficulty, and the `B1` and `B2` calls across the subjunctive and
 the periphrases are judgements about when a learner needs the form productively.
+
+### Outside review of VERB and PRON, and what it changed
+
+The second outside review of this taxonomy, run after both domains had been
+seeded with no grammar text retrieved at all. It made 22 field-level changes
+across the two fragments and moved no status.
+
+**Evidence position: unchanged in kind, better in degree.** The reviewer could
+not render `giec.iec.cat` or `geiec.iec.cat` either, reporting that both return
+only metadata boilerplate and that the body is JavaScript-rendered. That is six
+consecutive attempts from two independent directions. What it did reach was
+substantial verbatim quotation of both grammars carrying matching section URLs,
+plus Optimot, CPNL, GALMIC/UIB, DIEC and the Generalitat conjugator, each named
+per claim. It graded its own claims three ways as asked, and **flagged that its
+two (a) RETRIEVED items rest on a downstream verification pass rather than on
+its own fetch**, which is exactly the honesty the grading exists for. This repo
+treats all of it as indirectly sourced. **No GIEC or GEIEC section number has
+been written into the data, and that still holds.**
+
+**The single most useful thing it said is a pattern rather than a finding.** In
+its own words, the taxonomy's recurring weakness is treating a default or
+regular pattern as an exceptionless rule, and it found four instances in `VERB`
+alone. Each was right for the regular core and wrong for the velar and irregular
+verbs, which are precisely the verbs a learner meets first. **This is now the
+thing to check for when the remaining domains are seeded**: a rule stated
+without its exception class reads as complete and is not.
+
+**Two claims were wrong about French, not about Catalan, and those were fixed
+first.** For a French-base app this is the worst category of error, because it
+misleads the learner about their own language and destroys the contrastive value
+of the card.
+
+- `PRON.feble.en` said Catalan `en` pronominalises a place of origin "là où le
+  français doit répéter la préposition et le nom". French `en` does exactly
+  this: _j'en viens_ is standard, and Le Robert's own pronoun guide leads with
+  it. The note now says so explicitly, which turns the correction into
+  something teachable, and states the divergence that is real: Catalan `en`
+  also takes the subject of unaccusative and existential verbs with no
+  expletive, `En vénen tres`, `No en queda cap`.
+- `PRON.feble.hi` said Catalan `hi` resumes the complement of perception verbs
+  "où le français n'emploie pas y". French has _je n'y vois rien_ and
+  _n'y voir goutte_. The note now grants the parallel and states the actual
+  divergence: Catalan has lexicalised `veure-hi` and `sentir-hi` as plain verbs
+  meaning to see and to hear, used outside negation, `Hi sent molt bé`.
+
+**Four rules were stated too broadly and are now stated with their exception
+class.**
+
+- `VERB.subj.present` said the two plural persons of the present subjunctive
+  reproduce the indicative unchanged. True of regular verbs and of `fer` and
+  `anar`, false of every velar verb: the standard is `prenguem`, `diguem`,
+  `tinguem`, never `prenem`, `diem`, `tenim`. The reviewer supplied Fabra's own
+  formulation of the point through an IEC _Converses filològiques_ quotation.
+  Rewritten to say that the endings are the indicative ones but the stem is not
+  always.
+- `VERB.irregular.velar` said the infinitive and the participle bear no trace of
+  the increment. True of the infinitive and the gerund, which never velarise,
+  and false of the participle in `begut`, `viscut`, `tingut`, `vingut`,
+  `volgut`, `pogut`, `valgut`. `pres` and `dit` are the exceptions that made the
+  original claim look right. The increment also reaches the simple preterite and
+  several imperatives, both now stated, and the contrast note was widened to
+  match.
+- `VERB.imperatiu.positiu` derived the imperative from the indicative without
+  qualification. That fails for `digues`, `fes`, `sigues`, `vine`, `vés`,
+  `estigues`, which are the verbs a learner commands with first.
+- `VERB.conj.3.incoatiu`, a phase 1 leaf, confined the `-eix-` infix to the
+  present indicative. It appears at the same persons of the present subjunctive
+  and in the singular imperative.
+
+**One rationale was right in its conclusion and wrong in its reasoning.**
+`VERB.perifrasi.imminent` explained the restriction on `anar a` plus infinitive
+by a collision with the periphrastic past. The reviewer points out that the two
+do not actually collide, since the periphrasis has no preposition, `vaig cantar`
+against `vaig a cantar`, and that the norm's own objection is different: GALMIC
+and Optimot restrict the construction to a past or conative value and to real
+motion, and the futurate use is treated as a castellanism. The note now gives
+the norm's account and keeps the one-letter proximity as the practical warning
+it is, rather than as the explanation it is not. **A card can reach the right
+behaviour through the wrong reason, and only a source catches that.**
+
+**Smaller completions, all applied.** The future of conjecture is not merely
+dispreferred but advised against in formal registers, with `deure` recommended
+(Optimot 12259), so `VERB.ind.futur` says so. The norm admits the predicative
+gerund, `He vist un home fumant`, and only the noun-qualifying one is refused,
+so `VERB.no_finit.gerundi` no longer invites over-application of the ban.
+`VERB.haver_tenir` claimed `hi ha` was the only non-auxiliary use of `haver`,
+which this domain's own `VERB.mod.obligacio` contradicts; it now names both and
+adds that `haver-hi` is third-person only. `VERB.conj.ortografia` gained the
+`qu`/`qü` pair. `VERB.ind.passat_perifrastic`, a phase 1 leaf, gained the
+equally normative `vares`/`vàrem`/`vàreu`/`varen` series.
+`VERB.conj.3.pur`'s list was presented as the class and is now presented as its
+commonest members, with `tenir` and `venir` added and the warning that `sentir`
+is pure while `assentir` and `dissentir` are not. `PRON.fort.tractament` gained
+the fact that `vós` takes plural verb agreement but singular adjective and
+participle agreement, `Esteu preparat`, which is precisely parallel to French
+_vous êtes prêt_ and so strengthens rather than weakens the leaf.
+`PRON.feble.combinacio.ci_cd`'s dialect note had `li els` for Valencian, which
+should be `li'ls`, and now records that `els hi` is colloquial.
+
+**`VERB.perf.present`'s hodiernal sentence was softened.** It was added during
+the `VERB` seed as an exceptionless rule. The reviewer confirms the restriction
+but reports it as a strong normative default with recognised exceptions, a very
+recent event taking the perfect regardless, `fa una estona ha trucat`. Corrected
+in the same pass that introduced it, which is the pattern above catching the
+`VERB` pass in the act.
+
+**Three findings were declined, each with an argument.**
+
+- **The `novel` on `PRON.feble.forma_alomorfs` stands.** The reviewer is right
+  that French clitics alternate positionally, `me`, `m'`, and `moi` in the
+  positive imperative, and that the leaf's "élision binaire" undersold it. But
+  `moi` is a tonic pronoun substituting for the clitic, not a fourth allomorph
+  of it, so the French clitic still has two forms against Catalan's four,
+  conditioned by position and by phonological context at once. The note now
+  states the French alternation and says why it is not the same thing, which is
+  a better card than either the original or the proposed downgrade. This keeps
+  `PRON` at one `novel`.
+- **`hom` is not keyed and stays unkeyed.** The reviewer confirms it exists as
+  an indefinite subject pronoun and reports it literary and archaic in ordinary
+  standard usage, with the IEC's own Albert Jané paper recording Fabra calling
+  it "el pronom arcaic hom". The fact a learner needs is that French _on_ has no
+  everyday Catalan pronoun, and `SYN.veu.impersonal` already states exactly that
+  and routes to `es` plus third singular. A `hom` leaf would be a second key for
+  a fact already keyed, plus vocabulary. Noted as owed to `LEX` if anywhere.
+- **`segons jo` did not get a key.** The reviewer confirmed, with a GEIEC §14.3
+  verbatim snippet, that `segons`, `malgrat` and `mitjançant` select the subject
+  form, as do coordination and a pronoun before a governed infinitive. That is
+  an exception to the rule `PRON.fort.tonic` already owns, so it went into that
+  leaf's `notes`, not into a new leaf. `PREP.toniques.inventari` had been
+  illustrating the coordination case with `Entre tu i jo ho farem` without
+  stating it, which is how the gap survived both coverage sweeps.
+
+**Verified and left alone.** Worth recording, because a review that only reports
+problems leaves no way to tell a checked claim from an unexamined one. Confirmed
+correct as written: the imperfect subjunctive endings and full paradigm
+(`VERB.subj.imperfet`); the negative imperative and its attribution to GIEC
+§34.4, now backed by a verbatim snippet of that section rather than by the
+earlier review's chapter map alone (`VERB.imperatiu.negatiu`); the periphrastic
+past auxiliary series (`VERB.ind.passat_perifrastic`); the 1sg present in
+`-o`/`-e`/`-Ø` across Central, Valencian and Balearic (`VERB.ind.present`);
+`soler` as defective to the present and imperfect indicative
+(`VERB.perifrasi.habitual`); `servir` and `partir` as inchoative against the
+pure class (`VERB.conj.3.pur`); both gerund bans as firmly rejected
+(`VERB.no_finit.gerundi`); `haver` as sole auxiliary with `ésser` explicitly
+historical (`VERB.perf.present`); relative `on` as strictly locative with
+temporal antecedents taking `que` (`PRON.rel.on`); the absence of a _dont_
+counterpart and the ungrammaticality of dropping the preposition
+(`PRON.rel.absencia_dont`); `tothom` against `tot el món`
+(`PRON.indefinit.tothom`); positive-polarity `res` (`PRON.indefinit.res`);
+`cadascú` against `cadascun` (`PRON.indefinit.cadascun`); the neuter
+demonstrative system with `açò` as Valencian
+(`PRON.demostratiu_neutre`); and the clitic combination order with `li` surfacing
+as `hi` (`PRON.feble.combinacio.ci_cd`).
+
+**Still not verified.** That GIEC chapter 35 is the negation chapter. The
+`VERB`/`NEG` routing of the negative imperative rests on a contrast between
+§34.4 and chapter 35, and this review confirmed only the §34.4 half; the chapter
+map itself came from the `CONJ`/`ADV`/`SYN` review and remains snippet-grade.
+The routing does not depend on it, since §34.4 alone establishes that the
+grammar files the fact under the imperative, but the contrast as stated in this
+file is half-sourced. Also unverified: the exact GIEC §24.8.5.2 wording on
+`anar a`, and the acceptability of `Ha de ser tard` as a pure conjecture, which
+rests on usage and academic sources rather than a clean IEC ruling and which
+`VERB.mod.deure` already hedges.
+
+**Three phase 1 leaves were edited again in this pass** (`VERB.conj.3.incoatiu`,
+`VERB.perf.present`, `VERB.ind.passat_perifrastic`). The merge discipline says a
+diff on a preserved node must be intentional and named, not that preserved nodes
+are frozen; all three are named above.
