@@ -1,0 +1,50 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "03-vull-que-vens",
+  "question": "Vull que vens demà",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["correction", "mood"],
+  "usage": {
+    "input_tokens": 16,
+    "output_tokens": 334,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "VERB.no_finit.infinitiu",
+        "ca": "venir"
+      },
+      {
+        "id": "CONJ.final.perque_subjuntiu",
+        "ca": "que"
+      },
+      {
+        "id": "VERB.subj.present",
+        "ca": "vingis"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "La phrase soumise contient une faute : elle demande « vull que vens demà » (je veux que tu viens demain), mais le verbe après « que » doit être au subjonctif, non à l'indicatif.\n\nLa forme correcte est « vull que vingis demà ». Le subjonctif présent de « venir » est « vingui, vingis, vingui, vingem, vengeu, vinguin ». À la deuxième personne du singulier, c'est « vingis ».\n\nLa conjonction « que » après « voler » (vull) exige le subjonctif parce qu'elle introduit une proposition finale : on exprime un souhait, une volonté, une finalité. Le catalan refuse catégoriquement l'indicatif dans ce contexte.",
+    "answer_ca": "Vull que vingis demà.",
+    "answer_fr": "Je veux que tu viennes demain.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "ca_to_fr",
+    "passesGate": false,
+    "expectedUnverified": ["venir"],
+    "requiredComponents": ["VERB.subj.present"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "THE CORRECTION IS WRONG. The second-person present subjunctive of venir is vinguis, not vingis, and the paradigm printed is wrong at three persons. The reply announces the fault, which makes the wrong form more authoritative.",
+      "The direction is misreported as fr_to_ca for a Catalan question.",
+      "The que after vull is a completive, not a final clause; CONJ.final.perque_subjuntiu is the wrong leaf.",
+      "venir appears in no part of the utterance and is caught by the gate."
+    ],
+    "improvedOn": "The correction is declared rather than made silently, which is the amended prompt working."
+  }
+}

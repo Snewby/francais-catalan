@@ -1,0 +1,45 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "04-ja-no-el-faig",
+  "question": "comment dit-on « je ne le fais plus » en catalan ?",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["negation", "false-friend"],
+  "usage": {
+    "input_tokens": 24,
+    "output_tokens": 350,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "NEG.aspecte.ja_no",
+        "ca": "ja no"
+      },
+      {
+        "id": "PRON.feble.cd_3a",
+        "ca": "el"
+      },
+      {
+        "id": "VERB.ind.present",
+        "ca": "faig"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "La forme catalane est « ja no el faig ». Le « ja no » marque la cessation d'une habitude ou d'un état : l'action s'est arrêtée. L'adverbe aspectuel « ja » (déjà, maintenant) s'ajoute à la négation « no » pour exprimer que quelque chose ne se fait plus.\n\nLe pronom faible « el » reprend le complément d'objet direct.\n\nLe verbe « faig » est au présent de l'indicatif, première personne du singulier.",
+    "answer_ca": "ja no el faig",
+    "answer_fr": "je ne le fais plus",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "fr_to_ca",
+    "passesGate": true,
+    "requiredComponents": ["NEG.aspecte.ja_no", "PRON.feble.cd_3a"],
+    "verdict": "sound",
+    "establishedBy": "outside-review",
+    "defects": [
+      "The false-friend trap the leaf exists for, ja read as déjà giving « je ne le fais déjà pas », is not stated."
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "01-barcelona-ciutat": {
+    "passed": true,
+    "reasons": []
+  },
+  "02-ahir-vaig-comprar-pa": {
+    "passed": true,
+    "reasons": []
+  },
+  "03-vull-que-vens": {
+    "passed": false,
+    "reasons": ["direction"]
+  },
+  "04-ja-no-el-faig": {
+    "passed": true,
+    "reasons": []
+  },
+  "05-parla-molt-lentament": {
+    "passed": true,
+    "reasons": []
+  },
+  "06-sen-va-anar-sense-dir-nos-res": {
+    "passed": true,
+    "reasons": []
+  },
+  "07-col-leccio-de-timbres": {
+    "passed": true,
+    "reasons": []
+  },
+  "08-fent-el-sopar": {
+    "passed": true,
+    "reasons": []
+  },
+  "09-cal-que-marxi": {
+    "passed": true,
+    "reasons": []
+  },
+  "10-cotxe-mes-rapid": {
+    "passed": true,
+    "reasons": []
+  }
+}

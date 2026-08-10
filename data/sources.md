@@ -3779,3 +3779,57 @@ identical controls in a pane read on a telephone would cost more than they add.
   **no test in this repository could have caught it**, because jsdom lays
   nothing out; the same blind spot that let a `hidden` field ship visible in
   phase 6.
+
+## Phase 8: the golden set, and what a recording is worth
+
+Ten fixtures in `test/fixtures/golden/`, replayed through `callHaiku` with a
+stub fetch, plus `npm run eval` and a committed baseline. The material was
+already there: the ten replies captured for the review's benchmark were produced
+by the prompt that is still live, and every defect in them had been argued in
+this file before the harness existed.
+
+**A fixture is two different kinds of thing and the file says which is which.**
+The recording is evidence and is never edited. The `expect` block holds the
+mechanical fields the runner checks, and `defects`, which is a reader's verdict
+carried as data. `establishedBy` records how that verdict was reached, and
+`unverified` is one of its values, because **recording a reply is not verifying
+it** and the ten that were argued over will not always be the only ten.
+
+**What is asserted is structural, and the prose never is.** Schema, closed
+vocabulary, reported direction, the form-in-sentence gate, the components the
+case exists to exercise, and the pair being two non-empty and different strings.
+That last one is not a language check, which is not decidable here; it catches
+the single mechanical way the pair can be useless, which is the same string
+twice. Whether an explanation is TRUE is a reader's judgement, and asserting on
+French prose produces noise rather than signal.
+
+**The baseline is the mechanism, and it is committed.** Replaying fixed
+recordings through fixed code gives a fixed answer, so any change in the result
+is a change in the code: a taxonomy rename putting an ID out of vocabulary, a
+schema regeneration, an edit to the gate. The test compares the run against the
+baseline case by case, which turns each of those into a failing test naming the
+case. Rewriting the baseline needs an explicit `--baseline` flag so that
+changing the expected result is a reviewable act. Without that, the rule in
+`.claude/commands/eval.md` about not adjusting the golden set to make the eval
+pass is a sentence nothing enforces.
+
+**Nine of ten pass, and the failure is the point.** `03-vull-que-vens` fails on
+direction: the model was given a Catalan sentence and reported `fr_to_ca`. It is
+a recorded defect, not a broken harness, and it stays failing until the model
+stops doing it. The report separates standing failures from regressions for that
+reason, and only a regression sets a non-zero exit code.
+
+Two smaller things worth carrying:
+
+- **`/eval` had been pointing at nothing since phase 0.** The command file and
+  the `prompt-eval` agent both named fixtures in `test/fixtures/` that did not
+  exist, so the command looked like it worked and silently did not. **A command
+  file is a promise and nothing was checking it**, which is the same shape as
+  the IPA field carried through the schema for two phases and rendered by
+  nothing, and as `CallResult.usage` before phase 6c. Three instances now; it is
+  a pattern rather than an accident.
+- **The gate is now covered by recordings rather than by cases written to suit
+  it.** Four of the ten are rejected, and the fixtures name the exact forms:
+  `venir`, `ns`, `he`/`tingut`, the parenthetical prose in a `ca` field, `jo`,
+  and `ràpida`/`la meva`. A check tested only against examples chosen by its own
+  author proves less than one tested against what actually happened.

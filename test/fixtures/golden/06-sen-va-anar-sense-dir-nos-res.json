@@ -1,0 +1,65 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "06-sen-va-anar-sense-dir-nos-res",
+  "question": "Se'n va anar sense dir-nos res",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["clitics", "negation"],
+  "usage": {
+    "input_tokens": 19,
+    "output_tokens": 406,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "PRON.feble.en",
+        "ca": "se'n"
+      },
+      {
+        "id": "VERB.ind.passat_perifrastic",
+        "ca": "va anar"
+      },
+      {
+        "id": "PREP.formes_no_finites.sense",
+        "ca": "sense"
+      },
+      {
+        "id": "VERB.no_finit.infinitiu",
+        "ca": "dir"
+      },
+      {
+        "id": "PRON.feble.persona_reflexiu",
+        "ca": "ns"
+      },
+      {
+        "id": "PRON.feble.ho",
+        "ca": "res"
+      }
+    ],
+    "direction": "ca_to_fr",
+    "answer": "Cette phrase utilise le passé périphrastique « va anar » (aller + infinitif), forme courante du passé en catalan central.\n\nLe pronom faible « en » reprend un complément introduit par « de » ou un partitif, mais ici son antécédent n'est pas explicite dans la phrase.\n\nL'infinitif « dir » est régi par la préposition « sense » (sans), qui ne prend aucune préposition avant l'infinitif.\n\nLe pronom neutre « res » est ici un complément d'objet direct du verbe « dir », c'est-à-dire « rien ».",
+    "answer_ca": "Se'n va anar sense dir-nos res",
+    "answer_fr": "Il s'en est allé sans nous dire rien.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "ca_to_fr",
+    "passesGate": false,
+    "expectedUnverified": ["ns"],
+    "requiredComponents": [
+      "PREP.formes_no_finites.sense",
+      "VERB.ind.passat_perifrastic"
+    ],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "answer_fr is not French: « sans nous dire rien » should be « sans rien nous dire ».",
+      "res is keyed PRON.feble.ho, which is the neuter clitic and not a negative quantifier.",
+      "The enclitic -nos is mangled to ns, which the gate catches only because it matches whole words.",
+      "The prose says sense governs the infinitive and then that it takes no preposition, which contradicts itself.",
+      "The positive value of res under sense, which is what the PREP leaf is for, is not stated."
+    ]
+  }
+}

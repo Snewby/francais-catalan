@@ -1,0 +1,49 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "05-parla-molt-lentament",
+  "question": "comment dit-on « il parle très lentement » ?",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["transfer"],
+  "usage": {
+    "input_tokens": 22,
+    "output_tokens": 266,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "PRON.fort.subjecte",
+        "ca": "ell"
+      },
+      {
+        "id": "VERB.ind.present",
+        "ca": "parla"
+      },
+      {
+        "id": "ADV.grau.molt",
+        "ca": "molt"
+      },
+      {
+        "id": "ADV.manera.ment",
+        "ca": "lentament"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "Ell parla molt lentament.\n\nLe sujet ell (il) est optionnel en catalan mais présent ici. Le verbe parla est à la troisième personne du singulier du présent de l'indicatif. L'adverbe de degré molt (très) reste invariable et se place avant l'adverbe de manière. L'adverbe lentament se forme régulièrement sur le féminin de l'adjectif (lenta + -ment).",
+    "answer_ca": "Ell parla molt lentament.",
+    "answer_fr": "Il parle très lentement.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "fr_to_ca",
+    "passesGate": true,
+    "requiredComponents": ["ADV.manera.ment", "ADV.grau.molt"],
+    "verdict": "sound",
+    "establishedBy": "outside-review",
+    "defects": [
+      "The molt merge, where French splits très and beaucoup and Catalan does not, is named but not contrasted."
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "08-fent-el-sopar",
+  "question": "Fent el sopar, vaig sentir la notícia",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["gerundi"],
+  "usage": {
+    "input_tokens": 23,
+    "output_tokens": 418,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "VERB.no_finit.gerundi",
+        "ca": "Fent el sopar"
+      },
+      {
+        "id": "VERB.ind.passat_perifrastic",
+        "ca": "vaig sentir"
+      },
+      {
+        "id": "PRON.feble.cd_3a",
+        "ca": "(la notícia - sense pronom antepòsit)"
+      },
+      {
+        "id": "NOM.gender.invariable",
+        "ca": "notícia"
+      }
+    ],
+    "direction": "ca_to_fr",
+    "answer": "L'énoncé utilise le gérondif pour exprimer une action simultanée à l'action principale. Alors qu'en français « en préparant le dîner, j'ai entendu la nouvelle », le catalan emploie « fent » (gérondif) sans préposition : le gérondif catalan est nu.\n\nLe verbe principal est au passé périphrastique « vaig sentir ».\n\nLe complément d'objet direct « la notícia » ne porte aucune préposition et n'est pas repris par un pronom faible antéposé au verbe.",
+    "answer_ca": "Fent el sopar, vaig sentir la notícia.",
+    "answer_fr": "En préparant le dîner, j'ai entendu la nouvelle.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "ca_to_fr",
+    "passesGate": false,
+    "expectedUnverified": ["(la notícia - sense pronom antepòsit)"],
+    "requiredComponents": ["VERB.no_finit.gerundi", "VERB.ind.passat_perifrastic"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "A ca field carries prose, not a Catalan form. The schema permits it because it only requires a non-empty string; the gate catches it.",
+      "NOM.gender.invariable is the fixed-grammatical-gender leaf (la víctima) and says nothing about notícia here."
+    ],
+    "improvedOn": "The contrast with the French gérondif in en is stated unprompted, which settles the one review finding that was declined."
+  }
+}

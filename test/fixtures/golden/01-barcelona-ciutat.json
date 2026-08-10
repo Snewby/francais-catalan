@@ -1,0 +1,65 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "01-barcelona-ciutat",
+  "question": "Barcelona és una ciutat molt gran",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["padding"],
+  "usage": {
+    "input_tokens": 14,
+    "output_tokens": 353,
+    "cache_creation_input_tokens": 18273,
+    "cache_read_input_tokens": 0
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "NOM.gender.masc_fem_o",
+        "ca": "Barcelona"
+      },
+      {
+        "id": "VERB.ser_estar",
+        "ca": "és"
+      },
+      {
+        "id": "ART.indef.paradigma",
+        "ca": "una"
+      },
+      {
+        "id": "NOM.gender.masc_fem_o",
+        "ca": "ciutat"
+      },
+      {
+        "id": "ADV.grau.molt",
+        "ca": "molt"
+      },
+      {
+        "id": "NOM.adj.four_form",
+        "ca": "gran"
+      }
+    ],
+    "direction": "ca_to_fr",
+    "answer": "Barcelona est une ville très grande. Le verbe « és » (être) convient ici parce qu'on décrit une propriété permanente de la ville, non sa localisation ou son état temporaire : c'est le cas typique où l'on choisit ser plutôt qu'estar.\n\nL'adjectif « gran » (grand) s'accorde au féminin singulier « gran » avec le nom féminin singulier « ciutat ». En catalan central, l'adjectif de ce type a deux formes seulement : une pour le masculin et le neutre (gran), une pour le féminin (gran). Ici, il demeure invariable en apparence.\n\nL'adverbe « molt » (très) modifie l'adjectif et reste invariable, comme tous les adverbes de degré.",
+    "answer_ca": "Barcelona és una ciutat molt gran.",
+    "answer_fr": "Barcelone est une très grande ville.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "ca_to_fr",
+    "passesGate": true,
+    "requiredComponents": ["VERB.ser_estar", "ART.indef.paradigma", "ADV.grau.molt"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "NOM.gender.masc_fem_o (gat / gata) is applied to Barcelona and to ciutat, neither of which forms a feminine by adding -a. Padding.",
+      "gran is keyed NOM.adj.four_form when the vocabulary line the model was given is NOM.adj.two_form gran / grans, with gran as the example.",
+      "The prose says gran has two forms, one masculine and one feminine, both spelled gran, and invents a neuter gender."
+    ],
+    "soundDecomposition": [
+      "VERB.ser_estar",
+      "ART.indef.paradigma",
+      "ADV.grau.molt",
+      "NOM.adj.two_form"
+    ]
+  }
+}

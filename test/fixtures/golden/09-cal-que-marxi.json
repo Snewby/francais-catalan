@@ -1,0 +1,52 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "09-cal-que-marxi",
+  "question": "comment dit-on « il faut que je parte demain » ?",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["mood", "padding"],
+  "usage": {
+    "input_tokens": 23,
+    "output_tokens": 299,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "VERB.mod.obligacio",
+        "ca": "cal que"
+      },
+      {
+        "id": "PRON.fort.subjecte",
+        "ca": "jo"
+      },
+      {
+        "id": "VERB.subj.present",
+        "ca": "marxi"
+      },
+      {
+        "id": "ADV.temps.dixi",
+        "ca": "demà"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "L'obligation se rend par « cal que » suivi du subjonctif, et non par « haver de » comme en français. Le sujet « je » s'exprime par le pronom jo, qui reste facultatif.\n\nLe verbe marxar se conjugue à la première personne du subjonctif en -i : marxi. L'adverbe demà vient généralement en fin de proposition.",
+    "answer_ca": "cal que marxi demà",
+    "answer_fr": "il faut que je parte demain",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "fr_to_ca",
+    "passesGate": false,
+    "expectedUnverified": ["jo"],
+    "requiredComponents": ["VERB.subj.present", "ADV.temps.dixi"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "jo is keyed and is absent from answer_ca. The gate catches it.",
+      "The claim that obligation is not expressed by haver de is wrong about Catalan and wrong about French: haver de is the ca form of the very leaf cited, VERB.mod.obligacio."
+    ],
+    "soundOutput": "answer_ca is correct."
+  }
+}

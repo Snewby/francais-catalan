@@ -24,7 +24,7 @@ is worse than none, because it still reads as authoritative.
 | 6b. Pronunciation                     | done        | ADAPT    | this pass                       |
 | 6c. The symmetric answer              | done        | ADAPT    | this pass                       |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
-| 8. Golden set and offline evaluation  | not started | ADAPT    |                                 |
+| 8. Golden set and offline evaluation  | done        | ADAPT    | this pass                       |
 | 9. Practice exercises                 | not started | ADAPT    |                                 |
 | Outside review of the application     | done        | ADAPT    | this pass                       |
 
@@ -1342,6 +1342,37 @@ last, and no respelling. Four things in it matter later:
   could have caught it, and the string was checked in the query view, where it
   does not appear. **Check the view that renders the string, not the view you
   are working in.**
+
+Phase 8 then closed, and it cost far less than it would have this morning
+because the material already existed. The ten replies captured for the review's
+benchmark were produced by **exactly the prompt that is live now**, and every
+defect in them had already been argued in `data/sources.md`, which is the
+human-checked expectation the phase demands. Five things in it matter later:
+
+- **`/eval` now points at something.** `.claude/commands/eval.md` and the
+  `prompt-eval` agent had named fixtures in `test/fixtures/` since phase 0 and
+  there were none, so the command looked like it worked and silently did not.
+  **A command file is a promise and nothing was checking it.** Worth a sweep for
+  others.
+- **The baseline is committed and the test asserts against it.** Replaying fixed
+  recordings through fixed code gives a fixed answer, so a change in the result
+  is a change in the CODE: a taxonomy rename putting an ID out of vocabulary, a
+  schema change, a gate change. That makes it a failing test naming the case,
+  and updating the baseline a deliberate act with a diff to review. It is the
+  only thing standing between a golden set and the temptation the command file
+  warns about.
+- **Nine of ten pass, and the tenth is a recorded defect rather than a bug.**
+  `03-vull-que-vens` fails on direction, because the model read a Catalan
+  question as French. It stays failing until that stops being true. **A standing
+  failure is the golden set working**, and the report separates them from
+  regressions for exactly that reason.
+- **The prose is never asserted.** Whether an explanation is true is not
+  decidable by a script and each fixture carries a reader's verdict as data
+  instead. What is asserted is structural: schema, vocabulary, direction, the
+  gate, the required components, the pair being two different non-empty strings.
+- **The gate now has an end-to-end test on real replies.** Four of the ten are
+  rejected by it, and the fixtures name the exact forms, so `src/text/realised.ts`
+  is covered by recordings rather than only by cases written to suit it.
 
 ## Carried over into later phases
 

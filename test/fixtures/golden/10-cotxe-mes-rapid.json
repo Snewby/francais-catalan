@@ -1,0 +1,62 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "10-cotxe-mes-rapid",
+  "question": "je voudrais dire que la voiture de mon frère est plus rapide que la mienne",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["padding", "comparative"],
+  "usage": {
+    "input_tokens": 29,
+    "output_tokens": 364,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "DET.poss.forma_paradigma",
+        "ca": "del meu germà"
+      },
+      {
+        "id": "NOM.comp.verb_nom",
+        "ca": "cotxe"
+      },
+      {
+        "id": "CONJ.comparativa.igualtat_desigualtat",
+        "ca": "més ... que"
+      },
+      {
+        "id": "ADV.grau.mes_menys",
+        "ca": "més"
+      },
+      {
+        "id": "NOM.adj.four_form",
+        "ca": "ràpida"
+      },
+      {
+        "id": "PRON.ellipsi_nominal",
+        "ca": "la meva"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "Le catalan construit la comparativité par « més ... que ». L'adjectif s'accorde avec le nom féminin cotxe. Le possessif tonique « la meva » reprend seul le groupe nominal déjà évoqué, une ellipse nominale régulière en catalan.\n\nLe possessif de troisième personne « del meu germà » exige l'article défini « del », contraction obligatoire de « de » et « el ».",
+    "answer_ca": "el cotxe del meu germà és més ràpid que el meu",
+    "answer_fr": "la voiture de mon frère est plus rapide que la mienne",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "fr_to_ca",
+    "passesGate": false,
+    "expectedUnverified": ["ràpida", "la meva"],
+    "requiredComponents": ["ADV.grau.mes_menys", "PRON.ellipsi_nominal"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "The decomposition describes the French sentence: ràpida and la meva are absent from the Catalan produced, which has ràpid and el meu. The gate catches both.",
+      "cotxe is called feminine; it is masculine, and the prose then writes the ungrammatical la cotxe meva.",
+      "del meu germà is called a third-person possessive; meu is first person.",
+      "NOM.comp.verb_nom is the verb-plus-noun compounding leaf (gratacels) and has nothing to do with cotxe."
+    ],
+    "soundOutput": "answer_ca is correct Catalan."
+  }
+}

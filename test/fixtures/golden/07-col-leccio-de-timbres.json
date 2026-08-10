@@ -1,0 +1,57 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "07-col-leccio-de-timbres",
+  "question": "comment dit-on « j'ai une collection de timbres » ?",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["padding", "orthography"],
+  "usage": {
+    "input_tokens": 24,
+    "output_tokens": 356,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "ART.indef.omissio_negacio",
+        "ca": "una col·lecció"
+      },
+      {
+        "id": "NOM.gender.masc_fem_o",
+        "ca": "col·lecció"
+      },
+      {
+        "id": "NOM.number.a_es",
+        "ca": "timbres"
+      },
+      {
+        "id": "VERB.perf.present",
+        "ca": "he"
+      },
+      {
+        "id": "VERB.no_finit.participi",
+        "ca": "tingut"
+      }
+    ],
+    "direction": "fr_to_ca",
+    "answer": "En catalan, on dit « tinc una col·lecció de timbres ». Le verbe « tenir » sert à la possession courante. On réserve le passé composé avec « haver » et le participe « tingut » aux changements d'état.\n\nLe groupe nominal suit l'ordre normal : article indéfini, nom au féminin, complément introduit par « de » au pluriel. L'article indéfini « una » ne s'efface que sous la négation (« no tinc col·lecció »), pas en affirmation simple.",
+    "answer_ca": "tinc una col·lecció de timbres",
+    "answer_fr": "j'ai une collection de timbres",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "fr_to_ca",
+    "passesGate": false,
+    "expectedUnverified": ["he", "tingut"],
+    "requiredComponents": [],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "he and tingut are keyed although the reply itself rejected them and neither appears in the utterance. The gate catches both.",
+      "ART.indef.omissio_negacio is the omission-under-negation leaf, and the article is present; the reply then discusses a negation that is not in the sentence.",
+      "NOM.number.a_es is applied to timbres, whose plural is regular -s."
+    ],
+    "soundOutput": "answer_ca is correct Catalan and carries the interpunct in col·lecció."
+  }
+}

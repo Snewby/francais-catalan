@@ -1,0 +1,44 @@
+{
+  "$comment": "Recorded reply plus a human-checked expectation. The expectation is the part a machine cannot produce; see data/sources.md for the argument behind each defect. Do not edit a recording to make the eval pass.",
+  "slug": "02-ahir-vaig-comprar-pa",
+  "question": "Ahir vaig comprar pa",
+  "recordedAt": "2026-08-10",
+  "model": "claude-haiku-4-5-20251001",
+  "risk": ["passat-perifrastic", "padding"],
+  "usage": {
+    "input_tokens": 16,
+    "output_tokens": 311,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18273
+  },
+  "response": {
+    "decomposition": [
+      {
+        "id": "VERB.ind.passat_perifrastic",
+        "ca": "vaig comprar"
+      },
+      {
+        "id": "NOM.number.a_es",
+        "ca": "pa"
+      }
+    ],
+    "direction": "ca_to_fr",
+    "answer": "Vous avez soumis une phrase catalane correcte.\n\nLa construction du passé périphrastique combine le verbe « anar » au présent (« vaig ») avec l'infinitif du verbe principal (« comprar »). C'est la forme courante du passé en catalan parlé, réservée à l'écrit soutenu pour le passé simple.\n\nLe nom « pa » est un singulier invariable, dont le pluriel est « pans ». L'article est omis ici, car le catalan n'emploie pas d'article partitif : le français dit « j'ai acheté du pain », mais le catalan dit littéralement « j'ai acheté pain ».",
+    "answer_ca": "Ahir vaig comprar pa.",
+    "answer_fr": "Hier j'ai acheté du pain.",
+    "answer_lang": "fr"
+  },
+  "expect": {
+    "direction": "ca_to_fr",
+    "passesGate": true,
+    "requiredComponents": ["VERB.ind.passat_perifrastic"],
+    "verdict": "defective",
+    "establishedBy": "outside-review",
+    "defects": [
+      "NOM.number.a_es (casa / cases) is applied to pa, whose plural is pans and which realises no plural here. Padding.",
+      "The prose calls pa a singulier invariable and then gives its plural, which is self-contradictory.",
+      "ART.indef.sense_partitiu is the leaf the partitive discussion belongs to and is absent."
+    ],
+    "improvedOn": "The periphrastic past is no longer called a passé récent, and the partitive is correctly named a partitive."
+  }
+}
