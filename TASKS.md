@@ -16,6 +16,7 @@ is worse than none, because it still reads as authoritative.
 | 2b. Gloss and contrast authoring      | done        | ADAPT    | all twelve, see table below     |
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
 | Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
+| Signalled replies (sampling frame)    | done        | n/a      | this pass                       |
 | 4. API client and prompt caching      | done        | ADAPT    | this pass                       |
 | 5. Persistence, FSRS, Elo             | done        | ADAPT    | this pass                       |
 | 5b. Review loop                       | done        | ADAPT    | this pass                       |
@@ -119,11 +120,13 @@ Three things follow, and they are why the architecture is shaped as it is.
   printed under the answer, so a misread is on screen rather than silently
   shaping the reply; a dropped analysis says so; the cache reading is shown.
   **Visible beats silent when correct is unavailable.**
-- **What is missing is a way for the learner to flag a suspect reply**, since
-  replies will not keep being pasted into a review chat. A one-tap "signal" that
-  stores the query for later inspection would turn ordinary use into the sampling
-  frame an outside review needs. It is small, it is not built, and it is the
-  cheapest remaining thing that would improve tier 3.
+- **The learner can now flag a suspect reply, which is how tier 3 gets its
+  sample.** A control in the query view files the reply whole into its own
+  store, and the Données view exports the collection as a markdown pack ready
+  for an outside reader. **Signalling emits no evidence**, because a judgement
+  about the model is not a fact about the learner. Ordinary use is now the
+  sampling frame; the first six reviews depended on replies copied out of the
+  network tab by hand.
 
 ## Seeding, per domain
 
@@ -1288,6 +1291,34 @@ what failed. Three things in it matter beyond this pass:
   fault and then gave `vingis` for `vinguis`. That is a card teaching a form the
   norm rejects, in the one place the learner is told to pay attention, and it is
   the strongest argument the build has yet produced for phase 8.
+
+The signal button then landed, unnumbered and before 6b, because it changes what
+phase 8 has to work with. A control in the query view files the current reply as
+suspect; `src/text/signal-pack.ts` renders the collection as a markdown pack for
+an outside reader, and the Données view saves it. Four things in it matter later:
+
+- **Signalling emits no evidence at all.** No exposure, no mastery, no rating.
+  The learner is telling us about the model, not about themselves, and a signal
+  recorded as a bad outcome would put their opinion of a French paragraph into a
+  skill map. Asserted against a database in `test/signals.test.ts`, not stated
+  in prose.
+- **Dexie is at version 3 and the snapshot format at 2, with 1 still readable.**
+  A new store needs a version where phase 6c's new fields did not, because a
+  Dexie version declares indexes rather than fields. A version 1 snapshot is
+  accepted as carrying no signals, which is true of every build that could write
+  one. **`READABLE_SNAPSHOT_VERSIONS` is now the list to extend**, not
+  `SNAPSHOT_VERSION` alone.
+- **The pack files no verdict of its own, and that is tested.** A pack that says
+  which replies we think are wrong gets agreement back; every finding of value
+  across six reviews came from a reader forming its own view. It sends each
+  component's authored gloss beside the form it was attached to, so the reader
+  can judge the application of the vocabulary without being sent the vocabulary
+  and reviewing that instead, which is the `gérondif` false positive avoided by
+  construction.
+- **This is a sampling frame, not a check.** A signal is a judgement by someone
+  still learning the language, so it finds what the learner noticed and nothing
+  else. Outside review remains the answer; what changed is that the replies it
+  reads now come from real use.
 
 ## Carried over into later phases
 

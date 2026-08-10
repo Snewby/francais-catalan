@@ -18,6 +18,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { TrainerDatabase } from '../src/db/dexie';
+import type { signalReply } from '../src/db/persist';
 import { readComponentState } from '../src/db/read';
 import { LEAVES, type LeafNode } from '../src/taxonomy';
 import { fr } from '../src/i18n/fr';
@@ -388,6 +389,39 @@ describe('the query view types its own evidence', () => {
     // The translation is not what failed and is still on screen.
     const lines = [...host.querySelectorAll('.ac-utterance')].map((n) => n.textContent);
     expect(lines).toEqual([leaf.ca, FRENCH_UTTERANCE]);
+  });
+
+  it('files a signal with the whole reply, and grades nobody for it', async () => {
+    const filed: Parameters<typeof signalReply>[0][] = [];
+    const host = document.createElement('div');
+    document.body.replaceChildren(host);
+    localStorage.setItem('anthropic-api-key', 'test-key');
+    const leaf = subject();
+    mountQueryView(host, {
+      call: () => Promise.resolve(replyWith(leaf)),
+      signal: (request) => {
+        filed.push(request);
+        return Promise.resolve(1);
+      },
+    });
+    await ask(host, { question: leaf.ca });
+
+    const button = host.querySelector<HTMLButtonElement>('.ac-signal button');
+    expect(button?.textContent).toBe(fr.query.signal);
+    button?.click();
+    await until(() => filed.length === 1, 'the signal to be filed');
+
+    expect(filed[0]?.question).toBe(leaf.ca);
+    expect(filed[0]?.decomposition.answer_ca).toBe(leaf.ca);
+    expect(filed[0]?.decomposition.answer_fr).toBe(FRENCH_UTTERANCE);
+
+    // Signalling is a judgement about the model, so the only write it may cause
+    // is the signal itself. That it emits no evidence is asserted directly
+    // against a database in test/signals.test.ts; what this checks is that the
+    // view routes the press there and nowhere else.
+    expect(filed).toHaveLength(1);
+    expect(host.querySelector('[data-signalled]')).not.toBeNull();
+    expect(host.textContent).toContain(fr.query.signalled);
   });
 
   it('reports what the prompt cache did, which nothing else can', async () => {

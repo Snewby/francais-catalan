@@ -129,6 +129,16 @@ export const fr = {
     attemptCorrect:
       'Votre version diffère de la réponse, mais elle contient toutes les formes attendues.',
     attemptIncomplete: `Formes attendues qui manquent${NNBSP}:`,
+    // The signal is about the model, never about the learner. The copy says so
+    // in as many words, because a button next to an answer looks like a grade
+    // and a learner who thinks it counts against them will not press it.
+    signal: 'Signaler cette réponse',
+    signalHint:
+      'Si quelque chose vous paraît faux, signalez-le. Cela ne change rien à votre ' +
+      `progression et ne vous est jamais compté${NNBSP}: la réponse est mise de ` +
+      'côté pour être relue.',
+    signalled: 'Réponse signalée. Elle sera relue.',
+    signalFailed: 'La réponse n’a pas pu être signalée.',
     recordedLookup: 'Consultation enregistrée.',
     recordedRecall: 'Tentative enregistrée.',
     emptyQuestion: 'Saisissez une question avant de lancer l’analyse.',
@@ -202,6 +212,10 @@ export const fr = {
     exportButton: 'Exporter mes données',
     exportHint:
       'Un fichier JSON reprenant vos rencontres, vos révisions et vos classements.',
+    signalsButton: 'Exporter les réponses signalées',
+    signalsHint:
+      'Un fichier à relire, ou à confier à un lecteur extérieur. Les réponses que vous avez signalées, avec la glose rédigée de chaque point de grammaire cité.',
+    signalsEmpty: 'Aucune réponse signalée pour l’instant.',
     importButton: 'Importer un fichier',
     importHint: 'L’import remplace entièrement les données de ce navigateur.',
     imported: 'Import terminé.',

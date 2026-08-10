@@ -77,6 +77,41 @@ export interface QueryLog {
 }
 
 /**
+ * A reply the learner marked as suspect.
+ *
+ * SEPARATE FROM `queries` ON PURPOSE. A query row says what the learner did and
+ * exists to schedule them; this says the model looked wrong and exists to be
+ * read by a human later. Different subject, different lifetime, different
+ * reader.
+ *
+ * It holds the whole reply rather than a reference to one, because `queries`
+ * stores a projection: component IDs, not the explanation, and not the Catalan
+ * forms the reply attached to them. Without those a signal names a problem
+ * nobody can look at. Only signalled replies are stored this way, so ordinary
+ * use does not accumulate every French paragraph the model has ever written.
+ *
+ * SIGNALLING IS NOT EVIDENCE. It moves no exposure, no mastery and no rating;
+ * see src/srs/evidence.ts for what may. A learner who thinks an answer is wrong
+ * has told us about the model, not about themselves.
+ */
+export interface SignalledReply {
+  id?: number;
+  signalledAt: number;
+  /** The query row this reply was logged as, when it was logged at all. */
+  queryId?: number;
+  question: string;
+  direction: Direction;
+  /** The French explanation, verbatim. */
+  answer: string;
+  answerCa: string;
+  answerFr: string;
+  /** The decomposition as the reply gave it: the ID and the realising form. */
+  components: { id: string; ca: string }[];
+  /** Forms the client could not anchor in `answerCa`. Empty on a clean reply. */
+  unverified: string[];
+}
+
+/**
  * The learner's own Elo rating, the other side of every component's.
  *
  * A single row rather than a scalar in localStorage, so that it lives in the
@@ -96,6 +131,7 @@ export class TrainerDatabase extends Dexie {
   mastery!: EntityTable<ComponentMastery, 'componentId'>;
   queries!: EntityTable<QueryLog, 'id'>;
   learner!: EntityTable<Learner, 'id'>;
+  signals!: EntityTable<SignalledReply, 'id'>;
 
   constructor(name = 'francais-catalan') {
     super(name);
@@ -110,6 +146,15 @@ export class TrainerDatabase extends Dexie {
       mastery: '&componentId, elo, lastReviewed, exposureCount, gradedReviewCount, due',
       queries: '++id, askedAt, intent, evidence',
       learner: '&id',
+    });
+    // Version 3 adds signalled replies. A new store needs a version; the fields
+    // added to `queries` in phase 6c did not, because a Dexie version declares
+    // indexes rather than fields.
+    this.version(3).stores({
+      mastery: '&componentId, elo, lastReviewed, exposureCount, gradedReviewCount, due',
+      queries: '++id, askedAt, intent, evidence',
+      learner: '&id',
+      signals: '++id, signalledAt',
     });
   }
 }

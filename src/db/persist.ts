@@ -14,7 +14,7 @@ import type { QueryLog as DecomposedQuery } from '../api/anthropic';
 import { leafById } from '../taxonomy';
 import { applyEvidence, type ComponentState } from '../srs/apply';
 import {
-  SNAPSHOT_VERSION,
+  READABLE_SNAPSHOT_VERSIONS,
   UnknownComponentError,
   readComponentState,
   readLearnerElo,
@@ -144,6 +144,50 @@ export async function recordQuery(
   );
 }
 
+export interface SignalRequest {
+  readonly question: string;
+  readonly decomposition: DecomposedQuery;
+  /** Forms the client could not anchor in the utterance; see src/text/realised.ts. */
+  readonly unverified?: readonly string[];
+  /** The row `recordQuery` wrote for this reply, when there was one. */
+  readonly queryId?: number;
+}
+
+/**
+ * Files a reply as suspect, and does nothing else.
+ *
+ * NO EVIDENCE IS EMITTED HERE, and that is the whole design of it. Signalling
+ * is a judgement about the model, so it must not move exposure, mastery or any
+ * rating; a learner who marks an answer wrong has told us nothing about what
+ * they know. The alternative, treating a signal as a negative outcome, would
+ * put the learner's opinion of an explanation into a skill map, which is the
+ * failure the exposure/mastery split exists to prevent.
+ *
+ * The reply is stored whole. `queries` keeps a projection built for scheduling,
+ * with component IDs but no explanation and no realising forms, and a signal
+ * that names a problem nobody can then look at is not worth writing.
+ */
+export async function signalReply(
+  request: SignalRequest,
+  database: TrainerDatabase = defaultDatabase,
+  now: number = Date.now(),
+): Promise<number> {
+  const reply = request.decomposition;
+  // Cast as `recordQuery` casts, for the same reason: the key is
+  // auto-incremented, so Dexie types it as optional on the way in.
+  return (await database.signals.add({
+    signalledAt: now,
+    ...(request.queryId === undefined ? {} : { queryId: request.queryId }),
+    question: request.question,
+    direction: reply.direction,
+    answer: reply.answer,
+    answerCa: reply.answer_ca,
+    answerFr: reply.answer_fr ?? '',
+    components: reply.decomposition.map((entry) => ({ id: entry.id, ca: entry.ca })),
+    unverified: [...(request.unverified ?? [])],
+  })) as number;
+}
+
 export class SnapshotError extends Error {
   constructor(message: string) {
     super(message);
@@ -163,9 +207,10 @@ export async function importSnapshot(
   snapshot: Snapshot,
   database: TrainerDatabase = defaultDatabase,
 ): Promise<void> {
-  if (snapshot.version !== SNAPSHOT_VERSION) {
+  if (!READABLE_SNAPSHOT_VERSIONS.includes(snapshot.version)) {
     throw new SnapshotError(
-      `Snapshot format ${String(snapshot.version)} is not ${String(SNAPSHOT_VERSION)}.`,
+      `Snapshot format ${String(snapshot.version)} is not one of ` +
+        `${READABLE_SNAPSHOT_VERSIONS.join(', ')}.`,
     );
   }
   for (const row of snapshot.mastery) {
@@ -185,12 +230,18 @@ export async function importSnapshot(
     database.mastery,
     database.queries,
     database.learner,
+    database.signals,
     async () => {
       await database.mastery.clear();
       await database.queries.clear();
       await database.learner.clear();
+      // Cleared even when the file carries none, because the import replaces
+      // rather than merges and a version 1 file means "no signals", not "keep
+      // the ones already here".
+      await database.signals.clear();
       await database.mastery.bulkPut([...snapshot.mastery]);
       await database.queries.bulkPut([...snapshot.queries]);
+      await database.signals.bulkPut([...(snapshot.signals ?? [])]);
       await database.learner.put({ id: LEARNER_ID, elo: snapshot.learnerElo });
     },
   );

@@ -3628,3 +3628,71 @@ would reject a correct entry. The prompt already demands the form as realised in
 this énoncé, and the phase 4 fixture shows the model doing that. If it ever
 bites, the cost is one dropped analysis and no wrong data, which is the right
 direction to fail in.
+
+## The signal button, and why sampling was the bottleneck
+
+Six outside reviews have found every false claim about French this project
+knows about, and internal review has found none. The limit on running a seventh
+was never the reviewer: **a review can only look at replies somebody kept**, and
+keeping one meant copying it out of the browser's network tab by hand. Both
+review packs so far were assembled that way, and the ten replies that produced
+the runtime gate were questions an agent invented rather than questions the
+learner wanted answered.
+
+A control in the query view now files the current reply as suspect. Four
+decisions in it are worth knowing.
+
+- **Signalling emits no evidence, and that is the whole design.** It moves no
+  exposure, no mastery and no rating. A learner who marks an answer wrong has
+  told us about the model, not about what they know, and recording it as a bad
+  outcome would put their opinion of a French paragraph into a skill map. That
+  is the failure the exposure/mastery split exists to prevent, arriving by a new
+  route. `test/signals.test.ts` asserts it against a real database rather than
+  in prose.
+- **The reply is stored whole, in its own store.** `queries` keeps a projection
+  built for scheduling: component IDs, no explanation, and none of the Catalan
+  forms the reply attached to them. A signal pointing at a row like that names a
+  problem nobody can then look at. `signals` is a separate store because it has
+  a different subject (the model, not the learner) and a different reader, and
+  only signalled replies are stored this way, so ordinary use does not
+  accumulate every French paragraph the model has ever written.
+- **Dexie is at version 3, and the contrast with phase 6c is the useful part.**
+  Adding `answerCa` and `answerFr` to `queries` needed no version because a
+  Dexie version declares indexes rather than fields. A new store does. The
+  migration was exercised against a database carrying real rows from earlier
+  sessions rather than against a fresh one.
+- **The snapshot format is at 2, and 1 is still readable.** `READABLE_SNAPSHOT_VERSIONS`
+  accepts both, and a version 1 file is taken to carry no signals. That is a
+  statement about the format rather than a guess: no build that could write a
+  version 1 file had anywhere to put a signal. Refusing it would have thrown
+  away exports the learner already holds; reusing the number would have left two
+  shapes both claiming to be version 1, which is the drift a version field
+  exists to prevent.
+
+### The pack writes itself now
+
+`src/text/signal-pack.ts` renders the signalled replies as markdown ready to
+paste into a chat with an outside reader, and the Données view saves it. The
+shape follows the pack assembled by hand for the application review, because
+that one worked: the question, the reply whole, and **each component's authored
+gloss beside the form it was attached to**, so the reader can judge whether the
+model applied the vocabulary correctly without being sent the vocabulary and
+reviewing that instead.
+
+Two properties of it are tested rather than intended. It **files no verdict of
+its own**: a pack that says which replies we think are wrong gets agreement
+back, and every finding of value across six reviews came from a reader forming
+its own view. And it carries the same instruction to ignore typography that
+every pack has carried, for the same reason, with the same caveat that a finding
+depending on an accent must say so.
+
+The output is French. The repository-language rule governs code, tests and
+documentation; this is a document generated for a French-speaking reader about
+French and Catalan, and English section headings in it would be a translation
+task for whoever reads it.
+
+**What this does not fix** is that a signal is still a judgement by someone
+learning the language. The learner cannot see the errors the taxonomy reviews
+caught, which is why outside review remains the answer and this is only its
+sampling frame. What it changes is that the frame is now ordinary use rather
+than a session spent inventing questions.

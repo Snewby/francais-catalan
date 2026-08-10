@@ -21,6 +21,7 @@ import {
   db as defaultDatabase,
   type ComponentMastery,
   type QueryLog,
+  type SignalledReply,
   type TrainerDatabase,
 } from './dexie';
 
@@ -104,7 +105,18 @@ export async function readAllComponentStates(
  * `version` is the snapshot format, not the Dexie schema version: an export
  * that cannot say which shape it is in can only be imported by guessing.
  */
-export const SNAPSHOT_VERSION = 1;
+export const SNAPSHOT_VERSION = 2;
+
+/**
+ * Snapshot formats this build can read.
+ *
+ * Version 1 predates signalled replies and is accepted as carrying none, which
+ * is a statement about that format rather than a guess: no build that wrote a
+ * version 1 file had anywhere to put a signal. Refusing it would have thrown
+ * away exports the learner already holds, and silently reusing the number would
+ * have left two different shapes both claiming to be version 1.
+ */
+export const READABLE_SNAPSHOT_VERSIONS: readonly number[] = [1, 2];
 
 export interface Snapshot {
   readonly version: number;
@@ -112,6 +124,8 @@ export interface Snapshot {
   readonly learnerElo: number;
   readonly mastery: readonly ComponentMastery[];
   readonly queries: readonly QueryLog[];
+  /** Absent in a version 1 file. */
+  readonly signals?: readonly SignalledReply[];
 }
 
 export async function exportSnapshot(
@@ -124,5 +138,13 @@ export async function exportSnapshot(
     learnerElo: await readLearnerElo(database),
     mastery: await database.mastery.orderBy('componentId').toArray(),
     queries: await database.queries.orderBy('askedAt').toArray(),
+    signals: await database.signals.orderBy('signalledAt').toArray(),
   };
+}
+
+/** Every signalled reply, oldest first. Read-only, like everything here. */
+export async function readSignalledReplies(
+  database: TrainerDatabase = defaultDatabase,
+): Promise<SignalledReply[]> {
+  return database.signals.orderBy('signalledAt').toArray();
 }

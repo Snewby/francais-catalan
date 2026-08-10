@@ -18,14 +18,18 @@
  */
 import { fr, labelled } from '../i18n/fr';
 import { callHaiku, readApiKey, type CallResult } from '../api/anthropic';
-import { recordQuery } from '../db/persist';
+import { recordQuery, signalReply } from '../db/persist';
 import { compareAttempt, type AttemptResult } from '../text/attempt';
 import { leafById } from '../taxonomy';
+
+type SignalReply = typeof signalReply;
 
 export interface QueryViewOptions {
   readonly storage?: Storage;
   /** Injectable so a test drives the view without a key or a network. */
   readonly call?: typeof callHaiku;
+  /** Injectable for the same reason, and so a test can assert what was filed. */
+  readonly signal?: SignalReply;
   /** Called after a query is written, so the coverage map can be refreshed. */
   readonly onRecorded?: () => void;
 }
@@ -60,6 +64,7 @@ export function mountQueryView(
 ): void {
   const storage = options.storage ?? localStorage;
   const call = options.call ?? callHaiku;
+  const signal = options.signal ?? signalReply;
 
   let busy = false;
 
@@ -323,7 +328,63 @@ export function mountQueryView(
     return [heading, renderComponents(result)];
   }
 
-  function renderResult(result: CallResult, outcome: AttemptResult | null): void {
+  /**
+   * The signal control, which is not a grade.
+   *
+   * It writes to its own store and emits no evidence at all: a learner who
+   * thinks an explanation is wrong has told us about the model, not about what
+   * they know. Recording it as a bad outcome would put their opinion of a
+   * paragraph into a skill map, which is the failure the exposure/mastery split
+   * exists to prevent.
+   *
+   * It exists because a review can only look at replies somebody kept, and the
+   * six reviews so far depended on replies copied out of the network tab by
+   * hand. This is the sampling frame ordinary use can produce.
+   */
+  function renderSignal(result: CallResult, queryId: number | null): HTMLElement {
+    const block = document.createElement('div');
+    block.className = 'ac-signal';
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'ac-button ac-button--quiet';
+    button.textContent = fr.query.signal;
+
+    const hint = document.createElement('p');
+    hint.className = 'ac-hint';
+    hint.textContent = fr.query.signalHint;
+
+    const outcome = document.createElement('p');
+    outcome.className = 'ac-status';
+
+    button.addEventListener('click', () => {
+      void (async () => {
+        button.disabled = true;
+        try {
+          await signal({
+            question: question.value.trim(),
+            decomposition: result.queryLog,
+            unverified: result.unverified,
+            ...(queryId === null ? {} : { queryId }),
+          });
+          block.dataset['signalled'] = 'true';
+          outcome.textContent = fr.query.signalled;
+        } catch {
+          button.disabled = false;
+          outcome.textContent = fr.query.signalFailed;
+        }
+      })();
+    });
+
+    block.append(button, hint, outcome);
+    return block;
+  }
+
+  function renderResult(
+    result: CallResult,
+    outcome: AttemptResult | null,
+    queryId: number | null,
+  ): void {
     const answerHeading = document.createElement('h3');
     answerHeading.className = 'ac-subheading';
     answerHeading.textContent = fr.query.answerHeading;
@@ -334,6 +395,7 @@ export function mountQueryView(
       answerHeading,
       renderAnswer(result),
       ...renderComponentSection(result),
+      renderSignal(result, queryId),
       renderUsage(result),
     );
   }
@@ -377,13 +439,13 @@ export function mountQueryView(
         ? compareAttempt(typed, result.decomposition.answer_ca, referenceForms(result))
         : null;
 
-      await recordQuery(
+      const recorded = await recordQuery(
         outcome === null
           ? { queryLog: result.queryLog }
           : { queryLog: result.queryLog, correct: outcome.correct },
       );
 
-      renderResult(result, outcome);
+      renderResult(result, outcome, recorded.queryId);
       status.textContent = attempted
         ? fr.query.recordedRecall
         : fr.query.recordedLookup;
