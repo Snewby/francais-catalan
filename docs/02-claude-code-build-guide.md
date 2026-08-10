@@ -500,6 +500,88 @@ outcome for a contrastive tool.
 ```
 Browser support was checked rather than assumed, in August 2026. Catalan `ca-ES` voices exist on every major platform: Microsoft Herena on Windows; Montse, Jordi and Pau on macOS and iOS; a Google network voice on Android and Chrome OS; and two Microsoft Online Natural voices at higher quality. **None of them is present by default**, and every one needs an OS-level language or speech pack the app cannot install. A spot check of one Windows runtime found nine voices, none Catalan and none even Spanish. Treat audio as a bonus that is usually absent, and design the text output to stand alone.
 
+**Phase 6c - The symmetric answer. [ADAPT]** Small, and it closes the mirror of the gap phase 6 shipped. `answer_ca` was added when the reply turned out to hold no Catalan sentence; the French side has the same problem in reverse, because `answer` is an explanation and the meaning of the énoncé is buried inside it. Both directions should show the sentence in both languages, with the explanation underneath.
+```
+Add answer_fr to DECOMPOSITION_SCHEMA beside answer_ca, in
+scripts/gen-schema.ts, then regenerate. It holds the French rendering of the
+same utterance, one line, no commentary. `answer` stays what it is: the
+explanation of the structure and the grammar, not the translation.
+
+The query view then shows the pair whichever way the question ran: the Catalan
+line and the French line together, then the explanation, then the grammar
+points. Neither line is buried in prose.
+
+A second reason to do this before exercises: every logged query then carries a
+matched fr/ca pair, in the learner's own vocabulary, about something they
+actually wanted to say. The authored taxonomy holds no translation of any
+example, which is why a review card is rule-recall rather than translation.
+This accumulates the translation material that gap describes, without inventing
+any content. Store both fields on the query row so the corpus survives.
+
+Update the fixture, the client test and TASKS.md in the same commit.
+```
+
+**Phase 8 - Golden set and offline evaluation. [ADAPT] Do this before generated exercises.** `.claude/commands/eval.md` and the `prompt-eval` agent both point at fixtures in `test/fixtures/` that do not exist, so `/eval` is a command that looks like it works and silently does not. Nothing currently measures whether a prompt change makes the answers better or worse.
+```
+Build the golden set the eval command already assumes. Recorded real replies
+as fixtures, one file per case, replayed through callHaiku with an injected
+fetchFn so the eval is offline and free.
+
+Cover both directions, several domains, and at least one case per contrast
+status. Assert what can be asserted mechanically: every component ID is in the
+closed vocabulary, the decomposition is not empty, answer_ca is Catalan and
+non-empty, the direction matches the question's language, the schema validates.
+Then a human-checked expectation per case, kept in the fixture rather than in
+the test, so a regression names the case rather than a line number.
+
+Report per case and compare against the previous run, which is what the
+prompt-eval agent's contract already promises.
+
+THE MODEL'S CATALAN HAS NEVER BEEN CHECKED BY ANYONE. Five outside reviews of
+the AUTHORED data found nine false claims about French; the generated answers
+have had no review at all. Recording a reply as a fixture is not the same as
+verifying it, so mark each case with how its expectation was established.
+```
+
+**Phase 9 - Practice exercises. [ADAPT] Not before phase 8.** The four decisions this needs are recorded under "Carried over" in `TASKS.md` and are not optional reading. The most dangerous one: an auto-marked exercise is `recall`, never `graded`, or generated content advances FSRS and the heatmap still looks plausible.
+```
+Read the "Rich exercise generation" entry in TASKS.md before any code, and
+record the four decisions it names.
+
+Build practice on the fr/ca pairs phase 6c accumulates from the learner's own
+queries, rather than on invented sentences. A pair is already a translation
+item in both directions, it is already about something they wanted to say, and
+it needs no new expected-answer to be wrong.
+
+An auto-marked attempt is recall, never graded. One component per grade still
+holds. Persist generated items rather than regenerating them, so an item the
+learner is graded against does not silently change between repetitions.
+```
+
+**Outside review of the live application. [ADAPT] The practice the taxonomy already uses, pointed at the app.** Twelve domains were reviewed this way across five outside chats, and every false claim about French this project has ever found was found there. Self-review has never caught one. The application's French copy, its system prompt and its generated answers have had no equivalent pass.
+```
+Assemble a review pack for an outside chat with web research and send it whole,
+not in pieces: scoping a review to part of the material produces false
+positives, which is recorded in TASKS.md under the CONJ/ADV/SYN review.
+
+Include: every string in src/i18n/fr.ts; the full system prompt from
+src/api/prompt.ts as it renders; the phase 6 design decisions from
+data/sources.md; and real replies the user pastes in, which is the only part an
+agent cannot produce, because the API key is theirs.
+
+Ask for: French that is wrong or unidiomatic, grammatical terminology used
+loosely, register that does not match a learner tool, a prompt that asks for
+something it will not get, and any Catalan in a real reply that is wrong.
+
+The output contract that tells reviewers to ignore typography stays, because
+hand-typed narrow no-break spaces corrupt in transit. A finding about accents
+or apostrophes from a review that strips them must be checked against the data
+before it is believed; that has produced a false positive once already.
+
+Apply what holds, decline what does not with the argument written down, and
+grade each claim by how it was established.
+```
+
 **Phase 7 - Vite + GitHub Pages deploy. [DONE, except one manual step]** Built in Phase 0 (`1c4cc7d`), pulled forward because the workflow was cheap to add early.
 
 Already in place: `base: '/francais-catalan/'` in `vite.config.ts`, `public/.nojekyll`, `<html lang="fr">`, and `.github/workflows/deploy.yml` using configure-pages, upload-pages-artifact (`./dist`) and deploy-pages, with `contents:read pages:write id-token:write` and a `concurrency: group: pages` block.

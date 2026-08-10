@@ -21,7 +21,11 @@ is worse than none, because it still reads as authoritative.
 | 5b. Review loop                       | done        | ADAPT    | this pass                       |
 | 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
 | 6b. Pronunciation                     | not started | ADAPT    |                                 |
+| 6c. The symmetric answer              | not started | ADAPT    |                                 |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
+| 8. Golden set and offline evaluation  | not started | ADAPT    |                                 |
+| 9. Practice exercises                 | not started | ADAPT    |                                 |
+| Outside review of the application     | not started | ADAPT    |                                 |
 
 **Prompt** says how to use that phase's prompt in
 `docs/02-claude-code-build-guide.md` section 3. `VERBATIM` means every fact in
@@ -29,6 +33,44 @@ it has been checked against the repo and it can be pasted as-is. `ADAPT` means
 it depends on outputs that do not exist yet, so read the repo first. The labels
 are only true as long as someone keeps them true; treat a `VERBATIM` prompt that
 mentions a file you cannot find as a bug in this table.
+
+## What the application is for, and how much of it exists
+
+The five things the user asked this to do, and where each stands. **This is the
+scorecard the phase table serves**, and a phase that does not move a row on it
+needs an argument.
+
+| Requirement                                      | State                                         |
+| ------------------------------------------------ | --------------------------------------------- |
+| French to Catalan, with the structure explained  | works                                         |
+| Catalan to French, with the structure explained  | works, but the meaning has no line of its own |
+| Strong, weak and never-met areas of the language | built, and empty until the app is used        |
+| Generated practice exercises                     | not started                                   |
+| Pronunciation                                    | designed, not built (6b)                      |
+
+Three of those need the caveat stated rather than implied.
+
+- **The Catalan-to-French side has no translation line.** A French question now
+  leads with `answer_ca`, the Catalan sentence. A Catalan question has no
+  equivalent: `answer` is the explanation, and the meaning of the énoncé is
+  somewhere inside it. That is the same gap phase 6 shipped, fixed on one side
+  and left on the other. Phase 6c closes it.
+- **The coverage map cannot show mastery until reviews happen.** Asking
+  questions moves exposure and never mastery, which is deliberate and is what
+  stops the map flattering the learner, but it means the map stays grey until
+  the review screen is used. That is the design working, not a defect, and it
+  will read as a defect to anyone who only asks questions.
+- **The review deck is not exercises.** Three hundred authored cards, each
+  asking which rule an énoncé illustrates. It is not translation practice,
+  because the authored data holds no translation of any example. That gap is
+  the distance between the review loop and requirement four, and phase 6c is
+  what starts closing it without inventing content.
+
+And one thing nobody has done at all: **no outside reader has checked the
+model's Catalan, the French UI copy, or the system prompt.** Every false claim
+about French this project has found came from an outside review of the AUTHORED
+data, and internal review has never caught one. The generated side has had no
+equivalent pass. That is its own row in the phase table now.
 
 ## Seeding, per domain
 
@@ -1196,11 +1238,15 @@ Expect a single zero on « Relu du cache » and a read after it.
     a new store and a Dexie version 3. Cost is not the argument; reproducibility
     is, since an item the learner is graded against should not silently change
     between repetitions.
-  - **Order: phase 6 first, then the golden set, then this as its own phase.**
-    Until the authored cards have been used for a fortnight, nobody knows
-    whether they are insufficient, and phase 6 builds the answer-normalising
-    comparator that any auto-marked exercise needs anyway. **Do not bolt this
-    onto the query view during phase 6**, which is where it would do the most
+  - **Order: 6c, then the golden set (phase 8), then this as phase 9.** Phase 6
+    is done and built the answer-normalising comparator any auto-marked
+    exercise needs. 6c comes next because it makes every logged query carry a
+    matched French/Catalan pair, in the learner's own vocabulary, about
+    something they actually wanted to say: that is the translation material
+    this entry says the authored data lacks, accumulated without inventing a
+    single sentence. The golden set comes before generation because a wrong
+    expected answer marks a right answer wrong and teaches the error. **Do not
+    bolt generation onto the query view**, which is where it would do the most
     damage to the evidence model.
 - **Phase 6b drops the French respelling. Audio is the pronunciation output,
   and IPA is what remains when there is no voice.** The user asked for this and
