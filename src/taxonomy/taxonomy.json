@@ -441,7 +441,7 @@
       "notes": "Les noms en -or forment normalement leur féminin en -ora : professor/professora, director/directora.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Correspond au français -eur/-euse ou -eur/-rice selon les mots, avec un mécanisme tout aussi régulier."
+        "note": "Correspond au français -eur/-euse ou -eur/-rice selon les mots, mais le catalan est ici le plus régulier des deux : le français répartit entre -euse, -rice, -eresse et l’invariabilité, là où -or donne presque toujours -ora."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -477,12 +477,8 @@
         "fr": "noms dont le genre diverge de celui du cognat français correspondant"
       },
       "cefr": "B1",
-      "examples": [
-        "La llet és freda.",
-        "El corrent elèctric és fort.",
-        "La sal és blanca."
-      ],
-      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), el corrent (le courant), la sal (le sel), el dubte (le doute), els afores (les faubourgs).",
+      "examples": ["La llet és freda.", "La sang és vermella.", "La sal és blanca."],
+      "notes": "Le genre grammatical de certains noms catalans ne suit pas celui de leur cognat français : la llet (le lait), la sang (le sang), la sal (le sel), la resta (le reste), el costum (la coutume), el deute (la dette).",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français a lui aussi un genre grammatical pour chaque nom, ce n’est pas la catégorie qui est absente ; c’est seulement l’assignation qui diverge cas par cas du cognat français, et elle doit s’apprendre nom par nom."
@@ -532,7 +528,7 @@
       "notes": "Le pluriel régulier s’obtient en ajoutant -s au singulier.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Mécanisme identique au pluriel français en -s, à l’oral comme à l’écrit."
+        "note": "À l’écrit, le mécanisme est celui du pluriel français en -s. À l’oral il diverge : le -s catalan se prononce, alors que le pluriel français est muet sur le nom et n’est porté que par le déterminant, le chat contre les chats."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -551,10 +547,10 @@
         "Fes uns quants passos endavant.",
         "Un calaix ple i uns calaixos plens."
       ],
-      "notes": "Les noms terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços.",
+      "notes": "Les noms aigus terminés par un son sifflant ou chuintant (-s, -ç, -x, -ix, -tx) ajoutent -os au pluriel : pas/passos, nas/nassos, calaix/calaixos, feliç/feliços. La condition d’accentuation est décisive : un mot non aigu terminé par une sifflante reste invariable, « llapis », « atles », « cactus », et relève de NOM.number.invariable.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français ajoute -es après un son sifflant final surtout à l’oral, mais le catalan impose systématiquement -os à l’écrit."
+        "note": "Le français n’offre ici aucun modèle : un nom déjà terminé par -s, -x ou -z y est invariable, un bras et des bras, une voix et des voix. La syllabe -os ajoutée par le catalan est donc à apprendre pour elle-même."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -601,7 +597,7 @@
         "Un pa i uns pans.",
         "Un camí i uns camins."
       ],
-      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, et la classe en -í comme camí/camins ou jardí/jardins, ainsi que bo/bons.",
+      "notes": "Certains noms conservaient un -n final en latin, qui réapparaît au pluriel bien qu’il soit absent du singulier : mà/mans, pa/pans, germà/germans, la classe en -í comme camí/camins, jardí/jardins et rubí/rubins, celle en -ú comme comú/comuns, ainsi que bo/bons. Les mots de même forme qui prennent un simple -s relèvent de NOM.number.stressed_vowel.",
       "contrast_fr": {
         "status": "novel",
         "note": "Rien de comparable en français, où le pluriel n’ajoute jamais de consonne absente du singulier ; ce -n resurgi doit être appris nom par nom."
@@ -615,21 +611,21 @@
       "id": "NOM.number.stressed_vowel",
       "kind": "leaf",
       "parent": "NOM.number",
-      "ca": "rubí / rubins",
+      "ca": "esquí / esquís",
       "glosses": {
-        "fr": "pluriels des noms terminés par une voyelle accentuée, en -ns ou en -s selon la voyelle"
+        "fr": "pluriels en simple -s des noms terminés par une voyelle accentuée"
       },
       "cefr": "B2",
       "examples": [
-        "Un rubí vermell.",
-        "Uns rubins vermells.",
+        "Un esquí trencat.",
+        "Uns esquís trencats.",
         "Un cafè calent.",
         "Uns cafès calents."
       ],
-      "notes": "Une classe héritée de noms en -í accentué prend -ns au pluriel (rubí/rubins), mais les emprunts plus récents en -í prennent un simple -s (esquí/esquís) ; -ú accentué est également partagé entre les deux modèles (tribu/tribus avec un simple -s) ; -é et -à accentués prennent toujours un simple -s (cafè/cafès).",
+      "notes": "Les emprunts et les mots récents terminés par une voyelle accentuée prennent un simple -s : « esquí »/« esquís », « bambú »/« bambús », « cafè »/« cafès », « sofà »/« sofàs ». La classe héritée qui restitue un -n au pluriel, « rubí »/« rubins » comme « mà »/« mans », relève de NOM.number.hidden_n, et rien dans la forme du singulier ne dit à laquelle des deux un mot appartient.",
       "contrast_fr": {
-        "status": "near-miss",
-        "note": "Le français forme ces pluriels avec un simple -s sans jamais ajouter de consonne, contrairement au sous-ensemble catalan en -ins."
+        "status": "transfer",
+        "note": "Le français fait exactement cela, un simple -s après une voyelle accentuée, ski et skis, café et cafés. La difficulté n’est pas la règle mais de savoir qu’un mot lui échappe et suit la classe en -ns."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -648,10 +644,10 @@
         "Els dilluns vaig a la piscina.",
         "El dimecres és lliure."
       ],
-      "notes": "Les noms des jours terminés par -s (dilluns, dimecres, dijous, divendres) et quelques autres noms gardent la même forme au singulier et au pluriel.",
+      "notes": "Les noms des jours terminés par -s (dilluns, dimecres, dijous, divendres) gardent la même forme au singulier et au pluriel, comme tout mot non aigu terminé par une sifflante : « llapis », « atles », « cactus », « bíceps ». Les mots aigus, eux, prennent -os et relèvent de NOM.number.sibilant.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français distingue toujours singulier et pluriel par l’article (le lundi/les lundis), là où le catalan ne change même pas le nom lui-même."
+        "note": "Le français marque le pluriel sur le nom au moins à l’écrit, le lundi et les lundis, là où « dilluns » ne bouge pas. La catégorie existe pourtant des deux côtés, puisque le français a sa propre classe invariable, le temps et les temps ; ce qui diverge est le contenu de la classe."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -704,7 +700,7 @@
       "notes": "La majorité des adjectifs distinguent quatre formes : masculin singulier, féminin singulier, masculin pluriel, féminin pluriel.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Correspond exactement au système à quatre formes du français (grand/grande/grands/grandes)."
+        "note": "Correspond au système à quatre formes du français, grand, grande, grands, grandes, mais à l’écrit seulement : le français n’en distingue que deux à l’oral, le pluriel étant muet, quand le catalan fait entendre les quatre."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -724,10 +720,10 @@
         "Uns homes grans.",
         "Unes dones grans."
       ],
-      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier, et n’ajoutent que -s au pluriel : gran, jove, feliç, fàcil.",
+      "notes": "Certains adjectifs ont une forme unique pour le masculin et le féminin singulier : « gran », « jove », « fàcil », « amable ». Attention, « feliç » n’en fait pas partie : il suit la classe sifflante et donne « feliços » et « felices », traitée à NOM.number.sibilant.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français marque presque toujours le féminin par -e (grand/grande), alors que ce sous-ensemble catalan reste invariable en genre."
+        "note": "Le français a la même classe, et pour la même raison : un adjectif déjà terminé par -e ne marque pas le féminin, jeune, facile, rouge. Ce qui diverge est le pluriel, puisque le catalan ajoute -s là où le français ajoute un -s muet, et surtout l’appartenance à la classe, qui ne se recouvre pas."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -738,20 +734,20 @@
       "id": "NOM.adj.invariable",
       "kind": "leaf",
       "parent": "NOM.adj",
-      "ca": "marró",
+      "ca": "blau marí",
       "glosses": {
-        "fr": "adjectifs de couleur invariables, notamment les formes composées"
+        "fr": "adjectifs de couleur composés, invariables en genre comme en nombre"
       },
       "cefr": "B1",
       "examples": [
-        "Una jaqueta marró.",
-        "Uns pantalons marró.",
-        "Una camisa blau marí."
+        "Una camisa blau marí.",
+        "Unes camises blau marí.",
+        "Uns ulls verd oliva."
       ],
-      "notes": "Quelques adjectifs de couleur restent invariables en nombre comme en genre, en particulier les adjectifs composés : blau marí, verd oliva.",
+      "notes": "Les adjectifs de couleur composés d’un adjectif et d’un nom restent invariables : « blau marí », « verd oliva », « gris perla ». Les couleurs simples, elles, s’accordent normalement, « marró » donnant « uns pantalons marrons », ce qui est le piège pour un francophone.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français lui-même laisse déjà « marron » invariable (des chaussures marron), donc le principe transfère ; mais le catalan étend l’invariabilité à d’autres couleurs composées comme « blau marí » là où le français en accorderait certaines."
+        "note": "Le français laisse invariables les mêmes couleurs composées, des chaussures bleu marine, si bien que le principe se transfère. Ce qui diverge est la couleur simple : le français garde marron invariable, alors que le catalan accorde « marró » en nombre, « uns pantalons marrons »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -776,7 +772,7 @@
       "notes": "L’adjectif se place normalement après le nom, mais un petit nombre d’adjectifs fréquents (bon, mal, gran, nou, propi) peuvent le précéder, parfois avec un sens différent.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Comme en français (un grand homme/un homme grand), la position peut changer le sens, mais la liste des adjectifs concernés et les nuances ne coïncident pas exactement."
+        "note": "Le déplacement expressif existe des deux côtés, un grand homme contre un homme grand. Mais le français antépose par défaut toute une classe d’adjectifs fréquents, petit, grand, bon, mauvais, jeune, vieux, beau, joli, gros, nouveau, alors que le catalan les postpose : on dit « una casa petita » et « un home vell », et le calque « una petita casa » est l’erreur à attendre."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -826,7 +822,7 @@
       "notes": "Le suffixe diminutif -et/-eta s’ajoute au nom pour marquer la petitesse ou l’affection : gat/gatet, casa/caseta.",
       "contrast_fr": {
         "status": "transfer",
-        "note": "Fonctionne comme les diminutifs français en -et/-ette (garçonnet, fillette), avec la même valeur affective."
+        "note": "Fonctionne comme les diminutifs français en -et/-ette, garçonnet, fillette, avec la même valeur affective. Le suffixe français reste productif, calculette, lingette, mais il est bien plus lexicalisé que le catalan, qui s’ajoute presque librement."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -841,7 +837,7 @@
       "glosses": { "fr": "suffixe augmentatif -às/-assa" },
       "cefr": "B1",
       "examples": ["Un home i un homenàs.", "Una casa i una casassa."],
-      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa.",
+      "notes": "Le suffixe augmentatif -às/-assa marque la grande taille, parfois avec une nuance péjorative : home/homenàs, casa/casassa. Un interfixe -n- apparaît après plusieurs radicaux, « home » donnant « homenàs » et non « homàs », ce qui n’est pas prévisible.",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français n’a pas d’équivalent morphologique productif ; il exprime la même idée par un adjectif (un homme immense) plutôt que par un suffixe."
@@ -945,7 +941,7 @@
       "notes": "Le suffixe -ment, ajouté à un radical verbal, forme un nom d’action ou de résultat : pensar/pensament, néixer/naixement, acabar/acabament.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Se distingue du -ment adverbial français (rapidement) : ce -ment catalan forme un nom, comme le -ment plus rare du français dans agrément ou déroulement."
+        "note": "Se distingue du -ment adverbial français, rapidement : ce -ment catalan forme un nom, comme le -ment nominal du français, qui est au contraire très productif, changement, mouvement, gouvernement, sentiment."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -986,12 +982,12 @@
       "examples": [
         "Un gratacels molt alt.",
         "Uns gratacels molt alts.",
-        "Un porta-avions de guerra."
+        "Un rentaplats nou."
       ],
-      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels) ou deux noms reliés par un trait d’union ; beaucoup restent invariables au pluriel : un gratacels, uns gratacels.",
+      "notes": "Certains noms composés associent un verbe et un nom (gratar + cels, rentar + plats) et restent invariables au pluriel : un gratacels, uns gratacels.",
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français a le même type de composé verbe+nom invariable (un gratte-ciel, des gratte-ciel), mais les listes lexicales ne se recouvrent que partiellement."
+        "note": "Le français a le même type de composé verbe plus nom, mais son pluriel a bougé : depuis les rectifications de 1990 l’Académie recommande des gratte-ciels, avec -s, quand le catalan garde l’invariabilité. Les listes lexicales ne se recouvrent par ailleurs que partiellement."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1024,7 +1020,7 @@
         "Els gats dormen.",
         "Les cases són grans."
       ],
-      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
+      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français n’a jamais distingué les genres au pluriel de la même façon : son pluriel les valait déjà pour les deux genres au cas régime en ancien français, et ce qu’il a perdu depuis est la distinction de cas, non celle de genre.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le système à quatre formes correspond point par point à le/la/les du français, la seule différence étant que le catalan distingue encore els/les au pluriel."
@@ -1044,6 +1040,7 @@
       },
       "cefr": "A2",
       "examples": ["L'home parla.", "L'aigua és freda.", "L'hivern arriba aviat."],
+      "notes": "Le risque, pour un francophone, est l’inverse d’une surproduction : le français bloque l’élision devant un h aspiré, le héros, la hache, alors que le h catalan est toujours muet. On écrit donc « l'hivern » et « l'hospital » sans exception.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme l’élision française devant voyelle (l’homme, l’eau), avec la même motivation phonétique."
@@ -1073,8 +1070,8 @@
       ],
       "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Comme le français devant un son non vocalique perçu (la ouate, la yourte), l’absence d’élision devant certaines voyelles initiales a un parallèle reconnaissable, même si la répartition précise diffère."
+        "status": "near-miss",
+        "note": "Le français élide devant toute voyelle, y compris i et u atones, l’université et l’idée. Le mécanisme ne se transfère donc pas ici : le francophone produira « l'universitat » et « l'idea » par calque direct, quand le catalan veut « la universitat » et « la idea »."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1207,7 +1204,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
+        "note": "Le français met l’article devant la plupart des noms de pays, la France, l’Italie, alors que le catalan l’omet dans la majorité des cas ; un francophone surproduira donc l’article. Le parallèle n’est pas net pour autant, puisque le français le perd après en, en France, et qu’une série de pays n’en prend jamais, Israël, Cuba, Singapour. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1228,6 +1225,7 @@
         "Parlo català.",
         "Ho vaig aprendre en català."
       ],
+      "notes": "L’article tombe aussi après « aprendre », « estudiar » et « saber », là où le français le garde : « aprenc català » contre il apprend le catalan.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
@@ -1245,6 +1243,7 @@
       "glosses": { "fr": "article défini devant le titre suivi du nom de famille" },
       "cefr": "B1",
       "examples": ["El senyor Puig ha arribat.", "La doctora Riera visita el pacient."],
+      "notes": "L’article tombe à l’adresse directe : on parle de « el senyor Puig » mais on lui dit « Bon dia, senyor Puig », exactement comme en français.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
@@ -1271,7 +1270,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
+        "note": "Comme Le Havre en français, l’article fait partie du nom propre et se contracte avec la préposition, « vaig al Prat » comme je vais au Havre. Le parallèle s’arrête là : le français ne contracte que le et les, si bien que La Rochelle reste à La Rochelle, quand le catalan contracte aussi bien."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1313,7 +1312,7 @@
       "examples": ["Uns gats juguen al jardí.", "Unes gates dormen al balcó."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
+        "note": "Le français a bien un article indéfini pluriel, des, et il est obligatoire. Le catalan « uns » et « unes » ne l’est pas : le pluriel indéfini se rend le plus souvent par le nom nu, « Veig gats » et non « Veig uns gats ». Le francophone surproduit donc « uns » en calquant des, et n’en a besoin que pour souligner un ensemble indéterminé."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1429,7 +1428,7 @@
       "glosses": { "fr": "article personnel « en » devant un prénom masculin" },
       "cefr": "A2",
       "examples": ["En Joan arriba tard.", "Parlo amb en Marc."],
-      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
+      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant. « el Joan » est également normatif et gagne du terrain en catalan central. Le nord-occidental emploie plutôt « lo ».",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
@@ -1445,8 +1444,9 @@
       "parent": "ART.personal",
       "ca": "na Maria",
       "glosses": { "fr": "article personnel « na » devant un prénom féminin" },
-      "cefr": "A2",
+      "cefr": "B2",
       "examples": ["Na Maria canta bé.", "He vist na Joana."],
+      "notes": "En catalan central « na » est très formel ou figé, et c’est « la » qui sert au quotidien, traité à ART.personal.la_alternativa. La forme est en revanche ordinaire aux Baléares.",
       "contrast_fr": {
         "status": "novel",
         "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
@@ -1483,11 +1483,11 @@
       "glosses": {
         "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
       },
-      "cefr": "B1",
+      "cefr": "A2",
       "examples": ["La Maria arriba tard.", "He vist la Joana al mercat."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
+        "note": "Le français standard ne met pas d’article devant un prénom, et le tour existe seulement dans des usages populaires ou régionaux, la Marie, ou nettement marqués, la Callas. Rien de tout cela n’est disponible dans la grammaire ordinaire d’un locuteur, si bien qu’il n’y a pas d’ancrage à transférer pour un emploi qui est neutre en catalan."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1508,8 +1508,8 @@
         "El senyor Fontanals ha arribat."
       ],
       "contrast_fr": {
-        "status": "novel",
-        "note": "L’absence d’article rejoint ici l’usage français, qui ne place jamais d’article devant un nom propre, mais ce cas reste classé dans la branche de l’article personnel, dont le mécanisme global n’a pas d’équivalent."
+        "status": "transfer",
+        "note": "Les deux langues s’accordent ici : un nom complet ne prend pas d’article personnel, comme le français n’en met pas devant un nom propre ordinaire. Le français connaît bien un article devant certains noms propres, la Callas, les Dupont, mais il est marqué, alors que l’absence catalane est ici la règle neutre."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1522,13 +1522,17 @@
       "parent": "ART.personal",
       "ca": "d'en Joan",
       "glosses": {
-        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
+        "fr": "élision de la préposition « de » devant l’article personnel « en », et élision de « la » devant voyelle"
       },
       "cefr": "B2",
-      "examples": ["El cotxe és d'en Joan.", "Vaig a l'Anna.", "Parlo de la Maria."],
+      "examples": [
+        "El cotxe és d'en Joan.",
+        "Vaig a casa de l'Anna.",
+        "Parlo de la Maria."
+      ],
       "contrast_fr": {
         "status": "novel",
-        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
+        "note": "« d'en » est l’élision de de devant l’article personnel, du même type que « d'aigua », et non une contraction comme « del » ; « a casa de l'Anna » suit l’élision ordinaire de « la » devant voyelle. Le français réunit ces deux mécanismes sous aucun article personnel, faute d’en avoir un."
       },
       "state": {
         "exposure": { "exposure_count": 0 },

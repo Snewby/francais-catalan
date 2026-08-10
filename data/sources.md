@@ -2587,3 +2587,181 @@ frequent in writing than `portar` was not settled and the claim has been dropped
 from the leaf rather than softened. A systematic account of which Catalan
 monosyllables sound the final r would need the CTILC corpus. And GIEC chapter
 35's scope remains unconfirmed, as it has since the `VERB`/`PRON` review.
+
+### Outside review of NOM and ART, and what it changed
+
+The fourth outside review, covering two of the four domains seeded before the
+review habit existed. It is the largest reply received, and it did not use the
+requested record format, so every finding was triaged and re-verified against
+the data by hand. Forty-nine field-level changes were applied. **Six structural
+findings were accepted and are not yet executed**; they are set out at the end
+so the next pass finds a specification rather than a memory.
+
+**The review confirms, for the third time, that this project's French claims are
+weaker than its Catalan ones.** Three of the errors it found are outright false
+statements about French, and none had been caught in four internal passes.
+
+- **`NOM.number.regular` said the plural mechanism is identical "à l'oral comme
+  à l'écrit".** The French plural -s is silent and the plural is carried by the
+  determiner, _le chat_ against _les chats_, while the Catalan -s is pronounced.
+  The card now says so.
+- **`NOM.number.sibilant` said French adds -es after a final sibilant.** French
+  nouns already ending in -s, -x or -z are invariable, _un bras_ and _des bras_.
+  There is no French model at all here, which is the opposite of what the card
+  taught.
+- **`NOM.deriv.abstract_ment` called nominal -ment "plus rare" in French.** It is
+  one of the largest deverbal noun classes the language has, _changement_,
+  _gouvernement_, _sentiment_.
+
+**The single most valuable finding is an interference point the domain missed
+entirely.** `NOM.adj.position` said the position can shift meaning "comme en
+français" and left it there. What it never said is that French **preposes a
+whole closed class of frequent adjectives by default**, _petit_, _grand_, _bon_,
+_jeune_, _vieux_, _beau_, where Catalan postposes them: `una casa petita`, not
+`*una petita casa`. That is a systematic error a French speaker will make in
+their first week, and the card as written would not have prevented it.
+
+**Two cards taught a wrong Catalan form.**
+
+- **`NOM.adj.invariable` was headed by `marró`, which is not invariable.** The
+  plural is `uns pantalons marrons`, and the leaf's own example
+  `Uns pantalons marró` was therefore ungrammatical. The invariable class is the
+  compound colours, `blau marí`, `verd oliva`, which is now the headword;
+  `marró` survives as the counter-example it always was. Its contrast note also
+  claimed French would agree compound colours, when _bleu marine_ is invariable
+  there too. **This is the second time a `ca` field has taught the error its
+  leaf exists to block**, after `LEX.castellanismes`.
+- **`NOM.adj.two_form` listed `feliç` among adjectives that add only -s.** It
+  takes `feliços` and `felices` and belongs to the sibilant class, which the
+  `NOM.number.sibilant` leaf already states. Removed, with a cross-reference.
+
+**A direct self-contradiction between two leaves was found and resolved.**
+`NOM.number.hidden_n` said stressed final -a restores an -n, `mà`/`mans`,
+`germà`/`germans`. `NOM.number.stressed_vowel` said stressed -a and -e "prennent
+toujours un simple -s". Both cannot stand, and the -í class sat in both leaves
+at once, as `camí`/`camins` in one and `rubí`/`rubins` in the other. The two are
+now scoped against each other: **`hidden_n` owns every word that restores the
+-n**, whatever the vowel, and **`stressed_vowel` owns the simple-s class**,
+`esquí`/`esquís`, `bambú`/`bambús`, `cafè`/`cafès`. The reviewer proposed merging
+them into one leaf with the -s class as an exception set; scoping them against
+each other was preferred because it keeps two keys for what are, for a learner,
+two things to know, and because the -s class is the productive one. That
+re-scoping moved `stressed_vowel` from `near-miss` to `transfer`, since a simple
+-s after a stressed vowel is exactly what French does. Also corrected: `tribu`
+was cited as an example of final stress, and it is stressed on the first
+syllable.
+
+**A membership list was three-fifths wrong.** `NOM.gender.diverge_fr` is the
+leaf for nouns whose gender differs from the French cognate, and it listed
+`el corrent`, `el dubte` and `els afores`, all three of which are masculine in
+both languages. The genuine divergences are `la llet`, `la sal`, `la sang`,
+`la resta`, `el costum` and `el deute`, and the list is now those.
+
+**In `ART`, the most interference-prone card in the domain was marked
+`transfer`.** `ART.def.forma.la_no_elisio` teaches that `la` does not elide
+before unstressed i or u, `la universitat`, `la idea`. French elides before any
+vowel at all, _l'université_, _l'idée_, so the mechanism does not carry over and
+`*l'universitat` is precisely the calque to expect. Moved to `near-miss`, and
+the old note's appeal to _la ouate_ and _la yourte_ was dropped: that concerns
+semi-consonants, which is `ART.def.forma.el_iod`'s territory, and the Académie
+allows _de l'ouate_ anyway.
+
+**`ART.personal.absencia` is no longer `novel`, and the reasoning matters beyond
+this leaf.** The project had knowingly kept it `novel` although French and
+Catalan agree, so that it would sort beside the five personal-article leaves it
+should be reviewed with. The reviewer called this what it is: using a field with
+documented semantics as a sort key, which makes it mean two things and defeats
+any audit of the status distribution. The tree already groups those six leaves,
+so the pedagogic goal was met structurally and the status was doing nothing but
+lying. Now `transfer`. **A status is a claim about the language, never a
+scheduling hint**; if the gaps list needs a second ordering signal, it needs its
+own field.
+
+**Other `ART` corrections.** `ART.def.us.paisos` said French takes the article
+"systématiquement", when it drops it after _en_ and for a list of countries.
+`ART.personal.la_alternativa` and `.absencia` both said French never puts an
+article before a name; _la Callas_, _les Dupont_ and popular _la Marie_ say
+otherwise. `ART.def.forma.paradigma` said French lost a plural gender
+distinction, when its oblique plural was already _les_ for both genders and what
+it lost was case. `ART.indef.plural` said French has no plural indefinite
+article of this type, when _des_ is exactly that and obligatory, where the
+Catalan `uns`/`unes` is optional and usually dropped: the real interference is
+that a French speaker **overproduces** `uns`, which is now what the card
+teaches. `ART.def.us.toponims` cited _La Rochelle_ as contracting, and French
+contracts only _le_ and _les_. `ART.personal.contraccio` called `d'en` a
+contraction when it is the elision of `de`, and illustrated it with an unnatural
+`Vaig a l'Anna`. Missing exception classes were added to
+`ART.def.forma.elisio` (French _h aspiré_ blocks elision and Catalan `h` never
+does, so the risk is failing to elide), `ART.def.us.titols` (the article drops in
+direct address) and `ART.def.us.llengues` (it also drops after `aprendre`,
+`estudiar` and `saber`).
+
+**The personal-article CEFR levels were inverted for the reference variety.**
+`na` sat at A2 and `la Maria` at B1, when Central Catalan, which this project
+takes as its reference, uses `la` as the everyday form and treats `na` as formal
+or Balearic. Swapped: `la_alternativa` to A2, `na` to B2, with a note on each.
+
+**Two findings were declined with arguments.**
+
+- **`ART.personal.la_alternativa` stays `novel` rather than becoming
+  `false-friend`.** The reviewer flagged this as a reasoned recommendation
+  rather than a settled fact, and it fails the project's own bar twice over:
+  popular _la Marie_ is regional and register-marked rather than available in an
+  ordinary speaker's grammar, which is the `gaire` precedent, and a difference
+  that is only of register is what got `mon pare` refused `false-friend` during
+  the `DET` pass.
+- **`NOM.deriv.augment` stays `novel` rather than becoming `near-miss`.** French
+  _-asse_ and _-ard_ are productive but **pejorative**, not augmentative, so they
+  anchor a nuance the Catalan suffix carries incidentally and not the size value
+  that is its point. The reviewer's related observation was taken: the leaf never
+  mentioned the `-n-` interfix, so a learner would produce `*homàs` for
+  `homenàs`. The charge of inconsistency with `NOM.deriv.dimin` was answered by
+  softening that leaf instead, which now records that French _-et_/_-ette_ is
+  productive but far more lexicalised than the Catalan suffix.
+
+**Accepted and not yet executed: six structural changes.** These delete or
+rename IDs and one of them moves a leaf into `DET`, which has a review of its
+own pending. Doing them while that reply is outstanding would mean touching
+`DET` twice and risking a conflict, so they are specified here and left for the
+pass that follows it. **This is a deferral with a specification, not a
+maybe.**
+
+1. **`ART.contract`, seven leaves to two.** `al`, `als`, `del`, `dels`, `pel`,
+   `pels` and `no_contraccio_elisio` are six paradigm cells and a rule, in the
+   domain that first established that paradigm cells are not leaves. Replace
+   with `ART.contract.a_de`, covering `a` and `de` with `el`/`els` and folding
+   in the no-contraction-when-elided rule, `transfer`; and `ART.contract.per`,
+   `near-miss`. The split follows the statuses, which the single-leaf version
+   could not. Add the missing facts: contraction with `ca` (`ca l'Anna`) and on
+   the second element of `cap a` and `des de`; and the block before a title
+   keeping its own article (`el llibre de El Periódico`).
+2. **`ART.salat`, three leaves to one.** Central Catalan is the reference
+   variety and dialect facts live in `dialect_note` everywhere else in the
+   taxonomy. Collapse to a single leaf carrying the paradigm, the `s'` elision
+   and the `so`/`sos` form after `amb`. Correct the geography while doing it:
+   the salat article is not only Balearic, it survives at Cadaqués and in
+   toponyms across the old Costa Brava.
+3. **`ART.def.us.abans_possessiu` moves to `DET`.** The `DET` pass amended the
+   boundary so that `ART` owns the article only when it is the sole determiner,
+   and this leaf is the article co-occurring with a possessive. It was recorded
+   as a legacy misfile and left; the reviewer adds that
+   `DET.poss.forma_paradigma` already shows `el meu`, so it is a duplicate as
+   well as a misfile. Add the missing exception class on arrival: the article
+   drops in `a casa meva`, `en nom meu`, `amic meu`.
+4. **`NOM.gender.ista` and `NOM.deriv.ista` are one suffix under two keys**,
+   both A2, both `transfer`, both citing `artista`. Keep one, or split them
+   explicitly into epicene gender and word formation with no shared example.
+5. **`NOM.adj.agree` is a branch with a single leaf.** Either promote
+   `agree.coord` or give the branch a second member.
+6. **The Catalan quarters system is a real gap.** `un quart de quatre`,
+   `dos quarts de quatre` is keyed nowhere in 306 leaves and is genuinely
+   `novel` for a French speaker. It is not `ART`'s, since it is not about the
+   article; placing it is the open question, and `LEX` is the likeliest home.
+
+**Still unverified.** The DIEC spelling of `portaavions` against `porta-avions`,
+which is why that example was replaced rather than corrected; whether
+`un pantaló` is standard in the singular; Optimot's preference between
+`estem al 2024` and `som al 2024`; and `a en Joan` against the older
+`an en Joan`. `NOM.gender.suffix_essa` is owed a note that GIEC accepts both
+`la metge` and `la metgessa`, which was not applied only because it needs the
+leaf text checked first.

@@ -34,7 +34,7 @@
         "Els gats dormen.",
         "Les cases són grans."
       ],
-      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français moderne a perdu cette distinction de genre au pluriel (les pour les deux genres).",
+      "notes": "Le masculin singulier est « el », le féminin « la », le masculin pluriel « els » et le féminin pluriel « les ». Le français n’a jamais distingué les genres au pluriel de la même façon : son pluriel les valait déjà pour les deux genres au cas régime en ancien français, et ce qu’il a perdu depuis est la distinction de cas, non celle de genre.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Le système à quatre formes correspond point par point à le/la/les du français, la seule différence étant que le catalan distingue encore els/les au pluriel."
@@ -60,6 +60,7 @@
       },
       "cefr": "A2",
       "examples": ["L'home parla.", "L'aigua és freda.", "L'hivern arriba aviat."],
+      "notes": "Le risque, pour un francophone, est l’inverse d’une surproduction : le français bloque l’élision devant un h aspiré, le héros, la hache, alors que le h catalan est toujours muet. On écrit donc « l'hivern » et « l'hospital » sans exception.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme l’élision française devant voyelle (l’homme, l’eau), avec la même motivation phonétique."
@@ -95,8 +96,8 @@
       ],
       "notes": "Deux phénomènes distincts. La règle productive : devant un i ou un u initial non accentué, qui reste une voyelle ordinaire et non une semi-consonne, « la » ne s’élide jamais : « la universitat », « la unió », « la idea », « la humitat » (h muet). À part cette règle, une courte liste fermée de mots où la voyelle initiale est accentuée résiste elle aussi à l’élision par simple habitude lexicale, sans règle phonétique sous-jacente : « la ira », « la host », et « la una » pour l’heure. Cette liste ne s’étend pas par analogie.",
       "contrast_fr": {
-        "status": "transfer",
-        "note": "Comme le français devant un son non vocalique perçu (la ouate, la yourte), l’absence d’élision devant certaines voyelles initiales a un parallèle reconnaissable, même si la répartition précise diffère."
+        "status": "near-miss",
+        "note": "Le français élide devant toute voyelle, y compris i et u atones, l’université et l’idée. Le mécanisme ne se transfère donc pas ici : le francophone produira « l'universitat » et « l'idea » par calque direct, quand le catalan veut « la universitat » et « la idea »."
       },
       "state": {
         "exposure": {
@@ -269,7 +270,7 @@
       ],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français met systématiquement l’article devant les noms de pays (la France, l’Italie), alors que le catalan l’omet dans la majorité des cas (« França », « Itàlia ») ; un francophone surproduira donc l’article. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue (« vaig al Marroc », « visc a la Xina »)."
+        "note": "Le français met l’article devant la plupart des noms de pays, la France, l’Italie, alors que le catalan l’omet dans la majorité des cas ; un francophone surproduira donc l’article. Le parallèle n’est pas net pour autant, puisque le français le perd après en, en France, et qu’une série de pays n’en prend jamais, Israël, Cuba, Singapour. Seule une minorité de pays le porte en catalan, et elle le garde après une préposition, avec la contraction attendue."
       },
       "state": {
         "exposure": {
@@ -296,6 +297,7 @@
         "Parlo català.",
         "Ho vaig aprendre en català."
       ],
+      "notes": "L’article tombe aussi après « aprendre », « estudiar » et « saber », là où le français le garde : « aprenc català » contre il apprend le catalan.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Fonctionne comme en français : « el català » comme sujet correspond à le catalan, mais « parlo català » sans article correspond à je parle catalan."
@@ -321,6 +323,7 @@
       },
       "cefr": "B1",
       "examples": ["El senyor Puig ha arribat.", "La doctora Riera visita el pacient."],
+      "notes": "L’article tombe à l’adresse directe : on parle de « el senyor Puig » mais on lui dit « Bon dia, senyor Puig », exactement comme en français.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français dit Monsieur Puig sans aucun article, là où le catalan exige « el senyor Puig » et « la senyora Puig » ; l’article français n’apparaît que devant certains titres professionnels (le docteur, le professeur), un parallèle partiel qui ne couvre pas le cas le plus fréquent."
@@ -353,7 +356,7 @@
       ],
       "contrast_fr": {
         "status": "transfer",
-        "note": "Comme Le Havre ou La Rochelle en français, l’article fait partie du nom propre et se contracte avec la préposition (« vaig al Prat », je vais au Havre)."
+        "note": "Comme Le Havre en français, l’article fait partie du nom propre et se contracte avec la préposition, « vaig al Prat » comme je vais au Havre. Le parallèle s’arrête là : le français ne contracte que le et les, si bien que La Rochelle reste à La Rochelle, quand le catalan contracte aussi bien."
       },
       "state": {
         "exposure": {
@@ -409,7 +412,7 @@
       "examples": ["Uns gats juguen al jardí.", "Unes gates dormen al balcó."],
       "contrast_fr": {
         "status": "near-miss",
-        "note": "Le français n’a pas d’article indéfini pluriel de ce type ; des ne marque pas la même valeur que « uns »/« unes », qui souligne un ensemble indéterminé."
+        "note": "Le français a bien un article indéfini pluriel, des, et il est obligatoire. Le catalan « uns » et « unes » ne l’est pas : le pluriel indéfini se rend le plus souvent par le nom nu, « Veig gats » et non « Veig uns gats ». Le francophone surproduit donc « uns » en calquant des, et n’en a besoin que pour souligner un ensemble indéterminé."
       },
       "state": {
         "exposure": {
@@ -567,7 +570,7 @@
       },
       "cefr": "A2",
       "examples": ["En Joan arriba tard.", "Parlo amb en Marc."],
-      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant, surtout en catalan central et nord-occidental.",
+      "notes": "L’article personnel « en » précède les prénoms et surnoms masculins à l’oral et dans un registre courant. « el Joan » est également normatif et gagne du terrain en catalan central. Le nord-occidental emploie plutôt « lo ».",
       "contrast_fr": {
         "status": "novel",
         "note": "Le français ne place aucun article devant un prénom (Joan arrive tard) ; cet article personnel n’a pas d’équivalent à transférer."
@@ -591,8 +594,9 @@
       "glosses": {
         "fr": "article personnel « na » devant un prénom féminin"
       },
-      "cefr": "A2",
+      "cefr": "B2",
       "examples": ["Na Maria canta bé.", "He vist na Joana."],
+      "notes": "En catalan central « na » est très formel ou figé, et c’est « la » qui sert au quotidien, traité à ART.personal.la_alternativa. La forme est en revanche ordinaire aux Baléares.",
       "contrast_fr": {
         "status": "novel",
         "note": "Comme « en », l’article personnel féminin « na » n’a pas de contrepartie en français, qui laisse le prénom sans article."
@@ -641,11 +645,11 @@
       "glosses": {
         "fr": "usage de l’article défini « la » à la place de l’article personnel devant un prénom féminin"
       },
-      "cefr": "B1",
+      "cefr": "A2",
       "examples": ["La Maria arriba tard.", "He vist la Joana al mercat."],
       "contrast_fr": {
         "status": "novel",
-        "note": "Le français n’emploie jamais d’article devant un prénom (Marie arrive tard) ; cet usage catalan alternatif n’a pas de parallèle."
+        "note": "Le français standard ne met pas d’article devant un prénom, et le tour existe seulement dans des usages populaires ou régionaux, la Marie, ou nettement marqués, la Callas. Rien de tout cela n’est disponible dans la grammaire ordinaire d’un locuteur, si bien qu’il n’y a pas d’ancrage à transférer pour un emploi qui est neutre en catalan."
       },
       "state": {
         "exposure": {
@@ -672,8 +676,8 @@
         "El senyor Fontanals ha arribat."
       ],
       "contrast_fr": {
-        "status": "novel",
-        "note": "L’absence d’article rejoint ici l’usage français, qui ne place jamais d’article devant un nom propre, mais ce cas reste classé dans la branche de l’article personnel, dont le mécanisme global n’a pas d’équivalent."
+        "status": "transfer",
+        "note": "Les deux langues s’accordent ici : un nom complet ne prend pas d’article personnel, comme le français n’en met pas devant un nom propre ordinaire. Le français connaît bien un article devant certains noms propres, la Callas, les Dupont, mais il est marqué, alors que l’absence catalane est ici la règle neutre."
       },
       "state": {
         "exposure": {
@@ -692,13 +696,17 @@
       "parent": "ART.personal",
       "ca": "d'en Joan",
       "glosses": {
-        "fr": "contraction de la préposition devant l’article personnel « en », et élision de « la » devant voyelle"
+        "fr": "élision de la préposition « de » devant l’article personnel « en », et élision de « la » devant voyelle"
       },
       "cefr": "B2",
-      "examples": ["El cotxe és d'en Joan.", "Vaig a l'Anna.", "Parlo de la Maria."],
+      "examples": [
+        "El cotxe és d'en Joan.",
+        "Vaig a casa de l'Anna.",
+        "Parlo de la Maria."
+      ],
       "contrast_fr": {
         "status": "novel",
-        "note": "« d'en » résulte de la contraction de de devant l’article personnel « en », tandis que « a l'Anna » suit la simple élision de l’article défini « la » devant voyelle, comme dans « a l'home ». Ce sont deux mécanismes distincts que le français ne réunit sous aucun article personnel."
+        "note": "« d'en » est l’élision de de devant l’article personnel, du même type que « d'aigua », et non une contraction comme « del » ; « a casa de l'Anna » suit l’élision ordinaire de « la » devant voyelle. Le français réunit ces deux mécanismes sous aucun article personnel, faute d’en avoir un."
       },
       "state": {
         "exposure": {

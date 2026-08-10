@@ -749,6 +749,37 @@ putting `dur` and `clar` among the monosyllables that keep the r when they drop
 it, and the conditioning is lexical rather than a matter of syllable count. It
 was stated as a rule, and the rule was the wrong rule.
 
+`NOM` and `ART` were then reviewed together, the fourth outside review and the
+largest reply received. 49 field-level changes applied, six structural findings
+accepted and specified but not yet executed. Four things in it generalise:
+
+- **A `ca` field taught the error its leaf exists to block, for the second
+  time.** `NOM.adj.invariable` was headed by `marró`, which is not invariable,
+  and its own example `Uns pantalons marró` was ungrammatical. `LEX` had the
+  same failure with `tenir que`. **Validate every `ca` against a dictionary**:
+  it heads the card and feeds the decomposition machinery, so an error there is
+  worse than an error in prose.
+- **Two leaves contradicted each other outright and nothing could see it.**
+  `NOM.number.hidden_n` said stressed final -a restores an -n, and
+  `NOM.number.stressed_vowel` said it always takes a simple -s, with the -í
+  class sitting in both at once. `check-duplicates` compares forms and examples,
+  not claims, and always will. **Two leaves stating incompatible rules is a
+  failure mode with no gate at all**, and this is the first confirmed instance.
+- **A status was being used as a sort key, and that is now explicitly
+  forbidden.** `ART.personal.absencia` was kept `novel` although French and
+  Catalan agree there, so it would sort beside its five siblings. The tree
+  already grouped them, so the status was doing nothing but lying. It is now
+  `transfer`. **A status is a claim about the language, never a scheduling
+  hint.** If the phase 6 gaps list needs a second ordering signal, it needs its
+  own field, which is the same conclusion the `DET` near-miss problem reached
+  from the other direction.
+- **The French side is still the weak side.** Three more false claims about
+  French, none caught in four internal passes, bringing the count to seven
+  across four reviews. The most valuable single finding was an omission of the
+  same kind: `NOM.adj.position` never said that French preposes `petit`,
+  `grand`, `bon`, `jeune`, `vieux` by default where Catalan postposes them,
+  which is a first-week error the card could not have prevented.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -906,12 +937,20 @@ Three decisions in it are worth knowing before phase 6 touches it:
 - **The `VERB` and `PRON` review has been run and applied**, with the full leaf
   list attached, and it produced no false positive of the `gaire` kind. Sending
   the whole list works; keep doing it. Details in `data/sources.md`.
-- **Every domain has now been outside-reviewed except the first four.** `NOM`,
-  `ART`, `DET` and `PREP` were seeded before the review habit existed and have
-  had internal review only. They are also the four seeded when the conventions
-  were least settled, so they are where a fourth review would pay best. Attach
-  the full leaf list, which has now prevented the `gaire` class of false
-  positive twice running.
+- **`NOM` and `ART` have now been reviewed; `DET` and `PREP` are the last two.**
+  The pack for them is built and the review is expected. Nothing else is owed a
+  first review.
+- **Six structural changes from the `NOM`/`ART` review are accepted and not yet
+  executed**, specified leaf by leaf at the end of that section in
+  `data/sources.md`. They delete or rename IDs, which is free only until phase 5
+  turns the component vocabulary into stored data, so **they should land before
+  phase 5 starts**. One of them moves `ART.def.us.abans_possessiu` into `DET`,
+  which is why they wait for the `DET`/`PREP` reply rather than touching that
+  domain twice. In short: collapse `ART.contract` from seven leaves to two,
+  collapse `ART.salat` from three to one, migrate `abans_possessiu`, resolve the
+  `NOM.gender.ista`/`NOM.deriv.ista` duplication, fix the single-leaf
+  `NOM.adj.agree` branch, and place the Catalan quarters system, which is keyed
+  nowhere.
 - **The `Ortografia catalana` has never been retrieved as a primary document.**
   `PHON`'s fifteen diacritic pairs, the rule on derivatives and the diaeresis
   exception list all rest on the IEC's announcement plus Optimot and CPNL
