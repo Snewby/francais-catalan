@@ -16,7 +16,7 @@ is worse than none, because it still reads as authoritative.
 | 2b. Gloss and contrast authoring      | done        | ADAPT    | all twelve, see table below     |
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
 | Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
-| 4. API client and prompt caching      | not started | ADAPT    |                                 |
+| 4. API client and prompt caching      | done        | ADAPT    | this pass                       |
 | 5. Persistence, FSRS, Elo             | not started | ADAPT    |                                 |
 | 5b. Review loop                       | not started | ADAPT    |                                 |
 | 6. UI and coverage heatmap            | not started | ADAPT    |                                 |
@@ -846,8 +846,74 @@ Three decisions in it are worth knowing before phase 6 touches it:
   be a second pedagogic hierarchy competing with the taxonomy, which is what the
   axis rule in the `DET` section rules out.
 
+Phase 4 then landed: `src/api/anthropic.ts` is a real client, and the cached
+prefix it wraps lives in the new `src/api/prompt.ts`. The split is the point.
+`prompt.ts` holds everything that never varies (the French instruction, the
+five-intent and two-direction tables, and the 300-leaf vocabulary as
+`id`/`ca`/`glosses.fr`), with the single `cache_control` breakpoint on its last
+block; `anthropic.ts` holds the transport and puts the question, and only the
+question, after that breakpoint. Six things in it matter later:
+
+- **The vocabulary is 37 KB of prefix, and that is the design rather than a
+  problem.** Render order at the API is tools, then system, then messages, so
+  the reusable part has to be `system`. At roughly six characters per token
+  worst case it clears Haiku's 4,096-token minimum by a wide margin, which is
+  the number that matters: **a prefix under the minimum does not error, it
+  silently reports zero cache reads for ever.** `taxonomy.json` itself is 314 KB
+  and is never sent; only leaves are, and only the French gloss, never the whole
+  keyed map.
+- **The prefill in docs/01 was declined, not forgotten.** docs/01 line 250 says
+  to prefill the assistant turn with the opening `{`. Structured outputs and
+  message prefilling are mutually exclusive, and a last-assistant-turn prefill
+  is a 400 on current models regardless. Constrained decoding does the job the
+  prefill was for, and does it better: an out-of-vocabulary tag is undecodable
+  rather than merely rejected. The disagreement is recorded in `data/sources.md`
+  on the `pas` precedent rather than edited into docs/01.
+- **The generated schema is sent stripped and validated whole.**
+  `DECOMPOSITION_SCHEMA` carries `minLength` constraints that constrained
+  decoding does not implement, so `toStructuredOutputSchema` drops those
+  keywords on the way out while `validate.ts` compiles the unmodified schema
+  with Ajv on the way back. That is a second compile of one generated schema,
+  not a second copy of the enum: a new component ID still arrives only through
+  `npm run gen-schema`.
+- **The client assembles the logged query and refuses to return an invalid
+  one.** `callHaiku` takes `intent`, `direction`, `evidence` and an optional
+  `rating`, and runs the assembled record through `validateQueryLog` before
+  returning it. The rating rule is enforced by the generated conditional, not
+  restated here, and the client says nothing at all about what each evidence
+  type may move. Phase 5 persists `result.queryLog`; it should not rebuild it.
+- **`cache_read_input_tokens` has never been observed.** No live call has been
+  made, by design: the key is runtime-entered and there is none in this
+  environment. The 13,104 in `test/fixtures/decomposition-response.json` is an
+  invented plausible value, not a recording, and the eval is offline precisely
+  so it stays free. **The first person to run this against the live API owes a
+  check that the second identical query reports a non-zero cache read**, and
+  `CallResult.usage` exists to make that a one-line check rather than a
+  debugging session.
+- **The `output_format` fallback is untestable except against a stub.** The
+  phase prompt asks for a fallback if the stable `output_config` field errors,
+  so a 400 whose body names `output_config` retries once under the older key.
+  The match is deliberately narrow, because retrying any other 400 hides the
+  cause behind a second identical failure. If the live API never rejects
+  `output_config`, this path is dead code and should be deleted rather than
+  left to rot.
+
+The prompt is French prose that is not user-facing, so it sits outside
+`src/i18n/fr.ts` and outside the smoke test that guards that file.
+`test/anthropic-client.test.ts` holds it to the same typography rule, which is
+the only thing enforcing it. The narrow no-break space is now exported from
+`src/i18n/fr.ts` and imported rather than defined a third time.
+
 ## Carried over into later phases
 
+- **The prompt cache is unverified against the live API.** Everything phase 4
+  can check offline is checked: one breakpoint, on the last static block; a
+  prefix that renders byte-identically whatever the question is; a prefix well
+  clear of Haiku's 4,096-token minimum. What no test can check is whether the
+  cache is actually hit, because that is a property of a second live call.
+  Read `usage.cacheReadTokens` on the second identical query the first time a
+  key is entered. A persistent zero means the prefix is not byte-stable or is
+  under the minimum, and it reports as silence rather than as an error.
 - **The browser's no-evidence ban has to survive phase 6, not be deleted by it.**
   `test/browser-emits-no-evidence.test.ts` walks the module graph from every
   file in `src/ui/` and asserts it never reaches `src/db/dexie.ts`,

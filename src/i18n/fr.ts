@@ -18,9 +18,11 @@
  * Narrow no-break space, U+202F. Built from its code point rather than typed
  * literally: it is invisible in most editors and indistinguishable from an
  * ordinary space, so a literal one gets silently replaced sooner or later.
- * test/smoke.test.ts asserts the rule still holds.
+ * test/smoke.test.ts asserts the rule still holds. Exported because the model
+ * prompt in src/api/prompt.ts is French prose under the same rule, and a second
+ * definition of this character is a second thing to lose.
  */
-const NNBSP = String.fromCodePoint(0x202f);
+export const NNBSP = String.fromCodePoint(0x202f);
 
 /** Wrap in guillemets, with the narrow no-break space inside each. */
 export function quote(text: string): string {

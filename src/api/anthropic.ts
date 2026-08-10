@@ -1,19 +1,34 @@
 /**
  * Anthropic API client.
  *
- * Phase 0 defines the shape only. Phase 4 implements the call, the cached
- * taxonomy prefix and the structured-output wiring.
+ * The call is made straight from the browser. There is no server to hide a key
+ * behind, so the key is entered at runtime and kept in localStorage: it is never
+ * hardcoded, never committed, never written to a file and never logged.
  *
- * The API key is entered at runtime and kept in localStorage. It is never
- * hardcoded, never committed and never written to a file.
+ * The cached taxonomy prefix is built in `./prompt`. This module is the
+ * transport: it assembles the request around that prefix, constrains the reply
+ * to the generated schema, and reports what the cache actually did.
  */
 
-import type { ComponentId } from './schema';
+import { DECOMPOSITION_SCHEMA, type ComponentId } from './schema';
+import { validateDecomposition, validateQueryLog } from './validate';
+import { buildSystemBlocks, buildUserContent, type QuestionContext } from './prompt';
+import type { Direction, Evidence, Intent, Rating } from '../srs/evidence';
 
 const API_KEY_STORAGE_KEY = 'anthropic-api-key';
 
 export const MODEL = 'claude-haiku-4-5';
 export const ANTHROPIC_VERSION = '2023-06-01';
+export const MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
+
+/** Structured outputs, which is what makes an out-of-vocabulary tag undecodable. */
+export const STRUCTURED_OUTPUTS_BETA = 'structured-outputs-2025-11-13';
+
+/**
+ * Roughly four times the ~450-token French answer docs/01 costed, which leaves
+ * room for a long decomposition without inviting an essay.
+ */
+export const MAX_TOKENS = 2048;
 
 /**
  * One entry in the decomposition. LANGUAGE-INVARIANT: the ipa is a property of
@@ -34,6 +49,18 @@ export interface Decomposition {
   readonly answer_lang: 'fr';
 }
 
+/**
+ * What the cache did. Read `cacheReadTokens` during development: a persistent
+ * zero means the prefix is not byte-stable, or it has fallen under the model's
+ * minimum cacheable prefix.
+ */
+export interface CacheUsage {
+  readonly inputTokens: number;
+  readonly outputTokens: number;
+  readonly cacheCreationTokens: number;
+  readonly cacheReadTokens: number;
+}
+
 export function readApiKey(storage: Storage = localStorage): string | null {
   return storage.getItem(API_KEY_STORAGE_KEY);
 }
@@ -47,21 +74,239 @@ export function buildHeaders(apiKey: string): Record<string, string> {
     'content-type': 'application/json',
     'x-api-key': apiKey,
     'anthropic-version': ANTHROPIC_VERSION,
+    'anthropic-beta': STRUCTURED_OUTPUTS_BETA,
     // Required for calls made straight from the browser rather than a server.
     'anthropic-dangerous-direct-browser-access': 'true',
   };
 }
 
-export interface CallOptions {
-  readonly apiKey: string;
+/**
+ * JSON Schema keywords that constrained decoding does not implement.
+ *
+ * They are kept in the generated schema, because `validate.ts` compiles that
+ * schema with Ajv and Ajv does enforce them: an empty `answer` is a bad reply
+ * whether or not the decoder could have prevented it. They are stripped on the
+ * way out so the request is not rejected for asking the decoder to do something
+ * it cannot. This derives from the generated schema rather than restating it,
+ * so a new component ID still arrives only through `npm run gen-schema`.
+ */
+const UNSUPPORTED_KEYWORDS = new Set([
+  'minLength',
+  'maxLength',
+  'minimum',
+  'maximum',
+  'exclusiveMinimum',
+  'exclusiveMaximum',
+  'multipleOf',
+  'minItems',
+  'maxItems',
+]);
+
+export function toStructuredOutputSchema(schema: unknown): unknown {
+  if (Array.isArray(schema)) return schema.map(toStructuredOutputSchema);
+  if (schema === null || typeof schema !== 'object') return schema;
+  return Object.fromEntries(
+    Object.entries(schema)
+      .filter(([key]) => !UNSUPPORTED_KEYWORDS.has(key))
+      .map(([key, value]) => [key, toStructuredOutputSchema(value)]),
+  );
+}
+
+export interface RequestBodyOptions {
+  /**
+   * Send the response format under the older `output_format` key. Only used
+   * after the stable field has been rejected once; see `callHaiku`.
+   */
+  readonly legacyOutputFormat?: boolean;
+}
+
+export function buildRequestBody(
+  context: QuestionContext,
+  options: RequestBodyOptions = {},
+): Record<string, unknown> {
+  const format = {
+    type: 'json_schema',
+    schema: toStructuredOutputSchema(DECOMPOSITION_SCHEMA),
+  };
+
+  return {
+    model: MODEL,
+    max_tokens: MAX_TOKENS,
+    // Static prefix, cache breakpoint on its last block. The question is the
+    // only thing after it, which is what makes the prefix reusable.
+    system: buildSystemBlocks(),
+    messages: [{ role: 'user', content: buildUserContent(context) }],
+    ...(options.legacyOutputFormat
+      ? { output_format: format }
+      : { output_config: { format } }),
+  };
+}
+
+/** A logged query: the decomposition plus the interaction-model triple. */
+export interface QueryLog extends Decomposition {
+  readonly asked_at: number;
   readonly question: string;
+  readonly intent: Intent;
+  readonly direction: Direction;
+  readonly evidence: Evidence;
+  readonly rating?: Rating;
+}
+
+export interface CallOptions extends QuestionContext {
+  readonly apiKey: string;
+  /**
+   * How much this interaction tells us about what the user knows. Passed
+   * through to the logged record; what each type may move is EVIDENCE_EFFECTS'
+   * business, not this module's.
+   */
+  readonly evidence: Evidence;
+  readonly rating?: Rating;
   /**
    * Injectable so tests can pass a stub returning a recorded fixture. Keeps the
    * golden-set eval fully offline and free.
    */
   readonly fetchFn?: typeof fetch;
+  /** Injectable so a logged record is reproducible in a test. */
+  readonly now?: () => number;
 }
 
-export function callHaiku(_options: CallOptions): Promise<Decomposition> {
-  return Promise.reject(new Error('Not implemented until phase 4.'));
+export interface CallResult {
+  readonly decomposition: Decomposition;
+  /** Schema-valid and ready to persist. Phase 5 stores this, it does not rebuild it. */
+  readonly queryLog: QueryLog;
+  readonly usage: CacheUsage;
+}
+
+export class AnthropicError extends Error {
+  constructor(
+    message: string,
+    readonly status?: number,
+  ) {
+    super(message);
+    this.name = 'AnthropicError';
+  }
+}
+
+interface ApiResponse {
+  readonly content?: readonly { readonly type: string; readonly text?: string }[];
+  readonly stop_reason?: string;
+  readonly usage?: Readonly<Record<string, number>>;
+}
+
+function readUsage(usage: ApiResponse['usage']): CacheUsage {
+  return {
+    inputTokens: usage?.input_tokens ?? 0,
+    outputTokens: usage?.output_tokens ?? 0,
+    cacheCreationTokens: usage?.cache_creation_input_tokens ?? 0,
+    cacheReadTokens: usage?.cache_read_input_tokens ?? 0,
+  };
+}
+
+/** The constrained reply arrives as JSON in the first text block. */
+function parseDecomposition(response: ApiResponse): Decomposition {
+  if (response.stop_reason === 'refusal') {
+    throw new AnthropicError('The model declined to answer this query.');
+  }
+  if (response.stop_reason === 'max_tokens') {
+    throw new AnthropicError('The reply was cut off at max_tokens.');
+  }
+
+  const text = response.content?.find((block) => block.type === 'text')?.text;
+  if (text === undefined) {
+    throw new AnthropicError('The reply carried no text block.');
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    throw new AnthropicError('The reply was not valid JSON.');
+  }
+
+  const result = validateDecomposition(parsed);
+  if (!result.valid) {
+    throw new AnthropicError(
+      `The reply failed the schema: ${result.errors.join('; ')}`,
+    );
+  }
+  return parsed as Decomposition;
+}
+
+/**
+ * True when a 400 is the API telling us it does not know `output_config`.
+ *
+ * Narrow on purpose: any other 400 is a real error and retrying it would hide
+ * the cause behind a second identical failure.
+ */
+function isUnknownOutputConfig(status: number, body: string): boolean {
+  return status === 400 && /output_config/.test(body);
+}
+
+async function post(
+  fetchFn: typeof fetch,
+  apiKey: string,
+  body: Record<string, unknown>,
+): Promise<{ ok: boolean; status: number; text: string }> {
+  const response = await fetchFn(MESSAGES_URL, {
+    method: 'POST',
+    headers: buildHeaders(apiKey),
+    body: JSON.stringify(body),
+  });
+  return { ok: response.ok, status: response.status, text: await response.text() };
+}
+
+export async function callHaiku(options: CallOptions): Promise<CallResult> {
+  const fetchFn = options.fetchFn ?? fetch;
+  const context: QuestionContext = {
+    question: options.question,
+    intent: options.intent,
+    direction: options.direction,
+  };
+
+  let response = await post(fetchFn, options.apiKey, buildRequestBody(context));
+
+  if (!response.ok && isUnknownOutputConfig(response.status, response.text)) {
+    response = await post(
+      fetchFn,
+      options.apiKey,
+      buildRequestBody(context, { legacyOutputFormat: true }),
+    );
+  }
+
+  if (!response.ok) {
+    throw new AnthropicError(
+      `The API returned ${String(response.status)}.`,
+      response.status,
+    );
+  }
+
+  let payload: ApiResponse;
+  try {
+    payload = JSON.parse(response.text) as ApiResponse;
+  } catch {
+    throw new AnthropicError('The API response was not valid JSON.');
+  }
+
+  const decomposition = parseDecomposition(payload);
+
+  const queryLog: QueryLog = {
+    asked_at: (options.now ?? Date.now)(),
+    question: options.question,
+    intent: options.intent,
+    direction: options.direction,
+    evidence: options.evidence,
+    ...(options.rating === undefined ? {} : { rating: options.rating }),
+    ...decomposition,
+  };
+
+  // The rating rule lives in the generated schema and is checked here rather
+  // than restated: a graded call with no rating must not reach persistence.
+  const logResult = validateQueryLog(queryLog);
+  if (!logResult.valid) {
+    throw new AnthropicError(
+      `The logged query failed the schema: ${logResult.errors.join('; ')}`,
+    );
+  }
+
+  return { decomposition, queryLog, usage: readUsage(payload.usage) };
 }

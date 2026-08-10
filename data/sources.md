@@ -2967,3 +2967,50 @@ deleting component IDs is free today because nothing persists them; after phase
 5 the same six changes would be a data migration against a live query log. That
 was the argument for doing them now rather than later, and it no longer applies
 to anything outstanding.
+
+## Phase 4: the API client and the cached prefix
+
+Not a taxonomy pass, recorded here because two decisions in it depart from
+`docs/01` and one of them will look like an omission to the next reader.
+
+**The assistant prefill in `docs/01` was declined.** Line 250 recommends
+prefilling the assistant turn with the opening `{` or a tool_use scaffold to
+force immediate structured output. That advice predates structured outputs
+being generally available, and the two are mutually exclusive: a request that
+sets both a JSON-schema output format and a trailing assistant turn is
+rejected, and a last-assistant-turn prefill is refused outright by current
+models whatever else the request carries. The mechanism the prefill was a proxy
+for is now the real thing, and it is stronger: with the component enum compiled
+into the output schema, an out-of-vocabulary tag cannot be decoded at all,
+where a prefill would only have made a malformed reply less likely. The docs/01
+claim is left standing with the disagreement recorded beside it, on the `pas`
+precedent.
+
+**docs/01 line 246 proposes a `record_decomposition` tool; the phase 3 prompt
+in `docs/02` asks for `output_config.format`.** They are two spellings of the
+same guarantee, and the second was taken because there is only one call shape
+here and no loop: a tool whose result is never fed back is a response format
+wearing a tool's costume. Nothing in the design depends on the choice, and
+switching to a tool later would not touch the taxonomy or the schema.
+
+**The vocabulary sent to the model is not the taxonomy.** `taxonomy.json` is
+314 KB; the cached prefix is 37 KB, being the 300 leaves as
+`id`/`ca`/`glosses.fr` and nothing else. Branch nodes are omitted because they
+are not taggable. The CEFR level and the `contrast_fr` status are omitted
+deliberately, and the reason generalises: both describe how a component should
+be scheduled or how far it sits from French, neither helps the model recognise
+that a component is present in a sentence, and sending them would invite the
+model to reason about difficulty in a field that is supposed to be a tagging
+decision. Only `glosses.fr` is sent, never the whole keyed map, which is what
+`docs/01` line 251 asks for and also the only reason the gloss map's shape has
+cost nothing so far.
+
+**No live call has been made, and no cache read has been observed.** The key is
+runtime-entered and none exists in this environment, so the evidence position
+for the caching claim is: the request shape is checked against the documented
+contract, the prefix is checked to be byte-stable and to clear the model's
+minimum, and whether the cache is hit is unverified. The
+`cache_read_input_tokens` value in the test fixture is invented, not recorded.
+This is the same three-tier grading the `NEG.anticipada` seed used, applied to
+an engineering claim rather than a grammatical one, and for the same reason:
+without it the inference hardens into a fact the moment somebody restates it.
