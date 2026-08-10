@@ -134,7 +134,7 @@
       },
       "cefr": "A2",
       "examples": ["Busco feina.", "Què busques?", "No comencis encara."],
-      "notes": "La prononciation du radical ne change pas ; seule la graphie s’adapte à la voyelle qui suit. « buscar » donne « busco » mais « busques », « començar » donne « començo » mais « comences », « pagar » donne « pago » mais « pagues ».",
+      "notes": "La prononciation du radical ne change pas ; seule la graphie s’adapte à la voyelle qui suit. « buscar » donne « busco » mais « busques », « començar » donne « començo » mais « comences », « pagar » donne « pago » mais « pagues ». La règle générale, qui vaut aussi pour le nom et pour l’adjectif, est PHON.grafia.alternanca.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le français fait la même chose dans mangeons, plaçons et lançais, mais les couples catalans sont autres : c et qu, ç et c, g et gu, j et g, gu et gü, qu et qü."

@@ -10,6 +10,19 @@
 
 /** Every reviewable component, in taxonomy order. */
 export const LEAF_IDS = [
+  'PHON.grafia.digrafs',
+  'PHON.grafia.ela_geminada',
+  'PHON.grafia.alternanca',
+  'PHON.grafia.guionet',
+  'PHON.grafia.b_v',
+  'PHON.accent.agut_greu',
+  'PHON.accent.regles',
+  'PHON.accent.diacritic',
+  'PHON.so.reduccio_vocalica',
+  'PHON.so.ensordiment',
+  'PHON.so.essa',
+  'PHON.so.erra_final',
+  'PHON.dieresi',
   'NOM.gender.masc_fem_o',
   'NOM.gender.comu',
   'NOM.gender.ista',

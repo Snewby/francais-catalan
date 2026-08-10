@@ -8,11 +8,20 @@
  * the leaves under it were already authored.
  */
 import { beforeEach, describe, expect, it } from 'vitest';
-import { DOMAIN_CODES, LEAVES, NODES, isLeaf, nodeById } from '../src/taxonomy';
+import {
+  DOMAIN_CODES,
+  LEAVES,
+  NODES,
+  domainOf,
+  isLeaf,
+  nodeById,
+} from '../src/taxonomy';
 import type { LeafNode } from '../src/taxonomy';
 import { fr } from '../src/i18n/fr';
 import { NO_FILTERS, matchesLeaf, normalise, visibleIds } from '../src/ui/filter';
 import { mountTaxonomyBrowser } from '../src/ui/taxonomy-browser';
+import { renderTree } from '../src/ui/tree';
+import type { TreeOptions } from '../src/ui/tree';
 
 /** The first leaf carrying every optional field, so the detail panel is fully exercised. */
 function richLeaf(): LeafNode {
@@ -26,6 +35,23 @@ function mount(): HTMLElement {
   document.body.replaceChildren(host);
   mountTaxonomyBrowser(host);
   return host;
+}
+
+/**
+ * Tree options over a taxonomy with one domain removed, so that the unseeded
+ * rendering can still be exercised now that all twelve domains have nodes. The
+ * domain is taken from the data rather than named, on the same grounds as the
+ * note at the top of this file.
+ */
+function treeWithoutOneDomain(): TreeOptions {
+  const dropped = domainOf(NODES[0]!.id);
+  expect(dropped, 'no domain to drop').toBeDefined();
+  return {
+    nodes: NODES.filter((node) => domainOf(node.id) !== dropped),
+    filters: NO_FILTERS,
+    selectedId: null,
+    onSelect: () => undefined,
+  };
 }
 
 describe('search and filter predicates', () => {
@@ -100,18 +126,32 @@ describe('the tree pane', () => {
     expect(host.querySelectorAll('.tb-domain')).toHaveLength(DOMAIN_CODES.length);
   });
 
+  // These two used to assert against the live taxonomy, which worked only while
+  // some domain was unseeded. All twelve are seeded now, so that form of the
+  // assertion passes vacuously or fails outright, and deleting it would drop
+  // the only cover on a code path that still exists in renderTree. They drive
+  // renderTree with a node set that omits one domain instead. Do not restore
+  // the live-data form: the next seeding pass would break it again, and there
+  // is no next seeding pass.
   it('says in French that a domain is not yet seeded', () => {
-    const unseeded = host.querySelectorAll('[data-unseeded="true"]');
-    expect(unseeded.length).toBeGreaterThan(0);
-    for (const row of unseeded) {
-      expect(row.textContent).toContain(fr.browser.unseeded);
-    }
+    const list = renderTree(treeWithoutOneDomain());
+    const unseeded = list.querySelectorAll('[data-unseeded="true"]');
+    expect(unseeded).toHaveLength(1);
+    expect(unseeded[0]?.textContent).toContain(fr.browser.unseeded);
   });
 
   it('renders no unseeded domain as an expandable branch', () => {
-    for (const row of host.querySelectorAll('[data-unseeded="true"]')) {
+    const list = renderTree(treeWithoutOneDomain());
+    const rows = list.querySelectorAll('[data-unseeded="true"]');
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) {
       expect(row.querySelector('details')).toBeNull();
     }
+  });
+
+  it('shows every domain as seeded once the whole taxonomy is present', () => {
+    // The live counterpart of the two above, and the reason they had to move.
+    expect(host.querySelectorAll('[data-unseeded="true"]')).toHaveLength(0);
   });
 
   it('counts the leaves under every seeded domain', () => {

@@ -1,0 +1,406 @@
+{
+  "domain": "PHON",
+  "nodes": [
+    {
+      "id": "PHON",
+      "kind": "branch",
+      "parent": null,
+      "label_fr": "La phonologie et l’orthographe"
+    },
+    {
+      "id": "PHON.grafia",
+      "kind": "branch",
+      "parent": "PHON",
+      "label_fr": "Les graphies propres au catalan"
+    },
+    {
+      "id": "PHON.grafia.digrafs",
+      "kind": "leaf",
+      "parent": "PHON.grafia",
+      "ca": "ny, ll, ig, tx",
+      "glosses": {
+        "fr": "les digrammes, où une même valeur sonore s’écrit autrement qu’en français"
+      },
+      "cefr": "A2",
+      "examples": [
+        "L'any que ve anirem a Menorca.",
+        "Al maig tot floreix.",
+        "Va apagar el llum del despatx."
+      ],
+      "notes": "Un piège dépasse la simple méconnaissance : « ll » vaut le mouillé de fille, alors qu’en français ll se lit le plus souvent comme un l simple, dans aller ou belle. « llibre » lu à la française est donc une lecture disponible et fausse, la seule de ce genre dans le domaine.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a le procédé et jusqu’aux mêmes sons, mais pas les mêmes lettres : « ny » vaut gn, « ig » et « tx » valent tch, « tj » et « tg » valent dj. Chaque correspondance est à réapprendre, aucune n’est à deviner."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.grafia.ela_geminada",
+      "kind": "leaf",
+      "parent": "PHON.grafia",
+      "ca": "col·legi, il·lusió",
+      "glosses": {
+        "fr": "l’ela geminada, deux l séparés par un point volat"
+      },
+      "cefr": "A2",
+      "examples": ["Va al col·legi cada matí.", "Em fa il·lusió veure't."],
+      "notes": "Le point volat est le caractère U+00B7, distinct du point ordinaire et du point médian typographique. On le rencontre surtout dans les mots savants, « col·lecció », « intel·ligent », « novel·la », là où le français a deux l simples.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français n’a ni ce signe ni cette opposition : « l·l » se distingue de « ll », qui vaut tout autre chose, et le point volat fait partie de l’orthographe et non de la mise en page. L’omettre est une faute, pas une variante."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.grafia.alternanca",
+      "kind": "leaf",
+      "parent": "PHON.grafia",
+      "ca": "plaça / places, amic / amics",
+      "glosses": {
+        "fr": "l’alternance graphique qui conserve le son de la consonne finale devant une désinence"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Les places del poble són petites.",
+        "Tinc dos amics a Lleida.",
+        "Les amigues han arribat."
+      ],
+      "notes": "C’est la règle générale dont VERB.conj.ortografia est le cas verbal. Au pluriel elle donne « plaça » et « places », « amiga » et « amigues », « amic » et « amics », où la graphie change pour que la prononciation ne change pas.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît le procédé dans mangeons et plaçons, mais le catalan l’applique partout, au nom comme au verbe, et avec d’autres couples : c et qu, ç et c, g et gu, j et g, gu et gü, qu et qü."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.grafia.guionet",
+      "kind": "leaf",
+      "parent": "PHON.grafia",
+      "ca": "vint-i-un",
+      "glosses": {
+        "fr": "le trait d’union des numéraux composés et de certains mots composés"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Té vint-i-un anys.",
+        "Hi havia dues-centes persones.",
+        "Va comprar un para-xocs nou."
+      ],
+      "notes": "Le trait d’union relie les unités aux dizaines et les centaines à leur multiplicateur, « dues-centes ». Le trait d’union et l’apostrophe des pronoms enclitiques suivent une règle distincte, qui relève de PRON.feble.forma_alomorfs.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français relie lui aussi ses numéraux composés, vingt et un, quatre-vingts, mais le catalan y met un trait d’union systématique et garde le « i » à l’intérieur de la dizaine, « vint-i-un », « trenta-dues »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.grafia.b_v",
+      "kind": "leaf",
+      "parent": "PHON.grafia",
+      "ca": "beure / veure",
+      "glosses": {
+        "fr": "la distinction b / v, maintenue à l’écrit alors que le catalan central ne la prononce plus"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Vull beure aigua.",
+        "No el puc veure des d'aquí.",
+        "El vi blanc és bo."
+      ],
+      "notes": "La stratégie du cognat, décrite à LEX.cognats, est ici une aide orthographique directe et pas seulement lexicale.",
+      "dialect_note": "Le valencien et le baléare distinguent encore b et v à l’oral, si bien que la difficulté est propre au domaine central.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français distingue b et v à l’oreille et le catalan central non, si bien que la graphie ne peut pas se déduire de la prononciation. L’avantage est que le mot français apparenté donne presque toujours la bonne lettre, « vi » comme vin, « beure » comme boire."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.accent",
+      "kind": "branch",
+      "parent": "PHON",
+      "label_fr": "L’accentuation écrite"
+    },
+    {
+      "id": "PHON.accent.agut_greu",
+      "kind": "leaf",
+      "parent": "PHON.accent",
+      "ca": "é / è, ó / ò",
+      "glosses": {
+        "fr": "l’accent aigu sur les voyelles fermées, le grave sur les ouvertes"
+      },
+      "cefr": "A2",
+      "examples": [
+        "És un cafè molt bo.",
+        "Vull més pa, si us plau.",
+        "L'ós blanc viu al nord."
+      ],
+      "notes": "Le système est même plus régulier qu’en français, puisque « a » ne prend jamais que le grave et « i » et « u » jamais que l’aigu. Il n’y a donc de choix à faire que sur « e » et « o », et il porte sur l’ouverture.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Exactement la logique française de é contre è : l’aigu note la voyelle fermée, le grave l’ouverte. Un francophone lit « cafè » et « més » avec la bonne qualité vocalique sans rien apprendre."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.accent.regles",
+      "kind": "leaf",
+      "parent": "PHON.accent",
+      "ca": "còpia / copia / copià",
+      "glosses": {
+        "fr": "la place de l’accent tonique et les règles qui décident quand il s’écrit"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Fes-me una còpia del document.",
+        "Ell copia els deures.",
+        "Ahir copià tot el text."
+      ],
+      "notes": "Le catalan appelle « agudes » les mots accentués sur la dernière syllabe, « planes » ceux qui le sont sur l’avant-dernière et « esdrúixoles » les autres. Les « agudes » prennent l’accent écrit quand elles finissent par une voyelle, par une voyelle suivie de -s, ou par -en ou -in ; les « planes » le prennent dans tous les autres cas ; les « esdrúixoles » le prennent toujours. C’est donc une règle et non une liste, mais elle suppose de savoir d’abord où tombe l’accent, ce qui est la vraie difficulté.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français n’a pas d’accent tonique lexical : il accentue la fin du groupe et rien ne distingue deux mots par la seule place de l’accent. En catalan, « còpia », « copia » et « copià » sont trois mots différents, et il n’y a rien à transférer."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.accent.diacritic",
+      "kind": "leaf",
+      "parent": "PHON.accent",
+      "ca": "sòl / sol, són / son",
+      "glosses": {
+        "fr": "l’accent diacritique, qui sépare quinze paires d’homographes depuis 2017"
+      },
+      "cefr": "B2",
+      "examples": [
+        "El sòl del bosc és humit.",
+        "El sol escalfa la terra.",
+        "Són les tres tocades."
+      ],
+      "notes": "Les paires les plus courantes sont « sòl » et « sol », « són » et « son », « més » et « mes », « bé » et « be », « què » et « que ». Hors de la liste des quinze, l’accent diacritique a disparu, y compris sur des mots où il paraissait utile.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français fait la même chose avec à contre a et où contre ou, mais la liste catalane est autre et elle a changé : la réforme de 2017 l’a réduite à quinze paires, si bien que des accents encore présents dans les textes anciens sont aujourd’hui des fautes."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.so",
+      "kind": "branch",
+      "parent": "PHON",
+      "label_fr": "La prononciation qui s’écarte de l’écrit"
+    },
+    {
+      "id": "PHON.so.reduccio_vocalica",
+      "kind": "leaf",
+      "parent": "PHON.so",
+      "ca": "pare, color",
+      "glosses": {
+        "fr": "la réduction vocalique, qui neutralise les voyelles atones du catalan central"
+      },
+      "cefr": "A2",
+      "examples": ["El pare treballa a Girona.", "Aquest color és massa fosc."],
+      "notes": "Conséquence pratique pour qui écrit : la finale de « pare » et celle de « porta » sonnent pareil, et « color » s’entend colur. L’orthographe des voyelles atones se retient donc par le mot, ou par le mot français apparenté, jamais à l’oreille.",
+      "dialect_note": "Le valencien conserve les voyelles atones distinctes, et le baléare a sa propre distribution, si bien que la réduction est un trait du catalan central et oriental.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français prononce ses voyelles atones à peu près comme ses toniques. Le catalan central réduit « a » et « e » atones à une seule voyelle sourde et « o » atone à un « u », si bien qu’une bonne part de l’orthographe cesse d’être audible."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.so.ensordiment",
+      "kind": "leaf",
+      "parent": "PHON.so",
+      "ca": "fred / freda",
+      "glosses": {
+        "fr": "l’assourdissement des consonnes finales, que le féminin révèle"
+      },
+      "cefr": "B1",
+      "examples": ["Aquest pa és fred.", "La nit és freda.", "El camí és massa llarg."],
+      "notes": "Même chose pour « llarg », qui finit sur le son de c, contre « llarga ». La graphie note la consonne sous-jacente et non ce qui s’entend, ce qui en fait une aide plutôt qu’un obstacle une fois la règle sue.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français garde ses finales sonores, grande et grand différant par la présence de la consonne et non par sa sonorité. Le catalan assourdit la finale, si bien que « fred » se dit avec un t final ; c’est le féminin « freda » qui montre la consonne réelle."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.so.essa",
+      "kind": "leaf",
+      "parent": "PHON.so",
+      "ca": "casa / caça",
+      "glosses": {
+        "fr": "le s sonore entre voyelles, le ss et le ç sourds"
+      },
+      "cefr": "A2",
+      "examples": ["La caça és prohibida aquí.", "Va passar per casa meva."],
+      "notes": "La seule chose à ajouter est que le catalan écrit « ç » aussi en finale, « feliç », « dolç », là où le français ne le fait jamais.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "La règle est celle du français, poison contre poisson : un « s » entre deux voyelles se sonorise, « ss » et « ç » restent sourds. Le « ç » est de surcroît la même lettre avec la même valeur."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.so.erra_final",
+      "kind": "leaf",
+      "parent": "PHON.so",
+      "ca": "carrer, cantar",
+      "glosses": {
+        "fr": "la chute du r final, générale à l’infinitif et fréquente ailleurs"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Viu al carrer major.",
+        "Vol cantar una cançó.",
+        "El cor li bategava fort."
+      ],
+      "notes": "La lettre s’écrit toujours, même muette, et elle se prononce à nouveau au féminin et au pluriel de certains mots. Le partage exact entre les mots qui la font sonner et les autres se retient par l’usage.",
+      "dialect_note": "Le valencien et une partie du baléare prononcent le r final là où le catalan central le laisse tomber.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît déjà la chute, chanter et aimer se disant sans r. Le catalan l’étend bien au-delà de l’infinitif, à des noms comme « carrer » ou « primer », mais la garde dans la plupart des monosyllabes, « cor », « mar », « dur »."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    },
+    {
+      "id": "PHON.dieresi",
+      "kind": "leaf",
+      "parent": "PHON",
+      "ca": "ï, ü",
+      "glosses": {
+        "fr": "le tréma, qui sépare une diphtongue ou fait sonner le u après g et q"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Traduïm el text al català.",
+        "Quina qüestió tan difícil!",
+        "Vam veure un pingüí."
+      ],
+      "notes": "Le tréma disparaît quand un accent écrit occupe déjà la voyelle, et il ne s’écrit pas sur les terminaisons d’infinitif, de gérondif, de futur et de conditionnel, « traduir » sans tréma contre « traduïm » avec.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a le tréma et l’emploie déjà pour séparer deux voyelles, dans maïs ou Noël. Le catalan lui ajoute un second emploi que le français n’a pas : faire prononcer le « u » de « güe », « güi », « qüe » et « qüi », qui serait muet sans lui."
+      },
+      "state": {
+        "exposure": {
+          "exposure_count": 0
+        },
+        "mastery": {
+          "stability": null,
+          "difficulty": null,
+          "graded_review_count": 0
+        }
+      }
+    }
+  ]
+}

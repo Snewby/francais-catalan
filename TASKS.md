@@ -12,8 +12,8 @@ is worse than none, because it still reads as authoritative.
 | 0. Scaffold                           | done        | DONE     | `c8a3e14`, `f6d0a21`, `1c4cc7d` |
 | Interaction-model amendment           | done        | n/a      | `d7738c5`                       |
 | 1. Taxonomy schema, closed vocabulary | done        | VERBATIM | `7bcb37a`, `bb7ae90`            |
-| 2a. Structural seeding, per domain    | in progress | ADAPT    | per domain, see table below     |
-| 2b. Gloss and contrast authoring      | in progress | ADAPT    | per domain, see table below     |
+| 2a. Structural seeding, per domain    | done        | ADAPT    | all twelve, see table below     |
+| 2b. Gloss and contrast authoring      | done        | ADAPT    | all twelve, see table below     |
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
 | Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
 | 4. API client and prompt caching      | not started | ADAPT    |                                 |
@@ -42,24 +42,26 @@ all. `/clear` between domains, not between the two passes on one domain.
 authored a handful of leaves to have something real to build the machinery
 against, and a proper 2a pass over that domain is still owed.
 
-| Domain | Fragment                  | Structure   | Glosses     | Closed by |
-| ------ | ------------------------- | ----------- | ----------- | --------- |
-| `PHON` |                           | not started | not started |           |
-| `NOM`  | `data/nom.fragment.json`  | done        | done        | this pass |
-| `ART`  | `data/art.fragment.json`  | done        | done        | this pass |
-| `VERB` | `data/verb.fragment.json` | done        | done        | this pass |
-| `PRON` | `data/pron.fragment.json` | done        | done        | this pass |
-| `DET`  | `data/det.fragment.json`  | done        | done        | this pass |
-| `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
-| `ADV`  | `data/adv.fragment.json`  | done        | done        | this pass |
-| `CONJ` | `data/conj.fragment.json` | done        | done        | this pass |
-| `NEG`  | `data/neg.fragment.json`  | done        | done        | this pass |
-| `SYN`  | `data/syn.fragment.json`  | done        | done        | this pass |
-| `LEX`  | `data/lex.fragment.json`  | done        | done        | this pass |
+| Domain | Fragment                  | Structure | Glosses | Closed by |
+| ------ | ------------------------- | --------- | ------- | --------- |
+| `PHON` | `data/phon.fragment.json` | done      | done    | this pass |
+| `NOM`  | `data/nom.fragment.json`  | done      | done    | this pass |
+| `ART`  | `data/art.fragment.json`  | done      | done    | this pass |
+| `VERB` | `data/verb.fragment.json` | done      | done    | this pass |
+| `PRON` | `data/pron.fragment.json` | done      | done    | this pass |
+| `DET`  | `data/det.fragment.json`  | done      | done    | this pass |
+| `PREP` | `data/prep.fragment.json` | done      | done    | this pass |
+| `ADV`  | `data/adv.fragment.json`  | done      | done    | this pass |
+| `CONJ` | `data/conj.fragment.json` | done      | done    | this pass |
+| `NEG`  | `data/neg.fragment.json`  | done      | done    | this pass |
+| `SYN`  | `data/syn.fragment.json`  | done      | done    | this pass |
+| `LEX`  | `data/lex.fragment.json`  | done      | done    | this pass |
 
-No `seed only` domain remains and `PHON` is the last unseeded one. It is
-authored from nothing, so the merge hazard that governed the `PRON` and `VERB`
-passes does not apply to it.
+**Seeding is complete.** All twelve domains are seeded, at 306 leaves and 91
+branches. No domain is `seed only` and none is owed a 2a or 2b pass. What
+remains is review, not seeding: `LEX` and `PHON` have not been through an
+outside review, and the `NEG.anticipada` wording is still owed a check against
+the printed GIEC.
 
 The domain order above is the closed domain list, which is also the order
 `gen-schema` merges fragments in. It is not a recommended seeding order.
@@ -668,6 +670,48 @@ between a French item and a Catalan one. `LEX.castellanismes` is the most
 arguable status in the domain, `transfer` on the ground that these errors come
 from Spanish and French is a protection, and it is flagged for outside review.
 
+`PHON` closed the seeding phase, 13 leaves under 4 branches. Four things in it
+are worth carrying into the review and build phases:
+
+- **A domain seeded last inherits a plan written first, and the plan had been
+  overtaken.** docs/01 gives `PHON` as a finished twelve-row table with statuses
+  already assigned, the only domain it treats that way, and one of those rows
+  was `PHON.apostrof`. By the time `PHON` was reached, **nine committed leaves
+  across `ART`, `PREP` and `PRON` already owned apostrophation**, each stating
+  its own category's behaviour, and no residue was left for a general leaf. The
+  row was declined. `PHON.alph` was declined too, as declarative knowledge about
+  an inventory a French speaker already has. **Check what is already keyed
+  before building from a source table, not after.**
+- **Three leaves are about sound in a text-only application, and they were kept
+  deliberately.** Each has an immediate written consequence and each contrast
+  note leads with it: vowel reduction is why unstressed `a` and `e` cannot be
+  spelled by ear, final devoicing is why the feminine must be consulted, the
+  silent final `r` is why `carrer` is not spelled as it sounds. Phase 6b will
+  attach pronunciation to exactly these three, and minting them then would mean
+  minting keys into a live query log.
+- **No IPA anywhere, and the reason generalises.** The `ca` field is defined as
+  a Catalan surface form and feeds the decomposition machinery, so a
+  transcription there would be neither Catalan nor a form. If phase 6b needs
+  transcriptions they want their own field, not the reuse of one that means
+  something else.
+- **The second census-shaped test outgrew the data.** `taxonomy-browser` asserted
+  that some domain reads as unseeded, which seeding the twelfth makes false.
+  Deleting the case would have dropped the only cover on `renderUnseededDomain`,
+  which is still live code, so the two unseeded cases now drive `renderTree`
+  with a node set that omits one domain and a third asserts that nothing is
+  unseeded any more. `NOM` generalised `closed-vocabulary` for the same reason.
+  **There is no next seeding pass, so this class of breakage is now closed.**
+
+`PHON` came out 2 transfer, 7 near-miss, 4 novel and no false-friend. Four novel
+is the highest in the taxonomy and is the honest shape of the domain: an
+interpunct French does not have, a lexical stress system it does not have, and
+two phonological processes it does not run. Orthography and phonology are where
+two Romance languages diverge in kind rather than in distribution. The empty
+false-friend column is argued: an unmet spelling convention produces ignorance
+rather than a confident wrong reading, and the one real exception, `ll` read as
+a simple French `l`, sits in `notes` on `PHON.grafia.digrafs` under the `si bé`
+precedent.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -679,10 +723,13 @@ same component into the coverage heatmap rather than starting a second one.
 
 Three decisions in it are worth knowing before phase 6 touches it:
 
-- **The top level is built from `DOMAIN_CODES`, not from the data.** Six of the
-  twelve domains have no nodes at all, not empty branches, so a tree built from
-  the taxonomy's roots would show six domains and read as the whole language.
-  The unseeded six render as non-expandable rows saying so in French.
+- **The top level is built from `DOMAIN_CODES`, not from the data.** When the
+  browser landed, six of the twelve domains had no nodes at all, not empty
+  branches, so a tree built from the taxonomy's roots would have shown six
+  domains and read as the whole language; they rendered as non-expandable rows
+  saying so in French. All twelve are seeded now and no such row appears, but
+  **keep the top level built from `DOMAIN_CODES`**: it is what makes a missing
+  or broken fragment visible instead of silently shrinking the language.
 - **There is no third "seed only" state, deliberately.** When the browser
   landed, `VERB` sat at 6 leaves and was recorded as seed-only in this file's
   prose, which is not data the browser can read. A list of thin domains
@@ -726,15 +773,15 @@ Three decisions in it are worth knowing before phase 6 touches it:
   corroborating sources, and its card text is owed a check against the print
   edition, roughly pp. 1310-1313. Until then the leaf is right in substance and
   unverified in wording.
-- **Three facts were ruled out of `NEG` and owed to domains not yet seeded.** The
-  negative imperative (`no vinguis`, present subjunctive) belonged to `VERB` and
-  is now `VERB.imperatiu.negatiu`. Approximate negation (`gairebé no`, `amb prou
-feines`) splits between `ADV` and `LEX`. The contradictory answer particle
-  `sí`, which a French speaker reaches for from « si », is positive polarity and
-  belongs with response particles in `ADV`. Article behaviour under negation
-  (French `pas de` against a bare noun or `cap`) is ruled out of `NEG` and split
-  across `ART`, `DET` and `NOM`, so it is the one most likely to fall between
-  three domains. All four are argued in `data/sources.md`.
+- **The four facts ruled out of `NEG` are discharged but one.** The negative
+  imperative is `VERB.imperatiu.negatiu`; approximate negation split as planned,
+  `gairebé` and `a penes` to `ADV.grau.aproximacio` and `amb prou feines` to
+  `LEX.locucions.aproximacio`; the contradictory answer particle `sí` is
+  `ADV.modalitat.si`. **Article behaviour under negation is the one still
+  open**: French `pas de` against a bare noun or `cap` was split across `ART`,
+  `DET` and `NOM`, and it is the fact most likely to have fallen between three
+  domains, since no leaf states it as such. Worth a targeted check now that
+  every domain is seeded and nothing can be deferred to a later pass.
 - **Duplicate content across domains is now checked, after happening twice.**
   `CONJ` minted a leaf that already existed as `PREP.regim.caiguda_davant_que`;
   `ADV` minted one that already existed as `PREP.toniques.locucions_amb_de`.
@@ -747,15 +794,16 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   restated the `per què` / `perquè` split that `ADV.interrogatiu.per_que` now
   owns, and is a pointer to it instead. Nothing catches that kind, a restatement
   in prose rather than a second key, and nothing cheaply could.
-- **Four facts are ruled out of `CONJ` and owed to domains not yet seeded.** The
-  interrogative particle `que` (`Que vols venir?`) and the optative `que`
-  (`Que tinguis sort!`) both go to `SYN`, the first with a recorded disagreement
-  with docs/01 line 175, which says Catalan has no _est-ce que_, and the second
-  at medium confidence and flagged in `data/sources.md` as the ruling most likely
-  to be wrong. The `tan`/`tant` choice and the degree words `més`/`menys` go to
-  `ADV` and `DET`; `CONJ` kept only the frames they open. `SYN` also owes the
-  protasis/apodosis tense correlation, which `CONJ.condicional.si` deliberately
-  does not carry.
+- **The four facts ruled out of `CONJ` are discharged but one.** The
+  interrogative particle `que` is `SYN.interrogativa.particula_que`, with the
+  recorded disagreement with docs/01 line 175 standing beside it; `tan`/`tant`
+  and the degree words went to `ADV` and `DET`; the protasis/apodosis
+  correlation is `SYN.subordinacio.periode_condicional`. **The optative `que`
+  (`Que tinguis sort!`) is still keyed nowhere**, `SYN` having declined to mint
+  it because it parallels _Qu'il entre !_ exactly. That was defensible while
+  domains remained unseeded and is now a standing decision rather than a
+  deferral: taking it would mean widening `SYN.interrogativa` to clause type
+  generally.
 - **`CONJ.coord.illativa` was placed against weak contrary evidence, and the
   outside review then reversed it.** The `CONJ` pass had only a search-engine
   synthesis of GIEC snippets suggesting that GIEC groups illatives with causals
@@ -821,16 +869,19 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
 - **The `VERB` and `PRON` review has been run and applied**, with the full leaf
   list attached, and it produced no false positive of the `gaire` kind. Sending
   the whole list works; keep doing it. Details in `data/sources.md`.
-- **`LEX` is owed an outside review, and `PHON` will be too.** `LEX` is the only
-  domain whose claims are lexical rather than normative, so it is checkable
-  against a dictionary rather than against GIEC, and it is the cheapest review
-  in the set. Send `LEX.castellanismes`'s `transfer` specifically, and the
-  `portar`/`dur`/`endur-se` field description, which is the least sourced thing
-  in the domain.
-- One domain remains unseeded, `PHON`, and no domain is owed a 2a
-  pass. `data/sources.md` has eleven worked examples of a per-domain
-  notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`, `SYN`,
-  `PRON`, `VERB` and `LEX`), so later passes
+- **`LEX` and `PHON` are owed an outside review, and they should go together.**
+  Neither has had one, and they are the two domains whose claims are least like
+  the rest: `LEX` is checkable against a dictionary rather than against GIEC,
+  and `PHON` is checkable against the orthographic norm. Send
+  `LEX.castellanismes`'s `transfer` and the `portar`/`dur`/`endur-se` field
+  description, which are the least sourced things in `LEX`; and for `PHON`, the
+  2017 diacritic list and the accentuation rules, which are the two claims
+  stated most like a norm and retrieved least. Attach the full leaf list, as the
+  `VERB`/`PRON` review did, since that is what stopped the `gaire` class of
+  false positive.
+- Every domain is seeded and none is owed a 2a
+  pass. `data/sources.md` has twelve worked examples of a per-domain
+  notes section, one for each domain, so later passes
   have a shape to follow rather than an empty placeholder. The `PRON` and `VERB`
   ones are the
   models for a domain that was already seed-only, because they record what a

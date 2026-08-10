@@ -2318,3 +2318,136 @@ weaker here than usual. A1 on `LEX.locucions.cortesia` and `LEX.cognats` is
 safe. The B1 and B2 calls across the false friends and the locutions are
 judgements about when a learner meets the item often enough to need it, and a
 frequency source would settle them properly if one were ever licensed.
+
+### PHON (phonology and orthography)
+
+The twelfth and last domain, 4 branches and 13 leaves. Authored from nothing.
+No licensed data file, curated list or database was extracted from, and every
+Catalan form and example is hand-authored. The facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, the phonology section at
+  lines 68-85, which is the only place in that document giving a domain as a
+  finished twelve-row table with statuses already assigned. Ten rows became
+  leaves in some form; **two were declined outright** and are argued below.
+- The routing decisions recorded above in the `DET` and `VERB` sections, which
+  hand this domain two facts.
+- General knowledge of Catalan orthography and Central Catalan phonology.
+  `giec.iec.cat` and `geiec.iec.cat` were not retrieved, as in every pass since
+  `CONJ`, so **no GIEC or GEIEC section number appears anywhere in this domain's
+  prose**. The 2017 diacritic reform and the accentuation rules are the two
+  claims here most worth checking against the printed norm.
+
+**docs/01's `PHON.apostrof` row was declined, and the reason is the most
+interesting thing in the domain.** That table was written before any domain was
+seeded, and it assigned apostrophation to `PHON` because that is where an
+orthography chapter would put it. By the time `PHON` was reached, seven
+committed leaves already owned it: `ART.def.forma.elisio`,
+`ART.def.forma.la_no_elisio`, `ART.def.forma.el_iod`, `ART.personal.n_elisio`,
+`ART.personal.contraccio`, `ART.contract.no_contraccio_elisio` and
+`ART.salat.elisio` in `ART`, `PREP.atones.elisio_de` in `PREP`, and
+`PRON.feble.forma_alomorfs` in `PRON` for the weak-pronoun forms. Every one of
+them states its own category's behaviour, which is what a learner actually
+needs, and there is no residue left for a general leaf to hold except the
+observation that Catalan apostrophates more than French, which is not a card.
+**A domain seeded last inherits a plan written first, and the plan may have been
+overtaken by the eleven passes in between.** Check what is already keyed before
+building from a source table, not after.
+
+**docs/01's `PHON.alph` row was also declined.** Twenty-six letters with `k` and
+`w` confined to loanwords is declarative knowledge about an inventory a French
+speaker already has, and it fails the same test that turned `PREP`'s per/per a
+`variants` leaf into a `dialect_note`: it would never be produced, only known.
+
+**Two owed facts are discharged.** The hyphen in compound numerals, ruled out of
+`DET` with `DET.num.sistema_decimal`'s note saying explicitly that "trait
+d'union et accentuation relèvent de PHON", is `PHON.grafia.guionet`. The general
+graphic alternation that keeps a stem consonant's sound before a front vowel,
+which the `VERB` pass nearly routed here and recorded as owed, is
+`PHON.grafia.alternanca`; `VERB.conj.ortografia` remains the verbal case and now
+carries a pointer to the general rule, so the cross-reference runs both ways.
+That leaf also closes a small gap nobody had noticed: the alternation in nominal
+plurals, `plaça`/`places` and `amic`/`amics`, was keyed nowhere, because `NOM`'s
+plural leaves are about the ending and not about the spelling of the stem.
+
+**The domain is mostly orthography, and that is deliberate rather than a
+retreat.** Three leaves are about sound that the spelling does not show, and
+they are the ones a text-only application can least exercise. They are kept for
+two reasons. The first is that each has a written consequence a learner meets
+immediately: vowel reduction is why unstressed `a` and `e` cannot be spelled by
+ear, final devoicing is why the feminine has to be consulted to know what the
+final consonant is, and the silent final `r` is why `carrer` is not spelled the
+way it sounds. Each contrast note leads with that consequence rather than with
+the phonetics. The second is that phase 6b adds pronunciation, and these three
+nodes are what it will attach to; minting them later would mean minting keys
+into a live query log, which is the trap the `intent` field was designed to
+avoid.
+
+**No IPA appears anywhere in the domain.** It was tempting for the three sound
+leaves and was refused: the `ca` field is defined as a Catalan surface form and
+feeds the decomposition machinery, so a transcription there would be neither
+Catalan nor a form, and IPA in a gloss would be a second notation the learner
+has not been taught. The sound facts are stated in French prose against French
+examples the reader already pronounces correctly, which is what the base
+language is for.
+
+**Statuses.** 2 `transfer`, 7 `near-miss`, 4 `novel`, 0 `false-friend`.
+
+- **Four `novel` is the highest count in the taxonomy**, against three in `LEX`
+  and `VERB` and one or none almost everywhere else, and it is the honest shape
+  of the domain. `PHON.grafia.ela_geminada`, `PHON.accent.regles`,
+  `PHON.so.reduccio_vocalica` and `PHON.so.ensordiment` each name something with
+  no French counterpart of any kind: a diacritic French does not have, a lexical
+  stress system French does not have, and two phonological processes French does
+  not run. This is the one domain where `novel` is easy to justify, because
+  orthography and phonology are where two Romance languages actually diverge in
+  kind rather than in distribution.
+- **The empty `false-friend` column is a claim, and it was argued rather than
+  assumed.** A spelling convention a learner has not met produces ignorance, not
+  a confident wrong reading, so most of this domain cannot be `false-friend` by
+  construction. The one real exception is `ll`: French `ll` is ordinarily a
+  simple `l`, in _aller_ and _belle_, so `llibre` read the French way is a
+  familiar reading that is available and wrong. It sits inside
+  `PHON.grafia.digrafs`, whose four members do not share that property, so it is
+  recorded in the leaf's `notes` and the leaf keeps the status true of the
+  group. That is the `si bé` precedent from `CONJ`, applied for the second time.
+- **Both `transfer` assignments were challenged and both stand.**
+  `PHON.accent.agut_greu` is the cleanest transfer in the taxonomy: French é
+  against è is the same closed-against-open opposition, marked with the same two
+  signs. The Catalan system is in fact more regular, since `a` only ever takes
+  the grave and `i` and `u` only ever the acute, which is a rule French lacks;
+  that is stated in `notes` and does not disturb the status, because a rule that
+  removes choices cannot make the node harder. `PHON.so.essa` is the French
+  _poison_ against _poisson_ rule operating on the same letters, `ç` included.
+
+**The browser review caught two consistency defects rather than errors.**
+`PHON.accent.regles` named the three stress classes as "aiguës", "planes" and
+"proparoxytons", mixing a Catalan-derived pair with a French technical term for
+the third; it now names all three in Catalan with a French gloss.
+`PHON.grafia.alternanca` listed four graphic pairs where `VERB.conj.ortografia`
+lists six, so the general rule looked narrower than its own special case; the
+lists now match.
+
+**`check-duplicates` caught one collision.** `PHON.accent.diacritic` had taken
+`Avui fa sol` as its example for the unaccented `sol`, which is
+`ADV.temps.dixi`'s. Replaced rather than allowlisted, on the now-standard
+grounds that the overlap was incidental. That is the third consecutive pass to
+remove a candidate entry instead of recording one, and the allowlist has stood
+at 16 since `PRON`.
+
+**One test had to change, and it is the second census-shaped test this build has
+outgrown.** `test/taxonomy-browser.test.ts` asserted that the tree says in
+French that some domain is not yet seeded, reading the live taxonomy. Seeding
+the twelfth domain makes that false. Deleting the case would have dropped the
+only cover on `renderUnseededDomain`, which still exists in `src/ui/tree.ts` and
+is still correct, so the two unseeded cases now drive `renderTree` with a node
+set that omits one domain, and a third case asserts the live fact that nothing
+is unseeded any more. `NOM` had to generalise `closed-vocabulary` for the same
+underlying reason, that a test written against the data of the day is a snapshot
+rather than an invariant. **There is no next seeding pass, so this is the last
+time this particular class of breakage can occur.**
+
+**The CEFR column is a hypothesis, as in every domain since `NEG`.** It is
+unusually defensible here for the A2 rows, since digraphs, the interpunct and
+vowel reduction are met in the first weeks whether or not anyone teaches them,
+and unusually weak for `PHON.accent.diacritic` at B2, which is a proofreading
+skill rather than a production one and could sit anywhere from B1 to C1.
