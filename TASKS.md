@@ -47,7 +47,7 @@ against, and a proper 2a pass over that domain is still owed.
 | `PHON` |                           | not started | not started |           |
 | `NOM`  | `data/nom.fragment.json`  | done        | done        | this pass |
 | `ART`  | `data/art.fragment.json`  | done        | done        | this pass |
-| `VERB` | `data/verb.fragment.json` | seed only   | seed only   | `7bcb37a` |
+| `VERB` | `data/verb.fragment.json` | done        | done        | this pass |
 | `PRON` | `data/pron.fragment.json` | done        | done        | this pass |
 | `DET`  | `data/det.fragment.json`  | done        | done        | this pass |
 | `PREP` | `data/prep.fragment.json` | done        | done        | this pass |
@@ -57,11 +57,9 @@ against, and a proper 2a pass over that domain is still owed.
 | `SYN`  | `data/syn.fragment.json`  | done        | done        | this pass |
 | `LEX`  |                           | not started | not started |           |
 
-`VERB` is the last `seed only` domain. Merging into a glossed domain is more
-delicate than authoring an empty one, and the `PRON` pass proved why: see the
-narrow-no-break-space incident below before starting it. Its six leaves also
-carry `contrast_fr` from `data/contrast-overrides.json`, which binds four of
-them and is applied verbatim.
+No `seed only` domain remains. `PHON` and `LEX` are the last two unseeded, and
+both are authored from nothing, so the merge hazard that governed the `PRON` and
+`VERB` passes does not apply to either.
 
 The domain order above is the closed domain list, which is also the order
 `gen-schema` merges fragments in. It is not a recommended seeding order.
@@ -190,9 +188,9 @@ prepositions and uses them for roughly these jobs, so `novel` is genuinely
 unavailable; and nothing here inverts meaning the way `vaig cantar` does. The
 nearest false-friend candidate is `acabar de`, where a French speaker reads
 "finir de" and the sentence means "venir de", but that is a verbal periphrasis
-rather than preposition government, so it sits in `notes` on
-`PREP.formes_no_finites.inf_regit_de` and belongs to `VERB` when `VERB` gets
-its proper pass. The two thirds near-miss share is the domain working as
+rather than preposition government, so it was ruled out to `VERB` and is now
+`VERB.perifrasi.acabar_de`, a `false-friend`; the `notes` on
+`PREP.formes_no_finites.inf_regit_de` points at it by ID. The two thirds near-miss share is the domain working as
 briefed rather than a lazy pass: two Romance languages with the same
 preposition inventory and different mappings is what `near-miss` names, and
 `PREP` will consequently sort at the top of the phase 6 gaps list, which is
@@ -529,6 +527,62 @@ ungrammatical `de qui et fio` for `de qui em fio`, and a `tot el món` example
 that was the exact calque its own leaf exists to block. All four were caught by
 reading the authored prose, not by any check.
 
+`VERB` followed, 32 leaves under 11 branches, and it is the largest domain in
+the taxonomy and the second merge into a domain that was already `seed only`.
+Five things in it change how the remaining two passes should be run:
+
+- **The merge held, and the reason is mechanical rather than careful.** The
+  seeding script never retyped a preserved node: it read the six phase 1 leaves
+  with `git show HEAD:` and carried them through as parsed objects, and a
+  separate script then diffed all 12 pre-existing nodes against `HEAD` field by
+  field and counted U+202F on both sides. Exactly one field differed, and it was
+  the one intended change. `PRON` lost 16 narrow no-break spaces doing this by
+  hand and reported success. **Carry preserved nodes as objects, verify against
+  `HEAD`, and do not trust the pass's own report.**
+- **An override outlived the shape of the data it was written for, and the
+  wildcard mechanism absorbed it without a status moving.** `VERB.perf.*` said
+  « Correspond au passé composé », written when `VERB.perf` had one leaf. The 2a
+  pass gave it a second, `VERB.perf.serie`, whose form is `havia cantat`, and on
+  a pluperfect that sentence is false. Put to the user rather than decided
+  quietly. The wildcard note now states the auxiliary fact for the whole series
+  and `VERB.perf.present` carves itself out with an exact override keeping the
+  original wording, which is the exact-beats-wildcard rule in
+  `src/taxonomy/overrides.ts` being used for the first time. **An override is
+  data about a tree shape, and re-seeding the domain beneath it can falsify it.**
+  Check the overrides that bind a domain against the tree the pass actually
+  built, not against the tree they were written for.
+- **The third sweep, over the paradigm itself, found what the other two
+  missed**, exactly as `PRON` predicted. The Catalan-inventory and
+  French-to-Catalan sweeps produced the tenses, moods, non-finite forms and
+  periphrases between them. Reading down the paradigm found that the compound
+  series beyond the perfect had no key of its own, and that the impersonal and
+  defective verbs had none at all. Three sweeps is now the definition of 2a.
+- **Self-review caught an outright wrong rule, in the domain where that was
+  predicted.** `VERB.subj.present` gave the subjunctive endings as -i, -is, -i,
+  -em, -eu, -in in all three groups, which is wrong at the third, where the
+  plural persons are -im and -iu. The `CONJ`/`ADV`/`SYN` review had concluded
+  that self-review catches statuses and boundaries but not whether a rule is
+  right; this one was caught only because `VERB` is dense enough in paradigm
+  detail to be checked against itself. It does not disturb the conclusion:
+  **the domain is unretrieved and owes an outside review.**
+- **A `transfer` moved and a `false-friend` came down, both for the sixth
+  consecutive pass.** `VERB.ind.futur` went to `near-miss` because French speech
+  confines the simple future to a narrower range, `aller` plus infinitive taking
+  the near future where Catalan has no such tour. `VERB.perifrasi.imminent` was
+  authored `false-friend` and came down to `near-miss` on the
+  `PRON.fort.tractament` precedent: the French speaker who calques `aller` plus
+  infinitive produces a past, but that is a production error rather than an
+  available wrong reading.
+
+`VERB` came out 8 transfer, 19 near-miss, 2 false-friend and 3 novel. The
+transfer share is second only to `NOM` and is an honest count: Romance verbal
+morphology transfers in its form, and what fails to transfer is concentrated in
+distribution and in two lexical splits, `ser`/`estar` and `haver`/`tenir`. The
+second false-friend is `VERB.perifrasi.acabar_de`, where `acabo d'arribar` reads
+_finir d'arriver_ and means _venir d'arriver_, against docs/01 line 112 which
+calls it a clean transfer; the disagreement is recorded in `data/sources.md` on
+the `pas` precedent.
+
 See the per-domain table above for where seeding is up to.
 
 The read-only taxonomy browser then landed, out of sequence and unnumbered,
@@ -544,13 +598,14 @@ Three decisions in it are worth knowing before phase 6 touches it:
   twelve domains have no nodes at all, not empty branches, so a tree built from
   the taxonomy's roots would show six domains and read as the whole language.
   The unseeded six render as non-expandable rows saying so in French.
-- **There is no third "seed only" state, deliberately.** `VERB` at 6 leaves is
-  recorded as seed-only in this file's prose, which is not data the browser can
-  read. A list of thin domains hardcoded in `src/ui/` would be a second source of
-  truth that goes stale the moment `VERB` gets its 2a pass, so the domain rows
-  carry a leaf count instead and let 6 next to `ART`'s 36 say it. `PRON` has
-  already left that state and the browser needed no change for it, which is the
-  design working.
+- **There is no third "seed only" state, deliberately.** When the browser
+  landed, `VERB` sat at 6 leaves and was recorded as seed-only in this file's
+  prose, which is not data the browser can read. A list of thin domains
+  hardcoded in `src/ui/` would have been a second source of truth going stale the
+  moment `VERB` got its 2a pass, so the domain rows carry a leaf count instead.
+  Both `PRON` and `VERB` have since left that state and the browser needed no
+  change for either, which is the design working. The state no longer exists at
+  all.
 - **Filters retain ancestors rather than regrouping.** Filtering to a CEFR level
   or a contrast status hides non-matching leaves and keeps the branches above
   the ones that match. Grouping the results under `A1` or `novel` headings would
@@ -578,9 +633,9 @@ Three decisions in it are worth knowing before phase 6 touches it:
   corroborating sources, and its card text is owed a check against the print
   edition, roughly pp. 1310-1313. Until then the leaf is right in substance and
   unverified in wording.
-- **Three facts are ruled out of `NEG` and owed to domains not yet seeded.** The
-  negative imperative (`no vinguis`, present subjunctive) belongs to `VERB` and
-  has no key anywhere today. Approximate negation (`gairebé no`, `amb prou
+- **Three facts were ruled out of `NEG` and owed to domains not yet seeded.** The
+  negative imperative (`no vinguis`, present subjunctive) belonged to `VERB` and
+  is now `VERB.imperatiu.negatiu`. Approximate negation (`gairebé no`, `amb prou
 feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   `sí`, which a French speaker reaches for from « si », is positive polarity and
   belongs with response particles in `ADV`. Article behaviour under negation
@@ -645,14 +700,15 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   adverb is stated in `notes` on `ADV.modalitat.additius`. Still owed to `LEX`:
   `amb prou feines` and the emphatic reply locutions `de cap manera`,
   `en absolut`, `ni de bon tros`.
-- **`SYN` pre-empted `VERB` and `PRON`, and the `PRON` half is now settled.**
+- **`SYN` pre-empted `VERB` and `PRON`, and both halves are now settled.**
   `SYN.veu.*` takes the passives and `SYN.clitics.*` takes clitic placement. The
   line is that **`VERB` owns verbal morphology and `PRON` owns pronoun forms and
   cluster order, while `SYN` owns where the clitic attaches and how the clause
-  is voiced.** The `PRON` pass held that line without challenging it:
-  `PRON.feble.combinacio.ordre_general` holds the slot template and
-  `SYN.clitics.proclisi_enclisi` keeps proclisis and enclisis. Only the `VERB`
-  half is still open, and the argument to beat is in `data/sources.md`.
+  is voiced.** Both passes held it without challenging it:
+  `PRON.feble.combinacio.ordre_general` holds the slot template,
+  `SYN.clitics.proclisi_enclisi` keeps proclisis and enclisis, and `VERB`'s two
+  imperative leaves cross-reference that leaf rather than restating it. Nothing
+  is open here now.
 - **`ben` as an intensifier (`ben calent`, `ben aviat`) has no key.** Raised by
   the outside review as a gap in the degree system, but marked there as its own
   knowledge rather than sourced, and this repo does not mint keys on unsourced
@@ -666,13 +722,20 @@ feines`) splits between `ADV` and `LEX`. The contradictory answer particle
   direct parallel to `Qu'il entre !` and the leaf would state that nothing
   differs. Recorded rather than lost, and taking it would mean renaming
   `SYN.interrogativa` to cover clause type generally.
-- Two domains remain unseeded, `PHON` and `LEX`, and `VERB` is the last domain
-  owed a 2a pass. `data/sources.md` has nine worked examples of a per-domain
-  notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`, `SYN` and
-  `PRON`), so later passes
-  have a shape to follow rather than an empty placeholder. The `PRON` one is the
-  model for a domain that was already seed-only, because it records what a merge
-  into glossed leaves silently broke. The `PREP` one is
+- **`VERB` and `PRON` are owed an outside review, together.** Both were seeded
+  with no GIEC or GEIEC page retrieved, and `VERB` is the domain where an
+  unsourced rule costs most, because it is rules rather than boundaries. **Attach
+  the full taxonomy leaf list, not only the two domains under review**: scoping
+  the last review to three domains produced a false positive, reporting `gaire`
+  missing when `DET` already owned it.
+- Two domains remain unseeded, `PHON` and `LEX`, and no domain is owed a 2a
+  pass. `data/sources.md` has ten worked examples of a per-domain
+  notes section (`NOM`, `ART`, `DET`, `PREP`, `NEG`, `CONJ`, `ADV`, `SYN`,
+  `PRON` and `VERB`), so later passes
+  have a shape to follow rather than an empty placeholder. The `PRON` and `VERB`
+  ones are the
+  models for a domain that was already seed-only, because they record what a
+  merge into glossed leaves can silently break. The `PREP` one is
   the model for a domain whose tree departs from its docs/01 row, because it
   records what was added, what was re-axed and what was ruled out to another
   domain. The `DET` one is the model for a domain that also amends a boundary

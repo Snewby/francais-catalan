@@ -1757,3 +1757,229 @@ clause-anaphora use has no _lequel_-shaped French analogue. Both stayed
 A2 calls are safe. `PRON.feble.forma_alomorfs` at B2 and the relative series at
 B1 and B2 are judgements about when a learner needs the form productively, not
 sourced data.
+
+### VERB (verbs)
+
+The second and last domain seeded that was already `seed only`, and the largest
+in the taxonomy. 2a merged into the six leaves the phase 1 seed had authored and
+glossed (`VERB.ind.imperfet`, `VERB.ind.passat_perifrastic`,
+`VERB.perf.present`, `VERB.conj.3.incoatiu`, `VERB.mod.obligacio`,
+`VERB.ser_estar`) rather than authoring an empty tree. It ends at 11 branches
+and 32 leaves, 26 of them new. No licensed data file, curated list or database
+was extracted from, and all Catalan forms and examples are hand-authored, so
+neither the compilation-copyright risk nor the EU database right described above
+is engaged. The facts are drawn from:
+
+- `docs/01-catalan-structural-map-and-build-plan.md`, the verb section at lines
+  103-113, which is the floor for the domain rather than the plan for it. It
+  names the conjugation classes, the non-finite forms, the tense inventory and
+  the periphrases; this tree adds the orthographic stem alternations, the velar
+  increment, the impersonals and the `haver`/`tenir` split.
+- `data/contrast-overrides.json`, which binds four of the six pre-existing
+  leaves and is applied verbatim.
+- The routing decisions recorded above in the `PREP`, `NEG`, `CONJ` and `SYN`
+  sections, which between them hand two facts to this domain and pre-empt two
+  more.
+- General knowledge of Catalan verbal morphology at reference-grammar level.
+  `giec.iec.cat` and `geiec.iec.cat` are JavaScript-rendered and were not
+  retrieved during this pass, as during `CONJ`, `ADV`, `SYN` and `PRON`, so **no
+  GIEC or GEIEC section number appears anywhere in this domain's prose and every
+  grammatical claim here is unretrieved**. That matters more here than in any
+  earlier domain, because `VERB` is rules rather than boundaries, and a wrong
+  rule is the failure mode self-review does not catch.
+
+**The merge was verified against `HEAD` field by field, and this time it held.**
+The `PRON` pass reported its four preserved leaves identical byte for byte and
+had in fact degraded all 16 narrow no-break spaces in the file. Here the seeding
+script never retyped a preserved node: it read them with `git show HEAD:` and
+carried them through as parsed objects, and a separate script diffed every field
+of all 12 pre-existing nodes against `HEAD` and counted U+202F on both sides.
+Exactly one field differs, deliberately, and it is named below. **Carrying
+preserved nodes as objects rather than retyping them is what made this cheap**,
+and it is the practice to keep for any future merge.
+
+**One pre-existing leaf was changed on purpose.** `VERB.perf.present`'s `notes`
+said only that `haver` is the sole auxiliary. It never said that `he cantat` is
+bounded to a span including the present, which is the fact that stops a French
+speaker using it for every past, and without which the leaf teaches that the
+Catalan and French perfects are distributionally the same. A sentence was
+appended. The change is recorded here rather than folded into the merge report,
+because the point of the merge discipline is that a diff on a preserved node has
+to be intentional and named.
+
+**The `VERB.perf.*` override was rescoped, and it was put to the user rather
+than decided quietly.** The wildcard note read « Correspond au passé composé,
+mais le catalan emploie haver pour tous les verbes... », written when
+`VERB.perf` had exactly one leaf. The 2a pass gave it a second,
+`VERB.perf.serie`, which is the whole compound series with `havia cantat` as its
+form, and on a pluperfect that sentence is simply false. Three options were put
+up: ship it verbatim and flag it, narrow the wildcard, or drop the series leaf.
+The user's steer was that the card has to be true and has to explain. So the
+wildcard note now states the auxiliary fact for the whole series, and
+`VERB.perf.present` **carves itself out with an exact override** carrying the
+original passé-composé wording unchanged. That is the mechanism
+`src/taxonomy/overrides.ts` already documents, exact beats wildcard, used for
+the first time. Statuses are untouched, both leaves are still `transfer`, and
+the committed leaf's contrast prose is identical to what it was.
+`test/gloss-completeness.test.ts` was updated in the same commit: its wildcard
+case asserted on `VERB.perf.present`, which now resolves by the exact path, so
+it would have passed while testing nothing. It asserts on `VERB.perf.serie` and
+on the resolved override's `id`.
+
+**Paradigm cells are not leaves, and this is the domain where that pressure is
+heaviest.** A tense-by-person expansion of Catalan would run to hundreds of
+cells. The tree keeps rules instead. `VERB.perf.serie` is one leaf for five
+compound tenses, because they are one formation rule. `VERB.irregular` has two
+leaves where a verb list would have twenty, split by where in the paradigm the
+irregularity lives. `VERB.conj.ortografia` is one leaf for five spelling
+alternations. The axis test's two limbs both hold on `VERB.irregular`: stress
+position against velar increment is a natural class distinction in Catalan
+morphology, and it predicts the statuses, `transfer` for the alternation French
+shares and `novel` for the increment it has no analogue of.
+
+**The third sweep, over the paradigm itself, is what the `PRON` pass asked for
+and it earned its place.** The Catalan-inventory sweep and the French-to-Catalan
+sweep between them produced the tenses, the moods, the non-finite forms and the
+periphrases. Reading down the paradigm found two more: the compound series
+beyond the perfect had no key of its own, and the impersonal and defective verbs
+had none at all. Two candidate cells were left uncovered deliberately, both
+noted on existing leaves rather than keyed: the `passat anterior`
+(`hagué cantat`), a register variant of the simple preterite, and the irregular
+imperfects (`era`, `feia`, `deia`), which are five verbs rather than a rule.
+
+**Facts owed by other domains are discharged.**
+
+- **The negative imperative** is `VERB.imperatiu.negatiu`, which `NEG` ruled out
+  of itself on the strength of GIEC treating it at §34.4 under imperative
+  clauses. The leaf states the mood switch, cross-references
+  `SYN.clitics.proclisi_enclisi` for the clitic movement rather than restating
+  it, and records in `notes` why it is `VERB`'s.
+- **`acabar de`** is `VERB.perifrasi.acabar_de`, `false-friend`, which `PREP`
+  identified and recorded as this domain's.
+  `PREP.formes_no_finites.inf_regit_de` keeps the government fact and its own
+  `near-miss` status, whose justification necessarily cites `acabar de`. That is
+  a restatement in prose rather than a second key, the kind `check-duplicates`
+  cannot see, and it is left standing because deleting it would leave `PREP`'s
+  status unexplained.
+- **The expired note is closed.** `PREP.formes_no_finites.inf_regit_de` said the
+  periphrasis « relève du domaine VERB », justifying a placement by pointing at
+  a domain with no key in it. It now points at `VERB.perifrasi.acabar_de` by ID.
+  That was the second and last note of that shape: `ADV.collocacio`'s expired
+  when `SYN` landed, `PRON` found none, and none remain.
+
+**The `SYN` boundary was held without challenge, as in `PRON`.** `VERB` owns
+verbal morphology; `SYN.clitics.*` owns where a clitic attaches, `SYN.veu.*` the
+passives, `SYN.pronominals.*` the reflexive and inherent pronominals, and
+`SYN.concordanca_participi` participle agreement. Three leaves here reach that
+line and all three cross-reference rather than restate:
+`VERB.no_finit.participi` on agreement, `VERB.imperatiu.positiu` and
+`VERB.imperatiu.negatiu` on clitic position. The `CONJ` line held too. This
+domain says how a mood is formed and never which subordinator selects it, and
+`VERB.subj.present`, `VERB.subj.imperfet` and `VERB.ind.futur` each say so
+explicitly, routing mood selection to `CONJ` and tense sequencing to
+`SYN.subordinacio.consecutio`.
+
+**Ruled out of this domain:**
+
+- **`fa tres anys que no el veig`** stays `PREP.toniques.des_de_fa`, which owns
+  both the `des de fa` frame and the `fa ... que` one for elapsed duration.
+  `VERB.impersonal` takes only the impersonal verb itself and the point-in-past
+  `fa tres anys` rendering _il y a trois ans_, which was keyed nowhere. This is
+  the `ADV`-reads-`DET`-first discipline applied again: the naive move was a
+  `VERB` leaf for `fa`, and most of it already existed.
+- **The existential `hi ha`** was considered and declined. It follows _il y a_
+  faithfully in form, value and invariability, so a leaf would state that
+  nothing differs. It is a `notes` line on `VERB.haver_tenir` instead.
+- **`saber` and `poder`** were considered and declined for the same reason. They
+  map one to one onto _savoir_ and _pouvoir_, `saber` plus infinitive for a
+  learned ability included.
+- **The orthographic stem alternations were nearly routed to `PHON`**, which is
+  unseeded and owns orthography. They stayed as `VERB.conj.ortografia` because
+  the alternation is conditioned by the conjugation ending rather than by the
+  phonological environment at large, and `PHON` will own the grapheme-phoneme
+  system this is a special case of. Recorded so the `PHON` pass finds the
+  decision rather than minting a second key.
+
+**Statuses.** 8 `transfer`, 19 `near-miss`, 2 `false-friend`, 3 `novel`. The
+`transfer` share is the second highest in the taxonomy after `NOM`, and it is an
+honest count rather than a lazy pass: Romance verbal morphology transfers in its
+**form**, the tense inventory and the formation rules being nearly common
+property, and what fails to transfer is concentrated in distribution and in two
+lexical splits. Every `transfer` was challenged and one moved.
+
+- **`VERB.ind.futur` was authored `transfer` and moved to `near-miss`.** The
+  formation is as transferable as anything in the domain, the infinitive plus
+  the `haver` endings, with the same irregular stems French has. But French
+  speech confines the simple future to a narrower range than Catalan does,
+  because _aller_ plus infinitive takes the near future and Catalan has no such
+  tour, so the Catalan future covers both. That is a distributional divergence
+  of exactly the kind `near-miss` names, and it is the first thing a French
+  speaker gets wrong about the Catalan future. Six consecutive passes have now
+  moved a status on challenge.
+- **`VERB.ind.condicional`, `VERB.ind.passat_simple` and
+  `VERB.irregular.radical_tonic` were challenged and kept at `transfer`.** The
+  conditional shares its stem, its formation and all three of its main uses. The
+  simple preterite has the same literary-only distribution as the _passé simple_
+  on both sides, down to being displaced by a different past in speech. The
+  stress-conditioned stem alternation is the French _peux_/_pouvons_ mechanism
+  operating on largely the same verbs.
+- **`VERB.subj.imperfet` is `novel`, on the `gaire` precedent.** French has a
+  homologous form, _chantât_, and that is exactly why the call needed the
+  precedent: a form absent from a contemporary speaker's productive grammar is
+  not an anchor. It goes further than `NEG.expletiu`, which stopped at
+  `near-miss` because expletive _ne_ is a live rule gated by register; the French
+  imperfect subjunctive is not gated by register, it is gone. Catalan requires
+  its own constantly, after a past matrix, in the irrealis protasis and after
+  `com si`, so the learner is producing a mood with nothing behind it.
+- **`VERB.irregular.velar` is `novel`** on the plain reading. The velar
+  increment has no French analogue of any kind.
+- **`VERB.perifrasi.imminent` was authored `false-friend` and moved to
+  `near-miss`.** It is the exact converse of the taxonomy's headline false
+  friend: the French speaker who calques _aller_ plus infinitive produces a
+  past. But that is a production error the French intuition generates, not a
+  familiar French reading of a Catalan form that is available and wrong, and
+  `PRON` set the precedent when `PRON.fort.tractament` came down for the same
+  reason. The trap is stated in the leaf's `notes` and cross-referenced to
+  `VERB.ind.passat_perifrastic`, which keeps the `false-friend`.
+- **`VERB.perifrasi.acabar_de` is the domain's second `false-friend`** and meets
+  the bar squarely: `acabo d'arribar` has an available, grammatical French
+  reading, _finir d'arriver_, and it is wrong. **docs/01 line 112 disagrees**,
+  calling `acabar de` a clean `transfer` from _venir de_. That is true of the
+  French-to-Catalan direction and misses the Catalan-to-French one, which is the
+  direction a false friend is defined in. docs/01 is left standing with the
+  disagreement recorded beside it, on the `pas` precedent.
+- **`VERB.haver_tenir` was considered for `false-friend` and refused.** `haver`
+  resembles _avoir_ and is not it, but a learner who reads `he arribat` gets the
+  right meaning; the error is production, `*he un cotxe`. Same refusal as `gens`
+  and `com que`.
+
+**Six things were caught by reading the authored prose, and none of them by any
+check.** One was an outright wrong rule, which is what the `CONJ`/`ADV`/`SYN`
+outside review warned needs a source rather than self-review:
+`VERB.subj.present`'s `notes` gave the subjunctive endings as -i, -is, -i, -em,
+-eu, -in in all three groups, which is wrong at the third, where the first two
+plural persons are -im and -iu. It now states the rule that is both true and
+more useful, that the plural persons are simply the indicative ones.
+`VERB.imperatiu.negatiu`'s `notes` restated `SYN.clitics.proclisi_enclisi`'s rule
+instead of pointing at it, the failure `PRON` hit twice. `VERB.ind.present`'s
+contrast note offered the absence of an obligatory progressive as a divergence
+when French is the same. `VERB.mod.deure` claimed `Ha de ser tard` cannot be a
+conjecture, which overstates a norm this pass could not retrieve. Two examples
+were poor rather than wrong: `Va marxar corrents` illustrates the gerund with a
+lexicalised adverb, and `La carta ja està escrita` illustrated the participle
+with an agreement `SYN` owns.
+
+**`check-duplicates` caught one collision and it was removed rather than
+allowlisted.** `VERB.subj.imperfet` had taken `Volia que ho fessis tu` as an
+example, which is `SYN.subordinacio.consecutio`'s. The overlap was real but not
+irreducible: `SYN` owns the tense sequencing that sentence illustrates and
+`VERB` owns the form, so the examples moved to `Tant de bo plogués ara mateix`,
+an imperfect subjunctive in a main clause, which isolates the form and is a
+better card besides. That is the second consecutive pass to drop a candidate
+allowlist entry by making the data more precise, after `PRON` did it to a `ca`
+field. No entry was added and the allowlist stands at 16.
+
+**The CEFR column is a hypothesis, as in every domain since `NEG`.** A1 and A2
+are safe. The `C1` on `VERB.ind.passat_simple` is a claim about register rather
+than about difficulty, and the `B1` and `B2` calls across the subjunctive and
+the periphrases are judgements about when a learner needs the form productively.

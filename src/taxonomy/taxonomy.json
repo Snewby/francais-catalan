@@ -1426,10 +1426,213 @@
     },
     { "id": "VERB", "kind": "branch", "parent": null, "label_fr": "Le verbe" },
     {
+      "id": "VERB.conj",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les groupes de conjugaison"
+    },
+    {
+      "id": "VERB.conj.1",
+      "kind": "leaf",
+      "parent": "VERB.conj",
+      "ca": "cantar",
+      "glosses": {
+        "fr": "la première conjugaison, en -ar, seule classe productive de la langue"
+      },
+      "cefr": "A1",
+      "examples": ["Canto cada matí.", "Ahir vam xatejar una estona."],
+      "notes": "Les désinences du présent sont -o, -es, -a, -em, -eu, -en. C’est la classe d’arrivée de tous les emprunts et de toute dérivation verbale, exactement comme -er en français.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Décalque de la première conjugaison française en -er : même classe productive, désinences reconnaissables, et tout verbe nouveau y entre (« xatejar », « clicar »)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.conj.2",
+      "kind": "leaf",
+      "parent": "VERB.conj",
+      "ca": "perdre, témer",
+      "glosses": {
+        "fr": "la deuxième conjugaison, en -er ou en -re, classe fermée et fortement irrégulière"
+      },
+      "cefr": "B1",
+      "examples": ["Perdem sovint les claus.", "Temo que no arribi a temps."],
+      "notes": "L’infinitif est atone dans « perdre », « vendre », « batre », et tonique dans « témer », « haver », « saber ». Rien dans le sens ne permet de prévoir lequel des deux, et cette classe contient la plupart des verbes irréguliers de la langue.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français a aussi une classe fermée et irrégulière, mais l’appartenance ne se transpose pas, « córrer » y étant rangé alors que courir relève du troisième groupe français, et l’opposition d’accent entre « perdre » et « témer » n’a pas d’équivalent."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.conj.3",
+      "kind": "branch",
+      "parent": "VERB.conj",
+      "label_fr": "Le troisième groupe, en -ir"
+    },
+    {
+      "id": "VERB.conj.3.pur",
+      "kind": "leaf",
+      "parent": "VERB.conj.3",
+      "ca": "dormo",
+      "glosses": {
+        "fr": "les verbes en -ir dits purs, conjugués sans l’infixe inchoatif"
+      },
+      "cefr": "A2",
+      "examples": ["Dormo vuit hores.", "Sortim a les vuit."],
+      "notes": "La classe est petite et fermée : « dormir », « sentir », « sortir », « obrir », « omplir », « collir », « tossir », « fugir » et leurs composés. Hors de cette liste, un verbe en -ir prend l’infixe, ce qui est traité à VERB.conj.3.incoatiu.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français connaît la même partition, dormir et sortir sans -iss- contre finir avec ; mais les deux listes ne coïncident pas, et « servir » ou « partir », purs en français, sont inchoatifs en catalan."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.conj.3.incoatiu",
+      "kind": "leaf",
+      "parent": "VERB.conj.3",
+      "ca": "serveixo",
+      "glosses": {
+        "fr": "la conjugaison inchoative du troisième groupe, avec l’infixe -eix-"
+      },
+      "cefr": "B1",
+      "examples": ["Jo serveixo el dinar a la una.", "Ells pateixen molt de fred."],
+      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs.",
+      "dialect_note": "Le valencien emploie plutôt les formes en -isc et -ix, comme servisc et servix.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Comparable à finir/finissons, mais l’infixe inchoatif catalan couvre un ensemble de verbes plus large qu’en français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.conj.ortografia",
+      "kind": "leaf",
+      "parent": "VERB.conj",
+      "ca": "busco, busques",
+      "glosses": {
+        "fr": "les alternances graphiques du radical devant les désinences en -e et en -i"
+      },
+      "cefr": "A2",
+      "examples": ["Busco feina.", "Què busques?", "No comencis encara."],
+      "notes": "La prononciation du radical ne change pas ; seule la graphie s’adapte à la voyelle qui suit. « buscar » donne « busco » mais « busques », « començar » donne « començo » mais « comences », « pagar » donne « pago » mais « pagues ».",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français fait la même chose dans mangeons, plaçons et lançais, mais les couples catalans sont autres : c et qu, ç et c, g et gu, j et g, gu et gü."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.no_finit",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les formes non personnelles"
+    },
+    {
+      "id": "VERB.no_finit.infinitiu",
+      "kind": "leaf",
+      "parent": "VERB.no_finit",
+      "ca": "cantar, perdre, dormir",
+      "glosses": {
+        "fr": "l’infinitif, forme de citation, et l’opposition entre infinitif tonique et infinitif atone"
+      },
+      "cefr": "A1",
+      "examples": ["Vull cantar.", "Cal saber esperar."],
+      "notes": "L’infinitif composé se forme avec « haver » et le participe, « haver dinat ». Substantivé, il prend l’article, « el menjar », « el saber ». La préposition qui l’introduit relève de PREP.formes_no_finites.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La catégorie et l’emploi nominal se transfèrent, mais le français n’oppose pas un infinitif tonique à un infinitif atone, et les trois terminaisons catalanes ne recouvrent pas les trois groupes français."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.no_finit.gerundi",
+      "kind": "leaf",
+      "parent": "VERB.no_finit",
+      "ca": "cantant, perdent, dormint",
+      "glosses": {
+        "fr": "le gérondif en -ant, -ent, -int, et les emplois que la norme lui refuse"
+      },
+      "cefr": "B1",
+      "examples": [
+        "Fent el sopar, va sentir la notícia.",
+        "Sentint aquell soroll, es va aixecar."
+      ],
+      "notes": "Formes irrégulières : « dient », « fent », « veient », « podent », « sent ». L’absence de préposition devant le gérondif est traitée à PREP.formes_no_finites.en_gerundi, qui porte le contraste avec le gérondif français en en.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La formation se calque sur le participe présent français, mais la norme catalane refuse le gérondif de postériorité, « Va caure trencant-se el braç », et le gérondif qui qualifie un nom, « una llei prohibint el tabac », que le français admet tous les deux."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.no_finit.participi",
+      "kind": "leaf",
+      "parent": "VERB.no_finit",
+      "ca": "cantat, perdut, dormit",
+      "glosses": {
+        "fr": "le participe passé en -at, -ut, -it, et la série des participes irréguliers"
+      },
+      "cefr": "A2",
+      "examples": ["Ha begut massa cafè.", "Ha escrit una carta molt llarga."],
+      "notes": "Certains verbes ont deux participes, l’un verbal et l’autre adjectival, « omplert » à côté de « ple ». L’accord avec un pronom faible antéposé relève de SYN.concordanca_participi.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Les trois terminaisons répondent à -é, -u et -i, mais la classe en -ut est bien plus large qu’en français, et la liste des irréguliers ne se recouvre qu’en partie (« escrit », « dit », « fet », « vist », « obert », « mort », « pres »)."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
       "id": "VERB.ind",
       "kind": "branch",
       "parent": "VERB",
       "label_fr": "Les temps simples de l’indicatif"
+    },
+    {
+      "id": "VERB.ind.present",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "canto",
+      "glosses": {
+        "fr": "le présent de l’indicatif et sa désinence de première personne en -o"
+      },
+      "cefr": "A1",
+      "examples": ["Parlo català cada dia.", "Ara mengem."],
+      "notes": "La première personne du singulier est en -o dans les trois groupes, « canto », « perdo », « dormo ». L’absence de pronom sujet relève de PRON.fort.subjecte.",
+      "dialect_note": "Le valencien a -e, « cante », et le baléare une forme sans désinence, « cant ».",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Mêmes valeurs qu’en français, présent de vérité générale, présent de narration et présent de futur proche compris, et les désinences restent transparentes. Ni l’une ni l’autre langue n’oppose une forme progressive au présent simple."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
     },
     {
       "id": "VERB.ind.imperfet",
@@ -1446,6 +1649,27 @@
       "contrast_fr": {
         "status": "transfer",
         "note": "Même valeur aspectuelle que l’imparfait français, et les emplois de description, d’habitude et d’arrière-plan narratif se recouvrent."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.ind.passat_simple",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "cantà",
+      "glosses": {
+        "fr": "le passé simple, réservé à l’écrit soutenu en catalan central"
+      },
+      "cefr": "C1",
+      "examples": ["El poeta nasqué a Barcelona.", "Aquell dia parlaren fins tard."],
+      "notes": "Il dit exactement ce que dit le passé périphrastique, qui l’a supplanté. Le passé antérieur, « hagué cantat », appartient au même registre et à la même désuétude.",
+      "dialect_note": "Le valencien garde le passé simple à l’oral courant, là où le catalan central emploie le passé périphrastique.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Même répartition qu’en français : forme narrative de l’écrit littéraire, absente de la conversation, et remplacée à l’oral par un autre passé, périphrastique ici et composé là."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1474,6 +1698,136 @@
       }
     },
     {
+      "id": "VERB.ind.futur",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "cantaré",
+      "glosses": {
+        "fr": "le futur simple, construit sur l’infinitif, et son domaine plus large qu’en français"
+      },
+      "cefr": "A2",
+      "examples": ["Demà plourà.", "Ho farem dilluns."],
+      "notes": "Le futur de conjecture existe aussi, « Seran les tres » pour il doit être trois heures, mais le catalan lui préfère souvent « deure ». L’exclusion du futur après « quan » et « si » relève de CONJ.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "La formation se transfère, l’infinitif suivi des désinences de « haver », radicaux irréguliers compris, « faré » et « diré » répondant à ferai et dirai. Ce qui diverge est la distribution : le français parlé confie le futur proche à aller suivi de l’infinitif, tour dont le catalan ne dispose pas, si bien que le futur simple y couvre les deux emplois."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.ind.condicional",
+      "kind": "leaf",
+      "parent": "VERB.ind",
+      "ca": "cantaria",
+      "glosses": { "fr": "le conditionnel, formé sur le radical du futur" },
+      "cefr": "B1",
+      "examples": ["Series tan amable de repetir-ho?", "Jo no ho faria mai."],
+      "notes": "L’imparfait de l’indicatif remplace couramment le conditionnel à l’oral familier, comme en français. L’appariement des temps entre protase et apodose relève de SYN.subordinacio.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Construction et emplois se recouvrent : apodose du système hypothétique, futur du passé, demande polie, et le radical est celui du futur des deux côtés, « faria » sur « faré » comme ferais sur ferai."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.subj",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Le subjonctif"
+    },
+    {
+      "id": "VERB.subj.present",
+      "kind": "leaf",
+      "parent": "VERB.subj",
+      "ca": "canti",
+      "glosses": {
+        "fr": "le subjonctif présent, en -i, bâti sur le radical de la première personne du présent"
+      },
+      "cefr": "B1",
+      "examples": ["Espero que vinguin aviat.", "No crec que parlin gaire."],
+      "notes": "Le -i marque le singulier et la troisième personne du pluriel, « canti », « cantis », « cantin ». Les deux premières personnes du pluriel reprennent telles quelles celles de l’indicatif, « cantem » et « canteu », « dormim » et « dormiu ». Le choix du mode après un subordonnant relève de CONJ, non d’ici.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le mode existe des deux côtés, mais la marque diverge : au premier groupe, le subjonctif français ne s’entend pas, la forme d’indicatif et celle de subjonctif étant homophones, alors que le catalan y met un -i audible. Le radical, en outre, est celui de « dic » ou de « prenc », non celui de l’infinitif."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.subj.imperfet",
+      "kind": "leaf",
+      "parent": "VERB.subj",
+      "ca": "cantés",
+      "glosses": {
+        "fr": "l’imparfait du subjonctif, en -és ou en -ís, forme vivante et obligatoire"
+      },
+      "cefr": "B1",
+      "examples": ["Tant de bo plogués ara mateix.", "Volien que arribéssim d'hora."],
+      "notes": "Désinences en -és au premier et au deuxième groupe, en -ís au troisième. Elle est requise après une principale au passé, dans la protase irréelle en « si » et après « com si ». Le report de temps d’une proposition à l’autre relève de SYN.subordinacio.consecutio.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français a une forme homologue, chantât, mais elle est sortie de la grammaire productive d’un locuteur contemporain, si bien qu’il n’y a rien à transférer. Le catalan l’exige partout où le français met un subjonctif présent après un passé."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.imperatiu",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "L’impératif"
+    },
+    {
+      "id": "VERB.imperatiu.positiu",
+      "kind": "leaf",
+      "parent": "VERB.imperatiu",
+      "ca": "canta, canteu",
+      "glosses": {
+        "fr": "l’impératif positif, emprunté à l’indicatif aux deuxièmes personnes et au subjonctif pour l’adresse polie"
+      },
+      "cefr": "A2",
+      "examples": ["Obre la finestra.", "Segui, si us plau."],
+      "notes": "« canta » reprend la troisième personne du présent et « canteu » la deuxième du pluriel. La place du pronom faible, enclitique ici, relève de SYN.clitics.proclisi_enclisi, et les formes d’adresse de PRON.fort.tractament.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "L’impératif existe des deux côtés, mais le catalan n’a de formes propres qu’aux deuxièmes personnes ; l’adresse polie passe par le subjonctif, « Segui » et « Seguin », là où le français garde l’impératif ordinaire pour vous."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.imperatiu.negatiu",
+      "kind": "leaf",
+      "parent": "VERB.imperatiu",
+      "ca": "no cantis",
+      "glosses": {
+        "fr": "l’impératif négatif, qui n’existe pas comme tel et cède la place au subjonctif présent"
+      },
+      "cefr": "B1",
+      "examples": ["No vinguis tard.", "No us mogueu d'aquí."],
+      "notes": "La place du pronom faible change elle aussi sous la négation, ce qui relève de SYN.clitics.proclisi_enclisi. Ce fait est rattaché à VERB plutôt qu’à NEG parce que la grammaire de référence le traite au chapitre de la phrase impérative et non à celui de la négation.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français nie l’impératif sans changer sa forme, ne chante pas. Le catalan n’a pas d’impératif négatif du tout : la forme d’impératif « canta » ne peut pas être niée, et l’ordre négatif passe au subjonctif présent, « no cantis »."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
       "id": "VERB.perf",
       "kind": "branch",
       "parent": "VERB",
@@ -1487,7 +1841,7 @@
       "glosses": { "fr": "le passé composé, construit avec haver et le participe" },
       "cefr": "A2",
       "examples": ["Avui he cantat molt.", "Ha vingut d'hora aquest matí."],
-      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être.",
+      "notes": "Haver est l’unique auxiliaire, y compris pour les verbes de mouvement et les verbes pronominaux, ce qui supprime le choix que le français impose entre avoir et être. Son emploi est en outre borné à un laps de temps qui inclut le présent, aujourd’hui, ce matin, cette semaine ; au-delà, le catalan passe au passé périphrastique, alors que le passé composé français couvre les deux.",
       "contrast_fr": {
         "status": "transfer",
         "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être."
@@ -1498,32 +1852,66 @@
       }
     },
     {
-      "id": "VERB.conj",
-      "kind": "branch",
-      "parent": "VERB",
-      "label_fr": "Les groupes de conjugaison"
-    },
-    {
-      "id": "VERB.conj.3",
-      "kind": "branch",
-      "parent": "VERB.conj",
-      "label_fr": "Le troisième groupe, en -ir"
-    },
-    {
-      "id": "VERB.conj.3.incoatiu",
+      "id": "VERB.perf.serie",
       "kind": "leaf",
-      "parent": "VERB.conj.3",
-      "ca": "serveixo",
+      "parent": "VERB.perf",
+      "ca": "havia cantat",
       "glosses": {
-        "fr": "la conjugaison inchoative du troisième groupe, avec l’infixe -eix-"
+        "fr": "la série complète des temps composés, « haver » au temps simple voulu suivi du participe"
       },
       "cefr": "B1",
-      "examples": ["Jo serveixo el dinar a la una.", "Ells pateixen molt de fred."],
-      "notes": "L’infixe apparaît aux trois personnes du singulier et à la troisième du pluriel, là où l’accent tombe sur le radical. Une minorité de verbes en -ir, comme dormir ou sentir, restent purs.",
-      "dialect_note": "Le valencien emploie plutôt les formes en -isc et -ix, comme servisc et servix.",
+      "examples": ["Quan vaig arribar, ja havia marxat.", "No crec que hagi dinat."],
+      "notes": "Une seule règle couvre le plus-que-parfait « havia cantat », le futur antérieur « hauré cantat », le conditionnel passé « hauria cantat » et les composés du subjonctif « hagi cantat » et « hagués cantat ». Il n’y a donc pas six formes à retenir mais la conjugaison de « haver ».",
       "contrast_fr": {
-        "status": "near-miss",
-        "note": "Comparable à finir/finissons, mais l’infixe inchoatif catalan couvre un ensemble de verbes plus large qu’en français."
+        "status": "transfer",
+        "note": "Le catalan n’a qu’un auxiliaire à tous les temps composés, haver, y compris pour les verbes de mouvement et les verbes pronominaux, là où le français répartit entre avoir et être."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.irregular",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les irrégularités du radical"
+    },
+    {
+      "id": "VERB.irregular.radical_tonic",
+      "kind": "leaf",
+      "parent": "VERB.irregular",
+      "ca": "puc / podem",
+      "glosses": { "fr": "l’alternance du radical selon la place de l’accent" },
+      "cefr": "A2",
+      "examples": [
+        "No puc venir, però podem quedar dilluns.",
+        "Vull marxar i volem descansar."
+      ],
+      "notes": "« poder » donne « puc » contre « podem », « voler » « vull » contre « volem », « venir » « vinc » contre « venim », « sortir » « surto » contre « sortim ». L’accent tombe sur le radical aux trois personnes du singulier et à la troisième du pluriel.",
+      "contrast_fr": {
+        "status": "transfer",
+        "note": "Exactement le mécanisme français de peux et pouvons, viens et venons, veux et voulons : le radical accentué diffère du radical inaccentué, et ce sont largement les mêmes verbes qui sont concernés des deux côtés."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.irregular.velar",
+      "kind": "leaf",
+      "parent": "VERB.irregular",
+      "ca": "dic, prenc, bec",
+      "glosses": {
+        "fr": "l’incrément vélaire, noté c, g ou qu selon la forme, qui s’insère entre le radical et la désinence"
+      },
+      "cefr": "B1",
+      "examples": ["Prenc el cafè sense sucre.", "Vol que li digui la veritat."],
+      "notes": "Il apparaît à la première personne du présent, « prenc », « bec », « dic », « visc », dans tout le subjonctif présent, « prengui », « begui », « digui », « visqui », et dans tout l’imparfait du subjonctif, « prengués ». L’infinitif et le participe n’en portent aucune trace.",
+      "contrast_fr": {
+        "status": "novel",
+        "note": "Le français n’a rien de tel. Ce n’est ni une irrégularité isolée ni un simple changement de radical, mais une pièce de conjugaison à part entière, qui commande une personne de l’indicatif et deux subjonctifs entiers, sans le moindre analogue à transférer."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -1555,6 +1943,128 @@
       }
     },
     {
+      "id": "VERB.mod.deure",
+      "kind": "leaf",
+      "parent": "VERB.mod",
+      "ca": "deu ser tard",
+      "glosses": {
+        "fr": "« deure », qui porte la probabilité, contre « haver de », qui porte l’obligation"
+      },
+      "cefr": "B2",
+      "examples": ["Deu ser tard, ja tanquen.", "Deuen haver sortit."],
+      "notes": "« deure » n’a que la valeur épistémique et se rencontre surtout au présent et au passé composé, « Deuen haver sortit ». L’obligation est traitée à VERB.mod.obligacio.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français confie les deux valeurs à devoir. Le catalan les répartit sur deux verbes : « Ha de ser tard » dit d’abord une obligation, et c’est « Deu ser tard » qui rend il doit être tard au sens d’une conjecture."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.perifrasi",
+      "kind": "branch",
+      "parent": "VERB",
+      "label_fr": "Les périphrases aspectuelles et temporelles"
+    },
+    {
+      "id": "VERB.perifrasi.imminent",
+      "kind": "leaf",
+      "parent": "VERB.perifrasi",
+      "ca": "anava a sortir",
+      "glosses": {
+        "fr": "l’imminence, exprimée par « anar a » à l’imparfait ou par « estar a punt de »"
+      },
+      "cefr": "B1",
+      "examples": ["Anava a sortir quan va trucar.", "Està a punt de ploure."],
+      "notes": "À lire avec VERB.ind.passat_perifrastic, dont c’est l’envers : le francophone qui calque aller suivi de l’infinitif ne produit pas un futur mais un passé.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le futur proche français, aller suivi de l’infinitif, n’a pas de contrepartie directe : au présent, « vaig a cantar » heurte le passé périphrastique et la langue l’évite. Le catalan répartit entre le futur simple et « estar a punt de », et ne garde « anar a » que là où l’ambiguïté est levée, à l’imparfait surtout."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.perifrasi.acabar_de",
+      "kind": "leaf",
+      "parent": "VERB.perifrasi",
+      "ca": "acabo d'arribar",
+      "glosses": { "fr": "le passé récent, « acabar de » suivi de l’infinitif" },
+      "cefr": "B1",
+      "examples": ["Acaba de sortir de casa.", "Acabàvem de dinar quan van trucar."],
+      "notes": "La valeur d’achèvement existe aussi, « Acaba de llegir el llibre » pouvant dire il finit de lire le livre, et c’est le contexte qui tranche : au présent et à l’imparfait, la lecture de passé récent domine. Le régime prépositionnel de la classe est traité à PREP.formes_no_finites.inf_regit_de.",
+      "contrast_fr": {
+        "status": "false-friend",
+        "note": "« acabo d'arribar » se lit finir d’arriver et signifie je viens d’arriver. La lecture française est disponible, grammaticale, et fausse."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.perifrasi.progressiva",
+      "kind": "leaf",
+      "parent": "VERB.perifrasi",
+      "ca": "estic parlant",
+      "glosses": { "fr": "la périphrase progressive, « estar » suivi du gérondif" },
+      "cefr": "B1",
+      "examples": ["Estic llegint el diari.", "Estava plovent tota la tarda."],
+      "notes": "« anar » suivi du gérondif marque une progression graduelle, « Va millorant », et « seguir » suivi du gérondif la continuation. Aucune des trois ne peut exprimer un futur proche.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le tour existe en français, être en train de, mais la répartition diffère : le catalan réserve « estar » suivi du gérondif à une action réellement en cours et durative, et le présent simple y couvre la plupart des emplois où le français prendrait la périphrase."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.perifrasi.reiterativa",
+      "kind": "leaf",
+      "parent": "VERB.perifrasi",
+      "ca": "tornar a llegir",
+      "glosses": {
+        "fr": "la répétition, rendue par « tornar a » suivi de l’infinitif"
+      },
+      "cefr": "A2",
+      "examples": ["Ho hauràs de tornar a fer.", "Torna a ploure."],
+      "notes": "Le préfixe re- existe en catalan mais reste lexicalisé, « rellegir » étant possible tandis que « retornar » a pris un autre sens. La périphrase est la forme ordinaire et toujours disponible.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français préfixe le verbe, relire, refaire, revenir. Le catalan n’a pas ce préfixe productif et passe par une périphrase, si bien qu’un seul mot français en appelle trois en catalan."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.perifrasi.habitual",
+      "kind": "leaf",
+      "parent": "VERB.perifrasi",
+      "ca": "sol venir tard",
+      "glosses": {
+        "fr": "l’habitude, exprimée par le verbe « soler » suivi de l’infinitif"
+      },
+      "cefr": "B1",
+      "examples": ["Sol arribar tard.", "Solíem anar-hi cada estiu."],
+      "notes": "« soler » ne s’emploie qu’au présent et à l’imparfait, et il est défectif ailleurs. « Solia anar-hi » rend j’y allais d’habitude, sans qu’aucun adverbe soit nécessaire.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français n’a pas de verbe pour cela et passe par avoir l’habitude de ou par un adverbe. L’analogue existe donc, mais il est adverbial ou nominal d’un côté et verbal de l’autre, et le catalan le préfère nettement."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
       "id": "VERB.ser_estar",
       "kind": "leaf",
       "parent": "VERB",
@@ -1569,6 +2079,50 @@
       "contrast_fr": {
         "status": "novel",
         "note": "Le français ne connaît que être. La distinction ser/estar n’a aucun analogue à transférer et doit s’apprendre pour elle-même."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.haver_tenir",
+      "kind": "leaf",
+      "parent": "VERB",
+      "ca": "tenir / haver",
+      "glosses": {
+        "fr": "le partage entre « tenir », verbe de possession, et « haver », auxiliaire unique"
+      },
+      "cefr": "A1",
+      "examples": ["Tinc dos germans.", "He arribat ara mateix."],
+      "notes": "Même figure que VERB.ser_estar, un verbe français pour deux verbes catalans, mais la frontière est ici nette et lexicale plutôt qu’aspectuelle. « tenir » rend aussi les tours de sensation, « tinc gana », « tinc fred ». L’existentiel « hi ha » est le seul emploi non auxiliaire de « haver » et suit fidèlement il y a.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "Le français avoir fait les deux. Le catalan les sépare strictement : « tinc un cotxe » pour la possession, « he arribat » pour l’auxiliaire, et « he un cotxe » est agrammatical."
+      },
+      "state": {
+        "exposure": { "exposure_count": 0 },
+        "mastery": { "stability": null, "difficulty": null, "graded_review_count": 0 }
+      }
+    },
+    {
+      "id": "VERB.impersonal",
+      "kind": "leaf",
+      "parent": "VERB",
+      "ca": "fa fred",
+      "glosses": {
+        "fr": "les verbes impersonnels, « fer » pour le temps qu’il fait et le temps écoulé, « caldre », et les verbes météorologiques"
+      },
+      "cefr": "A2",
+      "examples": [
+        "Fa molt fred avui.",
+        "Fa tres anys vaig anar a Roma.",
+        "Cal arribar puntual."
+      ],
+      "notes": "« caldre » ne se conjugue qu’à la troisième personne, et l’obligation qu’il exprime est traitée à VERB.mod.obligacio. La durée écoulée introduite par « des de fa » relève de PREP.toniques.des_de_fa.",
+      "contrast_fr": {
+        "status": "near-miss",
+        "note": "« fa fred » répond à il fait froid et se transfère, mais « fa tres anys » rend il y a trois ans, où le français change de verbe. Là où le français impose un sujet explétif, il pleut, il faut, le catalan n’en met aucun."
       },
       "state": {
         "exposure": { "exposure_count": 0 },
@@ -3375,7 +3929,7 @@
       },
       "cefr": "B1",
       "examples": ["Ha deixat de fumar.", "Acabo d'arribar.", "Mira de venir aviat."],
-      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase relève du domaine VERB et non du régime prépositionnel.",
+      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase est traitée à VERB.perifrasi.acabar_de, qui en porte le contraste, et il ne reste ici que le régime prépositionnel de la classe.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le régime se calque sur arrêter de et essayer de, mais « acabar de » se lit finir de et signifie venir de, ce qui inverse un membre très fréquent de la classe."

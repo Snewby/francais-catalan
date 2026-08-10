@@ -10,8 +10,14 @@
     {
       "id": "VERB.perf.*",
       "status": "transfer",
+      "note": "Le catalan n’a qu’un auxiliaire à tous les temps composés, haver, y compris pour les verbes de mouvement et les verbes pronominaux, là où le français répartit entre avoir et être.",
+      "rationale": "The compound-tense system transfers as a system: same auxiliary-plus-participle formation, same tense values. Only auxiliary selection differs, and it differs in the direction of being simpler. Stated for the series rather than for one tense, because the wildcard reaches every compound tense and VERB.perf.serie is a pluperfect, not a perfect."
+    },
+    {
+      "id": "VERB.perf.present",
+      "status": "transfer",
       "note": "Correspond au passé composé, mais le catalan emploie haver pour tous les verbes là où le français répartit entre avoir et être.",
-      "rationale": "The aspectual value transfers cleanly; only the auxiliary selection differs, and it differs in the direction of being simpler."
+      "rationale": "Carved out of the VERB.perf.* wildcard by an exact match, which is what the exact-beats-wildcard rule exists for. This is the one compound tense whose French counterpart can be named outright, so its note names it. Added when the VERB 2a pass gave VERB.perf a second leaf: the wildcard note had been written when it had only this one, and read as false on a pluperfect."
     },
     {
       "id": "VERB.ser_estar",

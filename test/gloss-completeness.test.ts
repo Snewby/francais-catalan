@@ -80,7 +80,11 @@ describe('pre-assigned contrast statuses are applied verbatim', () => {
   });
 
   it('applies a wildcard override to the leaves beneath it', () => {
-    expect(resolveOverride('VERB.perf.present')?.status).toBe('transfer');
+    // VERB.perf.serie, not VERB.perf.present: the latter carves itself out of
+    // the VERB.perf.* wildcard with an exact override, so asserting on it would
+    // resolve by the exact path and stop testing the wildcard at all.
+    expect(resolveOverride('VERB.perf.serie')?.status).toBe('transfer');
+    expect(resolveOverride('VERB.perf.serie')?.id).toBe('VERB.perf.*');
   });
 
   it('returns nothing for a leaf with no override', () => {

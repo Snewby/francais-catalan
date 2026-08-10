@@ -586,7 +586,7 @@
       },
       "cefr": "B1",
       "examples": ["Ha deixat de fumar.", "Acabo d'arribar.", "Mira de venir aviat."],
-      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase relève du domaine VERB et non du régime prépositionnel.",
+      "notes": "« acabar de » porte en outre la valeur du passé récent, « acabo d'arribar » signifiant je viens d’arriver. Cette périphrase est traitée à VERB.perifrasi.acabar_de, qui en porte le contraste, et il ne reste ici que le régime prépositionnel de la classe.",
       "contrast_fr": {
         "status": "near-miss",
         "note": "Le régime se calque sur arrêter de et essayer de, mais « acabar de » se lit finir de et signifie venir de, ce qui inverse un membre très fréquent de la classe."
