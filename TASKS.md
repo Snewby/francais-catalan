@@ -856,12 +856,18 @@ question, after that breakpoint. Six things in it matter later:
 
 - **The vocabulary is 37 KB of prefix, and that is the design rather than a
   problem.** Render order at the API is tools, then system, then messages, so
-  the reusable part has to be `system`. At roughly six characters per token
-  worst case it clears Haiku's 4,096-token minimum by a wide margin, which is
-  the number that matters: **a prefix under the minimum does not error, it
-  silently reports zero cache reads for ever.** `taxonomy.json` itself is 314 KB
-  and is never sent; only leaves are, and only the French gloss, never the whole
-  keyed map.
+  the reusable part has to be `system`. It has to clear Haiku 4.5's 4,096-token
+  minimum, which is the number that matters: **a prefix under the minimum does
+  not error, it silently reports zero cache reads for ever.** `taxonomy.json`
+  itself is 314 KB and is never sent; only leaves are, and only the French
+  gloss, never the whole keyed map.
+  **Measured against the live API the prefix is 17,479 tokens**, against the
+  6,300 or so this entry estimated at roughly six characters per token. The real
+  rate is about 2.1, because accented French and Catalan and dotted component
+  IDs both tokenise badly. The conclusion held and the arithmetic did not, which
+  is the safe direction to be wrong in but still worth recording: **a
+  characters-per-token estimate is not a token count**, and `count_tokens` would
+  have given the real one offline.
 - **The prefill in docs/01 was declined, not forgotten.** docs/01 line 250 says
   to prefill the assistant turn with the opening `{`. Structured outputs and
   message prefilling are mutually exclusive, and a last-assistant-turn prefill
@@ -1065,20 +1071,29 @@ unverified exactly as recorded below.
 
 ## Carried over into later phases
 
-- **The prompt cache is unverified against the live API.** Everything phase 4
-  can check offline is checked: one breakpoint, on the last static block; a
-  prefix that renders byte-identically whatever the question is; a prefix well
-  clear of Haiku's 4,096-token minimum. What no test can check is whether the
-  cache is actually hit, because that is a property of a second live call.
-  A persistent zero means the prefix is not byte-stable or is under the minimum,
-  and it reports as silence rather than as an error.
-  **The reading is now in the interface**, under every answer in the query view,
-  with the explanation of a zero shown only on a zero. Ask the same question
-  twice and read « Relu du cache ». Phase 6 shipped the only caller of
-  `callHaiku` without reading `CallResult.usage` at all, so the "one-line check"
-  this entry promised was available to nobody, including through the interface.
-  **A value carried through an API for two phases and consumed by nothing is not
-  a check, it is a plan for one.**
+- **The prompt cache is VERIFIED against the live API.** A second identical
+  question reported **17,479 tokens read from the cache and 0 written**, which
+  settles both things no offline test could: the prefix renders byte-identically
+  across calls, and it is well clear of Haiku 4.5's 4,096-token minimum. Phase
+  4's design is confirmed. The reading is in the interface under every answer,
+  with the explanation of a zero shown only on a zero, so a future regression
+  reports itself instead of going quiet.
+  Two things follow that were not visible before the number was:
+  - **The cache TTL is five minutes**, because `cache_control` is
+    `{ type: 'ephemeral' }` with no `ttl`. A learner asking a burst of questions
+    pays one write and then reads; a learner asking one question an hour pays a
+    write every time, at 1.25 times the base input rate against 0.1 for a read.
+    The one-hour TTL exists and costs 2 times on the write, so it needs roughly
+    three questions inside the hour to pay for itself. **Left at five minutes on
+    purpose**: it suits a study session, which is how this is used. Revisit only
+    with real usage, not with an argument.
+  - **The prefix is 17,479 tokens, not the ~6,300 phase 4 estimated.** The
+    estimate assumed six characters per token; the real rate is about 2.1. The
+    conclusion survived and the reasoning did not.
+    Recorded also because of how it was found: phase 6 shipped the only caller of
+    `callHaiku` without reading `CallResult.usage` at all, so the "one-line check"
+    this entry promised was available to nobody. **A value carried through an API
+    for two phases and consumed by nothing is not a check, it is a plan for one.**
 - **The browser's no-evidence ban survived phase 6, and is now scoped to
   `src/ui/browse/`.** It walks the module graph from every file in that
   directory and still bans `src/db/dexie.ts`, `src/db/persist.ts`,
