@@ -1070,9 +1070,15 @@ unverified exactly as recorded below.
   prefix that renders byte-identically whatever the question is; a prefix well
   clear of Haiku's 4,096-token minimum. What no test can check is whether the
   cache is actually hit, because that is a property of a second live call.
-  Read `usage.cacheReadTokens` on the second identical query the first time a
-  key is entered. A persistent zero means the prefix is not byte-stable or is
-  under the minimum, and it reports as silence rather than as an error.
+  A persistent zero means the prefix is not byte-stable or is under the minimum,
+  and it reports as silence rather than as an error.
+  **The reading is now in the interface**, under every answer in the query view,
+  with the explanation of a zero shown only on a zero. Ask the same question
+  twice and read « Relu du cache ». Phase 6 shipped the only caller of
+  `callHaiku` without reading `CallResult.usage` at all, so the "one-line check"
+  this entry promised was available to nobody, including through the interface.
+  **A value carried through an API for two phases and consumed by nothing is not
+  a check, it is a plan for one.**
 - **The browser's no-evidence ban survived phase 6, and is now scoped to
   `src/ui/browse/`.** It walks the module graph from every file in that
   directory and still bans `src/db/dexie.ts`, `src/db/persist.ts`,

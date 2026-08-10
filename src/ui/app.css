@@ -237,6 +237,25 @@ body {
   font-weight: 600;
 }
 
+/* The cache reading is diagnostic rather than pedagogic, so it sits quietly
+   under the answer. It is not hidden behind a toggle: the one thing it is for is
+   being noticed on the second identical question. */
+.ac-usage {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ac-line);
+}
+
+.ac-usage .ac-subheading {
+  margin-top: 0;
+}
+
+.ac-usage-counts {
+  margin: 0;
+  color: var(--ac-muted);
+  font-size: 0.8125rem;
+}
+
 .ac-attempt-missing {
   margin: 0.25rem 0 0;
   padding-left: 1.1rem;

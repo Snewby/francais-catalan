@@ -16,7 +16,7 @@
  * logged record comes back from `callHaiku` already validated against the
  * generated schema, and is persisted as it stands.
  */
-import { fr } from '../i18n/fr';
+import { fr, labelled } from '../i18n/fr';
 import { callHaiku, readApiKey, type CallResult } from '../api/anthropic';
 import { recordQuery } from '../db/persist';
 import { compareAttempt, type AttemptResult } from '../text/attempt';
@@ -190,6 +190,54 @@ export function mountQueryView(
     return block;
   }
 
+  /**
+   * What the prompt cache did, in the interface rather than in a breakpoint.
+   *
+   * The taxonomy is a 37 KB cached prefix and everything that can be checked
+   * offline already is. What cannot is whether the cache is HIT, because that is
+   * a property of a second live call, and a miss reports as silence: a zero here
+   * on a repeated question means the prefix is not byte-stable, or has fallen
+   * under the model's minimum cacheable length. `CallResult.usage` exists to
+   * make that a one-line check, and phase 6 shipped the only caller without
+   * reading it, which left the check available to nobody.
+   */
+  function renderUsage(result: CallResult): HTMLElement {
+    const block = document.createElement('div');
+    block.className = 'ac-usage';
+    block.dataset['cacheRead'] = String(result.usage.cacheReadTokens);
+
+    const heading = document.createElement('h3');
+    heading.className = 'ac-subheading';
+    heading.textContent = fr.query.usageHeading;
+
+    const counts = document.createElement('p');
+    counts.className = 'ac-usage-counts';
+    counts.textContent = [
+      labelled(
+        fr.query.usageRead,
+        `${String(result.usage.cacheReadTokens)} ${fr.query.usageTokens}`,
+      ),
+      labelled(
+        fr.query.usageWritten,
+        `${String(result.usage.cacheCreationTokens)} ${fr.query.usageTokens}`,
+      ),
+    ].join(', ');
+
+    block.append(heading, counts);
+
+    // The hint is shown only on a miss. A reader who has just seen a non-zero
+    // read does not need telling what a zero would have meant, and a permanent
+    // caveat under a working number is noise that gets scrolled past.
+    if (result.usage.cacheReadTokens === 0) {
+      const hint = document.createElement('p');
+      hint.className = 'ac-hint';
+      hint.textContent = fr.query.usageHint;
+      block.append(hint);
+    }
+
+    return block;
+  }
+
   function renderResult(result: CallResult, outcome: AttemptResult | null): void {
     const answerHeading = document.createElement('h3');
     answerHeading.className = 'ac-subheading';
@@ -209,6 +257,7 @@ export function mountQueryView(
       answer,
       componentsHeading,
       renderComponents(result),
+      renderUsage(result),
     );
   }
 

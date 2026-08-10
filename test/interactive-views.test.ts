@@ -31,6 +31,9 @@ import type { CallOptions, CallResult } from '../src/api/anthropic';
 
 const NOW = 1_700_000_000_000;
 
+/** What the stub reports the cache read. Any non-zero value would do. */
+const CACHE_READ_TOKENS = 13_104;
+
 let db: TrainerDatabase;
 let dbIndex = 0;
 
@@ -79,11 +82,13 @@ function stubCall(seen: CallOptions[]): (options: CallOptions) => Promise<CallRe
         evidence: options.evidence,
         ...decomposition,
       },
+      // Non-zero on purpose. A stub reporting zeros would let the view drop the
+      // usage entirely and still pass, which is exactly what shipped once.
       usage: {
-        inputTokens: 0,
-        outputTokens: 0,
+        inputTokens: 120,
+        outputTokens: 45,
         cacheCreationTokens: 0,
-        cacheReadTokens: 0,
+        cacheReadTokens: CACHE_READ_TOKENS,
       },
     });
   };
@@ -239,6 +244,60 @@ describe('the query view types its own evidence', () => {
     const host = mountQuery([]);
     const attempt = host.querySelector<HTMLInputElement>('input[lang="ca"]');
     expect(attempt?.closest('.ac-control')?.hasAttribute('hidden')).toBe(true);
+  });
+
+  it('reports what the prompt cache did, which nothing else can', async () => {
+    // The only check on whether the cached prefix is actually hit is a second
+    // live call, and a miss reports as silence rather than as an error. The
+    // client has carried `usage` since phase 4; until this landed, the one
+    // caller dropped it and the check was available to nobody.
+    const host = mountQuery([]);
+    await ask(host, { direction: 'ca_to_fr', question: subject().ca });
+
+    const usage = host.querySelector<HTMLElement>('.ac-usage');
+    expect(usage).not.toBeNull();
+    expect(usage?.dataset['cacheRead']).toBe(String(CACHE_READ_TOKENS));
+    expect(usage?.textContent).toContain(String(CACHE_READ_TOKENS));
+    expect(usage?.textContent).toContain(fr.query.usageRead);
+    expect(usage?.textContent).toContain(fr.query.usageWritten);
+    // A hit needs no caveat about what a miss would have meant.
+    expect(usage?.textContent).not.toContain(fr.query.usageHint);
+  });
+
+  it('explains a zero, because that is the failure it exists to catch', async () => {
+    const host = document.createElement('div');
+    document.body.replaceChildren(host);
+    localStorage.setItem('anthropic-api-key', 'test-key');
+    const leaf = subject();
+    mountQueryView(host, {
+      call: (options) =>
+        Promise.resolve({
+          decomposition: {
+            decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
+            answer: leaf.glosses.fr,
+            answer_lang: 'fr' as const,
+          },
+          queryLog: {
+            asked_at: NOW,
+            question: options.question,
+            intent: options.intent,
+            direction: options.direction,
+            evidence: options.evidence,
+            decomposition: [{ id: leaf.id as never, ca: leaf.ca }],
+            answer: leaf.glosses.fr,
+            answer_lang: 'fr' as const,
+          },
+          usage: {
+            inputTokens: 120,
+            outputTokens: 45,
+            cacheCreationTokens: 37_000,
+            cacheReadTokens: 0,
+          },
+        }),
+    });
+    await ask(host, { direction: 'ca_to_fr', question: leaf.ca });
+
+    expect(host.querySelector('.ac-usage')?.textContent).toContain(fr.query.usageHint);
   });
 
   it('asks for a key rather than calling without one', async () => {

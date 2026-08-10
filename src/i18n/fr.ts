@@ -116,6 +116,16 @@ export const fr = {
     recordedRecall: 'Tentative enregistrée.',
     emptyQuestion: 'Saisissez une question avant de lancer l’analyse.',
     failed: 'L’analyse a échoué.',
+    // Shown after every reply. The taxonomy travels as a cached prompt prefix,
+    // and whether that cache is actually hit is a property of a second live
+    // call that no test can check: it reports as silence rather than as an
+    // error, so the interface has to say it out loud.
+    usageHeading: 'Cache du préfixe',
+    usageRead: 'Relu du cache',
+    usageWritten: 'Écrit dans le cache',
+    usageTokens: 'jetons',
+    usageHint:
+      'Une seconde question doit relire le préfixe. Un zéro qui persiste signale un préfixe qui varie d’un appel à l’autre, ou trop court pour être mis en cache.',
   },
   review: {
     heading: 'Réviser',
