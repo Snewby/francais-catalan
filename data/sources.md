@@ -3126,3 +3126,92 @@ for a new database is immediately.
 already parameters of `startReviewSession`, and the test drives the loop with a
 second selector written inside the test file to prove the loop does not have to
 change. Nothing about assessment is a subsystem.
+
+## Phase 6: the interface and the coverage heatmap
+
+Two decisions were settled before any code, because both are the kind that is
+expensive to reverse once screenshots exist.
+
+**Where the read-only state accessor lives, and how the browser ban was
+narrowed.** `test/browser-emits-no-evidence.test.ts` banned every module under
+`src/ui/` from reaching the store, and phase 6 needed both to read state (to
+colour a heatmap node) and to write it (a query and a review are exactly the
+encounters that should count). Narrowing by unbanning the reads would have
+widened the ban until it meant nothing, and the file itself warns that a session
+meeting it red and deleting it has removed the only thing stopping a browse from
+incrementing exposure. Three moves instead:
+
+- `src/db/read.ts` was split out of `src/db/persist.ts` and holds every read:
+  `fromRow`, `seedStateFor`, `readLearnerElo`, `readComponentState`,
+  `readAllComponentStates` and `exportSnapshot`. `persist.ts` keeps `recordQuery`
+  and `importSnapshot` and imports from `read.ts`; the dependency never runs the
+  other way. A test asserts `read.ts` contains no Dexie mutation at all, so
+  "read-only accessor" is a property of the file rather than of its name.
+- The BAN'S SCOPE narrowed from `src/ui/` to `src/ui/browse/`, a directory
+  rather than a list, so it cannot go stale. The browsing modules moved there;
+  the query, review and data views did not.
+- The BANNED LIST DID NOT CHANGE, and the browse view does not reach `read.ts`
+  either. The shell reads the store and passes plain `Coverage` records in, so
+  the browsing half of the interface cannot touch the database in either
+  direction. The guarantee is stronger after this phase than before it, which is
+  the opposite of what narrowing a ban usually means.
+
+The one assertion that did have to change is the by-hand exposure write. It
+banned the identifier `exposure_count`, and phase 6 made a plain mention
+legitimate: a heatmap is coloured from an exposure count, so the shell reads one
+and the coverage model declares a field for it. It now matches an ASSIGNMENT
+rather than a mention, with a positive control against `src/srs/apply.ts`, whose
+whole job is to increment that counter, and three negative controls for the
+shapes a legitimate read takes.
+
+**The heatmap drills down by domain rather than rendering 300 leaves at once.**
+The primary device is a telephone. At 390 px a grid of 300 cells at a thumb's
+width is roughly 1,700 px tall, unlabelled, and impossible to aim at; shrinking
+the cells until they fit produces a decorative texture rather than a map. The
+overview is therefore the twelve domains, each aggregating its leaves, and
+choosing one shows that domain's 13 to 39 leaves at 44 px. A consequence worth
+knowing: a domain's mastery averages ONLY over its graded leaves, because
+averaging the ungraded ones in as zero would say a domain is known badly when it
+is merely untested, and its exposure is a mean rather than a sum so that a
+12-leaf domain and a 39-leaf one are read on the same scale.
+
+The grid is drawn at 1:1 and re-laid-out on resize rather than scaled by a
+viewBox, which is the same decision in a different place: a viewBox scales its
+text, so a label legible at 1280 px is unreadable at 390 px and a cell sized for
+a thumb stops being one. The column count moves and the cells do not. The domain
+overview is capped at six columns, because an uncapped grid at 1280 px gave
+eleven and stranded the twelfth domain alone on a second row.
+
+**The reference for attempt-then-reveal is the decomposition, not an expected
+utterance, because no such field exists.** `answer` is pinned to French by the
+schema and the only Catalan in a reply is the `ca` of each decomposition entry,
+which `src/api/prompt.ts` defines as the form realising that point in this
+énoncé. Joining them does not reconstruct the sentence, since a word realising
+no keyed component has no entry at all, so equality would mark a correct attempt
+wrong. The comparison is therefore CONTAINMENT: the attempt is correct when
+every form the reply named appears in it. The limit is recorded rather than
+hidden, in `src/text/attempt.ts`: it cannot see extra wrong material around the
+right forms. Fixing that needs a field holding the expected utterance, which is
+exercise generation, which TASKS.md puts outside this phase.
+
+Three things about the comparator itself, all of them decisions rather than
+defaults:
+
+- **The apostrophe is folded, not dropped.** `normalise` in
+  `src/ui/browse/filter.ts` deletes it so that "sha" finds `s'ha`, which is
+  right for a search box and would accept `lhome` for `l'home` here. A phone
+  keyboard substitutes the typographic apostrophe without asking, so `s’ha` and
+  `s'ha` are one answer, and `sha` is not.
+- **Diacritics are folded, and the cost is accepted.** `si` will be accepted for
+  `sí`. Marking a right answer wrong is worse than marking a near-right one
+  right, because only the first teaches the learner to distrust the tool.
+- **The interpunct had to be protected explicitly.** U+00B7 carries the Unicode
+  Diacritic property, so the obvious accent-stripping pass removes it and the
+  fold accepts `colleccio` for `col·lecció`, erasing a contrast `PHON.grafia`
+  keys deliberately. Caught by a test written to assert the opposite.
+
+**`CONTRAST_SELECTION_WEIGHT` moved to `src/review/weight.ts`.** The gaps list
+ranks by it and `src/review/select.ts` ranks by it, and the alternative was a
+second table in `src/ui/`, which is the failure the `ART.personal.absencia`
+finding is about. It carries no import beyond a taxonomy type, so the browse
+view can reach it without reaching the scheduler.

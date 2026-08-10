@@ -58,8 +58,16 @@
   background: #fff;
 }
 
+/* Sized from the container rather than to a fixed 18rem, which overflowed a
+   390 px screen once the French label above it was allowed for. */
 .tb-search {
-  min-width: 18rem;
+  width: 100%;
+  max-width: 22rem;
+  box-sizing: border-box;
+}
+
+.tb-control {
+  flex: 1 1 12rem;
 }
 
 .tb-toggle {
@@ -81,19 +89,171 @@
   color: #57534e;
 }
 
+/* Mobile first: one column, and a second only once there is room for two
+   columns of French prose. Written as a min-width rule rather than a max-width
+   override, so the narrow layout is the one that is defined rather than the one
+   that is left over. */
 .tb-panes {
   display: grid;
-  grid-template-columns: minmax(20rem, 2fr) minmax(20rem, 3fr);
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   align-items: start;
 }
 
-/* One column below roughly a tablet: two panes of French prose side by side
-   stop being readable well before the grid stops fitting. */
-@media (max-width: 60rem) {
+@media (min-width: 60rem) {
   .tb-panes {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(20rem, 2fr) minmax(20rem, 3fr);
+    gap: 1.5rem;
   }
+}
+
+/* The heatmap. Hue carries mastery and opacity carries exposure, and both are
+   set inline from src/ui/browse/coverage.ts: the two dimensions are computed in
+   one place, so a stylesheet cannot quietly reintroduce a single scale. */
+
+.tb-subheading {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.9375rem;
+}
+
+.tb-hint {
+  margin: 0.25rem 0 0.5rem;
+  color: #57534e;
+  font-size: 0.8125rem;
+}
+
+.tb-legend {
+  margin: 0.25rem 0 0.75rem;
+}
+
+.tb-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.tb-legend-caption {
+  font-size: 0.8125rem;
+  color: #44403c;
+}
+
+.tb-legend-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.tb-legend-end {
+  font-size: 0.75rem;
+  color: #78716c;
+}
+
+.tb-swatch {
+  display: inline-block;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 0.2rem;
+  border: 1px solid #e7e5e4;
+}
+
+.tb-legend-note {
+  margin: 0.1rem 0 0;
+  font-size: 0.75rem;
+  color: #78716c;
+}
+
+.tb-heatmap-grid {
+  display: block;
+  max-width: 100%;
+}
+
+.tb-heatmap-cell {
+  cursor: pointer;
+}
+
+.tb-heatmap-cell rect {
+  stroke: #e7e5e4;
+  stroke-width: 1;
+}
+
+.tb-heatmap-cell:focus-visible rect,
+.tb-heatmap-cell--selected rect {
+  stroke: #1d4ed8;
+  stroke-width: 2.5;
+}
+
+.tb-heatmap-code {
+  font-family: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  fill: #1c1917;
+}
+
+.tb-heatmap-sub {
+  font-size: 11px;
+  fill: #44403c;
+}
+
+.tb-back {
+  margin-bottom: 0.5rem;
+}
+
+.tb-gap-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .tb-gap-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.tb-gap-heading {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.tb-gap-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tb-gap-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  width: 100%;
+  /* A thumb, not a pointer. */
+  min-height: 2.75rem;
+  padding: 0.3rem 0.35rem;
+  border: 0;
+  border-top: 1px solid #f5f5f4;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tb-gap-status {
+  font-size: 0.75rem;
+  color: #57534e;
+}
+
+.tb-coverage-counts {
+  margin: 0;
+}
+
+.tb-coverage-gap {
+  margin: 0.15rem 0 0;
+  font-size: 0.8125rem;
+  color: #57534e;
 }
 
 .tb-pane {
@@ -167,7 +327,11 @@
   align-items: baseline;
   gap: 0.5rem;
   width: 100%;
-  padding: 0.2rem 0.35rem;
+  /* A thumb's width. There are three hundred of these and the primary device
+     is a telephone, so the pointer-sized 0.2rem they shipped with was not a
+     target anyone could hit. */
+  min-height: 2.5rem;
+  padding: 0.35rem;
   border: 0;
   border-radius: 0.25rem;
   background: none;

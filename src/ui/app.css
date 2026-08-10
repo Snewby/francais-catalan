@@ -1,0 +1,262 @@
+/*
+ * The application shell.
+ *
+ * MOBILE FIRST, then widened. The base rules below are the 390 px layout, and
+ * the media queries add columns rather than take them away. Built the other way
+ * round, a tab bar and a heatmap sized against a desktop shrink into something
+ * unusable on the surface this application is actually read on.
+ *
+ * Touch targets are 2.75rem, which is a thumb rather than a pointer, and no
+ * affordance anywhere depends on :hover. French copy runs 15 to 20 per cent
+ * longer than the English equivalent, so nothing here is given a fixed width
+ * and every label wraps.
+ */
+
+:root {
+  --ac-ink: #1c1917;
+  --ac-muted: #57534e;
+  --ac-line: #e7e5e4;
+  --ac-surface: #fff;
+  --ac-accent: #1d4ed8;
+  --ac-tap: 2.75rem;
+}
+
+body {
+  margin: 0;
+  background: #fafaf9;
+  color: var(--ac-ink);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  line-height: 1.5;
+}
+
+.ac {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem;
+}
+
+.ac-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.ac-tagline {
+  margin: 0.15rem 0 0.75rem;
+  color: var(--ac-muted);
+  font-size: 0.875rem;
+}
+
+.ac-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.ac-tab {
+  min-height: var(--ac-tap);
+  padding: 0.4rem 0.25rem;
+  border: 1px solid var(--ac-line);
+  border-radius: 0.375rem;
+  background: var(--ac-surface);
+  color: var(--ac-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.ac-tab--current {
+  border-color: var(--ac-accent);
+  color: var(--ac-accent);
+  font-weight: 600;
+}
+
+.ac-view {
+  background: var(--ac-surface);
+  border: 1px solid var(--ac-line);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.ac-heading {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.ac-subheading {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.9375rem;
+}
+
+.ac-hint {
+  margin: 0.25rem 0 0.5rem;
+  color: var(--ac-muted);
+  font-size: 0.8125rem;
+}
+
+.ac-status {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  min-height: 1.25rem;
+}
+
+.ac-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.6rem;
+}
+
+/* An author `display` beats the user agent's `[hidden] { display: none }`
+   whatever the specificity, so the attempt field stayed on screen in the
+   comprehend direction while the element was correctly marked hidden. Caught in
+   the browser, not by a test: jsdom lays nothing out, so an assertion on the
+   attribute passes either way. */
+[hidden] {
+  display: none !important;
+}
+
+.ac-control-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ac-muted);
+}
+
+.ac-input,
+.ac-select {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: var(--ac-tap);
+  padding: 0.5rem;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.375rem;
+  background: var(--ac-surface);
+  font: inherit;
+}
+
+.ac-textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.ac-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ac-button {
+  min-height: var(--ac-tap);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.375rem;
+  background: #fafaf9;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ac-button--primary {
+  border-color: var(--ac-accent);
+  background: var(--ac-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.ac-button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Four grades on one row at 390 px, so grading is one tap and no scrolling. */
+.ac-rating {
+  flex: 1 1 5rem;
+}
+
+.ac-panel {
+  border-top: 1px solid var(--ac-line);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.ac-panel:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.ac-answer,
+.ac-card-prompt,
+.ac-card-reference {
+  margin: 0.35rem 0 0.75rem;
+}
+
+.ac-card-prompt {
+  font-size: 1.125rem;
+}
+
+.ac-card-reference {
+  font-weight: 600;
+}
+
+.ac-components {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.ac-component-form {
+  font-style: italic;
+  margin-right: 0.5rem;
+}
+
+.ac-component-gloss {
+  color: var(--ac-muted);
+  font-size: 0.875rem;
+}
+
+.ac-attempt-result {
+  border-left: 3px solid #d6d3d1;
+  padding-left: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.ac-attempt-result[data-correct='true'] {
+  border-left-color: #15803d;
+}
+
+.ac-attempt-result[data-correct='false'] {
+  border-left-color: #b45309;
+}
+
+.ac-attempt-verdict {
+  margin: 0;
+  font-weight: 600;
+}
+
+.ac-attempt-missing {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-style: italic;
+}
+
+@media (min-width: 48rem) {
+  .ac {
+    padding: 1.5rem;
+  }
+
+  .ac-tabs {
+    grid-template-columns: repeat(4, minmax(0, 10rem));
+  }
+
+  .ac-view {
+    padding: 1.25rem;
+  }
+
+  .ac-control {
+    max-width: 40rem;
+  }
+}

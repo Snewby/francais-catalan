@@ -19,7 +19,7 @@ is worse than none, because it still reads as authoritative.
 | 4. API client and prompt caching      | done        | ADAPT    | this pass                       |
 | 5. Persistence, FSRS, Elo             | done        | ADAPT    | this pass                       |
 | 5b. Review loop                       | done        | ADAPT    | this pass                       |
-| 6. UI and coverage heatmap            | not started | ADAPT    |                                 |
+| 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
 | 6b. Pronunciation                     | not started | ADAPT    |                                 |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 
@@ -1002,6 +1002,67 @@ source scan to assert that exactly one module emits a graded event, and
 importing one test file from another silently re-registered all seven of the
 browser test's cases under the importing file.
 
+Phase 6 then made the whole of it reachable. Before this pass `src/main.ts`
+mounted the read-only browser and nothing else: outside the tests, nothing called
+`callHaiku`, `recordQuery` or `startReviewSession`, and there was no key entry
+screen although the French copy for one had sat in `src/i18n/fr.ts` since phase 0. The shell in `src/ui/app.ts` now carries four views, `Analyser`, `Réviser`,
+`Explorer` and `Données`, and the seven things the phase owed all exist. Six
+things in it matter later:
+
+- **The browser ban was narrowed by scope and the banned list did not move,
+  which makes the guarantee stronger than it was.** The scope went from
+  `src/ui/` to `src/ui/browse/`, a directory rather than a list, and the browse
+  view does not reach the read accessor either: the shell reads the store and
+  passes plain `Coverage` records in, so the browsing half of the interface
+  cannot touch the database in either direction. `src/db/read.ts` was split out
+  of `src/db/persist.ts` to make that possible, and a test asserts it contains no
+  Dexie mutation at all, so "read-only accessor" is a property of the file rather
+  than of its name. The full argument is in `data/sources.md` under phase 6.
+- **One assertion in that test did have to change, and it is the second time a
+  test outgrew the data rather than caught a regression.** It banned the
+  identifier `exposure_count` anywhere under `src/ui/`, and colouring a heatmap
+  from an exposure count makes a plain mention legitimate. It now matches an
+  ASSIGNMENT, with a positive control against `src/srs/apply.ts` and three
+  negative controls for the shapes a legitimate read takes. Banning the word
+  would have forced the file to be deleted for saying something no longer true,
+  which is exactly the pressure its own header warns about.
+- **The heatmap drills down by domain, decided before the first screenshot.**
+  Three hundred cells at a thumb's width is a 1,700 px column on a 390 px screen
+  and cannot be aimed at; shrinking them until they fit gives a texture rather
+  than a map. Twelve labelled domain tiles are the overview and choosing one
+  shows its 13 to 39 leaves. The grid is drawn at 1:1 and re-laid-out on resize
+  rather than scaled by a viewBox, because a viewBox scales its text and a label
+  legible at 1280 px is unreadable at 390 px.
+- **There is no expected-utterance field, so attempt-then-reveal compares by
+  containment.** `answer` is French by schema and the only Catalan in a reply is
+  the decomposition's `ca` forms, which do not reconstruct the sentence because a
+  word realising no keyed component has no entry. The attempt is correct when
+  every form the reply named appears in it, and `src/text/attempt.ts` records
+  what that cannot catch: extra wrong material around the right forms. Fixing
+  that needs the field exercise generation would add, which is not this phase.
+- **The comparator is not the search normaliser, and the interpunct nearly went
+  the way of the narrow no-break space.** U+00B7 carries the Unicode Diacritic
+  property, so the obvious accent-stripping fold deletes it and accepts
+  `colleccio` for `col·lecció`, erasing a contrast `PHON.grafia` keys
+  deliberately. Caught only because a test was written to assert the opposite.
+- **A test that asserts an attribute is not a test that asserts a layout.** The
+  attempt field is `hidden` in the comprehend direction, the test asserted the
+  attribute and passed, and the field was on screen the whole time: an author
+  `display: flex` beats the user agent's `[hidden] { display: none }` whatever
+  the specificity. jsdom lays nothing out, so no test in this repo could have
+  found it. It was found in the browser at 390 px, which is the argument for the
+  screenshot step being part of the phase rather than a formality.
+
+Checked at both widths, with the state seeded by hand in the browser so the
+colours were not all grey: at 375 px the tab bar fits on one row, the domain grid
+is three columns, the leaf grid seven, every touch target is 40 px or more and
+nothing scrolls horizontally; at 1280 px the domain grid is six columns by two,
+the tree and detail panes split, and the two gaps columns sit side by side. The
+review loop was driven end to end in the browser and wrote one `graded` record
+naming one component. **No live API call has been made**, so the query view's
+network path is exercised only against a stub, and the prompt cache remains
+unverified exactly as recorded below.
+
 ## Carried over into later phases
 
 - **The prompt cache is unverified against the live API.** Everything phase 4
@@ -1012,15 +1073,15 @@ browser test's cases under the importing file.
   Read `usage.cacheReadTokens` on the second identical query the first time a
   key is entered. A persistent zero means the prefix is not byte-stable or is
   under the minimum, and it reports as silence rather than as an error.
-- **The browser's no-evidence ban has to survive phase 6, not be deleted by it.**
-  `test/browser-emits-no-evidence.test.ts` walks the module graph from every
-  file in `src/ui/` and asserts it never reaches `src/db/dexie.ts`,
-  `src/srs/apply.ts`, `src/srs/fsrs.ts` or `src/srs/elo.ts`, and that nothing
-  there writes `exposure_count`. Phase 6 needs to READ per-component state to
-  colour a node, which is legitimate; what stays banned is the write path. Put
-  the read queries in their own module and narrow the ban to the writer. A
-  session that meets this test red and deletes it has removed the only thing
-  stopping a browse from incrementing exposure.
+- **The browser's no-evidence ban survived phase 6, and is now scoped to
+  `src/ui/browse/`.** It walks the module graph from every file in that
+  directory and still bans `src/db/dexie.ts`, `src/db/persist.ts`,
+  `src/srs/apply.ts`, `src/srs/fsrs.ts` and `src/srs/elo.ts`. The browse view is
+  handed plain `Coverage` records by the shell rather than reading them, so it
+  cannot reach the store in either direction; `src/db/read.ts` is the read
+  accessor and a test asserts it contains no Dexie mutation. **The next session
+  to add a view must put it in `src/ui/`, not in `src/ui/browse/`**, and a view
+  that genuinely browses belongs in the ban's scope rather than beside it.
 - **The app is used mostly on a phone, and the desktop site has to be good too.**
   Recorded because it is a fact about the user rather than about the code, so
   nothing in the repo implies it and a phase 6 session will otherwise design for
@@ -1039,10 +1100,12 @@ browser test's cases under the importing file.
     which `src/i18n/fr.ts` already warns about and which bites hardest in a
     narrow container. Check the rendered width at phone width, not just at
     desktop width.
-  - **Screenshot and iterate at both widths.** The phase 6 prompt says to take a
-    screenshot and iterate until the heatmap is legible; legible at 1280 px and
-    legible at 390 px are two different findings, and only the second one is
-    about how this app is actually read.
+  - **Screenshot and iterate at both widths.** Done for phase 6 and it paid for
+    itself twice, once on a `hidden` field that no test could see was on screen
+    and once on a domain grid that stranded its twelfth tile at 1280 px.
+    **This does not expire with phase 6**: 6b adds a pronunciation control and
+    anything after it adds more, and legible at 1280 px and legible at 390 px
+    remain two different findings.
 - **Rich exercise generation is not designed anywhere, and is not phase 6's
   job.** Phase 6 is a UI over machinery that already exists; it adds nothing to
   what an exercise can be. What 5b ships is a rule-recall card built from the
@@ -1136,11 +1199,15 @@ browser test's cases under the importing file.
   `test/review-loop.test.ts` asserts structurally over `src/`. What that scan
   cannot see is a caller passing a variable through to the API client's
   `evidence` option, so `EVIDENCE_EFFECTS` still names the producer of each type
-  in prose. Nothing is wired into the interface yet: a review can only be run
-  from a test or a console until phase 6 mounts it.
-- **The `recall` producer named in `EVIDENCE_EFFECTS` still does not exist.** It
-  is the attempt-then-reveal affordance, and it is phase 6's. Until then the
-  application emits `lookup` and `graded` and nothing in between.
+  in prose. Phase 6 mounted it: `src/ui/review-view.ts` reveals, takes one of
+  the four grades and hands it to `session.grade`, and reimplements no part of
+  selection or writing.
+- **All three evidence types now have a live producer.** `recall` is the
+  attempt-then-reveal affordance in `src/ui/query-view.ts`, which compares the
+  typed Catalan against the forms the reply named and passes an objective
+  outcome to `recordQuery`; the learner is never asked to rate themselves there.
+  `lookup` is the same view with no attempt typed, and `graded` is the review
+  screen over `startReviewSession`.
 - **That GIEC chapter 35 is the negation chapter is still unverified**, and two
   claims lean on it. The `VERB`/`PRON` review confirmed §34.4 on the negative
   imperative with a verbatim snippet of that section, but could confirm nothing
@@ -1282,6 +1349,15 @@ browser test's cases under the importing file.
   domain. The `DET` one is the model for a domain that also amends a boundary
   and overturns a docs/01 status, because it records the argument rather than
   just the outcome.
+- **The gaps list ranks by `CONTRAST_SELECTION_WEIGHT`, which now lives in
+  `src/review/weight.ts`.** It moved out of `src/review/select.ts` because the
+  review selector and the gaps list both rank by it and a second table in
+  `src/ui/` is the failure the `ART.personal.absencia` finding is about. It
+  imports nothing but a taxonomy type, so the browse view reaches it without
+  reaching the scheduler. The note below still stands: within a domain that is
+  two thirds near-miss it discriminates very little, and the second dimension it
+  wants is the Elo difficulty, which is uniform until a component has been
+  reviewed and so does nothing for an untouched taxonomy.
 - **`contrast_fr` alone will not order the phase 6 gaps list.** `DET` is 25 of
   31 near-miss and `PREP` is 26 of 39, and both are honest counts rather than
   lazy passes: two Romance languages sharing a category inventory with shifted

@@ -7,9 +7,9 @@
  * ones would read as the whole language. The unseeded ones are rendered as
  * non-expandable rows saying so.
  */
-import { DOMAIN_CODES, isLeaf } from '../taxonomy';
-import type { BranchNode, DomainCode, LeafNode, TaxonomyNode } from '../taxonomy';
-import { fr } from '../i18n/fr';
+import { DOMAIN_CODES, isLeaf } from '../../taxonomy';
+import type { BranchNode, DomainCode, LeafNode, TaxonomyNode } from '../../taxonomy';
+import { fr } from '../../i18n/fr';
 import { isFiltered, visibleIds } from './filter';
 import type { BrowserFilters } from './filter';
 

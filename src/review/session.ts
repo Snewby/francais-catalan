@@ -10,7 +10,8 @@
  * Headless on purpose. Phase 6 puts a face on this; the machinery, the
  * selection function and the write belong here.
  */
-import { recordQuery, readAllComponentStates, type QueryOutcome } from '../db/persist';
+import { recordQuery, type QueryOutcome } from '../db/persist';
+import { readAllComponentStates } from '../db/read';
 import { db as defaultDatabase, type TrainerDatabase } from '../db/dexie';
 import type { Direction, Intent, Rating } from '../srs/evidence';
 import { LEAVES, leafById } from '../taxonomy';

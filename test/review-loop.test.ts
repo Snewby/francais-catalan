@@ -10,14 +10,15 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { TrainerDatabase } from '../src/db/dexie';
-import { readComponentState, recordQuery } from '../src/db/persist';
+import { recordQuery } from '../src/db/persist';
+import { readComponentState } from '../src/db/read';
 import { EVIDENCE_EFFECTS } from '../src/srs/evidence';
 import { CONTRAST_STATUSES, LEAVES, leafById, type LeafNode } from '../src/taxonomy';
 import { freshMastery } from '../src/srs/fsrs';
 import { DEFAULT_RATING } from '../src/srs/elo';
 import type { ComponentState } from '../src/srs/apply';
+import { CONTRAST_SELECTION_WEIGHT } from '../src/review/weight';
 import {
-  CONTRAST_SELECTION_WEIGHT,
   DUE_BASE_SCORE,
   dueScore,
   dueSelector,

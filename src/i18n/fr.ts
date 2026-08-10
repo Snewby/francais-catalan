@@ -29,6 +29,19 @@ export function quote(text: string): string {
   return `«${NNBSP}${text}${NNBSP}»`;
 }
 
+/**
+ * A caption and its value, spaced the French way.
+ *
+ * Here rather than at each call site so that the narrow no-break space before
+ * the colon comes from the module that owns the rule. A component composing
+ * `${label}: ${value}` by hand would produce copy that reads as French and is
+ * typeset as English, which is exactly how this character has been lost three
+ * times already.
+ */
+export function labelled(caption: string, value: string): string {
+  return `${caption}${NNBSP}: ${value}`;
+}
+
 export const fr = {
   app: {
     title: 'Entraîneur de grammaire catalane',
@@ -60,21 +73,112 @@ export const fr = {
     expandAll: 'Tout déplier',
     collapseAll: 'Tout replier',
   },
+  nav: {
+    query: 'Analyser',
+    review: 'Réviser',
+    browse: 'Explorer',
+    data: 'Données',
+  },
   apiKey: {
     label: 'Clé API',
     prompt: `Saisissez votre clé API Anthropic pour activer les analyses${NNBSP}:`,
     hint: 'La clé reste dans le stockage local de ce navigateur. Elle n’est jamais envoyée ailleurs qu’à Anthropic, ni enregistrée dans le dépôt.',
     missing: 'Aucune clé enregistrée pour l’instant.',
+    placeholder: 'Votre clé API',
+    stored: 'Une clé est enregistrée dans ce navigateur.',
+    save: 'Enregistrer la clé',
+    saved: 'Clé enregistrée.',
+    forget: 'Oublier la clé',
+    forgotten: 'Clé effacée de ce navigateur.',
+  },
+  query: {
+    heading: 'Analyser un énoncé',
+    directionLabel: 'Sens',
+    directionCaToFr: 'Du catalan vers le français',
+    directionFrToCa: 'Du français vers le catalan',
+    questionLabel: 'Question',
+    placeholderCaToFr: 'Un énoncé catalan à expliquer',
+    placeholderFrToCa: 'Ce que vous cherchez à dire en catalan',
+    attemptLabel: 'Votre tentative en catalan',
+    attemptOptional: 'facultatif',
+    // Says what the affordance is for without restating what each evidence type
+    // moves: that routing lives in src/srs/evidence.ts and nowhere else.
+    attemptHint:
+      'Écrivez votre version avant d’afficher la réponse. La comparaison est automatique, et il ne vous sera jamais demandé de vous noter vous-même.',
+    submitReveal: 'Afficher la réponse',
+    submitCheck: 'Vérifier ma tentative',
+    pending: 'Analyse en cours…',
+    answerHeading: 'Explication',
+    componentsHeading: 'Points de grammaire relevés',
+    attemptCorrect: 'Vous avez produit toutes les formes attendues.',
+    attemptIncomplete: `Formes attendues qui manquent${NNBSP}:`,
+    recordedLookup: 'Consultation enregistrée.',
+    recordedRecall: 'Tentative enregistrée.',
+    emptyQuestion: 'Saisissez une question avant de lancer l’analyse.',
+    failed: 'L’analyse a échoué.',
+  },
+  review: {
+    heading: 'Réviser',
+    start: 'Commencer une session',
+    empty: 'Rien à réviser pour l’instant.',
+    // The authored data holds no French translation of any example, so a card
+    // asks for the rule. Promising a translation here would promise something
+    // the data cannot supply.
+    ruleRecall:
+      'Une carte porte sur la règle illustrée, non sur la traduction de l’exemple.',
+    askCaToFr: `Quelle règle cet énoncé illustre-t-il${NNBSP}?`,
+    askFrToCa: `Quelle forme catalane réalise cette règle${NNBSP}?`,
+    reveal: 'Afficher la réponse',
+    referenceHeading: 'Réponse attendue',
+    rateHeading: 'Votre rappel était',
+    ratingAgain: 'À revoir',
+    ratingHard: 'Difficile',
+    ratingGood: 'Correct',
+    ratingEasy: 'Facile',
+    progress: 'Progression',
+    finished: 'Session terminée.',
   },
   heatmap: {
     // Exposure and mastery are two dimensions, never one colour: the teinte
     // carries mastery, the opacity carries exposure.
+    heading: 'Carte de couverture',
     exposure: 'Exposition',
     exposureHint: 'Nombre de rencontres, quelle qu’en soit la forme',
     mastery: 'Maîtrise',
     masteryHint: 'Fondée uniquement sur les révisions évaluées',
     unexplored: 'Jamais rencontré',
     unpractised: 'Rencontré, jamais révisé',
+    legendHue: `Teinte${NNBSP}: maîtrise, du rouge au vert`,
+    legendOpacity: `Opacité${NNBSP}: exposition, du pâle au franc`,
+    legendUngraded: `Gris${NNBSP}: aucune révision évaluée`,
+    legendLow: 'faible',
+    legendHigh: 'élevée',
+    // No tooltip anywhere in this component: there is no hover on a touch
+    // screen, and the primary device is a telephone.
+    domainsHint: 'Touchez un domaine pour en afficher les notions.',
+    back: 'Revenir aux domaines',
+    exposureCount: 'Rencontres',
+    gradedCount: 'Révisions évaluées',
+    stateLabel: 'Couverture',
+  },
+  gaps: {
+    heading: 'Lacunes',
+    unexploredHint: 'Aucune rencontre enregistrée, dans un sens ou dans l’autre',
+    unpractisedHint: 'Rencontré au moins une fois, mais jamais évalué en révision',
+    none: 'Aucune notion de ce type.',
+    ranking:
+      'Les faux amis et les notions sans équivalent français viennent en premier.',
+    hidden: 'autres notions non affichées',
+  },
+  data: {
+    heading: 'Données',
+    exportButton: 'Exporter mes données',
+    exportHint:
+      'Un fichier JSON reprenant vos rencontres, vos révisions et vos classements.',
+    importButton: 'Importer un fichier',
+    importHint: 'L’import remplace entièrement les données de ce navigateur.',
+    imported: 'Import terminé.',
+    importFailed: `Fichier refusé${NNBSP}: rien n’a été modifié.`,
   },
   contrast: {
     transfer: 'Transfert direct depuis le français',

@@ -2,19 +2,21 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { LEARNER_ID, TrainerDatabase, type QueryLog } from '../src/db/dexie';
 import {
-  SNAPSHOT_VERSION,
   SnapshotError,
-  UnknownComponentError,
   componentIdsOf,
-  exportSnapshot,
-  fromRow,
   importSnapshot,
-  readComponentState,
-  readLearnerElo,
   recordQuery,
-  seedStateFor,
   toRow,
 } from '../src/db/persist';
+import {
+  SNAPSHOT_VERSION,
+  UnknownComponentError,
+  exportSnapshot,
+  fromRow,
+  readComponentState,
+  readLearnerElo,
+  seedStateFor,
+} from '../src/db/read';
 import { DEFAULT_RATING } from '../src/srs/elo';
 import { INITIAL_DIFFICULTY_VALUE } from '../src/srs/fsrs';
 import { CONTRAST_STATUSES, LEAVES, leafById } from '../src/taxonomy';

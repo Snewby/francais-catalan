@@ -69,6 +69,15 @@ export function storeApiKey(key: string, storage: Storage = localStorage): void 
   storage.setItem(API_KEY_STORAGE_KEY, key);
 }
 
+/**
+ * Here rather than in the settings pane, so the storage key is named once. A
+ * caller removing it by its literal string would keep working until the key was
+ * renamed, and then silently stop clearing anything.
+ */
+export function clearApiKey(storage: Storage = localStorage): void {
+  storage.removeItem(API_KEY_STORAGE_KEY);
+}
+
 export function buildHeaders(apiKey: string): Record<string, string> {
   return {
     'content-type': 'application/json',

@@ -18,10 +18,15 @@ import {
 } from '../src/taxonomy';
 import type { LeafNode } from '../src/taxonomy';
 import { fr } from '../src/i18n/fr';
-import { NO_FILTERS, matchesLeaf, normalise, visibleIds } from '../src/ui/filter';
-import { mountTaxonomyBrowser } from '../src/ui/taxonomy-browser';
-import { renderTree } from '../src/ui/tree';
-import type { TreeOptions } from '../src/ui/tree';
+import {
+  NO_FILTERS,
+  matchesLeaf,
+  normalise,
+  visibleIds,
+} from '../src/ui/browse/filter';
+import { mountTaxonomyBrowser } from '../src/ui/browse/taxonomy-browser';
+import { renderTree } from '../src/ui/browse/tree';
+import type { TreeOptions } from '../src/ui/browse/tree';
 
 /** The first leaf carrying every optional field, so the detail panel is fully exercised. */
 function richLeaf(): LeafNode {

@@ -11,8 +11,8 @@
  * be a second pedagogic hierarchy competing with the taxonomy, and the axis
  * rule in the DET section of TASKS.md exists to stop exactly that.
  */
-import { isLeaf } from '../taxonomy';
-import type { Cefr, ContrastStatus, LeafNode, TaxonomyNode } from '../taxonomy';
+import { isLeaf } from '../../taxonomy';
+import type { Cefr, ContrastStatus, LeafNode, TaxonomyNode } from '../../taxonomy';
 
 export interface BrowserFilters {
   readonly query: string;

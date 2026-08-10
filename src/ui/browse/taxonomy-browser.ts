@@ -1,24 +1,30 @@
 /**
- * The read-only taxonomy browser.
+ * The read-only taxonomy browser, and the coverage heatmap it grew into.
  *
- * BROWSING EMITS NO EVIDENCE. Nothing under src/ui/ may reach src/db/dexie.ts
- * or src/srs/apply.ts, and nothing here writes exposure_count. Scrolling a tree
- * is not an encounter, and an exposure counter that browsing could move is
- * precisely the failure EVIDENCE_EFFECTS in src/srs/evidence.ts exists to
- * prevent: the coverage heatmap would become a log of what was clicked on,
- * presented as a map of what is known. Enforced by
+ * BROWSING EMITS NO EVIDENCE. Nothing under src/ui/browse/ may reach
+ * src/db/dexie.ts, src/db/persist.ts or src/srs/apply.ts, and nothing here
+ * writes exposure_count. Scrolling a tree is not an encounter, and an exposure
+ * counter that browsing could move is precisely the failure EVIDENCE_EFFECTS in
+ * src/srs/evidence.ts exists to prevent: the coverage heatmap would become a log
+ * of what was clicked on, presented as a map of what is known. Enforced by
  * test/browser-emits-no-evidence.test.ts.
  *
- * Phase 6 extends this component into the heatmap. It will need to READ
- * per-component state, which is legitimate; the ban is on the write path.
+ * Phase 6 needed to READ per-component state to colour a node, which is
+ * legitimate, and the ban was narrowed by scope rather than deleted: this
+ * directory is the browsing half of src/ui/, it takes its coverage as plain
+ * data from the shell, and it still cannot reach the store in either direction.
+ * The read accessor is src/db/read.ts, which the shell uses and this does not.
  */
-import { CONTRAST_STATUSES, LEAVES, NODES, leafById } from '../taxonomy';
-import type { Cefr, ContrastStatus } from '../taxonomy';
-import { fr } from '../i18n/fr';
+import { CONTRAST_STATUSES, LEAVES, NODES, leafById } from '../../taxonomy';
+import type { Cefr, ContrastStatus, DomainCode } from '../../taxonomy';
+import { fr } from '../../i18n/fr';
 import { NO_FILTERS, matchingLeaves } from './filter';
 import type { BrowserFilters } from './filter';
 import { renderTree } from './tree';
 import { renderDetail } from './detail';
+import { renderHeatmap } from './heatmap';
+import { renderGaps } from './gaps';
+import type { CoverageMap } from './coverage';
 import './browser.css';
 
 /** The levels actually present in the taxonomy, rather than a second copy of the CEFR scale. */
@@ -54,9 +60,30 @@ function select(
   return element;
 }
 
-export function mountTaxonomyBrowser(host: HTMLElement): void {
+export interface BrowserOptions {
+  /**
+   * Per-component coverage, read by the shell and passed in as plain data.
+   * Empty is a legitimate state, not a missing argument: a learner who has done
+   * nothing yet has three hundred unexplored nodes and a fully grey map.
+   */
+  readonly coverage?: CoverageMap;
+  /**
+   * The width the grids lay themselves out against. Measured from the host by
+   * default, and injectable so a test can assert the phone and the desktop
+   * layouts rather than whichever one jsdom happens to report.
+   */
+  readonly width?: () => number;
+}
+
+export function mountTaxonomyBrowser(
+  host: HTMLElement,
+  options: BrowserOptions = {},
+): void {
   let filters: BrowserFilters = NO_FILTERS;
   let selectedId: string | null = null;
+  let openDomain: DomainCode | null = null;
+  const coverage: CoverageMap = options.coverage ?? new Map();
+  const measure = options.width ?? (() => host.clientWidth);
 
   const root = document.createElement('section');
   root.className = 'tb';
@@ -108,6 +135,9 @@ export function mountTaxonomyBrowser(host: HTMLElement): void {
   const detailPane = document.createElement('div');
   detailPane.className = 'tb-pane tb-pane--detail';
 
+  const heatmapPane = document.createElement('div');
+  heatmapPane.className = 'tb-coverage-pane';
+
   const panes = document.createElement('div');
   panes.className = 'tb-panes';
   panes.append(treePane, detailPane);
@@ -132,7 +162,40 @@ export function mountTaxonomyBrowser(host: HTMLElement): void {
     }
 
     detailPane.replaceChildren(
-      renderDetail(selectedId === null ? undefined : leafById(selectedId)),
+      renderDetail(selectedId === null ? undefined : leafById(selectedId), coverage),
+    );
+  }
+
+  /**
+   * Rebuilds the heatmap only. Drilling into a domain and selecting a cell must
+   * not disturb the tree below, for the reason renderSelection already records:
+   * a rebuild resets every open branch and the reader loses their place.
+   */
+  function renderCoverage(): void {
+    heatmapPane.replaceChildren(
+      renderHeatmap({
+        coverage,
+        domain: openDomain,
+        selectedId,
+        width: measure(),
+        onSelectDomain: (domain) => {
+          openDomain = domain;
+          renderCoverage();
+        },
+        onSelectLeaf: (id) => {
+          selectedId = id;
+          renderCoverage();
+          renderSelection();
+        },
+      }),
+      renderGaps({
+        coverage,
+        onSelect: (id) => {
+          selectedId = id;
+          renderCoverage();
+          renderSelection();
+        },
+      }),
     );
   }
 
@@ -185,7 +248,15 @@ export function mountTaxonomyBrowser(host: HTMLElement): void {
     setAllOpen(false);
   });
 
-  root.append(heading, readOnly, toolbar, results, panes);
+  // Re-laid-out rather than scaled, so a cell keeps its size and a label its
+  // legibility at 390 px and at 1280 px alike. Guarded because jsdom has no
+  // visual viewport and a test that fixes the width must not have it overwritten.
+  if (options.width === undefined) {
+    window.addEventListener('resize', renderCoverage);
+  }
+
+  root.append(heading, readOnly, heatmapPane, toolbar, results, panes);
   host.replaceChildren(root);
+  renderCoverage();
   render();
 }

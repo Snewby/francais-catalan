@@ -6,8 +6,9 @@
  * are data and are never translated; they are tagged lang="ca" so a screen
  * reader does not read them as French.
  */
-import type { LeafNode } from '../taxonomy';
-import { fr } from '../i18n/fr';
+import type { LeafNode } from '../../taxonomy';
+import { fr } from '../../i18n/fr';
+import { coverageOf, coverageSummary, gapKindOf, type CoverageMap } from './coverage';
 
 function field(label: string, value: Node | string, lang?: string): HTMLDivElement {
   const row = document.createElement('div');
@@ -57,7 +58,42 @@ function contrastBlock(leaf: LeafNode): HTMLDivElement {
   return block;
 }
 
-export function renderDetail(leaf: LeafNode | undefined): HTMLElement {
+/**
+ * The heatmap's two dimensions, in words.
+ *
+ * This is where the colour is explained, because the primary device has no
+ * hover and a tooltip is therefore not an explanation. Tapping a cell already
+ * selects the node, so this pane is the one place that can say in French what
+ * the hue and the opacity say in paint.
+ */
+function coverageBlock(leaf: LeafNode, coverage: CoverageMap): HTMLDivElement {
+  const block = document.createElement('div');
+  block.className = 'tb-coverage';
+
+  const entry = coverageOf(coverage, leaf.id);
+  const counts = document.createElement('p');
+  counts.className = 'tb-coverage-counts';
+  counts.textContent = coverageSummary(entry);
+
+  block.append(counts);
+
+  const kind = gapKindOf(entry);
+  if (kind !== null) {
+    const gap = document.createElement('p');
+    gap.className = 'tb-coverage-gap';
+    gap.dataset['gapKind'] = kind;
+    gap.textContent =
+      kind === 'unexplored' ? fr.heatmap.unexplored : fr.heatmap.unpractised;
+    block.append(gap);
+  }
+
+  return block;
+}
+
+export function renderDetail(
+  leaf: LeafNode | undefined,
+  coverage: CoverageMap = new Map(),
+): HTMLElement {
   const panel = document.createElement('div');
   panel.className = 'tb-detail';
 
@@ -85,6 +121,7 @@ export function renderDetail(leaf: LeafNode | undefined): HTMLElement {
     field(fr.browser.fieldCefr, leaf.cefr),
     field(fr.browser.fieldExamples, examplesList(leaf.examples)),
     field(fr.browser.contrast, contrastBlock(leaf)),
+    field(fr.heatmap.stateLabel, coverageBlock(leaf, coverage)),
   );
 
   // notes and dialect_note are optional in the schema, and an empty row for an

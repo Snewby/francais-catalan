@@ -9,9 +9,10 @@
  * caller: a selector does no I/O, so a second one is a pure function and a test
  * can drive it without a database.
  */
-import type { ContrastStatus, LeafNode } from '../taxonomy';
+import type { LeafNode } from '../taxonomy';
 import type { ComponentState } from '../srs/apply';
 import { isDue } from '../srs/fsrs';
+import { CONTRAST_SELECTION_WEIGHT } from './weight';
 
 export interface SelectionCandidate {
   readonly leaf: LeafNode;
@@ -33,23 +34,6 @@ export interface Selector {
    */
   select(context: SelectionContext): readonly string[];
 }
-
-/**
- * How far a contrast status lifts a component that has never been graded.
- *
- * Deliberately not `INITIAL_DIFFICULTY_VALUE` from src/srs/fsrs.ts, which
- * collapses near-miss, false-friend and novel to one number. That is the right
- * prior for FSRS, which only needs to know whether a card starts easy or hard,
- * and it is the wrong ranking here: a selector reusing it could not put a novel
- * node above a near-miss one, which is the ordering this selector exists to
- * produce.
- */
-export const CONTRAST_SELECTION_WEIGHT: Record<ContrastStatus, number> = {
-  transfer: 0,
-  'near-miss': 2,
-  'false-friend': 3,
-  novel: 3,
-};
 
 /** Milliseconds in a day, for reading a due date as an overdueness. */
 const DAY_MS = 86_400_000;
