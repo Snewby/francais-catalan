@@ -167,9 +167,42 @@ body {
   font-weight: 600;
 }
 
+/* Secondary by weight, not by size: still a full tap target on a telephone. */
+.ac-button--quiet {
+  background: transparent;
+  color: var(--ac-muted);
+}
+
 .ac-button:disabled {
   opacity: 0.55;
   cursor: default;
+}
+
+/* The Catalan and its audio control on one line, wrapping rather than
+   squeezing the sentence at 390 px. */
+.ac-utterance-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ac-utterance-line .ac-utterance {
+  flex: 1 1 12rem;
+}
+
+/* [hidden] loses to an author display rule, which is how a field shipped
+   visible in phase 6 with a passing test asserting the attribute. Anything
+   this file lays out has to restate it. */
+.ac-speak[hidden],
+.ac-voice-notice[hidden] {
+  display: none;
+}
+
+.ac-component-ipa {
+  margin-left: 0.4rem;
+  color: var(--ac-muted);
+  white-space: nowrap;
 }
 
 /* Four grades on one row at 390 px, so grading is one tap and no scrolling. */

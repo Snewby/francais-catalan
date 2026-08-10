@@ -221,6 +221,24 @@ export const fr = {
     imported: 'Import terminé.',
     importFailed: `Fichier refusé${NNBSP}: rien n’a été modifié.`,
   },
+  audio: {
+    speak: 'Écouter',
+    // Says what to install AND that nothing else will be used. Without the
+    // second half the silence reads as a missing feature, and a learner whose
+    // device has nine voices will wonder why none of them is used. The refusal
+    // is the point: a Spanish or French voice reading catalan is confidently
+    // wrong, which is the worst thing a contrastive tool can produce.
+    unavailable:
+      'Aucune voix catalane n’est installée sur cet appareil, donc la lecture à ' +
+      `voix haute n’est pas proposée${NNBSP}: sur Android, ajoutez la voix ` +
+      `${quote('català')} dans la synthèse vocale Google${NNBSP}; sur iPhone, dans ` +
+      `${quote('Contenu énoncé')}${NNBSP}; sous Windows, dans les modules de voix. ` +
+      'Aucune autre langue n’est utilisée à la place, une voix espagnole ou ' +
+      'française lisant du catalan induirait en erreur.',
+    // Kept from the phase 6b design even where a voice exists, because it is
+    // per-component and language-invariant, and it is all the desktop has.
+    ipa: 'Prononciation',
+  },
   contrast: {
     transfer: 'Transfert direct depuis le français',
     // Two thirds of the taxonomy carries this status, so it is the one of the

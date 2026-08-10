@@ -3696,3 +3696,86 @@ learning the language. The learner cannot see the errors the taxonomy reviews
 caught, which is why outside review remains the answer and this is only its
 sampling frame. What it changes is that the frame is now ordinary use rather
 than a session spent inventing questions.
+
+## Phase 6b: pronunciation, which is usually silence
+
+Audio where a Catalan voice exists, IPA everywhere, and no respelling. The
+respelling specified in `docs/02` was dropped by the decision recorded in
+`TASKS.md`, and this pass builds what that decision left.
+
+**The module is the ban.** `src/audio/voice.ts` chooses a voice in exactly one
+function and there is no fallback anywhere. A Spanish or French voice reading
+Catalan is confidently wrong, the learner cannot tell, and every `PHON` leaf
+about vowel reduction or final devoicing would be contradicted by the sound.
+Two details in the matching earn their place:
+
+- **The tag is anchored and bounded**, `/^ca([-_]|$)/i`. A substring test for
+  "ca" accepts `es-CA`, which is Spanish, and that is precisely the substitution
+  the module exists to refuse. Tested with `es-CA` present.
+- **`ca-ES` is preferred over a regional variant**, but a variant alone is still
+  Catalan and is used. Absence is the only case that produces silence.
+
+**Absence is the normal case, so the control is built to be absent.** No
+platform ships a Catalan voice by default. This machine's runtime reports nine
+voices, `en-US`, `en-GB` and `fr-CA`, and no Catalan; the author's Android
+phone, which is the primary device, has one. The button is therefore HIDDEN
+rather than disabled: a disabled control invites the learner to go looking for
+what would enable it, and the answer is an OS setting a web page cannot reach.
+The explanation lives in one notice per view, which says what to install and
+**says that no other language will be substituted**. Without that second half a
+learner with nine installed voices reasonably wonders why the application will
+not speak.
+
+**One watcher for the application, and no per-control subscription.**
+`getVoices` returns an empty list on its first call in Chrome and fills in
+asynchronously, so a control drawn from one synchronous read is permanently
+absent on the platform most likely to have the voice. The watch therefore
+reports now and again on `voiceschanged`. It updates whatever controls are in
+the document rather than holding a listener per control, because the browse
+detail pane rebuilds on every selection and there are 300 leaves to tap: a
+listener per control is a listener per tap, each holding a button that left the
+document long ago. The voice is read at press time rather than captured, so a
+control built before the event still speaks once the voice arrives.
+
+**The IPA was already there and was displayed by nothing.** It has been in
+`ComponentEntry` and in the generated schema since phase 4, it is per-component
+and language-invariant, and on a device with no Catalan voice it is the only
+pronunciation the learner gets. It now renders beside the component form when
+the reply carries one. That is the same failure as `CallResult.usage`: a value
+carried through an API for two phases and consumed by nothing is not a feature,
+it is a plan for one.
+
+**Audio sits on the reference form in the browse pane, not on every example.**
+The three leaves this phase was designed around, `PHON.so.reduccio_vocalica`,
+`PHON.so.ensordiment` and `PHON.so.erra_final`, were kept in a text-only
+application precisely because each has a written consequence, and hearing the
+citation form is what closes the gap between the rule and the sound. Six
+identical controls in a pane read on a telephone would cost more than they add.
+
+### Two things the browser found that no test could
+
+- **`utterance.voice` throws on anything that is not a real
+  `SpeechSynthesisVoice`**, and uncaught inside a click handler that reaches the
+  learner as silence with no explanation. Found by driving the control with a
+  fake voice injected into the live page. `speakCatalan` now returns `false`
+  instead of throwing, which keeps the only guarantee that matters: nothing is
+  read in the wrong language. A test covers it, written after the browser found
+  it and not before.
+- **A REGRESSION SHIPPED THIS MORNING, and 6b is only how it was found.**
+  Lengthening the `near-miss` label from « la frontière diffère » to « les
+  emplois ne coïncident pas exactement » pushed the Explorer view to 518 px on a
+  390 px screen. A `select` measures its intrinsic width from its WIDEST OPTION,
+  and a flex item's default `min-width` is its content, so a string change with
+  no markup change overflowed the viewport. It went out in `b7ef1d6` and was
+  live. Fixed with `min-width: 0` on the control and `width: 100%` on the
+  select.
+
+  Three things follow. **A French string change is a layout change**, and this
+  repository has known since phase 6 that French runs 15 to 20 per cent longer
+  than English without drawing the conclusion that editing one needs the same
+  check as moving a box. **The check has to cover the view that was not
+  touched**: the string was verified in the query view, where it does not
+  appear, and the Explorer view holds the only `select` that renders it. And
+  **no test in this repository could have caught it**, because jsdom lays
+  nothing out; the same blind spot that let a `hidden` field ship visible in
+  phase 6.

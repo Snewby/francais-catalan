@@ -21,6 +21,7 @@ import type { Coverage, CoverageMap } from './browse/coverage';
 import { mountQueryView } from './query-view';
 import { mountReviewView } from './review-view';
 import { mountDataView } from './data-view';
+import { startVoiceWatch } from './speak';
 import './app.css';
 
 type ViewName = 'query' | 'review' | 'browse' | 'data';
@@ -53,6 +54,12 @@ export function toCoverage(states: ReadonlyMap<string, ComponentState>): Coverag
 }
 
 export async function mountApp(host: HTMLElement): Promise<void> {
+  // Started once for the application. Chrome answers `getVoices` with an empty
+  // list on the first call and fills it in asynchronously, so every audio
+  // control would otherwise be permanently absent on the platform most likely
+  // to have the Catalan voice.
+  startVoiceWatch();
+
   let current: ViewName = 'query';
   let coverage: CoverageMap = toCoverage(await readAllComponentStates());
 

@@ -9,6 +9,7 @@
 import type { LeafNode } from '../../taxonomy';
 import { fr } from '../../i18n/fr';
 import { coverageOf, coverageSummary, gapKindOf, type CoverageMap } from './coverage';
+import { speakControl, voiceNotice } from '../speak';
 
 function field(label: string, value: Node | string, lang?: string): HTMLDivElement {
   const row = document.createElement('div');
@@ -134,6 +135,18 @@ export function renderDetail(
     fields.append(field(fr.browser.fieldDialect, leaf.dialect_note));
   }
 
-  panel.append(heading, fields);
+  // Audio on the reference form only, not on each example.
+  //
+  // The three leaves this phase was designed around, PHON.so.reduccio_vocalica,
+  // PHON.so.ensordiment and PHON.so.erra_final, were kept in a text-only
+  // application precisely because each has a written consequence; hearing the
+  // citation form is what closes the gap between the rule and the sound. A
+  // button per example would put six identical controls in a pane read on a
+  // telephone, for a gain the citation form already gives.
+  const audio = document.createElement('div');
+  audio.className = 'tb-detail-audio';
+  audio.append(speakControl(leaf.ca, { label: leaf.ca }), voiceNotice());
+
+  panel.append(heading, audio, fields);
   return panel;
 }

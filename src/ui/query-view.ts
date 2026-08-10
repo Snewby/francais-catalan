@@ -20,6 +20,7 @@ import { fr, labelled } from '../i18n/fr';
 import { callHaiku, readApiKey, type CallResult } from '../api/anthropic';
 import { recordQuery, signalReply } from '../db/persist';
 import { compareAttempt, type AttemptResult } from '../text/attempt';
+import { speakControl, voiceNotice } from './speak';
 import { leafById } from '../taxonomy';
 
 type SignalReply = typeof signalReply;
@@ -139,6 +140,18 @@ export function mountQueryView(
       gloss.textContent = leafById(entry.id)?.glosses.fr ?? entry.id;
 
       item.append(form, gloss);
+
+      // The IPA has been in the schema and in `ComponentEntry` since phase 4
+      // and was displayed by nothing. It is per-component and
+      // language-invariant, it costs nothing to carry, and on a device with no
+      // Catalan voice it is the only pronunciation the learner gets.
+      if (entry.ipa !== undefined && entry.ipa !== '') {
+        const ipa = document.createElement('span');
+        ipa.className = 'ac-component-ipa';
+        ipa.textContent = `[${entry.ipa}]`;
+        ipa.title = fr.audio.ipa;
+        item.append(ipa);
+      }
       list.append(item);
     }
     return list;
@@ -235,12 +248,20 @@ export function mountQueryView(
 
     const utterance = document.createElement('p');
     utterance.className = 'ac-utterance';
-    // Tagged so a screen reader, browser translation and the phase 6b
-    // pronunciation control each read the line as the language it is in.
+    // Tagged so a screen reader, browser translation and the pronunciation
+    // control each read the line as the language it is in.
     utterance.lang = language;
     utterance.textContent = text;
 
-    return [heading, utterance];
+    // Audio on the Catalan only. This is the line the question about phase 6b
+    // was asking after: before `answer_ca` existed there was nothing here an
+    // audio button could have pronounced.
+    if (language !== 'ca') return [heading, utterance];
+
+    const line = document.createElement('div');
+    line.className = 'ac-utterance-line';
+    line.append(utterance, speakControl(text, { label: text }));
+    return [heading, line];
   }
 
   /**
@@ -281,6 +302,9 @@ export function mountQueryView(
         result.decomposition.answer_fr,
       ),
       detected,
+      // Once per reply, not once per Catalan string. Shown only when there is
+      // no voice; it explains a silence rather than announcing a feature.
+      voiceNotice(),
     );
     return block;
   }

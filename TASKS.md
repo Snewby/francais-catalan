@@ -21,7 +21,7 @@ is worse than none, because it still reads as authoritative.
 | 5. Persistence, FSRS, Elo             | done        | ADAPT    | this pass                       |
 | 5b. Review loop                       | done        | ADAPT    | this pass                       |
 | 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
-| 6b. Pronunciation                     | not started | ADAPT    |                                 |
+| 6b. Pronunciation                     | done        | ADAPT    | this pass                       |
 | 6c. The symmetric answer              | done        | ADAPT    | this pass                       |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 | 8. Golden set and offline evaluation  | not started | ADAPT    |                                 |
@@ -41,13 +41,13 @@ The five things the user asked this to do, and where each stands. **This is the
 scorecard the phase table serves**, and a phase that does not move a row on it
 needs an argument.
 
-| Requirement                                      | State                                  |
-| ------------------------------------------------ | -------------------------------------- |
-| French to Catalan, with the structure explained  | works                                  |
-| Catalan to French, with the structure explained  | works                                  |
-| Strong, weak and never-met areas of the language | built, and empty until the app is used |
-| Generated practice exercises                     | not started                            |
-| Pronunciation                                    | designed, not built (6b)               |
+| Requirement                                      | State                                    |
+| ------------------------------------------------ | ---------------------------------------- |
+| French to Catalan, with the structure explained  | works                                    |
+| Catalan to French, with the structure explained  | works                                    |
+| Strong, weak and never-met areas of the language | built, and empty until the app is used   |
+| Generated practice exercises                     | not started                              |
+| Pronunciation                                    | built, audible only where a voice exists |
 
 Three of those need the caveat stated rather than implied.
 
@@ -1320,6 +1320,29 @@ an outside reader, and the Données view saves it. Four things in it matter late
   else. Outside review remains the answer; what changed is that the replies it
   reads now come from real use.
 
+Phase 6b then landed: audio where a Catalan voice exists, the IPA displayed at
+last, and no respelling. Four things in it matter later:
+
+- **The absence is the design, not a degraded mode.** No platform ships a
+  Catalan voice by default. This machine reports nine voices, none Catalan; the
+  phone has one. The control is hidden rather than disabled, and one notice per
+  view says what to install **and that no other language will be substituted**,
+  because a learner with nine voices installed will otherwise read the silence
+  as a bug.
+- **There is no fallback anywhere, and the tag match is anchored.** `es-CA` is
+  Spanish, and a substring test for "ca" takes it. Tested.
+- **The IPA had been in the schema since phase 4 and was rendered by nothing.**
+  Same shape as `CallResult.usage` before phase 6c: a value carried through an
+  API for two phases and consumed by nothing is a plan for a feature, not a
+  feature. **Worth a sweep for others.**
+- **A French string change is a layout change.** Lengthening the `near-miss`
+  label this morning overflowed the Explorer view to 518 px on a 390 px screen,
+  because a `select` takes its intrinsic width from its widest option. It
+  shipped in `b7ef1d6` and was live until this pass. No test in this repository
+  could have caught it, and the string was checked in the query view, where it
+  does not appear. **Check the view that renders the string, not the view you
+  are working in.**
+
 ## Carried over into later phases
 
 - **The prompt cache is VERIFIED against the live API.** A second identical
@@ -1459,7 +1482,14 @@ an outside reader, and the Données view saves it. Four things in it matter late
     expected answer marks a right answer wrong and teaches the error. **Do not
     bolt generation onto the query view**, which is where it would do the most
     damage to the evidence model.
-- **Phase 6b drops the French respelling. Audio is the pronunciation output,
+- **Phase 6b is built, and the audio itself is UNVERIFIED on a device that has
+  a voice.** Everything was checked on a machine with none: the control is
+  absent, the notice explains why, the IPA renders. The present-voice path was
+  driven with a fake voice injected into the live page, which proves the control
+  appears and the notice hides, and cannot prove the sound is right. **Somebody
+  has to press it on the Android phone once**, and the thing to listen for is
+  that it is Catalan rather than Spanish.
+- **Phase 6b dropped the French respelling. Audio is the pronunciation output,
   and IPA is what remains when there is no voice.** The user asked for this and
   the availability question that was blocking it is now answered both ways:
   **the Catalan voice is confirmed installed on the Android phone**, which is
