@@ -23,6 +23,7 @@ is worse than none, because it still reads as authoritative.
 | 6. UI and coverage heatmap            | done        | ADAPT    | this pass                       |
 | 6b. Pronunciation                     | done        | ADAPT    | this pass                       |
 | 6c. The symmetric answer              | done        | ADAPT    | this pass                       |
+| Visual learning pass                  | planned     | n/a      | `docs/03`, agreed not built     |
 | 7. GitHub Pages deploy                | done        | DONE     | `1c4cc7d`, `59a88c5`            |
 | 8. Golden set and offline evaluation  | done        | ADAPT    | this pass                       |
 | 9. Practice exercises                 | not started | ADAPT    |                                 |
