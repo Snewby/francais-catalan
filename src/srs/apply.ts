@@ -11,15 +11,24 @@ import {
   type Evidence,
   type Rating,
 } from './evidence';
-import { DEFAULT_RATING, nextRating } from './elo';
-import { INITIAL_DIFFICULTY_VALUE, advanceFsrs } from './fsrs';
-import type { LeafNode, LeafState } from '../taxonomy';
+import { DEFAULT_RATING, nextRatings } from './elo';
+import {
+  INITIAL_DIFFICULTY_VALUE,
+  advanceFsrs,
+  freshMastery,
+  type MasteryState,
+} from './fsrs';
+import type { LeafNode } from '../taxonomy';
 
 /**
  * A component's runtime state: the taxonomy's exposure/mastery split, plus the
  * Elo rating, which is a runtime signal and so has no place in the seed data.
+ * That rating is the component's DIFFICULTY, higher meaning harder; see
+ * src/srs/elo.ts for why a two-sided update forces that reading.
  */
-export interface ComponentState extends LeafState {
+export interface ComponentState {
+  readonly exposure: { readonly exposure_count: number };
+  readonly mastery: MasteryState;
   readonly elo: number;
 }
 
@@ -34,6 +43,8 @@ export interface EvidenceEvent {
    * self-report the exposure/mastery split exists to avoid.
    */
   readonly correct?: boolean | undefined;
+  /** When this happened, epoch milliseconds. Injectable so a test is reproducible. */
+  readonly at?: number | undefined;
 }
 
 /** Thrown when an event does not carry what its evidence type needs. */
@@ -48,7 +59,7 @@ export class MalformedEvidenceError extends Error {
 export function freshState(): ComponentState {
   return {
     exposure: { exposure_count: 0 },
-    mastery: { stability: null, difficulty: null, graded_review_count: 0 },
+    mastery: freshMastery(),
     elo: DEFAULT_RATING,
   };
 }
@@ -57,12 +68,10 @@ export function freshState(): ComponentState {
 export function initialStateFor(leaf: LeafNode): ComponentState {
   return {
     exposure: { ...leaf.state.exposure },
-    mastery: {
-      ...leaf.state.mastery,
-      difficulty:
-        leaf.state.mastery.difficulty ??
+    mastery: freshMastery(
+      leaf.state.mastery.difficulty ??
         INITIAL_DIFFICULTY_VALUE[leaf.contrast_fr.status],
-    },
+    ),
     elo: DEFAULT_RATING,
   };
 }
@@ -84,13 +93,24 @@ function outcomeScore(event: EvidenceEvent): number {
 }
 
 /**
- * Returns a new state; the input is never mutated, so a caller that drops the
+ * Both sides of one event. The learner's rating is global rather than
+ * per-component, so it has to come in and go back out; returning only the
+ * component would leave the other half of a two-sided update on the floor.
+ */
+export interface EvidenceOutcome {
+  readonly component: ComponentState;
+  readonly learnerElo: number;
+}
+
+/**
+ * Returns new state; the inputs are never mutated, so a caller that drops the
  * result has changed nothing rather than half-applied an event.
  */
 export function applyEvidence(
   state: ComponentState,
   event: EvidenceEvent,
-): ComponentState {
+  learnerElo: number = DEFAULT_RATING,
+): EvidenceOutcome {
   if (!ratingIsConsistent(event.evidence, event.rating)) {
     throw new MalformedEvidenceError(
       `${event.evidence} evidence ${
@@ -105,14 +125,24 @@ export function applyEvidence(
     ? { exposure_count: state.exposure.exposure_count + 1 }
     : { ...state.exposure };
 
-  const elo = effect.elo ? nextRating(state.elo, outcomeScore(event)) : state.elo;
+  const ratings = effect.elo
+    ? nextRatings({ learner: learnerElo, component: state.elo }, outcomeScore(event))
+    : { learner: learnerElo, component: state.elo };
 
   // The rating is guaranteed present here: requiresRating and fsrs are both
   // true only for graded evidence, and ratingIsConsistent has already run.
   const mastery =
     effect.fsrs && event.rating !== undefined
-      ? advanceFsrs(state.mastery, event.evidence, event.rating)
+      ? advanceFsrs(
+          state.mastery,
+          event.evidence,
+          event.rating,
+          event.at === undefined ? undefined : new Date(event.at),
+        )
       : { ...state.mastery };
 
-  return { exposure, mastery, elo };
+  return {
+    component: { exposure, mastery, elo: ratings.component },
+    learnerElo: ratings.learner,
+  };
 }

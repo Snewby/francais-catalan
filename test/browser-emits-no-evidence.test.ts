@@ -26,6 +26,7 @@ const UI_DIR = 'src/ui';
 /** Modules that write evidence, exposure or mastery. Unreachable from src/ui/. */
 const BANNED = [
   'src/db/dexie.ts',
+  'src/db/persist.ts',
   'src/srs/apply.ts',
   'src/srs/fsrs.ts',
   'src/srs/elo.ts',

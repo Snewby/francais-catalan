@@ -40,7 +40,7 @@ describe('evidence routing follows EVIDENCE_EFFECTS', () => {
 
     it(`moves exactly the signals ${evidence} is allowed to move`, () => {
       const before = freshState();
-      const after = applyEvidence(before, eventFor(evidence));
+      const { component: after } = applyEvidence(before, eventFor(evidence));
 
       expect(after.exposure.exposure_count > before.exposure.exposure_count).toBe(
         effect.exposure,
@@ -61,7 +61,7 @@ describe('evidence routing follows EVIDENCE_EFFECTS', () => {
 describe('a lookup leaves FSRS state byte-identical', () => {
   it('changes nothing but the exposure counter', () => {
     const before = freshState();
-    const after = applyEvidence(before, { evidence: 'lookup' });
+    const { component: after } = applyEvidence(before, { evidence: 'lookup' });
 
     expect(fsrsFingerprint(after)).toBe(fsrsFingerprint(before));
     expect(after.elo).toBe(before.elo);
@@ -76,16 +76,29 @@ describe('a lookup leaves FSRS state byte-identical', () => {
 });
 
 describe('a recall moves Elo but not FSRS', () => {
-  it('raises Elo on a correct attempt and lowers it on a wrong one', () => {
+  it('moves both ratings, in opposite directions, and neither FSRS field', () => {
+    // The component's rating is its DIFFICULTY, so a correct attempt lowers it
+    // and raises the learner's. Phase 1 asserted the opposite sign, because
+    // its placeholder update was one-sided and the single number stood for the
+    // learner's strength at this component. A two-sided update cannot have both
+    // sides mean strength; the learner's strength here is now `learner - elo`.
     const before = freshState();
     const correct = applyEvidence(before, { evidence: 'recall', correct: true });
     const wrong = applyEvidence(before, { evidence: 'recall', correct: false });
 
-    expect(correct.elo).toBeGreaterThan(before.elo);
-    expect(wrong.elo).toBeLessThan(before.elo);
-    expect(fsrsFingerprint(correct)).toBe(fsrsFingerprint(before));
-    expect(fsrsFingerprint(wrong)).toBe(fsrsFingerprint(before));
-    expect(correct.mastery.graded_review_count).toBe(0);
+    expect(correct.component.elo).toBeLessThan(before.elo);
+    expect(correct.learnerElo).toBeGreaterThan(wrong.learnerElo);
+    expect(wrong.component.elo).toBeGreaterThan(before.elo);
+
+    expect(fsrsFingerprint(correct.component)).toBe(fsrsFingerprint(before));
+    expect(fsrsFingerprint(wrong.component)).toBe(fsrsFingerprint(before));
+    expect(correct.component.mastery.graded_review_count).toBe(0);
+  });
+
+  it('conserves the total rating, so difficulty is relative to the learner', () => {
+    const before = freshState();
+    const after = applyEvidence(before, { evidence: 'recall', correct: true }, 1200);
+    expect(after.learnerElo + after.component.elo).toBe(1200 + before.elo);
   });
 
   it('needs an objective outcome rather than a self-rating', () => {
@@ -101,7 +114,10 @@ describe('a recall moves Elo but not FSRS', () => {
 describe('a graded event moves both', () => {
   it('advances Elo, FSRS and the graded review counter', () => {
     const before = freshState();
-    const after = applyEvidence(before, { evidence: 'graded', rating: 'good' });
+    const { component: after } = applyEvidence(before, {
+      evidence: 'graded',
+      rating: 'good',
+    });
 
     expect(after.elo).not.toBe(before.elo);
     expect(fsrsFingerprint(after)).not.toBe(fsrsFingerprint(before));
@@ -119,9 +135,9 @@ describe('a graded event moves both', () => {
     // Ten lookups and one graded review must not read as eleven reviews.
     let state = freshState();
     for (let index = 0; index < 10; index += 1) {
-      state = applyEvidence(state, { evidence: 'lookup' });
+      state = applyEvidence(state, { evidence: 'lookup' }).component;
     }
-    state = applyEvidence(state, { evidence: 'graded', rating: 'good' });
+    state = applyEvidence(state, { evidence: 'graded', rating: 'good' }).component;
 
     expect(state.exposure.exposure_count).toBe(11);
     expect(state.mastery.graded_review_count).toBe(1);

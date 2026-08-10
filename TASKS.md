@@ -17,7 +17,7 @@ is worse than none, because it still reads as authoritative.
 | 3. Generated schema enums             | done        | VERBATIM | `7bcb37a`, early with phase 1   |
 | Taxonomy browser (read-only)          | done        | VERBATIM | this pass                       |
 | 4. API client and prompt caching      | done        | ADAPT    | this pass                       |
-| 5. Persistence, FSRS, Elo             | not started | ADAPT    |                                 |
+| 5. Persistence, FSRS, Elo             | done        | ADAPT    | this pass                       |
 | 5b. Review loop                       | not started | ADAPT    |                                 |
 | 6. UI and coverage heatmap            | not started | ADAPT    |                                 |
 | 6b. Pronunciation                     | not started | ADAPT    |                                 |
@@ -904,6 +904,58 @@ The prompt is French prose that is not user-facing, so it sits outside
 the only thing enforcing it. The narrow no-break space is now exported from
 `src/i18n/fr.ts` and imported rather than defined a third time.
 
+Phase 5 then replaced the two placeholders with the real thing. `src/srs/fsrs.ts`
+wraps `ts-fsrs` at its default parameters, `src/srs/elo.ts` does a two-sided
+update, and the new `src/db/persist.ts` holds the transaction that applies a
+logged query to every component it touched. Five things in it matter later:
+
+- **The component's Elo rating is now its DIFFICULTY, and the sign flipped.**
+  Phase 1's placeholder was one-sided, so its single number stood for the
+  learner's strength at that component and rose when they got it right. A
+  two-sided update cannot have both sides mean strength, so the component side
+  is difficulty (higher is harder), the learner has a rating of their own, and
+  the learner's strength at a component is the difference. The phase 1 assertion
+  that asserted the old sign was updated rather than deleted, and says why.
+  **This is the second ordering signal phase 6 was told it would need**, and it
+  is a field of its own rather than a retuned `contrast_fr`, which is exactly
+  what the `ART.personal.absencia` finding demanded.
+- **The learner's rating is a row in the database, not a scalar beside it.** It
+  is written in the same transaction as the components it was updated against.
+  Split across two stores, a crash between them would leave the two halves of
+  one two-sided update disagreeing, permanently and silently, and nothing would
+  ever recompute them.
+- **The rating is carried across the components of one query rather than
+  re-read.** A query touching three components is three outcomes against three
+  opponents. Re-reading the stored learner rating for each would apply the first
+  result three times over. A component realised twice in one sentence is
+  deduplicated first, because the exposure counter answers how often a component
+  has been met, not how many words matched.
+- **The contrast-seeded difficulty is a prior, and FSRS overwrites it at the
+  first graded review.** A New card's difficulty is initialised by ts-fsrs from
+  the rating, which is evidence where `INITIAL_DIFFICULTY_VALUE` is a guess from
+  the contrast status. What the seed buys is the period before that review,
+  which is when every component is unreviewed and the gaps list has nothing else
+  to sort on. That is what "seed the initial difficulty" can honestly mean
+  inside FSRS, and a test states it so nobody later reads the overwrite as a bug.
+- **The stored row is a projection, and the mapping is tested rather than
+  trusted.** The row is flat and camelCase because the version 1 indexes were
+  declared that way; the runtime state is nested and snake_case because that is
+  what the taxonomy seed uses. Two naming conventions for one thing is how
+  drift starts, so `toRow`/`fromRow` are the single crossing point and a
+  round-trip test covers both a seeded and a reviewed component.
+
+The Dexie schema is at version 2, which adds the learner store. Both versions
+are declared, and the version 1 stores are repeated in version 2 because Dexie
+reads each version as a full schema rather than a delta. JSON export and import
+are `exportSnapshot` and `importSnapshot`; the import validates the format
+version and every component ID before it writes anything, and replaces rather
+than merges, because a merge would have to invent a rule for a component present
+in both and a half-applied import would strand the learner rating.
+
+`src/db/persist.ts` is in the banned list of
+`test/browser-emits-no-evidence.test.ts` from the moment it existed, rather than
+after phase 6 meets the test red.
+
 ## Carried over into later phases
 
 - **The prompt cache is unverified against the live API.** Everything phase 4
@@ -923,10 +975,23 @@ the only thing enforcing it. The narrow no-break space is now exported from
   the read queries in their own module and narrow the ban to the writer. A
   session that meets this test red and deletes it has removed the only thing
   stopping a browse from incrementing exposure.
-- The FSRS advance in `src/srs/fsrs.ts` and the Elo update in `src/srs/elo.ts`
-  are labelled placeholders. Phase 5 replaces the arithmetic with `ts-fsrs` and
-  a two-sided Elo update. What phase 1 fixed is the routing and the gate, which
-  is the part that is expensive to retrofit.
+- **Both placeholders are gone**: `src/srs/fsrs.ts` wraps `ts-fsrs` and
+  `src/srs/elo.ts` does a two-sided update. What phase 1 fixed was the routing
+  and the gate, and neither needed changing to take the real arithmetic, which
+  is the whole argument for having fixed them first. **The component-ID
+  vocabulary is now persisted**, so renaming or deleting one is a data
+  migration against `mastery.componentId` and `queries.componentIds` rather
+  than a free edit.
+- **FSRS runs on default parameters and should stay there for a while.**
+  docs/01 is explicit that optimising them needs on the order of a thousand
+  reviews, and this application has none. Revisit only with that many in the
+  query log, and treat any earlier tuning as fitting noise.
+- **Nothing emits `graded` evidence yet.** Phase 5b is what makes the mastery
+  half of the model move at all: until the review loop exists, every path
+  produces `lookup`, FSRS never advances, and the heatmap is all exposure. The
+  persistence layer is exercised for all three evidence types by
+  `test/persistence.test.ts`, which is not the same as the application
+  producing them.
 - **That GIEC chapter 35 is the negation chapter is still unverified**, and two
   claims lean on it. The `VERB`/`PRON` review confirmed §34.4 on the negative
   imperative with a verbatim snippet of that section, but could confirm nothing

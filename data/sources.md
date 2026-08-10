@@ -3014,3 +3014,45 @@ minimum, and whether the cache is hit is unverified. The
 This is the same three-tier grading the `NEG.anticipada` seed used, applied to
 an engineering claim rather than a grammatical one, and for the same reason:
 without it the inference hardens into a fact the moment somebody restates it.
+
+## Phase 5: persistence, FSRS and Elo
+
+Recorded here for one decision, because it inverts the meaning of a committed
+field and a later reader will otherwise find the phase 1 test history
+inexplicable.
+
+**The per-component Elo rating changed meaning, from strength to difficulty.**
+Phase 1 shipped a one-sided placeholder, `nextRating(current, score)`, against a
+flat 0.5 expectation. With one number and one side, that number could only be
+read as the learner's strength at that component, and `test/evidence-routing.ts`
+asserted it rose on a correct attempt. The phase 5 brief asks for a two-sided
+update, and a two-sided update cannot have both sides mean strength: one side is
+the learner, the other is the item, and they move in opposite directions. So the
+component's rating is now its difficulty, higher meaning harder, and the
+learner's strength at a component is the learner's rating minus it. The total is
+conserved, which is what makes a component's difficulty a statement about this
+learner rather than an absolute.
+
+The sign flip was made rather than avoided for three reasons. Nothing persists
+the field yet, so it costs nothing today and would cost a migration after this
+phase. No UI reads it. And the alternative, keeping the phase 1 sign, would have
+meant either a one-sided update (which is what the phase brief replaces) or two
+numbers that both mean strength, which is incoherent. The phase 1 assertion was
+updated in place, with a comment naming the flip, rather than deleted.
+
+**It also discharges an outstanding problem from the review programme.**
+`data/sources.md` and `TASKS.md` both record that `contrast_fr` alone cannot
+order the phase 6 gaps list, because `DET` is 25 of 31 near-miss and `PREP` 26 of
+39, and `INITIAL_DIFFICULTY_VALUE` collapses three of the four statuses to one
+number. The finding on `ART.personal.absencia` said that if a second ordering
+signal is needed it needs its own field, and must not be obtained by retuning
+statuses. A per-component difficulty rating that moves on evidence is that
+field.
+
+**The contrast-seeded difficulty survives only until the first graded review.**
+ts-fsrs initialises a New card's difficulty from the rating it receives, so
+`INITIAL_DIFFICULTY_VALUE` governs the period before any review and FSRS owns it
+afterwards. That is the honest reading of "seed the initial difficulty" inside
+FSRS: the seed is a prior from the contrast status, and the first rating is
+evidence. It is stated in a test rather than only in a comment, because the
+overwrite otherwise reads as a bug.
