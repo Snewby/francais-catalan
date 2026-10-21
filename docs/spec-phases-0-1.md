@@ -254,7 +254,7 @@ Before scoring, each candidate must pass three checks or drop out: structured ou
 | Ambiguous address or gender | 2 | « Vous êtes prêts ? » |
 | Outside the taxonomy, idiom, typo in input | 2 | « J’ai la flemme d’y aller » |
 
-The four French-input questions from the old set are reused as inputs. There are no pre-written references: the native speaker reviews model renderings, and their verdicts become each fixture's accepted list, so later runs match automatically.
+The five French-input questions from the old set are reused as inputs. The approved list (21 Oct) is `docs/golden-set-v2.md`; its area counts supersede the table above. There are no pre-written references: the native speaker reviews model renderings, and their verdicts become each fixture's accepted list, so later runs match automatically.
 
 ### Running it
 

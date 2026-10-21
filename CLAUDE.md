@@ -66,6 +66,23 @@
   wastes tokens. Open it only once seeding starts, and even then read the
   specific section required, not the whole document.
 
+## Session workflow (Sean's rules, apply in every session)
+
+- Requirements for phases 0 and 1: `docs/spec-phases-0-1.md`, signed off.
+  Approved eval inputs: `docs/golden-set-v2.md`. Decisions and phase status
+  live in the plan doc in the claude.ai Project "Català rebuild"
+  (https://claude.ai/artifact/KiLCqBiHstKMoYiaN7rmJS). Claude Code cannot
+  edit that doc: report decisions for Sean to record there.
+- Build work happens in Claude Code. Specs, reviews and decisions happen in a
+  claude.ai chat in that Project.
+- Work in rounds. Give a short plan and wait for a go before writing code.
+  Stop and ask, with options and a recommendation, before any departure from
+  the spec or any decision it does not cover.
+- End every session with: TASKS.md updated if code changed; a three-line
+  status summary for Sean to paste into a Project chat; and a copy-block
+  prompt for the next session that names the phase, its first task, and
+  whether it runs in Claude Code or in chat.
+
 ## Conventions
 
 - Check staging with `git status`, never `git diff`, before committing.
