@@ -47,45 +47,33 @@ export const fr = {
     title: 'Entraîneur de grammaire catalane',
     tagline: 'Le catalan expliqué à partir du français',
   },
-  browser: {
-    heading: 'Explorateur de la taxonomie',
-    // Stated in the interface, not only in a test: a learner who cannot tell
-    // whether looking counts will treat the coverage map as a record of what
-    // they have read rather than of what they know.
-    readOnly: `Consultation seule${NNBSP}: parcourir l’arbre n’enregistre aucune trace.`,
-    searchLabel: 'Recherche',
-    searchPlaceholder: 'Forme catalane, glose, exemple',
-    filterCefr: 'Niveau CECR',
-    contrast: 'Rapport au français',
-    filterAny: 'Indifférent',
-    resultsLabel: 'notions affichées',
-    noResults: 'Aucune notion ne correspond à ces critères.',
-    // Not « semé », which was a calque of the repository's English "seeded" and
-    // says nothing to a French reader about a domain that holds no nodes yet.
-    unseeded: 'Pas encore renseigné',
-    leafCountLabel: 'notions',
-    emptyDetail: 'Sélectionnez une notion dans l’arbre pour en afficher le détail.',
-    // fieldId and fieldCa are gone. The component ID is now an unlabelled
-    // caption under the heading, and « Forme catalane » labelled a row that
-    // repeated the heading immediately above it.
-    fieldGloss: 'Glose',
-    fieldCefr: 'Niveau',
-    fieldExamples: 'Exemples',
-    fieldNotes: 'Remarques',
-    // « voisines » rather than « liées »: these share a branch, which is a fact
-    // about the tree rather than a demonstrated affinity. The judged
-    // relationships are the ones in the notes, linked where the prose argues
-    // for them, and the label must not claim more than adjacency.
-    related: 'Notions voisines',
-    fieldDialect: 'Variation dialectale',
-    expandAll: 'Tout déplier',
-    collapseAll: 'Tout replier',
-  },
   nav: {
-    query: 'Analyser',
-    review: 'Réviser',
-    browse: 'Explorer',
-    data: 'Données',
+    label: 'Navigation principale',
+    phrase: 'Phrase',
+    carnet: 'Carnet',
+    reviser: 'Réviser',
+    carte: 'Carte',
+  },
+  screens: {
+    phrase: 'Phrase',
+    notion: 'Notion',
+    carnet: 'Carnet',
+    reviser: 'Réviser',
+    carte: 'Carte',
+  },
+  stub: {
+    // One line per unbuilt screen, so every tab is tappable from the first
+    // release and the navigation tests cover all four.
+    soon: 'Bientôt disponible.',
+  },
+  home: {
+    inputLabel: 'Phrase en français',
+    inputPlaceholder: 'Écrivez une phrase en français',
+    submit: 'Traduire',
+    recentsHeading: 'Phrases récentes',
+    recentsEmpty: 'Aucune phrase pour l’instant.',
+    reviewHeading: 'Révisions',
+    reviewEmpty: 'Rien à réviser pour l’instant.',
   },
   apiKey: {
     label: 'Clé API',
@@ -98,166 +86,6 @@ export const fr = {
     saved: 'Clé enregistrée.',
     forget: 'Oublier la clé',
     forgotten: 'Clé effacée de ce navigateur.',
-  },
-  query: {
-    heading: 'Analyser un énoncé',
-    // The direction is detected from the question and reported back, never
-    // chosen. It is still named in the interface so a wrong reading is visible
-    // rather than silent.
-    detectedLabel: 'Sens détecté',
-    directionCaToFr: 'Du catalan vers le français',
-    directionFrToCa: 'Du français vers le catalan',
-    questionLabel: 'Question',
-    placeholder: 'Un énoncé catalan à expliquer, ou ce que vous cherchez à dire',
-    // A matched pair, so the two headings are symmetric. « À dire en catalan »
-    // was right while the Catalan was the only sentence in the reply and reads
-    // as lopsided beside its French twin.
-    answerCaHeading: 'En catalan',
-    answerFrHeading: 'En français',
-    attemptLabel: 'Votre tentative en catalan',
-    attemptOptional: 'facultatif',
-    // Says what the affordance is for without restating what each evidence type
-    // moves: that routing lives in src/srs/evidence.ts and nowhere else.
-    attemptHint:
-      'Écrivez votre version avant d’afficher la réponse. La comparaison est automatique, et il ne vous sera jamais demandé de vous noter vous-même.',
-    submitReveal: 'Afficher la réponse',
-    submitCheck: 'Vérifier ma tentative',
-    pending: 'Analyse en cours…',
-    answerHeading: 'Pourquoi',
-    componentsHeading: 'Points de grammaire relevés',
-    // « points de grammaire » and « notions » name two different things on
-    // purpose: a point de grammaire is what this reply picked out of this
-    // utterance, a notion is the permanent taxonomy entry behind it. Expanding
-    // one reveals the other, and its examples were authored for the rule rather
-    // than for the sentence that was asked about. Said out loud, because under
-    // that heading they would otherwise read as variants of what the learner
-    // just typed.
-    componentExamples: 'Exemples rédigés pour cette notion, et non pour votre énoncé.',
-    // Shown instead of the list when the reply named a Catalan form its own
-    // phrase does not contain. Says what was kept and what was not, because a
-    // section that simply disappeared would read as a sentence with no grammar
-    // in it.
-    componentsUnverified:
-      'L’analyse grammaticale de cet énoncé n’a pas pu être vérifiée, même après une seconde demande. La phrase et sa traduction restent valables, mais aucun point de grammaire n’est affiché ni comptabilisé pour cette question.',
-    attemptExact: 'Votre version correspond à la réponse.',
-    attemptCorrect:
-      'Votre version diffère de la réponse, mais elle contient toutes les formes attendues.',
-    attemptIncomplete: `Formes attendues qui manquent${NNBSP}:`,
-    // The signal is about the model, never about the learner. The copy says so
-    // in as many words, because a button next to an answer looks like a grade
-    // and a learner who thinks it counts against them will not press it.
-    signal: 'Signaler cette réponse',
-    signalHint:
-      'Si quelque chose vous paraît faux, signalez-le. Cela ne change rien à votre ' +
-      `progression et ne vous est jamais compté${NNBSP}: la réponse est mise de ` +
-      'côté pour être relue.',
-    signalled: 'Réponse signalée. Elle sera relue.',
-    signalFailed: 'La réponse n’a pas pu être signalée.',
-    recordedLookup: 'Consultation enregistrée.',
-    recordedRecall: 'Tentative enregistrée.',
-    emptyQuestion: 'Saisissez une question avant de lancer l’analyse.',
-    failed: 'L’analyse a échoué.',
-    // Shown after every reply. The taxonomy travels as a cached prompt prefix,
-    // and whether that cache is actually hit is a property of a second live
-    // call that no test can check: it reports as silence rather than as an
-    // error, so the interface has to say it out loud.
-    usageHeading: 'Cache du préfixe',
-    usageRead: 'Relu du cache',
-    usageWritten: 'Écrit dans le cache',
-    usageTokens: 'jetons',
-    usageHint:
-      'Une seconde question doit relire le préfixe. Un zéro qui persiste signale un préfixe qui varie d’un appel à l’autre, ou trop court pour être mis en cache.',
-  },
-  review: {
-    heading: 'Réviser',
-    start: 'Commencer une session',
-    empty: 'Rien à réviser pour l’instant.',
-    // The authored data holds no French translation of any example, so a card
-    // asks for the rule. Promising a translation here would promise something
-    // the data cannot supply.
-    ruleRecall:
-      'Une carte porte sur la règle illustrée, non sur la traduction de l’exemple.',
-    askCaToFr: `Quelle règle cet énoncé illustre-t-il${NNBSP}?`,
-    askFrToCa: `Quelle forme catalane réalise cette règle${NNBSP}?`,
-    // Both directions were implemented in buildReviewItem from the start and
-    // only one was ever reachable, so half the deck did not exist. Naming the
-    // skill rather than the languages: the two ask for different things, and
-    // « du catalan vers le français » would read as translation, which is what
-    // ruleRecall exists to deny.
-    directionLabel: 'Ce que la carte demande',
-    directionCaToFr: 'Reconnaître la règle illustrée',
-    directionFrToCa: 'Produire la forme catalane',
-    reveal: 'Afficher la réponse',
-    referenceHeading: 'Réponse attendue',
-    // Shown after the grade, never before it: these are what the notion teaches
-    // beyond the sentence that was tested, and they would give the answer away
-    // above the reveal.
-    otherExamples: 'Autres exemples de cette notion',
-    rateHeading: 'Votre rappel était',
-    ratingAgain: 'À revoir',
-    ratingHard: 'Difficile',
-    ratingGood: 'Correct',
-    ratingEasy: 'Facile',
-    progress: 'Progression',
-    finished: 'Session terminée.',
-  },
-  heatmap: {
-    // Exposure and mastery are two dimensions, never one colour: the teinte
-    // carries mastery, the opacity carries exposure.
-    heading: 'Carte de couverture',
-    exposure: 'Exposition',
-    exposureHint: 'Nombre de rencontres, quelle qu’en soit la forme',
-    mastery: 'Maîtrise',
-    masteryHint: 'Fondée uniquement sur les révisions évaluées',
-    unexplored: 'Jamais rencontré',
-    unpractised: 'Rencontré, jamais révisé',
-    legendHue: `Teinte${NNBSP}: maîtrise, du rouge au vert`,
-    legendOpacity: `Opacité${NNBSP}: exposition, du pâle à l’intense`,
-    legendUngraded: `Gris${NNBSP}: aucune révision évaluée`,
-    legendLow: 'faible',
-    legendHigh: 'élevée',
-    // Shown only while the map is still grey, which is exactly the population
-    // that misreads it. Two sentences rather than one because a learner who has
-    // done nothing and a learner who has been asking questions are looking at
-    // the same grey for different reasons, and telling the second one that
-    // nothing is recorded would be false. Both disappear once anything is
-    // graded, because from then on the map explains itself in colour.
-    whyGreyEmpty:
-      'La carte est grise parce que rien n’est encore enregistré. Elle se colore à mesure que vous posez des questions et que vous révisez.',
-    whyGreyUngraded:
-      'La carte reste grise parce qu’aucune révision évaluée n’a encore eu lieu. ' +
-      `Ce n’est pas un mauvais résultat${NNBSP}: poser des questions fait avancer ` +
-      'l’exposition, jamais la maîtrise.',
-    // No tooltip anywhere in this component: there is no hover on a touch
-    // screen, and the primary device is a telephone.
-    domainsHint: 'Touchez un domaine pour en afficher les notions.',
-    back: 'Revenir aux domaines',
-    exposureCount: 'Rencontres',
-    gradedCount: 'Révisions évaluées',
-    stateLabel: 'Couverture',
-  },
-  gaps: {
-    heading: 'Lacunes',
-    unexploredHint: 'Aucune rencontre enregistrée, dans un sens ou dans l’autre',
-    unpractisedHint: 'Rencontré au moins une fois, mais jamais évalué en révision',
-    none: 'Aucune notion de ce type.',
-    ranking:
-      'Les faux amis et les notions sans équivalent français viennent en premier.',
-    hidden: 'autres notions non affichées',
-  },
-  data: {
-    heading: 'Données',
-    exportButton: 'Exporter mes données',
-    exportHint:
-      'Un fichier JSON reprenant vos rencontres, vos révisions et vos classements.',
-    signalsButton: 'Exporter les réponses signalées',
-    signalsHint:
-      'Un fichier à relire, ou à confier à un lecteur extérieur. Les réponses que vous avez signalées, avec la glose rédigée de chaque point de grammaire cité.',
-    signalsEmpty: 'Aucune réponse signalée pour l’instant.',
-    importButton: 'Importer un fichier',
-    importHint: 'L’import remplace entièrement les données de ce navigateur.',
-    imported: 'Import terminé.',
-    importFailed: `Fichier refusé${NNBSP}: rien n’a été modifié.`,
   },
   audio: {
     speak: 'Écouter',

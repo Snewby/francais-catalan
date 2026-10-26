@@ -46,7 +46,7 @@ describe('French typography', () => {
     }
     // Positive control. The loop above is satisfied vacuously by a table with
     // no colons in it.
-    expect(fr.browser.readOnly).toContain(`${NNBSP}:`);
+    expect(fr.apiKey.prompt).toContain(`${NNBSP}:`);
   });
 
   it('uses no em-dashes anywhere', () => {

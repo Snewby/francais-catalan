@@ -20,7 +20,9 @@ line you are on before you write text.
 - Spelling: colour, behaviour, organise, initialise, serialise, licence (noun),
   license (verb), analyse.
 - No em-dashes, in any language. Comma, parentheses, or a full stop.
-- Vanilla TypeScript. No framework unless a task explicitly approves one.
+- Svelte 5 (runes) + Vite 6, TypeScript strict. Components are `.svelte`
+  files in `src/ui/`; logic stays in plain `.ts` modules outside `src/ui/`. No
+  other framework or UI library unless a task explicitly approves one.
 - Prefer named exports. Avoid default exports outside config files.
 - The API key is entered at runtime into `localStorage`. Never hardcode it,
   never commit it, never write it to a file or log it.

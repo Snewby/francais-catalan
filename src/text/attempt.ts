@@ -1,10 +1,10 @@
 /**
  * Comparing a typed Catalan attempt against the reference forms.
  *
- * THIS IS NOT THE SEARCH NORMALISER. `normalise` in src/ui/browse/filter.ts
- * deletes apostrophes outright so that "sha" finds `s'ha`, which is right for a
- * search box and would quietly mark a wrong answer correct here: `lhome` is not
- * `l'home`. Two jobs, two functions.
+ * THIS IS NOT THE SEARCH NORMALISER. The vanilla explorer's `normalise` (tag
+ * v1-vanilla, src/ui/browse/filter.ts) deleted apostrophes outright so that
+ * "sha" found `s'ha`, which is right for a search box and would quietly mark a
+ * wrong answer correct here: `lhome` is not `l'home`. Two jobs, two functions.
  *
  * The comparison decides an evidence type, which is the whole reason it has to
  * be objective. A `recall` event carries no rating and never advances FSRS, so

@@ -42,9 +42,12 @@
   contrast_fr.status is one of: transfer | near-miss | false-friend | novel.
 - The API schema enums are GENERATED from taxonomy.json. Never hand-edit
   src/api/schema.ts.
-- The `decomposition` array is LANGUAGE-INVARIANT: component IDs and Catalan
-  forms only. Only the `answer` field is French. Never put French prose in
-  the decomposition.
+- Chunk data is LANGUAGE-INVARIANT: Catalan text, closed enums and component
+  IDs only. `fr` is the single French field of a model reply. Never put French
+  prose in a chunk. The rule is defined in docs/spec-phases-0-1.md
+  (« Invariants carried over ») until phase 1 generates `PHRASE_SCHEMA`, which
+  then becomes its executable home. The vanilla `decomposition`/`answer`
+  schema still in src/api/ is replaced in phase 1.
 - EXPOSURE IS NOT MASTERY. Every logged query carries `intent`, `direction`
   and `evidence`, plus `rating` if and only if evidence is `graded`. Which
   signal each evidence type may move is defined by EVIDENCE_EFFECTS in
@@ -84,7 +87,10 @@
 - Build status lives in TASKS.md, one line per phase. A phase transition
   updates TASKS.md in the SAME commit as the work. Read it first in a new
   session; it is the only place that records where the build is up to.
-- Vanilla TS + Vite. No framework unless a task explicitly approves one.
+- Svelte 5 (runes) + Vite 6, TypeScript strict. Components live in src/ui/ as
+  `.svelte` files; logic stays in plain `.ts` modules outside src/ui/. Hash
+  routes, hand-rolled, no router package. No other framework or UI library
+  unless a task explicitly approves one.
 - Vite `base` is '/francais-catalan/' and must match the repo name, or every
   asset 404s on Pages. The build guide's '/catalan-trainer/' is a placeholder.
 - Apostrophes: straight ' in Catalan forms (l'home, s'ha), typographic ’ in

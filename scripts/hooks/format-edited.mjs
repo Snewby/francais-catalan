@@ -15,8 +15,9 @@ const FORMATTABLE = new Set([
   '.md',
   '.html',
   '.css',
+  '.svelte',
 ]);
-const LINTABLE = new Set(['.ts', '.js', '.mjs']);
+const LINTABLE = new Set(['.ts', '.js', '.mjs', '.svelte']);
 
 // Generated or deliberately unformatted artefacts.
 const SKIP = [

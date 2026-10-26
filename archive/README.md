@@ -16,3 +16,8 @@ lint, format and tests. The vanilla app itself is one checkout away at the tag
   command. Seeding ran in two passes per domain, 2a (structure) then 2b
   (glosses and contrast), with `npm run check-duplicates` between them, because
   a 2a pass cannot see what an earlier domain already keyed.
+- `src/review/session.ts`: the vanilla review loop, which wrote through the
+  removed Dexie database. Phase 4 decides what review becomes.
+- `test/browser-emits-no-evidence.test.ts`: the structural ban that kept the
+  vanilla explorer from reaching the modules that write evidence. The explorer
+  is gone; the map (phase 5) owns the successor ban.

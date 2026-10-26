@@ -16,7 +16,32 @@
  */
 import { NNBSP, labelled } from '../i18n/fr';
 import { leafById } from '../taxonomy';
-import type { SignalledReply } from '../db/dexie';
+import type { Direction } from '../srs/evidence';
+
+/**
+ * A reply the learner flagged as wrong, kept whole for an outside reader.
+ *
+ * Moved here from the vanilla Dexie schema when that database was removed in
+ * the rebuild, so this module keeps compiling while it waits for phase 4 to
+ * decide whether review reuses it. Phase 1 stores learner reports in its own
+ * `reports` table; this shape is the vanilla one.
+ */
+export interface SignalledReply {
+  id?: number;
+  signalledAt: number;
+  /** The query row this reply was logged as, when it was logged at all. */
+  queryId?: number;
+  question: string;
+  direction: Direction;
+  /** The French explanation, verbatim. */
+  answer: string;
+  answerCa: string;
+  answerFr: string;
+  /** The decomposition as the reply gave it: the ID and the realising form. */
+  components: { id: string; ca: string }[];
+  /** Forms the client could not anchor in `answerCa`. Empty on a clean reply. */
+  unverified: string[];
+}
 
 /** Escapes a cell so a Catalan form containing a pipe cannot break the table. */
 function cell(text: string): string {

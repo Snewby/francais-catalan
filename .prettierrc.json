@@ -8,7 +8,16 @@
   "overrides": [
     {
       "files": ["*.md", "docs/**/*.md"],
-      "options": { "proseWrap": "preserve" }
+      "options": {
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
     }
-  ]
+  ],
+  "plugins": ["prettier-plugin-svelte"]
 }

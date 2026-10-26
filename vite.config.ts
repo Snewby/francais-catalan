@@ -1,3 +1,4 @@
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vite';
 
 // The base path must match the GitHub repository name, otherwise every asset
@@ -5,6 +6,7 @@ import { defineConfig } from 'vite';
 // use '/'.
 export default defineConfig({
   base: '/francais-catalan/',
+  plugins: [svelte()],
   build: {
     outDir: 'dist',
     sourcemap: true,

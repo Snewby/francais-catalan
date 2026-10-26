@@ -1,15 +1,10 @@
 /*
  * The application shell.
  *
- * MOBILE FIRST, then widened. The base rules below are the 390 px layout, and
- * the media queries add columns rather than take them away. Built the other way
- * round, a tab bar and a heatmap sized against a desktop shrink into something
- * unusable on the surface this application is actually read on.
- *
- * Touch targets are 2.75rem, which is a thumb rather than a pointer, and no
- * affordance anywhere depends on :hover. French copy runs 15 to 20 per cent
- * longer than the English equivalent, so nothing here is given a fixed width
- * and every label wraps.
+ * MOBILE FIRST, then widened. The base rules are the 390 px layout. Touch
+ * targets are 2.75rem (44 px), a thumb rather than a pointer, and nothing
+ * depends on :hover. French copy runs 15 to 20 per cent longer than English, so
+ * nothing has a fixed width and every label wraps.
  */
 
 :root {
@@ -17,19 +12,23 @@
   --ac-muted: #57534e;
   --ac-line: #e7e5e4;
   --ac-surface: #fff;
+  --ac-page: #fafaf9;
   --ac-accent: #1d4ed8;
   --ac-tap: 2.75rem;
-  /* The reading measure, applied to what the learner types into AND to what
-     comes back. The input side was capped at this value and the output side was
-     not, so at 1280 px the answer ran to a 1,097 px line. One token rather than
-     two numbers, because the asymmetry is what went wrong. Only ever applied
-     above 48rem: at 390 px the viewport is already narrower than this. */
   --ac-measure: 40rem;
+  /* The nav's own height, before the safe-area inset is added below it. */
+  --ac-nav: 3.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #fafaf9;
+  background: var(--ac-page);
   color: var(--ac-ink);
   font-family:
     system-ui,
@@ -39,10 +38,23 @@ body {
   line-height: 1.5;
 }
 
-.ac {
-  max-width: 72rem;
+.ac-main {
+  max-width: var(--ac-measure);
   margin: 0 auto;
   padding: 0.75rem;
+  /* Clear of the fixed nav and of the home indicator beneath it. */
+  padding-bottom: calc(var(--ac-nav) + env(safe-area-inset-bottom) + 1rem);
+}
+
+.ac-screen > * + * {
+  margin-top: 1rem;
+}
+
+.ac-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .ac-title {
@@ -51,381 +63,87 @@ body {
 }
 
 .ac-tagline {
-  margin: 0.15rem 0 0.75rem;
+  margin: 0.15rem 0 0;
   color: var(--ac-muted);
   font-size: 0.875rem;
 }
 
-.ac-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.ac-tab {
-  min-height: var(--ac-tap);
-  padding: 0.4rem 0.25rem;
-  border: 1px solid var(--ac-line);
-  border-radius: 0.375rem;
-  background: var(--ac-surface);
-  color: var(--ac-muted);
-  font: inherit;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-
-.ac-tab--current {
-  border-color: var(--ac-accent);
-  color: var(--ac-accent);
-  font-weight: 600;
-}
-
-.ac-view {
-  background: var(--ac-surface);
-  border: 1px solid var(--ac-line);
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-}
-
-.ac-heading {
-  margin: 0 0 0.5rem;
-  font-size: 1.125rem;
-}
-
-.ac-subheading {
-  margin: 1rem 0 0.35rem;
-  font-size: 0.9375rem;
+h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
 }
 
 .ac-hint {
-  margin: 0.25rem 0 0.5rem;
+  margin: 0;
   color: var(--ac-muted);
-  font-size: 0.8125rem;
-}
-
-.ac-status {
-  margin: 0.5rem 0;
   font-size: 0.875rem;
-  min-height: 1.25rem;
 }
 
-.ac-control {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 0.6rem;
+.ac-input {
+  display: grid;
+  gap: 0.5rem;
 }
 
-/* An author `display` beats the user agent's `[hidden] { display: none }`
-   whatever the specificity, so the attempt field stayed on screen in the
-   comprehend direction while the element was correctly marked hidden. Caught in
-   the browser, not by a test: jsdom lays nothing out, so an assertion on the
-   attribute passes either way. */
-[hidden] {
-  display: none !important;
-}
-
-.ac-control-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ac-muted);
-}
-
-.ac-input,
-.ac-select {
+textarea,
+input {
   width: 100%;
-  box-sizing: border-box;
   min-height: var(--ac-tap);
   padding: 0.5rem;
-  border: 1px solid #d6d3d1;
-  border-radius: 0.375rem;
-  background: var(--ac-surface);
+  border: 1px solid var(--ac-line);
+  border-radius: 0.5rem;
   font: inherit;
-}
-
-.ac-textarea {
-  min-height: 5rem;
-  resize: vertical;
-}
-
-.ac-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  background: var(--ac-surface);
 }
 
 .ac-button {
   min-height: var(--ac-tap);
-  padding: 0.5rem 0.9rem;
-  border: 1px solid #d6d3d1;
-  border-radius: 0.375rem;
-  background: #fafaf9;
+  min-width: var(--ac-tap);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ac-accent);
+  border-radius: 0.5rem;
+  background: var(--ac-accent);
+  color: #fff;
   font: inherit;
   cursor: pointer;
 }
 
-.ac-button--primary {
-  border-color: var(--ac-accent);
-  background: var(--ac-accent);
-  color: #fff;
-  font-weight: 600;
+.ac-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* Secondary by weight, not by size: still a full tap target on a telephone. */
 .ac-button--quiet {
   background: transparent;
-  color: var(--ac-muted);
+  color: var(--ac-accent);
 }
 
-.ac-button:disabled {
-  opacity: 0.55;
-  cursor: default;
-}
-
-/* The Catalan and its audio control on one line, wrapping rather than
-   squeezing the sentence at 390 px. */
-.ac-utterance-line {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.ac-utterance-line .ac-utterance {
-  flex: 1 1 12rem;
-}
-
-/* [hidden] loses to an author display rule, which is how a field shipped
-   visible in phase 6 with a passing test asserting the attribute. Anything
-   this file lays out has to restate it. */
-.ac-speak[hidden],
-.ac-voice-notice[hidden] {
-  display: none;
-}
-
-.ac-component-ipa {
-  margin-left: 0.4rem;
-  color: var(--ac-muted);
-  white-space: nowrap;
-}
-
-/* Four grades on one row at 390 px, so grading is one tap and no scrolling. */
-/* One row of four at 390 px, which TASKS.md has claimed since phase 6 and which
-   was not true. A flex item's default `min-width: auto` floors it at its content
-   width, and « À revoir » plus 0.9rem of padding each side is wider than the
-   5rem basis, so the shrink never happened and « Facile » wrapped alone onto a
-   second row at full width. Exactly the failure that pushed the Explorer to
-   518 px, in a second place, and no test in this repository can see either.
-   Horizontal padding is reduced with it, so the labels are not clipped once
-   they are allowed to shrink. */
-.ac-rating {
-  flex: 1 1 5rem;
-  min-width: 0;
-  padding-left: 0.35rem;
-  padding-right: 0.35rem;
-}
-
-.ac-panel {
+.ac-nav {
+  position: fixed;
+  inset: auto 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: var(--ac-nav);
+  /* Sits above the home indicator; needs viewport-fit=cover in index.html. */
+  padding-bottom: env(safe-area-inset-bottom);
   border-top: 1px solid var(--ac-line);
-  padding-top: 0.75rem;
-  margin-top: 0.75rem;
+  background: var(--ac-surface);
 }
 
-.ac-panel:first-of-type {
-  border-top: 0;
-  padding-top: 0;
-  margin-top: 0;
-}
-
-.ac-card-prompt,
-.ac-card-reference {
-  margin: 0.35rem 0 0.75rem;
-}
-
-/* The Catalan is the answer, so it leads. It used to have nowhere to be: the
-   reply carried French prose and a list of fragments, and the sentence the
-   learner actually wanted was never stated anywhere. */
-.ac-answer-ca {
-  border-left: 3px solid var(--ac-accent);
-  padding-left: 0.7rem;
-  margin: 0.5rem 0 1rem;
-}
-
-.ac-answer-ca .ac-subheading {
-  margin-top: 0;
-}
-
-.ac-utterance {
-  margin: 0.2rem 0 0.3rem;
-  font-size: 1.25rem;
-  line-height: 1.35;
-}
-
-/* Paragraphs, because the explanation arrives as paragraphs. A single block of
-   French prose is the thing this replaced and nobody read it. */
-.ac-answer p {
-  margin: 0 0 0.6rem;
-}
-
-.ac-answer p:last-child {
-  margin-bottom: 0;
-}
-
-.ac-card-prompt {
-  font-size: 1.125rem;
-}
-
-.ac-card-reference {
-  font-weight: 600;
-}
-
-.ac-components {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.ac-component-form {
-  font-style: italic;
-  margin-right: 0.5rem;
-}
-
-.ac-component-gloss {
-  color: var(--ac-muted);
-  font-size: 0.875rem;
-}
-
-.ac-components > li {
-  margin-bottom: 0.35rem;
-}
-
-/* The summary is the tap target, so it gets a thumb's height rather than a line
-   of text's. list-style stays: the native disclosure marker is the only thing
-   saying there is more underneath, and there is no hover to reveal it. */
-.ac-component-summary {
-  min-height: var(--ac-tap);
+.ac-nav__tab {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0 0.4rem;
-  cursor: pointer;
-}
-
-.ac-component-body {
-  border-left: 3px solid var(--ac-line);
-  padding-left: 0.6rem;
-  margin: 0.1rem 0 0.6rem;
-}
-
-.ac-component-examples {
-  margin: 0.2rem 0 0.5rem;
-  padding-left: 1.1rem;
-}
-
-.ac-component-examples li {
-  margin-bottom: 0.15rem;
-}
-
-/* Set apart from the graded part of the card above it, so that what was tested
-   and what is merely being read stay visibly different things. */
-.ac-card-more {
-  margin-top: 0.9rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--ac-line);
-}
-
-.ac-card-examples {
-  margin: 0.2rem 0 0.6rem;
-  padding-left: 1.1rem;
-}
-
-.ac-card-examples li {
-  margin-bottom: 0.15rem;
-}
-
-.ac-contrast-status {
-  display: inline-block;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #44403c;
-}
-
-.ac-contrast-note {
-  margin: 0.15rem 0 0;
+  justify-content: center;
+  min-height: var(--ac-nav);
+  min-width: var(--ac-tap);
+  padding: 0 0.25rem;
+  color: var(--ac-muted);
+  text-align: center;
+  text-decoration: none;
   font-size: 0.875rem;
 }
 
-.ac-attempt-result {
-  border-left: 3px solid #d6d3d1;
-  padding-left: 0.6rem;
-  margin-bottom: 0.75rem;
-}
-
-.ac-attempt-result[data-correct='true'] {
-  border-left-color: #15803d;
-}
-
-.ac-attempt-result[data-correct='false'] {
-  border-left-color: #b45309;
-}
-
-.ac-attempt-verdict {
-  margin: 0;
+.ac-nav__tab[aria-current='page'] {
+  color: var(--ac-accent);
   font-weight: 600;
-}
-
-/* The cache reading is diagnostic rather than pedagogic, so it sits quietly
-   under the answer. It is not hidden behind a toggle: the one thing it is for is
-   being noticed on the second identical question. */
-.ac-usage {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--ac-line);
-}
-
-.ac-usage .ac-subheading {
-  margin-top: 0;
-}
-
-.ac-usage-counts {
-  margin: 0;
-  color: var(--ac-muted);
-  font-size: 0.8125rem;
-}
-
-.ac-attempt-missing {
-  margin: 0.25rem 0 0;
-  padding-left: 1.1rem;
-  font-style: italic;
-}
-
-@media (min-width: 48rem) {
-  .ac {
-    padding: 1.5rem;
-  }
-
-  .ac-tabs {
-    grid-template-columns: repeat(4, minmax(0, 10rem));
-  }
-
-  .ac-view {
-    padding: 1.25rem;
-  }
-
-  .ac-control {
-    max-width: var(--ac-measure);
-  }
-
-  /* The whole reply, not the explanation alone. Capping .ac-answer by itself
-     would narrow the prose and leave the grammar points, the missing-forms list
-     and the cache line running to the full 72rem beneath it, which reads as a
-     defect rather than as a measure. */
-  .ac-output {
-    max-width: var(--ac-measure);
-  }
-
-  .ac-card {
-    max-width: var(--ac-measure);
-  }
+  box-shadow: inset 0 3px 0 var(--ac-accent);
 }

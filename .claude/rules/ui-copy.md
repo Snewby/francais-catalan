@@ -1,7 +1,7 @@
 ---
 paths:
   - 'src/i18n/**/*.ts'
-  - 'src/ui/**/*.{ts,html,css}'
+  - 'src/ui/**/*.{svelte,ts,html,css}'
   - 'index.html'
 ---
 

@@ -1,5 +1,11 @@
-import { mountApp } from './ui/app';
+import { mount } from 'svelte';
+import { startVoiceWatch } from './audio/catalan-voice.svelte';
+import App from './ui/App.svelte';
+import './ui/app.css';
 
-const mount = document.querySelector<HTMLDivElement>('#app');
+const target = document.querySelector<HTMLDivElement>('#app');
 
-if (mount) void mountApp(mount);
+if (target) {
+  startVoiceWatch();
+  mount(App, { target });
+}
