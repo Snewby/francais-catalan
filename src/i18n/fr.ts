@@ -86,6 +86,26 @@ export const fr = {
     saved: 'Clé enregistrée.',
     forget: 'Oublier la clé',
     forgotten: 'Clé effacée de ce navigateur.',
+    replace: 'Remplacer la clé',
+    replaced: 'Clé remplacée.',
+  },
+  settings: {
+    open: 'Réglages',
+    heading: 'Réglages',
+    close: 'Fermer',
+  },
+  data: {
+    heading: 'Données',
+    exportButton: 'Exporter mes données',
+    exportHint: 'Un fichier JSON avec toutes les données de cette application.',
+    exported: 'Fichier exporté.',
+    importLabel: 'Importer un fichier',
+    importHint:
+      'L’import ajoute les lignes du fichier et remplace celles qui portent le même identifiant. Rien n’est supprimé.',
+    imported: 'Import terminé.',
+    importUnreadable: `Fichier refusé${NNBSP}: il n’a pas pu être lu. Rien n’a été modifié.`,
+    importUnknownVersion: `Fichier refusé${NNBSP}: sa version de format est inconnue. Rien n’a été modifié.`,
+    importWrongShape: `Fichier refusé${NNBSP}: son contenu ne correspond pas à cette application. Rien n’a été modifié.`,
   },
   audio: {
     speak: 'Écouter',

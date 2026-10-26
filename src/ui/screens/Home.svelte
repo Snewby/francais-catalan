@@ -4,6 +4,12 @@
 -->
 <script lang="ts">
   import { fr } from '../../i18n/fr';
+
+  interface Props {
+    onopensettings: () => void;
+  }
+
+  let { onopensettings }: Props = $props();
 </script>
 
 <section class="ac-screen">
@@ -12,6 +18,13 @@
       <h1 class="ac-title">{fr.app.title}</h1>
       <p class="ac-tagline">{fr.app.tagline}</p>
     </div>
+    <button
+      type="button"
+      class="ac-button ac-button--quiet ac-gear"
+      aria-label={fr.settings.open}
+      title={fr.settings.open}
+      onclick={onopensettings}><span aria-hidden="true">⚙</span></button
+    >
   </header>
 
   <form class="ac-input" onsubmit={(event) => event.preventDefault()}>
