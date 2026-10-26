@@ -313,6 +313,7 @@ Schema and pipeline
 - [ ] The same sentence typed twice, differing only in spacing, case or apostrophe, makes one API call.
 - [ ] A successful translation writes one `lookup` event per linked ID and no FSRS state changes (existing evidence tests extended).
 - [ ] Opening the chunk sheet writes no event: a structural test bans the sheet's modules from reaching the evidence writers, as the archived `browser-emits-no-evidence` test did for the explorer (added 26 Oct).
+- [ ] Installable on Android (added 26 Oct): a web app manifest (name « Català », French `lang`, `display: standalone`, `start_url` and `scope` under `/francais-catalan/`, 192 and 512 px icons plus a maskable one) and a service worker that precaches the built app shell, so Chrome offers « Installer l'application », and the installed app opens full screen and loads offline. API calls are never cached; translating offline shows the existing « Pas de connexion. » state. The app requests `navigator.storage.persist()`. A Playwright check confirms the manifest is valid and the shell loads with the network off.
 - [ ] Every store row carries a UUID and the three sync fields.
 
 Screens
