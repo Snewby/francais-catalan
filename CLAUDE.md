@@ -6,6 +6,9 @@
 - Test: `npm run test:run` (vitest once, and what CI runs). Single file:
   `npm run test:run -- test/foo.test.ts`. Bare `npm test` is watch mode, so it
   never exits and reports nothing.
+- Browser smoke: `npm run test:e2e` (Playwright, 390 × 844, against the built
+  site under `/francais-catalan/`). Needs `npx playwright install chromium`
+  once per machine.
 - Regenerate schema after taxonomy edits: `npm run gen-schema`
 - Validate IDs: `npm run validate-ids`
 - Check gloss coverage: `npm run check-glosses`

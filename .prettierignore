@@ -5,3 +5,5 @@ src/api/schema.ts
 src/taxonomy/taxonomy.json
 docs/
 archive/
+test-results/
+playwright-report/

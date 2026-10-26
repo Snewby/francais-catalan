@@ -18,7 +18,8 @@
     "validate-ids": "tsx scripts/validate-ids.ts",
     "check-glosses": "tsx scripts/check-glosses.ts",
     "check-duplicates": "tsx scripts/check-duplicates.ts",
-    "eval": "tsx scripts/eval.ts"
+    "eval": "tsx scripts/eval.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "dexie": "^4.0.11",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "@playwright/test": "^1.64.1",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
     "@testing-library/svelte": "^5.4.2",
     "@testing-library/user-event": "^14.6.8",
