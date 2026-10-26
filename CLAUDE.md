@@ -76,6 +76,11 @@
 - Work in rounds. Give a short plan and wait for a go before writing code.
   Stop and ask, with options and a recommendation, before any departure from
   the spec or any decision it does not cover.
+- Git (decided 26 Oct): commit and push straight to `main`. No feature
+  branches, no pull requests, no merge step for Sean. Before every push, run
+  locally every step that `.github/workflows/ci.yml` runs; CI on main then
+  confirms. If GitHub refuses a direct push to main, stop and tell Sean which
+  setting to change.
 - End every session with: TASKS.md updated if code changed; a three-line
   status summary for Sean to paste into a Project chat; and a copy-block
   prompt for the next session that names the phase, its first task, and

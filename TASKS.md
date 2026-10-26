@@ -8,15 +8,14 @@ done and what closed them.
 **Update this file in the same commit as the work.** A phase closes only when
 every acceptance box in the spec is ticked by a test, a script or a CI run.
 
-| Phase                             | Status      | Closed by                                                 |
-| --------------------------------- | ----------- | --------------------------------------------------------- |
-| 0. Svelte shell and navigation    | done        | [PR 1](https://github.com/Snewby/francais-catalan/pull/1) |
-| 1. Translate and take apart       | not started |                                                           |
-| 2. Variations                     | not started |                                                           |
-| 3. Notion sheet                   | not started |                                                           |
-| 4. Carnet, words and review       | not started |                                                           |
-| 5. Map                            | not started |                                                           |
-| 6. PHASE 6 NAME PENDING FROM SEAN | not started |                                                           |
+| Phase                          | Status      | Closed by                               |
+| ------------------------------ | ----------- | --------------------------------------- |
+| 0. Svelte shell and navigation | closing     | awaits CI on main and the deployed site |
+| 1. Translate and take apart    | not started |                                         |
+| 2. Variations                  | not started |                                         |
+| 3. Notion sheet                | not started |                                         |
+| 4. Carnet, words and review    | not started |                                         |
+| 5. Map                         | not started |                                         |
 
 The vanilla build (tag `v1-vanilla`, commit `58ab33a`) and its 1,875-line status
 file are under `archive/`; see `archive/README.md`.

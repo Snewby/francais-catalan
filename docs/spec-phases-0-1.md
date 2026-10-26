@@ -74,7 +74,7 @@ The UI layer goes, the data layer and its invariants stay byte-identical, and `5
 | UI copy | `src/i18n/fr.ts` | Rewrite | Keep `NNBSP` and `quote()`; drop strings for removed screens |
 | Seeding agents and commands | `.claude/agents/` (4), `.claude/commands/seed-domain.md` | Archive | Seeding is done |
 | Build guide, visual pass, structural map | `docs/01`, `docs/02`, `docs/03` | Archive | `docs/01` still not read |
-| Status file | `TASKS.md` (1,875 lines) | Slim | New table, phases 0 to 6, one line each; old file archived whole |
+| Status file | `TASKS.md` (1,875 lines) | Slim | New table, phases 0 to 5, one line each; old file archived whole |
 
 ### Tests
 
@@ -312,6 +312,7 @@ Schema and pipeline
 - [ ] Retry happens exactly once; after two failures with a valid `ca`, the row is stored as `analysis_failed`.
 - [ ] The same sentence typed twice, differing only in spacing, case or apostrophe, makes one API call.
 - [ ] A successful translation writes one `lookup` event per linked ID and no FSRS state changes (existing evidence tests extended).
+- [ ] Opening the chunk sheet writes no event: a structural test bans the sheet's modules from reaching the evidence writers, as the archived `browser-emits-no-evidence` test did for the explorer (added 26 Oct).
 - [ ] Every store row carries a UUID and the three sync fields.
 
 Screens
