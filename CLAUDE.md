@@ -9,9 +9,7 @@
 - Regenerate schema after taxonomy edits: `npm run gen-schema`
 - Validate IDs: `npm run validate-ids`
 - Check gloss coverage: `npm run check-glosses`
-- Check for two keys teaching one rule: `npm run check-duplicates`. Run it
-  between 2a and 2b, not after glossing: a 2a pass cannot see what an earlier
-  domain already keyed, and glossing a duplicate is wasted work.
+- Check for two keys teaching one rule: `npm run check-duplicates`.
 
 ## Languages (two different things, do not conflate)
 
@@ -59,12 +57,6 @@
   same trap as the gloss map.
 - taxonomy.json is large. Do NOT read it wholesale into context. Query it
   with scripts or grep for specific IDs/domains.
-- `docs/01-catalan-structural-map-and-build-plan.md` (36 KB) is reference
-  material for the SEEDING PHASES ONLY. Do NOT read it during Phase 0 or
-  Phase 1: it is full of grammar tables that are not needed yet, and
-  pulling it into context
-  wastes tokens. Open it only once seeding starts, and even then read the
-  specific section required, not the whole document.
 
 ## Session workflow (Sean's rules, apply in every session)
 
@@ -88,7 +80,7 @@
 - Check staging with `git status`, never `git diff`, before committing.
   `git diff` does not report untracked files, so a `git add -A` can sweep in
   another session's in-progress work and the check will look clean. This has
-  already happened once (see Record corrections in TASKS.md).
+  already happened once (see Record corrections in archive/TASKS-v1.md).
 - Build status lives in TASKS.md, one line per phase. A phase transition
   updates TASKS.md in the SAME commit as the work. Read it first in a new
   session; it is the only place that records where the build is up to.
@@ -103,6 +95,15 @@
 - API key is runtime-entered into localStorage. NEVER hardcode or commit.
 - Anthropic calls: model claude-haiku-4-5, structured outputs beta header,
   taxonomy sent as a cached prompt prefix.
+
+## Archive
+
+- `archive/` holds the vanilla build's status file, docs 01 to 03 and the
+  seeding agents; `archive/README.md` lists them. It is excluded from build,
+  lint, format and tests. The vanilla app is the tag `v1-vanilla`.
+- Taxonomy seeding is done. `archive/docs/01-catalan-structural-map-and-build-plan.md`
+  (36 KB) was its reference material; do not read it wholesale. A read hook
+  gates it.
 
 ## Domains (see catalan-taxonomy skill for full schema)
 
