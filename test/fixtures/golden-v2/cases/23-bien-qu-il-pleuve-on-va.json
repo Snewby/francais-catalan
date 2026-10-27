@@ -16,19 +16,19 @@
       "id": "23-a",
       "key": "encara que plogui, sortirem",
       "ca": "Encara que plogui, sortirem.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "23-b",
       "key": "tot i que plogui, sortirem",
       "ca": "Tot i que plogui, sortirem.",
-      "verdict": null
+      "verdict": "peu_naturel"
     },
     {
       "id": "23-c",
       "key": "tot i que plou, sortirem",
       "ca": "Tot i que plou, sortirem.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

@@ -12,6 +12,11 @@
   "requireUnlinked": false,
   "fr": { "mustContain": [], "mustNotContain": [] },
   "renderings": [
-    { "id": "12-a", "key": "ja no ho faig", "ca": "Ja no ho faig.", "verdict": null }
+    {
+      "id": "12-a",
+      "key": "ja no ho faig",
+      "ca": "Ja no ho faig.",
+      "verdict": "naturel"
+    }
   ]
 }

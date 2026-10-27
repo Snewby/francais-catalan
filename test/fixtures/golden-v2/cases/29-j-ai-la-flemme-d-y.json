@@ -13,13 +13,13 @@
       "id": "29-a",
       "key": "em fa mandra anar-hi",
       "ca": "Em fa mandra anar-hi.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "29-b",
       "key": "tinc mandra d'anar-hi",
       "ca": "Tinc mandra d'anar-hi.",
-      "verdict": null
+      "verdict": "faux"
     }
   ]
 }

@@ -16,13 +16,13 @@
       "id": "5-a",
       "key": "ja no en tinc ganes",
       "ca": "Ja no en tinc ganes.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "5-b",
       "key": "no en tinc més ganes",
       "ca": "No en tinc més ganes.",
-      "verdict": null
+      "verdict": "peu_naturel"
     }
   ]
 }

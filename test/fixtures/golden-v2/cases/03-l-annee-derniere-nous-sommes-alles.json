@@ -16,13 +16,13 @@
       "id": "3-a",
       "key": "l'any passat vam anar a girona",
       "ca": "L'any passat vam anar a Girona.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "3-b",
       "key": "l'any passat, vam anar a girona",
       "ca": "L'any passat, vam anar a Girona.",
-      "verdict": null
+      "verdict": "peu_naturel"
     }
   ]
 }

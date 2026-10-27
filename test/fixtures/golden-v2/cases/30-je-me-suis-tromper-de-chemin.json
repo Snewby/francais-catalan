@@ -16,13 +16,13 @@
       "id": "30-a",
       "key": "ahir a la nit em vaig equivocar de camí",
       "ca": "Ahir a la nit em vaig equivocar de camí.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "30-b",
       "key": "ahir al vespre em vaig equivocar de camí",
       "ca": "Ahir al vespre em vaig equivocar de camí.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

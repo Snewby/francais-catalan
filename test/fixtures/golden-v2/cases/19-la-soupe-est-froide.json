@@ -16,13 +16,13 @@
       "id": "19-a",
       "key": "la sopa és freda",
       "ca": "La sopa és freda.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "19-b",
       "key": "la sopa està freda",
       "ca": "La sopa està freda.",
-      "verdict": null
+      "verdict": "peu_naturel"
     }
   ]
 }

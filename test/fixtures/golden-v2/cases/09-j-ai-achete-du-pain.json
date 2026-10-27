@@ -9,6 +9,11 @@
   "requireUnlinked": false,
   "fr": { "mustContain": [], "mustNotContain": [] },
   "renderings": [
-    { "id": "9-a", "key": "he comprat pa", "ca": "He comprat pa.", "verdict": null }
+    {
+      "id": "9-a",
+      "key": "he comprat pa",
+      "ca": "He comprat pa.",
+      "verdict": "naturel"
+    }
   ]
 }

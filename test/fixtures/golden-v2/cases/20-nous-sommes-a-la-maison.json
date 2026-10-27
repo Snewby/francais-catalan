@@ -9,6 +9,6 @@
   "requireUnlinked": false,
   "fr": { "mustContain": [], "mustNotContain": [] },
   "renderings": [
-    { "id": "20-a", "key": "som a casa", "ca": "Som a casa.", "verdict": null }
+    { "id": "20-a", "key": "som a casa", "ca": "Som a casa.", "verdict": "naturel" }
   ]
 }

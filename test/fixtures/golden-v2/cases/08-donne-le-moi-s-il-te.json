@@ -17,13 +17,13 @@
       "id": "8-a",
       "key": "dona-me'l, si et plau",
       "ca": "Dona-me'l, si et plau.",
-      "verdict": null
+      "verdict": "peu_naturel"
     },
     {
       "id": "8-b",
       "key": "dona-me'l, si us plau",
       "ca": "Dona-me'l, si us plau.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

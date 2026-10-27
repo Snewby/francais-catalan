@@ -13,13 +13,13 @@
       "id": "13-a",
       "key": "ningú no ha vingut",
       "ca": "Ningú no ha vingut.",
-      "verdict": null
+      "verdict": "peu_naturel"
     },
     {
       "id": "13-b",
       "key": "no ha vingut ningú",
       "ca": "No ha vingut ningú.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

@@ -16,13 +16,13 @@
       "id": "21-a",
       "key": "parla molt a poc a poc",
       "ca": "Parla molt a poc a poc.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "21-b",
       "key": "parla molt lentament",
       "ca": "Parla molt lentament.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

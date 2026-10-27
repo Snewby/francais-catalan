@@ -16,13 +16,13 @@
       "id": "4-a",
       "key": "mai no he menjat calçots",
       "ca": "Mai no he menjat calçots.",
-      "verdict": null
+      "verdict": "peu_naturel"
     },
     {
       "id": "4-b",
       "key": "no he menjat mai calçots",
       "ca": "No he menjat mai calçots.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }

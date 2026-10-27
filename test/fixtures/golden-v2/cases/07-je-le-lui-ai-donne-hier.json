@@ -16,13 +16,13 @@
       "id": "7-a",
       "key": "ahir li ho vaig donar",
       "ca": "Ahir li ho vaig donar.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "7-b",
       "key": "li'l vaig donar ahir",
       "ca": "Li'l vaig donar ahir.",
-      "verdict": null
+      "verdict": "faux"
     }
   ]
 }

@@ -16,13 +16,13 @@
       "id": "2-a",
       "key": "aquest matí he vist la teva germana",
       "ca": "Aquest matí he vist la teva germana.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "2-b",
       "key": "aquest matí, he vist la teva germana",
       "ca": "Aquest matí, he vist la teva germana.",
-      "verdict": null
+      "verdict": "peu_naturel"
     }
   ]
 }

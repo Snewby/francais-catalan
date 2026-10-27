@@ -12,6 +12,11 @@
   "requireUnlinked": false,
   "fr": { "mustContain": [], "mustNotContain": [] },
   "renderings": [
-    { "id": "11-a", "key": "no tinc cotxe", "ca": "No tinc cotxe.", "verdict": null }
+    {
+      "id": "11-a",
+      "key": "no tinc cotxe",
+      "ca": "No tinc cotxe.",
+      "verdict": "naturel"
+    }
   ]
 }

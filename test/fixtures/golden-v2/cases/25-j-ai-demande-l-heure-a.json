@@ -13,13 +13,13 @@
       "id": "25-a",
       "key": "he demanat l'hora a un vianant",
       "ca": "He demanat l'hora a un vianant.",
-      "verdict": null
+      "verdict": "naturel"
     },
     {
       "id": "25-b",
       "key": "vaig preguntar l'hora a un vianant",
       "ca": "Vaig preguntar l'hora a un vianant.",
-      "verdict": null
+      "verdict": "naturel"
     }
   ]
 }
