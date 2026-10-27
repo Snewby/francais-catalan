@@ -1,0 +1,27 @@
+{
+  "n": 2,
+  "slug": "ce-matin-j-ai-vu-ta",
+  "input": "Ce matin, j’ai vu ta sœur.",
+  "risk": "Past, today",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.perf.present"],
+      "hint": "he vist"
+    },
+    {
+      "anyOf": ["DET.poss.article_obligatori"],
+      "hint": "la teva germana"
+    }
+  ],
+  "mustNotLink": ["VERB.ind.passat_perifrastic"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

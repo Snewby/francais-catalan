@@ -1,0 +1,31 @@
+{
+  "n": 8,
+  "slug": "donne-le-moi-s-il-te",
+  "input": "Donne-le-moi, s’il te plaît.",
+  "risk": "Weak pronouns",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.imperatiu.positiu"],
+      "hint": "dona"
+    },
+    {
+      "anyOf": ["SYN.clitics.proclisi_enclisi"],
+      "hint": "dona-me'l"
+    },
+    {
+      "anyOf": ["LEX.locucions.cortesia"],
+      "hint": "si us plau"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

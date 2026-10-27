@@ -1,0 +1,27 @@
+{
+  "n": 22,
+  "slug": "je-veux-que-tu-viennes",
+  "input": "Je veux que tu viennes.",
+  "risk": "Subjunctive",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.subj.present"],
+      "hint": "vinguis"
+    },
+    {
+      "anyOf": ["CONJ.completiva.que"],
+      "hint": "que"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

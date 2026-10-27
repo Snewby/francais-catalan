@@ -1,0 +1,27 @@
+{
+  "n": 28,
+  "slug": "je-suis-contente-de-te-voir",
+  "input": "Je suis contente de te voir.",
+  "risk": "Speaker gender",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.ser_estar"],
+      "hint": "estic"
+    },
+    {
+      "anyOf": ["SYN.clitics.proclisi_enclisi"],
+      "hint": "veure't"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": ["speaker_fem"],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

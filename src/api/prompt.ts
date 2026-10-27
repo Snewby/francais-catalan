@@ -24,6 +24,7 @@ import {
   type ChunkRole,
   type UnlinkedReason,
 } from './phrase';
+import { PHRASE_SCHEMA } from './schema';
 
 /**
  * Field separator in the vocabulary table. A tab is the cheapest separator that
@@ -195,4 +196,24 @@ export function buildSystemBlocks(ttl: CacheTtl = '5m'): readonly SystemBlock[] 
  */
 export function buildUserContent(sentence: string): string {
   return sentence;
+}
+
+/**
+ * A fingerprint of everything that shapes a reply apart from the sentence: the
+ * cached prefix and the reply schema. A recording or a cached phrase made under
+ * another hash was made by another prompt. SHA-256 over Web Crypto, so the app
+ * and the Node eval scripts compute the same value.
+ */
+export async function promptHash(): Promise<string> {
+  const source = JSON.stringify({
+    system: buildSystemBlocks().map((block) => block.text),
+    schema: PHRASE_SCHEMA,
+  });
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(source),
+  );
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
 }

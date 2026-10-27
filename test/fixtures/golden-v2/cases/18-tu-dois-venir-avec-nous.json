@@ -1,0 +1,23 @@
+{
+  "n": 18,
+  "slug": "tu-dois-venir-avec-nous",
+  "input": "Tu dois venir avec nous.",
+  "risk": "Tournures",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.mod.obligacio"],
+      "hint": "has de venir"
+    }
+  ],
+  "mustNotLink": ["VERB.mod.deure"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

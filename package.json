@@ -18,6 +18,10 @@
     "validate-ids": "tsx scripts/validate-ids.ts",
     "check-glosses": "tsx scripts/check-glosses.ts",
     "check-duplicates": "tsx scripts/check-duplicates.ts",
+    "eval": "tsx scripts/eval.ts",
+    "eval:record": "tsx scripts/eval-record.ts",
+    "eval:sheet": "tsx scripts/eval-sheet.ts",
+    "eval:verdicts": "tsx scripts/eval-verdicts.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {

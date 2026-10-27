@@ -1,0 +1,23 @@
+{
+  "n": 25,
+  "slug": "j-ai-demande-l-heure-a",
+  "input": "J’ai demandé l’heure à un passant.",
+  "risk": "False friend",
+  "mustLink": [
+    {
+      "anyOf": ["LEX.fals_amic.abast"],
+      "hint": "he preguntat"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

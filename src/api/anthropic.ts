@@ -42,6 +42,11 @@ export const MAX_TOKENS = 16000;
 export const EFFORT = 'medium';
 const MODELS_WITHOUT_EFFORT: ReadonlySet<string> = new Set(['claude-haiku-4-5']);
 
+/** The effort a request to `model` carries, or null when it takes none. */
+export function effortFor(model: string): typeof EFFORT | null {
+  return MODELS_WITHOUT_EFFORT.has(model) ? null : EFFORT;
+}
+
 /** Per attempt, so the worst case with the one retry is twice this. */
 export const TIMEOUT_MS = 20_000;
 
@@ -136,7 +141,7 @@ export function buildRequestBody(
     type: 'json_schema',
     schema: toStructuredOutputSchema(PHRASE_SCHEMA),
   };
-  const effort = MODELS_WITHOUT_EFFORT.has(model) ? {} : { effort: EFFORT };
+  const effort = effortFor(model);
 
   return {
     model,
@@ -147,7 +152,7 @@ export function buildRequestBody(
     messages: [{ role: 'user', content: buildUserContent(sentence) }],
     ...(options.legacyOutputFormat
       ? { output_format: format }
-      : { output_config: { format, ...effort } }),
+      : { output_config: { format, ...(effort !== null && { effort }) } }),
   };
 }
 

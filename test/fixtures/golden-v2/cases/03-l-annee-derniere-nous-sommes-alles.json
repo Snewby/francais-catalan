@@ -1,0 +1,27 @@
+{
+  "n": 3,
+  "slug": "l-annee-derniere-nous-sommes-alles",
+  "input": "L’année dernière, nous sommes allés à Gérone.",
+  "risk": "Past, hier",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.ind.passat_perifrastic"],
+      "hint": "vam anar"
+    },
+    {
+      "anyOf": ["PREP.a_en.lloc.a_lloc"],
+      "hint": "a Girona"
+    }
+  ],
+  "mustNotLink": ["VERB.perf.present"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

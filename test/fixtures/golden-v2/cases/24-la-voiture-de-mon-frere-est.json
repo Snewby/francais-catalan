@@ -1,0 +1,31 @@
+{
+  "n": 24,
+  "slug": "la-voiture-de-mon-frere-est",
+  "input": "La voiture de mon frère est plus rapide que la mienne.",
+  "risk": "Gender, comparison",
+  "mustLink": [
+    {
+      "anyOf": ["NOM.gender.diverge_fr"],
+      "hint": "el cotxe"
+    },
+    {
+      "anyOf": ["ART.contract.a_de"],
+      "hint": "del"
+    },
+    {
+      "anyOf": ["CONJ.comparativa.igualtat_desigualtat"],
+      "hint": "més … que"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

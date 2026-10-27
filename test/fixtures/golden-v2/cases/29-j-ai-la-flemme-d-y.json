@@ -1,0 +1,18 @@
+{
+  "n": 29,
+  "slug": "j-ai-la-flemme-d-y",
+  "input": "J’ai la flemme d’y aller.",
+  "risk": "Idiom, outside taxonomy",
+  "mustLink": [],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": true,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

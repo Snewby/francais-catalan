@@ -1,0 +1,27 @@
+{
+  "n": 11,
+  "slug": "je-n-ai-pas-de-voiture",
+  "input": "Je n’ai pas de voiture.",
+  "risk": "Partitive",
+  "mustLink": [
+    {
+      "anyOf": ["ART.indef.omissio_negacio"],
+      "hint": "cotxe"
+    },
+    {
+      "anyOf": ["NEG.simple.no"],
+      "hint": "no"
+    }
+  ],
+  "mustNotLink": ["NEG.simple.pas"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

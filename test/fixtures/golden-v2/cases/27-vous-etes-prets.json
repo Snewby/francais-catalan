@@ -1,0 +1,23 @@
+{
+  "n": 27,
+  "slug": "vous-etes-prets",
+  "input": "Vous êtes prêts ?",
+  "risk": "Ambiguous address",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.ser_estar"],
+      "hint": "esteu"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": ["addressee_formal"]
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

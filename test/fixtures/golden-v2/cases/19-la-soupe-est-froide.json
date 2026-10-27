@@ -1,0 +1,27 @@
+{
+  "n": 19,
+  "slug": "la-soupe-est-froide",
+  "input": "La soupe est froide.",
+  "risk": "ser / estar",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.ser_estar"],
+      "hint": "està"
+    },
+    {
+      "anyOf": ["NOM.adj.four_form"],
+      "hint": "freda"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

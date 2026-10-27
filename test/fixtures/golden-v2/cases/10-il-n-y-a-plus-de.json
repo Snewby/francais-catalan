@@ -1,0 +1,27 @@
+{
+  "n": 10,
+  "slug": "il-n-y-a-plus-de",
+  "input": "Il n’y a plus de lait.",
+  "risk": "Partitive",
+  "mustLink": [
+    {
+      "anyOf": ["NEG.aspecte.ja_no"],
+      "hint": "ja no"
+    },
+    {
+      "anyOf": ["VERB.haver_tenir"],
+      "hint": "hi ha"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

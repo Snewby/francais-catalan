@@ -1,0 +1,27 @@
+{
+  "n": 14,
+  "slug": "je-n-ai-rien-dit-a",
+  "input": "Je n’ai rien dit à personne.",
+  "risk": "Negation",
+  "mustLink": [
+    {
+      "anyOf": ["NEG.concordanca.postverbal"],
+      "hint": "no … res … ningú"
+    },
+    {
+      "anyOf": ["PRON.indefinit.res"],
+      "hint": "res"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

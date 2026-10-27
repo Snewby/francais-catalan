@@ -1,0 +1,23 @@
+{
+  "n": 26,
+  "slug": "j-ai-une-collection-de-timbres",
+  "input": "J’ai une collection de timbres.",
+  "risk": "Spelling, l·l",
+  "mustLink": [
+    {
+      "anyOf": ["PHON.grafia.ela_geminada"],
+      "hint": "col"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

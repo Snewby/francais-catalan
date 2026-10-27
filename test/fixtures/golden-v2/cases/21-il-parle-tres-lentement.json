@@ -1,0 +1,27 @@
+{
+  "n": 21,
+  "slug": "il-parle-tres-lentement",
+  "input": "Il parle très lentement.",
+  "risk": "Control (transfer)",
+  "mustLink": [
+    {
+      "anyOf": ["ADV.manera.ment"],
+      "hint": "lentament"
+    },
+    {
+      "anyOf": ["ADV.grau.molt"],
+      "hint": "molt"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

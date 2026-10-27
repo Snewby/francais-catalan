@@ -1,0 +1,27 @@
+{
+  "n": 12,
+  "slug": "je-ne-le-fais-plus",
+  "input": "Je ne le fais plus.",
+  "risk": "Negation",
+  "mustLink": [
+    {
+      "anyOf": ["NEG.aspecte.ja_no"],
+      "hint": "ja no"
+    },
+    {
+      "anyOf": ["PRON.feble.ho"],
+      "hint": "ho"
+    }
+  ],
+  "mustNotLink": ["PRON.feble.cd_3a"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

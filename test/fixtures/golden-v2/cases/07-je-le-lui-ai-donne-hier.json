@@ -1,0 +1,27 @@
+{
+  "n": 7,
+  "slug": "je-le-lui-ai-donne-hier",
+  "input": "Je le lui ai donné hier.",
+  "risk": "Weak pronouns",
+  "mustLink": [
+    {
+      "anyOf": ["PRON.feble.combinacio.ci_cd"],
+      "hint": "l'hi"
+    },
+    {
+      "anyOf": ["VERB.ind.passat_perifrastic"],
+      "hint": "vaig donar"
+    }
+  ],
+  "mustNotLink": ["VERB.perf.present"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

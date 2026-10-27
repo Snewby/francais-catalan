@@ -1,0 +1,27 @@
+{
+  "n": 30,
+  "slug": "je-me-suis-tromper-de-chemin",
+  "input": "Je me suis tromper de chemin hier soir.",
+  "risk": "Typo in input",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.ind.passat_perifrastic"],
+      "hint": "em vaig equivocar"
+    },
+    {
+      "anyOf": ["SYN.pronominals.inherents"],
+      "hint": "equivocar-se"
+    }
+  ],
+  "mustNotLink": ["VERB.perf.present"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": ["trompé"],
+    "mustNotContain": ["tromper"]
+  },
+  "renderings": []
+}

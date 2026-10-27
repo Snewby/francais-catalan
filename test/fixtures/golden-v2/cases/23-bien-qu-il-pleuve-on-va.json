@@ -1,0 +1,27 @@
+{
+  "n": 23,
+  "slug": "bien-qu-il-pleuve-on-va",
+  "input": "Bien qu’il pleuve, on va sortir.",
+  "risk": "Subjunctive",
+  "mustLink": [
+    {
+      "anyOf": ["CONJ.concessiva.encara_que"],
+      "hint": "encara que"
+    },
+    {
+      "anyOf": ["VERB.subj.present"],
+      "hint": "plogui"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

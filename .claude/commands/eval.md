@@ -1,36 +1,31 @@
 ---
 description: Run the golden-set evaluation offline and report regressions
-argument-hint: '[risk area, e.g. padding]'
+argument-hint: '[model id, e.g. claude-haiku-5-5]'
 allowed-tools: Task, Bash, PowerShell, Read, Grep, Glob
 ---
 
-Run `npm run eval`. It replays every fixture in `test/fixtures/golden/` through
-`callHaiku` with a stub fetch and reports pass count, failures by reason class,
-a per-risk-area breakdown, and regressions against `baseline.json`.
+Run `npm run eval`. It replays every recording in
+`test/fixtures/golden-v2/recordings/` through `translatePhrase` with a stub
+fetch, scores it against the speaker's verdicts in
+`test/fixtures/golden-v2/cases/`, and prints one column per model against the
+spec's floors (« Floors and selection » in `docs/spec-phases-0-1.md`).
 
-**Offline always.** There is no live path and no env flag that adds one. The
-replies are recordings; that is the point.
+If `$ARGUMENTS` names a model, report only its column and its details.
 
-If `$ARGUMENTS` names a risk area, report only that area. The areas present are
-whatever the fixtures declare, currently: `padding`, `passat-perifrastic`,
-`negation`, `clitics`, `mood`, `correction`, `gerundi`, `orthography`,
-`comparative`, `transfer`, `false-friend`.
+**Offline always.** `npm run eval` has no live path. The only paid step is
+`npm run eval:record`, which Sean runs with the key in the environment. Claude
+Code never runs it (decided 26 Oct, phase 1 question A).
 
-What is asserted, per case: the reply validates against the generated schema, no
-out-of-vocabulary component ID, the case's required components are present, the
-gate verdict matches, `answer_lang` is `fr`, the direction is the expected one,
-and the French/Catalan pair is two non-empty and different strings.
+What is scored, per model: valid schema and spans after the one retry, the
+Catalan accepted by the speaker (« naturel » or « correct mais peu naturel »),
+required IDs linked on accepted replies, padded links (a lower bound: must-not-
+link IDs, and row 29 left with no unlinked chunk), warm 90th-percentile
+latency, and cost warm and cold under both cache lifetimes. Renderings with no
+verdict yet show as pending, never as passed.
 
-**Never assert on the French prose.** It varies and asserting on it is noise.
-Whether an explanation is true is a reader's judgement, and each fixture already
-carries that judgement in `expect.defects`.
+**No model judges anything.** Whether Catalan is good is the native speaker's
+verdict, written into the fixtures by `npm run eval:verdicts` in its own commit.
 
-**Do not adjust the prompt, the schema, the taxonomy or the fixtures to make the
-eval pass.** A recording is evidence and editing it destroys the evidence. If a
-change is genuinely an improvement, rerun with `npx tsx scripts/eval.ts
---baseline` and commit the baseline diff on its own, so the change of expected
-result is reviewable.
-
-Standing failures are recorded defects, not bugs in the harness. `03-vull-que-vens`
-fails on direction because the model read a Catalan question as French, and it
-stays failing until that is no longer true.
+**Do not edit recordings, verdicts or fixtures to make the eval pass.** A
+recording is evidence. A recording made under another prompt is flagged by its
+`promptHash`; record again rather than editing it.

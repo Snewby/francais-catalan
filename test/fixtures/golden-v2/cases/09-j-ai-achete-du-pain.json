@@ -1,0 +1,23 @@
+{
+  "n": 9,
+  "slug": "j-ai-achete-du-pain",
+  "input": "J’ai acheté du pain.",
+  "risk": "Partitive",
+  "mustLink": [
+    {
+      "anyOf": ["ART.indef.sense_partitiu"],
+      "hint": "pa"
+    }
+  ],
+  "mustNotLink": ["NOM.number.a_es"],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

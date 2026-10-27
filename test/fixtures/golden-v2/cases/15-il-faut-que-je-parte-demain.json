@@ -1,0 +1,23 @@
+{
+  "n": 15,
+  "slug": "il-faut-que-je-parte-demain",
+  "input": "Il faut que je parte demain.",
+  "risk": "Tournures",
+  "mustLink": [
+    {
+      "anyOf": ["VERB.mod.obligacio", "VERB.subj.present"],
+      "hint": "he de marxar, or cal que marxi"
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}

@@ -1,0 +1,26 @@
+{
+  "n": 6,
+  "slug": "tu-y-vas-demain",
+  "input": "Tu y vas demain ?",
+  "risk": "Weak pronouns",
+  "mustLink": [
+    {
+      "anyOf": ["PRON.feble.hi"],
+      "hint": "hi"
+    },
+    {
+      "anyOf": ["SYN.interrogativa.total"]
+    }
+  ],
+  "mustNotLink": [],
+  "assumptions": {
+    "required": [],
+    "forbidden": []
+  },
+  "requireUnlinked": false,
+  "fr": {
+    "mustContain": [],
+    "mustNotContain": []
+  },
+  "renderings": []
+}
