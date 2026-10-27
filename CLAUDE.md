@@ -76,9 +76,10 @@
   Project chat.
 - Build work happens in Claude Code. Specs, reviews and decisions happen in a
   claude.ai chat in that Project.
-- Go per block, not per step (decided 26 Oct). Give one plan covering the
-  block of steps Sean names, wait for one go, then build them all, one commit
-  per step. Every `ci.yml` step green locally before each push, CI on main
+- Go per block, not per step (decided 26 Oct). Give one plan for every step
+  up to the next real gate (a paid eval run, a speaker review, a model choice,
+  the end of a phase), wait for one go, then build them all, one commit per
+  step. Every `ci.yml` step green locally before each push, CI on main
   confirmed after. Still stop and ask, with options and a recommendation, on
   any departure from the spec or any decision it does not cover.
 - Git (decided 26 Oct): commit and push straight to `main`. No feature
