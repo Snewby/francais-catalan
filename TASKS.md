@@ -11,7 +11,7 @@ every acceptance box in the spec is ticked by a test, a script or a CI run.
 | Phase                          | Status      | Closed by                                                                                                                   |
 | ------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------- |
 | 0. Svelte shell and navigation | done        | main `1928a91`, [CI run 40423159926](https://github.com/Snewby/francais-catalan/actions/runs/40423159926); site loads clean |
-| 1. Translate and take apart    | not started |                                                                                                                             |
+| 1. Translate and take apart    | in progress |                                                                                                                             |
 | 2. Variations                  | not started |                                                                                                                             |
 | 3. Notion sheet                | not started |                                                                                                                             |
 | 4. Carnet, words and review    | not started |                                                                                                                             |

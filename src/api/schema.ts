@@ -2,7 +2,8 @@
  * GENERATED FILE. DO NOT EDIT BY HAND.
  *
  * Produced by `npm run gen-schema` from data/*.fragment.json and the
- * interaction-model enums in src/srs/evidence.ts.
+ * interaction-model enums in src/srs/evidence.ts and the phrase enums in
+ * src/api/phrase.ts.
  *
  * Hand-edits are destroyed on the next generation and, worse, temporarily hide
  * the drift that test/gen-schema.test.ts exists to catch.
@@ -432,4 +433,91 @@ export const QUERY_LOG_SCHEMA = {
       else: { not: { required: ['rating'] } },
     },
   ],
+} as const;
+
+/**
+ * One chunk of the Catalan sentence. LANGUAGE-INVARIANT: Catalan text, closed
+ * enums and component IDs only. French labels for `role` live in fr.ts.
+ *
+ * There are no offsets: the app derives spans by finding `text` in `ca`,
+ * because matching text is checkable and counting characters is not.
+ *
+ * `unlinked` is present exactly when `ids` is empty. That rule is enforced by
+ * the reply validator rather than here, because constrained decoding does not
+ * implement the conditional that would express it.
+ */
+export const CHUNK_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['text', 'role', 'ids'],
+  properties: {
+    text: { type: 'string', minLength: 1 },
+    role: {
+      type: 'string',
+      enum: [
+        'subject',
+        'verb',
+        'object_direct',
+        'object_indirect',
+        'clitic',
+        'negation',
+        'time',
+        'place',
+        'manner',
+        'quantity',
+        'connector',
+        'complement',
+        'other',
+      ],
+    },
+    ids: {
+      type: 'array',
+      maxItems: 3,
+      items: { type: 'string', enum: LEAF_IDS },
+    },
+    unlinked: { type: 'string', enum: ['no_notion', 'outside_taxonomy'] },
+    lemma: { type: 'string', minLength: 1 },
+  },
+} as const;
+
+/**
+ * The phase 1 model reply: the natural Catalan, the French as understood, and
+ * the Catalan cut into ordered chunks. It carries no explanation; the teaching
+ * text comes from the reviewed taxonomy, so the model is asked only for what a
+ * test can check. `fr` is the single French field.
+ */
+export const PHRASE_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['fr', 'ca', 'subject', 'assumptions', 'chunks'],
+  properties: {
+    fr: { type: 'string', minLength: 1 },
+    ca: { type: 'string', minLength: 1 },
+    subject: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['person', 'expressed'],
+      properties: {
+        person: {
+          type: 'string',
+          enum: ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl', 'none'],
+        },
+        expressed: { type: 'boolean' },
+      },
+    },
+    assumptions: {
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: [
+          'addressee_tu',
+          'addressee_formal',
+          'speaker_fem',
+          'subject_fem',
+          'plural_fem',
+        ],
+      },
+    },
+    chunks: { type: 'array', minItems: 1, items: CHUNK_SCHEMA },
+  },
 } as const;
