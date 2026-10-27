@@ -63,7 +63,8 @@ const UNCOVERED_ALLOWED = /^[\p{P}\s]*$/u;
  * between the cursor and it is only punctuation and whitespace, so an earlier
  * occurrence of a chunk that contains a letter cannot fit there.
  *
- * Matching is exact: no case folding, no Unicode normalisation. A chunk may
+ * Matching is exact: no case folding, no Unicode normalisation. The one
+ * exception is made before this runs, in `straightenApostrophes`. A chunk may
  * end inside a word; whether to forbid that waits for the round 1 replies.
  */
 export function deriveSpans(
@@ -127,11 +128,29 @@ function chunkRuleErrors(reply: PhraseReply): string[] {
   return errors;
 }
 
+/**
+ * Catalan forms use the straight apostrophe (l'home, s'ha), and so does the
+ * golden set, but a model may return the typographic one (’, U+2019) in `ca`,
+ * in a chunk, or in one and not the other. Converted in both before any span is
+ * looked for, so exact matching holds whichever it wrote (decided 26 Oct, phase
+ * 1 step 3). `fr` is French prose and keeps its typographic apostrophes.
+ *
+ * After the shape check, which it cannot affect: one code unit for one.
+ */
+export function straightenApostrophes(reply: PhraseReply): PhraseReply {
+  const straight = (text: string): string => text.replaceAll('’', "'");
+  return {
+    ...reply,
+    ca: straight(reply.ca),
+    chunks: reply.chunks.map((chunk) => ({ ...chunk, text: straight(chunk.text) })),
+  };
+}
+
 export function checkPhraseReply(candidate: unknown): PhraseCheck {
   const shape = validatePhraseShape(candidate);
   if (!shape.valid) return { valid: false, errors: shape.errors };
 
-  const reply = candidate as PhraseReply;
+  const reply = straightenApostrophes(candidate as PhraseReply);
   const spans = deriveSpans(reply.ca, reply.chunks);
   const errors = [...chunkRuleErrors(reply), ...spans.errors];
   if (errors.length > 0) return { valid: false, errors };

@@ -154,6 +154,60 @@ describe('spans are derived from the text, in UTF-16 offsets', () => {
     ]);
   });
 
+  it('passes a reply with ’ in ca and straight apostrophes in its chunks', () => {
+    const reply: RawReply = {
+      fr: 'L’homme s’est levé tôt.',
+      ca: 'L’home s’ha llevat d’hora.',
+      subject: { person: '3sg', expressed: true },
+      assumptions: [],
+      chunks: [
+        { text: "L'home", role: 'subject', ids: ['ART.def.forma.elisio'] },
+        { text: "s'", role: 'clitic', ids: ['PRON.feble.persona_reflexiu'] },
+        {
+          text: 'ha llevat',
+          role: 'verb',
+          ids: ['VERB.perf.present'],
+          lemma: 'llevar',
+        },
+        { text: "d'hora", role: 'time', ids: [], unlinked: 'no_notion' },
+      ],
+    };
+    const result = checkPhraseReply(reply);
+    expect(spansOf(result)).toEqual([
+      ["L'home", 0, 6],
+      ["s'", 7, 9],
+      ['ha llevat', 9, 18],
+      ["d'hora", 19, 25],
+    ]);
+    // Stored straight, as the golden set spells it; fr stays French prose.
+    if (!result.valid) throw new Error('unreachable');
+    expect(result.phrase.ca).toBe("L'home s'ha llevat d'hora.");
+    expect(result.phrase.fr).toBe('L’homme s’est levé tôt.');
+  });
+
+  it('passes the reverse too: straight in ca, ’ in a chunk', () => {
+    const reply: RawReply = {
+      ...SPEC_REPLY,
+      fr: 'Je me suis levé tôt.',
+      ca: "M'he llevat d'hora.",
+      chunks: [
+        { text: 'M’', role: 'clitic', ids: ['PRON.feble.persona_reflexiu'] },
+        {
+          text: 'he llevat',
+          role: 'verb',
+          ids: ['VERB.perf.present'],
+          lemma: 'llevar',
+        },
+        { text: 'd’hora', role: 'time', ids: [], unlinked: 'no_notion' },
+      ],
+    };
+    expect(spansOf(checkPhraseReply(reply))).toEqual([
+      ["M'", 0, 2],
+      ['he llevat', 2, 11],
+      ["d'hora", 12, 18],
+    ]);
+  });
+
   it('matches exactly: no case folding and no Unicode normalisation', () => {
     expect(
       checkPhraseReply(
