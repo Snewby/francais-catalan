@@ -1,0 +1,1328 @@
+{
+  "model": "claude-sonnet-5-5",
+  "run": 2,
+  "recordedAt": "2026-10-27T15:51:56.721Z",
+  "promptHash": "4c5f0d8a4493ce21d1128c93f142b0fb51d8cf7b455cb1cd343c2705dcd0f827",
+  "settings": { "effort": "medium", "maxTokens": 16000, "cacheTtl": "5m" },
+  "preChecks": [
+    { "name": "structured_outputs", "passed": true, "detail": "accepted" },
+    { "name": "browser_access", "passed": true, "detail": "accepted" },
+    {
+      "name": "cache_read",
+      "passed": true,
+      "detail": "second call read 22966 tokens from the cache"
+    },
+    {
+      "name": "cache_1h",
+      "passed": true,
+      "detail": "one-hour write 0 tokens, read 22966"
+    }
+  ],
+  "cases": [
+    {
+      "n": 1,
+      "input": "Hier, j’ai acheté le pain au marché.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1X1dyJp5uF3aK9wSRj",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Hier, j'ai acheté le pain au marché.\",\"ca\":\"Ahir vaig comprar el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"vaig comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 270,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2499
+        }
+      ],
+      "latencyMs": 2505
+    },
+    {
+      "n": 2,
+      "input": "Ce matin, j’ai vu ta sœur.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XCemUqgHLZCxEjFFe",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Ce matin, j'ai vu ta sœur.\",\"ca\":\"Aquest matí he vist la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Aquest matí\",\"role\":\"time\",\"ids\":[\"DET.dem.forma_paradigma\"]},{\"text\":\"he vist\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 246,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2152,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 32
+            }
+          ]
+        }
+      ],
+      "latencyMs": 2186
+    },
+    {
+      "n": 3,
+      "input": "L’année dernière, nous sommes allés à Gérone.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XMYZDf86M9Tfa9ggq",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"L'année dernière, nous sommes allés à Gérone.\",\"ca\":\"L'any passat vam anar a Girona.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"L'any passat\",\"role\":\"time\",\"ids\":[\"ART.def.forma.elisio\"]},{\"text\":\"vam anar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"anar\"},{\"text\":\"a Girona\",\"role\":\"place\",\"ids\":[\"PREP.a_en.lloc.toponims\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 26,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 200,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2322
+        }
+      ],
+      "latencyMs": 2323
+    },
+    {
+      "n": 4,
+      "input": "Je n’ai jamais mangé de calçots.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XXTbht1Fyhw6q1rdH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai jamais mangé de calçots.\",\"ca\":\"Mai no he menjat calçots.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Mai\",\"role\":\"negation\",\"ids\":[\"NEG.concordanca.preverbal\"]},{\"text\":\"no\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"he menjat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"menjar\"},{\"text\":\"calçots\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\",\"NOM.number.regular\"],\"lemma\":\"calçot\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 249,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2421
+        }
+      ],
+      "latencyMs": 2424
+    },
+    {
+      "n": 5,
+      "input": "Je n’en ai plus envie.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XhueXDx3sMYXgmNho",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'en ai plus envie.\",\"ca\":\"Ja no en tinc ganes.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"en\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.en\"]},{\"text\":\"tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\",\"VERB.ind.present\"],\"lemma\":\"tenir\"},{\"text\":\"ganes\",\"role\":\"object_direct\",\"ids\":[],\"unlinked\":\"no_notion\",\"lemma\":\"gana\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 231,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1969
+        }
+      ],
+      "latencyMs": 1972
+    },
+    {
+      "n": 6,
+      "input": "Tu y vas demain ?",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XrFhiWWWSt6EDxSjL",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Tu y vas demain ?\",\"ca\":\"Hi vas demà?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\"]},{\"text\":\"vas\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.radical_tonic\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 188,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1817
+        }
+      ],
+      "latencyMs": 1819
+    },
+    {
+      "n": 7,
+      "input": "Je le lui ai donné hier.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1XzPLxABSzrunSjV6r",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je le lui ai donné hier.\",\"ca\":\"Ahir li'l vaig donar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"li'l\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.combinacio.ci_cd\",\"PRON.feble.ci_3a\",\"PRON.feble.forma_alomorfs\"]},{\"text\":\"vaig donar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"donar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 222,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2695,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 20
+            }
+          ]
+        }
+      ],
+      "latencyMs": 2716
+    },
+    {
+      "n": 8,
+      "input": "Donne-le-moi, s’il te plaît.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1YBdmntg5MhXrAsYvE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3QkKEAgTGAI4AUIIdGhpbmtpbmcSDDpV0ER8dbykgVyFcBoMNRXnJ0b27nMLk/EEIjBqLmlcVtm1rZF8rhzx8BU/IQxtQ+OrhC3tZTXj7ZTxOhp4KqFvGFEwChRo4d6sKSYq+gjt46HEIOn7bAKxADiV62INodxlQovIHEioQja8uchq1smzbHYopj8nr2MqzhpVbYI8/z9aEhULuFjZA+LhKbcF5zCnhYr+3WfAXklazC2rushrsaYQUqIGFKnIiepOcRKbZgKzXvsko4y2W9uvA+riAFQYq0+HXWMOauKzx5CU5jK+GzqslHpvnSfeBJCytYh5ud1okTNMy6PcJDyyKufvyGAv1Z/0whaji2oVCN9Ru3eAsltBwGAITxKW5q+cZxjSowL6K3HQWxvCdxWM+dJvWtA9v3vXhk4qqbblZMvtkvp7rVbOf0/aXHRiuhJN8ZulaFBqYIi5rcdFGcrI/3I4pxU2O3lFUwNV5WVraHEL2O3fiahgC8TVcMS0WCbbpcNyRuS8ELPPfmYcuf/C2SrWnQN2czaTtO3xQmAPqeOg0ka9ODPwZlHywBxlK9kvM76rwA9d8pMCy1UZA2prnMTdXe4uuM1QE10IKYLfKwuw5ggYGHzLwPHSqhc4rdIvqRP6TSbWkmTwZVCaz07BUgK7xr4xmfT2vv+U4546mg2/eIWZK27FTNIGyBrZ/KoLYIxXuHhHpigATmdQesM0sYkJzkYsXWbJ86uaij97/Rl+8RDjdwT7N/sy1we728pR55zNWmbXCXdYCw1+I2Cr/9REbrZNSwf6DIgxDJBRVZnUGidFXXdF9e/moxmSw7FuQKfNMfeIDcA4zs3M9d3r6e6eixI/z+NTGyK0yOBgD1ecrAaX9/teO/AbWndHohkY1H06cd39R4j5zbiywNmvN0SYciwsvUfuPTMY+Vimu3PX2UGo6O65isYVli+kwFxEfi3YMlMkR74W59sWh0SfQ4gKHsONqsyG4WSlMNsS/3DX5Tx/xO8ubKscxbkowlIFVGQSw6Tn9lOowOK1SqsRzKO7G4flwjet+ZGMczBmpO5HsnLEai3aZbjI0VvaaYtCDLwK0VVsW9s6FY6lUclMx6Esxoq3yaIcR52REuhAUSioydiZzpJVX9ecpvsYEK9JTuwOk942jghl7IjVjM3IGKLmKkWR3OvyfbyFbVE+GOW9yaJt+iReDw7E8ljW0coS3pE5IMXgIN2j04Q7AKSjMw/syoeM4rQciWjvhERfSIh2uHG861dp2/MME4ZRDe6yy/M+xI1ma127Jy5YugTB4nqxQAU0vFP5c5kD4Cuv/GB1UBhtpiRujPPlvocMzPl02W0Mkq/cqNTjvVM7mHBBx7H8lDBrqdFI7JYjhsm4Y2kEIoSM+uMwUuCbm+ilT/PZCuXk74PVTBOvXD15Az3oMq6f9Q87JEfGNcRe4pPqUtqhFkm1747XvRv5L0yjt/ZJWmqy6Mo434/ULwGjJma3iFCTofjizHFRXhfDsr76NXrs7sdPEbXnw7D+L7/fK+al/TQxVdyeI42LCbj5sWly+G7DnFJWNcMy+0cVUsidCBOEWYAL/PeuWrUV6pmynKfCx1hVXlkfakxjoVvHswSX393YWZIA+60vDyDdQqXohwbwBECjd9TYUjPYCrsYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Donne-le-moi, s'il te plaît.\",\"ca\":\"Dona-me'l, si et plau.\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Dona\",\"role\":\"verb\",\"ids\":[\"VERB.imperatiu.positiu\",\"VERB.conj.1\"],\"lemma\":\"donar\"},{\"text\":\"me'l\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.combinacio.ci_cd\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"]},{\"text\":\"si et plau\",\"role\":\"other\",\"ids\":[\"LEX.locucions.cortesia\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 576,
+              "output_tokens_details": { "thinking_tokens": 330 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4330
+        }
+      ],
+      "latencyMs": 4331
+    },
+    {
+      "n": 9,
+      "input": "J’ai acheté du pain.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1YWCUeXqcrTyqKDjJC",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai acheté du pain.\",\"ca\":\"Vaig comprar pa.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Vaig comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"comprar\"},{\"text\":\"pa\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\"],\"lemma\":\"pa\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 165,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2346
+        }
+      ],
+      "latencyMs": 2348
+    },
+    {
+      "n": 10,
+      "input": "Il n’y a plus de lait.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1YgCzMU8az4nQoyn2y",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il n'y a plus de lait.\",\"ca\":\"Ja no hi ha llet.\",\"subject\":{\"person\":\"none\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"hi ha\",\"role\":\"verb\",\"ids\":[\"VERB.impersonal\",\"PRON.feble.hi\"],\"lemma\":\"haver\"},{\"text\":\"llet\",\"role\":\"object_direct\",\"ids\":[\"NOM.gender.diverge_fr\",\"ART.indef.omissio_negacio\"],\"lemma\":\"llet\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 214,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2472
+        }
+      ],
+      "latencyMs": 2474
+    },
+    {
+      "n": 11,
+      "input": "Je n’ai pas de voiture.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1YrswLfgWPNCATUBRo",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai pas de voiture.\",\"ca\":\"No tinc cotxe.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\",\"VERB.ind.present\"],\"lemma\":\"tenir\"},{\"text\":\"cotxe\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.omissio_negacio\"],\"lemma\":\"cotxe\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 19,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 198,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2315
+        }
+      ],
+      "latencyMs": 2316
+    },
+    {
+      "n": 12,
+      "input": "Je ne le fais plus.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1Z2eoKoYP9KYh9wsDj",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je ne le fais plus.\",\"ca\":\"Ja no ho faig.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\"]},{\"text\":\"faig\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.velar\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 183,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1622
+        }
+      ],
+      "latencyMs": 1624
+    },
+    {
+      "n": 13,
+      "input": "Personne n’est venu.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1Z9ucT6Rix9LDCUQ9D",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Personne n'est venu.\",\"ca\":\"No ha vingut ningú.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.concordanca.postverbal\",\"NEG.simple.no\"]},{\"text\":\"ha vingut\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"venir\"},{\"text\":\"ningú\",\"role\":\"subject\",\"ids\":[\"PRON.indefinit.persona\",\"SYN.ordre.subjecte_postverbal\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 213,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2554
+        }
+      ],
+      "latencyMs": 2555
+    },
+    {
+      "n": 14,
+      "input": "Je n’ai rien dit à personne.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1ZLdHxHsikH7WMXGGs",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai rien dit à personne.\",\"ca\":\"No he dit res a ningú.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.concordanca.postverbal\",\"NEG.simple.no\"]},{\"text\":\"he dit\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"dir\"},{\"text\":\"res\",\"role\":\"object_direct\",\"ids\":[\"PRON.indefinit.res\",\"NEG.concordanca.postverbal\"]},{\"text\":\"a ningú\",\"role\":\"object_indirect\",\"ids\":[\"PRON.indefinit.persona\",\"PREP.marcatge.datiu_a\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 263,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2116
+        }
+      ],
+      "latencyMs": 2118
+    },
+    {
+      "n": 15,
+      "input": "Il faut que je parte demain.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1ZVhF5MJDAm67i5BkD",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il faut que je parte demain.\",\"ca\":\"He de marxar demà.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"He de marxar\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"PREP.formes_no_finites.inf_regit_de\"],\"lemma\":\"marxar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 162,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2342
+        }
+      ],
+      "latencyMs": 2343
+    },
+    {
+      "n": 16,
+      "input": "Je viens d’arriver.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1ZgX7kRERUZk9ycmyn",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je viens d'arriver.\",\"ca\":\"Acabo d'arribar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Acabo d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.acabar_de\",\"VERB.ind.present\"],\"lemma\":\"acabar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 130,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1640,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 21
+            },
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 128
+            }
+          ]
+        }
+      ],
+      "latencyMs": 1791
+    },
+    {
+      "n": 17,
+      "input": "Elle est en train de préparer le dîner.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1ZoGAZyo7ssWYACAcC",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Elle est en train de préparer le dîner.\",\"ca\":\"Està preparant el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Està preparant\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.progressiva\",\"VERB.no_finit.gerundi\",\"VERB.conj.1\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 197,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1480
+        }
+      ],
+      "latencyMs": 1481
+    },
+    {
+      "n": 18,
+      "input": "Tu dois venir avec nous.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1ZuagBt1uvMfySsyKq",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Tu dois venir avec nous.\",\"ca\":\"Has de venir amb nosaltres.\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Has de venir\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"PREP.formes_no_finites.inf_regit_de\",\"VERB.conj.3.pur\"],\"lemma\":\"haver de\"},{\"text\":\"amb nosaltres\",\"role\":\"complement\",\"ids\":[\"PREP.atones.amb\",\"PREP.formes_no_finites.inf_regit_de\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 214,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2463
+        }
+      ],
+      "latencyMs": 2464
+    },
+    {
+      "n": 19,
+      "input": "La soupe est froide.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1a6CQF6ke6kpgedgff",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"La soupe est froide.\",\"ca\":\"La sopa és freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"és\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 199,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1754
+        }
+      ],
+      "latencyMs": 1754
+    },
+    {
+      "n": 20,
+      "input": "Nous sommes à la maison.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1aE6R3FnJC3aiz9VYd",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Nous sommes à la maison.\",\"ca\":\"Som a casa.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Som\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"a casa\",\"role\":\"place\",\"ids\":[\"PREP.a_en.lloc.a_lloc\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 142,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1863,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 25
+            }
+          ]
+        }
+      ],
+      "latencyMs": 1890
+    },
+    {
+      "n": 21,
+      "input": "Il parle très lentement.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1aMmXHyAz5VekxETbW",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il parle très lentement.\",\"ca\":\"Parla molt lentament.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Parla\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"parlar\"},{\"text\":\"molt\",\"role\":\"quantity\",\"ids\":[\"ADV.grau.molt\"]},{\"text\":\"lentament\",\"role\":\"manner\",\"ids\":[\"ADV.manera.ment\"],\"lemma\":\"lent\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 186,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1682
+        }
+      ],
+      "latencyMs": 1684
+    },
+    {
+      "n": 22,
+      "input": "Je veux que tu viennes.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1aUueWqYPpyrT4V4dn",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je veux que tu viennes.\",\"ca\":\"Vull que vinguis.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Vull\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.velar\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 206,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2636
+        }
+      ],
+      "latencyMs": 2637
+    },
+    {
+      "n": 23,
+      "input": "Bien qu’il pleuve, on va sortir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1agZcwTDMMJ3Q9UkuA",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Bien qu'il pleuve, on va sortir.\",\"ca\":\"Encara que plogui, anirem a sortir.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Encara que\",\"role\":\"connector\",\"ids\":[\"CONJ.concessiva.encara_que\"]},{\"text\":\"plogui\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.impersonal\"],\"lemma\":\"ploure\"},{\"text\":\"anirem a sortir\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\"],\"lemma\":\"sortir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 213,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 1885
+        }
+      ],
+      "latencyMs": 1887
+    },
+    {
+      "n": 24,
+      "input": "La voiture de mon frère est plus rapide que la mienne.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1apLCTjxiK52DdJgbC",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"La voiture de mon frère est plus rapide que la mienne.\",\"ca\":\"El cotxe del meu germà és més ràpid que el meu.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"El cotxe del meu germà\",\"role\":\"subject\",\"ids\":[\"ART.contract.a_de\",\"DET.poss.article_obligatori\",\"ART.def.forma.paradigma\"]},{\"text\":\"és\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\",\"VERB.ind.present\"],\"lemma\":\"ser\"},{\"text\":\"més ràpid\",\"role\":\"complement\",\"ids\":[\"ADV.grau.mes_menys\",\"NOM.adj.four_form\"],\"lemma\":\"ràpid\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.comparativa.igualtat_desigualtat\"]},{\"text\":\"el meu\",\"role\":\"complement\",\"ids\":[\"PRON.ellipsi_nominal\",\"DET.poss.forma_paradigma\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 27,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 348,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2857
+        }
+      ],
+      "latencyMs": 2858
+    },
+    {
+      "n": 25,
+      "input": "J’ai demandé l’heure à un passant.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1b2XRHPZhoXN3dg4Xa",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai demandé l'heure à un passant.\",\"ca\":\"Vaig preguntar l'hora a un vianant.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Vaig preguntar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"LEX.fals_amic.abast\"],\"lemma\":\"preguntar\"},{\"text\":\"l'hora\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.elisio\"],\"lemma\":\"hora\"},{\"text\":\"a un vianant\",\"role\":\"object_indirect\",\"ids\":[\"PREP.marcatge.datiu_a\",\"ART.indef.paradigma\"],\"lemma\":\"vianant\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 255,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2154
+        }
+      ],
+      "latencyMs": 2155
+    },
+    {
+      "n": 26,
+      "input": "J’ai une collection de timbres.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1bCFJvhtC1zRbvjZgh",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai une collection de timbres.\",\"ca\":\"Tinc una col·lecció de segells.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\",\"VERB.ind.present\",\"VERB.irregular.velar\"],\"lemma\":\"tenir\"},{\"text\":\"una col·lecció\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.paradigma\",\"PHON.grafia.ela_geminada\"],\"lemma\":\"col·lecció\"},{\"text\":\"de segells\",\"role\":\"complement\",\"ids\":[\"NOM.number.regular\"],\"lemma\":\"segell\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 240,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3182,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 21
+            }
+          ]
+        }
+      ],
+      "latencyMs": 3205
+    },
+    {
+      "n": 27,
+      "input": "Vous êtes prêts ?",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1bRkRgTTw8ZG4UyQZN",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Vous êtes prêts ?\",\"ca\":\"Esteu a punt?\",\"subject\":{\"person\":\"2pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Esteu\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\",\"VERB.ind.present\"],\"lemma\":\"estar\"},{\"text\":\"a punt\",\"role\":\"complement\",\"ids\":[],\"unlinked\":\"outside_taxonomy\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 154,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2506,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 24
+            }
+          ]
+        }
+      ],
+      "latencyMs": 2532
+    },
+    {
+      "n": 28,
+      "input": "Je suis contente de te voir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1bcHRn2YDuuRZXsxTq",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je suis contente de te voir.\",\"ca\":\"Estic contenta de veure't.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"speaker_fem\",\"addressee_tu\"],\"chunks\":[{\"text\":\"Estic\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\",\"VERB.ind.present\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de\",\"role\":\"connector\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\"]},{\"text\":\"veure't\",\"role\":\"verb\",\"ids\":[\"SYN.clitics.proclisi_enclisi\",\"VERB.no_finit.infinitiu\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 275,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2363
+        }
+      ],
+      "latencyMs": 2365
+    },
+    {
+      "n": 29,
+      "input": "J’ai la flemme d’y aller.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1bnMenLF77ARf1PsZ7",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai la flemme d'y aller.\",\"ca\":\"Tinc mandra d'anar-hi.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\",\"VERB.irregular.velar\",\"VERB.ind.present\"],\"lemma\":\"tenir\"},{\"text\":\"mandra\",\"role\":\"object_direct\",\"ids\":[],\"unlinked\":\"no_notion\",\"lemma\":\"mandra\"},{\"text\":\"d'\",\"role\":\"connector\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"PREP.atones.elisio_de\"]},{\"text\":\"anar\",\"role\":\"verb\",\"ids\":[\"VERB.no_finit.infinitiu\",\"PHON.so.erra_final\"],\"lemma\":\"anar\"},{\"text\":\"hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 341,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2894
+        }
+      ],
+      "latencyMs": 2896
+    },
+    {
+      "n": 30,
+      "input": "Je me suis tromper de chemin hier soir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-sonnet-5-5",
+            "id": "msg_011CgT1bzi4UDJjtXZy2nvHk",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je me suis trompé de chemin hier soir.\",\"ca\":\"Ahir al vespre em vaig equivocar de camí.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir al vespre\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"em\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.persona_reflexiu\",\"SYN.pronominals.inherents\"]},{\"text\":\"vaig equivocar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"VERB.conj.1\"],\"lemma\":\"equivocar-se\"},{\"text\":\"de camí\",\"role\":\"complement\",\"ids\":[\"PREP.regim.divergent_de\"],\"lemma\":\"camí\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 276,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2624
+        }
+      ],
+      "latencyMs": 2624
+    }
+  ]
+}

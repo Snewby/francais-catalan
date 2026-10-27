@@ -29,6 +29,12 @@
       "key": "tot i que plou, sortirem",
       "ca": "Tot i que plou, sortirem.",
       "verdict": "naturel"
+    },
+    {
+      "id": "23-d",
+      "key": "encara que plogui, anirem a sortir",
+      "ca": "Encara que plogui, anirem a sortir.",
+      "verdict": null
     }
   ]
 }

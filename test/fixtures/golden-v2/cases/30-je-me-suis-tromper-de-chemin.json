@@ -23,6 +23,18 @@
       "key": "ahir al vespre em vaig equivocar de camí",
       "ca": "Ahir al vespre em vaig equivocar de camí.",
       "verdict": "naturel"
+    },
+    {
+      "id": "30-c",
+      "key": "em vaig equivocar de camí ahir a la nit",
+      "ca": "Em vaig equivocar de camí ahir a la nit.",
+      "verdict": null
+    },
+    {
+      "id": "30-d",
+      "key": "em vaig equivocar de camí ahir al vespre",
+      "ca": "Em vaig equivocar de camí ahir al vespre.",
+      "verdict": null
     }
   ]
 }

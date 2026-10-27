@@ -20,6 +20,12 @@
       "key": "vaig preguntar l'hora a un vianant",
       "ca": "Vaig preguntar l'hora a un vianant.",
       "verdict": "naturel"
+    },
+    {
+      "id": "25-c",
+      "key": "he preguntat l'hora a un vianant",
+      "ca": "He preguntat l'hora a un vianant.",
+      "verdict": null
     }
   ]
 }

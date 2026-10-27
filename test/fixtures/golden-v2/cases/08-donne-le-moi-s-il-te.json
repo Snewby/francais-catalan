@@ -24,6 +24,12 @@
       "key": "dona-me'l, si us plau",
       "ca": "Dona-me'l, si us plau.",
       "verdict": "naturel"
+    },
+    {
+      "id": "8-c",
+      "key": "dóna-me'l, si et plau",
+      "ca": "Dóna-me'l, si et plau.",
+      "verdict": null
     }
   ]
 }
