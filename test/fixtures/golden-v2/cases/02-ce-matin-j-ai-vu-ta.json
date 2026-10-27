@@ -4,24 +4,25 @@
   "input": "Ce matin, j’ai vu ta sœur.",
   "risk": "Past, today",
   "mustLink": [
-    {
-      "anyOf": ["VERB.perf.present"],
-      "hint": "he vist"
-    },
-    {
-      "anyOf": ["DET.poss.article_obligatori"],
-      "hint": "la teva germana"
-    }
+    { "anyOf": ["VERB.perf.present"], "hint": "he vist" },
+    { "anyOf": ["DET.poss.article_obligatori"], "hint": "la teva germana" }
   ],
   "mustNotLink": ["VERB.ind.passat_perifrastic"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "2-a",
+      "key": "aquest matí he vist la teva germana",
+      "ca": "Aquest matí he vist la teva germana.",
+      "verdict": null
+    },
+    {
+      "id": "2-b",
+      "key": "aquest matí, he vist la teva germana",
+      "ca": "Aquest matí, he vist la teva germana.",
+      "verdict": null
+    }
+  ]
 }

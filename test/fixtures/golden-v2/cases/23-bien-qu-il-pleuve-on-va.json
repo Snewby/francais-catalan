@@ -4,24 +4,31 @@
   "input": "Bien qu’il pleuve, on va sortir.",
   "risk": "Subjunctive",
   "mustLink": [
-    {
-      "anyOf": ["CONJ.concessiva.encara_que"],
-      "hint": "encara que"
-    },
-    {
-      "anyOf": ["VERB.subj.present"],
-      "hint": "plogui"
-    }
+    { "anyOf": ["CONJ.concessiva.encara_que"], "hint": "encara que" },
+    { "anyOf": ["VERB.subj.present"], "hint": "plogui" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "23-a",
+      "key": "encara que plogui, sortirem",
+      "ca": "Encara que plogui, sortirem.",
+      "verdict": null
+    },
+    {
+      "id": "23-b",
+      "key": "tot i que plogui, sortirem",
+      "ca": "Tot i que plogui, sortirem.",
+      "verdict": null
+    },
+    {
+      "id": "23-c",
+      "key": "tot i que plou, sortirem",
+      "ca": "Tot i que plou, sortirem.",
+      "verdict": null
+    }
+  ]
 }

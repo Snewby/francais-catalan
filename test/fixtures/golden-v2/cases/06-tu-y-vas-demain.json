@@ -4,23 +4,14 @@
   "input": "Tu y vas demain ?",
   "risk": "Weak pronouns",
   "mustLink": [
-    {
-      "anyOf": ["PRON.feble.hi"],
-      "hint": "hi"
-    },
-    {
-      "anyOf": ["SYN.interrogativa.total"]
-    }
+    { "anyOf": ["PRON.feble.hi"], "hint": "hi" },
+    { "anyOf": ["SYN.interrogativa.total"] }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    { "id": "6-a", "key": "hi vas demà", "ca": "Hi vas demà?", "verdict": null }
+  ]
 }

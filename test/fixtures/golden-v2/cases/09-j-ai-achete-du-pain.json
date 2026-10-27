@@ -3,21 +3,12 @@
   "slug": "j-ai-achete-du-pain",
   "input": "J’ai acheté du pain.",
   "risk": "Partitive",
-  "mustLink": [
-    {
-      "anyOf": ["ART.indef.sense_partitiu"],
-      "hint": "pa"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["ART.indef.sense_partitiu"], "hint": "pa" }],
   "mustNotLink": ["NOM.number.a_es"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    { "id": "9-a", "key": "he comprat pa", "ca": "He comprat pa.", "verdict": null }
+  ]
 }

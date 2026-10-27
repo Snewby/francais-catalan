@@ -4,24 +4,19 @@
   "input": "Je n’ai rien dit à personne.",
   "risk": "Negation",
   "mustLink": [
-    {
-      "anyOf": ["NEG.concordanca.postverbal"],
-      "hint": "no … res … ningú"
-    },
-    {
-      "anyOf": ["PRON.indefinit.res"],
-      "hint": "res"
-    }
+    { "anyOf": ["NEG.concordanca.postverbal"], "hint": "no … res … ningú" },
+    { "anyOf": ["PRON.indefinit.res"], "hint": "res" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "14-a",
+      "key": "no he dit res a ningú",
+      "ca": "No he dit res a ningú.",
+      "verdict": null
+    }
+  ]
 }

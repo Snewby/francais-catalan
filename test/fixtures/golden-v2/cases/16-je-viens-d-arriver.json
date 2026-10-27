@@ -3,21 +3,17 @@
   "slug": "je-viens-d-arriver",
   "input": "Je viens d’arriver.",
   "risk": "Tournures",
-  "mustLink": [
-    {
-      "anyOf": ["VERB.perifrasi.acabar_de"],
-      "hint": "acabo d'arribar"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["VERB.perifrasi.acabar_de"], "hint": "acabo d'arribar" }],
   "mustNotLink": ["PREP.atones.de_origen"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "16-a",
+      "key": "acabo d'arribar",
+      "ca": "Acabo d'arribar.",
+      "verdict": null
+    }
+  ]
 }

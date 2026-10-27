@@ -4,24 +4,19 @@
   "input": "Hier, j’ai acheté le pain au marché.",
   "risk": "Past, hier",
   "mustLink": [
-    {
-      "anyOf": ["VERB.ind.passat_perifrastic"],
-      "hint": "vaig comprar"
-    },
-    {
-      "anyOf": ["ART.contract.a_de"],
-      "hint": "al mercat"
-    }
+    { "anyOf": ["VERB.ind.passat_perifrastic"], "hint": "vaig comprar" },
+    { "anyOf": ["ART.contract.a_de"], "hint": "al mercat" }
   ],
   "mustNotLink": ["VERB.perf.present"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "1-a",
+      "key": "ahir vaig comprar el pa al mercat",
+      "ca": "Ahir vaig comprar el pa al mercat.",
+      "verdict": null
+    }
+  ]
 }

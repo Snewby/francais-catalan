@@ -4,24 +4,19 @@
   "input": "Je veux que tu viennes.",
   "risk": "Subjunctive",
   "mustLink": [
-    {
-      "anyOf": ["VERB.subj.present"],
-      "hint": "vinguis"
-    },
-    {
-      "anyOf": ["CONJ.completiva.que"],
-      "hint": "que"
-    }
+    { "anyOf": ["VERB.subj.present"], "hint": "vinguis" },
+    { "anyOf": ["CONJ.completiva.que"], "hint": "que" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "22-a",
+      "key": "vull que vinguis",
+      "ca": "Vull que vinguis.",
+      "verdict": null
+    }
+  ]
 }

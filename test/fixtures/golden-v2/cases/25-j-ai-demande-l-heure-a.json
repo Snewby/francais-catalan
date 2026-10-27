@@ -3,21 +3,23 @@
   "slug": "j-ai-demande-l-heure-a",
   "input": "J’ai demandé l’heure à un passant.",
   "risk": "False friend",
-  "mustLink": [
-    {
-      "anyOf": ["LEX.fals_amic.abast"],
-      "hint": "he preguntat"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["LEX.fals_amic.abast"], "hint": "he preguntat" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "25-a",
+      "key": "he demanat l'hora a un vianant",
+      "ca": "He demanat l'hora a un vianant.",
+      "verdict": null
+    },
+    {
+      "id": "25-b",
+      "key": "vaig preguntar l'hora a un vianant",
+      "ca": "Vaig preguntar l'hora a un vianant.",
+      "verdict": null
+    }
+  ]
 }

@@ -10,14 +10,15 @@
     }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "15-a",
+      "key": "he de marxar demà",
+      "ca": "He de marxar demà.",
+      "verdict": null
+    }
+  ]
 }

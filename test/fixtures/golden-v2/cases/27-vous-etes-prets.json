@@ -3,21 +3,17 @@
   "slug": "vous-etes-prets",
   "input": "Vous êtes prêts ?",
   "risk": "Ambiguous address",
-  "mustLink": [
-    {
-      "anyOf": ["VERB.ser_estar"],
-      "hint": "esteu"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["VERB.ser_estar"], "hint": "esteu" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": ["addressee_formal"]
-  },
+  "assumptions": { "required": [], "forbidden": ["addressee_formal"] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "27-a",
+      "key": "esteu preparats",
+      "ca": "Esteu preparats?",
+      "verdict": null
+    }
+  ]
 }

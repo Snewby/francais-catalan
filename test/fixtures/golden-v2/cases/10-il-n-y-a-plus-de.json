@@ -4,24 +4,19 @@
   "input": "Il n’y a plus de lait.",
   "risk": "Partitive",
   "mustLink": [
-    {
-      "anyOf": ["NEG.aspecte.ja_no"],
-      "hint": "ja no"
-    },
-    {
-      "anyOf": ["VERB.haver_tenir"],
-      "hint": "hi ha"
-    }
+    { "anyOf": ["NEG.aspecte.ja_no"], "hint": "ja no" },
+    { "anyOf": ["VERB.haver_tenir"], "hint": "hi ha" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "10-a",
+      "key": "ja no hi ha llet",
+      "ca": "Ja no hi ha llet.",
+      "verdict": null
+    }
+  ]
 }

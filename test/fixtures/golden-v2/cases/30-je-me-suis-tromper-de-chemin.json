@@ -4,24 +4,25 @@
   "input": "Je me suis tromper de chemin hier soir.",
   "risk": "Typo in input",
   "mustLink": [
-    {
-      "anyOf": ["VERB.ind.passat_perifrastic"],
-      "hint": "em vaig equivocar"
-    },
-    {
-      "anyOf": ["SYN.pronominals.inherents"],
-      "hint": "equivocar-se"
-    }
+    { "anyOf": ["VERB.ind.passat_perifrastic"], "hint": "em vaig equivocar" },
+    { "anyOf": ["SYN.pronominals.inherents"], "hint": "equivocar-se" }
   ],
   "mustNotLink": ["VERB.perf.present"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": ["trompé"],
-    "mustNotContain": ["tromper"]
-  },
-  "renderings": []
+  "fr": { "mustContain": ["trompé"], "mustNotContain": ["tromper"] },
+  "renderings": [
+    {
+      "id": "30-a",
+      "key": "ahir a la nit em vaig equivocar de camí",
+      "ca": "Ahir a la nit em vaig equivocar de camí.",
+      "verdict": null
+    },
+    {
+      "id": "30-b",
+      "key": "ahir al vespre em vaig equivocar de camí",
+      "ca": "Ahir al vespre em vaig equivocar de camí.",
+      "verdict": null
+    }
+  ]
 }

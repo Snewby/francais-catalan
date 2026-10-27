@@ -4,24 +4,25 @@
   "input": "La soupe est froide.",
   "risk": "ser / estar",
   "mustLink": [
-    {
-      "anyOf": ["VERB.ser_estar"],
-      "hint": "està"
-    },
-    {
-      "anyOf": ["NOM.adj.four_form"],
-      "hint": "freda"
-    }
+    { "anyOf": ["VERB.ser_estar"], "hint": "està" },
+    { "anyOf": ["NOM.adj.four_form"], "hint": "freda" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "19-a",
+      "key": "la sopa és freda",
+      "ca": "La sopa és freda.",
+      "verdict": null
+    },
+    {
+      "id": "19-b",
+      "key": "la sopa està freda",
+      "ca": "La sopa està freda.",
+      "verdict": null
+    }
+  ]
 }

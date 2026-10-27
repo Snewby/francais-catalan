@@ -4,28 +4,26 @@
   "input": "Donne-le-moi, s’il te plaît.",
   "risk": "Weak pronouns",
   "mustLink": [
-    {
-      "anyOf": ["VERB.imperatiu.positiu"],
-      "hint": "dona"
-    },
-    {
-      "anyOf": ["SYN.clitics.proclisi_enclisi"],
-      "hint": "dona-me'l"
-    },
-    {
-      "anyOf": ["LEX.locucions.cortesia"],
-      "hint": "si us plau"
-    }
+    { "anyOf": ["VERB.imperatiu.positiu"], "hint": "dona" },
+    { "anyOf": ["SYN.clitics.proclisi_enclisi"], "hint": "dona-me'l" },
+    { "anyOf": ["LEX.locucions.cortesia"], "hint": "si us plau" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "8-a",
+      "key": "dona-me'l, si et plau",
+      "ca": "Dona-me'l, si et plau.",
+      "verdict": null
+    },
+    {
+      "id": "8-b",
+      "key": "dona-me'l, si us plau",
+      "ca": "Dona-me'l, si us plau.",
+      "verdict": null
+    }
+  ]
 }

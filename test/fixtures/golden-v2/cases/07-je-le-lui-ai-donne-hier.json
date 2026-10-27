@@ -4,24 +4,25 @@
   "input": "Je le lui ai donné hier.",
   "risk": "Weak pronouns",
   "mustLink": [
-    {
-      "anyOf": ["PRON.feble.combinacio.ci_cd"],
-      "hint": "l'hi"
-    },
-    {
-      "anyOf": ["VERB.ind.passat_perifrastic"],
-      "hint": "vaig donar"
-    }
+    { "anyOf": ["PRON.feble.combinacio.ci_cd"], "hint": "l'hi" },
+    { "anyOf": ["VERB.ind.passat_perifrastic"], "hint": "vaig donar" }
   ],
   "mustNotLink": ["VERB.perf.present"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "7-a",
+      "key": "ahir li ho vaig donar",
+      "ca": "Ahir li ho vaig donar.",
+      "verdict": null
+    },
+    {
+      "id": "7-b",
+      "key": "li'l vaig donar ahir",
+      "ca": "Li'l vaig donar ahir.",
+      "verdict": null
+    }
+  ]
 }

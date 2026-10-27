@@ -3,21 +3,12 @@
   "slug": "nous-sommes-a-la-maison",
   "input": "Nous sommes à la maison.",
   "risk": "ser / estar",
-  "mustLink": [
-    {
-      "anyOf": ["VERB.ser_estar"],
-      "hint": "som or estem"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["VERB.ser_estar"], "hint": "som or estem" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    { "id": "20-a", "key": "som a casa", "ca": "Som a casa.", "verdict": null }
+  ]
 }

@@ -4,24 +4,25 @@
   "input": "L’année dernière, nous sommes allés à Gérone.",
   "risk": "Past, hier",
   "mustLink": [
-    {
-      "anyOf": ["VERB.ind.passat_perifrastic"],
-      "hint": "vam anar"
-    },
-    {
-      "anyOf": ["PREP.a_en.lloc.a_lloc"],
-      "hint": "a Girona"
-    }
+    { "anyOf": ["VERB.ind.passat_perifrastic"], "hint": "vam anar" },
+    { "anyOf": ["PREP.a_en.lloc.a_lloc"], "hint": "a Girona" }
   ],
   "mustNotLink": ["VERB.perf.present"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "3-a",
+      "key": "l'any passat vam anar a girona",
+      "ca": "L'any passat vam anar a Girona.",
+      "verdict": null
+    },
+    {
+      "id": "3-b",
+      "key": "l'any passat, vam anar a girona",
+      "ca": "L'any passat, vam anar a Girona.",
+      "verdict": null
+    }
+  ]
 }

@@ -4,24 +4,25 @@
   "input": "Il parle très lentement.",
   "risk": "Control (transfer)",
   "mustLink": [
-    {
-      "anyOf": ["ADV.manera.ment"],
-      "hint": "lentament"
-    },
-    {
-      "anyOf": ["ADV.grau.molt"],
-      "hint": "molt"
-    }
+    { "anyOf": ["ADV.manera.ment"], "hint": "lentament" },
+    { "anyOf": ["ADV.grau.molt"], "hint": "molt" }
   ],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "21-a",
+      "key": "parla molt a poc a poc",
+      "ca": "Parla molt a poc a poc.",
+      "verdict": null
+    },
+    {
+      "id": "21-b",
+      "key": "parla molt lentament",
+      "ca": "Parla molt lentament.",
+      "verdict": null
+    }
+  ]
 }

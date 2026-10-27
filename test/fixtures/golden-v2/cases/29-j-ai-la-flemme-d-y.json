@@ -5,14 +5,21 @@
   "risk": "Idiom, outside taxonomy",
   "mustLink": [],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": true,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "29-a",
+      "key": "em fa mandra anar-hi",
+      "ca": "Em fa mandra anar-hi.",
+      "verdict": null
+    },
+    {
+      "id": "29-b",
+      "key": "tinc mandra d'anar-hi",
+      "ca": "Tinc mandra d'anar-hi.",
+      "verdict": null
+    }
+  ]
 }

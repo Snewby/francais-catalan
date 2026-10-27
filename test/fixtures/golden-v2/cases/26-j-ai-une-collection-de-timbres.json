@@ -3,21 +3,17 @@
   "slug": "j-ai-une-collection-de-timbres",
   "input": "J’ai une collection de timbres.",
   "risk": "Spelling, l·l",
-  "mustLink": [
-    {
-      "anyOf": ["PHON.grafia.ela_geminada"],
-      "hint": "col"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["PHON.grafia.ela_geminada"], "hint": "col" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "26-a",
+      "key": "tinc una col·lecció de segells",
+      "ca": "Tinc una col·lecció de segells.",
+      "verdict": null
+    }
+  ]
 }

@@ -1,0 +1,1445 @@
+{
+  "model": "claude-haiku-5-5",
+  "run": 1,
+  "recordedAt": "2026-10-27T15:04:10.140Z",
+  "promptHash": "4c5f0d8a4493ce21d1128c93f142b0fb51d8cf7b455cb1cd343c2705dcd0f827",
+  "settings": { "effort": "medium", "maxTokens": 16000, "cacheTtl": "5m" },
+  "preChecks": [
+    { "name": "structured_outputs", "passed": true, "detail": "accepted" },
+    { "name": "browser_access", "passed": true, "detail": "accepted" },
+    {
+      "name": "cache_read",
+      "passed": true,
+      "detail": "second call read 22966 tokens from the cache"
+    },
+    {
+      "name": "cache_1h",
+      "passed": true,
+      "detail": "one-hour write 0 tokens, read 22966"
+    }
+  ],
+  "cases": [
+    {
+      "n": 1,
+      "input": "Hier, j’ai acheté le pain au marché.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwspojJBy8i342ks7oE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Hier, j'ai acheté le pain au marché.\",\"ca\":\"Ahir vaig comprar el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"vaig comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 925,
+              "output_tokens_details": { "thinking_tokens": 683 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5079,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 28
+            }
+          ]
+        }
+      ],
+      "latencyMs": 5110
+    },
+    {
+      "n": 2,
+      "input": "Ce matin, j’ai vu ta sœur.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwtC1wE26BovcoHA8P4",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Ce matin, j'ai vu ta sœur.\",\"ca\":\"Aquest matí, he vist la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Aquest matí\",\"role\":\"time\",\"ids\":[],\"unlinked\":\"no_notion\"},{\"text\":\"he vist\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\"],\"lemma\":\"germana\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1147,
+              "output_tokens_details": { "thinking_tokens": 936 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6393
+        }
+      ],
+      "latencyMs": 6394
+    },
+    {
+      "n": 3,
+      "input": "L’année dernière, nous sommes allés à Gérone.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwtfMjcwz6TWAC6xrX5",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"L'année dernière, nous sommes allés à Gérone.\",\"ca\":\"L'any passat, vam anar a Girona.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"L'any passat\",\"role\":\"time\",\"ids\":[\"ART.def.forma.elisio\"]},{\"text\":\"vam anar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"anar\"},{\"text\":\"a Girona\",\"role\":\"place\",\"ids\":[\"PREP.a_en.lloc.a_lloc\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 26,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 806,
+              "output_tokens_details": { "thinking_tokens": 602 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5749
+        }
+      ],
+      "latencyMs": 5751
+    },
+    {
+      "n": 4,
+      "input": "Je n’ai jamais mangé de calçots.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwu66WxmbZEwR2gkhC7",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai jamais mangé de calçots.\",\"ca\":\"Mai no he menjat calçots.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Mai no\",\"role\":\"negation\",\"ids\":[\"NEG.concordanca.preverbal\"]},{\"text\":\"he menjat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\"],\"lemma\":\"menjar\"},{\"text\":\"calçots\",\"role\":\"object_direct\",\"ids\":[],\"unlinked\":\"no_notion\",\"lemma\":\"calçot\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1324,
+              "output_tokens_details": { "thinking_tokens": 1126 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 8121
+        }
+      ],
+      "latencyMs": 8122
+    },
+    {
+      "n": 5,
+      "input": "Je n’en ai plus envie.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwugduMnF2fN4zYUpu9",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'en ai plus envie.\",\"ca\":\"No en tinc més ganes.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.no_mes\"]},{\"text\":\"en\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.en\"]},{\"text\":\"tinc\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"tenir\"},{\"text\":\"més\",\"role\":\"quantity\",\"ids\":[\"NEG.aspecte.no_mes\"]},{\"text\":\"ganes\",\"role\":\"object_direct\",\"ids\":[],\"unlinked\":\"no_notion\",\"lemma\":\"gana\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1117,
+              "output_tokens_details": { "thinking_tokens": 868 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5942
+        }
+      ],
+      "latencyMs": 5944
+    },
+    {
+      "n": 6,
+      "input": "Tu y vas demain ?",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwv86qRa2YTzvzpV9SA",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Tu y vas demain ?\",\"ca\":\"Hi vas demà?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\"]},{\"text\":\"vas\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 739,
+              "output_tokens_details": { "thinking_tokens": 566 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4198
+        }
+      ],
+      "latencyMs": 4199
+    },
+    {
+      "n": 7,
+      "input": "Je le lui ai donné hier.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwvRzsX2zLk5eVEpyDm",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je le lui ai donné hier.\",\"ca\":\"Ahir li ho vaig donar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"li ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.combinacio.ci_cd\"]},{\"text\":\"vaig donar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"donar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1206,
+              "output_tokens_details": { "thinking_tokens": 1013 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5994
+        }
+      ],
+      "latencyMs": 5995
+    },
+    {
+      "n": 8,
+      "input": "Donne-le-moi, s’il te plaît.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwvscUuV24NndWwV1Dt",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Donne-le-moi, s'il te plaît.\",\"ca\":\"Dona-me'l, si et plau.\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Dona-me'l\",\"role\":\"verb\",\"ids\":[\"VERB.imperatiu.positiu\",\"PRON.feble.combinacio.ordre_general\"],\"lemma\":\"donar\"},{\"text\":\"si et plau\",\"role\":\"other\",\"ids\":[\"LEX.locucions.cortesia\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1349,
+              "output_tokens_details": { "thinking_tokens": 1164 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6963
+        }
+      ],
+      "latencyMs": 6965
+    },
+    {
+      "n": 9,
+      "input": "J’ai acheté du pain.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwwPT792vThv4bMTrre",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai acheté du pain.\",\"ca\":\"He comprat pa.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"He comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"comprar\"},{\"text\":\"pa\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\"],\"lemma\":\"pa\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 738,
+              "output_tokens_details": { "thinking_tokens": 574 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4392
+        }
+      ],
+      "latencyMs": 4393
+    },
+    {
+      "n": 10,
+      "input": "Il n’y a plus de lait.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwwiHBaKnScREMScAdy",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il n'y a plus de lait.\",\"ca\":\"Ja no hi ha llet.\",\"subject\":{\"person\":\"none\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\"]},{\"text\":\"ha\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.haver_tenir\"],\"lemma\":\"haver\"},{\"text\":\"llet\",\"role\":\"object_direct\",\"ids\":[\"NOM.gender.diverge_fr\"],\"lemma\":\"llet\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1069,
+              "output_tokens_details": { "thinking_tokens": 839 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5388
+        }
+      ],
+      "latencyMs": 5389
+    },
+    {
+      "n": 11,
+      "input": "Je n’ai pas de voiture.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwx7CpBcrAALsHCDqs6",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQStREKEAgTGAI4AUIIdGhpbmtpbmcSDIpxUwQLu4fIbz3GjBoMtLfEvYroSb4/J1BbIjAujwR44kJNrh5c6gAm7yTH5uk1M35wXO0FpMzjkYGwyVQiaEh781wx7GhLrXegAzMq0hBYMPBXglKwtb2XCuRm0ZSDI/2iiOEiJWhm08gzryfjNADH+epTJL2ZXfKiywlInFvYE3Um/NEWglBgvVUc50CrLAC7oRT2mQFxMj9cpXXwc9BmWmLLIBjiJDj55/JWlhUhMTaLGSc7A8KVcUB1y8XQwDuQDLGg3czd1zaWprPa47zu8nM3faUrnZxiHq/HuxPG2yXonk0x7j12I0IvrLnYvmSYLqZ1XsszrCKamFoSLtvu96/jFimZ4Oqnc9+QgWxmngtNW5Z2DB0KPFS2/dJbQguRATheG64syfSeqYAIFsz4fJE9dmtU/on1I9LxvmjhxTiSLPQMlx/4bpWsuSo/MisKuHYEh6DpJFAIuq/XDIqoq4TkxQYeV5bOrDP0MMJkbYHtdP6dGZtMEJxuAN4X2iCsKUkMeCH519DJOCj7CxmLlHEGGI4RiGsEaEIbwtHV4S/mBppqfaMhNz40KA/ktEdwbVti6oJxhxAfRZ8yNwhuzMcMdJiR7ZDib0oJ98OIPx9QLEEbObQZcbqJ8dIbhWrGKiwb9pmdfa+fu6IJYxEOm7vfNPPUZcDNncNFameNzQ9qcHPbsRJKNTBQeSJS8hoD6SrX/R6pi9Rw9tmwFIG1nhDS5mGuA7j18dnLJWqqlt2etG81nUnaUKmnQ4GKjmaRm8hoQInXgC246diEzwM5aj5kgoCQioJfKop35Y50TzK8vT6G2LYd9NQheJwwXvhfwbzn4A055Q+1erHgPCpTi+fh1guv9/Vy+GgxL0JwYXrAWQp7WskdZ6Oi4Oaj0KI4FskFmje9RIExdoUlgZQ6ucKLApu6dDExltkypVlsb3kdzjRdlCbGn9PtWuxdcfEgk50yaIF5RfpmoT6KkzdNVuifFGl4wFXYMSTAkx8UCssWoAEgqyKXcIk8pAuLp+QerjRejlSRGLySbUURyZv0W/+FHnJC1rDqAgmzj6fb596Ue6eRgvagSP2scFFc1n+azJ04Z0xXFRPO4/L1Vn0HHu33Awkf3TkE/AP1OmsHXR+AjreOZR5Rbvh3x+8p8lMa9J/kZ5bv32Xf0pe/ik4yPYCXOZlFn78yPymk+N3s7RGIx29a7rlxqjBIkF3bmEq55xAkIqC9lbY/kZ2lshMlFJIFjA5ckXUU57MHbSGG9UAabaGV97bZAGbWPgOv9ajSGlS1YxzuPOq32I/y6T/cwff9TyNx8DVgkRa0MZsnVLJXS+X/cJVzA+fntqu53mmC97b1ctuP3rrGI5I/ZB0Q0hycuh62/oD6zbD3s45RAs/gbGpyIEal30FzRbJeeJZTM4mfahGurVyg6ZV47NVy0YsFGhE97/ytNL3GzT+9p3aDDRzCcxIV9PWjfLw1Z6+vWqrRybEbc5twEDvJ4GZX3GHwhnLb+r1C8Qt/hmphkb9ljg1/i4Y8qVX+bhatqome0nQLQZd2lknyVqCk8919tyDWcxJUrocXgVZa1VeUfaYxg7SPtIt8MtxMkalOCSKCdqPqCv9bqU1OlOJaDpRp3FHoWUxLfKmo4jHeede4zvkb/g2XS5pNTIrAuyQf6LmHU7kfGWq9osq3UlDNu7RfT4gvG50mJwWeGnDitNQc29sJpY+6GpN/IGDnpOhpvzHYSM0yOoHg71hpe5BwAXa4JLzx0tWItngTyKnsdw1gUKT9P8WlpXOXJqnjHIdtp4t5D0ZltBYwSym+7zq/tg+RxNxYtTG9dOo82pddQaYtS11fEJnoda8GCoffQr0t/u+7ruUxBpupKgF+j+MvDv9BKIVUH/jFeVi2dvimP0xpvS8ASfhKD6YEAkQMLe/cpJbegQnn43CoOvuB1jv1WoHnqQIOc/ndYlAo9kDB+8nJ86delvBv7MaqgZz5A4C2QeA6I74PWeIDvSMfV/HXJnmr/iXIZyG/OUz+I5LoCf9BXvUMnmlnWzCZwgBRB39+9Vl3e1VMyhoH4sxxjaJaP+QkgUTOf05P59I4/sT3v2ttdjtENo5huTM0aEwOVQ64Uka8oIiXaEa/amTtkqQ+9CmDFLHNxknfRSuHlgHffbLK8m/x9f2UegF8XOIpwyQzAqfg3UIFuwpIn0VCki3i/Vmcr/S8c7LSz5YBrQCprpA2vhQz19i722/9+FhG5Gj57+hqjW5BCYKq9pP+YfJQ2PkFx2cmCBX5B6w/IsNGjIl4XDg5/pn8kJgaErPT5yojJWkYrBo2Oyq6YM2jLSvyap2ZzZOEvUl2ZWNkI3YmIx60kBZzgZ+Io9J3Ap+aYvcXv6DqFjQxUgqLFse9Awz4kYWsnCIoCTGIASFGwBjyk8Y0DlyFsYu0m1X2OrQT+xCdKAqPnaQexzFy7wdQLU8WTL4wjtxp+tQw+uhhP0HRc8U0E1R7/Lna7mWNpHKxblQ0G5OPZe/sSL/SyfqFbpc6Ja3nwXsgKZnv/0s1nHTmhwXt3BQ6m+9sLUYLRIqCb1sbb/H+V0uNcDWtEtCyodmxp14372ptfGKw3PLHaTxAG11ecsmTsAACxxP5rcSQXIjJlR/V0M+rFsBERR8RX3IsdEsbOmZEMbHglVyx0hVaNtulh4gwH7rBAG2XFEvV09fI02OcnxUQxTfPIGKxvr2zdANTddUGTLyBSU2J90JwWrrzzyKx0+wn0SBSfHeIg3splw4j8hlLVOVxxxEFmIsn7MreCF48BugxdKSExopmPDdoOzhFjFlQz+5CsA9L8gbRuMBAZmn7XUQDpnQUeJWWqfCSHUNj2dlXhQSeXp2cVKTiH0Y9fn3yCb3SIRajgXVMCXXf/k0YVeGIfin21V1KW4sf+tKFJnCD8VzcqZgY04dnXEBECJvK6El4KO0WKbNZI2gYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai pas de voiture.\",\"ca\":\"No tinc cotxe.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"tinc\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.velar\",\"VERB.haver_tenir\"],\"lemma\":\"tenir\"},{\"text\":\"cotxe\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.omissio_negacio\"],\"lemma\":\"cotxe\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 19,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 945,
+              "output_tokens_details": { "thinking_tokens": 736 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5209
+        }
+      ],
+      "latencyMs": 5210
+    },
+    {
+      "n": 12,
+      "input": "Je ne le fais plus.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwxVWFbE6n4yrkyb18t",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je ne le fais plus.\",\"ca\":\"Ja no ho faig.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\"]},{\"text\":\"faig\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.velar\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 940,
+              "output_tokens_details": { "thinking_tokens": 757 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6135
+        }
+      ],
+      "latencyMs": 6137
+    },
+    {
+      "n": 13,
+      "input": "Personne n’est venu.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwxwoYdLZrHWoUgVKCk",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Personne n'est venu.\",\"ca\":\"Ningú no ha vingut.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"Ningú\",\"role\":\"subject\",\"ids\":[\"PRON.indefinit.persona\"]},{\"text\":\"no\",\"role\":\"negation\",\"ids\":[\"NEG.concordanca.preverbal\"]},{\"text\":\"ha vingut\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 896,
+              "output_tokens_details": { "thinking_tokens": 720 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5376
+        }
+      ],
+      "latencyMs": 5378
+    },
+    {
+      "n": 14,
+      "input": "Je n’ai rien dit à personne.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwyLp9SAiSkzrxi5Ysp",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je n'ai rien dit à personne.\",\"ca\":\"No he dit res a ningú.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"he dit\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\"],\"lemma\":\"dir\"},{\"text\":\"res\",\"role\":\"object_direct\",\"ids\":[\"PRON.indefinit.res\"]},{\"text\":\"a ningú\",\"role\":\"object_indirect\",\"ids\":[\"PREP.marcatge.datiu_a\",\"PRON.indefinit.persona\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 949,
+              "output_tokens_details": { "thinking_tokens": 726 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5296
+        }
+      ],
+      "latencyMs": 5297
+    },
+    {
+      "n": 15,
+      "input": "Il faut que je parte demain.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwyjSgXEBPwNowiAn3S",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il faut que je parte demain.\",\"ca\":\"He de marxar demà.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"He de marxar\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.no_finit.infinitiu\"],\"lemma\":\"marxar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 742,
+              "output_tokens_details": { "thinking_tokens": 583 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4752
+        }
+      ],
+      "latencyMs": 4754
+    },
+    {
+      "n": 16,
+      "input": "Je viens d’arriver.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwz5n4KgWwLmQs3gYfD",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je viens d'arriver.\",\"ca\":\"Acabo d'arribar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Acabo d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.acabar_de\",\"VERB.ind.present\"],\"lemma\":\"acabar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 561,
+              "output_tokens_details": { "thinking_tokens": 431 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3888
+        }
+      ],
+      "latencyMs": 3888
+    },
+    {
+      "n": 17,
+      "input": "Elle est en train de préparer le dîner.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwzNQgSU953hafktTsP",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Elle est en train de préparer le dîner.\",\"ca\":\"Està preparant el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Està preparant\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.progressiva\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 951,
+              "output_tokens_details": { "thinking_tokens": 777 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4941
+        }
+      ],
+      "latencyMs": 4942
+    },
+    {
+      "n": 18,
+      "input": "Tu dois venir avec nous.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSwzjYf2p7zYjm9wTsR6",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Tu dois venir avec nous.\",\"ca\":\"Has de venir amb nosaltres.\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Has de venir\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.no_finit.infinitiu\"],\"lemma\":\"venir\"},{\"text\":\"amb nosaltres\",\"role\":\"complement\",\"ids\":[\"PREP.atones.amb\",\"PRON.fort.tonic\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 815,
+              "output_tokens_details": { "thinking_tokens": 630 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3961
+        }
+      ],
+      "latencyMs": 3962
+    },
+    {
+      "n": 19,
+      "input": "La soupe est froide.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx12XdC6f7YcVp8o8cz",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"La soupe est froide.\",\"ca\":\"La sopa és freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"és\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1114,
+              "output_tokens_details": { "thinking_tokens": 926 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6421
+        }
+      ],
+      "latencyMs": 6422
+    },
+    {
+      "n": 20,
+      "input": "Nous sommes à la maison.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx1VnTragbEcCw4EWHT",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSxwoKEAgTGAI4AUIIdGhpbmtpbmcSDPChYJWC6Qcvg4G0OhoMKbu3+l5NmU4Tp84gIjAyY2Eo16widk9EXXPEbXIyorMAIoaVIMs5jP3YAbeSoiLrLhHv8AtUnwAp3UECi18q5AlCZ3qvZDbvCZ6mWxTu7OnWiT71f8evyZ1la4gg1Wo8SMUiN0tpSyT3T8d/Wz0BB/+cpkp55ChPIbBDqEyAM8yB8vE3yyMRju59V54ivbHHo6+1hA71CTOiFkKCVcKfXM5h1VdHVKmqFGSUCTPnsRcL2PPWZNSTDLFgue/ij5lCHAF/QxTGKHKYjZBfa7wZ5zeo0pj8C64prT1TGyQIZKSXdeKtN733Eisua7nU2xHPaTNmNvJFxqy6b9sxHSgahYTYWzpM3jB658H+GBb/0JTwi6/ufX3De04lYVCZrqZw8zJoVy7srsWSavdKBG6rvHGowyqM933EUPK1BmFd3fqRYXOIfaV3HZSZ68cmRiR47a922YmLQfPil6Vl3lU3BdK7mYXLoq2Fu4/APN3OFCZNFgnyy0gCkeAoYAnHTy83S2Dx7l6m/lOuzSIeXD4TRBMHXYpULS3+/JDys6Dw9lfzpL07qBqnnaF7ppidtVNC99OMcDyIQ+FgJ5aoXMjHHMd/P04hcYiB2jO4u8bjlK+nL7wTPuhpW3NKUDAOpUHiZH6m0EQ7y3RzS4+jyCvzivuWtrqC6/7ZEANJ9H6YEkF7h1Kcu/DfIiTHa2ScUdFC4kTN4I0cvismMKnTLmyMhanwpEbSt25tnavreTr3G47WMyA+s9hlJXTaWYIPJhNJMVf/o12iQN2VqDjR2sEvtt6xyCIiZaTK8K+52CotkwbnCcKuSxDSeLQTIOaM19xpzH7v21Vg2F3Z9lIHr5GcIcSzA+so1ii7UgUAusLwQNks2qzBhtUDQSkN7LOX5FI+Bq1O9g+TnfjO6Kc+011cq9/GGcK7vvaxGxpZVCXjmCNzQTNsPIS/WEx98uVp+6kLLybB372KEnpZ/l/QTQQn1lm2AmBYSYsiiSgrzyJnbEepQSKy3f01BFrBJ2VXqsVf9BVs9xjys/yYObrW2lVi3aZdXed9M6Ap6W0+vMbvKzdyiL1N81xbzQ+gViIUaKDlN9PgQtIIyACa9A+kRAHai2di5Li6CIj5IjJRVd6h0P5+UT3sZrWz5OiuPCVxRVOSkZsJNSvuVIbk74gs9ReZ/t5eE6tIiccZgKKTF/AOA4unbpeG4CAZUN5yVu/p49LrC/atG1ALZrWwMoZTyml+PVuswlncuiRgk9KNOR+cx4L/+R9H6fVwCy1H5MaRp3aD7caKAxgcj6A3wi/HVbW4Tak6CVSC6vg/fPOV8BH9o9ze1ksA7S+SNPhDwuBrbMcFbFoew2SJy6r+JWOzenKiE8CXMH6NWRxH10Ysoahk+8+7fz+nJWDBOAUeD6Aek9bmm3T3TuQ0FqzgRXZD+5UGAAB1CHdcM2Um+pN48vn/4jxgeXY38CfVOi3YgDXHm0ktPa5BtFlFVaj8Z+ZC38SicBll0XS4CFhsYCTUwktbD2k5rNTEc/yCStpEYmaCGU237450JEzq5MlLefIAZHG2FIjyTMLeQfbz5ju06NriePLkZrhnTmFSSJ7ONuki3ZgYr6wIFVmrJWDP96smL+10gCJEhDgLt4ENtrr8/kK3xFpNVNDUeTGjjvgaTcUJc8V8aigUJW0JNWezuTSzt+UJW9eeFJdDIJg5ujN8QZZ5k86B4iPz+bXWNMliEZQMEiaFgXzxT8XSqgtSNBY4XyNv60U6d/IwGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Nous sommes à la maison.\",\"ca\":\"Som a casa.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Som\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"a casa\",\"role\":\"place\",\"ids\":[\"PREP.a_en.lloc.a_lloc\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 509,
+              "output_tokens_details": { "thinking_tokens": 367 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2962
+        }
+      ],
+      "latencyMs": 2963
+    },
+    {
+      "n": 21,
+      "input": "Il parle très lentement.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx1iYfE4NR34ohXk14V",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Il parle très lentement.\",\"ca\":\"Parla molt lentament.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Parla\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"parlar\"},{\"text\":\"molt\",\"role\":\"quantity\",\"ids\":[\"ADV.grau.molt\"]},{\"text\":\"lentament\",\"role\":\"manner\",\"ids\":[\"ADV.manera.ment\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 997,
+              "output_tokens_details": { "thinking_tokens": 820 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4924
+        }
+      ],
+      "latencyMs": 4925
+    },
+    {
+      "n": 22,
+      "input": "Je veux que tu viennes.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx261kMnDxCP6WnXEuE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je veux que tu viennes.\",\"ca\":\"Vull que vinguis.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Vull\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 912,
+              "output_tokens_details": { "thinking_tokens": 728 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5543
+        }
+      ],
+      "latencyMs": 5545
+    },
+    {
+      "n": 23,
+      "input": "Bien qu’il pleuve, on va sortir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx2VQfp7yw1WBwZdSnv",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Bien qu'il pleuve, on va sortir.\",\"ca\":\"Tot i que plogui, sortirem.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Tot i que\",\"role\":\"connector\",\"ids\":[\"CONJ.concessiva.tot_i_que\"]},{\"text\":\"plogui\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\"],\"lemma\":\"ploure\"},{\"text\":\"sortirem\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\"],\"lemma\":\"sortir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 927,
+              "output_tokens_details": { "thinking_tokens": 725 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4744
+        }
+      ],
+      "latencyMs": 4745
+    },
+    {
+      "n": 24,
+      "input": "La voiture de mon frère est plus rapide que la mienne.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx2qf55GfcstsaxGdEs",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"La voiture de mon frère est plus rapide que la mienne.\",\"ca\":\"El cotxe del meu germà és més ràpid que el meu.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"El cotxe del meu germà\",\"role\":\"subject\",\"ids\":[\"ART.contract.a_de\"]},{\"text\":\"és\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"més ràpid\",\"role\":\"complement\",\"ids\":[\"ADV.grau.mes_menys\"],\"lemma\":\"ràpid\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.comparativa.igualtat_desigualtat\"]},{\"text\":\"el meu\",\"role\":\"complement\",\"ids\":[\"PRON.ellipsi_nominal\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 27,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1693,
+              "output_tokens_details": { "thinking_tokens": 1405 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 7716
+        }
+      ],
+      "latencyMs": 7717
+    },
+    {
+      "n": 25,
+      "input": "J’ai demandé l’heure à un passant.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx3QbDzyhiXSmUZZXkH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai demandé l'heure à un passant.\",\"ca\":\"He demanat l'hora a un vianant.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"He demanat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\"],\"lemma\":\"demanar\"},{\"text\":\"l'hora\",\"role\":\"object_direct\",\"ids\":[\"ART.def.us.hores\",\"ART.def.forma.elisio\"],\"lemma\":\"hora\"},{\"text\":\"a un vianant\",\"role\":\"object_indirect\",\"ids\":[\"PREP.marcatge.datiu_a\",\"ART.indef.paradigma\"],\"lemma\":\"vianant\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1499,
+              "output_tokens_details": { "thinking_tokens": 1263 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 7564
+        }
+      ],
+      "latencyMs": 7565
+    },
+    {
+      "n": 26,
+      "input": "J’ai une collection de timbres.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx3xwQKknoPtb7uGFoa",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai une collection de timbres.\",\"ca\":\"Tinc una col·lecció de segells.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\",\"VERB.ind.present\"],\"lemma\":\"tenir\"},{\"text\":\"una col·lecció\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.paradigma\",\"PHON.grafia.ela_geminada\"],\"lemma\":\"col·lecció\"},{\"text\":\"de segells\",\"role\":\"complement\",\"ids\":[\"NOM.number.regular\"],\"lemma\":\"segell\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1587,
+              "output_tokens_details": { "thinking_tokens": 1358 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 8098
+        }
+      ],
+      "latencyMs": 8099
+    },
+    {
+      "n": 27,
+      "input": "Vous êtes prêts ?",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx4aBCup2TSNRNAcKyH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Vous êtes prêts ?\",\"ca\":\"Esteu preparats?\",\"subject\":{\"person\":\"2pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Esteu\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"preparats\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"preparat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1078,
+              "output_tokens_details": { "thinking_tokens": 928 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5965,
+          "resent": [
+            {
+              "cause": "TypeError: fetch failed (UND_ERR_SOCKET: other side closed)",
+              "latencyMs": 31
+            }
+          ]
+        }
+      ],
+      "latencyMs": 5998
+    },
+    {
+      "n": 28,
+      "input": "Je suis contente de te voir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx51C7CFg8RNvmqmx9H",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je suis contente de te voir.\",\"ca\":\"Estic contenta de veure't.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\",\"speaker_fem\"],\"chunks\":[{\"text\":\"Estic\",\"role\":\"verb\",\"ids\":[\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"VERB.no_finit.infinitiu\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1081,
+              "output_tokens_details": { "thinking_tokens": 860 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6269
+        }
+      ],
+      "latencyMs": 6270
+    },
+    {
+      "n": 29,
+      "input": "J’ai la flemme d’y aller.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx5U4dULM9xtVpMRvuB",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"J'ai la flemme d'y aller.\",\"ca\":\"Tinc mandra d'anar-hi.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Tinc\",\"role\":\"verb\",\"ids\":[\"VERB.haver_tenir\"],\"lemma\":\"tenir\"},{\"text\":\"mandra\",\"role\":\"complement\",\"ids\":[],\"unlinked\":\"no_notion\"},{\"text\":\"d'anar\",\"role\":\"complement\",\"ids\":[\"VERB.no_finit.infinitiu\"],\"lemma\":\"anar\"},{\"text\":\"hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1453,
+              "output_tokens_details": { "thinking_tokens": 1223 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6828
+        }
+      ],
+      "latencyMs": 6829
+    },
+    {
+      "n": 30,
+      "input": "Je me suis tromper de chemin hier soir.",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-haiku-5-5",
+            "id": "msg_011CgSx5yCLMr73dqMesaFfw",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "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"
+              },
+              {
+                "type": "text",
+                "text": "{\"fr\":\"Je me suis trompé de chemin hier soir.\",\"ca\":\"Ahir al vespre em vaig equivocar de camí.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir al vespre\",\"role\":\"time\",\"ids\":[\"PREP.a_en.temps.parts_del_dia\"]},{\"text\":\"em\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.persona_reflexiu\"]},{\"text\":\"vaig equivocar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"equivocar-se\"},{\"text\":\"de camí\",\"role\":\"complement\",\"ids\":[\"PREP.regim.divergent_de\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 22966,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 1367,
+              "output_tokens_details": { "thinking_tokens": 1114 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6741
+        }
+      ],
+      "latencyMs": 6742
+    }
+  ]
+}

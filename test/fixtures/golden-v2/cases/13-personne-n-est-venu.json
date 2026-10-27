@@ -3,21 +3,23 @@
   "slug": "personne-n-est-venu",
   "input": "Personne n’est venu.",
   "risk": "Negation",
-  "mustLink": [
-    {
-      "anyOf": ["NEG.concordanca.preverbal"],
-      "hint": "ningú"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["NEG.concordanca.preverbal"], "hint": "ningú" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "13-a",
+      "key": "ningú no ha vingut",
+      "ca": "Ningú no ha vingut.",
+      "verdict": null
+    },
+    {
+      "id": "13-b",
+      "key": "no ha vingut ningú",
+      "ca": "No ha vingut ningú.",
+      "verdict": null
+    }
+  ]
 }

@@ -4,24 +4,14 @@
   "input": "Je ne le fais plus.",
   "risk": "Negation",
   "mustLink": [
-    {
-      "anyOf": ["NEG.aspecte.ja_no"],
-      "hint": "ja no"
-    },
-    {
-      "anyOf": ["PRON.feble.ho"],
-      "hint": "ho"
-    }
+    { "anyOf": ["NEG.aspecte.ja_no"], "hint": "ja no" },
+    { "anyOf": ["PRON.feble.ho"], "hint": "ho" }
   ],
   "mustNotLink": ["PRON.feble.cd_3a"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    { "id": "12-a", "key": "ja no ho faig", "ca": "Ja no ho faig.", "verdict": null }
+  ]
 }

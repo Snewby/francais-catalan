@@ -4,24 +4,14 @@
   "input": "Je n’ai pas de voiture.",
   "risk": "Partitive",
   "mustLink": [
-    {
-      "anyOf": ["ART.indef.omissio_negacio"],
-      "hint": "cotxe"
-    },
-    {
-      "anyOf": ["NEG.simple.no"],
-      "hint": "no"
-    }
+    { "anyOf": ["ART.indef.omissio_negacio"], "hint": "cotxe" },
+    { "anyOf": ["NEG.simple.no"], "hint": "no" }
   ],
   "mustNotLink": ["NEG.simple.pas"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    { "id": "11-a", "key": "no tinc cotxe", "ca": "No tinc cotxe.", "verdict": null }
+  ]
 }

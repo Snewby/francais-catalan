@@ -4,24 +4,25 @@
   "input": "Je n’ai jamais mangé de calçots.",
   "risk": "Past, experience",
   "mustLink": [
-    {
-      "anyOf": ["VERB.perf.present"],
-      "hint": "he menjat"
-    },
-    {
-      "anyOf": ["NEG.concordanca.postverbal"],
-      "hint": "no … mai"
-    }
+    { "anyOf": ["VERB.perf.present"], "hint": "he menjat" },
+    { "anyOf": ["NEG.concordanca.postverbal"], "hint": "no … mai" }
   ],
   "mustNotLink": ["NEG.simple.pas"],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "4-a",
+      "key": "mai no he menjat calçots",
+      "ca": "Mai no he menjat calçots.",
+      "verdict": null
+    },
+    {
+      "id": "4-b",
+      "key": "no he menjat mai calçots",
+      "ca": "No he menjat mai calçots.",
+      "verdict": null
+    }
+  ]
 }

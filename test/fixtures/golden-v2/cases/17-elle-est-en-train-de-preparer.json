@@ -3,21 +3,17 @@
   "slug": "elle-est-en-train-de-preparer",
   "input": "Elle est en train de préparer le dîner.",
   "risk": "Tournures",
-  "mustLink": [
-    {
-      "anyOf": ["VERB.perifrasi.progressiva"],
-      "hint": "està preparant"
-    }
-  ],
+  "mustLink": [{ "anyOf": ["VERB.perifrasi.progressiva"], "hint": "està preparant" }],
   "mustNotLink": [],
-  "assumptions": {
-    "required": [],
-    "forbidden": []
-  },
+  "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,
-  "fr": {
-    "mustContain": [],
-    "mustNotContain": []
-  },
-  "renderings": []
+  "fr": { "mustContain": [], "mustNotContain": [] },
+  "renderings": [
+    {
+      "id": "17-a",
+      "key": "està preparant el sopar",
+      "ca": "Està preparant el sopar.",
+      "verdict": null
+    }
+  ]
 }
