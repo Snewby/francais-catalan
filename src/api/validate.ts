@@ -6,7 +6,7 @@
  */
 import AjvModule from 'ajv';
 import type { ErrorObject } from 'ajv';
-import { DECOMPOSITION_SCHEMA, QUERY_LOG_SCHEMA } from './schema';
+import { DECOMPOSITION_SCHEMA, PHRASE_SCHEMA, QUERY_LOG_SCHEMA } from './schema';
 
 // ajv v8 is CommonJS; the ESM default export is the module namespace under some
 // bundler configurations and the class itself under others.
@@ -26,6 +26,12 @@ const validate = ajv.compile(QUERY_LOG_SCHEMA);
  * bypassed, and it enforces the string constraints the decoder cannot.
  */
 const validateDecompositionPayload = ajv.compile(DECOMPOSITION_SCHEMA);
+
+/**
+ * The phase 1 reply's shape. Only the shape: the rules the schema cannot say,
+ * spans among them, are in phrase-check.ts, which calls this first.
+ */
+const validatePhrasePayload = ajv.compile(PHRASE_SCHEMA);
 
 export interface ValidationResult {
   readonly valid: boolean;
@@ -50,4 +56,9 @@ export function validateDecomposition(candidate: unknown): ValidationResult {
     valid,
     errors: valid ? [] : describe(validateDecompositionPayload.errors),
   };
+}
+
+export function validatePhraseShape(candidate: unknown): ValidationResult {
+  const valid = validatePhrasePayload(candidate);
+  return { valid, errors: valid ? [] : describe(validatePhrasePayload.errors) };
 }

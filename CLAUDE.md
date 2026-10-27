@@ -70,8 +70,10 @@
 - Requirements for phases 0 and 1: `docs/spec-phases-0-1.md`, signed off.
   Approved eval inputs: `docs/golden-set-v2.md`. Decisions and phase status
   live in the plan doc in the claude.ai Project "Català rebuild"
-  (https://claude.ai/artifact/KiLCqBiHstKMoYiaN7rmJS). Claude Code cannot
-  edit that doc: report decisions for Sean to record there.
+  (https://claude.ai/artifact/KiLCqBiHstKMoYiaN7rmJS). Claude Code may
+  update the phase status there and record decisions Sean gives in the
+  session, but makes no new decisions there; decisions still happen in a
+  Project chat.
 - Build work happens in Claude Code. Specs, reviews and decisions happen in a
   claude.ai chat in that Project.
 - Work in rounds. Give a short plan and wait for a go before writing code.
