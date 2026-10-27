@@ -6,7 +6,7 @@
  */
 import AjvModule from 'ajv';
 import type { ErrorObject } from 'ajv';
-import { DECOMPOSITION_SCHEMA, PHRASE_SCHEMA, QUERY_LOG_SCHEMA } from './schema';
+import { PHRASE_SCHEMA, QUERY_LOG_SCHEMA } from './schema';
 
 // ajv v8 is CommonJS; the ESM default export is the module namespace under some
 // bundler configurations and the class itself under others.
@@ -16,16 +16,6 @@ const Ajv =
 const ajv = new Ajv({ allErrors: true, strict: false });
 
 const validate = ajv.compile(QUERY_LOG_SCHEMA);
-
-/**
- * The model's reply, before it is a logged query.
- *
- * A second compile of the same generated schema, not a second copy of it: the
- * component enum and the field list still exist in exactly one place. This one
- * is what catches an out-of-vocabulary tag if constrained decoding is ever
- * bypassed, and it enforces the string constraints the decoder cannot.
- */
-const validateDecompositionPayload = ajv.compile(DECOMPOSITION_SCHEMA);
 
 /**
  * The phase 1 reply's shape. Only the shape: the rules the schema cannot say,
@@ -48,14 +38,6 @@ function describe(errors: ErrorObject[] | null | undefined): string[] {
 export function validateQueryLog(candidate: unknown): ValidationResult {
   const valid = validate(candidate);
   return { valid, errors: valid ? [] : describe(validate.errors) };
-}
-
-export function validateDecomposition(candidate: unknown): ValidationResult {
-  const valid = validateDecompositionPayload(candidate);
-  return {
-    valid,
-    errors: valid ? [] : describe(validateDecompositionPayload.errors),
-  };
 }
 
 export function validatePhraseShape(candidate: unknown): ValidationResult {

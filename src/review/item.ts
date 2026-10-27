@@ -7,20 +7,44 @@
  * holds no French translation of any example, so a review is a rule-recall item
  * and not a translation exercise.
  *
- * The logged record is the phase 4 `QueryLog` shape, because `recordQuery` takes
- * that and there is one write path. What each field holds for a locally
- * generated item is argued in data/sources.md under phase 5b.
+ * The logged record is the vanilla `QueryLog` shape, because `recordQuery` took
+ * that and there was one write path. What each field holds for a locally
+ * generated item is argued in data/sources.md under phase 5b. Phase 4 decides
+ * whether review keeps this record or moves to the phase 1 `events` rows.
  */
-import type { QueryLog } from '../api/anthropic';
 import type { ComponentId } from '../api/schema';
 import { validateQueryLog } from '../api/validate';
 import {
   INTENT_FOR_DIRECTION,
   type Direction,
+  type Evidence,
   type Intent,
   type Rating,
 } from '../srs/evidence';
 import type { LeafNode } from '../taxonomy';
+
+/**
+ * A logged query, as QUERY_LOG_SCHEMA describes it. It lived in the API client
+ * while the model emitted a decomposition; since phase 1 the model emits a
+ * phrase reply instead, and this module is the record's only producer.
+ */
+export interface QueryLog {
+  readonly asked_at: number;
+  readonly question: string;
+  readonly intent: Intent;
+  readonly direction: Direction;
+  readonly evidence: Evidence;
+  readonly rating?: Rating;
+  readonly decomposition: readonly {
+    readonly id: ComponentId;
+    readonly ca: string;
+    readonly ipa?: string;
+  }[];
+  readonly answer: string;
+  readonly answer_ca: string;
+  readonly answer_fr?: string;
+  readonly answer_lang: 'fr';
+}
 
 /** Thrown when an assembled review record does not satisfy the generated schema. */
 export class MalformedReviewError extends Error {

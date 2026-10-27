@@ -177,82 +177,20 @@ export const LEAF_IDS = ${literalArray(leafIds)} as const;
 export type ComponentId = (typeof LEAF_IDS)[number];
 
 /**
- * One entry in the decomposition. LANGUAGE-INVARIANT: a component ID, the
- * Catalan surface form, and optionally its pronunciation. No French here; the
- * answer field carries all of it.
- */
-export const COMPONENT_ENTRY_SCHEMA = {
-  type: 'object',
-  additionalProperties: false,
-  required: ['id', 'ca'],
-  properties: {
-    id: { type: 'string', enum: LEAF_IDS },
-    ca: { type: 'string', minLength: 1 },
-    ipa: { type: 'string', minLength: 1 },
-  },
-} as const;
-
-/**
- * The decomposition payload. All five intents emit this same shape; only the
- * prompt and the surrounding logged fields differ.
- *
- * \`answer_ca\` is the whole Catalan utterance, and it is a SIBLING of the
- * decomposition rather than a field inside it, so the language-invariance rule
- * on \`decomposition\` is untouched and \`answer\` stays the single French field.
- * Without it the reply had no field holding the Catalan the learner is being
- * told to say: the only Catalan was the per-component \`ca\`, which is a
- * fragment realising one grammar point, and joining those does not reconstruct
- * a sentence. That is the shape phase 6b's audio needs and the shape the
- * attempt comparison needs.
- *
- * \`answer_fr\` is its mirror: the same utterance in French, one line, no
- * commentary. \`answer\` is NOT that, and the two must not be conflated:
- * \`answer\` explains the structure and \`answer_fr\` renders the sentence. With
- * both siblings present the reply shows the pair whichever way the question
- * ran, and every logged query carries a matched French/Catalan pair in the
- * learner's own vocabulary, about something they actually wanted to say. The
- * authored taxonomy holds no translation of any example, so that pair is the
- * only translation material this application will ever have that it did not
- * invent.
- *
- * \`direction\` is reported BY THE MODEL rather than asserted by the caller. A
- * learner types a Catalan sentence or a French one; which way round it is, is
- * evident from the question, and making them declare it was an interface asking
- * for something it could already see.
- */
-export const DECOMPOSITION_SCHEMA = {
-  type: 'object',
-  additionalProperties: false,
-  required: [
-    'decomposition',
-    'direction',
-    'answer',
-    'answer_ca',
-    'answer_fr',
-    'answer_lang',
-  ],
-  properties: {
-    decomposition: { type: 'array', items: COMPONENT_ENTRY_SCHEMA },
-    direction: { type: 'string', enum: ${literalArray(DIRECTIONS)} },
-    answer: { type: 'string', minLength: 1 },
-    answer_ca: { type: 'string', minLength: 1 },
-    answer_fr: { type: 'string', minLength: 1 },
-    answer_lang: { type: 'string', enum: ['fr'] },
-  },
-} as const;
-
-/**
- * A logged query: the decomposition payload plus the interaction-model triple.
+ * A logged query from the vanilla build: a decomposition, its French answer and
+ * the interaction-model triple. Kept only because src/review/item.ts (kept and
+ * unused until phase 4 decides) still builds one, and because it is the
+ * executable home of the rating rule until phase 5's \`events\` store replaces
+ * it (decided 26 Oct, phase 1 step 3). The model no longer emits this shape, so
+ * its fields are defined here and borrow from no reply schema.
  *
  * \`rating\` is required exactly when \`evidence\` is the one type that
  * EVIDENCE_EFFECTS marks as requiring one, and forbidden otherwise. The
  * conditional is generated from that table rather than written by hand.
  *
- * \`answer_fr\` is REQUIRED of the model and OPTIONAL on the logged record. A
- * review item is built from the taxonomy, which holds no French translation of
- * any example, so a review record has no pair to carry and supplying the gloss
- * instead would put a rule description into a translation corpus. Phase 9 reads
- * that corpus, so a row either carries a real pair or carries none.
+ * \`answer_fr\` is OPTIONAL: a review item is built from the taxonomy, which
+ * holds no French translation of any example, so a review record has no pair
+ * to carry.
  */
 export const QUERY_LOG_SCHEMA = {
   type: 'object',
@@ -275,11 +213,23 @@ export const QUERY_LOG_SCHEMA = {
     direction: { type: 'string', enum: ${literalArray(DIRECTIONS)} },
     evidence: { type: 'string', enum: ${literalArray(EVIDENCE_TYPES)} },
     rating: { type: 'string', enum: ${literalArray(RATINGS)} },
-    decomposition: DECOMPOSITION_SCHEMA.properties.decomposition,
-    answer: DECOMPOSITION_SCHEMA.properties.answer,
-    answer_ca: DECOMPOSITION_SCHEMA.properties.answer_ca,
-    answer_fr: DECOMPOSITION_SCHEMA.properties.answer_fr,
-    answer_lang: DECOMPOSITION_SCHEMA.properties.answer_lang,
+    decomposition: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['id', 'ca'],
+        properties: {
+          id: { type: 'string', enum: LEAF_IDS },
+          ca: { type: 'string', minLength: 1 },
+          ipa: { type: 'string', minLength: 1 },
+        },
+      },
+    },
+    answer: { type: 'string', minLength: 1 },
+    answer_ca: { type: 'string', minLength: 1 },
+    answer_fr: { type: 'string', minLength: 1 },
+    answer_lang: { type: 'string', enum: ['fr'] },
   },
   allOf: [
     {

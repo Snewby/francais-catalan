@@ -13,7 +13,8 @@ import {
   advancesFsrs,
   ratingIsConsistent,
 } from '../src/srs/evidence';
-import { buildHeaders } from '../src/api/anthropic';
+import { buildHeaders, buildRequestBody } from '../src/api/anthropic';
+import * as generatedSchema from '../src/api/schema';
 
 import { highPunctuationOffenders, NNBSP } from './helpers/typography';
 
@@ -133,5 +134,23 @@ describe('api client', () => {
     expect(headers['anthropic-dangerous-direct-browser-access']).toBe('true');
     expect(headers['x-api-key']).toBe('test-key');
     expect(headers['anthropic-version']).toBe('2023-06-01');
+  });
+
+  it('asks the model for the phrase reply and nothing else', () => {
+    const body = buildRequestBody('Je ne le fais plus.') as {
+      output_config: { format: { schema: { properties: Record<string, unknown> } } };
+    };
+    expect(Object.keys(body.output_config.format.schema.properties)).toEqual([
+      'fr',
+      'ca',
+      'subject',
+      'assumptions',
+      'chunks',
+    ]);
+  });
+
+  it('no longer exports the vanilla decomposition and answer schema', () => {
+    expect(Object.keys(generatedSchema)).not.toContain('DECOMPOSITION_SCHEMA');
+    expect(Object.keys(generatedSchema)).not.toContain('COMPONENT_ENTRY_SCHEMA');
   });
 });

@@ -1,33 +1,39 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import {
-  AnthropicError,
+  EFFORT,
   MAX_TOKENS,
   MESSAGES_URL,
   MODEL,
   STRUCTURED_OUTPUTS_BETA,
   buildHeaders,
   buildRequestBody,
-  callHaiku,
   toStructuredOutputSchema,
+  translatePhrase,
+  type TranslateOptions,
+  type TranslateResult,
 } from '../src/api/anthropic';
+import { ASSUMPTIONS, CHUNK_ROLES, UNLINKED_REASONS } from '../src/api/phrase';
 import { LEAF_IDS } from '../src/api/schema';
 import {
   SYSTEM_INSTRUCTION,
   buildSystemBlocks,
   renderVocabulary,
 } from '../src/api/prompt';
+import { quote } from '../src/i18n/fr';
 import { LEAVES } from '../src/taxonomy';
 import { hasHighPunctuation, highPunctuationOffenders } from './helpers/typography';
 
-import fixture from './fixtures/decomposition-response.json';
+import fixture from './fixtures/phrase-response.json';
 
 const API_KEY = 'sk-ant-test-not-a-real-key';
+const SENTENCE = 'Hier, j’ai acheté le pain au marché.';
 
-const CONTEXT = {
-  question: "L'home acaba d'arribar",
-  intent: 'comprehend',
-} as const;
+/** One queued answer from the stub: a response, a thrown error, or no answer at all. */
+type Reply =
+  | { readonly status: number; readonly body: unknown }
+  | { readonly throws: Error }
+  | 'hang';
 
 interface StubbedCall {
   readonly body: Record<string, unknown>;
@@ -36,9 +42,10 @@ interface StubbedCall {
 
 /**
  * A fetch that never leaves the machine. Each queued reply is used once, so a
- * test that expects a retry has to say so by queueing two.
+ * test that expects a retry has to say so by queueing two, and a third call
+ * fails the test by running out.
  */
-function stubFetch(replies: readonly { status: number; body: unknown }[]): {
+function stubFetch(replies: readonly Reply[]): {
   fetchFn: typeof fetch;
   calls: StubbedCall[];
 } {
@@ -52,6 +59,14 @@ function stubFetch(replies: readonly { status: number; body: unknown }[]): {
     });
     const reply = queue.shift();
     if (reply === undefined) throw new Error('the stub ran out of replies');
+    if (reply === 'hang') {
+      return new Promise<never>((_resolve, reject) => {
+        init.signal?.addEventListener('abort', () => {
+          reject(new DOMException('aborted', 'AbortError'));
+        });
+      });
+    }
+    if ('throws' in reply) throw reply.throws;
     const text =
       typeof reply.body === 'string' ? reply.body : JSON.stringify(reply.body);
     return {
@@ -64,21 +79,45 @@ function stubFetch(replies: readonly { status: number; body: unknown }[]): {
   return { fetchFn: fetchFn as unknown as typeof fetch, calls };
 }
 
-function okFixture(): { status: number; body: unknown } {
-  return { status: 200, body: fixture };
-}
+const SPEC_REPLY = JSON.parse(fixture.content[0]?.text ?? '{}') as Record<
+  string,
+  unknown
+>;
 
-/** The fixture reply with its decomposition swapped for `entries`. */
-function replyWith(entries: unknown): { status: number; body: unknown } {
-  const payload = {
-    decomposition: entries,
-    answer: 'Une réponse française.',
-    answer_lang: 'fr',
-  };
+/** The fixture envelope with `reply` as the model's text. */
+function okWith(reply: unknown, extra: Record<string, unknown> = {}): Reply {
+  const text = typeof reply === 'string' ? reply : JSON.stringify(reply);
   return {
     status: 200,
-    body: { ...fixture, content: [{ type: 'text', text: JSON.stringify(payload) }] },
+    body: { ...fixture, content: [{ type: 'text', text }], ...extra },
   };
+}
+
+const OK: Reply = okWith(SPEC_REPLY);
+
+/** A reply whose Catalan is fine and whose anatomy names a chunk absent from it. */
+const BAD_ANATOMY: Reply = okWith({
+  ...SPEC_REPLY,
+  chunks: [{ text: 'Avui', role: 'time', ids: [], unlinked: 'no_notion' }],
+});
+
+async function run(
+  replies: readonly Reply[],
+  options: Partial<TranslateOptions> = {},
+): Promise<{ result: TranslateResult; calls: StubbedCall[] }> {
+  const { fetchFn, calls } = stubFetch(replies);
+  const result = await translatePhrase({
+    sentence: SENTENCE,
+    apiKey: API_KEY,
+    fetchFn,
+    isOnline: () => true,
+    ...options,
+  });
+  return { result, calls };
+}
+
+function errorKind(result: TranslateResult): string | undefined {
+  return result.status === 'error' ? result.kind : undefined;
 }
 
 describe('request shape', () => {
@@ -86,52 +125,73 @@ describe('request shape', () => {
     const headers = buildHeaders(API_KEY);
     expect(headers['anthropic-beta']).toBe(STRUCTURED_OUTPUTS_BETA);
     expect(headers['anthropic-dangerous-direct-browser-access']).toBe('true');
-    expect(buildRequestBody(CONTEXT).model).toBe(MODEL);
-    expect(buildRequestBody(CONTEXT).max_tokens).toBe(MAX_TOKENS);
+    expect(buildRequestBody(SENTENCE).model).toBe(MODEL);
+    expect(buildRequestBody(SENTENCE).max_tokens).toBe(MAX_TOKENS);
   });
 
-  it('constrains the reply to the generated schema', () => {
-    const body = buildRequestBody(CONTEXT) as {
-      output_config: { format: { type: string; schema: Record<string, never> } };
+  it('stays on claude-haiku-4-5 until the eval picks a model', () => {
+    expect(MODEL).toBe('claude-haiku-4-5');
+  });
+
+  it('constrains the reply to the generated phrase schema', () => {
+    const body = buildRequestBody(SENTENCE) as {
+      output_config: { format: { type: string; schema: unknown } };
     };
     expect(body.output_config.format.type).toBe('json_schema');
-
-    const idField = (
-      body.output_config.format.schema as unknown as {
-        properties: {
-          decomposition: { items: { properties: { id: { enum: string[] } } } };
-        };
-      }
-    ).properties.decomposition.items.properties.id;
-    expect(idField.enum).toEqual([...LEAF_IDS]);
+    const schema = body.output_config.format.schema as {
+      required: string[];
+      properties: {
+        chunks: { items: { properties: { ids: { items: { enum: string[] } } } } };
+      };
+    };
+    expect(schema.required).toEqual(['fr', 'ca', 'subject', 'assumptions', 'chunks']);
+    expect(schema.properties.chunks.items.properties.ids.items.enum).toEqual([
+      ...LEAF_IDS,
+    ]);
   });
 
   it('strips the keywords constrained decoding cannot honour', () => {
-    const sent = JSON.stringify(buildRequestBody(CONTEXT));
+    const sent = JSON.stringify(buildRequestBody(SENTENCE));
     expect(sent).not.toContain('minLength');
+    expect(sent).not.toContain('maxItems');
     // Ajv still enforces them locally, so they stay in the generated schema.
     expect(JSON.stringify(toStructuredOutputSchema({ a: { minLength: 1 } }))).toBe(
       '{"a":{}}',
     );
   });
 
-  it('sends no assistant prefill, which structured outputs forbids', () => {
-    const body = buildRequestBody(CONTEXT) as {
+  it('sets the decided effort on the eval candidates, and none on Haiku 4.5', () => {
+    for (const model of ['claude-haiku-5-5', 'claude-sonnet-5-5', 'claude-opus-5-5']) {
+      const body = buildRequestBody(SENTENCE, { model }) as {
+        model: string;
+        output_config: { effort?: string };
+      };
+      expect(body.model).toBe(model);
+      expect(body.output_config.effort).toBe(EFFORT);
+    }
+    const haiku45 = buildRequestBody(SENTENCE) as { output_config: object };
+    expect(haiku45.output_config).not.toHaveProperty('effort');
+    expect(EFFORT).toBe('medium');
+  });
+
+  it('sends the sentence as the only dynamic content, with no prefill', () => {
+    const body = buildRequestBody(SENTENCE) as {
       messages: { role: string; content: string }[];
     };
-    expect(body.messages).toHaveLength(1);
-    expect(body.messages[0]?.role).toBe('user');
-    expect(body.messages[0]?.content).toContain(CONTEXT.question);
-    expect(body.messages[0]?.content).toContain(CONTEXT.intent);
-    // The direction is deliberately absent: the model reads it off the
-    // question and reports it back, so sending one would be asserting an
-    // answer to the thing being asked.
-    expect(body.messages[0]?.content).not.toContain('ca_to_fr');
-    expect(body.messages[0]?.content).not.toContain('fr_to_ca');
+    expect(body.messages).toEqual([{ role: 'user', content: SENTENCE }]);
   });
 
   it('never puts the key in the body', () => {
-    expect(JSON.stringify(buildRequestBody(CONTEXT))).not.toContain(API_KEY);
+    expect(JSON.stringify(buildRequestBody(SENTENCE))).not.toContain(API_KEY);
+  });
+
+  it('asks for the one-hour cache only when told to', () => {
+    const last = (blocks: ReturnType<typeof buildSystemBlocks>) => blocks.at(-1);
+    expect(last(buildSystemBlocks())?.cache_control).toEqual({ type: 'ephemeral' });
+    expect(last(buildSystemBlocks('1h'))?.cache_control).toEqual({
+      type: 'ephemeral',
+      ttl: '1h',
+    });
   });
 });
 
@@ -143,15 +203,9 @@ describe('cached prefix', () => {
     expect(marked[0]).toBe(blocks[blocks.length - 1]);
   });
 
-  it('renders byte-identically whatever the question is', () => {
-    const a = buildRequestBody({ ...CONTEXT, question: 'Vaig cantar' }) as {
-      system: unknown;
-    };
-    const b = buildRequestBody({
-      ...CONTEXT,
-      question: 'Ho hem vist',
-      intent: 'produce',
-    }) as { system: unknown };
+  it('renders byte-identically whatever the sentence is', () => {
+    const a = buildRequestBody('Je ne le fais plus.') as { system: unknown };
+    const b = buildRequestBody('Vous êtes prêts ?') as { system: unknown };
     expect(JSON.stringify(a.system)).toBe(JSON.stringify(b.system));
   });
 
@@ -176,13 +230,26 @@ describe('cached prefix', () => {
     expect(hasHighPunctuation(SYSTEM_INSTRUCTION)).toBe(true);
     expect(highPunctuationOffenders(SYSTEM_INSTRUCTION)).toEqual([]);
     expect(SYSTEM_INSTRUCTION).not.toContain('—');
-    expect(SYSTEM_INSTRUCTION).not.toContain("'");
+    // Straight apostrophes only inside cited Catalan, which is data.
+    expect(SYSTEM_INSTRUCTION.replace(/«[^»]*»/g, '')).not.toContain("'");
+  });
+
+  it('asks for straight apostrophes and the punt volat in Catalan', () => {
+    expect(SYSTEM_INSTRUCTION).toContain('U+0027');
+    expect(SYSTEM_INSTRUCTION).toContain(quote("l'home"));
+    expect(SYSTEM_INSTRUCTION).toContain(quote('col·lecció'));
+  });
+
+  it('explains every value of every closed phrase enum', () => {
+    for (const value of [...CHUNK_ROLES, ...ASSUMPTIONS, ...UNLINKED_REASONS]) {
+      expect(SYSTEM_INSTRUCTION, value).toContain(`- ${value}\t`);
+    }
   });
 
   it('clears the model minimum cacheable prefix', () => {
-    // Haiku 4.5 will not cache a prefix under 4,096 tokens, and a prefix that
-    // silently fails to cache reports no error at all: usage just shows a
-    // permanent zero. Six characters per token is a deliberately pessimistic
+    // Haiku 4.5 will not cache a prefix under 4,096 tokens, the highest minimum
+    // of any model in play, and a prefix that silently fails to cache reports
+    // no error at all. Six characters per token is a deliberately pessimistic
     // floor for French and Catalan prose, so this is a lower bound on tokens.
     const characters = buildSystemBlocks().reduce(
       (total, block) => total + block.text.length,
@@ -193,259 +260,176 @@ describe('cached prefix', () => {
 });
 
 describe('a successful call', () => {
-  it('returns the decomposition, a schema-valid log and the cache usage', async () => {
-    const { fetchFn, calls } = stubFetch([okFixture()]);
-
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'lookup',
-      fetchFn,
-      now: () => 1_700_000_000_000,
-    });
-
+  it('returns the checked phrase with spans, and the usage of its one attempt', async () => {
+    const { result, calls } = await run([OK]);
     expect(calls).toHaveLength(1);
-    expect(result.decomposition.answer_lang).toBe('fr');
-    expect(result.decomposition.decomposition.map((entry) => entry.id)).toEqual([
-      'ART.def.forma.elisio',
-      'VERB.perifrasi.acabar_de',
+    expect(result.status).toBe('ok');
+    if (result.status !== 'ok') return;
+    expect(result.phrase.ca).toBe('Ahir vaig comprar el pa al mercat.');
+    expect(result.phrase.chunks.map((chunk) => [chunk.start, chunk.end])).toEqual([
+      [0, 4],
+      [5, 17],
+      [18, 23],
+      [24, 33],
     ]);
-    expect(result.queryLog.asked_at).toBe(1_700_000_000_000);
-    expect(result.queryLog.evidence).toBe('lookup');
-    expect(result.queryLog.rating).toBeUndefined();
-    expect(result.usage.cacheReadTokens).toBe(13104);
+    expect(result.model).toBe(MODEL);
+    expect(result.attempts).toHaveLength(1);
+    expect(result.attempts[0]?.usage?.cacheReadTokens).toBe(18300);
   });
 
-  it('carries the matched pair, and keeps it apart from the explanation', async () => {
-    const { fetchFn } = stubFetch([okFixture()]);
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'lookup',
-      fetchFn,
-    });
-
-    const { answer, answer_ca, answer_fr } = result.decomposition;
-    expect(answer_ca).toBe("L'home acaba d'arribar.");
-    expect(answer_fr).toBe('L’homme vient d’arriver.');
-    // Both are one line, and neither is the explanation. `answer` explains the
-    // structure; these two are the same utterance in two languages, and phase 9
-    // reads them as a translation pair.
-    expect(answer_fr).not.toContain('\n');
-    expect(answer_fr).not.toBe(answer);
-    expect(result.queryLog.answer_fr).toBe(answer_fr);
-  });
-
-  it('refuses a reply that gives the Catalan and not the French', async () => {
-    const payload = {
-      decomposition: [{ id: 'ART.def.forma.elisio', ca: "l'home" }],
-      direction: 'ca_to_fr',
-      answer: 'Une explication.',
-      answer_ca: "L'home.",
-      answer_lang: 'fr',
-    };
-    const { fetchFn } = stubFetch([
-      {
-        status: 200,
-        body: {
-          ...fixture,
-          content: [{ type: 'text', text: JSON.stringify(payload) }],
-        },
-      },
-    ]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow(AnthropicError);
-  });
-
-  it('posts to the messages endpoint with the key in the headers only', async () => {
-    const { fetchFn, calls } = stubFetch([okFixture()]);
-    await callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn });
-    expect(vi.mocked(fetchFn).mock.calls[0]?.[0]).toBe(MESSAGES_URL);
+  it('posts to the Messages API with the key in the header only', async () => {
+    const { calls } = await run([OK]);
     expect(calls[0]?.headers['x-api-key']).toBe(API_KEY);
-  });
-});
-
-describe('a decomposition that names a form the sentence does not contain', () => {
-  /** A reply whose decomposition and utterance are set independently. */
-  function reply(entries: { id: string; ca: string }[], answerCa: string) {
-    const payload = {
-      decomposition: entries,
-      direction: 'ca_to_fr',
-      answer: 'Une explication française.',
-      answer_ca: answerCa,
-      answer_fr: 'Une phrase française.',
-      answer_lang: 'fr',
-    };
-    return {
-      status: 200,
-      body: { ...fixture, content: [{ type: 'text', text: JSON.stringify(payload) }] },
-    };
-  }
-
-  const ABSENT = [{ id: 'VERB.perf.present', ca: 'he cantat' }];
-  const PRESENT = [{ id: 'ART.def.forma.elisio', ca: "l'home" }];
-  const UTTERANCE = "L'home ha arribat.";
-
-  it('asks once more before giving up on it', async () => {
-    const { fetchFn, calls } = stubFetch([
-      reply(ABSENT, UTTERANCE),
-      reply(PRESENT, UTTERANCE),
-    ]);
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'lookup',
-      fetchFn,
-    });
-
-    expect(calls).toHaveLength(2);
-    expect(result.unverified).toEqual([]);
-    expect(result.decomposition.decomposition.map((entry) => entry.ca)).toEqual([
-      "l'home",
-    ]);
+    expect(JSON.stringify(calls[0]?.body)).not.toContain(API_KEY);
+    expect(MESSAGES_URL).toBe('https://api.anthropic.com/v1/messages');
   });
 
-  it('retries once and not twice', async () => {
-    const { fetchFn, calls } = stubFetch([
-      reply(ABSENT, UTTERANCE),
-      reply(ABSENT, UTTERANCE),
-    ]);
-    await callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn });
-    expect(calls).toHaveLength(2);
-  });
-
-  it('drops the whole analysis rather than the offending entry', async () => {
-    const { fetchFn } = stubFetch([
-      reply([...PRESENT, ...ABSENT], UTTERANCE),
-      reply([...PRESENT, ...ABSENT], UTTERANCE),
-    ]);
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'lookup',
-      fetchFn,
-    });
-
-    expect(result.unverified).toEqual(['he cantat']);
-    expect(result.decomposition.decomposition).toEqual([]);
-    // Nothing reaches the store, so not one component is credited on the
-    // strength of a reply already known to be wrong about another.
-    expect(result.queryLog.decomposition).toEqual([]);
-  });
-
-  it('keeps the translation, which is not what failed', async () => {
-    const { fetchFn } = stubFetch([reply(ABSENT, UTTERANCE), reply(ABSENT, UTTERANCE)]);
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'lookup',
-      fetchFn,
-    });
-
-    expect(result.decomposition.answer_ca).toBe(UTTERANCE);
-    expect(result.decomposition.answer_fr).toBe('Une phrase française.');
-    expect(result.decomposition.answer).toBe('Une explication française.');
-    expect(result.queryLog.answer_ca).toBe(UTTERANCE);
-    expect(result.queryLog.answer_fr).toBe('Une phrase française.');
-  });
-});
-
-describe('a bad reply', () => {
-  it('refuses a component ID that is not in the taxonomy', async () => {
-    // Assembled rather than written out: scripts/lib/scan-ids.ts scans every
-    // .ts file for ID literals, and a deliberately invalid one in a test would
-    // fail the closed-vocabulary check for the right reason at the wrong place.
-    const outOfVocabulary = ['VERB', 'invented'].join('.');
-    const { fetchFn } = stubFetch([replyWith([{ id: outOfVocabulary, ca: 'x' }])]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow(AnthropicError);
-  });
-
-  it('refuses French prose smuggled into the decomposition', async () => {
-    const { fetchFn } = stubFetch([
-      replyWith([{ id: 'ART.def.forma.elisio', ca: "l'home", gloss: 'article élidé' }]),
-    ]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow(AnthropicError);
-  });
-
-  it('refuses a reply that is not JSON', async () => {
-    const { fetchFn } = stubFetch([
-      { status: 200, body: { ...fixture, content: [{ type: 'text', text: 'oui' }] } },
-    ]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow(AnthropicError);
-  });
-});
-
-describe('the logged record', () => {
-  it('rejects graded evidence with no rating', async () => {
-    const { fetchFn } = stubFetch([okFixture()]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'graded', fetchFn }),
-    ).rejects.toThrow(/logged query/);
-  });
-
-  it('rejects a rating on evidence that does not carry one', async () => {
-    const { fetchFn } = stubFetch([okFixture()]);
-    await expect(
-      callHaiku({
-        ...CONTEXT,
-        apiKey: API_KEY,
-        evidence: 'lookup',
-        rating: 'good',
-        fetchFn,
+  it('straightens a typographic apostrophe the model wrote in ca', async () => {
+    const { result } = await run([
+      okWith({
+        fr: 'L’homme vient d’arriver.',
+        ca: 'L’home acaba d’arribar.',
+        subject: { person: '3sg', expressed: true },
+        assumptions: [],
+        chunks: [
+          { text: "L'home", role: 'subject', ids: ['ART.def.forma.elisio'] },
+          {
+            text: "acaba d'arribar",
+            role: 'verb',
+            ids: ['VERB.perifrasi.acabar_de'],
+            lemma: 'arribar',
+          },
+        ],
       }),
-    ).rejects.toThrow(/logged query/);
-  });
-
-  it('accepts graded evidence with a rating', async () => {
-    const { fetchFn } = stubFetch([okFixture()]);
-    const result = await callHaiku({
-      ...CONTEXT,
-      apiKey: API_KEY,
-      evidence: 'graded',
-      rating: 'good',
-      fetchFn,
-    });
-    expect(result.queryLog.rating).toBe('good');
+    ]);
+    expect(result.status).toBe('ok');
+    if (result.status === 'ok')
+      expect(result.phrase.ca).toBe("L'home acaba d'arribar.");
   });
 });
 
-describe('transport failures', () => {
-  it('reports the status and does not retry an ordinary error', async () => {
-    const { fetchFn, calls } = stubFetch([
-      { status: 401, body: { error: { message: 'invalid x-api-key' } } },
-    ]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow('401');
-    expect(calls).toHaveLength(1);
+describe('the one retry', () => {
+  it('retries once on a reply that fails the check, and keeps the second', async () => {
+    const { result, calls } = await run([BAD_ANATOMY, OK]);
+    expect(calls).toHaveLength(2);
+    expect(result.status).toBe('ok');
+    expect(result.attempts).toHaveLength(2);
+    expect(result.attempts[0]?.errors.length).toBeGreaterThan(0);
+    expect(result.attempts[1]?.errors).toEqual([]);
   });
 
-  it('falls back to output_format only when output_config is rejected', async () => {
-    const { fetchFn, calls } = stubFetch([
-      { status: 400, body: { error: { message: 'unexpected field output_config' } } },
-      okFixture(),
-    ]);
-    await callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn });
+  it('retries once on reply text that is not JSON', async () => {
+    const { result, calls } = await run([okWith('{"fr": "Hier'), OK]);
     expect(calls).toHaveLength(2);
-    expect(calls[0]?.body).toHaveProperty('output_config');
+    expect(result.status).toBe('ok');
+  });
+
+  it('stores analysis_failed with the Catalan after two failures, never calling a third time', async () => {
+    // The stub holds two replies; a third call would throw and fail the test.
+    const { result, calls } = await run([BAD_ANATOMY, BAD_ANATOMY]);
+    expect(calls).toHaveLength(2);
+    expect(result).toMatchObject({
+      status: 'analysis_failed',
+      fr: SPEC_REPLY['fr'],
+      ca: SPEC_REPLY['ca'],
+    });
+    if (result.status === 'analysis_failed') {
+      expect(result.errors.join(' ')).toContain('Avui');
+    }
+  });
+
+  it('shows the error state when neither reply has usable Catalan', async () => {
+    const { result, calls } = await run([okWith('not json'), okWith({ ca: '' })]);
+    expect(calls).toHaveLength(2);
+    expect(errorKind(result)).toBe('refused');
+  });
+
+  it('keeps the first reply’s Catalan when the retry itself fails', async () => {
+    const { result } = await run([BAD_ANATOMY, { status: 529, body: 'overloaded' }]);
+    expect(result).toMatchObject({ status: 'analysis_failed', ca: SPEC_REPLY['ca'] });
+  });
+});
+
+describe('each failure cause in the spec’s table', () => {
+  it('no API key: detected before the call', async () => {
+    for (const apiKey of [null, '', '  ']) {
+      const { result, calls } = await run([OK], { apiKey });
+      expect(calls).toHaveLength(0);
+      expect(errorKind(result)).toBe('no_key');
+    }
+  });
+
+  it('key rejected: HTTP 401, not retried', async () => {
+    const { result, calls } = await run([{ status: 401, body: 'nope' }]);
+    expect(calls).toHaveLength(1);
+    expect(errorKind(result)).toBe('key_rejected');
+    if (result.status === 'error') expect(result.httpStatus).toBe(401);
+  });
+
+  it('overloaded or rate-limited: HTTP 429 and 529, and 500 to 504 (Q2)', async () => {
+    for (const status of [429, 529, 500, 502, 503, 504]) {
+      const { result, calls } = await run([{ status, body: 'busy' }]);
+      expect(calls, String(status)).toHaveLength(1);
+      expect(errorKind(result), String(status)).toBe('overloaded');
+    }
+  });
+
+  it('offline: navigator.onLine false, before the call', async () => {
+    const { result, calls } = await run([OK], { isOnline: () => false });
+    expect(calls).toHaveLength(0);
+    expect(errorKind(result)).toBe('offline');
+  });
+
+  it('offline: a request that never reaches the API', async () => {
+    const { result } = await run([{ throws: new TypeError('Failed to fetch') }]);
+    expect(errorKind(result)).toBe('offline');
+  });
+
+  it('offline: no reply within the timeout', async () => {
+    const { result, calls } = await run(['hang'], { timeoutMs: 5 });
+    expect(calls).toHaveLength(1);
+    expect(errorKind(result)).toBe('offline');
+    if (result.status === 'error') expect(result.detail).toContain('timeout');
+  });
+
+  it('refusal or cut off: stop_reason, not retried', async () => {
+    for (const stop_reason of ['refusal', 'max_tokens']) {
+      const { result, calls } = await run([okWith(SPEC_REPLY, { stop_reason })]);
+      expect(calls, stop_reason).toHaveLength(1);
+      expect(errorKind(result), stop_reason).toBe('refused');
+      expect(result.attempts[0]?.stopReason).toBe(stop_reason);
+    }
+  });
+
+  it('refused: any other HTTP error and a malformed response (Q2)', async () => {
+    for (const reply of [
+      { status: 400, body: 'bad request' },
+      { status: 403, body: 'forbidden' },
+      { status: 200, body: '<html>' },
+    ]) {
+      const { result, calls } = await run([reply]);
+      expect(calls).toHaveLength(1);
+      expect(errorKind(result)).toBe('refused');
+    }
+  });
+
+  it('cancelled by the caller: reported, never shown as a failure', async () => {
+    const controller = new AbortController();
+    const pending = run(['hang'], { signal: controller.signal });
+    controller.abort();
+    expect(errorKind((await pending).result)).toBe('cancelled');
+  });
+});
+
+describe('the output_config fallback', () => {
+  it('resends under output_format once when the API does not know output_config', async () => {
+    const { result, calls } = await run([
+      { status: 400, body: '{"error":{"message":"output_config: Extra inputs"}}' },
+      OK,
+    ]);
+    expect(result.status).toBe('ok');
+    expect(calls).toHaveLength(2);
     expect(calls[1]?.body).toHaveProperty('output_format');
     expect(calls[1]?.body).not.toHaveProperty('output_config');
-  });
-
-  it('does not retry a 400 that is about something else', async () => {
-    const { fetchFn, calls } = stubFetch([
-      { status: 400, body: { error: { message: 'max_tokens is too large' } } },
-    ]);
-    await expect(
-      callHaiku({ ...CONTEXT, apiKey: API_KEY, evidence: 'lookup', fetchFn }),
-    ).rejects.toThrow('400');
-    expect(calls).toHaveLength(1);
   });
 });

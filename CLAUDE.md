@@ -76,9 +76,11 @@
   Project chat.
 - Build work happens in Claude Code. Specs, reviews and decisions happen in a
   claude.ai chat in that Project.
-- Work in rounds. Give a short plan and wait for a go before writing code.
-  Stop and ask, with options and a recommendation, before any departure from
-  the spec or any decision it does not cover.
+- Go per block, not per step (decided 26 Oct). Give one plan covering the
+  block of steps Sean names, wait for one go, then build them all, one commit
+  per step. Every `ci.yml` step green locally before each push, CI on main
+  confirmed after. Still stop and ask, with options and a recommendation, on
+  any departure from the spec or any decision it does not cover.
 - Git (decided 26 Oct): commit and push straight to `main`. No feature
   branches, no pull requests, no merge step for Sean. Before every push, run
   locally every step that `.github/workflows/ci.yml` runs; CI on main then

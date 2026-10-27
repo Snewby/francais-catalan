@@ -1,0 +1,20 @@
+{
+  "$comment": "Hand-written, not recorded: the spec example reply in the Messages API envelope. Round 1 recordings replace it as evidence; this pins the transport.",
+  "id": "msg_handwritten_0001",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-haiku-4-5",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"fr\":\"Hier, j’ai acheté le pain au marché.\",\"ca\":\"Ahir vaig comprar el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[],\"unlinked\":\"no_notion\"},{\"text\":\"vaig comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"]},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\"]}]}"
+    }
+  ],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 42,
+    "output_tokens": 180,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18300
+  }
+}

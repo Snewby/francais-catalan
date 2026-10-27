@@ -11,8 +11,6 @@ import {
 } from '../src/api/phrase';
 import {
   CHUNK_SCHEMA,
-  COMPONENT_ENTRY_SCHEMA,
-  DECOMPOSITION_SCHEMA,
   LEAF_IDS,
   PHRASE_SCHEMA,
   QUERY_LOG_SCHEMA,
@@ -45,28 +43,19 @@ describe('the generated component enum', () => {
     expect([...LEAF_IDS]).toEqual(LEAVES.map((leaf) => leaf.id));
   });
 
-  it('constrains the component entry ID to that enum', () => {
-    expect(COMPONENT_ENTRY_SCHEMA.properties.id.enum).toEqual(LEAF_IDS);
-  });
-
-  it('accepts an optional language-invariant ipa on a component entry', () => {
-    expect(COMPONENT_ENTRY_SCHEMA.properties.ipa.type).toBe('string');
-    expect([...COMPONENT_ENTRY_SCHEMA.required]).toEqual(['id', 'ca']);
-  });
-
-  it('admits no extra properties on a component entry', () => {
-    expect(COMPONENT_ENTRY_SCHEMA.additionalProperties).toBe(false);
+  it('constrains the logged decomposition entry ID to that enum', () => {
+    expect(QUERY_LOG_SCHEMA.properties.decomposition.items.properties.id.enum).toEqual(
+      LEAF_IDS,
+    );
   });
 });
 
-describe('the decomposition payload is language-invariant', () => {
-  it('holds component IDs and Catalan forms only', () => {
-    const entry = DECOMPOSITION_SCHEMA.properties.decomposition.items.properties;
-    expect(Object.keys(entry).sort()).toEqual(['ca', 'id', 'ipa']);
-  });
-
-  it('keeps French to the answer field alone', () => {
-    expect(DECOMPOSITION_SCHEMA.properties.answer_lang.enum).toEqual(['fr']);
+describe('the vanilla reply schema is gone', () => {
+  it('emits no decomposition or component-entry schema', async () => {
+    // Removed in phase 1 step 3. The phrase reply is the only model output.
+    const schema: Record<string, unknown> = await import('../src/api/schema');
+    expect(schema['DECOMPOSITION_SCHEMA']).toBeUndefined();
+    expect(schema['COMPONENT_ENTRY_SCHEMA']).toBeUndefined();
   });
 });
 
@@ -92,13 +81,6 @@ describe('the logged-query schema', () => {
 
   it('never requires rating unconditionally', () => {
     expect([...QUERY_LOG_SCHEMA.required]).not.toContain('rating');
-  });
-
-  it('emits the same decomposition payload whatever the intent', () => {
-    // All five intents differ in prompt and surrounding fields only.
-    expect(QUERY_LOG_SCHEMA.properties.decomposition).toEqual(
-      DECOMPOSITION_SCHEMA.properties.decomposition,
-    );
   });
 });
 

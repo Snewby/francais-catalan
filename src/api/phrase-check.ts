@@ -128,6 +128,11 @@ function chunkRuleErrors(reply: PhraseReply): string[] {
   return errors;
 }
 
+/** The typographic apostrophe (’, U+2019) made straight, one code unit for one. */
+export function straight(text: string): string {
+  return text.replaceAll('’', "'");
+}
+
 /**
  * Catalan forms use the straight apostrophe (l'home, s'ha), and so does the
  * golden set, but a model may return the typographic one (’, U+2019) in `ca`,
@@ -138,7 +143,6 @@ function chunkRuleErrors(reply: PhraseReply): string[] {
  * After the shape check, which it cannot affect: one code unit for one.
  */
 export function straightenApostrophes(reply: PhraseReply): PhraseReply {
-  const straight = (text: string): string => text.replaceAll('’', "'");
   return {
     ...reply,
     ca: straight(reply.ca),

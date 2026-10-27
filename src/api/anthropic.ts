@@ -5,25 +5,20 @@
  * behind, so the key is entered at runtime and kept in localStorage: it is never
  * hardcoded, never committed, never written to a file and never logged.
  *
- * The cached taxonomy prefix is built in `./prompt`. This module is the
- * transport: it assembles the request around that prefix, constrains the reply
- * to the generated schema, and reports what the cache actually did.
+ * The cached prefix is built in `./prompt` and every reply is checked in
+ * `./phrase-check`. This module is the transport around them: it assembles the
+ * request, retries once on a reply that fails the check, and sorts every way a
+ * call can fail into the causes the spec's failure table names, so the screen
+ * shows one message per cause and never a raw error.
  */
 
-import { DECOMPOSITION_SCHEMA, type ComponentId } from './schema';
-import { validateDecomposition, validateQueryLog } from './validate';
-import { buildSystemBlocks, buildUserContent, type QuestionContext } from './prompt';
-import { unrealisedForms } from '../text/realised';
-import {
-  INTENT_FOR_DIRECTION,
-  type Direction,
-  type Evidence,
-  type Intent,
-  type Rating,
-} from '../srs/evidence';
+import { PHRASE_SCHEMA } from './schema';
+import { buildSystemBlocks, buildUserContent, type CacheTtl } from './prompt';
+import { checkPhraseReply, straight, type SpannedPhrase } from './phrase-check';
 
 const API_KEY_STORAGE_KEY = 'anthropic-api-key';
 
+/** The app's model until the phase 1 eval picks one (docs/spec-phases-0-1.md). */
 export const MODEL = 'claude-haiku-4-5';
 export const ANTHROPIC_VERSION = '2023-06-01';
 export const MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
@@ -32,58 +27,23 @@ export const MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
 export const STRUCTURED_OUTPUTS_BETA = 'structured-outputs-2025-11-13';
 
 /**
- * Roughly four times the ~450-token French answer docs/01 costed, which leaves
- * room for a long decomposition without inviting an essay.
+ * A ceiling, not a target. The reply is about 400 tokens, but the eval
+ * candidates think before they answer, and a reply cut off at the ceiling is a
+ * failure the learner sees, so the headroom is cheap (decided 26 Oct, phase 1
+ * eval, Q3).
  */
-export const MAX_TOKENS = 2048;
+export const MAX_TOKENS = 16000;
 
 /**
- * One entry in the decomposition. LANGUAGE-INVARIANT: the ipa is a property of
- * the Catalan form, not a French rendering of it.
+ * Thinking depth for every eval candidate, decided 26 Oct (phase 1 eval, Q3):
+ * the default for Opus 5.5 and Haiku 5.5, one level below Sonnet 5.5's. The
+ * models listed below take no effort setting and reject the field.
  */
-export interface ComponentEntry {
-  readonly id: ComponentId;
-  readonly ca: string;
-  readonly ipa?: string;
-}
+export const EFFORT = 'medium';
+const MODELS_WITHOUT_EFFORT: ReadonlySet<string> = new Set(['claude-haiku-4-5']);
 
-/** The payload every intent emits. Only the prompt and the logged fields differ. */
-export interface Decomposition {
-  /** Component IDs and Catalan surface forms only. Never French prose. */
-  readonly decomposition: readonly ComponentEntry[];
-  /**
-   * Which way round the question ran, as READ OFF THE QUESTION BY THE MODEL
-   * rather than declared by the caller. A learner types Catalan or French and
-   * the difference is plain; asking them to also pick from a menu was the
-   * interface demanding something it could already see.
-   */
-  readonly direction: Direction;
-  /** The only French-language field in the response. */
-  readonly answer: string;
-  /**
-   * The whole Catalan utterance, on one line: the sentence the learner is
-   * meant to be able to say. A sibling of the decomposition rather than a field
-   * inside it, so the decomposition stays language-invariant and `answer` stays
-   * the single French field.
-   *
-   * Nothing held this before. The only Catalan in a reply was each component's
-   * `ca`, which is the fragment realising one grammar point, and joining those
-   * does not reconstruct a sentence. Pronunciation had nothing to pronounce and
-   * the attempt comparison had nothing to compare against.
-   */
-  readonly answer_ca: string;
-  /**
-   * The same utterance in French, on one line. The mirror of `answer_ca`, and
-   * NOT `answer`: one renders the sentence, the other explains its structure.
-   *
-   * With both, the reply shows the pair whichever way the question ran, so the
-   * Catalan-to-French side stops burying the meaning inside the explanation.
-   * The pair is also the only translation material this application will have
-   * that it did not invent, which is what phase 9 builds practice on.
-   */
-  readonly answer_fr: string;
-  readonly answer_lang: 'fr';
-}
+/** Per attempt, so the worst case with the one retry is twice this. */
+export const TIMEOUT_MS = 20_000;
 
 /**
  * What the cache did. Read `cacheReadTokens` during development: a persistent
@@ -129,7 +89,7 @@ export function buildHeaders(apiKey: string): Record<string, string> {
  * JSON Schema keywords that constrained decoding does not implement.
  *
  * They are kept in the generated schema, because `validate.ts` compiles that
- * schema with Ajv and Ajv does enforce them: an empty `answer` is a bad reply
+ * schema with Ajv and Ajv does enforce them: an empty `ca` is a bad reply
  * whether or not the decoder could have prevented it. They are stripped on the
  * way out so the request is not rejected for asking the decoder to do something
  * it cannot. This derives from the generated schema rather than restating it,
@@ -158,147 +118,131 @@ export function toStructuredOutputSchema(schema: unknown): unknown {
 }
 
 export interface RequestBodyOptions {
+  readonly model?: string;
+  readonly cacheTtl?: CacheTtl;
   /**
    * Send the response format under the older `output_format` key. Only used
-   * after the stable field has been rejected once; see `callHaiku`.
+   * after the stable field has been rejected once; see `send`.
    */
   readonly legacyOutputFormat?: boolean;
 }
 
 export function buildRequestBody(
-  context: QuestionContext,
+  sentence: string,
   options: RequestBodyOptions = {},
 ): Record<string, unknown> {
+  const model = options.model ?? MODEL;
   const format = {
     type: 'json_schema',
-    schema: toStructuredOutputSchema(DECOMPOSITION_SCHEMA),
+    schema: toStructuredOutputSchema(PHRASE_SCHEMA),
   };
+  const effort = MODELS_WITHOUT_EFFORT.has(model) ? {} : { effort: EFFORT };
 
   return {
-    model: MODEL,
+    model,
     max_tokens: MAX_TOKENS,
-    // Static prefix, cache breakpoint on its last block. The question is the
+    // Static prefix, cache breakpoint on its last block. The sentence is the
     // only thing after it, which is what makes the prefix reusable.
-    system: buildSystemBlocks(),
-    messages: [{ role: 'user', content: buildUserContent(context) }],
+    system: buildSystemBlocks(options.cacheTtl),
+    messages: [{ role: 'user', content: buildUserContent(sentence) }],
     ...(options.legacyOutputFormat
       ? { output_format: format }
-      : { output_config: { format } }),
+      : { output_config: { format, ...effort } }),
   };
 }
 
 /**
- * A logged query: the decomposition plus the interaction-model triple.
- *
- * `answer_fr` is optional here and required of the model, which is the one
- * place the two shapes differ. A review item is built from the taxonomy, and
- * the taxonomy holds no French translation of any example, so a review record
- * has no pair to carry; putting the rule's gloss there instead would file a
- * description as a translation in the corpus phase 9 reads.
+ * Every cause the spec's failure table shows, plus `cancelled`, which the
+ * caller asked for and so shows nothing. Causes the table does not name are
+ * folded in as decided 26 Oct (phase 1 step 3, Q2): any 500 to 504 is
+ * `overloaded`, because waiting is the right advice; any other refused request,
+ * a malformed response and a reply whose Catalan is unusable twice are
+ * `refused`.
  */
-export interface QueryLog extends Omit<Decomposition, 'answer_fr'> {
-  readonly answer_fr?: string;
-  readonly asked_at: number;
-  readonly question: string;
-  readonly intent: Intent;
-  // `direction` is inherited from Decomposition, because the model reports it.
-  readonly evidence: Evidence;
-  readonly rating?: Rating;
+export type FailureKind =
+  'no_key' | 'key_rejected' | 'overloaded' | 'offline' | 'refused' | 'cancelled';
+
+/** One round trip, as the eval reports it. */
+export interface Attempt {
+  readonly latencyMs: number;
+  readonly httpStatus?: number;
+  readonly stopReason?: string;
+  readonly usage?: CacheUsage;
+  /** Why the reply failed the check. Empty for a valid reply or a failed call. */
+  readonly errors: readonly string[];
 }
 
-export interface CallOptions extends QuestionContext {
-  readonly apiKey: string;
+interface ResultBase {
+  readonly model: string;
+  /** At most two: the call and the one retry. */
+  readonly attempts: readonly Attempt[];
+}
+
+export type TranslateResult =
+  | (ResultBase & { readonly status: 'ok'; readonly phrase: SpannedPhrase })
+  | (ResultBase & {
+      /**
+       * The anatomy failed twice and the Catalan did not: shown without
+       * chunks rather than with wrong ones. `errors` are the last reply's.
+       */
+      readonly status: 'analysis_failed';
+      readonly fr: string;
+      readonly ca: string;
+      readonly errors: readonly string[];
+    })
+  | (ResultBase & {
+      readonly status: 'error';
+      readonly kind: FailureKind;
+      /** English, for the log and the eval. The screen picks French by `kind`. */
+      readonly detail: string;
+      readonly httpStatus?: number;
+    });
+
+export interface TranslateOptions {
+  readonly sentence: string;
+  /** Null or empty is the « Ajoutez votre clé API » state, before any call. */
+  readonly apiKey: string | null;
+  readonly model?: string;
+  readonly cacheTtl?: CacheTtl;
+  /** The caller's cancel, e.g. back on the Phrase screen. */
+  readonly signal?: AbortSignal;
   /**
-   * No `direction` here on purpose. It arrives on the reply, and a caller that
-   * could also assert one would be a second source for a field the model is now
-   * responsible for.
-   */
-  /**
-   * How much this interaction tells us about what the user knows. Passed
-   * through to the logged record; what each type may move is EVIDENCE_EFFECTS'
-   * business, not this module's.
-   */
-  readonly evidence: Evidence;
-  readonly rating?: Rating;
-  /**
-   * Injectable so tests can pass a stub returning a recorded fixture. Keeps the
-   * golden-set eval fully offline and free.
+   * Injectable so tests can pass a stub returning a recorded reply, which is
+   * what keeps the golden-set eval offline and free.
    */
   readonly fetchFn?: typeof fetch;
-  /** Injectable so a logged record is reproducible in a test. */
-  readonly now?: () => number;
-}
-
-export interface CallResult {
-  readonly decomposition: Decomposition;
-  /** Schema-valid and ready to persist. Phase 5 stores this, it does not rebuild it. */
-  readonly queryLog: QueryLog;
-  readonly usage: CacheUsage;
-  /**
-   * Forms the model named that its own `answer_ca` does not contain, after one
-   * retry. Empty on a good reply.
-   *
-   * Non-empty means the decomposition has been DROPPED: `decomposition` is `[]`
-   * here and in the logged record, so not one component is credited. The answer
-   * and the French/Catalan pair survive untouched, because they are what the
-   * learner asked for and they are not what failed.
-   */
-  readonly unverified: readonly string[];
-}
-
-export class AnthropicError extends Error {
-  constructor(
-    message: string,
-    readonly status?: number,
-  ) {
-    super(message);
-    this.name = 'AnthropicError';
-  }
+  /** Injectable for tests; the default reads `navigator.onLine`. */
+  readonly isOnline?: () => boolean;
+  /** Injectable for tests; the default is `performance.now`. */
+  readonly clock?: () => number;
+  readonly timeoutMs?: number;
 }
 
 interface ApiResponse {
   readonly content?: readonly { readonly type: string; readonly text?: string }[];
   readonly stop_reason?: string;
-  readonly usage?: Readonly<Record<string, number>>;
+  readonly usage?: Readonly<Record<string, unknown>>;
 }
 
-function readUsage(usage: ApiResponse['usage']): CacheUsage {
+function tokens(usage: ApiResponse['usage'], field: string): number {
+  const value = usage?.[field];
+  return typeof value === 'number' ? value : 0;
+}
+
+export function readUsage(usage: ApiResponse['usage']): CacheUsage {
   return {
-    inputTokens: usage?.input_tokens ?? 0,
-    outputTokens: usage?.output_tokens ?? 0,
-    cacheCreationTokens: usage?.cache_creation_input_tokens ?? 0,
-    cacheReadTokens: usage?.cache_read_input_tokens ?? 0,
+    inputTokens: tokens(usage, 'input_tokens'),
+    outputTokens: tokens(usage, 'output_tokens'),
+    cacheCreationTokens: tokens(usage, 'cache_creation_input_tokens'),
+    cacheReadTokens: tokens(usage, 'cache_read_input_tokens'),
   };
 }
 
-/** The constrained reply arrives as JSON in the first text block. */
-function parseDecomposition(response: ApiResponse): Decomposition {
-  if (response.stop_reason === 'refusal') {
-    throw new AnthropicError('The model declined to answer this query.');
-  }
-  if (response.stop_reason === 'max_tokens') {
-    throw new AnthropicError('The reply was cut off at max_tokens.');
-  }
-
-  const text = response.content?.find((block) => block.type === 'text')?.text;
-  if (text === undefined) {
-    throw new AnthropicError('The reply carried no text block.');
-  }
-
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    throw new AnthropicError('The reply was not valid JSON.');
-  }
-
-  const result = validateDecomposition(parsed);
-  if (!result.valid) {
-    throw new AnthropicError(
-      `The reply failed the schema: ${result.errors.join('; ')}`,
-    );
-  }
-  return parsed as Decomposition;
+function kindForStatus(status: number): FailureKind {
+  if (status === 401) return 'key_rejected';
+  if (status === 429 || status === 529) return 'overloaded';
+  if (status >= 500 && status <= 504) return 'overloaded';
+  return 'refused';
 }
 
 /**
@@ -311,114 +255,233 @@ function isUnknownOutputConfig(status: number, body: string): boolean {
   return status === 400 && /output_config/.test(body);
 }
 
-async function post(
-  fetchFn: typeof fetch,
-  apiKey: string,
-  body: Record<string, unknown>,
-): Promise<{ ok: boolean; status: number; text: string }> {
-  const response = await fetchFn(MESSAGES_URL, {
-    method: 'POST',
-    headers: buildHeaders(apiKey),
-    body: JSON.stringify(body),
-  });
-  return { ok: response.ok, status: response.status, text: await response.text() };
+type Outcome =
+  | {
+      readonly type: 'reply';
+      readonly check: ReturnType<typeof checkPhraseReply>;
+      /** `fr` and `ca` when both are usable, whatever the rest of the reply. */
+      readonly draft?: { readonly fr: string; readonly ca: string };
+    }
+  | {
+      readonly type: 'error';
+      readonly kind: FailureKind;
+      readonly detail: string;
+      readonly httpStatus?: number;
+    };
+
+function usableText(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
-/** One round trip: the request, the legacy-field fallback, and the parse. */
-async function send(
-  fetchFn: typeof fetch,
-  apiKey: string,
-  context: QuestionContext,
-): Promise<{ payload: ApiResponse; decomposition: Decomposition }> {
-  let response = await post(fetchFn, apiKey, buildRequestBody(context));
+/** The parts of a failed reply the screen can still show. */
+function draftOf(candidate: unknown): { fr: string; ca: string } | undefined {
+  if (candidate === null || typeof candidate !== 'object') return undefined;
+  const { fr, ca } = candidate as { fr?: unknown; ca?: unknown };
+  return usableText(fr) && usableText(ca) ? { fr, ca: straight(ca) } : undefined;
+}
 
-  if (!response.ok && isUnknownOutputConfig(response.status, response.text)) {
-    response = await post(
-      fetchFn,
-      apiKey,
-      buildRequestBody(context, { legacyOutputFormat: true }),
-    );
+/** Read the constrained reply out of a 200 and check it. */
+function outcomeOf(payload: ApiResponse): Outcome {
+  if (payload.stop_reason === 'refusal') {
+    return { type: 'error', kind: 'refused', detail: 'The model declined.' };
+  }
+  if (payload.stop_reason === 'max_tokens') {
+    return { type: 'error', kind: 'refused', detail: 'The reply was cut off.' };
   }
 
-  if (!response.ok) {
-    throw new AnthropicError(
-      `The API returned ${String(response.status)}.`,
-      response.status,
-    );
+  const text = payload.content?.find((block) => block.type === 'text')?.text;
+  if (text === undefined) {
+    return {
+      type: 'reply',
+      check: { valid: false, errors: ['the reply carried no text block'] },
+    };
   }
 
-  let payload: ApiResponse;
+  let candidate: unknown;
   try {
-    payload = JSON.parse(response.text) as ApiResponse;
+    candidate = JSON.parse(text);
   } catch {
-    throw new AnthropicError('The API response was not valid JSON.');
+    return {
+      type: 'reply',
+      check: { valid: false, errors: ['the reply text was not valid JSON'] },
+    };
   }
 
-  return { payload, decomposition: parseDecomposition(payload) };
+  const draft = draftOf(candidate);
+  return { type: 'reply', check: checkPhraseReply(candidate), ...(draft && { draft }) };
 }
 
-/** The forms a reply names that its own utterance does not contain. */
-function unverifiedIn(decomposition: Decomposition): string[] {
-  return unrealisedForms(
-    decomposition.decomposition.map((entry) => entry.ca),
-    decomposition.answer_ca,
-  );
+interface Sent {
+  readonly outcome: Outcome;
+  readonly attempt: Attempt;
 }
 
-export async function callHaiku(options: CallOptions): Promise<CallResult> {
+/** One round trip: the request, the legacy-field fallback, and the check. */
+async function send(options: TranslateOptions, model: string): Promise<Sent> {
   const fetchFn = options.fetchFn ?? fetch;
-  const context: QuestionContext = {
-    question: options.question,
-    ...(options.intent === undefined ? {} : { intent: options.intent }),
+  const clock = options.clock ?? (() => performance.now());
+  const started = clock();
+  const elapsed = (): number => Math.round(clock() - started);
+
+  // One controller for both the 20 s timeout and the caller's cancel, linked
+  // by hand: AbortSignal.any is missing from Safari before 17.4.
+  const controller = new AbortController();
+  let timedOut = false;
+  const timer = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, options.timeoutMs ?? TIMEOUT_MS);
+  const cancel = (): void => {
+    controller.abort();
+  };
+  if (options.signal?.aborted) cancel();
+  options.signal?.addEventListener('abort', cancel);
+  const signal = controller.signal;
+
+  const post = async (legacyOutputFormat: boolean) => {
+    const response = await fetchFn(MESSAGES_URL, {
+      method: 'POST',
+      headers: buildHeaders(options.apiKey ?? ''),
+      body: JSON.stringify(
+        buildRequestBody(options.sentence, {
+          model,
+          ...(options.cacheTtl && { cacheTtl: options.cacheTtl }),
+          legacyOutputFormat,
+        }),
+      ),
+      signal,
+    });
+    return { ok: response.ok, status: response.status, text: await response.text() };
   };
 
-  let sent = await send(fetchFn, options.apiKey, context);
-  let unverified = unverifiedIn(sent.decomposition);
+  try {
+    let response = await post(false);
+    if (!response.ok && isUnknownOutputConfig(response.status, response.text)) {
+      response = await post(true);
+    }
 
-  // ONE retry, not a loop. A decomposition naming a form the sentence does not
-  // contain is usually a bad draw and a second ask fixes it; a second identical
-  // failure is the model failing at the task, and a third call would spend the
-  // learner's wait on the same answer.
-  if (unverified.length > 0) {
-    sent = await send(fetchFn, options.apiKey, context);
-    unverified = unverifiedIn(sent.decomposition);
+    if (!response.ok) {
+      return {
+        outcome: {
+          type: 'error',
+          kind: kindForStatus(response.status),
+          detail: `The API returned ${String(response.status)}.`,
+          httpStatus: response.status,
+        },
+        attempt: { latencyMs: elapsed(), httpStatus: response.status, errors: [] },
+      };
+    }
+
+    let payload: ApiResponse;
+    try {
+      payload = JSON.parse(response.text) as ApiResponse;
+    } catch {
+      return {
+        outcome: {
+          type: 'error',
+          kind: 'refused',
+          detail: 'The API response was not valid JSON.',
+          httpStatus: response.status,
+        },
+        attempt: { latencyMs: elapsed(), httpStatus: response.status, errors: [] },
+      };
+    }
+
+    const outcome = outcomeOf(payload);
+    return {
+      outcome,
+      attempt: {
+        latencyMs: elapsed(),
+        httpStatus: response.status,
+        ...(payload.stop_reason !== undefined && { stopReason: payload.stop_reason }),
+        usage: readUsage(payload.usage),
+        errors:
+          outcome.type === 'reply' && !outcome.check.valid ? outcome.check.errors : [],
+      },
+    };
+  } catch {
+    // A rejected fetch is the network, the 20 s abort, or the caller's cancel.
+    const cancelled = options.signal?.aborted === true;
+    return {
+      outcome: cancelled
+        ? { type: 'error', kind: 'cancelled', detail: 'Cancelled by the caller.' }
+        : timedOut
+          ? { type: 'error', kind: 'offline', detail: 'No reply within the timeout.' }
+          : {
+              type: 'error',
+              kind: 'offline',
+              detail: 'The request did not reach the API.',
+            },
+      attempt: { latencyMs: elapsed(), errors: [] },
+    };
+  } finally {
+    clearTimeout(timer);
+    options.signal?.removeEventListener('abort', cancel);
+  }
+}
+
+function defaultIsOnline(): boolean {
+  return typeof navigator === 'undefined' || navigator.onLine !== false;
+}
+
+export async function translatePhrase(
+  options: TranslateOptions,
+): Promise<TranslateResult> {
+  const model = options.model ?? MODEL;
+  const attempts: Attempt[] = [];
+  const fail = (
+    kind: FailureKind,
+    detail: string,
+    httpStatus?: number,
+  ): TranslateResult => ({
+    status: 'error',
+    kind,
+    detail,
+    ...(httpStatus !== undefined && { httpStatus }),
+    model,
+    attempts,
+  });
+
+  if (options.apiKey === null || options.apiKey.trim() === '') {
+    return fail('no_key', 'No API key is stored.');
+  }
+  if (!(options.isOnline ?? defaultIsOnline)()) {
+    return fail('offline', 'The device reports no connection.');
   }
 
-  // The analysis fails, the translation does not. Dropping the whole list
-  // rather than the offending entries is deliberate: a reply that named a form
-  // absent from its own sentence has shown the analysis to be untrustworthy,
-  // and keeping the rest would credit components on the strength of a reply
-  // already known to be wrong about others.
-  const decomposition: Decomposition =
-    unverified.length === 0
-      ? sent.decomposition
-      : { ...sent.decomposition, decomposition: [] };
+  const drafts: { fr: string; ca: string }[] = [];
+  let lastErrors: readonly string[] = [];
 
-  const queryLog: QueryLog = {
-    asked_at: (options.now ?? Date.now)(),
-    question: options.question,
-    // Derived from the direction the model reported, unless the caller asked
-    // for a specific intent. The mapping is EVIDENCE_EFFECTS' neighbour in
-    // src/srs/evidence.ts, so the review loop and this client cannot disagree.
-    intent: options.intent ?? INTENT_FOR_DIRECTION[decomposition.direction],
-    evidence: options.evidence,
-    ...(options.rating === undefined ? {} : { rating: options.rating }),
-    ...decomposition,
-  };
+  // ONE retry, not a loop. A reply that fails the check is usually a bad draw
+  // and a second ask fixes it; a second failure is the model failing at the
+  // task, and a third call would spend the learner's wait on the same answer.
+  for (let call = 0; call < 2; call += 1) {
+    const { outcome, attempt } = await send(options, model);
+    attempts.push(attempt);
 
-  // The rating rule lives in the generated schema and is checked here rather
-  // than restated: a graded call with no rating must not reach persistence.
-  const logResult = validateQueryLog(queryLog);
-  if (!logResult.valid) {
-    throw new AnthropicError(
-      `The logged query failed the schema: ${logResult.errors.join('; ')}`,
+    if (outcome.type === 'error') {
+      // A failed call is final on the first attempt. On the retry, a usable
+      // Catalan from the first reply still beats an error screen, unless the
+      // learner cancelled.
+      if (call === 0 || outcome.kind === 'cancelled' || drafts.length === 0) {
+        return fail(outcome.kind, outcome.detail, outcome.httpStatus);
+      }
+      break;
+    }
+    if (outcome.check.valid) {
+      return { status: 'ok', phrase: outcome.check.phrase, model, attempts };
+    }
+    if (outcome.draft) drafts.push(outcome.draft);
+    lastErrors = outcome.check.errors;
+  }
+
+  // The latest usable pair, so a retry that fixed the Catalan is the one shown.
+  const draft = drafts.at(-1);
+  if (draft === undefined) {
+    return fail(
+      'refused',
+      `No usable Catalan in two replies: ${lastErrors.join('; ')}`,
     );
   }
-
-  return {
-    decomposition,
-    queryLog,
-    usage: readUsage(sent.payload.usage),
-    unverified,
-  };
+  return { status: 'analysis_failed', ...draft, errors: lastErrors, model, attempts };
 }

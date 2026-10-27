@@ -18,7 +18,6 @@
     "validate-ids": "tsx scripts/validate-ids.ts",
     "check-glosses": "tsx scripts/check-glosses.ts",
     "check-duplicates": "tsx scripts/check-duplicates.ts",
-    "eval": "tsx scripts/eval.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {

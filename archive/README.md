@@ -21,3 +21,8 @@ lint, format and tests. The vanilla app itself is one checkout away at the tag
 - `test/browser-emits-no-evidence.test.ts`: the structural ban that kept the
   vanilla explorer from reaching the modules that write evidence. The explorer
   is gone; the map (phase 5) owns the successor ban.
+- `src/eval/golden.ts`, `scripts/eval.ts`, `test/golden-set.test.ts` and
+  `test/fixtures/golden/`: the vanilla golden set and its harness, archived in
+  phase 1 step 3 when the decomposition reply they replay was removed. Its 10
+  fixtures record the old reply shape, 6 are Catalan input and 8 are marked
+  « defective » yet passed. `test/fixtures/golden-v2/` replaces it.

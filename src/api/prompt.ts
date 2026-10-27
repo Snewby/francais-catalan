@@ -2,20 +2,28 @@
  * The prompt sent to the model, split into a cached static prefix and a dynamic
  * suffix.
  *
- * The split is the whole point of phase 4, not an optimisation bolted on after.
  * Render order at the API is tools, then system, then messages, so everything
- * that never varies has to live in `system` and the question has to live in
- * `messages`. A single byte moving in the prefix costs a full cache write on
- * every query.
+ * that never varies lives in `system` and the sentence lives in `messages`, on
+ * its own. A single byte moving in the prefix costs a full cache write on every
+ * call.
  *
  * Nothing here is user-facing copy, so it does not belong in `src/i18n/fr.ts`.
  * It is French prose all the same, and follows the same typography rules: the
  * narrow no-break space is imported rather than typed, and French prose takes
- * the typographic apostrophe while Catalan forms keep the straight one.
+ * the typographic apostrophe while Catalan cited inside guillemets keeps the
+ * straight one, which is also what the prompt asks the model to write.
  */
 import { NNBSP, quote } from '../i18n/fr';
 import { LEAVES } from '../taxonomy';
-import type { Direction, Intent } from '../srs/evidence';
+import {
+  ASSUMPTIONS,
+  CHUNK_ROLES,
+  MAX_IDS_PER_CHUNK,
+  UNLINKED_REASONS,
+  type Assumption,
+  type ChunkRole,
+  type UnlinkedReason,
+} from './phrase';
 
 /**
  * Field separator in the vocabulary table. A tab is the cheapest separator that
@@ -26,31 +34,39 @@ import type { Direction, Intent } from '../srs/evidence';
 const FIELD = '\t';
 
 /**
- * What each intent asks the model for. All five are described here, in the
- * cached prefix, even though the MVP only ever sends two: describing them costs
- * a few tokens once, and moving the description into the dynamic suffix would
- * make the prefix vary by intent and halve the cache hit rate.
+ * What each role means. Keyed by the closed enum in phrase.ts, so a role added
+ * there does not compile until it is explained here.
  */
-const INTENT_GUIDANCE: Record<Intent, string> = {
-  comprehend: 'expliquer ce que veut dire l’énoncé et pourquoi il est construit ainsi',
-  produce: 'donner la forme catalane attendue et justifier chaque choix',
-  teach: 'exposer la règle générale dont l’énoncé est un cas',
-  assess: 'répondre normalement, sans révéler plus que ce qui est demandé',
-  pronounce: `décrire la prononciation, et renseigner le champ ${quote('ipa')} de chaque entrée`,
+const ROLE_GUIDANCE: Record<ChunkRole, string> = {
+  subject: 'le sujet exprimé, pronom fort ou groupe nominal',
+  verb: 'le groupe verbal, auxiliaire et périphrase compris',
+  object_direct: 'le complément d’objet direct',
+  object_indirect: 'le complément d’objet indirect',
+  clitic: 'un pronom faible, ou une combinaison de pronoms faibles',
+  negation: 'les mots qui portent la négation',
+  time: 'un complément de temps',
+  place: 'un complément de lieu',
+  manner: 'un complément de manière',
+  quantity: 'une quantité ou un degré',
+  connector: 'une conjonction ou un mot de liaison',
+  complement: 'un autre complément, ou un attribut',
+  other: 'ce qui n’entre dans aucun des rôles ci-dessus',
 };
 
-/**
- * What each direction means, and how to tell which one you were sent.
- *
- * The model REPORTS the direction rather than being told it. Which way round a
- * question runs is evident from the question, so asking the learner to declare
- * it was an interface demanding something it could already see.
- */
-const DIRECTION_GUIDANCE: Record<Direction, string> = {
-  ca_to_fr:
-    'l’énoncé soumis est en catalan, et il s’agit de l’expliquer à un francophone',
-  fr_to_ca:
-    'l’énoncé soumis est en français, ou décrit en français ce que l’on cherche à dire, et il s’agit de produire le catalan correspondant',
+/** The choices French leaves open. Keyed by the closed enum in phrase.ts. */
+const ASSUMPTION_GUIDANCE: Record<Assumption, string> = {
+  addressee_tu: 'tu as choisi le tutoiement',
+  addressee_formal: `tu as choisi le vouvoiement de politesse (${quote('vostè')}, ${quote('vostès')})`,
+  speaker_fem: 'tu as supposé que la personne qui parle est une femme',
+  subject_fem: 'tu as supposé que le sujet est féminin',
+  plural_fem: 'tu as supposé qu’un pluriel ne désigne que des femmes',
+};
+
+/** Why a chunk links nothing. Keyed by the closed enum in phrase.ts. */
+const UNLINKED_GUIDANCE: Record<UnlinkedReason, string> = {
+  no_notion: 'du vocabulaire simple, sans point de grammaire à enseigner',
+  outside_taxonomy:
+    'un vrai point de grammaire qui n’a pas d’identifiant dans le vocabulaire',
 };
 
 function guidanceTable<K extends string>(
@@ -61,72 +77,69 @@ function guidanceTable<K extends string>(
 }
 
 /**
- * The instruction block. Static by construction: it names no question, no date
+ * The instruction block. Static by construction: it names no sentence, no date
  * and no key, so it renders byte-identically on every call.
  */
 export const SYSTEM_INSTRUCTION = [
-  'Tu analyses la grammaire catalane pour un locuteur francophone.',
+  'Tu traduis en catalan une phrase française pour un francophone qui apprend ' +
+    'le catalan, puis tu découpes la traduction en segments. Tu ne rédiges ' +
+    `aucune explication${NNBSP}: la réponse ne contient que les champs demandés.`,
   '',
-  `Langue${NNBSP}: le champ ${quote('answer')} est rédigé en français, avec la ` +
-    `terminologie grammaticale française (pronoms faibles, passé périphrastique, ` +
-    `gérondif, complément d’objet direct). Le tableau ${quote('decomposition')} ne ` +
-    `contient aucun français${NNBSP}: uniquement des identifiants de composants et ` +
-    `des formes catalanes, laissées en catalan et jamais traduites.`,
+  `Champ ${quote('fr')}${NNBSP}: la phrase soumise telle que tu l’as comprise, ` +
+    'fautes de frappe et accents corrigés, sens inchangé. C’est le seul champ en ' +
+    'français.',
   '',
-  `Réponse catalane${NNBSP}: le champ ${quote('answer_ca')} contient l’énoncé ` +
-    `catalan entier, en une seule ligne, sans guillemets ni commentaire. C’est la ` +
-    `phrase que le lecteur doit pouvoir lire à voix haute. Quand la question est ` +
-    `déjà en catalan, reprends-la, corrigée si elle contient une faute. Quand elle ` +
-    `est en français, produis la forme catalane attendue. Ce champ n’est jamais ` +
-    `vide et ne contient jamais de français. Quand tu corriges une faute de ` +
-    `l’énoncé soumis, dis-le explicitement dans ${quote('answer')} et ne cite ` +
-    `jamais la forme fautive comme si elle était correcte.`,
+  `Champ ${quote('ca')}${NNBSP}: la traduction, en une seule ligne, en catalan ` +
+    'central standard. Écris ce que dirait un locuteur, pas un mot-à-mot. Ce champ ' +
+    'n’est jamais vide et ne contient jamais de français. Quand la phrase soumise ' +
+    `est déjà en catalan, reprends-la dans ${quote('ca')}, corrigée si elle ` +
+    `contient une faute, et traduis-la en français dans ${quote('fr')}.`,
   '',
-  `Réponse française${NNBSP}: le champ ${quote('answer_fr')} contient le même ` +
-    `énoncé en français, en une seule ligne, sans commentaire et sans ` +
-    `explication. C’est la traduction de ${quote('answer_ca')}, pas un résumé ` +
-    `de ce qui suit${NNBSP}: les deux lignes doivent dire la même chose, l’une ` +
-    `en catalan et l’autre en français. Ne confonds pas ce champ avec ` +
-    `${quote('answer')}, qui explique la structure et ne traduit rien.`,
+  `Orthographe catalane${NNBSP}: l’apostrophe est l’apostrophe droite (U+0027), ` +
+    `comme dans ${quote("l'home")}, ${quote("s'ha")} et ${quote("d'arribar")}, ` +
+    'jamais l’apostrophe typographique. Le l géminé prend le point volat ' +
+    `(U+00B7), comme dans ${quote('col·lecció')}.`,
   '',
-  `Lisibilité${NNBSP}: le champ ${quote('answer')} est découpé en courts ` +
-    `paragraphes séparés par une ligne vide, un point par paragraphe. Pas de ` +
-    `titres, pas de listes à puces, pas de bloc unique et compact. Va au fait ` +
-    `d’abord, les précisions ensuite.`,
+  `Champ ${quote('subject')}${NNBSP}: ${quote('person')} est la personne ` +
+    `grammaticale du verbe principal, de ${quote('1sg')} à ${quote('3pl')}, ou ` +
+    `${quote('none')} pour une phrase impersonnelle. ${quote('expressed')} vaut ` +
+    'false quand le catalan omet le pronom sujet, comme il le fait d’ordinaire.',
   '',
-  `Décomposition${NNBSP}: une entrée par point de grammaire réellement présent ` +
-    `dans l’énoncé, dans l’ordre où il apparaît. Le champ ${quote('id')} est repris ` +
-    `mot pour mot du vocabulaire ci-dessous, qui est clos${NNBSP}: aucun autre ` +
-    `identifiant n’existe. Le champ ${quote('ca')} est la forme catalane qui ` +
-    `réalise ce point dans cet énoncé précis, pas la forme de référence du ` +
-    `vocabulaire. Le champ ${quote('ipa')} est facultatif et ne sert que pour ` +
-    `l’intention ${quote('pronounce')}.`,
+  `Champ ${quote('assumptions')}${NNBSP}: les choix que le français laisse ` +
+    'ouverts et que tu as dû trancher pour écrire le catalan. Tableau vide quand ' +
+    `tu n’as rien supposé${NNBSP}:`,
+  guidanceTable(ASSUMPTION_GUIDANCE, ASSUMPTIONS),
   '',
-  'N’invente pas de point de grammaire pour étoffer la liste, et n’en omets pas ' +
-    'un qui est présent. Une entrée par point, sans doublon.',
+  `Champ ${quote('chunks')}${NNBSP}: ${quote('ca')} découpé en segments, dans ` +
+    `l’ordre. Chaque ${quote('text')} est une sous-chaîne exacte de ` +
+    `${quote('ca')}, recopiée caractère pour caractère, mêmes majuscules, mêmes ` +
+    'accents, mêmes apostrophes. Ensemble, les segments couvrent tous les mots de ' +
+    `${quote('ca')}${NNBSP}; seuls la ponctuation et les espaces restent hors ` +
+    'segment, et la ponctuation n’est jamais un segment. Un segment regroupe les ' +
+    `mots qui forment une unité, comme ${quote('vaig comprar')}, ${quote('el pa')} ` +
+    `ou ${quote('al mercat')}. Quand ${quote('expressed')} vaut false, aucun ` +
+    `segment n’a le rôle ${quote('subject')}.`,
   '',
-  `Ne relève un point que si la forme citée réalise vraiment ce que ` +
+  `Rôles${NNBSP}:`,
+  guidanceTable(ROLE_GUIDANCE, CHUNK_ROLES),
+  '',
+  `Champ ${quote('ids')}${NNBSP}: de zéro à ${String(MAX_IDS_PER_CHUNK)} ` +
+    'identifiants repris mot pour mot du vocabulaire ci-dessous, qui est ' +
+    `clos${NNBSP}: aucun autre identifiant n’existe. Le plus spécifique d’abord.`,
+  '',
+  'Ne relie un identifiant que si le segment réalise vraiment ce que ' +
     `l’identifiant nomme${NNBSP}: un nom au singulier ne réalise aucune règle de ` +
-    `pluriel, et un participe n’est pas un infinitif. Si un point réellement ` +
-    `présent n’a pas d’identifiant, décris-le en prose dans ${quote('answer')} ` +
-    `sans rien ajouter au tableau. Une liste courte et juste vaut mieux qu’un ` +
-    `identifiant approchant.`,
+    'pluriel, et un participe n’est pas un infinitif. Une liste courte et juste ' +
+    'vaut mieux qu’un identifiant approchant, et un segment sans identifiant est ' +
+    'une réponse honnête.',
   '',
-  `Exactitude${NNBSP}: n’énonce pas comme obligatoire ce qui est facultatif, ni ` +
-    `comme régulier ce qui est irrégulier. Quand un emploi est courant sans être ` +
-    `le seul possible, dis-le. Une explication prudente vaut mieux qu’une règle ` +
-    `générale que tu n’as pas vérifiée.`,
+  `Champ ${quote('unlinked')}${NNBSP}: présent si et seulement si ` +
+    `${quote('ids')} est vide, avec l’une de ces valeurs${NNBSP}:`,
+  guidanceTable(UNLINKED_GUIDANCE, UNLINKED_REASONS),
   '',
-  `Rapport au français${NNBSP}: quand la glose du vocabulaire signale un écart ` +
-    `avec le français, reprends-le. C’est ce que le lecteur ne peut pas deviner ` +
-    `seul, et c’est la raison d’être de la fiche.`,
-  '',
-  `Intentions${NNBSP}:`,
-  guidanceTable(INTENT_GUIDANCE, Object.keys(INTENT_GUIDANCE) as Intent[]),
-  '',
-  `Sens de la question${NNBSP}: détermine-le toi-même à partir de la langue de ` +
-    `l’énoncé, et renseigne le champ ${quote('direction')} en conséquence.`,
-  guidanceTable(DIRECTION_GUIDANCE, Object.keys(DIRECTION_GUIDANCE) as Direction[]),
+  `Champ ${quote('lemma')}${NNBSP}: la forme de base d’un verbe, d’un nom ou ` +
+    'd’un adjectif (infinitif, ou masculin singulier). Omis pour les autres ' +
+    'segments.',
 ].join('\n');
 
 /**
@@ -144,10 +157,17 @@ export function renderVocabulary(): string {
   );
 }
 
+/**
+ * How long the cached prefix lives. The app uses the default; the eval also
+ * probes the hour, because a learner typing now and then often misses five
+ * minutes.
+ */
+export type CacheTtl = '5m' | '1h';
+
 export interface SystemBlock {
   readonly type: 'text';
   readonly text: string;
-  readonly cache_control?: { readonly type: 'ephemeral' };
+  readonly cache_control?: { readonly type: 'ephemeral'; readonly ttl?: '1h' };
 }
 
 /**
@@ -157,38 +177,22 @@ export interface SystemBlock {
  * together (they are both built from committed files), so a second breakpoint
  * would buy nothing and spend one of the four the API allows.
  */
-export function buildSystemBlocks(): readonly SystemBlock[] {
+export function buildSystemBlocks(ttl: CacheTtl = '5m'): readonly SystemBlock[] {
   return [
     { type: 'text', text: SYSTEM_INSTRUCTION },
     {
       type: 'text',
       text: `Vocabulaire clos (identifiant${FIELD}forme catalane${FIELD}glose)${NNBSP}:\n${renderVocabulary()}`,
-      cache_control: { type: 'ephemeral' },
+      cache_control: ttl === '1h' ? { type: 'ephemeral', ttl } : { type: 'ephemeral' },
     },
   ];
 }
 
-export interface QuestionContext {
-  readonly question: string;
-  /**
-   * Overrides the intent the detected direction implies. Omitted by the MVP
-   * views, which ask for `comprehend` or `produce` and get whichever the
-   * direction gives. `pronounce` is the case this exists for.
-   */
-  readonly intent?: Intent;
-}
-
 /**
- * The dynamic suffix. Everything that varies per query lives here and nowhere
- * else.
- *
- * The direction is NOT sent. The model reads it off the question and reports it
- * back, which is the whole point of dropping the selector from the interface.
+ * The dynamic suffix: the sentence, and nothing else. No intent and no
+ * direction are sent; the phrase reply has one shape whichever way round the
+ * sentence runs.
  */
-export function buildUserContent(context: QuestionContext): string {
-  return [
-    ...(context.intent === undefined ? [] : [`intent${FIELD}${context.intent}`]),
-    '',
-    context.question,
-  ].join('\n');
+export function buildUserContent(sentence: string): string {
+  return sentence;
 }
