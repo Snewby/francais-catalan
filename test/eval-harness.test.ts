@@ -38,10 +38,12 @@ const HASH = 'test-hash';
 const CASES_DIR = path.resolve(import.meta.dirname, 'fixtures/golden-v2/cases');
 const ALL_CASES: GoldenCase[] = readdirSync(CASES_DIR)
   .sort()
-  .map(
-    (name) =>
-      JSON.parse(readFileSync(path.join(CASES_DIR, name), 'utf8')) as GoldenCase,
-  );
+  // The harness is tested from a blank review: the committed renderings and
+  // verdicts grow every round and belong to golden-set.test.ts.
+  .map((name) => ({
+    ...(JSON.parse(readFileSync(path.join(CASES_DIR, name), 'utf8')) as GoldenCase),
+    renderings: [],
+  }));
 
 function caseNumber(n: number): GoldenCase {
   const golden = ALL_CASES.find((candidate) => candidate.n === n);

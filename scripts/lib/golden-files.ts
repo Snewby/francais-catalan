@@ -26,15 +26,22 @@ function readJson<T>(file: string): T {
   return JSON.parse(readFileSync(file, 'utf8')) as T;
 }
 
-/** Formatted as the repo formats JSON, so a write leaves a reviewable diff. */
-export async function writeJson(file: string, value: unknown): Promise<void> {
+/**
+ * Formatted as the repo formats its files, so a write leaves a reviewable diff
+ * and a generated file passes format:check.
+ */
+export async function writeFormatted(
+  file: string,
+  text: string,
+  parser: 'json' | 'markdown',
+): Promise<void> {
   mkdirSync(path.dirname(file), { recursive: true });
   const options = await prettier.resolveConfig(file);
-  writeFileSync(
-    file,
-    await prettier.format(JSON.stringify(value), { ...options, parser: 'json' }),
-    'utf8',
-  );
+  writeFileSync(file, await prettier.format(text, { ...options, parser }), 'utf8');
+}
+
+export async function writeJson(file: string, value: unknown): Promise<void> {
+  await writeFormatted(file, JSON.stringify(value), 'json');
 }
 
 function caseFiles(): string[] {

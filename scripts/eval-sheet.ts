@@ -7,7 +7,7 @@
  * stable ID, and writes review/round-<n>.md plus review/verdicts-round-<n>.json
  * for Sean to fill in. Only renderings with no verdict go on the sheet.
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { replayRecording, type ReplayedReply } from '../src/eval/golden';
 import { buildSheet, registerRenderings, verdictTemplate } from '../src/eval/review';
@@ -17,6 +17,7 @@ import {
   loadCases,
   loadRecordings,
   saveCases,
+  writeFormatted,
   writeJson,
 } from './lib/golden-files';
 
@@ -37,7 +38,7 @@ await saveCases(cases);
 mkdirSync(REVIEW_DIR, { recursive: true });
 const sheet = path.join(REVIEW_DIR, `round-${String(round)}.md`);
 const verdicts = path.join(REVIEW_DIR, `verdicts-round-${String(round)}.json`);
-writeFileSync(sheet, `${buildSheet(cases, round)}\n`, 'utf8');
+await writeFormatted(sheet, buildSheet(cases, round), 'markdown');
 const template = verdictTemplate(cases);
 await writeJson(verdicts, template);
 
