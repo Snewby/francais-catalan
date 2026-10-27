@@ -1,6 +1,6 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   normaliseRendering,
@@ -10,7 +10,12 @@ import {
   type ReplayedReply,
 } from '../src/eval/golden';
 import { asCold, costOf } from '../src/eval/pricing';
-import { PROBE_SENTENCE, recordRun, runPreChecks } from '../src/eval/record';
+import {
+  MAX_RESENDS,
+  PROBE_SENTENCE,
+  recordRun,
+  runPreChecks,
+} from '../src/eval/record';
 import {
   applyVerdicts,
   buildSheet,
@@ -569,6 +574,108 @@ describe('the recorder, against a stubbed API', () => {
     expect(recording.cases[0]?.fetches).toHaveLength(2);
     const [replayed] = await replayRecording(recording, [CASE_12]);
     expect(replayed?.result.status).toBe('ok');
+  });
+
+  /** Node's fetch failing on a socket the server closed: a TypeError with the socket error as its cause. */
+  function socketClosed(): TypeError {
+    return new TypeError('fetch failed', {
+      cause: { code: 'UND_ERR_SOCKET', message: 'other side closed' },
+    });
+  }
+
+  /** Sentences fail with no response `failures` times, then answer as stubApi does. */
+  function failingFirst(failures: number): typeof fetch {
+    let left = failures;
+    const inner = stubApi().fetchFn;
+    return (async (url: string, init: RequestInit) => {
+      const body = JSON.parse(String(init.body)) as { messages: { content: string }[] };
+      if (body.messages[0]?.content !== PROBE_SENTENCE && left > 0) {
+        left -= 1;
+        throw socketClosed();
+      }
+      return inner(url, init);
+    }) as unknown as typeof fetch;
+  }
+
+  it('resends a request that failed with no response, and notes why', async () => {
+    const lines: string[] = [];
+    const recording = await recordRun([CASE_12], {
+      model: 'claude-haiku-5-5',
+      apiKey: API_KEY,
+      run: 1,
+      promptHash: HASH,
+      fetchFn: failingFirst(MAX_RESENDS),
+      log: (line) => lines.push(line),
+    });
+    const fetches = recording.cases[0]?.fetches ?? [];
+    expect(fetches).toHaveLength(1);
+    expect(fetches[0]).toMatchObject({ status: 200 });
+    expect(fetches[0]?.resent).toHaveLength(MAX_RESENDS);
+    expect(fetches[0]?.resent?.[0]?.cause).toBe(
+      'TypeError: fetch failed (UND_ERR_SOCKET: other side closed)',
+    );
+    expect(lines.filter((line) => line.includes('resent after'))).toHaveLength(
+      MAX_RESENDS,
+    );
+    const [replayed] = await replayRecording(recording, [CASE_12]);
+    expect(replayed?.result.status).toBe('ok');
+  });
+
+  it('records a network failure, with its cause, once the resends run out', async () => {
+    const recording = await recordRun([CASE_12], {
+      model: 'claude-haiku-5-5',
+      apiKey: API_KEY,
+      run: 1,
+      promptHash: HASH,
+      fetchFn: failingFirst(MAX_RESENDS + 1),
+    });
+    const fetches = recording.cases[0]?.fetches ?? [];
+    expect(fetches).toHaveLength(1);
+    expect(fetches[0]).toMatchObject({
+      failed: 'network',
+      cause: 'TypeError: fetch failed (UND_ERR_SOCKET: other side closed)',
+    });
+    expect(fetches[0]?.resent).toHaveLength(MAX_RESENDS);
+    const [replayed] = await replayRecording(recording, [CASE_12]);
+    expect(replayed?.result).toMatchObject({ status: 'error', kind: 'offline' });
+  });
+
+  describe('with a slow API', () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it("never resends a timeout: it is the client's own limit", async () => {
+      vi.useFakeTimers();
+      let sent = 0;
+      const inner = stubApi().fetchFn;
+      const fetchFn = (async (url: string, init: RequestInit) => {
+        const body = JSON.parse(String(init.body)) as {
+          messages: { content: string }[];
+        };
+        if (body.messages[0]?.content === PROBE_SENTENCE) return inner(url, init);
+        sent += 1;
+        return new Promise((_, reject) => {
+          init.signal?.addEventListener('abort', () => {
+            reject(new DOMException('aborted', 'AbortError'));
+          });
+        });
+      }) as unknown as typeof fetch;
+      const pending = recordRun([CASE_12], {
+        model: 'claude-haiku-5-5',
+        apiKey: API_KEY,
+        run: 1,
+        promptHash: HASH,
+        fetchFn,
+      });
+      await vi.advanceTimersByTimeAsync(20_000);
+      const recording = await pending;
+      expect(sent).toBe(1);
+      expect(recording.cases[0]?.fetches).toEqual([
+        expect.objectContaining({ failed: 'timeout' }),
+      ]);
+      expect(recording.cases[0]?.fetches[0]?.resent).toBeUndefined();
+    });
   });
 
   it('fails loudly when a recording no longer matches the client', async () => {

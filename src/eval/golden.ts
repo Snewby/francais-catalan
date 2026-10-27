@@ -59,13 +59,34 @@ export interface GoldenCase {
 }
 
 /**
- * One fetch as it happened: the HTTP status and the response body, or the
- * failure that stopped it. A retry or the `output_config` fallback is simply a
- * second entry.
+ * A request the recorder sent again because it failed before any response
+ * came back (decided by Sean, 27 Oct, after round 1 lost three cases to
+ * sub-30 ms socket failures). Kept so a resend is visible, never replayed.
+ */
+export interface Resend {
+  readonly cause: string;
+  readonly latencyMs: number;
+}
+
+/**
+ * One fetch as the client saw it: the HTTP status and the response body, or
+ * the failure that stopped it. A retry or the `output_config` fallback is
+ * simply a second entry. `resent` lists the transport failures the recorder
+ * absorbed before this outcome; the client never saw them.
  */
 export type RecordedFetch =
-  | { readonly status: number; readonly body: unknown; readonly latencyMs: number }
-  | { readonly failed: 'network' | 'timeout'; readonly latencyMs: number };
+  | {
+      readonly status: number;
+      readonly body: unknown;
+      readonly latencyMs: number;
+      readonly resent?: readonly Resend[];
+    }
+  | {
+      readonly failed: 'network' | 'timeout';
+      readonly latencyMs: number;
+      readonly cause?: string;
+      readonly resent?: readonly Resend[];
+    };
 
 export interface RecordedCase {
   readonly n: number;

@@ -27,6 +27,7 @@ import {
   type RecordedCase,
   type RecordedFetch,
   type Recording,
+  type Resend,
 } from './golden';
 
 /** Not one of the 30, so the pre-checks never stand in for a recorded case. */
@@ -142,41 +143,94 @@ export async function runPreChecks(
 }
 
 /**
+ * How many times one request is sent again after failing with no response.
+ * A socket the server closed between cases fails in a few milliseconds and
+ * says nothing about the model.
+ */
+export const MAX_RESENDS = 2;
+
+/** Name and message, plus Node's underlying cause, which is where the socket error lives. */
+export function describeFailure(error: unknown): string {
+  if (!(error instanceof Error)) return String(error).slice(0, 200);
+  const cause = error.cause as { code?: unknown; message?: unknown } | undefined;
+  const detail =
+    cause === undefined
+      ? ''
+      : ` (${[cause.code, cause.message].filter((part) => typeof part === 'string').join(': ')})`;
+  return `${error.name}: ${error.message}${detail}`.slice(0, 200);
+}
+
+/**
  * A fetch that passes through to `inner` and keeps each response as it
  * arrived. `drain` hands over what one case produced and starts the next.
+ *
+ * Only a request that failed before any response came back is sent again, up
+ * to MAX_RESENDS times. A timeout is the client's own limit and an HTTP error
+ * is the API's answer, so both are recorded as they happened.
  */
 function capturingFetch(
   inner: typeof fetch,
   clock: () => number,
+  log: (line: string) => void,
 ): { fetchFn: typeof fetch; drain: () => RecordedFetch[] } {
   let captured: RecordedFetch[] = [];
   const fetchFn = (async (input: RequestInfo | URL, init?: RequestInit) => {
-    const started = clock();
-    try {
-      const response = await inner(input, init);
-      const text = await response.text();
-      let body: unknown = text;
+    const resent: Resend[] = [];
+    const resends = () => (resent.length > 0 ? { resent: [...resent] } : {});
+    for (;;) {
+      const started = clock();
+      let response: Response;
       try {
-        body = JSON.parse(text);
-      } catch {
-        // Kept as text: a malformed response is evidence too.
+        response = await inner(input, init);
+      } catch (error) {
+        const latencyMs = Math.round(clock() - started);
+        const cause = describeFailure(error);
+        const timedOut = init?.signal?.aborted === true;
+        if (!timedOut && resent.length < MAX_RESENDS) {
+          resent.push({ cause, latencyMs });
+          log(
+            `  resent after a failure with no response: ${cause}, ${String(latencyMs)} ms`,
+          );
+          continue;
+        }
+        captured.push({
+          failed: timedOut ? 'timeout' : 'network',
+          latencyMs,
+          cause,
+          ...resends(),
+        });
+        throw error;
       }
-      captured.push({
-        status: response.status,
-        body,
-        latencyMs: Math.round(clock() - started),
-      });
-      return {
-        ok: response.ok,
-        status: response.status,
-        text: () => Promise.resolve(text),
-      } as Response;
-    } catch (error) {
-      captured.push({
-        failed: init?.signal?.aborted ? 'timeout' : 'network',
-        latencyMs: Math.round(clock() - started),
-      });
-      throw error;
+
+      // A response came back, so whatever happens to its body is the outcome.
+      try {
+        const text = await response.text();
+        let body: unknown = text;
+        try {
+          body = JSON.parse(text);
+        } catch {
+          // Kept as text: a malformed response is evidence too.
+        }
+        captured.push({
+          status: response.status,
+          body,
+          latencyMs: Math.round(clock() - started),
+          ...resends(),
+        });
+        return {
+          ok: response.ok,
+          status: response.status,
+          text: () => Promise.resolve(text),
+        } as Response;
+      } catch (error) {
+        captured.push({
+          failed: init?.signal?.aborted === true ? 'timeout' : 'network',
+          latencyMs: Math.round(clock() - started),
+          cause: describeFailure(error),
+          ...resends(),
+        });
+        throw error;
+      }
     }
   }) as typeof fetch;
   return {
@@ -220,7 +274,7 @@ export async function recordRun(
     return { ...base, preChecks, dropped: failed.name, cases: [] };
   }
 
-  const capture = capturingFetch(fetchFn, clock);
+  const capture = capturingFetch(fetchFn, clock, log);
   const recorded: RecordedCase[] = [];
   for (const golden of [...cases].sort((a, b) => a.n - b.n)) {
     const started = clock();
