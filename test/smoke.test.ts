@@ -58,6 +58,14 @@ describe('French typography', () => {
 
   it('quotes with guillemets and inner narrow no-break spaces', () => {
     expect(quote('vaig cantar')).toBe(`«${NNBSP}vaig cantar${NNBSP}»`);
+    for (const value of allStrings()) {
+      expect(value, `straight double quote in: ${value}`).not.toContain('"');
+      expect(value, `guillemet spacing in: ${value}`).not.toMatch(
+        /«(?!\u202f)|(?<!\u202f)»/u,
+      );
+    }
+    // Positive control: the table does quote with guillemets somewhere.
+    expect(allStrings().some((value) => value.includes('«'))).toBe(true);
   });
 
   it('uses the typographic apostrophe in French prose', () => {

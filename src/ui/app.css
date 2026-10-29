@@ -14,6 +14,15 @@
   --ac-surface: #fff;
   --ac-page: #fafaf9;
   --ac-accent: #1d4ed8;
+  /* Chunk colours by role, the canvas palette. */
+  --ac-role-subject: #78716c;
+  --ac-role-time: #2563eb;
+  --ac-role-negation: #7c3aed;
+  --ac-role-clitic: #c2410c;
+  --ac-role-verb: #15803d;
+  --ac-role-object: #57534e;
+  --ac-role-place: #65712a;
+  --ac-role-neutral: #a8a29e;
   --ac-tap: 2.75rem;
   --ac-measure: 40rem;
   /* The nav's own height, before the safe-area inset is added below it. */
@@ -198,4 +207,167 @@ label.ac-button {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Phase 1: Home recents, the Phrase screen and its chunks. */
+
+.ac-recents {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ac-recent {
+  display: grid;
+  min-height: var(--ac-tap);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--ac-line);
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.ac-recent__fr {
+  color: var(--ac-muted);
+  font-size: 0.875rem;
+}
+
+.ac-header--back {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ac-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.ac-card {
+  padding: 0.75rem;
+  border: 1px solid var(--ac-line);
+  border-radius: 0.75rem;
+  background: var(--ac-surface);
+}
+
+.ac-card > * + * {
+  margin-top: 0.5rem;
+}
+
+.ac-card p {
+  margin: 0;
+}
+
+.ac-ca {
+  font-family: 'Literata', Georgia, serif;
+  font-size: 1.625rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.ac-chunks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ac-chunk {
+  --ac-role: var(--ac-role-neutral);
+  display: inline-grid;
+  min-height: var(--ac-tap);
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--ac-role);
+  border-radius: 0.5rem;
+  background: var(--ac-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+button.ac-chunk {
+  cursor: pointer;
+}
+
+.ac-chunk__text {
+  font-weight: 600;
+}
+
+.ac-chunk__caption {
+  color: var(--ac-muted);
+  font-size: 0.75rem;
+}
+
+.ac-chunk--subject {
+  --ac-role: var(--ac-role-subject);
+  border-style: dashed;
+}
+
+.ac-chunk--time {
+  --ac-role: var(--ac-role-time);
+}
+
+.ac-chunk--negation {
+  --ac-role: var(--ac-role-negation);
+}
+
+.ac-chunk--clitic {
+  --ac-role: var(--ac-role-clitic);
+}
+
+.ac-chunk--verb {
+  --ac-role: var(--ac-role-verb);
+}
+
+.ac-chunk--object {
+  --ac-role: var(--ac-role-object);
+}
+
+.ac-chunk--place {
+  --ac-role: var(--ac-role-place);
+}
+
+.ac-chunk--implicit {
+  border-style: dashed;
+}
+
+/* Not a button, and drawn so it does not look like one. */
+.ac-chunk--unlinked {
+  border-style: dotted;
+  border-color: var(--ac-role-neutral);
+}
+
+.ac-link {
+  padding: 0;
+  border: 0;
+  text-decoration: underline;
+}
+
+.ac-notion {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ac-line);
+}
+
+.ac-notion p {
+  margin: 0.25rem 0 0;
+}
+
+.ac-badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--ac-line);
+  font-size: 0.8125rem;
+}
+
+.ac-badge--false-friend,
+.ac-badge--novel {
+  background: #fde68a;
 }
