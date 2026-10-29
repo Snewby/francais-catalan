@@ -28,13 +28,13 @@
       "id": "7-c",
       "key": "ahir li'l vaig donar",
       "ca": "Ahir li'l vaig donar.",
-      "verdict": null
+      "verdict": "faux"
     },
     {
       "id": "7-d",
       "key": "l'hi vaig donar ahir",
       "ca": "L'hi vaig donar ahir.",
-      "verdict": null
+      "verdict": "faux"
     }
   ]
 }

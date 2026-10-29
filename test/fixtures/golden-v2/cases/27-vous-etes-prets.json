@@ -15,6 +15,6 @@
       "ca": "Esteu preparats?",
       "verdict": "naturel"
     },
-    { "id": "27-b", "key": "esteu a punt", "ca": "Esteu a punt?", "verdict": null }
+    { "id": "27-b", "key": "esteu a punt", "ca": "Esteu a punt?", "verdict": "naturel" }
   ]
 }

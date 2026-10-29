@@ -15,6 +15,11 @@
       "ca": "He comprat pa.",
       "verdict": "naturel"
     },
-    { "id": "9-b", "key": "vaig comprar pa", "ca": "Vaig comprar pa.", "verdict": null }
+    {
+      "id": "9-b",
+      "key": "vaig comprar pa",
+      "ca": "Vaig comprar pa.",
+      "verdict": "naturel"
+    }
   ]
 }
