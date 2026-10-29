@@ -4,8 +4,11 @@
   "input": "Bien qu’il pleuve, on va sortir.",
   "risk": "Subjunctive",
   "mustLink": [
-    { "anyOf": ["CONJ.concessiva.encara_que"], "hint": "encara que" },
-    { "anyOf": ["VERB.subj.present"], "hint": "plogui" }
+    {
+      "anyOf": ["CONJ.concessiva.encara_que", "CONJ.concessiva.tot_i_que"],
+      "hint": "encara que"
+    },
+    { "anyOf": ["VERB.subj.present", "VERB.ind.present"], "hint": "plogui" }
   ],
   "mustNotLink": [],
   "assumptions": { "required": [], "forbidden": [] },

@@ -3,7 +3,12 @@
   "slug": "personne-n-est-venu",
   "input": "Personne n’est venu.",
   "risk": "Negation",
-  "mustLink": [{ "anyOf": ["NEG.concordanca.preverbal"], "hint": "ningú" }],
+  "mustLink": [
+    {
+      "anyOf": ["NEG.concordanca.preverbal", "NEG.concordanca.postverbal"],
+      "hint": "ningú"
+    }
+  ],
   "mustNotLink": [],
   "assumptions": { "required": [], "forbidden": [] },
   "requireUnlinked": false,

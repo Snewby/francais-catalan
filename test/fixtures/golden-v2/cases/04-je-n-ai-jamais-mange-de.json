@@ -5,7 +5,10 @@
   "risk": "Past, experience",
   "mustLink": [
     { "anyOf": ["VERB.perf.present"], "hint": "he menjat" },
-    { "anyOf": ["NEG.concordanca.postverbal"], "hint": "no … mai" }
+    {
+      "anyOf": ["NEG.concordanca.postverbal", "NEG.concordanca.preverbal"],
+      "hint": "no … mai"
+    }
   ],
   "mustNotLink": ["NEG.simple.pas"],
   "assumptions": { "required": [], "forbidden": [] },

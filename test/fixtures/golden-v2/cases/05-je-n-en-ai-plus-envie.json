@@ -5,7 +5,7 @@
   "risk": "Weak pronouns",
   "mustLink": [
     { "anyOf": ["PRON.feble.en"], "hint": "en" },
-    { "anyOf": ["NEG.aspecte.ja_no"], "hint": "ja no" }
+    { "anyOf": ["NEG.aspecte.ja_no", "NEG.aspecte.no_mes"], "hint": "ja no" }
   ],
   "mustNotLink": ["NEG.simple.pas"],
   "assumptions": { "required": [], "forbidden": [] },

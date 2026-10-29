@@ -85,7 +85,11 @@ describe('the 30 fixtures are the approved sentences', () => {
 
   it('checks the assumptions and the corrected French only where the table asks', () => {
     expect(cases[26]?.assumptions.forbidden).toEqual(['addressee_formal']);
-    expect(cases[27]?.assumptions.required).toEqual(['speaker_fem']);
+    // « contente » states the gender, so it is not an assumption (27 Oct).
+    expect(cases[27]?.assumptions).toEqual({
+      required: [],
+      forbidden: ['speaker_fem'],
+    });
     expect(cases[29]?.fr).toEqual({
       mustContain: ['trompé'],
       mustNotContain: ['tromper'],

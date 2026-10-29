@@ -4,7 +4,7 @@
   "input": "Il parle très lentement.",
   "risk": "Control (transfer)",
   "mustLink": [
-    { "anyOf": ["ADV.manera.ment"], "hint": "lentament" },
+    { "anyOf": ["ADV.manera.ment", "ADV.manera.locucions"], "hint": "lentament" },
     { "anyOf": ["ADV.grau.molt"], "hint": "molt" }
   ],
   "mustNotLink": [],
