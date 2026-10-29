@@ -1,11 +1,14 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { checkPhraseReply, type PhraseCheck } from '../src/api/phrase-check';
+import { replayCase, type Recording } from '../src/eval/golden';
 
 /*
- * Hand-written replies. The acceptance box for these checks is ticked only when
- * round 1's recorded replies are added as cases (phase 1 step 5); until then
- * these pin the rules on sentences chosen for the characters that break naive
- * offset arithmetic: accents, the punt volat and straight apostrophes.
+ * Hand-written replies pin each rule on sentences chosen for the characters
+ * that break naive offset arithmetic: accents, the punt volat and straight
+ * apostrophes. The last block replays round 1's recorded replies through the
+ * same check, so the rules also hold on what the models actually wrote.
  */
 
 /**
@@ -404,5 +407,38 @@ describe('the order of checks', () => {
       '/chunks/0 links no ID and gives no unlinked reason',
       '/ca "al mercat." at offset 23 is not covered by any chunk',
     ]);
+  });
+});
+
+describe('round 1 recorded replies', () => {
+  const RECORDINGS = path.resolve(import.meta.dirname, 'fixtures/golden-v2/recordings');
+  const round1: Recording[] = readdirSync(RECORDINGS).map(
+    (model) =>
+      JSON.parse(
+        readFileSync(path.join(RECORDINGS, model, 'run-1.json'), 'utf8'),
+      ) as Recording,
+  );
+
+  it('derive spans that slice back to every chunk, accents, l·l and apostrophes included', async () => {
+    const seen = { accent: false, puntVolat: false, apostrophe: false };
+    let replies = 0;
+    for (const recording of round1) {
+      for (const recorded of recording.cases) {
+        const result = await replayCase(recorded, recording.model);
+        expect(result.status, `${recording.model} case ${String(recorded.n)}`).toBe(
+          'ok',
+        );
+        if (result.status !== 'ok') continue;
+        replies += 1;
+        const { ca, chunks } = result.phrase;
+        for (const chunk of chunks)
+          expect(ca.slice(chunk.start, chunk.end)).toBe(chunk.text);
+        seen.accent ||= /[àèéíïòóúüç]/i.test(ca);
+        seen.puntVolat ||= ca.includes('l·l');
+        seen.apostrophe ||= chunks.some((chunk) => chunk.text.includes("'"));
+      }
+    }
+    expect(replies).toBe(90);
+    expect(seen).toEqual({ accent: true, puntVolat: true, apostrophe: true });
   });
 });

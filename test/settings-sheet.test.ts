@@ -54,8 +54,8 @@ function status(text: string): HTMLElement {
 beforeEach(() => {
   localStorage.clear();
   saved = [];
-  // A database with a sync-shaped table, standing in for the phase 1 stores:
-  // catala-v2 itself declares none yet.
+  // A throwaway database with one sync-shaped table, so each test starts
+  // empty; the catala-v2 stores round-trip in test/phrase-store.test.ts.
   database = new Dexie(`settings-test-${crypto.randomUUID()}`);
   database.version(1).stores({ notes: 'id, updatedAt' });
 });

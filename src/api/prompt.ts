@@ -159,9 +159,10 @@ export function renderVocabulary(): string {
 }
 
 /**
- * How long the cached prefix lives. The app uses the default; the eval also
- * probes the hour, because a learner typing now and then often misses five
- * minutes.
+ * How long the cached prefix lives. The eval records with the default and
+ * probes the hour; the app uses the hour (APP_CACHE_TTL in
+ * src/phrase/store.ts), because a learner typing now and then often misses
+ * five minutes.
  */
 export type CacheTtl = '5m' | '1h';
 
