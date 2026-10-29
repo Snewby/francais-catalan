@@ -281,6 +281,7 @@ label.ac-button {
   --ac-role: var(--ac-role-neutral);
   display: inline-grid;
   min-height: var(--ac-tap);
+  min-width: var(--ac-tap);
   max-width: 100%;
   padding: 0.25rem 0.5rem;
   border: 2px solid var(--ac-role);

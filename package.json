@@ -22,7 +22,8 @@
     "eval:record": "tsx scripts/eval-record.ts",
     "eval:sheet": "tsx scripts/eval-sheet.ts",
     "eval:verdicts": "tsx scripts/eval-verdicts.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "gen-icons": "tsx scripts/gen-icons.ts"
   },
   "dependencies": {
     "dexie": "^4.0.11",
