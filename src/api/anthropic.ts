@@ -18,8 +18,8 @@ import { checkPhraseReply, straight, type SpannedPhrase } from './phrase-check';
 
 const API_KEY_STORAGE_KEY = 'anthropic-api-key';
 
-/** The app's model until the phase 1 eval picks one (docs/spec-phases-0-1.md). */
-export const MODEL = 'claude-haiku-4-5';
+/** Chosen by the phase 1 eval, 29 Oct (docs/model-eval.md); CI replays it. */
+export const MODEL = 'claude-opus-5-5';
 export const ANTHROPIC_VERSION = '2023-06-01';
 export const MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
 

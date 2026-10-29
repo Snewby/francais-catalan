@@ -26,6 +26,12 @@ jobs:
 
       - run: npm run test:run
 
+      # The phase 1 model eval, offline and free: replays the committed
+      # recordings against the verdicts in the golden-v2 fixtures. Fails when
+      # the app's model no longer clears every floor, or when the prompt has
+      # changed since it was recorded (docs/model-eval.md).
+      - run: npm run eval
+
       # One Playwright smoke at 390 px against the production build under the
       # Pages base path: layout, overflow and tap targets jsdom cannot measure.
       - run: npx playwright install --with-deps chromium

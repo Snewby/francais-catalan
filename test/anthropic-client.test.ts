@@ -129,8 +129,8 @@ describe('request shape', () => {
     expect(buildRequestBody(SENTENCE).max_tokens).toBe(MAX_TOKENS);
   });
 
-  it('stays on claude-haiku-4-5 until the eval picks a model', () => {
-    expect(MODEL).toBe('claude-haiku-4-5');
+  it('uses the model the phase 1 eval chose', () => {
+    expect(MODEL).toBe('claude-opus-5-5');
   });
 
   it('constrains the reply to the generated phrase schema', () => {
@@ -169,7 +169,9 @@ describe('request shape', () => {
       expect(body.model).toBe(model);
       expect(body.output_config.effort).toBe(EFFORT);
     }
-    const haiku45 = buildRequestBody(SENTENCE) as { output_config: object };
+    const haiku45 = buildRequestBody(SENTENCE, { model: 'claude-haiku-4-5' }) as {
+      output_config: object;
+    };
     expect(haiku45.output_config).not.toHaveProperty('effort');
     expect(EFFORT).toBe('medium');
   });

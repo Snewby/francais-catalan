@@ -113,8 +113,9 @@
 - contrast_fr statuses for high-risk nodes are fixed in
   data/contrast-overrides.json and applied verbatim. Do not re-derive them.
 - API key is runtime-entered into localStorage. NEVER hardcode or commit.
-- Anthropic calls: model claude-haiku-4-5, structured outputs beta header,
-  taxonomy sent as a cached prompt prefix.
+- Anthropic calls: model claude-opus-5-5 (chosen 29 Oct, docs/model-eval.md;
+  `npm run eval` in CI fails if it stops clearing the floors), structured
+  outputs beta header, taxonomy sent as a cached prompt prefix.
 
 ## Archive
 

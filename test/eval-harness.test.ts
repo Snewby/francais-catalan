@@ -23,7 +23,7 @@ import {
   registerRenderings,
   verdictTemplate,
 } from '../src/eval/review';
-import { percentile, renderReport, scoreModel } from '../src/eval/score';
+import { gateFailures, percentile, renderReport, scoreModel } from '../src/eval/score';
 import { NNBSP } from '../src/i18n/fr';
 import { highPunctuationOffenders } from './helpers/typography';
 
@@ -445,6 +445,36 @@ describe('scoring', () => {
     expect(score.floors.latency).toBe('fail');
     expect(score.staleRuns).toEqual([1]);
     expect(renderReport([score])).toContain('recorded under another prompt');
+  });
+
+  it('gates CI on the app model clearing every floor over three current runs', async () => {
+    const naturel12: GoldenCase = {
+      ...CASE_12,
+      renderings: [
+        { id: '12-a', key: 'ja no ho faig', ca: 'Ja no ho faig.', verdict: 'naturel' },
+      ],
+    };
+    const runs = [1, 2, 3].map((run) =>
+      recordingOf('claude-opus-5-5', run, [
+        { n: 12, bodies: [envelope(JA_NO_HO_FAIG)] },
+      ]),
+    );
+    const replayed: ReplayedReply[] = [];
+    for (const run of runs) replayed.push(...(await replies(run, [naturel12])));
+    expect(
+      gateFailures(scoreModel('claude-opus-5-5', runs, replayed, HASH), 1),
+    ).toEqual([]);
+
+    const twoRuns = scoreModel(
+      'claude-opus-5-5',
+      runs.slice(0, 2),
+      replayed.slice(0, 2),
+      HASH,
+    );
+    expect(gateFailures(twoRuns, 1)).toEqual(['2 replies, not 3']);
+    const stale = scoreModel('claude-opus-5-5', runs, replayed, 'another prompt');
+    expect(gateFailures(stale, 1)).toEqual(['prompt changed since runs 1, 2, 3']);
+    expect(gateFailures(undefined, 1)).toEqual(['no recordings']);
   });
 
   it('uses nearest-rank percentiles', () => {

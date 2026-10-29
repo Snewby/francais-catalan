@@ -295,6 +295,30 @@ export function preChecksPassed(score: ModelScore): boolean {
   });
 }
 
+/** The finalists' run count the floors are measured over (30 cases, 3 runs). */
+export const FINALIST_RUNS = 3;
+
+/**
+ * Why the app's model would no longer be the eval's choice, empty when it
+ * still is. CI fails on any entry, so a prompt change (stale runs) or an
+ * edited verdict that breaks a floor cannot reach main unnoticed.
+ */
+export function gateFailures(score: ModelScore | undefined, cases: number): string[] {
+  if (score === undefined) return ['no recordings'];
+  const failures: string[] = [];
+  if (score.dropped !== undefined) failures.push(`dropped: ${score.dropped}`);
+  if (!preChecksPassed(score)) failures.push('a pre-check failed');
+  if (score.staleRuns.length > 0)
+    failures.push(`prompt changed since runs ${score.staleRuns.join(', ')}`);
+  if (score.replies !== cases * FINALIST_RUNS)
+    failures.push(
+      `${String(score.replies)} replies, not ${String(cases * FINALIST_RUNS)}`,
+    );
+  for (const [floor, status] of Object.entries(score.floors))
+    if (status !== 'pass') failures.push(`${floor} floor: ${status}`);
+  return failures;
+}
+
 const usd = (value: number | null): string =>
   value === null ? 'n/a' : `$${value.toFixed(4)}`;
 const share = (part: number, whole: number): string =>
