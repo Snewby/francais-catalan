@@ -1,0 +1,47 @@
+{
+  "VERB.ind.present": {
+    "fr": "Au présent, une seule forme porte la personne et le temps, en -o à la première personne : canto. Le mot de temps de la phrase disparaît."
+  },
+  "VERB.ind.passat_perifrastic": {
+    "fr": "Pour un passé raconté, hier ou avant, le catalan parlé prend anar au présent suivi de l’infinitif : vaig cantar. Le sens est « j’ai chanté », pas « je vais chanter »."
+  },
+  "VERB.perf.present": {
+    "fr": "Quand la période inclut le présent (avui, aquest matí), le catalan prend haver suivi du participe : he cantat. Pour hier, il passerait au passé périphrastique."
+  },
+  "VERB.ind.imperfet": {
+    "fr": "L’imparfait décrit une habitude ou un arrière-plan passé, comme en français. Au premier groupe : -ava, -aves, -ava, -àvem, -àveu, -aven."
+  },
+  "VERB.ind.futur": {
+    "fr": "Le futur se forme sur l’infinitif, comme en français : cantaré. Sans futur proche avec anar, il traduit aussi « je vais chanter »."
+  },
+  "VERB.ind.condicional": {
+    "fr": "Le conditionnel se forme sur le radical du futur, comme en français : cantaria sur cantaré. Le mot de temps de la phrase disparaît."
+  },
+  "VERB.mod.obligacio": {
+    "fr": "haver de suivi de l’infinitif dit l’obligation : seul haver se conjugue, he de marxar. Il couvre « devoir » et souvent « il faut »."
+  },
+  "VERB.perifrasi.acabar_de": {
+    "fr": "acabar de suivi de l’infinitif veut dire « venir de », pas « finir de » : acabo d'arribar, je viens d’arriver. Il ne se combine ici qu’avec le présent et l’imparfait."
+  },
+  "VERB.perifrasi.progressiva": {
+    "fr": "estar suivi du gérondif marque une action en cours, comme « être en train de » : estic parlant. Le catalan le réserve à ce qui se déroule vraiment ; ailleurs, le présent suffit."
+  },
+  "PRON.feble.cd_3a": {
+    "fr": "Le complément direct devient un pronom faible devant le verbe conjugué, accordé avec le nom repris : el, la, els, les."
+  },
+  "PRON.feble.en": {
+    "fr": "Un partitif ou un complément en de devient en, devant le verbe : no en tinc gaires. Sa forme varie : en, n', ne, -ne."
+  },
+  "PRON.feble.ho": {
+    "fr": "Une idée ou une phrase entière devient ho, jamais el : ho sé. Le français dit « le » dans les deux cas."
+  },
+  "PRON.feble.forma_alomorfs": {
+    "fr": "Le pronom change de forme selon les sons voisins : devant une voyelle ou un h, el devient l', l'he cantat. Un même pronom peut avoir jusqu’à quatre formes."
+  },
+  "NEG.simple.no": {
+    "fr": "no suffit seul, placé devant le verbe et ses pronoms : no ho sé. Pas de second élément comme « pas »."
+  },
+  "PRON.fort.subjecte": {
+    "fr": "Seule la terminaison du verbe change : le pronom sujet reste sous-entendu, puisque la désinence dit qui agit. On ne l’exprime que pour contraster."
+  }
+}

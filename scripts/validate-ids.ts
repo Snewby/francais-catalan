@@ -1,6 +1,7 @@
 /**
  * Enumerates every component ID referenced in src/ and test/, plus the
- * assignments in data/contrast-overrides.json, and asserts each resolves
+ * assignments in data/contrast-overrides.json and the keys of
+ * data/variation-notes.json, and asserts each resolves
  * against src/taxonomy/taxonomy.json. The closed-vocabulary invariant.
  *
  * Run after gen-schema, never before: running it first validates the previous
@@ -8,6 +9,7 @@
  */
 import { ALL_IDS, BRANCHES, LEAVES, NODES, isLeaf, nodeById } from '../src/taxonomy';
 import { OVERRIDES } from '../src/taxonomy/overrides';
+import { SWITCH_NOTES } from '../src/variants/notes';
 import { scanReferences } from './lib/scan-ids';
 
 const problems: string[] = [];
@@ -41,7 +43,18 @@ for (const override of OVERRIDES) {
   }
 }
 
-// 3. The taxonomy is internally consistent: unique IDs, resolvable parents, and
+// 3. Every switch note is keyed by a leaf. A note on a branch or a dead ID would
+//    never be shown, and would read as covered.
+for (const id of Object.keys(SWITCH_NOTES)) {
+  const node = nodeById(id);
+  if (node === undefined) {
+    report(`data/variation-notes.json: ${id} is not in taxonomy.json.`);
+  } else if (!isLeaf(node)) {
+    report(`data/variation-notes.json: ${id} is a branch, not a leaf.`);
+  }
+}
+
+// 4. The taxonomy is internally consistent: unique IDs, resolvable parents, and
 //    a tree whose shape agrees with the dotted IDs.
 const seen = new Set<string>();
 for (const id of ALL_IDS) {
