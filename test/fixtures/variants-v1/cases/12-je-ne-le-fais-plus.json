@@ -1,0 +1,36 @@
+{
+  "n": 12,
+  "slug": "je-ne-le-fais-plus",
+  "input": "Je ne le fais plus.",
+  "base": {
+    "ca": "Ja no ho faig.",
+    "chunks": [
+      { "text": "Ja no", "role": "negation", "ids": ["NEG.aspecte.ja_no"] },
+      {
+        "text": "ho",
+        "role": "clitic",
+        "ids": ["PRON.feble.ho", "SYN.clitics.proclisi_enclisi"]
+      },
+      {
+        "text": "faig",
+        "role": "verb",
+        "ids": ["VERB.ind.present", "PHON.grafia.digrafs"],
+        "lemma": "fer"
+      }
+    ]
+  },
+  "baseCombination": "jo·present·none·0·1",
+  "combinations": [
+    { "id": "12a", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "12b", "target": "ella·present·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "12c", "target": "jo·imperfet·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "12d", "target": "jo·futur·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "12e", "target": "jo·present·haver·0·1", "renderings": [], "frLines": [] },
+    {
+      "id": "12f",
+      "target": "vosaltres·ahir·none·0·1",
+      "renderings": [],
+      "frLines": []
+    }
+  ]
+}

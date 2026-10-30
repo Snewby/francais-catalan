@@ -1,0 +1,43 @@
+{
+  "n": 1,
+  "slug": "hier-j-ai-achete-le-pain",
+  "input": "Hier, j’ai acheté le pain au marché.",
+  "base": {
+    "ca": "Ahir vaig comprar el pa al mercat.",
+    "chunks": [
+      { "text": "Ahir", "role": "time", "ids": ["ADV.temps.dixi"] },
+      {
+        "text": "vaig comprar",
+        "role": "verb",
+        "ids": ["VERB.ind.passat_perifrastic", "VERB.conj.1"],
+        "lemma": "comprar"
+      },
+      {
+        "text": "el pa",
+        "role": "object_direct",
+        "ids": ["ART.def.forma.paradigma"],
+        "lemma": "pa"
+      },
+      {
+        "text": "al mercat",
+        "role": "place",
+        "ids": ["ART.contract.a_de", "PREP.a_en.lloc.a_lloc"],
+        "lemma": "mercat"
+      }
+    ]
+  },
+  "baseCombination": "jo·ahir·none·0·0",
+  "combinations": [
+    { "id": "1a", "target": "jo·avui·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "1b", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
+    { "id": "1c", "target": "ella·ahir·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "1d", "target": "jo·futur·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "1e", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "1f",
+      "target": "nosaltres·ahir·haver·1·0",
+      "renderings": [],
+      "frLines": []
+    }
+  ]
+}

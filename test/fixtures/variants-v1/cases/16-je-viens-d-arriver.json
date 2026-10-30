@@ -1,0 +1,44 @@
+{
+  "n": 16,
+  "slug": "je-viens-d-arriver",
+  "input": "Je viens d’arriver.",
+  "base": {
+    "ca": "Acabo d'arribar.",
+    "chunks": [
+      {
+        "text": "Acabo d'arribar",
+        "role": "verb",
+        "ids": [
+          "VERB.perifrasi.acabar_de",
+          "PREP.atones.elisio_de",
+          "VERB.ind.present"
+        ],
+        "lemma": "arribar"
+      }
+    ]
+  },
+  "baseCombination": "jo·present·acabar·0·0",
+  "combinations": [
+    {
+      "id": "16a",
+      "target": "jo·imperfet·acabar·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "16b", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "16c",
+      "target": "ella·present·acabar·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "16d", "target": "jo·present·acabar·0·1", "renderings": [], "frLines": [] },
+    { "id": "16e", "target": "jo·futur·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "16f",
+      "target": "nosaltres·present·haver·0·0",
+      "renderings": [],
+      "frLines": []
+    }
+  ]
+}

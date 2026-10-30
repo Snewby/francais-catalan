@@ -1,0 +1,31 @@
+{
+  "n": 6,
+  "slug": "tu-y-vas-demain",
+  "input": "Tu y vas demain ?",
+  "base": {
+    "ca": "Hi vas demà?",
+    "chunks": [
+      {
+        "text": "Hi",
+        "role": "clitic",
+        "ids": ["PRON.feble.hi", "SYN.clitics.proclisi_enclisi"]
+      },
+      {
+        "text": "vas",
+        "role": "verb",
+        "ids": ["VERB.ind.present", "SYN.interrogativa.total"],
+        "lemma": "anar"
+      },
+      { "text": "demà", "role": "time", "ids": ["ADV.temps.dixi"] }
+    ]
+  },
+  "baseCombination": "tu·present·none·0·0",
+  "combinations": [
+    { "id": "6a", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "6b", "target": "ells·present·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "6c", "target": "tu·futur·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "6d", "target": "tu·ahir·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "6e", "target": "tu·present·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "6f", "target": "tu·present·haver·0·0", "renderings": [], "frLines": [] }
+  ]
+}

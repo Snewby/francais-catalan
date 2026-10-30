@@ -1,0 +1,31 @@
+{
+  "n": 9,
+  "slug": "j-ai-achete-du-pain",
+  "input": "J’ai acheté du pain.",
+  "base": {
+    "ca": "He comprat pa.",
+    "chunks": [
+      {
+        "text": "He comprat",
+        "role": "verb",
+        "ids": ["VERB.perf.present", "VERB.conj.1"],
+        "lemma": "comprar"
+      },
+      {
+        "text": "pa",
+        "role": "object_direct",
+        "ids": ["ART.indef.sense_partitiu"],
+        "lemma": "pa"
+      }
+    ]
+  },
+  "baseCombination": "jo·avui·none·0·0",
+  "combinations": [
+    { "id": "9a", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
+    { "id": "9b", "target": "jo·ahir·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "9c", "target": "ella·avui·none·1·0", "renderings": [], "frLines": [] },
+    { "id": "9d", "target": "jo·avui·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "9e", "target": "jo·futur·none·1·1", "renderings": [], "frLines": [] },
+    { "id": "9f", "target": "jo·present·haver·0·0", "renderings": [], "frLines": [] }
+  ]
+}

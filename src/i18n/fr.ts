@@ -133,6 +133,31 @@ export const fr = {
     analysisFailed: 'Analyse indisponible pour cette phrase.',
     retry: 'Réessayer',
   },
+  // The variation panel's group headings (phase 2 spec, « Variantes »).
+  variants: {
+    heading: 'Variantes',
+    who: `Qui${NNBSP}?`,
+    when: `Quand${NNBSP}?`,
+    tournure: 'Tournure',
+    transform: 'Transformer',
+  },
+  // « Quand ? » button labels, keyed by Tense in src/variants/axes.ts.
+  tenses: {
+    present: 'Présent',
+    ahir: `Passé ${quote('ahir')}`,
+    avui: `Passé ${quote('avui')}`,
+    imperfet: 'Imparfait',
+    futur: 'Futur',
+    condicional: 'Conditionnel',
+  },
+  // « Tournure » button labels, keyed by Tournure. All but « Aucune » are
+  // Catalan words, shown in lang="ca".
+  tournures: {
+    none: 'Aucune',
+    haver: 'haver de',
+    acabar: 'acabar de',
+    estar: 'estar + gérondif',
+  },
   // Why a variation button does nothing: the four causes the panel derives
   // itself (GreyCause in src/variants/combination.ts), then the model's closed
   // not_applicable reasons (src/api/phrase.ts). First draft, phase 2 spec.

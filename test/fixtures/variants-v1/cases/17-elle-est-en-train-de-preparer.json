@@ -1,0 +1,51 @@
+{
+  "n": 17,
+  "slug": "elle-est-en-train-de-preparer",
+  "input": "Elle est en train de préparer le dîner.",
+  "base": {
+    "ca": "Està preparant el sopar.",
+    "chunks": [
+      {
+        "text": "Està preparant",
+        "role": "verb",
+        "ids": ["VERB.perifrasi.progressiva", "VERB.no_finit.gerundi"],
+        "lemma": "preparar"
+      },
+      {
+        "text": "el sopar",
+        "role": "object_direct",
+        "ids": ["ART.def.forma.paradigma"],
+        "lemma": "sopar"
+      }
+    ]
+  },
+  "baseCombination": "ella·present·estar·0·0",
+  "combinations": [
+    { "id": "17a", "target": "ella·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "17b",
+      "target": "ella·imperfet·estar·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    {
+      "id": "17c",
+      "target": "ella·present·estar·1·0",
+      "renderings": [],
+      "frLines": []
+    },
+    {
+      "id": "17d",
+      "target": "nosaltres·present·estar·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "17e", "target": "ella·futur·estar·0·1", "renderings": [], "frLines": [] },
+    {
+      "id": "17f",
+      "target": "ella·present·acabar·0·0",
+      "renderings": [],
+      "frLines": []
+    }
+  ]
+}

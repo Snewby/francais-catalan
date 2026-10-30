@@ -168,7 +168,7 @@ export function describeFailure(error: unknown): string {
  * to MAX_RESENDS times. A timeout is the client's own limit and an HTTP error
  * is the API's answer, so both are recorded as they happened.
  */
-function capturingFetch(
+export function capturingFetch(
   inner: typeof fetch,
   clock: () => number,
   log: (line: string) => void,

@@ -1,0 +1,42 @@
+{
+  "n": 22,
+  "slug": "je-veux-que-tu-viennes",
+  "input": "Je veux que tu viennes.",
+  "base": {
+    "ca": "Vull que vinguis.",
+    "chunks": [
+      {
+        "text": "Vull",
+        "role": "verb",
+        "ids": ["VERB.ind.present", "VERB.irregular.velar"],
+        "lemma": "voler"
+      },
+      { "text": "que", "role": "connector", "ids": ["CONJ.completiva.que"] },
+      {
+        "text": "vinguis",
+        "role": "verb",
+        "ids": [
+          "VERB.subj.present",
+          "VERB.irregular.velar",
+          "SYN.subordinacio.consecutio"
+        ],
+        "lemma": "venir"
+      }
+    ]
+  },
+  "baseCombination": "jo·-·none·0·0",
+  "combinations": [
+    {
+      "id": "22a",
+      "target": "tu·-·none·0·0",
+      "trap": "subordinate_affected",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "22b", "target": "ella·-·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "22c", "target": "nosaltres·-·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "22d", "target": "jo·-·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "22e", "target": "ells·-·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "22f", "target": "vosaltres·-·none·0·0", "renderings": [], "frLines": [] }
+  ]
+}

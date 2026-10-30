@@ -1,0 +1,53 @@
+{
+  "n": 19,
+  "slug": "la-soupe-est-froide",
+  "input": "La soupe est froide.",
+  "base": {
+    "ca": "La sopa és freda.",
+    "chunks": [
+      {
+        "text": "La sopa",
+        "role": "subject",
+        "ids": ["ART.def.forma.paradigma"],
+        "lemma": "sopa"
+      },
+      {
+        "text": "és",
+        "role": "verb",
+        "ids": ["VERB.ser_estar", "PHON.accent.diacritic"],
+        "lemma": "ser"
+      },
+      {
+        "text": "freda",
+        "role": "complement",
+        "ids": ["PHON.so.ensordiment", "NOM.adj.four_form"],
+        "lemma": "fred"
+      }
+    ]
+  },
+  "baseCombination": "ella·present·none·0·0",
+  "combinations": [
+    {
+      "id": "19a",
+      "target": "ella·imperfet·none·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    {
+      "id": "19b",
+      "target": "ella·present·estar·0·0",
+      "trap": "aspect_incompatible",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "19c", "target": "ella·present·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "19d", "target": "ella·futur·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "19e",
+      "target": "ella·present·haver·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "19f", "target": "ella·ahir·none·0·0", "renderings": [], "frLines": [] }
+  ]
+}

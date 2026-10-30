@@ -22,6 +22,10 @@
     "eval:record": "tsx scripts/eval-record.ts",
     "eval:sheet": "tsx scripts/eval-sheet.ts",
     "eval:verdicts": "tsx scripts/eval-verdicts.ts",
+    "eval:variants": "tsx scripts/eval-variants.ts",
+    "eval:variants:record": "tsx scripts/eval-variants-record.ts",
+    "eval:variants:sheet": "tsx scripts/eval-variants-sheet.ts",
+    "eval:variants:verdicts": "tsx scripts/eval-variants-verdicts.ts",
     "test:e2e": "playwright test",
     "gen-icons": "tsx scripts/gen-icons.ts"
   },

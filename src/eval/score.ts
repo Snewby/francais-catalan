@@ -70,7 +70,7 @@ export interface ModelScore {
 }
 
 /** Tokens over every fetch of one case, the retry included. */
-export function tokensOf(recorded: RecordedCase): TokenCounts {
+export function tokensOf(recorded: Pick<RecordedCase, 'fetches'>): TokenCounts {
   const total = { input: 0, output: 0, cacheWrite: 0, cacheRead: 0 };
   for (const fetched of recorded.fetches) {
     if (
@@ -94,7 +94,7 @@ export function tokensOf(recorded: RecordedCase): TokenCounts {
 }
 
 /** Warm when the first call already read the prefix from the cache. */
-export function isWarm(recorded: RecordedCase): boolean {
+export function isWarm(recorded: Pick<RecordedCase, 'fetches'>): boolean {
   const first = recorded.fetches[0];
   if (first === undefined || 'failed' in first) return false;
   const usage = (first.body as { usage?: { cache_read_input_tokens?: unknown } } | null)
@@ -288,7 +288,7 @@ export function scoreModel(
 }
 
 /** Whether every required pre-check passed in every run. */
-export function preChecksPassed(score: ModelScore): boolean {
+export function preChecksPassed(score: Pick<ModelScore, 'preChecks'>): boolean {
   return REQUIRED_PRE_CHECKS.every((name) => {
     const runs = score.preChecks.filter((check) => check.name === name);
     return runs.length > 0 && runs.every((check) => check.passed);

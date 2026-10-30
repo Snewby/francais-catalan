@@ -1,0 +1,46 @@
+{
+  "n": 2,
+  "slug": "ce-matin-j-ai-vu-ta",
+  "input": "Ce matin, j’ai vu ta sœur.",
+  "base": {
+    "ca": "Aquest matí he vist la teva germana.",
+    "chunks": [
+      {
+        "text": "Aquest matí",
+        "role": "time",
+        "ids": ["DET.dem.forma_paradigma"],
+        "lemma": "matí"
+      },
+      {
+        "text": "he vist",
+        "role": "verb",
+        "ids": ["VERB.perf.present", "VERB.no_finit.participi"],
+        "lemma": "veure"
+      },
+      {
+        "text": "la teva germana",
+        "role": "object_direct",
+        "ids": [
+          "DET.poss.article_obligatori",
+          "DET.poss.forma_paradigma",
+          "PREP.marcatge.cd_sense_prep"
+        ],
+        "lemma": "germà"
+      }
+    ]
+  },
+  "baseCombination": "jo·avui·none·0·0",
+  "combinations": [
+    { "id": "2a", "target": "jo·ahir·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "2b", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
+    {
+      "id": "2c",
+      "target": "vosaltres·avui·none·0·0",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "2d", "target": "jo·imperfet·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "2e", "target": "jo·avui·none·0·1", "renderings": [], "frLines": [] },
+    { "id": "2f", "target": "jo·condicional·none·0·0", "renderings": [], "frLines": [] }
+  ]
+}

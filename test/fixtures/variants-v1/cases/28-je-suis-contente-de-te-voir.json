@@ -1,0 +1,47 @@
+{
+  "n": 28,
+  "slug": "je-suis-contente-de-te-voir",
+  "input": "Je suis contente de te voir.",
+  "base": {
+    "ca": "Estic contenta de veure't.",
+    "chunks": [
+      {
+        "text": "Estic",
+        "role": "verb",
+        "ids": ["VERB.ser_estar", "VERB.ind.present"],
+        "lemma": "estar"
+      },
+      {
+        "text": "contenta",
+        "role": "complement",
+        "ids": ["NOM.adj.four_form"],
+        "lemma": "content"
+      },
+      {
+        "text": "de veure't",
+        "role": "complement",
+        "ids": [
+          "PREP.formes_no_finites.adjectiu_de",
+          "SYN.clitics.proclisi_enclisi",
+          "PRON.feble.forma_alomorfs"
+        ],
+        "lemma": "veure"
+      }
+    ]
+  },
+  "baseCombination": "jo·present·none·0·0",
+  "combinations": [
+    { "id": "28a", "target": "ella·present·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "28b", "target": "ell·present·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "28c", "target": "ells·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "28d",
+      "target": "tu·present·none·0·0",
+      "trap": "subordinate_affected",
+      "renderings": [],
+      "frLines": []
+    },
+    { "id": "28e", "target": "jo·futur·none·0·0", "renderings": [], "frLines": [] },
+    { "id": "28f", "target": "jo·present·none·0·1", "renderings": [], "frLines": [] }
+  ]
+}

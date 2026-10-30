@@ -148,7 +148,7 @@ export function normaliseRendering(ca: string): string {
  * whether the client asked for exactly as many as were recorded. Anything
  * else means the client no longer behaves as it did when the run was made.
  */
-function replayFetch(fetches: readonly RecordedFetch[]): {
+export function replayFetch(fetches: readonly RecordedFetch[]): {
   readonly fetchFn: typeof fetch;
   readonly unused: () => number;
   readonly overran: () => boolean;
