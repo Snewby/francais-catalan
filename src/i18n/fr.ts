@@ -133,6 +133,21 @@ export const fr = {
     analysisFailed: 'Analyse indisponible pour cette phrase.',
     retry: 'Réessayer',
   },
+  // Why a variation button does nothing: the four causes the panel derives
+  // itself (GreyCause in src/variants/combination.ts), then the model's closed
+  // not_applicable reasons (src/api/phrase.ts). First draft, phase 2 spec.
+  variantReasons: {
+    acabar_tense:
+      'acabar de (venir de) ne se combine qu’avec le présent et l’imparfait.',
+    no_subject: 'Cette phrase n’a pas de sujet à changer.',
+    no_tense: 'Le verbe de cette phrase ne se conjugue pas à ces temps.',
+    no_object: 'Cette phrase n’a pas de complément d’objet direct.',
+    aspect_incompatible: 'Ce verbe ne se met pas à cette forme.',
+    subordinate_affected:
+      'Ce changement modifierait aussi une autre partie de la phrase.',
+    no_pronoun_form: 'Ce complément ne se remplace pas par un pronom ici.',
+    other: 'Cette variante ne s’applique pas à cette phrase.',
+  },
   report: {
     heading: 'Signaler une erreur',
     label: `Qu’est-ce qui ne va pas${NNBSP}?`,
