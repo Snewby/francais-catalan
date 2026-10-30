@@ -203,8 +203,8 @@ export type TranslateResult =
       readonly httpStatus?: number;
     });
 
-export interface TranslateOptions {
-  readonly sentence: string;
+/** What every call takes, whatever it asks for. */
+export interface CallOptions {
   /** Null or empty is the « Ajoutez votre clé API » state, before any call. */
   readonly apiKey: string | null;
   readonly model?: string;
@@ -221,6 +221,10 @@ export interface TranslateOptions {
   /** Injectable for tests; the default is `performance.now`. */
   readonly clock?: () => number;
   readonly timeoutMs?: number;
+}
+
+export interface TranslateOptions extends CallOptions {
+  readonly sentence: string;
 }
 
 interface ApiResponse {
@@ -260,10 +264,18 @@ function isUnknownOutputConfig(status: number, body: string): boolean {
   return status === 400 && /output_config/.test(body);
 }
 
-type Outcome =
+/** A reply check: phase 1's, or the variant one, which has the same two arms. */
+export type ReplyCheck =
+  | { readonly valid: true }
+  | { readonly valid: false; readonly errors: readonly string[] };
+
+type FailedCheck = { readonly valid: false; readonly errors: readonly string[] };
+
+export type Outcome<C extends ReplyCheck = ReturnType<typeof checkPhraseReply>> =
   | {
       readonly type: 'reply';
-      readonly check: ReturnType<typeof checkPhraseReply>;
+      /** The caller's check, or a failed one when there was no JSON to check. */
+      readonly check: C | FailedCheck;
       /** `fr` and `ca` when both are usable, whatever the rest of the reply. */
       readonly draft?: { readonly fr: string; readonly ca: string };
     }
@@ -286,7 +298,10 @@ function draftOf(candidate: unknown): { fr: string; ca: string } | undefined {
 }
 
 /** Read the constrained reply out of a 200 and check it. */
-function outcomeOf(payload: ApiResponse): Outcome {
+function outcomeOf<C extends ReplyCheck>(
+  payload: ApiResponse,
+  check: (candidate: unknown) => C,
+): Outcome<C> {
   if (payload.stop_reason === 'refusal') {
     return { type: 'error', kind: 'refused', detail: 'The model declined.' };
   }
@@ -313,16 +328,24 @@ function outcomeOf(payload: ApiResponse): Outcome {
   }
 
   const draft = draftOf(candidate);
-  return { type: 'reply', check: checkPhraseReply(candidate), ...(draft && { draft }) };
+  return { type: 'reply', check: check(candidate), ...(draft && { draft }) };
 }
 
-interface Sent {
-  readonly outcome: Outcome;
+export interface Sent<C extends ReplyCheck> {
+  readonly outcome: Outcome<C>;
   readonly attempt: Attempt;
 }
 
-/** One round trip: the request, the legacy-field fallback, and the check. */
-async function send(options: TranslateOptions, model: string): Promise<Sent> {
+/**
+ * One round trip: the request, the legacy-field fallback, and the check. The
+ * body and the check are the caller's, so the phrase call and the variant call
+ * share the timeout, the cancel and the failure mapping rather than copy them.
+ */
+export async function send<C extends ReplyCheck>(
+  options: CallOptions,
+  body: (legacyOutputFormat: boolean) => Record<string, unknown>,
+  check: (candidate: unknown) => C,
+): Promise<Sent<C>> {
   const fetchFn = options.fetchFn ?? fetch;
   const clock = options.clock ?? (() => performance.now());
   const started = clock();
@@ -347,13 +370,7 @@ async function send(options: TranslateOptions, model: string): Promise<Sent> {
     const response = await fetchFn(MESSAGES_URL, {
       method: 'POST',
       headers: buildHeaders(options.apiKey ?? ''),
-      body: JSON.stringify(
-        buildRequestBody(options.sentence, {
-          model,
-          ...(options.cacheTtl && { cacheTtl: options.cacheTtl }),
-          legacyOutputFormat,
-        }),
-      ),
+      body: JSON.stringify(body(legacyOutputFormat)),
       signal,
     });
     return { ok: response.ok, status: response.status, text: await response.text() };
@@ -392,7 +409,7 @@ async function send(options: TranslateOptions, model: string): Promise<Sent> {
       };
     }
 
-    const outcome = outcomeOf(payload);
+    const outcome = outcomeOf(payload, check);
     return {
       outcome,
       attempt: {
@@ -425,7 +442,7 @@ async function send(options: TranslateOptions, model: string): Promise<Sent> {
   }
 }
 
-function defaultIsOnline(): boolean {
+export function defaultIsOnline(): boolean {
   return typeof navigator === 'undefined' || navigator.onLine !== false;
 }
 
@@ -461,7 +478,16 @@ export async function translatePhrase(
   // and a second ask fixes it; a second failure is the model failing at the
   // task, and a third call would spend the learner's wait on the same answer.
   for (let call = 0; call < 2; call += 1) {
-    const { outcome, attempt } = await send(options, model);
+    const { outcome, attempt } = await send(
+      options,
+      (legacyOutputFormat) =>
+        buildRequestBody(options.sentence, {
+          model,
+          ...(options.cacheTtl && { cacheTtl: options.cacheTtl }),
+          legacyOutputFormat,
+        }),
+      checkPhraseReply,
+    );
     attempts.push(attempt);
 
     if (outcome.type === 'error') {

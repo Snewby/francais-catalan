@@ -70,7 +70,7 @@ const UNLINKED_GUIDANCE: Record<UnlinkedReason, string> = {
     'un vrai point de grammaire qui n’a pas d’identifiant dans le vocabulaire',
 };
 
-function guidanceTable<K extends string>(
+export function guidanceTable<K extends string>(
   guidance: Record<K, string>,
   keys: readonly K[],
 ): string {
