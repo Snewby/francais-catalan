@@ -37,8 +37,10 @@ import {
   ASSUMPTIONS,
   CHUNK_ROLES,
   MAX_IDS_PER_CHUNK,
+  NOT_APPLICABLE_REASONS,
   PERSONS,
   UNLINKED_REASONS,
+  VARIANT_STATUSES,
 } from '../src/api/phrase';
 
 const projectDir = process.env.CLAUDE_PROJECT_DIR ?? process.cwd();
@@ -298,6 +300,32 @@ export const PHRASE_SCHEMA = {
       items: { type: 'string', enum: ${literalArray(ASSUMPTIONS)} },
     },
     chunks: { type: 'array', minItems: 1, items: CHUNK_SCHEMA },
+  },
+} as const;
+
+/**
+ * The phase 2 variant reply: either a variant in the phase 1 shape plus a plain
+ * French translation, or a closed reason it does not apply. No prose either
+ * way; the French a learner reads for a reason is in fr.ts.
+ *
+ * Every field but \`status\` is optional here, because constrained decoding has
+ * no conditional. Which fields go with which status is enforced by the variant
+ * validator (src/variants/check.ts), as \`unlinked\` is for a chunk. The variant
+ * fields are PHRASE_SCHEMA's own, referenced rather than copied, so the two
+ * cannot drift.
+ */
+export const VARIANT_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['status'],
+  properties: {
+    status: { type: 'string', enum: ${literalArray(VARIANT_STATUSES)} },
+    fr: PHRASE_SCHEMA.properties.fr,
+    ca: PHRASE_SCHEMA.properties.ca,
+    subject: PHRASE_SCHEMA.properties.subject,
+    assumptions: PHRASE_SCHEMA.properties.assumptions,
+    chunks: PHRASE_SCHEMA.properties.chunks,
+    reason: { type: 'string', enum: ${literalArray(NOT_APPLICABLE_REASONS)} },
   },
 } as const;
 `;

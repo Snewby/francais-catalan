@@ -6,14 +6,18 @@ import {
   ASSUMPTIONS,
   CHUNK_ROLES,
   MAX_IDS_PER_CHUNK,
+  NOT_APPLICABLE_REASONS,
   PERSONS,
   UNLINKED_REASONS,
+  VARIANT_STATUSES,
 } from '../src/api/phrase';
+import { promptHash } from '../src/api/prompt';
 import {
   CHUNK_SCHEMA,
   LEAF_IDS,
   PHRASE_SCHEMA,
   QUERY_LOG_SCHEMA,
+  VARIANT_SCHEMA,
 } from '../src/api/schema';
 import { LEAVES } from '../src/taxonomy';
 import {
@@ -243,5 +247,71 @@ describe('the generated phrase schema', () => {
     expect(JSON.stringify(sent)).not.toMatch(/"(minLength|maxItems|minItems)"/);
     expect(sent.properties.chunks.items.properties.ids.items.enum).toEqual(LEAF_IDS);
     expect(sent.properties.chunks.items.properties.role.enum).toEqual(CHUNK_ROLES);
+  });
+});
+
+describe('the generated variant schema', () => {
+  const validateVariant = new Ajv({ allErrors: true, strict: true }).compile(
+    VARIANT_SCHEMA,
+  );
+
+  it('draws status and reason from src/api/phrase.ts', () => {
+    expect(VARIANT_SCHEMA.properties.status.enum).toEqual(VARIANT_STATUSES);
+    expect(VARIANT_SCHEMA.properties.reason.enum).toEqual(NOT_APPLICABLE_REASONS);
+  });
+
+  it('reuses the phase 1 fields themselves rather than a copy', () => {
+    expect(VARIANT_SCHEMA.properties.chunks).toBe(PHRASE_SCHEMA.properties.chunks);
+    expect(VARIANT_SCHEMA.properties.subject).toBe(PHRASE_SCHEMA.properties.subject);
+    expect(VARIANT_SCHEMA.properties.assumptions).toBe(
+      PHRASE_SCHEMA.properties.assumptions,
+    );
+    expect(VARIANT_SCHEMA.properties.ca).toBe(PHRASE_SCHEMA.properties.ca);
+    expect(VARIANT_SCHEMA.properties.fr).toBe(PHRASE_SCHEMA.properties.fr);
+  });
+
+  it('has fr as its single French field and no prose field', () => {
+    expect(Object.keys(VARIANT_SCHEMA.properties).sort()).toEqual([
+      'assumptions',
+      'ca',
+      'chunks',
+      'fr',
+      'reason',
+      'status',
+      'subject',
+    ]);
+    expect(VARIANT_SCHEMA.additionalProperties).toBe(false);
+  });
+
+  it('requires only status, because decoding has no conditional', () => {
+    expect([...VARIANT_SCHEMA.required]).toEqual(['status']);
+  });
+
+  it('accepts both shapes and rejects an invented reason or an explanation', () => {
+    const ok = { ...SPEC_REPLY, status: 'ok' };
+    expect(validateVariant(ok), JSON.stringify(validateVariant.errors)).toBe(true);
+    expect(validateVariant({ status: 'not_applicable', reason: 'other' })).toBe(true);
+    expect(validateVariant({ status: 'not_applicable', reason: 'too_hard' })).toBe(
+      false,
+    );
+    expect(validateVariant({ ...ok, explanation: 'Parce que.' })).toBe(false);
+  });
+
+  it('survives the request stripper with its enums intact', () => {
+    const sent = toStructuredOutputSchema(VARIANT_SCHEMA) as typeof VARIANT_SCHEMA;
+    expect(sent.properties.reason.enum).toEqual(NOT_APPLICABLE_REASONS);
+    expect(sent.properties.chunks.items.properties.ids.items.enum).toEqual(LEAF_IDS);
+  });
+});
+
+describe('the phase 1 prompt is unchanged by phase 2', () => {
+  it('still hashes to the value the Opus recordings were made under', async () => {
+    // Adding the variant schema must not touch the phase 1 prefix or reply
+    // schema (decided 29 Oct, F2): a new hash would make every phase 1
+    // recording stale and \`npm run eval\` fail.
+    const recording = JSON.parse(
+      readRepoFile('test/fixtures/golden-v2/recordings/claude-opus-5-5/run-1.json'),
+    ) as { promptHash: string };
+    expect(await promptHash()).toBe(recording.promptHash);
   });
 });
