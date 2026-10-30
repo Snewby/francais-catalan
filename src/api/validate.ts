@@ -6,7 +6,7 @@
  */
 import AjvModule from 'ajv';
 import type { ErrorObject } from 'ajv';
-import { PHRASE_SCHEMA, QUERY_LOG_SCHEMA } from './schema';
+import { PHRASE_SCHEMA, QUERY_LOG_SCHEMA, VARIANT_SCHEMA } from './schema';
 
 // ajv v8 is CommonJS; the ESM default export is the module namespace under some
 // bundler configurations and the class itself under others.
@@ -22,6 +22,9 @@ const validate = ajv.compile(QUERY_LOG_SCHEMA);
  * spans among them, are in phrase-check.ts, which calls this first.
  */
 const validatePhrasePayload = ajv.compile(PHRASE_SCHEMA);
+
+/** The phase 2 variant reply's shape; the rest is in src/variants/check.ts. */
+const validateVariantPayload = ajv.compile(VARIANT_SCHEMA);
 
 export interface ValidationResult {
   readonly valid: boolean;
@@ -43,4 +46,9 @@ export function validateQueryLog(candidate: unknown): ValidationResult {
 export function validatePhraseShape(candidate: unknown): ValidationResult {
   const valid = validatePhrasePayload(candidate);
   return { valid, errors: valid ? [] : describe(validatePhrasePayload.errors) };
+}
+
+export function validateVariantShape(candidate: unknown): ValidationResult {
+  const valid = validateVariantPayload(candidate);
+  return { valid, errors: valid ? [] : describe(validateVariantPayload.errors) };
 }
