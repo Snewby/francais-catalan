@@ -1,0 +1,2803 @@
+{
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "recordedAt": "2026-10-31T18:27:41.904Z",
+  "promptHash": "d6ef5a5a2f41a8bfab4eca7aa0bc6da18c3f4f39014e2de58b00baa682df29b7",
+  "settings": { "effort": "medium", "maxTokens": 16000, "cacheTtl": "5m" },
+  "preChecks": [
+    { "name": "structured_outputs", "passed": true, "detail": "accepted" },
+    { "name": "browser_access", "passed": true, "detail": "accepted" },
+    {
+      "name": "cache_read",
+      "passed": true,
+      "detail": "second call read 22966 tokens from the cache"
+    },
+    {
+      "name": "cache_1h",
+      "passed": true,
+      "detail": "one-hour write 22966 tokens, read 0"
+    }
+  ],
+  "cases": [
+    {
+      "n": 1,
+      "combination": "1a",
+      "target": "jo·avui·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgandiCTMHuDr7WiNEnxG",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Aujourd'hui, j'ai acheté le pain au marché.\",\"ca\":\"Avui he comprat el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Avui\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"he comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 287,
+              "cache_creation_input_tokens": 24244,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 24244,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 277,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5523
+        }
+      ],
+      "latencyMs": 5531
+    },
+    {
+      "n": 1,
+      "combination": "1b",
+      "target": "jo·avui·none·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgane7qFXqbCpfHDJ1pjQ",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSrQoKEAgTGAI4AUIIdGhpbmtpbmcSDKeklg5mpgrTFbcVJxoMUbm6E57l+BCgtvTjIjDIsq7lC4O5uB6dF+Xf7jFD8pahMqX1Gyw/fxJDFkhZFSW3mRyObFOeN3InLxVk1EoqygmPn43KVw5TIRJTSGf1nNsLNwjBTemiWwimIozLfPshRJGAfDJ4mHjGAPrRshRzENYpa9Te7xCPb00j4oH93qwDjhOul7HtGxZKdCp1/Jjd3bYbVngrt5kDtjv/m0VLftmyg4yt4wOCVO5YaWvXBWSB+IYg2i8xHqvA6z9DRZxb4BCsrGjlNN7ZKpqK9LXN4/IKEv4xcceyk9VpcsaFTjUYquJ5yx1ZRR3EB8HRqNKx7pDXCtWBCicjMCtW7LhnwkxA+NQoOdMlH/rSl9ZLtgbIvmNiNGadpRbSU8k+4CwrDRa+ZCrF5p9tftcawDxeZN0VavzvF0RftFBdvfSaaysU3Lw6SY+yBpNA8mC0ZKc1ItnYMPcggIy2o+g0emwXD4IT1UuBwtg3eP4wZ4A/wc9XybfV/cuuvHAZrRGLckPNAvJ46CJSt1PeC78cTxctQqCN15mCeWiHKgnzG/KCX8scpvqScX8uGOIiq05OUfa5FKgnNKZolR29bE4lArrqb9YZTXrAudeSDOJNHgLBHyO3iSm9luonzz3u1wajc3Wlg0DqOdmhip6yso6FcLhtv9JMLmNKRwEKbhpa3WvgbMaJ91OiKYz9omcrx2a4/Z4It7jgpQyksdZDnmOjMXNp/rlc/pvdV7MHo3pIuiLh/NVaKwcJYDaF5iWJMwZELTthc9UTxEzWVMNUA0KCgPIr6cFMC5tUqnw05Pe/embJiAWbDJEUC4QXQuytTq9PBJ2OKixUKHDMK7viNIJfrf9G7ZeqFw+4H1R02Qqw9IHF/+zk0YyFk1+JCfYKCfrlKsxwPFscPls/ZwnuT+7g5GDNgiu6FGgIiQkfAURaASNMCRlafK3S2orsqQz2p6a6uv+lOGzVl1KNIT+g3xzcnKWodjz9NiKEuSNqhC1dzANkXQ9pXYXncahPJgzzvfIAx5anlKrrYWZxe4KLChOb01UUsLEwVrJeHgESM+FTlAE/mBkP0Dyv2UmxKuJGJ/Y0vcVqCB1uBcrOaFirEh17bU+o0APSHda2bS3SJMLDBQKhmR8yfGpE4SFZx2I7LHbqAGyrbMreW0JuOQu0gDG0XITbypg+Aik30zFmphhD1ScrunN1qtT4zoMPwDTik6ffPU+tgottM6BgioN7ypomG2RYsDrVHSDwW9Ev8A2iEN+vc2EzXdmTNU9H6iXGMyGCkwysfQN0YjNNTbi8n6Jx7O5pZmnJqUO+W7XvQP5aOjyxAYp26pkOn1Ze8MHGe0fmIlZ5TRi/jQernOWQyrf11C7KvWMpQ8aSLL6+QDxlHZddpC8So+1L1PuAi/z78ODq/fa9dBJ8NZB8Uucu2daHJnHn0nzk1FPIu68i0SyOwciDBsolEAuBvO8wPYnmqbaCe8eQ1MGqyG3esK8c6nOq5mV1ApeSRrxLfyW5W4RXXIvCFd2i1MQJ7Og7Vw+66BNEy6yZashArITZkQA87KuBPzIkWr1MB0eZ89nnbenLt+9B8EXY36gZLFUr5EcQFzFcm+wBrELk97nhdD9hQ9QY885+wSc8euiV2ft8okOS+KoQaGMcv9P5Q8iHawdQr4UF1f0piyCOdyWYnpEO9+zkAeDfPeMyuvOaBXOvlJrQCwaLYqssPzVlImevbx2RxBgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Aujourd'hui, je l'ai acheté au marché.\",\"ca\":\"Avui l'he comprat al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Avui\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"l'\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.cd_3a\",\"PRON.feble.forma_alomorfs\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"he comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 287,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 634,
+              "output_tokens_details": { "thinking_tokens": 337 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6652
+        }
+      ],
+      "latencyMs": 6654
+    },
+    {
+      "n": 1,
+      "combination": "1c",
+      "target": "ella·ahir·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganecLze4dGY6tNskD8A",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSkQsKEAgTGAI4AUIIdGhpbmtpbmcSDBE+rjf1N1NfNHj2cBoMw4KNDy8jdzK2w62yIjAcfYXB7kRgmApRLSo7I0j/1hlC1+NUBk0zFXmUHm3pAqGxuA1CpnnytlasJW0Dnjkqrgoc2Lqj2mYnNjS9Bb6AeFq7D65tUhHgI5nLIMqNszfBcYp7DCrm46if9t8uO3+5FjrzUuMatjPdgVA9D/feqasNS+X1AxQx95Kr6odjyMf0TyEZV2ebS13pBtaZB1+9oTKcd4PO/VN4prt8kN3QZPrYkZjXcdJ/GrmmFA2ZXfNZP64LPiZOkH1CCNehrgXFmflMMCzuG/6rrIP7y+XzZ/JUavF+PjjwMSV/LBnfRJISrJZooGK5YYKfC23keo5MCJo+mEm6XYHqPsuMH+nyyY+t1KIKRYu5lwfEwuAjiB9RSRT35irXx+e3FFfYoxRCHtymMxq3Pe4A3jf1Ilw6J3HCBFGUrb5LI0Ofy9GxPN1SHLe2Le5VH+o8Oxg2ZE0O8ZGcrgI8rffENTeh7+gFS9T0aO6UVzyZmLtvZadqCIbewqsGVHspNt+1/T+X6Mwl+hVoEjRhVFOpqxu1YrEQP2/Uov8ly4MYk1TU2gV1aRLWGO/OhjYxoVrmET6NV7m9MuNKbusYRZoeJloNOPgfvf7mNm/XhhcUz95bcDWgTSQhopOhGc/CMFrY4/16IxuHPup9KQVWPZirzF1KFIJpq4cs3jK7GhyOoHNhwnEG6AhZt124B6iKs/4o5ulnV+6zSwLZeSah15kI3uSOScGm+Jn7knaPzBzqtKxvg/eqPuN7Zi4yrO8hqqrFKSuW0LREHmkG9PnGsL+A9dVJgrknxZUIhGnkJDv9/e4O7AR8E29bWc1kjJBTon4bvDdarLj4t8yq1S0wpznNSoBIVAOVCREwb00rt/SKqJytosTvt3pnVT1KOzzgfgnAsbC+Afy2ROnoj0/UKsd6DJYo4cmzbqfB6PbhBwA21oYRWqfanaSznPQdC4cssF1EKz38zqtJ7IKG4g7XetD/s+5Fcl6jvArbDrOwAxy0sAry3SEj0rTR9fiMFNbJprq9//clygB38UobPOoHFAeF2atrmxzgf2pDp4Qdlctuw2stuhq9J/ALjasxONuE7QtCQsfwUQR/HD2thH+Bt4L4Nd5HHu50bIlQz35mH69N0z9owVjzqWg8lSIoY1oEjgChBYNL15y+K7jjJhvQ+wbHczA9Qx2NzwrDCCduF/NP6XiZjEyz/S3uaI5lp6wGtkpfTgSuMrdtuxR0Yt5spe/So0VJjParUnGLdyXs2DZ4JTHuU5qzTuhb+ehgEFJLU7y8tgDVf6o/1yteHiPkKEAZMAY+FUw4rRsLSfQ4veTKjhvXmvJvUoQ85s/oK8Fhgb4HdTE+06gWp0bfKcBXtOZJH7KIjJ91wZ54PzjDYAqJwJ3i4ib8iF07Gw3B6OpPvm/pms3Me1XSMcmtCnUn3whNqWEziFf/3O1Gi6xsh7NVnuc0YkqRuj+fzw+mxSGbakrakktZu3vAQ06IFmQIhg/217O8NwytW4cnVbW+/0hnER1pqehRUweEhLCGVTtBwCz4I8RlWwqtNIzrATOYtZn8UIQiemaeRDll6V1YRNE6I5S0/TtUroyw6rRxOL9Q7G4hYi+RbNUD3dhrAY13zPIt4VPOcXyFY/D13dIIewP4yIr17BLmiBSqGmFHD5O9oA7OWGV2xJVATclvKIXYMGaS2cSNWgGn8qkiVkt8uNSulwUFaNR4flbgsFL7dOIwflufZ8ATsa/czFInkU/ExK2oMaCPs30b13zoWtpjtBeFW75/iDI6ACckba8oRrh9i2FS7mKpVYivbUFJykKcyJf0qhGCJke4cppErgjvg00ztPYf1nuZ4zQYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Hier, elle a acheté le pain au marché.\",\"ca\":\"Ahir va comprar el pa al mercat.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"va comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 277,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 602,
+              "output_tokens_details": { "thinking_tokens": 316 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6446
+        }
+      ],
+      "latencyMs": 6448
+    },
+    {
+      "n": 1,
+      "combination": "1d",
+      "target": "jo·futur·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganf5si1ZLaBeZpwmqbT",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Demain, je n'achèterai pas le pain au marché.\",\"ca\":\"Demà no compraré el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"no\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"compraré\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 287,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 302,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5712
+        }
+      ],
+      "latencyMs": 5714
+    },
+    {
+      "n": 1,
+      "combination": "1e",
+      "target": "jo·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganfWKPPfGvX5YV8QzVy",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'achète le pain au marché.\",\"ca\":\"Compro el pa al mercat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Compro\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"el pa\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"pa\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 285,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 229,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3090
+        }
+      ],
+      "latencyMs": 3092
+    },
+    {
+      "n": 1,
+      "combination": "1f",
+      "target": "nosaltres·ahir·haver·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganfjUeMbviuWm3VbpRa",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSsAkKEAgTGAI4AUIIdGhpbmtpbmcSDBQF+LQyYnEVSysiGhoMP7giYawozXRiIBGNIjAk7U/j7QG5+fhvj8KUh8IDSvecYFighhm+wckhaYWX66FLqZNP3S2qxb6u9WUWbFAqzQhr+ERau/HcOl3VYnNCPuYMNazidGs5iNwzBOR0dYB8ov1F+YwfeagKect6eHE0BTydT+16VmVonrmU5Tv/zwc8wloHJAO8BcEs3P01Sf3PyX1uLtBNywrj0HKtIR4RkPCcyzvX3l7fYD83QjRaLDkJga3GHMP7wTsYe5i0TpoMeDxN5u6RsUb7BP8t3dYRQ4xYmcxMrWNKoIYA0dbjorW4T6ysMIURE+Nt4XJQrtqXZ+fx0Ne3x6Iz+eHNthN97i2A/vB/AQmLOgj4TD/BrV/Lktjpsw5GJ9CtDb+HVMUJ/X6w7+NiMghCQ8BeuUz1L2qU8Sp9HGQYerMXFy9rLolVFSiENybIZNEsBONM3ogY/yzbO20z//eHsUdbifyhDA0fTWusaHTlYhFzsZcnBuTvtn9vyxR3gyr+k2VQTgccYtmyV8SN7kgyKoSIr50J/0aW2ZKJ80y7h7TazNZa5KUxkkPsXkRhIhxcvrmzkEQOoHAvupWo2i3SgvNSZtGWjfGGuzj2Ob3WLVJ9fvgA3wuXoQ9m4hmd8Ewn85iSd1x68cFMnesUs5hKwJiO2pFkp/PXx5g8ioGnuxVl7nmMEn6eb++dru6lytyyNKVN/A6f20uonmLTveQrBT0DX4igWGK2FD743AuErGe2SvPXDjJ5rfOXbBWPkZ2b/NY5VZlp86mMJCDsDmeFSj6FdN6whwgNByOabeOJ2Cll868NNJL3a0v552L6OJs/KMTgllwh3pltDeteRZgL96VOYyqC0cu2V90FGu0emKncaR5IoAEhgHxbWcPHJDqDfivXielSOhbJRP4mLxH/u+aJE8T1ekN7PbATZZy/9qjttIED9yVQlAigycR8K9/JOq9dKTEj1DgMm5oJVFumeLTaJV89rvtlnrRdpsGfkZOr77Eh0cXJ7cDosq+HU6e194gQ+j45KFRDjkQX5br+xYltaslx8LcX8wFu/i5ERUcth+blqGt9IdQRCv91GNP1Cd/1+Ucdo7lVnT794fRLL6WRGhS2g4DYF8EN8V8QwWrHR4lJYdZuKZe9ZEAlaY2XT8YsRn6DCllM4OcBS1F7eZeB7ntIxpYdQGQyqMg4pKknTL2FCVcmHY7dim0NqovIzbP+uDxSAIMYI4s/2xsDdncq9BWfiE0ho03LFGCmdH9vf30sWz4IfqQp1uKOiu4d+xl4J+B0S4F+oxWBAIs2s4Dko6A67dGvZGC0ZvxPZAV1zpLptYS4DioWOAbXOy3XXj67rnEaCf+kyGKpQJ3g0neXUrIrZhSQRhkU0afi1VywTI2ccgB2u6VtDhaaxkIouWjXhvD9xmIVDYV1RLYai/ukJwVOZ6jbRl1VqKKEla/FnYHGL+Pwohj1cnBIn/gTMw/tXxk50brw6RkmquaPnpjV0CFT0ZSLMCVDB84BHxe4Bcgcmk93bVOjPsreFh4AEf6Y98TeA2ETjMhPspNGbhFmh48YAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Hier, nous avons dû l'acheter au marché.\",\"ca\":\"Ahir el vam haver de comprar al mercat.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"el\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.cd_3a\",\"SYN.clitics.ascens\"]},{\"text\":\"vam haver de comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"VERB.mod.obligacio\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"al mercat\",\"role\":\"place\",\"ids\":[\"ART.contract.a_de\",\"PREP.a_en.lloc.a_lloc\"],\"lemma\":\"mercat\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 281,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 583,
+              "output_tokens_details": { "thinking_tokens": 283 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5322
+        }
+      ],
+      "latencyMs": 5324
+    },
+    {
+      "n": 2,
+      "combination": "2a",
+      "target": "jo·ahir·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgang8QXrD16ftHgNdvYU",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Hier, j'ai vu ta sœur.\",\"ca\":\"Ahir vaig veure la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"vaig veure\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"PHON.grafia.b_v\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"],\"lemma\":\"germà\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 267,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 263,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3328
+        }
+      ],
+      "latencyMs": 3330
+    },
+    {
+      "n": 2,
+      "combination": "2b",
+      "target": "jo·avui·none·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgangNeJLmLrBRBfGcBbG",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3QoKEAgTGAI4AUIIdGhpbmtpbmcSDKO5U69+rdyGPgdOpBoMiZTZKY5AkxlXdPhEIjDYT37xtASxTRmUflDkuSzn9M2Qp0ZsoAs1fdvlWm+uYtJCcxG9VfdfKZv8JyRwVR8q+gnrLNQ0B5JIFlqVaiQFtMGqDvxyF3HkC5BSYqIFyB4HUcLVx4BRkbvtdzx64cbmXkuzd36CRfK/LChdOA37qE9NX7ZbScnsrt56CM/V+rdPvQ3v1IZtDiF0v9bDntbef7M4sQo3P0Ru3Q3IxBUxqg/f8hmcD4C+W0I57aGc0x3CpcS0Qbsky11qt8DvuUUEiz8Z/ug9/mURogpVCJo+5tcgL2pvGlC8fNuZyOsn5S7j4d3M0sdkWThBbL2jy71s29ybGdFPNKBQdd1jFNsm3iolTLBjjmiOmrNhiJ+7jDZxSbdPjX5FHVxvb7DLyvK1Z4H8vgtcKIjxrrrlOds71uRXJNw0a11nL8mM/WVj3Ljk5KPXWO0scyTkMWXund2prEMxnT5O6hqRK4JkWFOWUH3M80sE5NWES3cojH43MlJ8UDJUkIwxI+vBMYREOuSf6XL55IhG8y3gjJhZB58MJtdyOzN7A9EozgUIRL/xyoQ0d+CotVVfuNLyxMmF5XfWX3HjszVYsv/LLBC8qFwFvP6dxauaVnLOFBMcFbhvJ1lz77oZFi8S88fYyylKCrSHFWAhhGwbV067EbH5efU1DeMYstrF83qfbjVJ3oagBRkBOD6EvxG1qlbx1NfmfFxX0Ypd+wJZCy115ou/Wp6LKnxfrZHVKno5fVMxkDThCSyWYFX2A7gof7EUwDszQ2UPGZmlzGVrjSxrkmqyyRfPk60GewaB2yoIF7brCpyLDu0ud3cP5JAQJGsCVXx/JopmBImky8RiAnhcNEqjDIwwE4DkyIvl4/SLr7R5Y4BzuAdlrrcElB+omWzT1TIbE4J1c5q2javcyG6xGvW4ywsFEWVknC4i0aXX6DkHVIQ6YB32aGAejW15rVQ3zxN88ol5Ley58U/pZulHnepbQ9Soq1lw6eLihHTQqGwA2+fblLI/QLYwOZRU/piOMfyHC2zBUmypeJNfOi7PlC5KzNBcDfmCNHOGU/JT6IWv9IDjMrPi9q7fuhny/XdLsziFv4W4CVlxedMpqeRoAq7dBEbKcuNz7QNRia+RZzw0C1VghZoXJ3iG/aVDE/qH0PEWfgF4gvJDVT82MnBXTjBcaRXkv42OehB7FmpzNtOWLVu57Cv7e+ss3HPPX6GQW++G1hcEf/0R7qqiWOHqNPzxOFmM6R+fqUyIpV/v9L62/FyqNdoxGdxlE8T11yoHtJu3OAXA5vFj5RNx/vv4sle6SYAmMQ8xpuF6E2SguBv13MZTE8mL6SxelmkmDntU6HnIqZahBjpnrEQ+1YowFsg98SknHLFk5Dfpv9JSBVQciXkQqUOUOU2al5kUFRGTsahdnr9EBksFJrDk05WLi7KzgFlSCEqnYvc0x+ouL6DrJw2NuYhNCf+vQ29Y/z7FvV2zwa4JmPSg0cF9Jha5DOh/ARKYKkHDQ6O2pQxwYz46L8SfYXNhem6nuzZDEyKUpL/bPTm/1JiuKUTOo1fmAzFnTszhqlaxu+Ga2Fq8bxnofP2Uht6nWTSng+NKIgMAVH7g+yExG06WtybMt3tVhlibu8kbRkDgvId9PBm0SYDoW5OOEiSkO98BIS8lVXeE+qEu8LevE1Dj0cP0t9R4xK5TgwowRm1yOm9LBoQkwMExNuF2vdmICwXgmWx2dBdRl3/XbLOscSQl6TXSYaWQexDRyGZ5a2aFtTPcHKn/zQwrBBgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ce matin, je l'ai vue.\",\"ca\":\"Aquest matí l'he vista.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Aquest matí\",\"role\":\"time\",\"ids\":[\"DET.dem.forma_paradigma\"],\"lemma\":\"matí\"},{\"text\":\"l'\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.cd_3a\",\"PRON.feble.forma_alomorfs\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"he vista\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"SYN.concordanca_participi\",\"VERB.no_finit.participi\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 254,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 607,
+              "output_tokens_details": { "thinking_tokens": 350 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 7350
+        }
+      ],
+      "latencyMs": 7352
+    },
+    {
+      "n": 2,
+      "combination": "2c",
+      "target": "vosaltres·avui·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgangv59pn4UWnp1Sqmvx",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSuwgKEAgTGAI4AUIIdGhpbmtpbmcSDNoxRGHI3NO3qFOEJhoMxftwu+SvVw7HyzyqIjBFR2lQR+REKMun7j3gL4Pp6GTKAl4m/mQzgrVPzt/8vWetht9zNXYJR1hrP3VwEAsq2AcbJGJQXJ1+pvfgqEQILXXntdq26NYRLV5ob7kRoE771DkmGNvfUgc5jE1r5xfWvMrYGvTSLQx9lljB41TZHPrRDcHqH3oly91bYddGO0XpqGq5hXAJBaQ2EfWuMx4QqKO/GmxVIOzRnGhz7/W2cP9JqYHEItCwkAYqwmvNbi7NuDVdjPRRBvnqW/xRn2ft8VEuFrt3+iUdy3HOV+cm8wkylEVtVlGO/iuStqSK7hgYn7GhIqZWz6x2gkBkpfkeymqt32rXWDwxP6M1tVR9BRh37T++tlQrcOI8Mnuf2sj6Z1z2xWAf2qxcUR6SW6c8tPOKBgyk4C7heOB/RnioEXsC2IABm1o4x9g2tqyCijfx/KfFexGxivrW9Ovua7RYeorUz/zR8ZUjh4g4sVygmGPt7TI8R9EFo3PtdM7KFkZ5r3hU3KoElEjVx0I3MZgr5b4k9le/MsUOc32N7Z9uky4KB8uaMS9I/UAkdmR9Sm1ODB0H8CqIikiUfnL1hgkjnJTB5R7qL6cZUZhyJ6L855wTbNoFLffTZt7WY+y1RWE0lYhDbeUOBL4ZgReNFBAyxXIOxbuGW5keCkCfztqD6kIMq7qWUyQITjcILnwvGmw9JWk4vEXeXOgCzogQzhUrUwYDDOiu9hQL9WHrgk11SEA/TWyI998zioFaAbxmiI3XbGuIVqWawyrPjffNw46iW0dTBBrfmceluNqw3nX2Ob32ScJePQxmeBQtWA1CJ466FumCIicLSEB6PDsevLCeoz0jqgL2ts1MjM6MtOLZjIok+FNf7GHbMI/0bgaWmIcuznPM+1YCe2nzh89CsZpZJ4+m0AhuIPZPWiSLtAZfBw/jBrS7R6zXPPqjA4yIaHYWIhOFRyTR2wN9GPxj3CDXor+ENAYHhVIpghMnkIdei3XVDCnM8MofpoqMcwTstf6XCsOTOVETEfVP983g4dxAC2/Lovx9sRmg94RcBjse4dtKUAHRzbbUYUyvhFdTaveWVTkFjz5GtwoHC8LCYFKWnwqKxybudm/zUXaIM/UWawpoXrbsvBkuVrwol70tOwAJXdWwiGtTDvm95ehc0lUW5G/CfeBSIxTVW+i/Z7Ng6wcm7yE9RZ5i6wH4KC/mToGLL8Toni/b3dLOpjfsHuyJX7eomAgiqcx5vHFUcETzSC+HiLF7vrbcw2TVgGL7MbQss46R+jAFNf7wVCfhNHwmTHMB8SzRTDVVssml3ek6YNovBbEQDjYlpyQ928Letdb+4h0tKJp5xAYwV0QkFsoYh2U1RRDWVIT6dQ3BLrsEXZU1OCJ0WkfjFWgYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ce matin, vous avez vu ta sœur.\",\"ca\":\"Aquest matí heu vist la teva germana.\",\"subject\":{\"person\":\"2pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Aquest matí\",\"role\":\"time\",\"ids\":[\"DET.dem.forma_paradigma\"],\"lemma\":\"matí\"},{\"text\":\"heu vist\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"],\"lemma\":\"germà\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 257,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 463,
+              "output_tokens_details": { "thinking_tokens": 198 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5025
+        }
+      ],
+      "latencyMs": 5026
+    },
+    {
+      "n": 2,
+      "combination": "2d",
+      "target": "jo·imperfet·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganhHaU7JDPHszFNgLBL",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSiAgKEAgTGAI4AUIIdGhpbmtpbmcSDHAEmPZfPBkLznCZKhoMGvFxRIW/94g9B+AOIjCyVNDcNBXYWeAZ/KT5WZ3h3vMPquY1jtCy3C9Ppv2l1Ds21zHddmL9DBDgI/wgyUYqpQeB0Y7DEq4IQzu3fYf70idlBjOEi91bIpYySMlGeavMLIqxSGs1Wbr7lCpBHXJwV/WiEU5XawhR0Dlxct7U7hoYnA83qV3lrHBCJKmJVyfkJVPdCN+AaDoU43Lz6PF1+HlAYnWwyJdWdFwm7PiOBfg9kICbedN+gwzHNoKtLuiBvlvoZFqUmD7IfYKfZaDyzxI5fjx7k/1uj+U6ofEsce0etWOwkOxZc74ES4OUxbM3TC/EXlUASRCS9ykrTATO4VDVD33AI29vWuJv7n5FKZ9vCeNJtDRJi2klOnrQDnSSRCpUFqKljC06Bk2StF6QajTSoB+nky22TJMe0k46F6DzwRXfYNkZvfy7Vda0heWsorecLC/+sK+kJQtOVcSXV/dQlM6XBF2iOxaHUHhg3YtRAzJsxQKkDp+cGHD4f+vTZkbg9P+TmL/3Zw9AIY4Sa12zUhborXmCI6kg3JF5LaGMvubColceDF2Z6ayIac8cURTpyOZLL3o5JQ/6GRUW2ValGEegfhgehBzI2jLKYmnxMcBOF2gA+qXEVbgvsUIh+QvTumIfD4iAo9Qfwii6AchCij24yUhGh6CUmr0d4r+B2RoXWFPryhN8+UIRH9tnuPK+bj20PuFW29tmzSmI1nYIkMxcqRGajkrACrDh6Hni6f9R8R25PQhlfMyjRkGu2qIiF8pNmytnHUuaiEJt07B1mRCuKqtl4/xVdil56By/0jGavBhcodhcNj9AWP9zn+5ptl9asMXiOeqcKubwxbjpKRH+ftWkUz3nt97qOBRg7HKDy7+0R++sqmshn7yu1ZqxpnTy3KWdT3fT9n0Xl7N3aDyYYa1NIZTphGtA/eJJJNkI/QdIcqm9hMJEBTXN7wnRoLBp1HUpf4kJU17BK1maFuaHaZmih4f0ZAUb0lg2OYa7+iKPG0KX3NHjYJoio0iW+CQlFxBZUOFMVJIuodYWVIS50AMGvxsiGTTCucvoAqMsPgt/09UTqH7Xb2wDcppJbFg6V1lVg0XmXBMrM0QJC7xtfO2TroOm21z1kfQCAiVG11fSytXcSN1+EeQN8rBKRbETeVjMHUTOcMUZrnlxPZ9kn1DlzEOU3PEaaAb1cGHA2wm6y4fLya50lu4Hjlqvv7brGaXz66/fjEmAKm4si4Mt1mDvOhQvn+AcTUejy+4RLvvGClpSlFMTM6OFjDTkRdZzTJW3jcPg7cTg5xPugBTM76eFy11etv9Ps7sIwfPrnqwYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Avant, je voyais ta sœur.\",\"ca\":\"Abans veia la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Abans\",\"role\":\"time\",\"ids\":[\"ADV.temps.situacio\"]},{\"text\":\"veia\",\"role\":\"verb\",\"ids\":[\"VERB.ind.imperfet\",\"VERB.conj.2\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"],\"lemma\":\"germà\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 267,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 454,
+              "output_tokens_details": { "thinking_tokens": 208 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6289
+        }
+      ],
+      "latencyMs": 6291
+    },
+    {
+      "n": 2,
+      "combination": "2e",
+      "target": "jo·avui·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganhkKp1381u1FfqHh8u",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS0gYKEAgTGAI4AUIIdGhpbmtpbmcSDIQ3tZn2Wy2j7ja79xoMRpS5M/8pVu6UZUjwIjD9wy0KUP7zi3Nrssy2CZC6J93ULRyERrCXybRsEktKBi1hIc/+KOUVxCRGswHUqfIq7wUzSmiTRG9vGMjnlnIHjyB4Q1t2YA6l7Af7rUSNRTu8NssdUwBp4VrW/9Zj8ublWoz3WH6oCtf94X+LGmSumpUbkQ1cSekr9ihaPQJ6v0DC7fFToeBnkj2OOyLpM5YS5/KMgBuoSGSAxit2kXJxXv8Sw+ccnEkEPN93hrc1RGNBc+om2Mrn0aQNjtxNncPEKwUOmX9jUkjEDAFafKVykknMt2c8NVaG2ge1fMPC4hbknccJw7BUT7CPpwoBtBjHvhtM33yJuGcaMu6chaz9I/ypEMVzXESqB5n9Ucgmt4nnicN2ufJv92xQ36LYbgEzw5tUenko/+mBH6+T8Klz5x90IGsh2tOANIPA3S5z/56HRfUjuK7FDdv1XW9m+R461u9+qvU0Pr7g8DOE859RS3KF3EKDC1owHajm0sSexm06ZdL/F1hrcLvlfHvWy2qb2JZan7nDFTjhWWSRGcTrd85LpfG1pJtq24mrOTpxW7YEl4FHjN9ReVNjsWZx/K50s8Tk6xjodtqyRKsH+fy3ovxTpeJt4JNhZfNjnPe9Qo4yL8KXZ0PC58HUb7x2vHxlDxy6JbzSbW6Ma8RlKp2NbpgLZFUQ1/6Dj0wI3TwUqnZW5GPuePQdmAeCtccJQIo6Q+WRUAneLdsus3JI4LfhSM5jI50NTylIQ+1UOvze5vXz5dK+/rrzHDW3KVdxEzw2XXvUPTHygpdLj5ZzJZbHTwdW7tq1cXlKddCRk8kJDJAqGC3V8k1YIs6+qTJIX+aeCN2d8fk01YxnOsuT0z1iq7gv5HrC+t+cykqiPaudbXHIDCzHeG14VNOG18CQC6Z2GkFksiF/4SwS6RiJUC5eCAnbswnaaDlBla8NuwPeRLuAV99uNKwceHFErNoKZBa2uDUFUat+EmeCuiyWagUkG2tqiWgpgbBY8vvGBOJ5i3NjuRdM6kal8gasBlARq9RV+IC7qwJfst5Fa7TBHuPHRBvxHD8D+B1ZzagcAAozNceUGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ce matin, je n'ai pas vu ta sœur.\",\"ca\":\"Aquest matí no he vist la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Aquest matí\",\"role\":\"time\",\"ids\":[\"DET.dem.forma_paradigma\"],\"lemma\":\"matí\"},{\"text\":\"no\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"he vist\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.no_finit.participi\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"],\"lemma\":\"germà\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 254,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 415,
+              "output_tokens_details": { "thinking_tokens": 113 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4008
+        }
+      ],
+      "latencyMs": 4011
+    },
+    {
+      "n": 2,
+      "combination": "2f",
+      "target": "jo·condicional·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgani3UBpYi5rAaaKQuT5",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS2AYKEAgTGAI4AUIIdGhpbmtpbmcSDDY8sV9GBWIxR+jkyxoMt8hwXTpLxw935nOTIjAagKfNRqpufi66+VHYXeNG0G1wMhkeC6NLYt9v4DDP7f1IBYLSlzaNHEcnWT6CagUq9QWCAWjwijqPMzklqMh0ve11KK1BXoM6VXKqU2wCzYkYyOqFrTShrk9Ktb/dKs7KAvhWybIIs9DS8cJszSs5Q18q/6Klet/5JgunNOH/Ey+cqzokCdIh6dfWdIIJaczMghqw6219BXkansHhPMme85N9QwS12teMk5M/ERjo/WUoGRwetJtmF/5Y1eR/GDgro4Nfk5BmuWgIrKfsAlMxRL0qgTiHwCAaOloamD6RgZcV/YM+3oPXaEck7LGtvPpv6zt34G9XWm3Vi8Jw2yg7/a44ERbtITB1rpZ7kqujpbeaLioYDHl57CTcGAt+7EsHToVfYsSDc0bm5C0L10tCDX062jlfTao+XKSpx+TJ5DiaZgITT3zpLbSlepfWBzbiE0HD2BPoMC+/s5vXkuXyCbPxnoYRK1LfHi8nTj6xUBgzOIUT34X/E+I928Km55IJEQEvI4B8uhW7JOyYuLxt1y3Pqu+ucMadzhSRuTE1iw6SpfGy6WhXyefM+7xWFnQo+iFmc1ZnF/ckdHIVKhAndwmeCcCmTSmEioD1GXzyvg4WtDOINs7n9eq+BqBolexFsWyuW8+okQ4o55DTbLwMZyCf0aBYFi97klKOJO8zIpk4rZLY4JSjTwaD51khBrie9RhkHHCqhUpb93xHnPRrZv3OlL84dTyZSOPavk+GRZx8mMr9y4MgBN5g33Nt10Tdfcj9Fj0OqZfNJQA552XyQfedevacFa2zIUtcQxZdCo7XbvjEwenevhHIIvPW+BcsiNHXLc6v7pCVqTacgcufmw6M+8NZ6jGqPrd1RkJmT3x7sqOg/bpqTdDfddH6DL7JpQsaIM5qiSvFq17nK+6hY0mBC7BnbjSc8rMt8/KdW3+NzVdaIuha66/pojuWBbMJMMZPz33RXTOI3QmWnPHzvdm7gKd6eR/SVUROQYIbADp0iRNBTPJsAGDylBGqeGoPCYgOiFtPLIp8yj3EgYTHoY1kFXrjQWcxNn8KeD+YO1H6SDTqogpgGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je verrais ta sœur.\",\"ca\":\"Veuria la teva germana.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Veuria\",\"role\":\"verb\",\"ids\":[\"VERB.ind.condicional\",\"VERB.conj.2\"],\"lemma\":\"veure\"},{\"text\":\"la teva germana\",\"role\":\"object_direct\",\"ids\":[\"DET.poss.article_obligatori\",\"DET.poss.forma_paradigma\",\"PREP.marcatge.cd_sense_prep\"],\"lemma\":\"germà\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 265,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 333,
+              "output_tokens_details": { "thinking_tokens": 121 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3888
+        }
+      ],
+      "latencyMs": 3890
+    },
+    {
+      "n": 6,
+      "combination": "6a",
+      "target": "jo·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganiL92vWRKw3sgYh9EM",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'y vais demain ?\",\"ca\":\"Hi vaig demà?\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"vaig\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 200,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 203,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2615
+        }
+      ],
+      "latencyMs": 2617
+    },
+    {
+      "n": 6,
+      "combination": "6b",
+      "target": "ells·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganiXMjFxYupiFGNu4nn",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ils y vont demain ?\",\"ca\":\"Hi van demà?\",\"subject\":{\"person\":\"3pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"van\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 200,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 200,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4231
+        }
+      ],
+      "latencyMs": 4232
+    },
+    {
+      "n": 6,
+      "combination": "6c",
+      "target": "tu·futur·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganiqQuxz2Nmrh5p2dhU",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3QsKEAgTGAI4AUIIdGhpbmtpbmcSDBhHm9Vr3AIR7+d53BoMQLAfyn53plPI72PHIjD2clCKEMCXxvamn4PNvyWZRq6hURMt88MGUn8nsBN1ZZYnieeqijrU0bbspDjQ6fEq+grp3+XxhU0uWRFCaCta3SCmYn1LK64darC9c1R2cmcJcJ1qtncQqsa0jw5nWWaFWm1B6h3k1fcP2T1ETBAdQ01CVzHYCJNHi0COTG42p24Y0PLYlevgnphnce49wflYsNSE0MqLlmDl1dS5uPLdCkc0qj/i3veI2zCG4O6MV/jGgVW8dkktFH9++bzFZ517ArZ5W6cc4Qayf/snj+GyFStGiCf+rtROGD6Nq5cIS6eXLw3K3qUFS6YWweV54tOMDkxxxBdom3pzvR39ocuHphHV1CmTYAzVpB7jQ+x4JuXSgh7XHt/NtFFlottni/ltoGQFcPPqSPdw7utbUQ+5RBKhb6l8yo+sZWSBkwdZfm5igz13NymL4bFncRbJ4xLBJIXX4RJ3vQZiJUhXn6Fjrf7GArPxoO3iwQTopjud7zksO3G3+prO7MxgyIg4w642o0gEQ6dPpHzwaNaAr4HMf+q8LTlylpNt12WBeijV1sCcAEcadhmMfJX6vk1k5eNta6cRxHxacyzVNmbgyNkpG0WDBXaIG+z+0h8mLgqIts63i0WTAylDZdKv/fD3TqMbpCR69KC+u/3gq331AlM9pPUp5phgAV1HCYNSe60p0KzIKidXLAkCFQVzLCH5q9PqGuXqy8iRlPm30psR0+U0DNZa0dSYWYmeqCRTXGRE58+u+GxV9B9A6E9VUtY1WfDE/aKrtdxR0BzD6hYBSg4iX0Co7XC+Iuum3xx5mv6LArDyFU4PVAYTaGZW8lGltyMvdy39KVzvwVLr3MZBTW8DnIb0rKUzTVdCp/r+2wMI443lOPgG/C4qfU8F5mS5MIRIRQSh8m0H/8P9n+n5uaSEvsPODOQHXuUVI6fbZHA2j+NfRBQ+ovUy1cSXA/46RncMhnzka7bGDzp9dx6RZdNJo90ZkWJykFIB3dr2yblyoeVp8ZBgtjj0QxnMY8SMqyTLC3nKsMdRzqHjy4pHXsFU9CymHK4BsX4kAib7krZHU18fFXDqagtlc+29tKIATAVkJ8/lgveVgUvStocsFlQXnPh+YaqVb/7zJxO4mnEHR0qhKKtN5OYSKQBKU7E9Cs7xHxXYFyOh+SuygVaJewBX/7bIZo8RAEr3YbPC9o/nfVqyE6OX6kjJANtkHKzo9GcXuc1vBCZJZQ/vg3SQ9HvRIweFpBjLhEkgS9rJkSCno5bxZI2hj0LjwgJDjCQu4rRL/HAm6W4R2QZ+lZbvP5tBLp6w+TZzrkR5J9Y1BQA8qiVpxFtcHuOrCnRxN6soSLTV4PcYdTkMCGvThXULA/vG8EgRqgjiWZjRQGYtd3B0xcSyPKP9wJv2qxNovPo/bxeGdS88GvsJenQM4aGakujJ9eMu1PgIpXNXZ5mz1dgtoN9UZKcCONto/hOtuA+OMTTJzP7nOhDRmTzH73D9dVXU1+dY9vv4qevQBh0IAi/uxO7qT248ZnaNhc1k9oThAk7aptkkHwB7Bo5/gEKmrdG1gWPkk2owVhWjHBoO+/P64ccUR5GvtKfzs1bCoWg5IgXAyts4Au6+kW7NFUT58Qp4ffjfFayQHnRk92cF5d6PI1LOscQqymILXam6WAmcmKOq6tufJVClJSFFHxZKKJj+VYar6Ql4jr87d6dhSZ+hWsYCiuJit6XQTSTrRcByKiJZ1dz0s3tABK03vZYnqsaNnws/t2wHJWvhOly31+R9yivla029gfd2SpjrRpZYk+JYxVU/qLs5/09p63r7yMbCiw+clCaPgvdyDnE4xwCg27vAGbJLA3BdySneqPFkPiU+oYh+ksTOGDwnmfXg7INK/wOjto148LCyT/Qm6YnAElLUmJnIUIo0c/ijTUEMDYk48jaF7816yVVCTrYnGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Demain, tu iras ?\",\"ca\":\"Demà hi aniràs?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]},{\"text\":\"hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"aniràs\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 212,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 588,
+              "output_tokens_details": { "thinking_tokens": 374 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6612
+        }
+      ],
+      "latencyMs": 6613
+    },
+    {
+      "n": 6,
+      "combination": "6d",
+      "target": "tu·ahir·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganjKjWWdhuexaYtAdGX",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSgwsKEAgTGAI4AUIIdGhpbmtpbmcSDHwkRxinlUsDDa58EhoMfirvC34zja9Brce4IjAWGv8g+IDFdluyh0Jx/vOlZiZg69hV38Vyr/8JvCikAU+3cUqyRB0rEFRcaQsU7XUqoApfEJJkjok5CLDRKq+bUSWg88KTqkEBBZ2ZJ+1RCtD7U8HEFCyHdvlpCgHMxYaZKVbq+t7DuZBV1f8Nck6KdlI/x+UNGKtk2KV2HM/JtC2M9VhbBQv6SuiPH4zccd3CDuCel4z2BK+oym3CJR1kXTKpjbdIt0PHffYGutXvp2jq0iNUHTjvsvmqIoQI3zktRrZrg8ro7T1gREXin98/xNNnjsnFsVaAaM0Yh7R6YVFhlW7hCOEQw8j4ajhjQzCUMwXqdikgJNzMBbnDpc1U4PGKlDyYGUQJ/AdHUrHeUXsPWt2ZMRq+1D4SyVLFg7SOizn3ItHAbFDXBC3SR3Aiv5VXbeB3NeblbI7l09n/ArG2jqmd6rBQH9hMchdBwv6sNpT4Lr/j8H4On75xeQmALukE1AU1Kk4i7GPlx1KqAT5n9sHww10vDYfZIjEBC8fnGIvC99e9g5rJbTFn10sRkaYxhgHaLzDmYpOETXRp90+FexqPED7fw7pn6KV5ttyDCEobWzIARhT2FfhbrPn/x+KjXhr9avmQYytZhgBDqkdukIbZ2jlfGh3F4PTYBWnR7NAdPsnkoftVDPTEupdbJbJjB1qioNXrHuuGaVPUPr5Qjsq+KHD0Defdb4O60mPuCzFGHHNgXmJqHR77B8snz/I6c8Gwyg+OF8nwNeacZx2fyMhNmh4+ls+r7f3DzicJ8K2CV7eBXfZI4T4u5OsnyQuAIevY2Cm/uAAzmxYWSG0p9ZciZHi7LRumgRfFb9ae5guIoAlA60wed4tM5gUhVF9RdZRtL5sTu5/nT8LDPbRaRq5QJQYcMTIc7SpXgNAZtLZHJFXYMZx/jnd+dWYLfzQlMNtCTNo7xMBa0j/WekU7bdEmXpaFdd5kD9wkHJj6Qiw9m9glYpfAdBoQHQs+jO8ZUPiY4plY61N3HcsrCEaY5GkV2uQmCdhUe26qMJRPGQGaMt0BOfX0sLP0CRhN6WFd3UWNFZjGmtJDHrwcYfiLBo/zYUuG8fQQP9fqARfLKMQwGUbBt/nX1QGigg+VPyMz6bpp9MCyKN0xm9/L0VxwL/JLfepIwErjOYuU+dCGcdQ0IfbqoShipgGMWF2kog1HWzyOfXw4VsBVH6UV9bx58NJPCGJ1Uf4OYviyl3NeBLp4ko3XnpX/2AZaKfXEg0hWCfsnxHutdu0fNuVtsSxnB21nhjjbJeHPbFuGTvpqRQntCX2oTrsh33eUfqUShoDSkPDR4U6PczUNBldmYVGx5pCHT48NG3kDtogSlpehQYIO+F+v3UXVEfC0Xf8qeWPfXzXd0BfLb48CczE1XgN7hbJ+mSfpylj075S+ZnVdksXpgHLpfUZ69DBLBSD8volCewAXCkQu1eGwZjxK5eJc4PjHuU91RIdgOcdrQ4ZKYpk1CbwXyLN+1xQJoBoQCMHKtSmGpWzq+kw4ra5XoVhoicJ8eTUVBib5zwM0uSS1b9gCshGYyaPqjUaGqwLDDL77QqMQeb5A2T2p0WbKnwiEbh0XHuke6eIr5BP71j3NZfcK4j3FjjWMQ5klLUqLgFXijLRB+jpQn5lmAjk0unOrK683Dh1oIXUNKj7PpYPWynAyPKa0VY6RoLVGAK0WNocMOIAPa3dcaN3WKDK9tmg2dIztk2AvdinXzYz3Y+WQO7jOK99k6DG/iTBphvoD7SfLJxLA6HCsCbDMuc2u1/hjeIG1zpww5tPg1A61ujTPpkO2FHIAQ1MA7N/Z1HNmPUvjGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Tu y es allé hier ?\",\"ca\":\"Hi vas anar ahir?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"vas anar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"},{\"text\":\"ahir\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 214,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 588,
+              "output_tokens_details": { "thinking_tokens": 365 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6409
+        }
+      ],
+      "latencyMs": 6410
+    },
+    {
+      "n": 6,
+      "combination": "6e",
+      "target": "tu·present·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganjoA1eoum7V69xtGu4",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Tu n'y vas pas demain ?\",\"ca\":\"No hi vas demà?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"vas\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 200,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 240,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3473
+        }
+      ],
+      "latencyMs": 3475
+    },
+    {
+      "n": 6,
+      "combination": "6f",
+      "target": "tu·present·haver·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgank3tHrSaE51wRuG5UU",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSsAkKEAgTGAI4AUIIdGhpbmtpbmcSDFCARJeJ1POMtZlEWhoMxJMcdYRiGbvFlVBGIjDgOYNqsrvBMVisjoz5SZAb3rPili23U5k1jultAKvZtxUtWfBFTfCQBok6UyOdgkQqzQhVi2Yy27CYO8D1X4oRAK6N6W06jazs2NYrqYJzIuqMcoRWG7gSzg8YqqUB9Wclkv0uzvCITus1ycAoXkzam2Hu1/z0XO7mQ+46PwnCn5X5fiZ9ecE7Ufb8MvHDIhD/OBMB8OWvGqPFAENsj51v3lSS8RIgif1AoLKIoGzRfLdMG/MFQCJX1Zoak1534VscLk5fUo3c4SKSr0LBRf4YGn3ND3w1HY6NOzBa/wDXr6NEJEdHoia6FX8U2WJPtfaemDtfFPh0GQZGQn31CWWOiOtTba958Fl4575ksIvoOovmqS6vzb9YIK534lufLuCyysJpHRCWWizeEyR/cGbYlg+NpH8Mn+2CYYLuDV2tfu9B1QJP2O9mSRuGjDUAv0rXtECeP65HZc+lswaC5w4zG4ZMDb5v+TPPpaMdqGvcLP0Uy80ZsQ0Wj94nnA4rz+mg1W+tg8qx0nyu/QYeK9SXc4t/23jSjG3M04UvGF25GHQx935+5SpaVDZGXWF2mrC7gF/ZYCEi2zwPZuQpJKhHw7VKZ8/WR67SsdNjqaxxTON2E5gFsS02T0POCkJ63JJGssIdZpph9N1jCe3/slwmsYgszxZZ+5rLwURXw8xr//0b30pwH1zl+9X6pSIo2D38HajeGFfyEEHtqo5a+38UCBx/20VslvZzqB1/SOeBHFLA9qxSdmaitgHhTh93WjF+tZLf1iSQxlaGDiZXxG4DwfwhgVV9It8+XYEizLj39YGjTcqPlpVBEKV+UFSggXo14dIaMV1Q2KJ4rvniFEttrj03yI3zhY7cOXGgIQgRgJsaFJuJXO08TwbhNTBnVuREFTHDZgleP9/ewM88MIrui6CFXOkDPOrSUyLaf70cPUlQMphNILsFtwLiDSyqyPEXr9Vd5KITLzx4ylZwktdjwVEwkhtPYwxJ6M2YW21SA/D1Sj3zTLtoUyTSTi5DNNRLXGmw8kQGfstgIba7h+QnX0K1E9hqmtoHThjkO78fCeereTuIjZ1rABnGglqAiDPlMeCRsdlupcBdsQomILi99Yd1EJGAwnaYJGiPGps9mPVY8XrmJZ7RY4ESJHcNY0zyFMUqbFlzdIQG/5b7BRuzAGkWVUb50Lt6VTYRTxpkVrDNtCMPjmL47vwumU97+PXIetCteL1pU0wlraFz9n3WNf576pD/Hc7axiZyOFJlX1cfcwlhT13Qyxii0xhwHo/qkxM46XsvWpurPrEPSMXW1brI9NvI9cbA6sj0qairRqag/pV//b6tgPTgC9zIoBftR2teyKNkZh6zK8kDQ0nbVlUdohk51kv+m0ExUdD4irLhWdbSqz4l4g2skVFHYpyxH3zqM/TOTzP85tMW52PF/e6DkWiEm4GWnLxzq2F7pi1hpM02ozvIEWiRW5KJBzR7b4B8kyAsDFCcxaUTYs35miLoCCaH/Jkhiir0h6bmvN0tvGb0oxjA+Q4QbEHIxwEYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Tu dois y aller demain ?\",\"ca\":\"Hi has d'anar demà?\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Hi\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.hi\",\"SYN.clitics.ascens\"]},{\"text\":\"has d'anar\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.ind.present\",\"SYN.interrogativa.total\"],\"lemma\":\"anar\"},{\"text\":\"demà\",\"role\":\"time\",\"ids\":[\"ADV.temps.dixi\"]}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 201,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 499,
+              "output_tokens_details": { "thinking_tokens": 283 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4837
+        }
+      ],
+      "latencyMs": 4839
+    },
+    {
+      "n": 9,
+      "combination": "9a",
+      "target": "jo·avui·none·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgankQak7NwnimXW8JNaG",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSuAgKEAgTGAI4AUIIdGhpbmtpbmcSDFh+sUAo657xsgvUDBoMbdgjmndYbk9HJ5G5IjDn32aoUhM4ZhINJg4WCk1mDSuVu5Mo974iTnAoj5s8yKBLXQ3VnA4ILol3yJRurIMq1Qf1jB+/6Bpo+N2jcwOUW1007IY6ShGWVwgdL52Kspg8J5ftYjyU/kc8/ASy7oWMJcsJmhoglKRafvWKkA7qrQKy6Jd6NEXOIDizuwGiLMklZT4bv/ztsZY2Z6xBQvtOzu2Nq/U4z8QRWv3cPkhefWRJwSEp2cIgC7BR3OY2nDFNdTNhIFwnW64ma7LnE6O3MD2QpDu/lh8DtcmBEP3NNnZnbUGAi/ihtrPbPtHgkqq6LwZqTQ2/tQ3pyGxz10HSH6YlIcE9CosUefxnAon5NeDs7t65tnH+1EgtVa8hnE1MQ5ei3W1D2c91AbhIfor/Zvp4d2wSrWKbUXIEHOfcmKUaiisr4MRKVddABSVGOEu0TA8MILi87Ug9OaTl9BoBKfZnh7RGE9UtUEAJoA101tru/3Ji+gQwnJ+JV3+WxQJzm/bKR+yNv04Uk96nATI/vEgjqNVc4ybPZiT2fAHVuZX0wNeEoGQeAYTlf7ThTpAJRvihayE8dY8/OwWs5qCylZ7LNP1K91dn0iQ/2vGbDj+6N40JCdF0bPYLUZs0hUYTF5wtpkPeq8BCenMapEmycrByjeBrUmQLXx7WiHBvZfo/VLUSwahVbycyHhAtkYg1sotDTSydAcc6yo2IrRT0NC0hMxoHQlKogHdTS/eEK/VYNcdVYt1WdCSbMARw80Vt3v/oqSY+HL9sce4HSlFQhbcsTN+xLoUPNRlVSo5O7E9caStgYPewmYHRh1g3A8tqmqxKwL5yx6E1uCmGvT6sS4cYl21vVrNIIJQsILVQGHJmSxhOtA6XpiJs5t47sOaQgD6/uYgTGNKTO/Wl05IZTwyPETMZ2F/vrAz5hO/4vn2hrAHXFBSY53i57WxnCbOk9NUi08dSkpAJlz9ah4gcdAaTCuCsjc2Cic7bFlgNubBirFqUf9CRJ0JJudHqZiRRMGGP6bVklLF65Hu+n36xsrr/nOl6XrX+1kI6oLJVmei5vK30NcBpFddph3yle5Lt3qVGzLMyi3Oytls3nQm1MHOMjqM7z3/kfiI7/VmIYjpEcBCDB/aTX5VKE0mdRktPfYkUFdl/M74Bm4GCCOaiACRHDBBTCaGuGjqq9ak11netwDaipadX9mZHrnDwDDNqA2xcyZUgB9+YF+wwQBZ5/jR7fommSqfEWoaTKPoiiFkR+PSoU/4NciBqLp5K+Q/KUFkbz51c8+eVV3THCQ6UkGJ2Gj0Eel5sUEc4oa5gDzGXTnq+fSbP8waR2d8SuRf5IiWgNYQl1PWPGDXxhKtsy4d1qCD09AP9ia5+gri5xFmoy46SM6MYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'en ai acheté.\",\"ca\":\"N'he comprat.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"N'\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.en\",\"PRON.feble.forma_alomorfs\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"he comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 165,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 407,
+              "output_tokens_details": { "thinking_tokens": 223 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4678
+        }
+      ],
+      "latencyMs": 4679
+    },
+    {
+      "n": 9,
+      "combination": "9b",
+      "target": "jo·ahir·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgankkc173RnMMk1FtHbH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'ai acheté du pain.\",\"ca\":\"Vaig comprar pa.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Vaig comprar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"pa\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\"],\"lemma\":\"pa\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 166,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 180,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2461
+        }
+      ],
+      "latencyMs": 2462
+    },
+    {
+      "n": 9,
+      "combination": "9c",
+      "target": "ella·avui·none·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgankw9WuX5ike87SefQw",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS2wkKEAgTGAI4AUIIdGhpbmtpbmcSDNVsTeQ30V3Cf3t5ERoM94TKYvoeWUst5FUNIjD6lUmsf5CZyEx/GP4HlhIKnFQYRWK1lkF/DUf3JfwfiWHFcdSPgUuCbP8S+Xlh+usq+Aj/XjKOlIiZrV9yqboe3NdTCZyE3kvCdpNaMe18U5m1n3n3hLU18Ah7WTQfosFCXp8WrWs4OmYBjI+RqyHJsnlYuJ2o5HKArtOUSXurNKfYVfS2THg7gK/ZAm0+59Wy5+ZuvQVPjUqmKnKUmD2hg4PTkkzyrD/roX0P+8OgBkkfeQlXO/iqWnThu6i/2jxohqzpiZWF3uKJrJBnStSbbKy+soGI4ZC0Xc1hKB9o+81+8kmuyhbqEx8+0ufQxoCEGRVRG/EmcAqsf8agPfvm6WVydTvktPR8tGGmeSarVJBoM2BNQmlL7Mlg/PnFG8EUF8c9ToOjryqVFH4MpWOJPvrd858vpeBgAssaWfhImJHlrSj5kBbciYfHexOd4/qCzvhfZXyFkXP3y7646czUF5o7UoslvMg75V/63EZjd7fV7NDAaVzK9X/6eES0cFOvmA92D4ynOgWUnUy4oPl+tK3vpR2YAvW2n6IFZoO04Exiu876C3+Z8Mix1miC8shmunwFPOiRz9kDa81B+Oc1UfL6q4vV0hM4Bf2DaQgRobjpSg17QQc8I3GpZELgdmwC7JnsvPya3PmbwVu9Y77ToSLnhzYi1NujWPVyFJjHT7RKbykVBTH7rTpnD8L1q0ZNKEMoRESZJxTkuPDjuM/ZfrLchSOpTgu1uBnfe+lNMYUrVaURFLBUbjMngN2kWvtdYcMiwhdI/gQerZmdrT8CIystLn28LReARAFfysji5Y+gVe0a4P3p9sU41wsF7QI4pPkc3rqTE7VDIMKU0dlxnrcIjVjzUx3AEgY89xPe0YQDAZ7kRmXx+NsV3e+EKIQrX+2pjJXZ+S5TW6CyCsROxj+JqpQvpBIDCGFqXo1qw+g/bxPfZCTugCRXZJ2w4O3nAnrGQ9kNFzbMN0SXKkukoWuoDDiyqlG1yWAMTR+Y/gMpSSQm6jxRG8tVT7LGWx3IGiz0IEqirVtMzPM2bIaG4eJMycW52f3iJ86UCkxbpnLxfBRRQX38X6U6odOinQ1S2LwYcZuJhEige9qmGRt2Pcn9Xuyj7an9sHzzF+tMPuWJoCxxSKKXEQY+Qoz6zxfyEaMn+mOm5YiJtcrP9Wt0wpWbBP79r/aiH4GdETftSJs7mfRLyE3MM1hbyduu6K7Id2y5zVXBPnJGxS8jzpyLyILJqyQRTwNem3BpuAJs0GIQMjfBv+YxGGjaGwSUrA5zl/gAjAJ5lEYs9QNFS1cKJaVl1wivsyEmZAKo4VUnkQHA4mTyC+HrpemGrNVthTAxxgtU6rP2fhjqUxP9/+N48/g13oGO4dcSqpjwllh7h75FHOEaCe+2EL/PXugGh4YCSLwP+jeu2zrRXpTnjoSn3Nak8HRGYY6r3JKIQbHfEanKaNmzcmo324XbdhM5TbPAzDtcXngj83RB30z+3df//8M2VTjipLuTMVv3lPS/dLdd3FJaInzEdGBiHPyicuIT/NJ3lElto64rAuPQFszBpM1tuEzPDpsJwfD3APIye8HVO1ISQVFPFSGsGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle en a acheté.\",\"ca\":\"N'ha comprat.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"N'\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.en\",\"PRON.feble.forma_alomorfs\"]},{\"text\":\"ha comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 165,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 446,
+              "output_tokens_details": { "thinking_tokens": 278 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5117
+        }
+      ],
+      "latencyMs": 5119
+    },
+    {
+      "n": 9,
+      "combination": "9d",
+      "target": "jo·avui·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganmK2tskBmRHoLMjJwo",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSxgYKEAgTGAI4AUIIdGhpbmtpbmcSDKAdnGbVPF0HK9uNThoMTZ7vfikmTJzYFiwDIjBqVJPWm7fgFtdVs1QoEkBUhBx25imzocMhmMbS1aFGiTLxerjghp1/mIbjbKTu5+oq4wUP5BN/Zm5YDcTpFotkK5LpN255tHJHvVpSOg06Y/xRefhRQhQaN6xYOeKZ2D2o7D8aZ136l30lxbGLqDN0XXw6uom0FltGr90aVBOFRHxy4VpKh6vzZ1a3pCFhMxbapuoD950KpS7mcbLtiBypqyPsS4Ag2lZKdB/gWImu07/7+S6m/2LPlNXT/lRk130A90zSDlnDIDup5vTryTbcH4oYlR4x6J6bu0/0g4uvp8jXnwc9FD3+hSAVXVK7ymxyyFlRNfKBVkmQUQeYJkLXab4mZs8GlMcNTZn8sVU+jyaL3T+paMIfEopOHFpk76igYlUY9aj9H5e24KkE+va7HsCsUmcE7Kgj7fp42DGbrlQFRGQ4B5ywcOfVgBXqQdcrfIArxGM85t4E+I/knJOKZU+wy/DJuUAszh/y/JdA5Gr+cf+JfYlOmptEhs2aNWaFaP8oVGwTJ/gbwx0FA7tLueKxnxRdccFNP5jeGzqzDr15qLTZa9FZylho06+/TcnHl8TgA7zbPOj+KyS2hhPc6A77wx5ht86Ps2bxCVMkGMamdv3uIeDL8lqdJ9ls4ZW2CevBYxALk66epRNEBK2l6WDy1paQGE1RJoy5/GSJ7idCdfbbOEHz+1Xnxa1kjCh0mjdNVOQnrgdLkYnCB0c1y/5b7MikHAbrYfhrg/BjtEvlij9oLOj7xvCn68SYlsPwreEY2J3mxcoJwZP1zOn+1vK0fCGsj/KZT7/fUjY06+SI0c1McFZXZjQ1YKt1T5XYMf2CcmxiQSRgVzkEzIu5Rs8/xFjplcHwwN4SX9bSohIF5yuIcoTCO/gXQsCVZZVh08E25oc88eH8lApJYHSjh9XJhjdr7WG4EnTF+7nUavQ3JysbBMLrZ1YHZI82poORseyLRxPGcod7exQq+rYzEU2LwEOg+9z8kQM+mxxB7nhhqYag1RZ+g2luf8C0SA1/F0I8E3w7LKYbfHV2uza/Nq8LTnnfGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je n'ai pas acheté de pain.\",\"ca\":\"No he comprat pa.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"he comprat\",\"role\":\"verb\",\"ids\":[\"VERB.perf.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"pa\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\"],\"lemma\":\"pa\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 165,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 309,
+              "output_tokens_details": { "thinking_tokens": 109 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3994
+        }
+      ],
+      "latencyMs": 3995
+    },
+    {
+      "n": 9,
+      "combination": "9e",
+      "target": "jo·futur·none·1·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganmc7ZMTSGWFbEjWLFi",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSygcKEAgTGAI4AUIIdGhpbmtpbmcSDIuk+JHCTyO7rCWffxoMLQCM7eeTW3ujG9s6IjDZFsmhHE9XI/SI15qNKTQyFPliYNx3tr3XeggJO+AUZPZSPVI3htrOG1+srr5rYiEq5wYxKD6CsRaJeeukxkhWawV27QAZlGKsbMqMrTR3Ld9Nqkb8YoOjgbR0qnmpszfDw3iItUCQRRWKtc6NyFJ4um+dP1V5vrhLP118p3B5qYPtmB3qiTFQw5L9nt4MClw4sk1HMqWdbIIO1EJ4NGIddiYawruy0NC7zer2KE1l83CSw1fTA3stZHaZWeOH0U0Gjx+sauX/NO5b2PP5VeUU0zSfgBP7tgh7F963HdZjxrz6FMYS3NVoGfGle84L7svQrCeHdKQap2A/ErHmE1xaLfFwfGXgZYz3D8UQzSZcEvEWctZav+dqd/5qNZLrg9kbxxzIz2YqX7+apSyaSRq5N/Wx19fnYIuys2NHSy/2tkvSvLUBpm+R3sphc4rQ8skorPh/zEj/hfqOs2X+4b++GWwFcfWwtz4YctDD5KB5sLvgtFj2xB0Ep/xeciTpdvSbKHPXqaF68+26bsKZ8PDAX/wmbQmxlwun/5ItRiu2yeLBawfVxuISVo9m8LDqrH7nqYQrWbqmQmz272L8q5iMrmai+qDE0lc3n5KpiRCDhqkHUnTrQLkE09qpcJLEhIguFQ9pNRq+9D0SQigR0rOOvdMY6Ujb7Oudeo+fJE8sch22AC5Xdmou5S5lkxdsGOsXD21c3VjokXzeWallOm3U6/wV7GSBr+EFXL8K6eEG+c5FAtngOhr068j541sLm30W1CQJHWcNOL/EFAdRZ/vL39aI0zYd+FevBR7eeytFwq91q7i+lgpNMUifZn5wKyiJOLBVPjmzRVQReC3KMm+MmVjk1lLeKFWpEEWjOamOwM3iyPGQkUQ1yppY+duAQvc71jII96RNd73SkoW8KEE/VVvh0ZeA8XdgeXciwQl8IZvQn3OTdUtWdOwnIcO9OjmndkDLZsTyIHmsyd6sMj7imMLZYWk4CLB9wLcvUVbXgc6J/bWizn72O9HityzaEL+rBKTYa6y8MaSsKpXwAljvlXJB+AL7TzA86KlWJrYW6GBOp+Mv0oNrqRMqU1/Mf6GJTEl90Nvn4n2NwQlwl7GxbPkV949nKfpzZs29YrjANo+DkGiyL7hEb5zmHBocVEi2F7lrj3ytgP9RaE8+ClbZu6pU2b4V3nPM+jmTaR1rG/GPByAb4xgWR5BWteDMHfAl29Xp3cqRwOYZGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je n'en achèterai pas.\",\"ca\":\"No en compraré.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"en\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.en\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"compraré\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.conj.1\"],\"lemma\":\"comprar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 165,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 376,
+              "output_tokens_details": { "thinking_tokens": 179 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4437
+        }
+      ],
+      "latencyMs": 4438
+    },
+    {
+      "n": 9,
+      "combination": "9f",
+      "target": "jo·present·haver·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganmwYbh9irhrN24XeAY",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je dois acheter du pain.\",\"ca\":\"He de comprar pa.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"He de comprar\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"comprar\"},{\"text\":\"pa\",\"role\":\"object_direct\",\"ids\":[\"ART.indef.sense_partitiu\"],\"lemma\":\"pa\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 165,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 181,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2107
+        }
+      ],
+      "latencyMs": 2108
+    },
+    {
+      "n": 12,
+      "combination": "12a",
+      "target": "jo·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgann673TS5UoqAi8t24W",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3QkKEAgTGAI4AUIIdGhpbmtpbmcSDPtOlOWBlQLs3ajsihoMq4O3ZqDQeeBPx5SvIjApe6ZJpet211gmknmVu2fVliR9CV8DwDo1fE7LkJte+FCUDUontluAO05ZAhomF5cq+gjQSPMOCI0J9dAgCEnlgE+BdnhUUcK/SzmiS3Ve/42qNediI3nsQUuMJPbrWz/ea72koTOFMQstreW9bYRAqElgwBqjxZ7LmHaUk1v+EMFGgSEdzrQDbFd9cfc6Ragozn9kXBrkE06A+sMBvKi+tbs5MiLZLHNbWvyrJZfcLJ9bv/7HvdEkTa8M9/CK/c/SajDMgzrkkXo+kADkKCTpHIcP/wlB0yHQQLznqHlYDkhj4pqLvfhlRmnkqBGWmHBGwYRacbKSdRjPmufvqtuoFFjxV6ta3FvTMv730HQGBrvfti80jDdCP5kfNQ5PTj30CEDsLkXMoCO7XUePmXkvuBumG2btfRqjqYre0NIqqpZqeQvefnpSm0KyCntVejzpyDSLHloqZZszQDPY/AcoRjis3E2h7ImXLYA2KHl4eanDKvJiAXC8eCCbjvU/ikJvolI7bfEMMSjEgdNSfn4vQQO4kVaaNnl+6siXMlZ6KK2Cp2nmul+KcXJzoa8Zxlpf4aS7d25EYL/5aY/pm2e3tTK2GsXRkbBcbc4Y/+fUWAePw/911rFGYKAvED0mOU3JYWhSgO9+R/pKcqtDITYNZcXcM2AvONX8S7UVz6SE3qkto48XSKsRdVnZUdSOeMZRz07V116gYNUJk+1sWsFwU2zTyeQeUnlW2Z8aVyDSjHhH9PyFSAy3uKH0JVjq+ivhsF/h5cuUO8L9isD97mntZNU6iPcvrAbYd4MsjzPsbdfYeU8NUSehIcX2tWNjCZKaI03mvyMo9boxM/U4qod9M6TEIkhfhHwBSQI2y0qqxxmidNC6i8K1+MFNQYop9POLcqfCxEx9POnKpCT/c9FBkmgcYFjr8FFFjG4SgcY4C1lz23T4h47goXkY1pxPIJalJVnezVbBqHd2lBn1DpxStCJU1RJBbGLJksu3fBNPpP7EDj7VVp9J6u8X4WSfzB9gSozhOEKASXnX4VzcS2AcboThxpijG0anP9clgX0bAbDdBBz6vLTOEsaNJULyvPnl2jfRmS4F+fxICHeBtZlL6c/gEQAG/IwSWw9ntu7CIZ6jxvMhDg+y4a6V5LleVThDHO+K7Fu+dLFkHF6AqDSXVqNLcZzligQUWeMxrJE9+LcSsK3Fby2l6Uh7TXEwLjuYQPpaO8pTA0TeDSIWXFkflcNCD/v/1tWFvbdlydaPiAWpFXVva7IGzya+cwi2DK0eLzqL25xm3fo5p8oKBx5hwKlFieJZMJrf30nRg9Q0h+aZaRIxb1zR2jSL23FUpYlO9Q63yx/SBbZ4BkpB69FyhU2mEEWqOt0XpB/BeUapuB+wv2sTatmI9b7qTGnrcLnXdBEt4SJa1PGdoHq3VmH1jaF6VDEnMs+14tWm2Difv3xBhG98b8Q4BSLqkzS82QBBTJTfMij0NYIXwl3VvXN7/B+xzzr0AtJGKKVCGlAGhzVft63UBFcbS+xrPp0C9QkGxAWvNzjSU+mVC70D4juZ3CoNVV4rJ2PCNf9Kd4zA/xqkneZzfIjlyotWOokYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je le fais.\",\"ca\":\"Ho faig.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"faig\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"PHON.grafia.digrafs\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 207,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 443,
+              "output_tokens_details": { "thinking_tokens": 276 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5073
+        }
+      ],
+      "latencyMs": 5074
+    },
+    {
+      "n": 12,
+      "combination": "12b",
+      "target": "ella·present·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgannTqFr7qJk6Hrypaa1",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQShwgKEAgTGAI4AUIIdGhpbmtpbmcSDPH2c/aaXRVfdP3dxhoMq7bT3WmH05wjxlMLIjAdDB1RCLVzKfKU/U7lJB2sFvFW0AwAOM2Ple8MOu7c5Vp0/JL+Fus0gsxs21iCjzsqpAdEk4i4PNthHGv9AK0A66mfc9HmRuUjX4amOB/X0X040JvWlMuiPazSZ2mBLfMdc4ldMzwRjTD85mP8rDeubGZuUl998dL6TNgylu+HNMu/JpeA6zqMlqCj9QGQvoHmVLB+d6hIF+QoX3i46067oy8T7ocEVy8wPsw9pu1SFJIvGrOG5M38SKNmcPnvdUFjKeXzd3p4MI7/aJ7f1yUqCHvsXvKkJ5QX7i3+eJ9uGsiB9JKxz0MGE+jszvTfm4uIzUSUe3oTQOEctjz5R6/5s7BcKwgGmRQ2rmHaMUh+Upk3tIesiPlzffltlEkmLOYeA9IfP0A52Yidt3tllVl7PC02GmP0rR0gc+Y/maJMyDSS85dJD4Oa1CN003bnLnZ/ihW4Ols7wP/+hr0Xf1ou2Fgogc8lcBngwx927hUsg8boEdReMQmEwIgeg6aHmFg1kHSNsHex6bniR3Gg1dPIaBxL2gnvPAqAW++GH2e43+ouOAPQvJvmuJZSt4JSLEaYhkH1bYHD+mUyQzzfiK5O+jCEhinCV/4l+9SQ3ZsHaHR151S9ONrybX+bd/JCTxLjuetXkncxEbnEBowvxFuRQI9pADX5kgmawRDmGQgQKje2DqgojvXooPWBwpdIYSymPcGb8r2lVyc2bwwThhhFVBvAmX7f9Fx6tjYuZfue1uHxKehmqmyyulgJ0FV6DT1z/0Ebge89k7Wik6i+T2MhYlH9jOcepDDzJhl9o+FEZzLMAv/9PswN41VaWJd5uWmlYVUIPPc57lSWLOTcBGeFDZo6vFiD4zDB20d3T27cBa7irwvNN3Sb0zH1HienhdnxbBj503CvL/kr10c6Tcoqf06tF59V/oYTN230MreXyed8Sa/5idA0A+j3MmwXcqn+Rm0joIC5Rv4PRJJtV/T/xCYLiAQfqzv5+xoKqDlIz4612zFL2PN3E7Goj0ykXqivBg2255qLI7G4qGwInQuYrRCMxOgweQjTOc2nUiBB87xP4scHvbhbMtAm831cnYN+HteSC2IxtZ3DgR5EygftVUQUt6slWE6S4CNooxivJjHD+z1mdTXUWSPgOieGN+oKnbuBvwqlXEeZ8GS+H3uVkwS6sNx38uV0p/klWbMQpvhhwOBmZXm0ef6E3o9La0yHFVnObad7PmjRo/bBqyGHCab7+KtsXeKQqNXbgZ6L0bxIZhvzJnU5KnM5vesJPOhO1uIPRONuzJmKv6gFzJRlmGpe3blaWhgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle ne le fait plus.\",\"ca\":\"Ja no ho fa.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"fa\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 207,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 375,
+              "output_tokens_details": { "thinking_tokens": 178 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4169
+        }
+      ],
+      "latencyMs": 4171
+    },
+    {
+      "n": 12,
+      "combination": "12c",
+      "target": "jo·imperfet·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgannmiHjwy7CADaBmmuf",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSvwYKEAgTGAI4AUIIdGhpbmtpbmcSDNg1KkrEPf7Cxr07pRoMOdNK1pWTfN0EOlvIIjD+YYL6zFraJe0IJCX1jeqSjhrHexPsVQaO/wbdMsLcWK7FBkdLFtu/TIAtoPOT2ekq3AX2CFOWrDZnEYK2JtvgxdGBRVlam2IgpwrCCP0BMPKWUbNOVdnu4c+HpVV2Xcuh/HGPNM3jAlTD1GaiRd8/M5AIF3V2uVlvZSTxOoEr2BsOtnIC8+Fi6xP9oC2nka5QK/6lHu+s6/B9dsdd2u13HkajUQ2oLrbMn5IURnP6RTYyN87/lSXuz3DcOhXow7i/xmTYBLXTppDtqy7/Mj94a5thYtXqykQxvuX8iTjR8YyhxqaG3j0ZIDAaH8QY7IKZysbbYW/tdB6+feW+2D7Csb7bSXwvFXDAC0xLv0SAgS1o2onD6srpzvRmR3bu5neNmOBurK8vmoqyuIPF8bxC1GnqkrkKVN0Xm8rWuPOd4W68V9nqVwBUdzLO4p7VGPY/s5ugGzL0iIj2ymfC5lsKqNYcHnU8ghwQASYl2SyM9Xyhnp6ThXkfRJZK0UlZZ6W2Lyt6kL7WS0D7HkmAsid5FwbZp3iOJ023J7baFGXDgc29dDqSxlXXinIYvH/KxoxetlybO+BzlL01KTm/rX6FF58kedmXmsxDyKEeCYJHMldAJNqZx8YvITiKMr5zW71z243cy1wmhVS5sKef/FOJC/lW6ejhAJQN3pQS/t7nvY3bl7f70/QSH+X4rVEkYo+9PJSPmYeCO+QZk5hT7T84Ojrbp04zKNgLQNUQ0FaaNhlYUDbCbWxt2egn5VEoRb+K1kvBTEwwRKSxHKOo4ujBtx++Lx6XW3Wsudw+e8iCMLUkhyxMmlupiwMbCDw2cCqBZ6DH8AKg1VQs/N895+k5gf8vqlmbCEnZ9xnaxGAIcPbTBwi2ZVqFOqQKqSk+Ko1fSrk833ImL8mq4IuGmmMRO3XMc9lPWPKyi7C3X8KyZrGzcJiex8va7SDpzbp1c0uJNTtlHxn7ctSzAlYZ1mTLzVj105ttCAV8phcl3F6TZo862NSCeOOUuhqxERfj00dfq7FChrtlISYwShw254wYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne le faisais plus.\",\"ca\":\"Ja no ho feia.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"feia\",\"role\":\"verb\",\"ids\":[\"VERB.ind.imperfet\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 210,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 320,
+              "output_tokens_details": { "thinking_tokens": 120 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3664
+        }
+      ],
+      "latencyMs": 3665
+    },
+    {
+      "n": 12,
+      "combination": "12d",
+      "target": "jo·futur·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgano3LNvo6UXVivtBaZ3",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS6QcKEAgTGAI4AUIIdGhpbmtpbmcSDE+miPbccqzMn7nQSRoMoMMbq/ILkarT/Nm9IjCAwpHyj/SIHwYP1TVLEjHEILI3568KBwaMULgSPAoLrxw4XMm3qUHRcBbuJk8vbFEqhgdhrF+ftrVZuE6UNgElzwVrXDp3vKyvBPx/ccU9ef2pfo9mN7XLU2dNuhn/E8o5aHw8PI1Y4eCmaNjVhQjoEXBu5FgWD6t6Vdrc3Y6Cr4ZBRhxD3mRaq8zG/ZcAjqmJkxPdjrcRjdEQ4ecukzZuaHiFXBtnyZ92QCWpJAbTlj5CWy3oHsal6cqfzSjHvRiQizv/9Ig9G990VTU5l+nmRvQLs00T3hGj0cS3QIC6JCFLxgm1BWzkDC2YvDQo6jny/ukdqVJ4DkzYlntDAbSG8/lZT6JknSiW1Deh4qC7xYHgZ+k1fEywUpyNnraSTJ6DzSppAN6vFy1kH0pJpHj+uBNV05l2Ctia67ym5RY1Cccnx3EGqwPiC7X2EgCPJbKV7Fu5FT7cFFG1El/kWHnYKN4nRPDH2zl8rAfFXi01hEW/G1tLhfYwJHSzUndqDo4dXX1Op7Pl55ZRjNPgYQmf8Fsj+1l7kon4G8tSTyBegL0YPmW/fmu1mtHS1YHC+/GQ/QUlV21E/+tFbAgv0YIpgcAaFg0VTJZ6EyXuKskaRh8WfFGm2ex/WWz+30xYicU0fZBDmP64QGSQIDLNi2nLI+BX5sBsvVLMyO8WlyhMYNF0fBZVh2CiRKidhTCEOys6S5yn4m+0wOR2qz9QQumVx62UG/bUQfii6EogTW6n6FVduDIKVc08K5jHtyRmOX4CUulTexJdZMTO15AkkzpUejsGkX2TsjBdgKf7L/G1OigFFWyqsbBD/OvVXRlWjClX13Wki34VUnnLvLXwUtsCZo4yOF2VAkWns/uzAd+wwS2gXhP83EmHmR52VtFad0odxekQx4QoHIqBjdJVaCy4hCHRD1UuS2ekiX0+Dw+u1HAJa/FGkMZE9TORahEmBv4B1Cq8lqFcvbRvxCT9T8S7GV/ovjJ/DifqO3yANOZso6BoIo4IEDvssyiB9tRXheVaFY/UOt0RwEjShlRLtycrZ3JckVohUBN0QcWq4C9r6bHjgicV+N7368cUQieCfpQMGblWMfo6qPY1qP9/tJxoelfYRgpVt/3FQdTJydngEpTHGdxFIfU1UPC/gVxm2s8uKMwkQ4gzJo//cXbxIM4N2okpm6rlRsmKBf19ppsKo2R1WeLHMHWlMa2p9Kpa4le83H4AfkJZDe6gSz3pLtR2UsP2mIj4LvxEjpJTTdXzuagIdX5hmm394hgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne le ferai plus.\",\"ca\":\"Ja no ho faré.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"faré\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"PHON.accent.regles\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 208,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 376,
+              "output_tokens_details": { "thinking_tokens": 168 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4045
+        }
+      ],
+      "latencyMs": 4045
+    },
+    {
+      "n": 12,
+      "combination": "12e",
+      "target": "jo·present·haver·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganoLbhs9StvhrCnCMZ7",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3wkKEAgTGAI4AUIIdGhpbmtpbmcSDMeNVSqQoc1mmWofFhoMeuR+K+CnnYSv6lQ+IjC8//jIFmcq4kLNgVkkxjOHiqBtyB/ijXoadAQauTzApSMBOkDgTeFSMcFvZdPsbQ8q/AioNZMRl5kKcsvwKqyNNVDWk/Ry8lG5RF2jTNsYocS8eSfkzZpCJDUSGzRADPtafFeaypXMml89E87o+sj2XzoRV0GRgLdTNNbNCtqBZtLMt5ADtjJz4o52ULn6258N25HEHo4IKJUjQLlm6BZs2YW7kMzPDHGIFlcL9LdD1roVfgnzE2yfcomH7yZ/yHLMLtmkzCpt2KFk6V2vGQTuZ+fdTuOCBTKThHWsgOpPuP+MTZUhD0ZK40ETjeHNvy+SFw/wlfvqzh8u8o9pFoS424xiKFt6V/9GxA3F2gwFlCU4NnZCoODSuFbX9k1YKyNWeBBjCCLGc0jMVlTWnx2w9EU2/NbN0/IULsJH8NocJVq46GUBBYQy+OPSyZwcSxgxK0PEKopAgww7TJhAhb6hBrkhts95jylOXy8jEscTk0XFK0wwxcuHqAxxNqGG5Y8pga9YppSKpbgTq9AtX2QFYmcJkX9F7frVzwGtad8cmfThqEgS5v6EWn0NDin9+b09DgrVenuqJVYbZ0HfmSPME3UQXaz2/9WeEk0nzzd53OiMeMuqu2mkgch+qinUBOaaBN1/1dZkmhEjQ4u7UWqcvPJ8LlUxBIARdENlJtUhRb8hu8M4HSa2KbDowba7YlQY8Fc1MK0Evu9C7O6ReLZqRocQSNvjXynBY3Ckz+7GbNp0LQUvTY//j9EHpHYv9+k5hMFE+EQ/lncg7jOsP8RfAunOFg1fZPhSeElU2exnMdbWUjwC38E1CFWXcuflcCLAWZQHdjN+LnYTo8j1f0P3kl00V4YeNfzCTfRFKcxYMGB+BwNRh/lQZ3Py6sWE8mXErf8BuVN/x4z+MFkuuZ75GtfANgMiCrQAs0YiY9Spkw42eNWM9upWaOlhcKQbsg55pUZR1ZdB+3xWjm9b3EO6nrg6OJuQET/s0BrNXdu5xAnMfM12ZH/XWeJipU3m+A1NXAXA8tRORPE0mjnbr2FjspZ0s5X8uyocPraUbVBSxLX5qzdIc7yMW6imtjSfPCvyKAW7fsRxkYd/tsSTVrNvcQVMU9/mcb6IP6aDe6AUAB1zVmG1DJpBMNxOYuxddJDYf7UzbGSYWBSI4W5krl6jJKPTkODyvPnRnXRV8ABGtrNDHefPfIq5+8qMJIgrxrti6toBw6MUKU8fKK5GPoJGa6632cexVa5tyUX9e/hpN16HB7oihqjmmKkDk1f0RsW1chbQBnstg8b7Q5DkVTV1+4ZCwe2dL//2K/HGyZ5f6n/Fu+TQq8M+7laDHaA9JHYX82DCmAUtCdkDCWinZZozfWmyMpfm97A1vRBuTZWAsyniOF0I2fih+WtxsneqibUqj47E8gC4WhmjQgu4EBvIISvht04mA1V9DhBApL0b98EfSf6/nG35rsGtqqCJB2EDfVgaZ2eKOZ9CRU818gtqVvjRQbeBc1LXlLj8PUY9KT+sA5pOJP6Rh2mwVwXFF1Je1qRlIJ17baxpYNIr+6gvyUK5Y15CEpH2o1ll6BuNjhdEB2yzGdxwvnb9wvwcfhgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne dois plus le faire.\",\"ca\":\"Ja no ho he de fer.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.ascens\"]},{\"text\":\"he de fer\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.ind.present\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 208,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 492,
+              "output_tokens_details": { "thinking_tokens": 284 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5096
+        }
+      ],
+      "latencyMs": 5097
+    },
+    {
+      "n": 12,
+      "combination": "12f",
+      "target": "vosaltres·ahir·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganoiM9hHeoYthP6gfoj",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS6gkKEAgTGAI4AUIIdGhpbmtpbmcSDPVovM0ieZ+1GxTs/BoMAPW8+2EwfabrUDNQIjB4zH3P2m3zcJKwXS00kLgjbxrLgtmYYCxNQ+dSi1ofN14NZjBkq88WP9KpyXlAG8AqhwnfiFD9sQLz8MojKxT4XUhZZDkoEWINJhlEmKQKHqrJrggxstzci8ut/tEi728YHwm/0QNfdPHQhBDsuKjXYmgMxwwewI/NzRZ39mCmb0mbuS3E9JHFPTzwXjBWVuubNfU5lzwqBT07nHpAfY+xrA90qOofeUbldF9nIn0Odp2QYkhs+5uIeuwIuQTBH9btZu9C3gRts99IPV0Dpd/AthmhAdjtgeF9NC6p37sk95ov5dPCD1NfZBXj5cmFPahAoXyWgQ+VBCp4eZ7N4sRtenL+095+Uy16Hp98dyDd5iGg/OBF7Da+gViMVuv5VO0jKkq/DfUvdlxex+Kvrx6KW9qoOStte/SEu6OHEf7iOZYINsKrfS2G90mFUh0YhzReDovYrzcn0nIg/rtUfWhiGXEHfr8z7R7yhUyZNs0ewYn1b7XF8QTMCP8lRL1f61kcVQKegcU/lm/KNxuux2jMIvC4EqNZodsMsUBa8Je63RKsa6nJol9MF7Pe9yGA9Pd+C30o8ZtoSilvHg7i9hxlumbglEf1tIMRMVof0nCf7egzaTcSf9WvZH4/wIozjOze9RKODwvoze7rfUUNNpRpY7kJ7vtaDIQlCK52sGPWCTm7nvNlnv0xnAA+3fGdSqIaqmrqoNOC+TdkcLUmrWXxNWbQwuUjEnpdX9dfCsWldbFA0qPPO/ERz9c9PTTIaeHJ4Kjs1Z52MijdDA3NLbZ0IpesC+0oJC/NWHvLUpzZPN4D8RZD3lePK8S7StCEA/N+HZ22Wk0pZH4y40dsH6oTPM8XEavJLXzIyqk89mEpJmJcSuwC5iHCsInvxNQfo4FldnSqRcxqBI+UsWbRxeunXssR8vMv626vEduFv+Mw9tDCkLs4O36JcxqNZJ5/P4EXaR82r4xF4H+dAX95OYwlfJClPA+78rdYfZaGUjoNWKc7a6L8jxfrw62qZcd3Gl5bqrbVuPNBMDeDofWe4xkvTRlWqtEmLugGZJR4E98OsH7eni+o8JbD3YItOt42gEXAOArcwIsn2/HesUH+e/nfph6uuNNcbv18CpTklJE7C5+m4dlA23H73sSuMUOnc9C02+1UtpyKlPVZ5j4dITu4Pxqrdpdy/FCe4Q/ron9ehnK+OhAEipsttShdT66w1HzVr+vbd8hdgQWg3nbfbUqNs8oOk21DvxGL4c0VB9hD8fAh/mYURsaDefo6JWFCUfDMH5nD51j/PGC7Gz9Gy3WPSvoEAlfiHdSQdGCyAki6PJTNrl6SOi2DlGsVK2gyeNGsidPJsd/l90lj9zpZgUGmUwhGXFXY4W2Y7DAEjL5M1n2ep86e0TfcCZn/W/sLsYK+vRbWEsV4XywqIz8wP3XcWmY9xqoYrylwGhISLfyN3Gu0Y+t5WePIR48zAienZeQHcne+q6pg0Hy3eS9b5qp3NzmS6AvBOZIpkQoJ/6yBah3Om4v/hDa1q0xOrg+oJ/Mj3fXLsRDhYyMm02c6rNMMvnGQFyffvzUH+PFKPAcfjMBRjlpMd4OSFxyByfKiRPzXKBcrJzk90ppdGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Vous ne l'avez plus fait.\",\"ca\":\"Ja no ho vau fer.\",\"subject\":{\"person\":\"2pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Ja no\",\"role\":\"negation\",\"ids\":[\"NEG.aspecte.ja_no\"]},{\"text\":\"ho\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.ho\",\"SYN.clitics.proclisi_enclisi\"]},{\"text\":\"vau fer\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\"],\"lemma\":\"fer\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 212,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 480,
+              "output_tokens_details": { "thinking_tokens": 269 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5617
+        }
+      ],
+      "latencyMs": 5618
+    },
+    {
+      "n": 16,
+      "combination": "16a",
+      "target": "jo·imperfet·acabar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganp8RkUZNAXrswNvJh7",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je venais d'arriver.\",\"ca\":\"Acabava d'arribar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Acabava d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.ind.imperfet\",\"VERB.perifrasi.acabar_de\",\"PREP.atones.elisio_de\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 152,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 152,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3366
+        }
+      ],
+      "latencyMs": 3367
+    },
+    {
+      "n": 16,
+      "combination": "16b",
+      "target": "jo·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganpNoCDutrPPKrWB9KT",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS2AYKEAgTGAI4AUIIdGhpbmtpbmcSDApvtu/dIyth0DGGRBoMZhBZ02G+cMlfmsW0IjCTgmXpBloCN4EF4sK0M5/eb/rdSvyvjsCIM4ZFp72J/fuSv9USj6kcwsMq0ld738wq9QVqGxND0Fbtr10cV577xEJfpy9iRjkASE9AQlRWGQcjhw9VJsdN0193RufBDhkVQHz1TZYFNd+8HBX2dnGhd2s1aqL3MfDik9j6BbtN29RjpSe4BUxKw+6xySMPUqeMPkFtP+a9Fyn/bWK/XVgL3HWuyyZpw79J8GmDhpjKRCjtAkfEGWroPWHHsLw9O3vFtWT87cSikfqJYKZtWg2rdt33pxWN3GWz2xwndhiupYkazQ22tHLBpHz8NXD8GBSENiVs6apubTs21bWm0sVAAfyqY8ZoEDfGE44JOp4fKCTV5Ync2xvscIYm2Sv11Gc66VrbpJeFWMtTmCvYjb/KhklxvojONA38dRY2RapTLiemS9fCOjEIxDJ3mhJSqfEPtCWv6q48+gc2bQFYm1foMOhBYaGTOVxFnI9Gl+cLTWfhxHQJSgGw4+dIi2PkE+8OY0Uz5/Z2ItGABlj6tQjWILWUDuPaSeD7qLCUZWfZsQbcQU1CYYNWYGPBdbo1s7Z7FePrKDf23N0a1t0871KvDv7kplyxUIbCczNzr7p/U/gtdU2NdKi6tvit08X3SUwVOvhjCsQ7VI2Ly9sqPSnMaUBIMOAyhQ0//9yVwZ9wr4YVEXwR7UU+TkguX4sscVB5mWmPDysSprdqN6AA+0gsqnymWt2Z4syuj+M/JDdrWby9a8cgUBpBDcQA9DpxFDhAyES2cChq2Q6Lv3Xy34bwk9Ov8nCxYJki8uW9O2NQS/dkV1AKnR7kV0GHzRtOgJHgRsRuP4gcgcTSvjnRKDXficU2PY8eM8tOOshKy4H/r4jAXSoKHlwddu8T7hN12bM7L5d8yB2VUGTK3TgplQYX+zwAbgfqpAmzqbJKEDynUAeBQ+TWTzDPaGGXalT1aFwHXyzK0wq/58FiQG9klvfeI0h9zmSJpSjM8ral+ba/o//ReI4nD+tHcT1WBw4Rx/Mj9Qf8dqaEc5K5y5B9jZlK84P/JmEiydNzYwjvpCZgtgvL1b+OGnumGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'arrive.\",\"ca\":\"Arribo.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Arribo\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 147,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 230,
+              "output_tokens_details": { "thinking_tokens": 115 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2864
+        }
+      ],
+      "latencyMs": 2865
+    },
+    {
+      "n": 16,
+      "combination": "16c",
+      "target": "ella·present·acabar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganpb67pSrNXVNj5HH87",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSkwoKEAgTGAI4AUIIdGhpbmtpbmcSDJb7VhM9EM/WapoRTRoMyQS6X/XO8X4hyKcWIjCSdUVHLuyqDU2MQLcszBqv7H08R9hPM4jYjI8V6T5XK13lEH5XIjjekY64q7xEYyQqsAm/uvJ7J+wEbripuPbBNuYLS4s14CRvq47CMYwXuINxJAm5rzeliOz1fAg7UzprVbVaNV8WqwnyIz0e+t6QlTTlKYL8W9hX+O/V1HmZEdMc5HX+QRoAA5U1b95DjG99kM5QbYv+Z3XDchs7E5lhG0PE3PXE4uQCoFmFR8jr/HZT31EcVHoFP4voyfykKA7MVeV7dJeqiPJ8tu47gHd0Kd7twS51J9mpEkbY/ACYZpXdzwk1pCEsWgc7p93TStkMPpz58OikPXYCR68hNJskZVYHaPmvwIPLfp+KsZVXawC13TI8yLAq02yTt0cfwrmSID8qzOtyScSB+bTV55OyJojfh7Jb/51QMNJ/ihkFoZ9yjycy/CuyhSvvMqXmGilZPgfZcrJJSZCts3A/68QhNDV/P1aGQPlckW1E2KGGUmNXTmO2kUbDQMpof61WSHyGDeJ0dpupl24XuiHhJsYwWWN79UpECLawgFBJPYIqiGkLl6fZtH2IjOpKcefaIH6C5HI+sGQyHTlr3v3yP0/sTWw0qaB5x9QKtI8xKOhiJZnixb1ke9hIxXVk8bhHEu3dJXzHPtyMStXnPu+WQK0IDAyoq5nd1ZX4kxLHYULO4HhKqy6XcNp3qd/bQMWCNPXoqcNb1BQu5TPx1AZbbzeUr6RpH9cAKeGjjqxre/BqZT354M7ARkKN+9Cmhb00pMAxn3tFQY5KKdDy7aPO91iW57L4ZTjXkbmjhzwJuOHKtTPwJqpb2x6lzMuVH0NPf2ANzMOm1T3uVMFDuQ8npl2SOaQ9TrEeNOVJ8w4PA96Ev/5TXhojp8jFfJP6VHPXXQTOBMQfG7cpVBYiWM7KnIHe2Jn2/8Q8ZgAk5ZiWahttFLBT5+haOsYkwom/Guj2VWjaQxcIHPzyKGP83eaH33EU1K7SWVJ6j8UhKgE3CRwxWU6h02g3K+Ub5zZTsQYrFd+FDeHbUMt24baVcYihzA33Stf9UMuB0seaERAPAmOgEU+wFuQX5KRiv/B3o4fgq25dinpBNUoe/Mqz5B0H/ZmrKtFFPkZPUiZBjCnb/N87eV68AeYU4WPdQvSmeu8Ju6oy8dkCgdWtu1dYyWlMmMs1Tm6gF2S1J8EoRnmdaQtAG3WaC3zUCsNTqq6Uc5L0NLKxerBaLblYXlAfazYzY96KLakon03X8n5NenGiBXkCidKvA66mB9e77iQb6+1U40mCTuN5QY06WkEKMvFOPyrm5cx9oEyxZjCg0u3NVKtqbHtRjaVkFtwV414MX+Y8xsPkA0LLwkIUti4A4xGgLIEYuXkaAy0gdibg1mOcpCeYhIEjYxstZ762OBIzkBjbqic5qDP7Ldvv9KHB55owLybewL1mZcJ+9jruJSzmE5o8NODMNro1Q7kCndftR2NKvzQg5L/f+0BOFmyR197drRadU8DrApzBy6pE3KbLoVeVSXqn5FLdV1n979frVJlmX+1LUG31jIODKYYY6tfCuMD26nRsoSsCBxL7FVzV1SQxVRUjhswo9eylGSYw9WVvz2RwxRa6lgNqvNso4b3GZ1RfzDii/LDuqZvJwcVYL3v2b8kQ3kCM6Gn625l+296Fag0ZcsIYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle vient d'arriver.\",\"ca\":\"Acaba d'arribar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Acaba d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.acabar_de\",\"VERB.ind.present\",\"PREP.atones.elisio_de\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 149,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 424,
+              "output_tokens_details": { "thinking_tokens": 274 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5224
+        }
+      ],
+      "latencyMs": 5224
+    },
+    {
+      "n": 16,
+      "combination": "16d",
+      "target": "jo·present·acabar·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganpyLqY7r6ZpPkwWti3",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS7ggKEAgTGAI4AUIIdGhpbmtpbmcSDAYOLjqQ4JzI2zMeahoMHTWHg2Jev2wn9097IjCUlLCFYSS6EJzZiPF6uH//GBZwi5/x/EMj0mJS1/HDJd+DC2AQJS5zQ0q7AF/GL6Eqiwgz2xRQ3jGNRBai/hkPZA7pyJFqHiiDHKdoDWjCgselgGC6P1f/jbXlSaDm3cw1PEQ4MiNbQYbJINaccMCsgDrSMVByINk/kk4EL1iEm3DBeADdhD3VaX5138f2pin8b0PRre5wM6JiXas3EBR8oMzGvxfubcQBfv9n4BBl2B3UL5PKfZH6TcNmYbrx/br9yyIXrzy7jkMEPjnFKZEd2ill5ioXvSfO5KSAJxzkyULdBLrMGtrVkaksZMZhKDAVqCD4Y+1EE6FWdjXVNU9u/I/vQ2RTDHjkoVoT95hdPliTa7LgZMvJ5VbTQHWXY8X/UbnAhtQqQgRm7sHUFQHfjYFSWYPLuqa/YJ/k4Ru6KXhG69vWxxs6idNgZxOIjGVCzMqzoSLvb/jblYOc9/Dk9ojMubkDv7tYywFzAN0WHGG6msmRr/ydto2USzsmB5iGdGqGwV8djEmmi59qI+LD7Vwi4OOx8+RNknh+TVE0wEg7H5AANPSAb+0M/ajfvx4F2XCo7gu4pAbRFEdJf21ERbqTg3I508kHYo0yyEFydvq+w6QXiF71fFWfhs2l6aTyeAYkN6h9i8TQq6rcBPNRItBtxOWSV9wIyTAJoNLcwH36tOg/EFyGlUr7i08KI6YVtKlRWVrpasIV6rNRAn4ymEJr6npBjFvYJ99MKt1oQw3+PmxI31UGBXmj5+n/RNizIh9TuJ/UyUuLa/8exnNmbhZebAb3aqcxmJi+gcH16NI6bppMveVri0Dl4R4XoCccrowMzBuHkcYek+cqaxGGoyuftdYVG0gDlpFDCqciD1xZPvorPrtFsF/h5CClKn8oceiQtBWqaOYWZS4b/caZbutzDrlHzQmidyYqw4rViBKZrO8mYKG6nca/25oM16XS4HOjTe4TBQuKkEgmTtQZs1Ic01/CSrq9ryhvvh/yOlpomF63m1lEJY4oZKhyqHEnzD+dSvjYgQt+4zgXMdGOtjetLUTrkgZSra5YC751gxZazSM0lNl8IT3POakqNQ5OJPkwSW4+M46fAsg76I/W6eOrvPcmdTPDFZ4M2V4ww19xTZ4ZwL9GvL87mys5Sw5pMHBypG+6ZGkVcHW+OlLIXIYvR+FlCBF+lbbAWtpTwunUY1GF1Uc3ABXZzFpbFzmvdTz4ZoXAoJKSU8yFoq+wzskXyK5RWG68lC/p7ZokbgiJcrOgSbg+QS620acEEMUyVRToouqUl5PhHm11aoUJ3oAv4mm/06mt9wCLs9UvV+nl8S38B8/uTCsL5li+P4ZKtvl+Z2DJg59nRO/BhtYJso1mV5d1xOroc/jEEnAhOPcrwvll5+l9LqZCjy2m+wFz34EqMVQyKyk+YZ7nDJrXnUCNFRLxWP+83ylZdKQYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne viens pas d'arriver.\",\"ca\":\"No acabo d'arribar.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"acabo d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.acabar_de\",\"VERB.ind.present\",\"PREP.atones.elisio_de\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 149,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 417,
+              "output_tokens_details": { "thinking_tokens": 237 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5205
+        }
+      ],
+      "latencyMs": 5207
+    },
+    {
+      "n": 16,
+      "combination": "16e",
+      "target": "jo·futur·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganqMgFQYGjh77aotrGE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSwwYKEAgTGAI4AUIIdGhpbmtpbmcSDGX21PZ8uigyDBGSqRoM6jYPocrMEkFKenYAIjCHLxXHwBXqpFC9uUlCwGTCNueKOS5fSmv4aS+oQ3b3hGLcDkuncm1qI7+QppSV5TUq4AXsOITZ56SxUVwas2yqZ/ROfwpsscC6LpVCiLvLxgqO/WOALUamoue0uqXQlNUe2lYo33Gjz9adTMOw5Ppa/PycyEaW7hN+66mOZQIlg8CZhO6IoQ6fs07rF+tywEHyff7060FnKFdMbEKzBMTMbKojplL2dHgOJJBzcSZsnNagxAlYQ/xV5KbHwAJKsdrXmsGF4znUQ/fFgSL1ghUM+WWGmt/nXmeNa+6MlT2Yq7oc5Tn6UTW0W3SKQ4FwCAMPUVyFcVvj8Xf7uEuauOQ/wgtLOybnh9yi+Bz6uWHKC02xo9qVhj68YkceZKL8Bkxuvrof2XrLjUWXFmRO8tqWDHjp5l3tXzBh4Ih5g5zIeFT28mroC3nHUBIkXwKxlfJRGg0JlCQUlvLyfKy2k7xPsLIgWwKHOkkyRMZv7s59WzK7jXauCE1UBgy+ITFZsx0VRdAxvtdzprg2Hq7z9CD+1JVgCxR5WjTdgDSOr5tYHA4ywQ/4LoFzVuxfNk68v6oCwGJdajpzSuuVjSjA9AliaRCjkPtaxBOJokF9sZwuCPkHcKRmXIKXMrwjIfonmiJyU4YCA3zPSohksrCrofe7qeXtZaCL2peNKUsC8PvDLr+dlfG3bLlW1gsdvIO36h4GoWXjJ/TgwGPiSQAY3+4+8qw8sAso/D5LjrZCDPg3Wi9bzBLB05QjCQV3N4TKOBkuVfUy+CvfIDlNVWVzu4xkfCaAtm2sQCmy0hSND45FBZrHvPKC8hBgZXEYrUZfkQkbYIlgwtP4CVNsbUStV3GjiS+ps3BPcy62iqRoxyXCzD3Ac52zff8446Ld8DX2GzLJ7uGv4BlSyG9YG/4jf080eQoxOfH6JBHw/TLbwUwZUny5sWJvg7Bi02M8fMUwEXsH6TeVu66Klm9Ch0pGpJ1l2lXjlAueKoyRbu4Lwz8VT0WDbCzxp5/Ea8Zn82nEo9FEsCsULRxZOHJo+8J5ULRpuPY1GAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"J'arriverai.\",\"ca\":\"Arribaré.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Arribaré\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.conj.1\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 148,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 240,
+              "output_tokens_details": { "thinking_tokens": 121 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2954
+        }
+      ],
+      "latencyMs": 2955
+    },
+    {
+      "n": 16,
+      "combination": "16f",
+      "target": "nosaltres·present·haver·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganqaLm9Jn981MZNWKsH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Nous devons arriver.\",\"ca\":\"Hem d'arribar.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Hem d'arribar\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.ind.present\",\"PREP.atones.elisio_de\"],\"lemma\":\"arribar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 151,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 142,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2689
+        }
+      ],
+      "latencyMs": 2690
+    },
+    {
+      "n": 17,
+      "combination": "17a",
+      "target": "ella·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganqmqJdLzzJtGizKxf7",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQStwgKEAgTGAI4AUIIdGhpbmtpbmcSDOseK/L4LZC/T8SXchoMQ7jGjrKm+3V9cRN5IjB96ke0JThlhf3yYXiPBVceZOeSk8pv7NtwyD/StWHUuvcMp/GXpDqgNSKZ4x2ffZoq1Afp46MYitf7DSmZWiVDfqlWuRfBYYYSQqM7AefQBi7pwkjNoGzI1LzGRxidSIbNFdcTmsrqFg2DZBCIU+ut3YAtp9rkh9+ftQzb60Qt9qyZFI6FbB8Fvaucie8FiZHDCheiipNHeHb4Gdo9SKR1jbkO7agVqOinQe0R1ZabHT+buS1euvFdzylmLCCbRqFrur1uiYk/DOr7uejponPQx8SoO/06GMWoBqISvi/IAmu33+EfUtPe9cBVyo8KjlHc5w8KXOg6LqrNQGG7ObvsydWbF+it7qXEr9eU87j2pHscTAB1yG0xUfOXblHJASOX422Ev+Hbmm88f6/3mXJABZO2KZX1MPsM1Ih4TkrTfJGbzvIlayAxQinKEhkmRvVRH5+e187INRrHl+3J+OLmGA64T1vUXvKDe4NHebNd1It7NsXqc6+IvmSteAvhcCpSZBPmBWPccFLUQxC/tUWXp8dhOhXCWjORf+1kcXjmPXwnKitL5rcmuo3aEYIlmm7nUMctOINp3RGjpR2WmqDrGIWzIAr1HJIHJypbED8IFbhMHyvfWCVB4G/HfoOR2Kg4xmNrvuseVgxlNAI3RSZK7VGQg5NakCEkIM5Mx6kWGki/NDEjzkGOqjCpvEXF/tf6N2lClxwvIl+6I4N9c3LbRUG39t6PKnfz9dxKL0PNZQb311dMRa3LPKZFYu+oG+6QophuLvM1rfaTRvXqFvHtORkXZnYPCgqaLO8qBgnG1mUIQE/3V+ykiG4hHJz10n3DKjdrD6/kNhcJQ49DBe+D+uhsI/ZDaxG6GndPfwjP4WYdOZQwSJH+KpwehrzqKrpZ6Ng3BrlgpmnVFb1Q7whOCDZOTEtB8F1Cs3/gL/GKgnl5AKaoGiWjrCbgTgLIlE6eJetX2RTArSRLxGg5dyVYHEJgPN6bckJebEA11WNXTaU9DpoQXbpgesULqGcT7gox57zIPUwxDCAIIQ7Sx8VFoQQZ/L/IuPJ2l3sEjBgvQiEH28uDIyJQcrcWUOLR+1LCCsydlkT34m9vuRWPE7Uvy80oWuDP5Zz4tNHbNMqCFjba+aozZBNyL8cci8Bobsv0o3Qexcvvp47QRwV2jdP0yOEN6PORE6AVXA3pn0fAQrmZFYPqSSQfyESAfvXlQHu/QYaPnXOrpIY495lBIsSIOmokSYSOKAJdHrsfJQfXvakq5KHDDypv2ZwhD0A1pNzvXx0HTBrmNgYl+X4hjSSgYJxIHkMWt1+YOaDDiFnUbHzjVuAe2DhdvKEHmwdjXhFeyngsCo67dq2cx8GKoBY0dQKp8db2+xgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle prépare le dîner.\",\"ca\":\"Prepara el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Prepara\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.1\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 181,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 376,
+              "output_tokens_details": { "thinking_tokens": 199 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3364
+        }
+      ],
+      "latencyMs": 3365
+    },
+    {
+      "n": 17,
+      "combination": "17b",
+      "target": "ella·imperfet·estar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganr2KCUk9C8Z2WokmmB",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle était en train de préparer le dîner.\",\"ca\":\"Estava preparant el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Estava preparant\",\"role\":\"verb\",\"ids\":[\"VERB.ind.imperfet\",\"VERB.perifrasi.progressiva\",\"VERB.no_finit.gerundi\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 185,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 208,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2368
+        }
+      ],
+      "latencyMs": 2369
+    },
+    {
+      "n": 17,
+      "combination": "17c",
+      "target": "ella·present·estar·1·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganrCPvobBPp5pUbqsrx",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle est en train de le préparer.\",\"ca\":\"L'està preparant.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"L'\",\"role\":\"clitic\",\"ids\":[\"PRON.feble.cd_3a\",\"PRON.feble.forma_alomorfs\",\"SYN.clitics.ascens\"]},{\"text\":\"està preparant\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.perifrasi.progressiva\",\"VERB.no_finit.gerundi\"],\"lemma\":\"preparar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 182,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 211,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3130
+        }
+      ],
+      "latencyMs": 3132
+    },
+    {
+      "n": 17,
+      "combination": "17d",
+      "target": "nosaltres·present·estar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganrRm6kKXKbs8zzVKmJ",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Nous sommes en train de préparer le dîner.\",\"ca\":\"Estem preparant el sopar.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"Estem preparant\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.perifrasi.progressiva\",\"VERB.no_finit.gerundi\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 185,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 201,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2745
+        }
+      ],
+      "latencyMs": 2747
+    },
+    {
+      "n": 17,
+      "combination": "17e",
+      "target": "ella·futur·estar·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganrdSZzamnHAQDSzygM",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle ne sera pas en train de préparer le dîner.\",\"ca\":\"No estarà preparant el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"estarà preparant\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.perifrasi.progressiva\",\"VERB.no_finit.gerundi\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 183,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 240,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3173
+        }
+      ],
+      "latencyMs": 3174
+    },
+    {
+      "n": 17,
+      "combination": "17f",
+      "target": "ella·present·acabar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganrs3s6ZGjxpdXbD41L",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle vient de préparer le dîner.\",\"ca\":\"Acaba de preparar el sopar.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\"],\"chunks\":[{\"text\":\"Acaba de preparar\",\"role\":\"verb\",\"ids\":[\"VERB.perifrasi.acabar_de\",\"VERB.ind.present\",\"VERB.no_finit.infinitiu\"],\"lemma\":\"preparar\"},{\"text\":\"el sopar\",\"role\":\"object_direct\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopar\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 183,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 210,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2907
+        }
+      ],
+      "latencyMs": 2908
+    },
+    {
+      "n": 19,
+      "combination": "19a",
+      "target": "ella·imperfet·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgans5Uz9MtUyXXtLviDw",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"La soupe était froide.\",\"ca\":\"La sopa era freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"era\",\"role\":\"verb\",\"ids\":[\"VERB.ind.imperfet\",\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 220,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 217,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2987
+        }
+      ],
+      "latencyMs": 2988
+    },
+    {
+      "n": 19,
+      "combination": "19b",
+      "target": "ella·present·estar·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgansJGBBJWk5T9TZhp6e",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS+QYKEAgTGAI4AUIIdGhpbmtpbmcSDJPCUIPf5I2POWh7IhoMBkXHkp7T4Vh/z2uXIjBqBGV4z3+epl7jChKZxBZaO0AdGsieXuYFDwZBX5rMErJR763R/0/PNitHCn+eWkwqlgYGcJJeCql2Q0s/ko8wZO9RjlUpD74Qjrc1fUkho7XtXsjVyLdNbHjYTath71+rP7fjHwKF5L3DIOeLZp6kOu9QTV5j0Jnzg4ColiQXYWrbc+fhBVhCTPykneK7eaJDtw3NAy/jArdFkGvMa3gn73LhueGmzykxUk7AcF2sLB2ePjvCmxtbvV1Wvr7D/CfUBf5m2R0WR4Ld8SC7pozdG5AAHszenPd7IrG3FwSXhhmLGqWBMtzKJDpFe6wCig9DBB+Jtj701wpOeBUL+GdNwbvdmikbnRCoQHco2GRMazPf61JoRXCOTvw92BlxdZTv0uhlJvKuqWnYNOfzscUyEIdhHCy9jH8dwUlOcwvnK5KjhsBREmm2V7/dNXve+alM7cLf++HUt1je/Yj7q5LgvBE4kRzdcZPZJMNCoAFaapcajmzbFog3ubVRd0oUWbCyaAF+gelRv2b161xiL4U5TtthnRts85IrPWWPPpO2tviSKpwQN5NwA8s1Lu+bAvgkwzOz/3t/xyFMwMEUAIsD1p9A+X8Tny7KZSEzG4Bs7AT8NPAQ9RcvlsvhIJHa7pFNNs+l8REFmN0ico1XiIaNEgbCAg1Qb0lVTm9NQdauy/tErtKsceCnWi0byFbbjxv1oZUL8vlhSv0mTxAozPvyjJx0rZUB/jJfFCnFz7eF9ttXVkU58OSZn75ScxL+IFISg8YauJTVP9wn7BzXYU1+Ta+Mg3YNaB1X/LzdjNpzY3eYb7pB7ImFLaApYILcuMUR40WGS63p4NnfV+P364RA87OlrxPzV2x3CEavJlq0pVj1aah5H1FgbZHTcX+xDJgyQy2tfvxvoxJuaYGtjcdX0IhzgVXrs9CG7Ey6LjIDe9g9yoBYcikJrQwz3YlDQA+RoF92oVSBsjY+kehSTt0YswGRv0EJWwV3+2B0Yd+G0hp5q4Z82oUYeiEqDnmWmUyodlrz4ZceHvdFyrn/a17gUrzEtSAxPWa70eVL2MVI+drbAdsl5GYFPeB+3id/78RtJ7yax3xJCdxncGpbETz+MGg6v4ji9Q/UGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"not_applicable\",\"reason\":\"aspect_incompatible\"}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 218,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 140,
+              "output_tokens_details": { "thinking_tokens": 113 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4247
+        }
+      ],
+      "latencyMs": 4249
+    },
+    {
+      "n": 19,
+      "combination": "19c",
+      "target": "ella·present·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganscMrvG84nhuzBrazE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"La soupe n'est pas froide.\",\"ca\":\"La sopa no és freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"no\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"és\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\",\"PHON.accent.diacritic\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 217,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 259,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3230
+        }
+      ],
+      "latencyMs": 3231
+    },
+    {
+      "n": 19,
+      "combination": "19d",
+      "target": "ella·futur·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgansrDJCtSDh6vsVuhz3",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSzwcKEAgTGAI4AUIIdGhpbmtpbmcSDMRYWIzVMz9dS2ZdhhoM5NdLbCcXBhKBYpP7IjA5rooFT4EDmXE7x1pLq8rB9PRYI6KTj6HmqBWac1KH2oxvf2dCnpW/pwIG8lPSHnwq7Aa1amhAB2Feuyg4a8tpm/W3/0Fci6z2k6styD07coj3IuO7N2pBrvzEKnuwaWQE/o+FWZb91OERWrqtaoJpcWOPgi68JOSWDUb7a+K4NVacTAWTyAyUNr0+V3dvFYdjCQ1uOUVBpXN1+JpwQaS/FIa4+45KtBV9Je/+P5mBkAj2+D+iHdVj5S111rbsRRd2PSrM5uR1r9rltC1wbxrxFdE0wYzC6x1LwBXgEHUqx+3zBpl130moR9V6Zjr09XLVwaeuScENPUfaqfC6XV+zuKq8iTpY61ZQBYDWx/v7aCPH//ysEJYeFpBbi9vfIfOI1W+ki5F1SKiTHyrGuLSCCTQcUC1RITOt4eBfzwioon+XHK+dW/WfWDh778mtcqdYhUjkodsqbJjOsaYH1vEZVGVozClgkhCRDW9TSRDZFcRh+ftOVQwpWkK6tGLOGyLZ3iEFjaqjnLnKF83S5eRFG3Yw2CgFg55UyPiyz8IV5tWncZ/b5lXQRU9chk48LtsLorYM0sOgj0mHC2ojeacdvrfQrmFvup58Xz+BrQ6BlJTFToX9DGzZEFFV2MT10295ph/kiz8jpRRa3Ys4SrWfHV8/7K9knTL8MhZ/jnTrDD/gcfC+Msg913yiCiSXsxcbKK+LDZupxQGPM7Izj7ak0KwaNQNtJvUE1ESzGelO+3IJFYOVoLRCzbzEoPnV7asj11DfaekTCZyNotHaHI7Keuft8DvqI+FugZaXF4hrTo8aIbtZCH+600SDJaGDMkxOe9BJnMmJFguQ9NQK4ypd6dWh+S5Xt7HPri63dvegXYR0qQHtymDmTw4XMdt5b76MkeHZJTmmYLdKtriym6TrcnPoOaAzG3/w8wYIGRk3RxY1gsDGmDxFZbNtxNgi6kZeiYEvA2B/pb02CjKHvQuMG8m+cJ13EX5zMIw7Ljz0awB67aWdjSPi29Z7/dy14jpS7v4as6VX98EV25+4z2KmVdBv7lWLH3tOYaxxqNGz6rSGM7IecOrvndauQuj7ndJPquBtb2esBzUzBPlwB91tE+qrnGt8vHrf54ygL9+WgZtWOedFxpZ3Mc+UH0Wdsh6/+l5ZdISXJmY/kvoqZ2FNraWHO+mhpJgtEC+sND4JN7JeHxfQNOMPH0UFo4paVf54RReHhlZSFWYE5RoO4ysYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"La soupe sera froide.\",\"ca\":\"La sopa serà freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"serà\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 218,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 369,
+              "output_tokens_details": { "thinking_tokens": 151 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3918
+        }
+      ],
+      "latencyMs": 3920
+    },
+    {
+      "n": 19,
+      "combination": "19e",
+      "target": "ella·present·haver·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgant8yrChaAZRrd39KjE",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSmAgKEAgTGAI4AUIIdGhpbmtpbmcSDLW9L/vzNLKDSD5dGxoMQDo3BETmnv0u7yr2IjCh6OcyNb5m88eYhxKvT6oPyigdvI4Fq3dObn5J4yYjJIw1+nDt/LLdpOiAevWGJggqtQejA369cJ7p3TUyut3nYNwGmNVtqEFbWCKxbG/9+mMXAGPbczNmHbdL//dfjNBymHC9FRyu0X3hXe5+QOAAxu/wvkdUvTkdS24l8zEt6lFVeBsvmFf2qv9yl766Y8TpM6hlzlOTkdxRexxV0zezzePezWvoIp2s35drez3bY/Qf1rrzPvYqGkicWyN6weyBtyxQ/FyHEhjQqhsNNe9CTZKjwloH3cLrxdt7Jv501DWbAxOY2wNsdCdLpupBnApw5wusrDxYWkLbO2aMJxwrVwiB1z9I02cqrP5DP5cwhJb2N6M/4HY7TE4eVTTpjoD4zspY+0f6gJK/CyNYLJtvgXuX07tWw/ybGdQTgIkHLqMXV8TZy50Vf7KShRoJB5EcDXue/+UL9IS7X2iQ12ATETmI1/WlloY91dPf/XsTJFod/NajVffMM6t73UZvHwpMxRLHTWKrtSAi4JuJzxzgOTVyVsDR+pHtVsL/JjMrPfR7kUfrFZEyTwSDpgNeh8G8rRif3qTXmLdEr0/VJu+v2ks+5OOLt9CSSfJB88NWDiTpazFEKZsZJ6ynRJLQtsJJhk9EKQ/kd3X4rDkyiaDoIPHo8UU8FPv5hTtKFsWzVM97dEWnc3vo8t4xgEo/x2Jd5JlWwrFVkt4fjoVtz35Ug8FuWyq+YGwyOu/tfVd3itURe/V9k7chzdMTaSrmsGZyxdQPXoyR/+Kzcs0LkfNuRebjPGXCoKH/1WxxqBjSBaYpaWFMgzSqQ1WVuThncMAcPj8aTWb0hrr84/vKXGe9ILQDC1j5s0y5dxa3y/omvAfrAW09GDVZWgz1K5aLSRQKdUzirDGzgnBathUvCxcBZoUuw0n5W9k7UlZSYc9Oo27nSat1rVsxpPjARn6QfrVTT//kag0dVrfrNHInS8BzoIWZdMyMVQWld3tgp4iNeHE2sSCVvnMUuo7oDpJctxvx7FdvBpRZ7S16v9SuE5Sb6jZlAWb9Qg8ZGE05xUPfWcWqdyHHS8TrZvjWqj6hcskrIuoAXbmcPoySY5ml19bA+UiIowTHVMjZ/vwjSC7dDRNpxjO0olZqf5ad2331R2UDHJs/CWA3BuF1YQaADpcmCnY2TsmSoDotPnOAU5uq5BSzYLYlvXuUrK8uErboU9sOgsq80bS50NELPRiIJ2Y6phzvUzvxoCfderPZ5ZfBpX7hGb7f3Eyj+EnIDhez1cNl8i/BoN0XZiOKV9kEK3rLHhMu1X+tOdxaNDAykVGEzpI7p0Z18PJBGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"La soupe doit être froide.\",\"ca\":\"La sopa ha de ser freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"ha de ser\",\"role\":\"verb\",\"ids\":[\"VERB.mod.obligacio\",\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 218,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 432,
+              "output_tokens_details": { "thinking_tokens": 196 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4610
+        }
+      ],
+      "latencyMs": 4612
+    },
+    {
+      "n": 19,
+      "combination": "19f",
+      "target": "ella·ahir·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgantUh1YzBpSHNG8YoTx",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS7AkKEAgTGAI4AUIIdGhpbmtpbmcSDBFUl6GM1rL5hvMUOhoMZYM8hsS1YxHsPh2ZIjB2MGUZjGBQNwReaqKECug8rNe9x7XS5DNmNv9um0fBaF2wDJiZf/UJ4D5Q2kZAKAcqiQnJHSsycGMZXIiw+PudV+z/0gka2pHUUaQNlZrUcK6dfMpKT0Ehpi1t/O73bZ2lqvUhbanFdaI35pULVga9UzzA9In3M5XXnTL7QJc8DQQ7+yrGMCIdYiaNQtaQbylZKRcFzLKvfZa2pw9fPLuTUFJE2Tsv2IUWZX+moc1dmG1RRVdOVuzCrDYnm2m16mwEaIj4QsEHb5kCrKEHna73oeS0MThjrVA5RmHEyLKI/Mpk4ShEn16IYqUJ96CLmhA4GntAandDId8+6UVNmj0UqGMte/FdhzI9miIHtBGTVTEEkj4Bl/X5ngNG0USRWqmoh1Es3KBN37Sq0g+tSDXGkqSZvE80d0fupmt8EFeG7fw2HD6kH9wgeToYciAciQVtBKR+dMeEJEPyxwQ/7BrW66E3tb4G8DyPqQ63XIStG5F1don2Z3UVVzzcrImdRu1rqf5Lv65Bv3KwNSwu73beFUwwaAXDt7CPtRcsH44iLiTW+itlBGXOH0GDWgYJv3ARyCFaKbYAzXICTVH6zBzs1VavgYtxDHxZFRKnFBxVIOLIEWZKqOaxTeYoyeu7PsAd3J1F2d9lHlDinVQlMOYz/nziEi7K4n+6Zq9wmMcBCCEI9tfV9QtLmpItgwQab/jUld1/r1tA59CqRAtEpQvFqvtUzjVmhSjJ6BeXCsW57Scto0rwSFmT0tjjxO6E+d/KQn/RV46L0RuMYHbfo4VfLcEJy4QLT/M+6KtBKR+CL1zI2jHHvGgVAGXP8ILyi0pclYxnA4VRvqAr6IO5Pigguau6Lt0kL65XZ7HhBxHv8oXl3GHDUoWLl/zi0qdkfU1v2BsbUTr14zIzH45VdKJiDc/l5FUNU8nUzj3IqUPt0Fzi75XhXOt7Qbz7dmZpT+UwQoO6pErkBiQCxOqkyEa1OggdSdfh9ylHWyvmjOBmmfMdZ6y17RSzYmXBHozUcmFBTmswU8mTT1MVttJft2GAJw878wKBIu0lXH83dswAVM1Y+gDOUOAKmJdVif+TiY/5C1ImxXNgLZphQOYnoCsI77duJ3aGwqTlD7oBDLfwEXIW3XnNyKxcsIkvpmuA9//0Ze/PLXZ4ZGm1B2/IgM/LIvAKPFxGPsyuUaPT8/r/mmTjYyHbZ3yh6RafbUmj+h72qnjQvigJm4rxuQTE4BkMiRtc0dUofO7LQ2k65ujNHN8Z1jP3ic6T1Mtm0z4+iXJZ+8DHZK7Xss/vyADfpSSDI+ehpF0f5uzE/IE7uJLBr9A9ksWQDtev5JTDArGE7I18s/zUvw7lw6q+ylFEkr6hVh1JAE9PwtNTP5GclcS7Fwp6C/gGCEW4lvuZmdlez4cmPZQ2/RPdvbB6/8ssQYAc7GfF/cjxoEzMsHzaOm6ZNarfC+bcw4AZiR+NyJ1pWCiphExKQ6Gz2FJY587upQNREoFoeOOy//XyQGTtbaR6W6NNLtKCEBXgMpYfBwDmnmirCDiKYTLOmLu/chn3FE9JCmLCb1/nQ9N3Ru6O7edU0OY+y5loUXUqA+1c7m42nslwX9CnUQ+QVZvfXlUYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"La soupe a été froide.\",\"ca\":\"La sopa va ser freda.\",\"subject\":{\"person\":\"3sg\",\"expressed\":true},\"assumptions\":[],\"chunks\":[{\"text\":\"La sopa\",\"role\":\"subject\",\"ids\":[\"ART.def.forma.paradigma\"],\"lemma\":\"sopa\"},{\"text\":\"va ser\",\"role\":\"verb\",\"ids\":[\"VERB.ind.passat_perifrastic\",\"VERB.ser_estar\"],\"lemma\":\"ser\"},{\"text\":\"freda\",\"role\":\"complement\",\"ids\":[\"PHON.so.ensordiment\",\"NOM.adj.four_form\"],\"lemma\":\"fred\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 219,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 502,
+              "output_tokens_details": { "thinking_tokens": 276 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6780
+        }
+      ],
+      "latencyMs": 6782
+    },
+    {
+      "n": 22,
+      "combination": "22a",
+      "target": "tu·-·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CgantyfYFy2T6oE5PLScS",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSuAcKEAgTGAI4AUIIdGhpbmtpbmcSDG295pPxiPNae1q0shoMQviHxOBOCuHqo5i7IjCtazw+DXzWsdVhM0GyV628qA9WBvQiaVXBIpEWN/EV+fQBQ0yt9nh9AEXxh/rongEq1QaCyAzFQWJJ3sAUwaD2mMqxAz+UtGTig+qaOPiuWiC1H6JPg96ucQDE37HcFBywzxJ60pqiC2buC02M7RQjJSYLyHauApAj8nikb2SV8/bc2u2JA0ZMUYHreOVFPaE24teTXSWP37GaE7u+ha+nm2ZRBROdSPZ8pFwmxn+JNnbTpfEVfBEWKWZe5z19tn6jRTlt9VJZ6jsXPIIqmSWPIzs9W2mfv8xd0AgHoGYQXclK48v4I1y3l6JQcIwFWmO1mP9dxlrIRgX//GsHjkxOatwdEq/RRQpfHTgPN7apt+uzhP8fUcDj+3MkMjF2p1QDRa721S6e+Gq5yFS/ExeiSpcAcfYWaudtjBw9qaJpA97TTpsBlzR6ImO6wA0YTFPMNUmrYw2f1mrJYIOxbdhwy7Dmd6aS53m+K7aiCytQQlnqgaCYe1bbyLT0h5ZsVG88ML4F2qKl7O5HeljaY54g5AQWtLDEkCUZh61r3ZOl95q0L6OjYD039A6dPUjGOF8XA8lhErMEYbcvLvlQR/FRz8Zi7GyWE1dmBkPssKwIWNulZWCikYIvJ67+GbbV+OIz9AiQhdaIt7+CqJ1kdv5B0QilYHNatg8Q8hM4qRm3eFuTlOnDfWr2Z+J44A+OPcHX9843Xl2bbal28w8ndFXXnBn+CCewMHoLII7fJPyF9HsMzBIsegM7awPPmiR8fH7ttG55MKYo9Cio/4wV90RYBd9pGgBMY6qjvsLLjAN+pu+xT9g2BuIkVBEBgwjcqCRa2L1V/OgKsi0VUbuYYQzBpsJBcDfo1zgPnG1z73eEB3kisBQIhg5IjRC17/Mn6IfcAUuZDWBOPxnRX+fRNjTosAc+d63I0e1ljXUM2rMKZmWBeR1RKXftrFLec9kls8tEqCT519meY4ANCvSDNEZ58eVzY7hl2SWlMAJWNVq+b8ogfkjk/VU7eoB3nunh5hsjM+uFOF5zrSD37kh8FLMqicRwC0LmIt2A/EZ9pcEayq8LJ5vKzg+JrN0SZEvWVKv4ONQ1CGPFCrdgACGGpmev220jZ70sKhpRCZVZS+He9ERCIdHEPRVAsM4TEqxEH9yU4GYgewuv8V3y0dHEE6nZCRa8koMqsVD5AThxY+eQP5ukTrRdP9XMGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"not_applicable\",\"reason\":\"subordinate_affected\"}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 217,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 165,
+              "output_tokens_details": { "thinking_tokens": 139 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 3522
+        }
+      ],
+      "latencyMs": 3523
+    },
+    {
+      "n": 22,
+      "combination": "22b",
+      "target": "ella·-·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganuEoNHrRMym6Z8y1B2",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS2woKEAgTGAI4AUIIdGhpbmtpbmcSDFSteMG+DlzS7V521BoMZBRQpI+A+N2IX50oIjB2icAzXD5Ch4wuOBjpaT1BdPBzf8oux+H4mDpe5sHmaaEGM0dhAYCrn6YEan3TEBMq+AmaPhcEDMeKT0GmYGz2aV8kcI0TRLqAw1Dkz6s6aoe7qYy0gB9d74b3vyAfor8WGg2/R9Y4K2ZSyk4+c/EmfZ19kguHi1VLiypoDLzVL+1H8kV4j8recLs1Bv1KFjE2UDiyKN80DIXU4dARZjA+IBUORKuaInGTfATG8Kbui+PeSskRkGwusnMTYZBh5pWxZn8HvbUhhfD4/8MfLCg6xSwv4aaim8IGKNF/O3PNkgcKQUm49OfAnPSAzQzcDP1s6+GuaJQw2BX5VN1UKkrK6RNfCJ5iaLjWuw1u5cl8Hpw4IbqCzbfZbrQIw/GEZpF5Xk6bM0BP94xCyjozUcfT2ePBnYpTFoBvxZqA/m7lIeEIU+xpZWotU8Eux8c3PRCwzCLiBs2a6uGB6tTGKGbyN9OU9/w32wdhHZF6wedLDS3YbctM6MNJceL4wD9D9AU91XljtofVb/x7e3rB4dDbVAUoowlcOGllYfdCSTHJH0yB1jhCcK9eqW0D4TwrUrZprmmZzQEHOBRGrASenKqG1ao11xIemBlJkbBquTYIsUlzcygFCvNPR+Hy5WHzSobcdHBDGJhCNzmAI313jSkBhT/1UC7Y/SsWVNSuulzi65uRhoEl/64tOKmqLbcEYRfDG/DxVtJZouKSAB0s9dPldBe8h02ZG87hYSv5OuF1ze/4XG3AJlI70bcgg2TiBJooLmM6gyXssP4LBiq5qO/8pUhZtCVVRiZkvDF7ogBCFLprqGDPmphWhy8UQ+KKMZwpWA7RpGTCL8BaSSJ38+FlMdVg8Ma+QPGh9Hpk2gYvOb6zX9FZjMxdrRucwkje8ccQigOVVQ1FWK8naIIRKO73qtsqQHnw6rdW7G+KZL2dKQZecANmNSraeDbf+U6zFZrM5TFi4vpPCM5oUa43fKvL4AsuFHC308jTYK5fPD/1F2QobTCDU1xnIWfY3+MqKRpb7Umg+GSufaSpJvkoHuVax1BphEuezhnsALcBGYMcN3u97Qh5sAPCHPk63NU3dIaVMBnTtF3uTK4yYm/OccQYQDN8jccdHy+7p98y5nf+7iH9X8F6k1dXxHhDPDig7XxfoPYMoRqLS3AaBUamRWibiI0I2xd1mnTPqOZn25Uur06hpC3ZNkx/OxMJ+r9Mz73BswMqnRRp9IyjbOBP+4lTc1siP5RpAzlqlUz2zjtPBBgAX+uokgadDwpQYHqWt/aFgF6Eh3suirnErVXD0sMT/ZEuHf9lp5J9HxzFw7hMuOuXe1srdvVYsWGTb4Itt1FflZ+z5WTSKPLvyQ4Yl5NG5OlMJTVs801bkG2qjkOLFgMbdVM9dYahkX4b/1C2PJquYn27DcxgVWjFO0Feb8fm+SIQR629w7BSwksySg2i8XNrGRVb/CWxcTVqhVdKtGQkX25ENOBs0TTeHlGLY+lMx9AFQtRHv/dLZNjaF9DaTLBkrdErmUBVAMT726FF3meSGwtc1wlJtY0YbUlc+Ewym9m1QdSEjBe0bui7f0J4jgkyY1eDUml5m5pqt5EU+/fjoslZNcnA2v1Q8syRZ1Z4ATqErSoevHIM4BS4FIjOhEiPdXcJzSuZcIdhdeq1Q4dhKJQPSTSv1r0bUwDdVP0ByapGWNDP8dqWKNQCrm63/TA1veXEMXK+XlmvHDnFDXZ1BjTmFUJMzG2e8zNLKPK0ICIn4daj7cwL+fAYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle veut que tu viennes.\",\"ca\":\"Vol que vinguis.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"subject_fem\",\"addressee_tu\"],\"chunks\":[{\"text\":\"Vol\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\",\"SYN.subordinacio.consecutio\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 217,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 546,
+              "output_tokens_details": { "thinking_tokens": 323 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 6591
+        }
+      ],
+      "latencyMs": 6593
+    },
+    {
+      "n": 22,
+      "combination": "22c",
+      "target": "nosaltres·-·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganuj1WkhLv9NmHoHuxv",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSnQgKEAgTGAI4AUIIdGhpbmtpbmcSDIi9mziI+1DFE4TDyxoMILs+c2mDNpz5fQXeIjDyByGGVUXkEGgX5rZamSLc50hz5hheC3VHmldJ32aq+CMCrMyqxeR5YeO0WyxuCBMqugdZqchxrdV5ZEhUb68hctwWpIBiw2UjGuYwrGHXXXMxfZxBbHe6Oy0mBwpSYjc7p5h3fyLEQHBXSgjDYBOw5No//CShub17aKPtEKZoKLKjkDUtnqC+G9sW8bJRigPzvJSJrT6OV0jfE/sisYe33eZGZZGNcPOxI32cw5yMmF6xyijEAL3e44OXVMr8jLNnYY0D67HS/nPEIae4oHCam5BxcbYESqwFebksEwH3MaIz8JBjVVJgLx0hMHWSE8/Ll8QDUhSzSAQU0FYzXivXcTYfkjK/iy1GKyC7ffXlHJz94U9eEY9L3HhXNvzFF9/+nBMcT5RZXj7VTrb6Hz0oWJW3rqkNE6n77qVPnhoSyyS2haTzR1AKqhqJ0pIwhHgqc5Db6FEN7TglVv1KmONjdDF0R3W1Vbe5zSAluHlQ4xxCllqWFZrkkUQYMM841sfqRkOHwZm722FP8iLu2VQyyDHi4vitAHkszU7tXjxzWxNbXXYHvkgRniIaxlyn+xLpumVErBVmR0CGRXpL8CmkVehk/uZsJ7ZxPM7UatgGqi2lcbF6HVhiltFUzkaW6qmG09/Fq/jZozpmQDAUTN7+DYSquluIeVrl7A9BYqj7FwRsSllR3mAWrwCddw/pxGwFqYWoKl3iWraI0U9HOHX2MmaUtaQVJO4A/hiNDXQF0tTdWKvpgWUnedi4nED6IoMKIXH44SjO3sia/Rd/E+7qw0ccgf5mykcUu8zW8nLOtrFPRy2HxONeO5QSMln8nvNeBQnK3Ok0luJuIxHE/Rxmvs6jTTCHFoGviHDuzG8dFqN9AEWXZvTdNW9zuHLOjj9Ww8ytjgk0SeSLGIlpzIvD2fej3+/3Vy1JfuRQmFb56y1YoMJXpNIsmeW+2JqET6wICakua2nD8NN7je9vqqPXWe8PjrMGvppQ9h7bLcGecgqFO8I8D0GMF/6ynZK9j8clpTyqQTPzp1t5Ni1FRrlGv4l23imh5R37qHOWWUuAbq4tkSrn3L1RKdT4cXYXsPpM2cgkJbIFRgqj5mY56EzrA760Byhkg5enqJ2UJou2bnzu/Hv7zinFNtufrNgytkG8EayiCQxhsqIo3yFSQEpuSVq9EenOsoDtfNCW5DcgxGK4nLSl+RTkuJ2ZJ4saNAeYMcJ8J6NocRblqX8q6W9UPZSyvixjlXxH6fQKeszcvPr+lkeXGXCuGjnyCL+krl0Eq6w0D0tWv0yemgJP8S3ZrQTLjxLrK/HM+CRjJ004UFuh94w2w3rUxNT9PgEYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Nous voulons que tu viennes.\",\"ca\":\"Volem que vinguis.\",\"subject\":{\"person\":\"1pl\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Volem\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.irregular.radical_tonic\",\"VERB.conj.2\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\",\"SYN.subordinacio.consecutio\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 220,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 445,
+              "output_tokens_details": { "thinking_tokens": 203 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5184
+        }
+      ],
+      "latencyMs": 5185
+    },
+    {
+      "n": 22,
+      "combination": "22d",
+      "target": "jo·-·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganv76J9PmvfCWSQDddz",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQStwkKEAgTGAI4AUIIdGhpbmtpbmcSDMwKSMxgtuRxIU8tixoMns+o0yrGWYVjIrYaIjCu7zVaOj2gUgtptXCU146CB9bM8IhJJkpfe/9z47/Vi385/kh2VptdMlWkg3LUl1kq1AiExkXlukLG3OAukSTLryMPrSHxFvfxhu5Yz0iszv3SvyhF4NvYIF2Xo111k9PhgXP9nz1rYPddLtEbizRCAH3wZjs1ymLnL+wwhsJmLnSm4vaBOw6vFr39m5nfAelKrzaJk6aJKtsMYtDMmmaMHUT6pSsTZb6nQpTG//JYMDn1dKsHfbMzF//90u5I/XTmh7qxmihN/zcwBUKUE5kfgQOr+doFsqK18igOe9ZLBBetB79MDqJiYD+UDVxneN3/QQI9mzRh3Q32GplLu5A1zE4CGIvGTeN1NUWVDIQwTzYzZydBj5v1WM5lGcq2SvwnvqhNKtBY6wk53AZzTBJfj1VIqwBQTY38qn/gHNqeYmonyhU5b2BPgKfO3LwQzAF9DIpTTxGz/8WrtKvd2val86GYS3mqcx5+p1DFYkORghfLov2DGDFyMAr9HImPDQxExS7QdTZs4er1IGCY/0XTSbLxDSNwQcjRkv4FpZOr4GHlRls/lNXWU3cbPJb3BRmFjlq6m5gqO/pHCdxTevzyiEYVr9iJv34ZvFNeaeFpC3owTLW5e+VlRltWh8HVEiS9GuDJaZnqc3iU1dDeZbvSe9/MG9OqS5W7tQJKlQw5POM1CUwgBFLthqYy3zh/tuQD1R7kf48+WA0CgNYlZK5FHkOlvwqTsC5RTA0VWJl+GWR4iSbTWtAsfDxBGviDwtalAgL1e8eg0/KMSdHzw/flunav0YTt62iXkGTeAh8kMivZr+GfuIZlk5oT6vDkdDg777u8MkmJST2Dr3xSVceDXEEcSJdlQaHifMNjnmRVmicZdrNsDFeLoWrGQn204aX5Y1ke9dS43VhRGhrzUCkVZfa0qf+nFE6iZlRPT4R6AqpXuF3d25Tyg5cAQLQ6DeEGKAFlL6IdNLfmIRP3RGO9Nsh3J4WSZ5lErghandTKp2dIA9hyhgLE8abGpO0saWvXUls4MEioL1ui50/NZ/91Birz4AYjMnKswRYxvegWkjvMxKMcPClIgdOQzaIwvkH3qF/8jRitOBgxcm6ASFMYEeL0/JJdHislgf21tYNEIPkAtL+92XONBsPne6/sqa/oLG1vzX2CrQpwXaqfaV3LzqWsQWF8lqUBJrX+9UBh/Lk44crI7BbaPKUdCs5EucIt4YT6s1fwXpynNs2mKcKwhuZ4koHZTMGXV08qJ9/LX/KgVTSSOr5RaeheQezdguvXPmGSYBt+k07P057uKtUlSXXGc1ZfToxaxrdmi6EY0GryLOBc4pUazy2SUjV495bNp47InkVxql4USR98IME3Oh3OYqWU8MDDRE0TpIbVQZKHDn4dOl1muaEOGLUHsjqwtS6vwHbRAwrMLFjbwyCtqaa9o3zyrdteg3Mvm1NzIXPGR2DUWqGSwD3ggt6e7o0mRCvmMn9Md5XqCScKp5qwTE64VeCoXQl9+M+8yete5z5uRCcCM8eGxIZvqStyqf8A3cen1bN5GAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne veux pas que tu viennes.\",\"ca\":\"No vull que vinguis.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"vull\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\",\"SYN.subordinacio.consecutio\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 217,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 513,
+              "output_tokens_details": { "thinking_tokens": 266 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5470
+        }
+      ],
+      "latencyMs": 5471
+    },
+    {
+      "n": 22,
+      "combination": "22e",
+      "target": "ells·-·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganvWUyZWxgAfdgXtBAH",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS1QoKEAgTGAI4AUIIdGhpbmtpbmcSDCXXlH2nomursiNxdBoMH7LU6LDTOVvDePzaIjAZ1VJ8b4QbDim7xs1YVOR25ShSU6C2wVHzr00LPrgQ+Rtcpd9Eny6mLY3ApiAacxAq8gmiTDwGG7bmZgHUxr6kinHvgdaw0UdPtqtFD0f+DPDLcfLVnDLTuTKx2V5Rvfv/a2DBdKu3QOB9t3dNGfJBhF2dqnMnXmLSwntW8O56HrpkSPLAgyLlJPnhoDysI0Q+0nfb6RyOUExJfMI9UVnRUevTeOgnOnaZYCn89myLmpuOTw5j4oxL9MAZijMFtYAEwEucpn13BfDD8lqo0t4bAas+dGpEWw8Keu8EmO0cCrfRQ2Nz6Pgc0MmtUuEfiZIi8RErmipgq/kRdlqb1yDLWOrbjAXiTSbCXFhRTUDSaM71CXad1cYHhGiQAfQN/cVCjsZc5RAWNs9BptEOvOooiBNFlkPHpr2nQdFvr8MMJ625yiPMiX8O585D5XbzpbODNe+jIOhSw8c36RifNb7ksVwGudUjoI3t76xgW3ru7LhyQlyuJ/d7VM4UUAxAWK1XxUNvGJtU+ZLJ1xP35mmT3U27PtcdHsxhCyBdhLzNJRbXef5FJd7zstj5dmMXL//vntPmGzkjQPbjiulQrpLsjd39xSme7M+yt+uolczT7I6w4ZYjF0F9y3Xcmqy/tjriGvR0D8EFLLrB/D3Wis2UGso0RVnbsd8IN2oXFjht1u4OPaPGOoFQ+enzjcfrAEiXtB5GCTkdKonJBBzARGm9rJd1v1keyWo/Wx9kGCrY1BZHdyClZSmKzr7OG/0DE9GzAJ/4oXAwa5qHyg+DHxKa/78f+D4Kc14r++h44iUIW6qiHApU3NfNPz0Pqhwge026vzlm5eQa1WwNyQvb97pvyiwShuhCWY342sCc3vCBrgkDRydIS08U66FjG6jWKWqxFAhFqs3nw2PsCs/i6Hmkxb4y6GRZYGY9MaOToiQrApGuUuRmowdPMblaWh/Yi0ZOVHba7F3CiTMwxVVklOyQEAxr0FXSpxxECrk8YdLCiaqPWHdzH3123mL/pnJVJODAH9BmgarLsRneOoKXKp2xsmIoII9aaIpV//T537liLau/JAqnpKRiVC5azalJpxWwnbfRavfEyfzTdgJbHKCd8oRmrOxFuIvxCVwx3ZUfOFtLJirBstWJdUBTCog+n/D0Gv//OfNjMhwAQbIIQMsFM5PWD5o+pQIAsLJBrzQeCO5uzQXDpvoVR+izkaFmt/XCkWHQ4I490g1V8GUI+EkNXSDEyyWTIX07q+TO6ne8dj7G56Chss4ZnVhijTkZY74n1qPD2XJiJ45MBEzSO/rqPomFV+9oQ11gqnKBRKA/6uSXDg70Kn8eJCoQKZAgti/1/eiEomvGXLZ05CJpXZBku4IJyMfUQM7f3FvKH/mXXrahuCtORBROIfHuQVeOQny/LuyE/0pR8wN+/J/4iVGT2ge7UHeFjkVAHEA6jxjUmGFe9E/1IGayQPen36e6z9/dh2hugTI+Kf5uacrBYt/c0W1E3yHZ/VktGU8GV4fPEQBYwL/1f+MKWihFMUXe2Cm7f8Sr9t+c9rEDNEaiGnKh6oPXqITNI/KshSoo3rROBEoJHKprifXmKvG0ZSkZ78ryUGrKSbohFqJBrdqoE8LENBPVj+Ag0t9b62HWxxhJw0IMxlQ4Kdofd6+BN9Fak4WhxwbV9DaFXVNu8EYxD/NHYN03H4SEh0EsJbK6HD8CxBX0iQiDRWm6JijKMFp3x1XSS8YeVZJM/zI9fHA8BYkVB+3kFKUYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ils ne veulent pas que tu viennes.\",\"ca\":\"No volen que vinguis.\",\"subject\":{\"person\":\"3pl\",\"expressed\":false},\"assumptions\":[],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"volen\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.2\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\",\"SYN.subordinacio.consecutio\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 217,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 584,
+              "output_tokens_details": { "thinking_tokens": 333 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 7025
+        }
+      ],
+      "latencyMs": 7026
+    },
+    {
+      "n": 22,
+      "combination": "22f",
+      "target": "vosaltres·-·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganw2zXJiUAyqoadD9jU",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSsAgKEAgTGAI4AUIIdGhpbmtpbmcSDKy67MmBFvVZ4RILTBoMn5AB+sXLZnajT4dDIjA6+PFVq4akzAgaV+jObZRVLhrtde0R0+CwkvHg26ugtzIEjfktK23WfQUy37KyyRUqzQf87dhXLpNRUBGCXG2fm+lLHQdvLPM2ez6DapX7OyIn21fqFQ9FDZAVLwuIzpuJYe8gptMk+1UhSQL3T+dmwGlTwHrM+UnsIJ3c4BGCz4IpxYS2kQbBHU0mt2S0rtQhiV7wqEYj7DIEX+y9U8G94AMdQCCszPHlMePPFGL1hZv+IrTPe8fQgHg908PQBv1YF4Sr1gNUbRxmsxHpN2f62fHGXTYbHDS8blqIqtYcYq0KmKBuKw8sV87TUrMYcY4Y1ZhPbBvVVphMhXFQv6a43DlXNnzxkYPsqEKFPfUWRatYTGGcVZscnifMcOPwAtKpFxARFRjPh4pOChSgAcrncA6nH1H5QON1hsFE0Xc7DEKCghkI5Z0JWR/msJmUxH36rIlTRjo8hAhGDKwt5X//kkCMtFheNQp8FmKRlHMaZ0ggtaAnPtktP9J0vtbjAYeW3ED6QEiZxIRXora/fGChgDGbE0+cVFrekcux1jSVl6QYomWx1ztZqeOoJKZ6dsoFFssTF/RMBApCfHGO42BuK/mQ9xj8Px/AaZtboqXuo7NnrEFeggb8Dr0DUDkHIMUQlnZz70ev4Gyh3H3Ix6+rHfUkEyNyWtoGR/BIkxljbpjd+/RlFPp0LGSdJHDAp4MwnPINbLYovfSkwQnTe9dqMcu06FIRTzphttCIYUy3D9CoF2qBjVk2pmAbfQ75/oNQh0xP8AEWNLXi465EEpI/Kl7vBvroF2Mow7L8W3W70taI/hYgSMwX0aQ+V+2qWanlOL0DV/DjMGwjig4NSKo9dpk//S3mWRrq6eXogny6ZfpEVp5C4NPrTTR+JUrPQa+GLv4MEd7EPXofnOPNosOxkahWS506qGLaDb5p63nUJEeN+wXoztOO19TJpasjg7vrP30jJP55H9VHa9jBPxSJLquL/OeVt2rxuGSk1ZalDq0ZnORn3J4N2EDDBNiKlSGM+2R3Tf4GnpXqjDsluLfS2U2Wvlu3H04oMjNyjGX1j1z2ez10sE5FZ+l9vL5ll+LDgSzLcLys2gNu30JE4MrlXFsn36yTDiclDIUMEGN+fbp+B2/CmgRhsPEPeDHoVgESMe7tsEzpbtlU1hZiiFemCc/4U8ESKm6S/2rBNEZGy/hvSwWg772UM0i+/YbeljJuXNe0HYuC8Rkgdx7YcZlwfbHb/uVbPOqQDP4yiJSaeInQ649j560lIrWHsCaNcI2PFa3Z4QvwtkbhJaYWcCY1FuNDAigcrbz1qHIvVLiZ1wnLfER4TBt08ky4/9oDtjF1rgSMT96OjUOnnZX2tjnRGAE="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Vous voulez que tu viennes.\",\"ca\":\"Voleu que vinguis.\",\"subject\":{\"person\":\"2pl\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Voleu\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.conj.2\"],\"lemma\":\"voler\"},{\"text\":\"que\",\"role\":\"connector\",\"ids\":[\"CONJ.completiva.que\"]},{\"text\":\"vinguis\",\"role\":\"verb\",\"ids\":[\"VERB.subj.present\",\"VERB.irregular.velar\",\"SYN.subordinacio.consecutio\"],\"lemma\":\"venir\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 220,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 446,
+              "output_tokens_details": { "thinking_tokens": 217 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5214
+        }
+      ],
+      "latencyMs": 5215
+    },
+    {
+      "n": 28,
+      "combination": "28a",
+      "target": "ella·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganwQpSQEKjTzPGKp9p4",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSkgcKEAgTGAI4AUIIdGhpbmtpbmcSDKnbWung5KGR8LMEPRoMXGIiw/q32oH9ypVzIjANL8RT7hxaUzyAjn/0C6o4lfCwJxore2Qc/4q3pBm/fBfCJ0OIummvhC54fzjjWm8qrwY27o0Ys5moKb3GQUQLinKo8KpGdTc/rJTLdetmXCC7NYoFP/Ys1f/bV2LyziGbPt+Fx+IEu45SaJBFJmt2RCYbM/EsrDLWLsp/WdOt6+YOloEWNpy1STJsmx1/ZZKw3iqmTR63jF824K1Oxv+kzkGQfB0dCOOWGHQzr5GM0mVDENTuw/7B4MBLmdLJnvp92uwxLD6lnsSx0ts6UdNrlp+N0IntInK4oCZyS/00ucdxWC+IGX8S0ScvZMmsawt1S2AhvTJI7DxVGo6WDm9rvosjHnRnU3EvT6dwB76FLH3UHeGOyrHAsTnZr1uosPwsJs1TYrT77TiPsoJcdjjllhzfkKsMaNpcuXYinodpxNPkiLkbM7pYfsaybpBpMn8gSdIEBisQOoR/Z42nWyI9AY4Dcd+g4zSgD7cjx3tAtxTDdIBz+G2Xs+BXt7uUORZ57wRPCtmxDcVCxuqUUrM6gPVTwQAAl3E1Fv6ikaUiK41HY2WcngApiBELTsywZzZSm+p+t+g8UwoFi9TE5URC8ZgVIgLWZNKwPeRRL9qvZC3U0xCAPLW7XVvywIkrm/y7PMLWGLq8GfK6N6GSxdXfmN2ANQIogtSuteRaL6curPZEaXzdmSCnlkB+WaR1NDBjKgcvGkovOn2wNRLnBdIsYBQKRpoxRfF08U2vZ+yirlmGkiAlZodKdROMeIIp9mizgGEMudGsECFyq6kVjDQVV+OgWa+Rwao9hrd/Kumdk2JkHikXgspOLz+Pinuld50l3a2BFoZJs11TyBLOFFUoz2+4Uxzdxszqnx6Ykwghxm4Xq3mx6Mgr3jhGyX/TO1/vcEpG7LVlCDKFW+tbp9+MAye4ZdzydlbuBIkzLHuvwZ0kNAVrAa+eMObPixdv2hlODYTyl+djUIx4e/rZ3s/Xfem/zrck+Ybb5KHLjZL2z7iIg74mRMvFW6icGVHap3sXwXwjCKJwkifcCxYKMblQWlI7Ma2KjyjkmuFKsdC1IHWrIDg+H3d6Wexfc3ZhLOy1jN63ezk3Og7o1097uqvilGlAjkxY3yvWmH3/MSDd3H0o0tjUOliXrGjSfcgOiBZAKhgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Elle est contente de te voir.\",\"ca\":\"Està contenta de veure't.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Està\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 247,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 382,
+              "output_tokens_details": { "thinking_tokens": 127 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4301
+        }
+      ],
+      "latencyMs": 4302
+    },
+    {
+      "n": 28,
+      "combination": "28b",
+      "target": "ell·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganwjEDcqBxSZCiPPidR",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSzwcKEAgTGAI4AUIIdGhpbmtpbmcSDHEbzXBtog2zg+YIrxoMs4L8WVf+Jw0gGlO0IjAu3DBPSvMwXrztXMxJDF2s7V3VQMI1ZaSyydKzYXUiFzl12jQzbD6f0ZQ+H60CcbEq7AYHdIjY3yJKcNbcddwWrwr1fOoN4dNdpoYd8LfMLUnowHxedvVwTRcXEAzUCjNlhteFhJg+kCH7M/eMGYYbMCzraR7iyvla/ekKwTBVUn4jxYjdM3r34SqZgN4FcmC/ktA1Ul180cGtRL6V8VfOF81dNUfbjDGqyXn9bi/xcIDEFOumSwVtiLqtyQRcnqsYarlu4xNX6QU0gwtKUG8nWujntFqzXjrWbhvvhZVWfDxevM6D5OuDyIRlrIWBkabeGqWL9/coJni8JD7yPhnpREVxgvzvUlNu4CIufRMHh4atbH5yYDVMrdJVuq7hRvMqsViWIrgOYq+ZZEM/8kIdqcl64IKGjOwtq03l8TtTGSHSjBTU45wniRQlSm/cboL/O+60FC4fPi2czP0IwGi/ccYF/kJQaOw6njHbfqnXoTos5F1rLpd2vcKNRizKEb90EKz29wLQYh92LOssEbO966+nv6FT08jV9eax9GxFTsnK0uocJhwN4JK0faEvBgqAgTfn7v5n1nyv5Gl7jCfUrIWSVWcBHzbpMe6BXaiGurF8/Pp3NmcIKBBtAlvFnJbJBfWVIR2DVgFSnLUenXgEiAQX/hHKFHBf4WVDzWRZWzfZMUiMSewjjFOar35VB30/XaZB6MpCkrjkxCaa5aUsKlipoWp8A8bje+UdpG0aGJ2WClzVkjRTzet+JAXq7IaITrt7amjjQk0SkncNlS6ZLnEL2xAD/JQXAJx24OhPOOQhnIy6pFnqgXTyjkxC+mccaqsQg5OkOU8uh4NNAcxA6Tn5t9IWxkaNGhw9B2H4hyQVbDP+adCxum4FslOm3aBs3lEJiKprtoCqnWsGOi7cIiXneBs/K41LeKZHE48AyAIhbHpspjusK3dY/eguHypfHyeqs3DAUCBv0pXsJpsif6+4OfZ9o7MKZFUBx927zvqTTFpvTck59+5TAwKsTIKmeY6Kb2v7rHAHseDCYJeO3PUdf/cKxFQaAM9oCOmS+a/sVJSmP739gamkOY0efSZf+JlE/fcg3Qe12+DSBYaGxz8ULHMinbgj6cHM8drN5wytrb3PqSQsMRoM5B52fdgMk3fxHGqDhbNL1eubHrh90afrkwXvEcv8qBYsE+yXnfQs/8LAsj5t0IgpKULQ6e6FgFEjgihaN34VqADPyccYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Il est content de te voir.\",\"ca\":\"Està content de veure't.\",\"subject\":{\"person\":\"3sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Està\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"content\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 247,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 404,
+              "output_tokens_details": { "thinking_tokens": 155 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4607
+        }
+      ],
+      "latencyMs": 4609
+    },
+    {
+      "n": 28,
+      "combination": "28c",
+      "target": "ells·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cganx4yN3n2kVPvPyTkcs",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSmQcKEAgTGAI4AUIIdGhpbmtpbmcSDOlaSL3CIABpEp7vgBoM+XJIahdPNUIkUoUYIjCSs3EaTlO5dqpjH0DpPChYQWjdyQeksSf1WZygA8Yp7grdyenNy5Wn6AO2Q4sRJwcqtgY5S39sLCGSyX14v+Qkw92Soqvh9T5zpMPZBS6oWR+2X4FKjiOK+jcIGr/tX3i3/Ht3z1Il8uHeGxCjpylC7dcGrov2vCK72A9uuaoMPXYXeXVMslZ2rhgNDXs1IUDvqZM+UJp5R5/WdeDErCxC141/tu4I0JLLEj586r3PFr/wBMV1ueiMethZFVJ+U8UniKvLcbW3Fc3doFnlKWjBvOriXf4lfFTenWi6cbU4evTbhltzouIG3TuYG2qUi5hCGD//cqGrEMni7CgbxyapcFTQigyu6PeSULSExFwd4g9dorYcYArZ5BgXM/WFUnUb9vnKdj/I36pbBjSnkW1sZ/wl0npNlpr2rmMdCOFooEJ/nuY+1Y61YXDbOoNnVD+JMKceh65zUj3opbruO++Cc+OTo6XUKNY3oiYWnu5z2pr0yAyar1VCUlMCr0UwSA0ZPqARzDG461j4bGcyAXMFlrW59go9RPYc0+7MIpg4svUTJcuSjZRYixDRoyQqKA29WlXw5xxcq3n3QFDYwRfOtx5MsbPjsSWqmvUoJoVLuU7ZiLtyvHG1bUitnmBEO0Rn2LwbK8vjmoF5Z0kQ69mpC2K89ogG+ZxY64w+gX6kS2Zf/JuTLcybmcd3qY61tsO5ZpkFbOJqNgqSx70MSdXFK3qjk4Nzi/EqS5ixHck+hTEpfqK1IahAG3CEuxB8/o+UqLklgVdcDIln15Rk4xmU8/IqZByd1zF62Fs1eFqxOQ2wVT83CO/w7lfjg63R+ciy4XnFIWBlWHhhdb8nCzq8AP6YimVHerUW3YdZU/6EATSeXOBwdtbKJYXTr5pb1NdQesnS5ukFc5pfsFd533+FNS9pjWUX8ItRKFAFWCan+toHeToxuQEm/JBL5JDQPW/2PsjI3zrpTf6qt5wWsahdYt/PsJWO2jPb9d14AWg6cUNy/veqR/4zrCJPmnqUltpXJeSNBszLTE6epPRjPej/AV6RYFzH4XMgkCkyzd/Z0YJeByeIzQzsNJzUSXLOzO/GRtGlM1APHX7r5Y6PYMLFLaXXEFODBx+SY5y5ZFPeVSDsOU4RtcH+BSXZDjS76pt5iZgUioPYwtYYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Ils sont contents de te voir.\",\"ca\":\"Estan contents de veure't.\",\"subject\":{\"person\":\"3pl\",\"expressed\":false},\"assumptions\":[\"addressee_tu\"],\"chunks\":[{\"text\":\"Estan\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contents\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 247,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 384,
+              "output_tokens_details": { "thinking_tokens": 128 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 4515
+        }
+      ],
+      "latencyMs": 4518
+    },
+    {
+      "n": 28,
+      "combination": "28d",
+      "target": "tu·present·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganxQD15kq253bv2defP",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS5QkKEAgTGAI4AUIIdGhpbmtpbmcSDOvjnXkErNWAys1m1RoMPp1+ppItoCg0oVpAIjASgPiinxpzZ1U6VkdG8Wpo9iZKrfuELl/BPvi+Y6BLHJ4VrRzVanluODPYSVKXAMYqggkzZy2lYkLYYXAZJkN6sC8hnQ79cQrENHjywQT1VZP0GVgTVbtLCk4Ik7hZM13CnwMBX9SQege2ssRnRLygYfz+TLBQ/pAm51ijb2FakvlcTt9rN4UCpe2l0kJb0O9zkcGmVvV3GCxtCytv+cdc+0TzshXGLvSgNVA8oOvCo9YccVLy/3b0p1vhu2OJV+OXXRK1mp8httiaQHybV1Nfgg/gelvoCrbkWurHDvF/OUQx66MzIw0utsGl6oBE9nB1ZeZXFrl1L8lYUwW2mXCI6R1NAJ5URqfyGpGH00zlH0g/KNCLG/rGPj8YzgT/wZmgGICUmwartTnL/GxB0i75Ob55MDcSCeQvNoMud6SQ09W+g4iywHz0/wGHYEj2bZrxdbYIrZEk+lJk3PAJxrWIUtaDDA4uyIiAcb5EbEjCcI1477idiEBbDWp+iin88cEYHUTPN4Oebdmy3b36kGDBVZnfHdu4qbga0n1IO7dIlFjeKTHGst3uZj5E9wenziFTusWcJ6TTniIILWbwY6tgfpJKmafKDStAnP1GHlgKWJI0YTTzmzuPz1AisXMJcDF/Mc6kqcczhKfgfFFGVzDsWvjfZcbm14K/T6CB6IU6IVltG1oi38nEwNhNSdACmb7Cj8I7fYb0pxfFwmQftPX1C+1C8Ljkbuetuie0Bube33jtxIzB/kCdOAclXc84JxL4mTISHteUl+0Hex4AkTBYLxZLsw5x/mEx3WOGc4REw90LqPcXN29oTxzqps9d4NcUBtGBts9OVWLuGen15t0jzBw9IMbv50jZUMwqB//XzJrEaA1Dbt7JPxtQ24jjw7HNKyONe5VNeDq1E2cb4yYuflg/0X7318Yeo6qXHjV4A7siCYnwusiYfinAFQ2Al914ezpbJpxo22Dw3SmBIGV9ObS4Dxi/JN65HeyNAgUBNe3j9G4xp/fTJLcgDS7JWgnV1uIB0nd7CVhA3J3gC0Fgr7KrI1dOlxdTzmiaDYAQQcWy7H9laTcBwXcRbDwlbiHdXPiaHrddNaYtFErWj4dOGR8JtYTFj1LFMo8VdrQrHM1QCL6vMZmSxobXUIZ0rMLxNhyUo0zIq7q/AGcvkdJr6HPBSBcm4RG+MJTM7HqWDVujS4INuNRaFGPuhgQmbNtesrWkHeJosqdlnqs+1J4m0k/8sl/74PaT4VHs7dKQfVaGJdRLmCdCrVUt8TM3OMwY9ar87vAv8dePP2qJBYlu3LPeibREesAbFtBk7KGEbXNGievOzOTVzjS8fDz0bVGSgMs3cEoLd+uU1yT5BGa8/7T0XvmbABKSSoJlxuD+nShCJFeJWn7CzqTZjJybZQ29bn8W45pABHZeodXxmeSbWtFGm8lgeKWeVlunoQOvN+cV3aTlHn85ZkDU3bSe4XhmWPputZzowTGBYyFq/vDmpcjMxerAuIXrFKKx+DA/YP5iDViggC1r9wnePi8llE/fAKXhrTQ09S7+Bc9BUThVSgmF1f52f0oc5I2pxAjWZcTfFFIeFyPIIZksCg1XLUE4NjWooxgB"
+              },
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Tu es contente de me voir.\",\"ca\":\"Estàs contenta de veure'm.\",\"subject\":{\"person\":\"2sg\",\"expressed\":false},\"assumptions\":[\"addressee_tu\",\"subject_fem\"],\"chunks\":[{\"text\":\"Estàs\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure'm\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 247,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 520,
+              "output_tokens_details": { "thinking_tokens": 253 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 5761
+        }
+      ],
+      "latencyMs": 5763
+    },
+    {
+      "n": 28,
+      "combination": "28e",
+      "target": "jo·futur·none·0·0",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011CganxpuodLc1W326UnVPR",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je serai contente de te voir.\",\"ca\":\"Estaré contenta de veure't.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"speaker_fem\",\"addressee_tu\"],\"chunks\":[{\"text\":\"Estaré\",\"role\":\"verb\",\"ids\":[\"VERB.ind.futur\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 248,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 267,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2618
+        }
+      ],
+      "latencyMs": 2620
+    },
+    {
+      "n": 28,
+      "combination": "28f",
+      "target": "jo·present·none·0·1",
+      "fetches": [
+        {
+          "status": 200,
+          "body": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011Cgany2GR8s5ZeJCczWY3x",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"status\":\"ok\",\"fr\":\"Je ne suis pas contente de te voir.\",\"ca\":\"No estic contenta de veure't.\",\"subject\":{\"person\":\"1sg\",\"expressed\":false},\"assumptions\":[\"speaker_fem\",\"addressee_tu\"],\"chunks\":[{\"text\":\"No\",\"role\":\"negation\",\"ids\":[\"NEG.simple.no\"]},{\"text\":\"estic\",\"role\":\"verb\",\"ids\":[\"VERB.ind.present\",\"VERB.ser_estar\"],\"lemma\":\"estar\"},{\"text\":\"contenta\",\"role\":\"complement\",\"ids\":[\"NOM.adj.four_form\"],\"lemma\":\"content\"},{\"text\":\"de veure't\",\"role\":\"complement\",\"ids\":[\"PREP.formes_no_finites.adjectiu_de\",\"SYN.clitics.proclisi_enclisi\",\"PRON.feble.forma_alomorfs\"],\"lemma\":\"veure\"}]}"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 247,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 24244,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "output_tokens": 295,
+              "output_tokens_details": { "thinking_tokens": 0 },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          },
+          "latencyMs": 2764
+        }
+      ],
+      "latencyMs": 2766
+    }
+  ]
+}
