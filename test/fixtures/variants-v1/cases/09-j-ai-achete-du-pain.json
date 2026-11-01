@@ -21,11 +21,115 @@
   },
   "baseCombination": "jo·avui·none·0·0",
   "combinations": [
-    { "id": "9a", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
-    { "id": "9b", "target": "jo·ahir·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "9c", "target": "ella·avui·none·1·0", "renderings": [], "frLines": [] },
-    { "id": "9d", "target": "jo·avui·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "9e", "target": "jo·futur·none·1·1", "renderings": [], "frLines": [] },
-    { "id": "9f", "target": "jo·present·haver·0·0", "renderings": [], "frLines": [] }
+    {
+      "id": "9a",
+      "target": "jo·avui·none·1·0",
+      "renderings": [
+        { "id": "9a-a", "key": "n'he comprat", "ca": "N'he comprat.", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "9a-fr-a",
+          "key": "j’en ai acheté",
+          "fr": "J'en ai acheté.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "9b",
+      "target": "jo·ahir·none·0·0",
+      "renderings": [
+        {
+          "id": "9b-a",
+          "key": "vaig comprar pa",
+          "ca": "Vaig comprar pa.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "9b-fr-a",
+          "key": "j’ai acheté du pain",
+          "fr": "J'ai acheté du pain.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "9c",
+      "target": "ella·avui·none·1·0",
+      "renderings": [
+        { "id": "9c-a", "key": "n'ha comprat", "ca": "N'ha comprat.", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "9c-fr-a",
+          "key": "elle en a acheté",
+          "fr": "Elle en a acheté.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "9d",
+      "target": "jo·avui·none·0·1",
+      "renderings": [
+        {
+          "id": "9d-a",
+          "key": "no he comprat pa",
+          "ca": "No he comprat pa.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "9d-fr-a",
+          "key": "je n’ai pas acheté de pain",
+          "fr": "Je n'ai pas acheté de pain.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "9e",
+      "target": "jo·futur·none·1·1",
+      "renderings": [
+        {
+          "id": "9e-a",
+          "key": "no en compraré",
+          "ca": "No en compraré.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "9e-fr-a",
+          "key": "je n’en achèterai pas",
+          "fr": "Je n'en achèterai pas.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "9f",
+      "target": "jo·present·haver·0·0",
+      "renderings": [
+        {
+          "id": "9f-a",
+          "key": "he de comprar pa",
+          "ca": "He de comprar pa.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "9f-fr-a",
+          "key": "je dois acheter du pain",
+          "fr": "Je dois acheter du pain.",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }

@@ -30,8 +30,22 @@
     {
       "id": "19a",
       "target": "ella·imperfet·none·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "19a-a",
+          "key": "la sopa era freda",
+          "ca": "La sopa era freda.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "19a-fr-a",
+          "key": "la soupe était froide",
+          "fr": "La soupe était froide.",
+          "verdict": null
+        }
+      ]
     },
     {
       "id": "19b",
@@ -40,14 +54,91 @@
       "renderings": [],
       "frLines": []
     },
-    { "id": "19c", "target": "ella·present·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "19d", "target": "ella·futur·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "19c",
+      "target": "ella·present·none·0·1",
+      "renderings": [
+        {
+          "id": "19c-a",
+          "key": "la sopa no és freda",
+          "ca": "La sopa no és freda.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "19c-fr-a",
+          "key": "la soupe n’est pas froide",
+          "fr": "La soupe n'est pas froide.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "19d",
+      "target": "ella·futur·none·0·0",
+      "renderings": [
+        {
+          "id": "19d-a",
+          "key": "la sopa serà freda",
+          "ca": "La sopa serà freda.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "19d-fr-a",
+          "key": "la soupe sera froide",
+          "fr": "La soupe sera froide.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "19e",
       "target": "ella·present·haver·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "19e-a",
+          "key": "la sopa ha de ser freda",
+          "ca": "La sopa ha de ser freda.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "19e-fr-a",
+          "key": "la soupe doit être froide",
+          "fr": "La soupe doit être froide.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "19f", "target": "ella·ahir·none·0·0", "renderings": [], "frLines": [] }
+    {
+      "id": "19f",
+      "target": "ella·ahir·none·0·0",
+      "renderings": [
+        {
+          "id": "19f-a",
+          "key": "la sopa va ser freda",
+          "ca": "La sopa va ser freda.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "19f-fr-a",
+          "key": "la soupe a été froide",
+          "fr": "La soupe a été froide.",
+          "verdict": null
+        },
+        {
+          "id": "19f-fr-b",
+          "key": "la soupe était froide",
+          "fr": "La soupe était froide.",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }

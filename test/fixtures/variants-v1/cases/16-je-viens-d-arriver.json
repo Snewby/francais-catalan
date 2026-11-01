@@ -22,23 +22,107 @@
     {
       "id": "16a",
       "target": "jo·imperfet·acabar·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "16a-a",
+          "key": "acabava d'arribar",
+          "ca": "Acabava d'arribar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "16a-fr-a",
+          "key": "je venais d’arriver",
+          "fr": "Je venais d'arriver.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "16b", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "16b",
+      "target": "jo·present·none·0·0",
+      "renderings": [
+        { "id": "16b-a", "key": "arribo", "ca": "Arribo.", "verdict": null }
+      ],
+      "frLines": [
+        { "id": "16b-fr-a", "key": "j’arrive", "fr": "J'arrive.", "verdict": null }
+      ]
+    },
     {
       "id": "16c",
       "target": "ella·present·acabar·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "16c-a",
+          "key": "acaba d'arribar",
+          "ca": "Acaba d'arribar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "16c-fr-a",
+          "key": "elle vient d’arriver",
+          "fr": "Elle vient d'arriver.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "16d", "target": "jo·present·acabar·0·1", "renderings": [], "frLines": [] },
-    { "id": "16e", "target": "jo·futur·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "16d",
+      "target": "jo·present·acabar·0·1",
+      "renderings": [
+        {
+          "id": "16d-a",
+          "key": "no acabo d'arribar",
+          "ca": "No acabo d'arribar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "16d-fr-a",
+          "key": "je ne viens pas d’arriver",
+          "fr": "Je ne viens pas d'arriver.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "16e",
+      "target": "jo·futur·none·0·0",
+      "renderings": [
+        { "id": "16e-a", "key": "arribaré", "ca": "Arribaré.", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "16e-fr-a",
+          "key": "j’arriverai",
+          "fr": "J'arriverai.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "16f",
       "target": "nosaltres·present·haver·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "16f-a",
+          "key": "hem d'arribar",
+          "ca": "Hem d'arribar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "16f-fr-a",
+          "key": "nous devons arriver",
+          "fr": "Nous devons arriver.",
+          "verdict": null
+        }
+      ]
     }
   ]
 }

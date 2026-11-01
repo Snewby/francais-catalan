@@ -21,16 +21,116 @@
   },
   "baseCombination": "jo·present·none·0·1",
   "combinations": [
-    { "id": "12a", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "12b", "target": "ella·present·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "12c", "target": "jo·imperfet·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "12d", "target": "jo·futur·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "12e", "target": "jo·present·haver·0·1", "renderings": [], "frLines": [] },
+    {
+      "id": "12a",
+      "target": "jo·present·none·0·0",
+      "renderings": [
+        { "id": "12a-a", "key": "ho faig", "ca": "Ho faig.", "verdict": null }
+      ],
+      "frLines": [
+        { "id": "12a-fr-a", "key": "je le fais", "fr": "Je le fais.", "verdict": null }
+      ]
+    },
+    {
+      "id": "12b",
+      "target": "ella·present·none·0·1",
+      "renderings": [
+        {
+          "id": "12b-a",
+          "key": "ella ja no ho fa",
+          "ca": "Ella ja no ho fa.",
+          "verdict": null
+        },
+        { "id": "12b-b", "key": "ja no ho fa", "ca": "Ja no ho fa.", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "12b-fr-a",
+          "key": "elle ne le fait plus",
+          "fr": "Elle ne le fait plus.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "12c",
+      "target": "jo·imperfet·none·0·1",
+      "renderings": [
+        {
+          "id": "12c-a",
+          "key": "ja no ho feia",
+          "ca": "Ja no ho feia.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "12c-fr-a",
+          "key": "je ne le faisais plus",
+          "fr": "Je ne le faisais plus.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "12d",
+      "target": "jo·futur·none·0·1",
+      "renderings": [
+        {
+          "id": "12d-a",
+          "key": "ja no ho faré",
+          "ca": "Ja no ho faré.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "12d-fr-a",
+          "key": "je ne le ferai plus",
+          "fr": "Je ne le ferai plus.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "12e",
+      "target": "jo·present·haver·0·1",
+      "renderings": [
+        {
+          "id": "12e-a",
+          "key": "ja no ho he de fer",
+          "ca": "Ja no ho he de fer.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "12e-fr-a",
+          "key": "je ne dois plus le faire",
+          "fr": "Je ne dois plus le faire.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "12f",
       "target": "vosaltres·ahir·none·0·1",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "12f-a",
+          "key": "ja no ho vau fer",
+          "ca": "Ja no ho vau fer.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "12f-fr-a",
+          "key": "vous ne l’avez plus fait",
+          "fr": "Vous ne l'avez plus fait.",
+          "verdict": null
+        }
+      ]
     }
   ]
 }

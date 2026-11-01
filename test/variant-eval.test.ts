@@ -34,12 +34,19 @@ const ROOT = path.resolve(__dirname, '..');
 const CASES = path.join(ROOT, 'test/fixtures/variants-v1/cases');
 const GOLDEN = path.join(ROOT, 'test/fixtures/golden-v2/cases');
 
-const FIXTURES: VariantFixture[] = readdirSync(CASES)
+/** The fixtures as committed, with whatever lines the review has registered. */
+const COMMITTED: VariantFixture[] = readdirSync(CASES)
   .sort()
   .map(
     (name) =>
       JSON.parse(readFileSync(path.join(CASES, name), 'utf8')) as VariantFixture,
   );
+
+/** The same fixtures with no line registered, for tests that build their own. */
+const FIXTURES: VariantFixture[] = COMMITTED.map((f) => ({
+  ...f,
+  combinations: f.combinations.map((c) => ({ ...c, renderings: [], frLines: [] })),
+}));
 const GOLDEN_CASES: GoldenCase[] = readdirSync(GOLDEN).map(
   (name) => JSON.parse(readFileSync(path.join(GOLDEN, name), 'utf8')) as GoldenCase,
 );
@@ -106,11 +113,17 @@ describe('the approved combination list (22 Oct)', () => {
     }
   });
 
-  it('starts with no rendering and no French line judged', () => {
-    for (const c of FIXTURES.flatMap((f) => f.combinations)) {
-      expect(c.renderings, c.id).toEqual([]);
-      expect(c.frLines, c.id).toEqual([]);
-    }
+  it('keys every registered line by its combination, each ID once', () => {
+    const ids = COMMITTED.flatMap((f) =>
+      f.combinations.flatMap((c) => {
+        for (const line of c.renderings)
+          expect(line.id, c.id).toMatch(new RegExp(`^${c.id}-[a-z]+$`));
+        for (const line of c.frLines)
+          expect(line.id, c.id).toMatch(new RegExp(`^${c.id}-fr-[a-z]+$`));
+        return [...c.renderings, ...c.frLines].map((line) => line.id);
+      }),
+    );
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 

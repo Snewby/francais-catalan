@@ -21,31 +21,137 @@
   },
   "baseCombination": "ella·present·estar·0·0",
   "combinations": [
-    { "id": "17a", "target": "ella·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "17a",
+      "target": "ella·present·none·0·0",
+      "renderings": [
+        {
+          "id": "17a-a",
+          "key": "prepara el sopar",
+          "ca": "Prepara el sopar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17a-fr-a",
+          "key": "elle prépare le dîner",
+          "fr": "Elle prépare le dîner.",
+          "verdict": null
+        },
+        {
+          "id": "17a-fr-b",
+          "key": "elle prépare le souper",
+          "fr": "Elle prépare le souper.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "17b",
       "target": "ella·imperfet·estar·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "17b-a",
+          "key": "estava preparant el sopar",
+          "ca": "Estava preparant el sopar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17b-fr-a",
+          "key": "elle était en train de préparer le dîner",
+          "fr": "Elle était en train de préparer le dîner.",
+          "verdict": null
+        },
+        {
+          "id": "17b-fr-b",
+          "key": "elle préparait le dîner",
+          "fr": "Elle préparait le dîner.",
+          "verdict": null
+        }
+      ]
     },
     {
       "id": "17c",
       "target": "ella·present·estar·1·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "17c-a",
+          "key": "l'està preparant",
+          "ca": "L'està preparant.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17c-fr-a",
+          "key": "elle est en train de le préparer",
+          "fr": "Elle est en train de le préparer.",
+          "verdict": null
+        }
+      ]
     },
     {
       "id": "17d",
       "target": "nosaltres·present·estar·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "17d-a",
+          "key": "estem preparant el sopar",
+          "ca": "Estem preparant el sopar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17d-fr-a",
+          "key": "nous sommes en train de préparer le dîner",
+          "fr": "Nous sommes en train de préparer le dîner.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "17e", "target": "ella·futur·estar·0·1", "renderings": [], "frLines": [] },
+    {
+      "id": "17e",
+      "target": "ella·futur·estar·0·1",
+      "renderings": [
+        {
+          "id": "17e-a",
+          "key": "no estarà preparant el sopar",
+          "ca": "No estarà preparant el sopar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17e-fr-a",
+          "key": "elle ne sera pas en train de préparer le dîner",
+          "fr": "Elle ne sera pas en train de préparer le dîner.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "17f",
       "target": "ella·present·acabar·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "17f-a",
+          "key": "acaba de preparar el sopar",
+          "ca": "Acaba de preparar el sopar.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "17f-fr-a",
+          "key": "elle vient de préparer le dîner",
+          "fr": "Elle vient de préparer le dîner.",
+          "verdict": null
+        }
+      ]
     }
   ]
 }

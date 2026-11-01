@@ -28,16 +28,125 @@
   },
   "baseCombination": "jo·ahir·none·0·0",
   "combinations": [
-    { "id": "1a", "target": "jo·avui·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "1b", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
-    { "id": "1c", "target": "ella·ahir·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "1d", "target": "jo·futur·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "1e", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "1a",
+      "target": "jo·avui·none·0·0",
+      "renderings": [
+        {
+          "id": "1a-a",
+          "key": "avui he comprat el pa al mercat",
+          "ca": "Avui he comprat el pa al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1a-fr-a",
+          "key": "aujourd’hui, j’ai acheté le pain au marché",
+          "fr": "Aujourd'hui, j'ai acheté le pain au marché.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "1b",
+      "target": "jo·avui·none·1·0",
+      "renderings": [
+        {
+          "id": "1b-a",
+          "key": "avui l'he comprat al mercat",
+          "ca": "Avui l'he comprat al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1b-fr-a",
+          "key": "aujourd’hui, je l’ai acheté au marché",
+          "fr": "Aujourd'hui, je l'ai acheté au marché.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "1c",
+      "target": "ella·ahir·none·0·0",
+      "renderings": [
+        {
+          "id": "1c-a",
+          "key": "ahir va comprar el pa al mercat",
+          "ca": "Ahir va comprar el pa al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1c-fr-a",
+          "key": "hier, elle a acheté le pain au marché",
+          "fr": "Hier, elle a acheté le pain au marché.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "1d",
+      "target": "jo·futur·none·0·1",
+      "renderings": [
+        {
+          "id": "1d-a",
+          "key": "demà no compraré el pa al mercat",
+          "ca": "Demà no compraré el pa al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1d-fr-a",
+          "key": "demain, je n’achèterai pas le pain au marché",
+          "fr": "Demain, je n'achèterai pas le pain au marché.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "1e",
+      "target": "jo·present·none·0·0",
+      "renderings": [
+        {
+          "id": "1e-a",
+          "key": "compro el pa al mercat",
+          "ca": "Compro el pa al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1e-fr-a",
+          "key": "j’achète le pain au marché",
+          "fr": "J'achète le pain au marché.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "1f",
       "target": "nosaltres·ahir·haver·1·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "1f-a",
+          "key": "ahir el vam haver de comprar al mercat",
+          "ca": "Ahir el vam haver de comprar al mercat.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "1f-fr-a",
+          "key": "hier, nous avons dû l’acheter au marché",
+          "fr": "Hier, nous avons dû l'acheter au marché.",
+          "verdict": null
+        }
+      ]
     }
   ]
 }

@@ -31,16 +31,125 @@
   },
   "baseCombination": "jo·avui·none·0·0",
   "combinations": [
-    { "id": "2a", "target": "jo·ahir·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "2b", "target": "jo·avui·none·1·0", "renderings": [], "frLines": [] },
+    {
+      "id": "2a",
+      "target": "jo·ahir·none·0·0",
+      "renderings": [
+        {
+          "id": "2a-a",
+          "key": "ahir vaig veure la teva germana",
+          "ca": "Ahir vaig veure la teva germana.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2a-fr-a",
+          "key": "hier, j’ai vu ta sœur",
+          "fr": "Hier, j'ai vu ta sœur.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "2b",
+      "target": "jo·avui·none·1·0",
+      "renderings": [
+        {
+          "id": "2b-a",
+          "key": "aquest matí l'he vista",
+          "ca": "Aquest matí l'he vista.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2b-fr-a",
+          "key": "ce matin, je l’ai vue",
+          "fr": "Ce matin, je l'ai vue.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "2c",
       "target": "vosaltres·avui·none·0·0",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "2c-a",
+          "key": "aquest matí heu vist la teva germana",
+          "ca": "Aquest matí heu vist la teva germana.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2c-fr-a",
+          "key": "ce matin, vous avez vu ta sœur",
+          "fr": "Ce matin, vous avez vu ta sœur.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "2d", "target": "jo·imperfet·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "2e", "target": "jo·avui·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "2f", "target": "jo·condicional·none·0·0", "renderings": [], "frLines": [] }
+    {
+      "id": "2d",
+      "target": "jo·imperfet·none·0·0",
+      "renderings": [
+        {
+          "id": "2d-a",
+          "key": "abans veia la teva germana",
+          "ca": "Abans veia la teva germana.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2d-fr-a",
+          "key": "avant, je voyais ta sœur",
+          "fr": "Avant, je voyais ta sœur.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "2e",
+      "target": "jo·avui·none·0·1",
+      "renderings": [
+        {
+          "id": "2e-a",
+          "key": "aquest matí no he vist la teva germana",
+          "ca": "Aquest matí no he vist la teva germana.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2e-fr-a",
+          "key": "ce matin, je n’ai pas vu ta sœur",
+          "fr": "Ce matin, je n'ai pas vu ta sœur.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "2f",
+      "target": "jo·condicional·none·0·0",
+      "renderings": [
+        {
+          "id": "2f-a",
+          "key": "veuria la teva germana",
+          "ca": "Veuria la teva germana.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "2f-fr-a",
+          "key": "je verrais ta sœur",
+          "fr": "Je verrais ta sœur.",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }

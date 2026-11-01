@@ -21,11 +21,115 @@
   },
   "baseCombination": "tu·present·none·0·0",
   "combinations": [
-    { "id": "6a", "target": "jo·present·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "6b", "target": "ells·present·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "6c", "target": "tu·futur·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "6d", "target": "tu·ahir·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "6e", "target": "tu·present·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "6f", "target": "tu·present·haver·0·0", "renderings": [], "frLines": [] }
+    {
+      "id": "6a",
+      "target": "jo·present·none·0·0",
+      "renderings": [
+        { "id": "6a-a", "key": "hi vaig demà", "ca": "Hi vaig demà?", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "6a-fr-a",
+          "key": "j’y vais demain",
+          "fr": "J'y vais demain ?",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "6b",
+      "target": "ells·present·none·0·0",
+      "renderings": [
+        { "id": "6b-a", "key": "hi van demà", "ca": "Hi van demà?", "verdict": null }
+      ],
+      "frLines": [
+        {
+          "id": "6b-fr-a",
+          "key": "ils y vont demain",
+          "fr": "Ils y vont demain ?",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "6c",
+      "target": "tu·futur·none·0·0",
+      "renderings": [
+        {
+          "id": "6c-a",
+          "key": "demà hi aniràs",
+          "ca": "Demà hi aniràs?",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "6c-fr-a",
+          "key": "demain, tu iras",
+          "fr": "Demain, tu iras ?",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "6d",
+      "target": "tu·ahir·none·0·0",
+      "renderings": [
+        {
+          "id": "6d-a",
+          "key": "hi vas anar ahir",
+          "ca": "Hi vas anar ahir?",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "6d-fr-a",
+          "key": "tu y es allé hier",
+          "fr": "Tu y es allé hier ?",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "6e",
+      "target": "tu·present·none·0·1",
+      "renderings": [
+        {
+          "id": "6e-a",
+          "key": "no hi vas demà",
+          "ca": "No hi vas demà?",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "6e-fr-a",
+          "key": "tu n’y vas pas demain",
+          "fr": "Tu n'y vas pas demain ?",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "6f",
+      "target": "tu·present·haver·0·0",
+      "renderings": [
+        {
+          "id": "6f-a",
+          "key": "hi has d'anar demà",
+          "ca": "Hi has d'anar demà?",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "6f-fr-a",
+          "key": "tu dois y aller demain",
+          "fr": "Tu dois y aller demain ?",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }

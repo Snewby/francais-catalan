@@ -30,13 +30,122 @@
       "id": "22a",
       "target": "tu·-·none·0·0",
       "trap": "subordinate_affected",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "22a-a",
+          "key": "vols que vinguis",
+          "ca": "Vols que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22a-fr-a",
+          "key": "tu veux que tu viennes",
+          "fr": "Tu veux que tu viennes.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "22b", "target": "ella·-·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "22c", "target": "nosaltres·-·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "22d", "target": "jo·-·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "22e", "target": "ells·-·none·0·1", "renderings": [], "frLines": [] },
-    { "id": "22f", "target": "vosaltres·-·none·0·0", "renderings": [], "frLines": [] }
+    {
+      "id": "22b",
+      "target": "ella·-·none·0·0",
+      "renderings": [
+        {
+          "id": "22b-a",
+          "key": "vol que vinguis",
+          "ca": "Vol que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22b-fr-a",
+          "key": "elle veut que tu viennes",
+          "fr": "Elle veut que tu viennes.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "22c",
+      "target": "nosaltres·-·none·0·0",
+      "renderings": [
+        {
+          "id": "22c-a",
+          "key": "volem que vinguis",
+          "ca": "Volem que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22c-fr-a",
+          "key": "nous voulons que tu viennes",
+          "fr": "Nous voulons que tu viennes.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "22d",
+      "target": "jo·-·none·0·1",
+      "renderings": [
+        {
+          "id": "22d-a",
+          "key": "no vull que vinguis",
+          "ca": "No vull que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22d-fr-a",
+          "key": "je ne veux pas que tu viennes",
+          "fr": "Je ne veux pas que tu viennes.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "22e",
+      "target": "ells·-·none·0·1",
+      "renderings": [
+        {
+          "id": "22e-a",
+          "key": "no volen que vinguis",
+          "ca": "No volen que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22e-fr-a",
+          "key": "ils ne veulent pas que tu viennes",
+          "fr": "Ils ne veulent pas que tu viennes.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "22f",
+      "target": "vosaltres·-·none·0·0",
+      "renderings": [
+        {
+          "id": "22f-a",
+          "key": "voleu que vinguis",
+          "ca": "Voleu que vinguis.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "22f-fr-a",
+          "key": "vous voulez que tu viennes",
+          "fr": "Vous voulez que tu viennes.",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }

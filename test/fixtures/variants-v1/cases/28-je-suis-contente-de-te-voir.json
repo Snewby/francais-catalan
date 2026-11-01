@@ -31,17 +31,126 @@
   },
   "baseCombination": "jo·present·none·0·0",
   "combinations": [
-    { "id": "28a", "target": "ella·present·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "28b", "target": "ell·present·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "28c", "target": "ells·present·none·0·0", "renderings": [], "frLines": [] },
+    {
+      "id": "28a",
+      "target": "ella·present·none·0·0",
+      "renderings": [
+        {
+          "id": "28a-a",
+          "key": "està contenta de veure't",
+          "ca": "Està contenta de veure't.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28a-fr-a",
+          "key": "elle est contente de te voir",
+          "fr": "Elle est contente de te voir.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "28b",
+      "target": "ell·present·none·0·0",
+      "renderings": [
+        {
+          "id": "28b-a",
+          "key": "està content de veure't",
+          "ca": "Està content de veure't.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28b-fr-a",
+          "key": "il est content de te voir",
+          "fr": "Il est content de te voir.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "28c",
+      "target": "ells·present·none·0·0",
+      "renderings": [
+        {
+          "id": "28c-a",
+          "key": "estan contents de veure't",
+          "ca": "Estan contents de veure't.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28c-fr-a",
+          "key": "ils sont contents de te voir",
+          "fr": "Ils sont contents de te voir.",
+          "verdict": null
+        }
+      ]
+    },
     {
       "id": "28d",
       "target": "tu·present·none·0·0",
       "trap": "subordinate_affected",
-      "renderings": [],
-      "frLines": []
+      "renderings": [
+        {
+          "id": "28d-a",
+          "key": "estàs contenta de veure'm",
+          "ca": "Estàs contenta de veure'm.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28d-fr-a",
+          "key": "tu es contente de me voir",
+          "fr": "Tu es contente de me voir.",
+          "verdict": null
+        }
+      ]
     },
-    { "id": "28e", "target": "jo·futur·none·0·0", "renderings": [], "frLines": [] },
-    { "id": "28f", "target": "jo·present·none·0·1", "renderings": [], "frLines": [] }
+    {
+      "id": "28e",
+      "target": "jo·futur·none·0·0",
+      "renderings": [
+        {
+          "id": "28e-a",
+          "key": "estaré contenta de veure't",
+          "ca": "Estaré contenta de veure't.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28e-fr-a",
+          "key": "je serai contente de te voir",
+          "fr": "Je serai contente de te voir.",
+          "verdict": null
+        }
+      ]
+    },
+    {
+      "id": "28f",
+      "target": "jo·present·none·0·1",
+      "renderings": [
+        {
+          "id": "28f-a",
+          "key": "no estic contenta de veure't",
+          "ca": "No estic contenta de veure't.",
+          "verdict": null
+        }
+      ],
+      "frLines": [
+        {
+          "id": "28f-fr-a",
+          "key": "je ne suis pas contente de te voir",
+          "fr": "Je ne suis pas contente de te voir.",
+          "verdict": null
+        }
+      ]
+    }
   ]
 }
