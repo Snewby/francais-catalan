@@ -383,6 +383,16 @@ describe('scoring', () => {
     expect(score.floors.padded).toBe('fail');
   });
 
+  it('never counts the tense the target asks for as padding', () => {
+    // Row 1 forbids VERB.perf.present, and 1a asks for passé « avui ».
+    const forbidden = new Map<number, readonly ComponentId[]>([
+      [1, ['VERB.perf.present']],
+    ]);
+    const replies = [replied('1a', 1, variantResult('x', 'y', ['VERB.perf.present']))];
+    const score = scoreVariantModel('claude-haiku-5-5', [], replies, 'h', forbidden);
+    expect([score.padded, score.links]).toEqual([0, 1]);
+  });
+
   it('measures warm latency against the 8 s floor and the 2 s target', () => {
     const fast = [replied('1a', 1, notApplicable('other'), 1800)];
     expect(

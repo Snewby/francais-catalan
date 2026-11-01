@@ -15,6 +15,8 @@ import {
 } from './score';
 import { normaliseRendering } from './golden';
 import { normaliseFrench } from './variant-review';
+import { TENSE_ID, TOURNURE_ID } from '../variants/axes';
+import { parseComboKey } from '../variants/combination';
 import type { ReplayedVariant, VariantFixture, VariantRecording } from './variants';
 
 export const VARIANT_FLOORS = {
@@ -172,7 +174,18 @@ export function scoreVariantModel(
     }
 
     variants += 1;
-    const forbidden = mustNotLink.get(reply.fixture.n) ?? [];
+    // A row's padding traps are about its original sentence. The tense or
+    // tournure the target asks for is what the variant must link, so it is
+    // never padding here: row 1 forbids VERB.perf.present on « vaig comprar »,
+    // and 1a asks for exactly that tense.
+    const target = parseComboKey(combination.target);
+    const asked = new Set<string>([
+      ...(target.tense === null ? [] : [TENSE_ID[target.tense]]),
+      ...(target.tournure === 'none' ? [] : [TOURNURE_ID[target.tournure]]),
+    ]);
+    const forbidden = (mustNotLink.get(reply.fixture.n) ?? []).filter(
+      (id) => !asked.has(id),
+    );
     for (const chunk of variant.phrase.chunks) {
       for (const id of chunk.ids) {
         links += 1;
@@ -445,7 +458,8 @@ export function renderVariantReport(scores: readonly VariantScore[]): string {
     '',
     'Replayed offline from the recordings in `test/fixtures/variants-v1/recordings/`.',
     'Cold cost reprices the same replies with the prefix written instead of read.',
-    'Padded links count each row’s golden-set must-not-link IDs, so this is a lower bound.',
+    'Padded links count each row’s golden-set must-not-link IDs, less the tense and',
+    'tournure the target asks for, so this is a lower bound.',
     '',
     ...table,
     '',
