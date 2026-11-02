@@ -189,10 +189,18 @@ export const fr = {
   report: {
     heading: 'Signaler une erreur',
     label: `Qu’est-ce qui ne va pas${NNBSP}?`,
+    note: 'Votre remarque',
     hint: 'Votre remarque reste sur cet appareil, avec la phrase.',
     save: 'Enregistrer',
     saved: 'Signalement enregistré.',
     close: 'Fermer',
+  },
+  // The report sheet's tap choices, keyed by ReportKind in src/phrase/report.ts.
+  reportKinds: {
+    catalan_wrong: 'Le catalan est faux',
+    french_wrong: 'La traduction est fausse',
+    wrong_change: 'Ce n’est pas le changement demandé',
+    notion_wrong: 'Une notion est mal reliée',
   },
   apiKey: {
     label: 'Clé API',

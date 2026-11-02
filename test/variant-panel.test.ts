@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { storeApiKey } from '../src/api/anthropic';
-import { createCatalaDatabase } from '../src/db/catala-v2';
+import { createCatalaDatabase, reportsOf } from '../src/db/catala-v2';
 import type { Recording } from '../src/eval/golden';
 import type { VariantRecording } from '../src/eval/variants';
 import { fr } from '../src/i18n/fr';
@@ -299,5 +299,31 @@ describe('copy', () => {
     expect(copy.textContent).not.toMatch(
       /\b(the|and|loading|error|retry|back|close|settings|report|pending|waiting|undefined|null|NaN)\b/i,
     );
+  });
+});
+
+describe('« Signaler une erreur » on a variant', () => {
+  it('offers all four choices and stores the variant, its combination and what was shown', async () => {
+    const { user } = await openPhrase(1);
+    await user.click(
+      within(group(fr.variants.who)).getByRole('button', { name: 'ella' }),
+    );
+    await waitFor(() => expect(catalan()).toBe('Ahir va comprar el pa al mercat.'));
+    await user.click(screen.getByRole('button', { name: fr.phrase.report }));
+    const dialog = within(screen.getByRole('dialog'));
+    expect(dialog.getAllByRole('radio')).toHaveLength(4);
+    await user.click(dialog.getByLabelText(fr.reportKinds.wrong_change));
+    await user.click(dialog.getByRole('button', { name: fr.report.save }));
+    await screen.findByText(fr.report.saved);
+    const [report] = await reportsOf(database).toArray();
+    expect(report).toMatchObject({
+      kind: 'wrong_change',
+      text: '',
+      snapshot: {
+        ca: 'Ahir va comprar el pa al mercat.',
+        comboKey: 'ella·ahir·none·0·0',
+      },
+    });
+    expect(report?.variantId).toMatch(/^[0-9a-f-]{36}$/);
   });
 });

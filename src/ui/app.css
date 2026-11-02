@@ -560,3 +560,29 @@ button.ac-chunk {
   scroll-margin-top: 15rem;
   scroll-margin-bottom: calc(var(--ac-nav) + 1rem);
 }
+
+/* « Signaler une erreur »: the four choices, each a full-width tap target. */
+.ac-kinds {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ac-kinds legend {
+  margin-bottom: 0.25rem;
+  padding: 0;
+}
+
+.ac-kind {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: var(--ac-tap);
+}
+
+.ac-kind input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--ac-accent);
+}

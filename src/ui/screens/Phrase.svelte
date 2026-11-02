@@ -28,6 +28,7 @@
   import { FAILURE_TEXT, RETRYABLE } from '../../phrase/failure';
   import { getPhrase } from '../../phrase/store';
   import { leafById } from '../../taxonomy/index';
+  import { comboKey } from '../../variants/combination';
   import { VariantSession } from '../../variants/session.svelte';
   import ChangeNotes from '../ChangeNotes.svelte';
   import ChunkSheet from '../ChunkSheet.svelte';
@@ -243,5 +244,17 @@
   <ChunkSheet chunk={open} onclose={() => (open = null)} />
 {/if}
 {#if reporting && row !== undefined}
-  <ReportSheet {database} phraseId={row.id} onclose={() => (reporting = false)} />
+  <ReportSheet
+    {database}
+    phraseId={row.id}
+    variantId={session?.shown.variantId ?? null}
+    snapshot={{
+      input: row.input,
+      ca: shown?.ca ?? row.ca,
+      fr: shown?.fr ?? row.fr,
+      comboKey:
+        session !== null && !session.isOriginal ? comboKey(session.combination) : null,
+    }}
+    onclose={() => (reporting = false)}
+  />
 {/if}

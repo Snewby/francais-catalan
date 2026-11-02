@@ -237,7 +237,11 @@ describe('recents and reports', () => {
   });
 
   it('stores a report against its phrase', async () => {
-    const report = await addReport(database, 'phrase-id', 'Le verbe est faux.', 5_000);
+    const report = await addReport(
+      database,
+      { phraseId: 'phrase-id', text: 'Le verbe est faux.' },
+      5_000,
+    );
     expect(await reportsOf(database).get(report.id)).toEqual(report);
     expect(report).toMatchObject({ phraseId: 'phrase-id', at: 5_000 });
   });
@@ -247,7 +251,7 @@ describe('the phase 1 stores', () => {
   async function fill(): Promise<void> {
     const outcome = await translate(SENTENCE, stubFetch());
     if (outcome.status !== 'stored') throw new Error('not stored');
-    await addReport(database, outcome.row.id, 'Une note.');
+    await addReport(database, { phraseId: outcome.row.id, text: 'Une note.' });
   }
 
   it('give every row a UUID and the three sync fields', async () => {

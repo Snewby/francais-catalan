@@ -12,6 +12,7 @@ import type {
   VariantStatus,
 } from '../api/phrase';
 import type { SpannedChunk } from '../api/phrase-check';
+import type { ReportKind, ReportSnapshot } from '../phrase/report';
 import type { ComponentId } from '../api/schema';
 import type { Direction, Evidence, Intent } from '../srs/evidence';
 import type { SyncFields } from './sync';
@@ -97,9 +98,18 @@ export interface VariantRow extends SyncFields {
   readonly seenAt: number | null;
 }
 
-/** « Signaler une erreur »: the learner's note on a phrase, stored locally. */
+/**
+ * « Signaler une erreur »: the learner's report on a phrase or one of its
+ * variants, stored locally. `kind`, `variantId` and `snapshot` arrived in
+ * phase 2 and are absent from rows written before it.
+ */
 export interface ReportRow extends SyncFields {
   readonly phraseId: string;
+  /** May be empty when a kind says it all. */
   readonly text: string;
   readonly at: number;
+  readonly kind?: ReportKind | null;
+  /** The variant on screen, or null for the original sentence (spec, « Signaler une erreur »). */
+  readonly variantId?: string | null;
+  readonly snapshot?: ReportSnapshot;
 }

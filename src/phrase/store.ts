@@ -26,6 +26,7 @@ import {
 import { newSyncFields } from '../db/sync';
 import { INTENT_FOR_DIRECTION, type Direction } from '../srs/evidence';
 import { inputKey, normaliseInput } from './input';
+import type { ReportKind, ReportSnapshot } from './report';
 
 /**
  * One hour, not the default five minutes: a learner typing a sentence now and
@@ -98,13 +99,28 @@ export async function tombstonePhrase(
   });
 }
 
+export interface NewReport {
+  readonly phraseId: string;
+  readonly text: string;
+  readonly kind?: ReportKind | null;
+  readonly variantId?: string | null;
+  readonly snapshot?: ReportSnapshot;
+}
+
 export async function addReport(
   database: Dexie,
-  phraseId: string,
-  text: string,
+  report: NewReport,
   now: number = Date.now(),
 ): Promise<ReportRow> {
-  const row: ReportRow = { ...newSyncFields(now), phraseId, text, at: now };
+  const row: ReportRow = {
+    ...newSyncFields(now),
+    phraseId: report.phraseId,
+    text: report.text,
+    at: now,
+    kind: report.kind ?? null,
+    variantId: report.variantId ?? null,
+    ...(report.snapshot !== undefined && { snapshot: report.snapshot }),
+  };
   await reportsOf(database).add(row);
   return row;
 }

@@ -237,12 +237,27 @@ describe('the Phrase screen, from a recorded reply', () => {
     renderAt(`#/phrase/${row.id}`);
 
     await user.click(await screen.findByRole('button', { name: fr.phrase.report }));
-    await user.type(screen.getByLabelText(fr.report.label, exact), 'Le mot est faux.');
+    const kinds = within(
+      screen.getByRole('group', { name: fr.report.label, ...exact }),
+    );
+    // On the original sentence, « not the change asked for » means nothing.
+    expect(kinds.getAllByRole('radio')).toHaveLength(3);
+    expect(kinds.queryByLabelText(fr.reportKinds.wrong_change)).toBeNull();
+    await user.click(kinds.getByLabelText(fr.reportKinds.catalan_wrong));
+    await user.type(screen.getByLabelText(fr.report.note), 'Le mot est faux.');
     await user.click(screen.getByRole('button', { name: fr.report.save }));
     expect(await screen.findByText(fr.report.saved)).toBeTruthy();
     expectNoEnglish();
     const reports = await reportsOf(database).toArray();
-    expect(reports).toMatchObject([{ phraseId: row.id, text: 'Le mot est faux.' }]);
+    expect(reports).toMatchObject([
+      {
+        phraseId: row.id,
+        text: 'Le mot est faux.',
+        kind: 'catalan_wrong',
+        variantId: null,
+        snapshot: { input: row.input, ca: row.ca, fr: row.fr, comboKey: null },
+      },
+    ]);
   });
 
   it('says so when the phrase is not on this device', async () => {
