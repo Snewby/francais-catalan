@@ -88,9 +88,10 @@ Pour chaque ligne française, « fidèle » si elle rend la variante catalan
 
 ## 6c. « Hi vas demà? », Quand : Futur
 
-| Réf.    | Catalan         | Français          | Verdict |
-| ------- | --------------- | ----------------- | ------- |
-| 6c-fr-a | Demà hi aniràs? | Demain, tu iras ? |         |
+| Réf.    | Catalan         | Français           | Verdict |
+| ------- | --------------- | ------------------ | ------- |
+| 6c-fr-a | Demà hi aniràs? | Demain, tu iras ?  |         |
+| 6c-fr-b | Demà hi aniràs? | Tu y iras demain ? |         |
 
 ## 6d. « Hi vas demà? », Quand : Passé « ahir »
 

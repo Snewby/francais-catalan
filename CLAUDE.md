@@ -116,6 +116,9 @@
 - Anthropic calls: model claude-opus-5-5 (chosen 29 Oct, docs/model-eval.md;
   `npm run eval` in CI fails if it stops clearing the floors), structured
   outputs beta header, taxonomy sent as a cached prompt prefix.
+- Variant calls: model claude-opus-5-5, PROVISIONAL (2 Nov, Sean): no model
+  cleared the variant eval and two failures are open (docs/variant-eval.md).
+  `VARIANT_MODEL` in src/variants/client.ts; CI replays the eval ungated.
 
 ## Archive
 

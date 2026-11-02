@@ -97,6 +97,7 @@ Jugez le catalan seul, sans vous soucier de la ponctuation finale ni des majuscu
 | Réf. | Catalan         | Verdict |
 | ---- | --------------- | ------- |
 | 6c-a | Demà hi aniràs? |         |
+| 6c-b | Hi aniràs demà? |         |
 
 ## 6d. « Hi vas demà? », Quand : Passé « ahir »
 

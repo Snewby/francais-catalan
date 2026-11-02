@@ -27,8 +27,16 @@ import {
   type VariantRequest,
 } from './prompt';
 
+/**
+ * The variant model, PROVISIONAL: no model cleared the variant eval, and Sean
+ * chose to build on Opus 5.5 while two failures stay open (2 Nov,
+ * docs/variant-eval.md). The eval passes its candidates explicitly; the app
+ * passes this.
+ */
+export const VARIANT_MODEL = 'claude-opus-5-5';
+
 export interface VariantBodyOptions {
-  /** No default: the variant model is whichever the variant eval picks. */
+  /** Required: the eval passes each candidate, the app VARIANT_MODEL. */
   readonly model: string;
   readonly cacheTtl?: CacheTtl;
   readonly legacyOutputFormat?: boolean;

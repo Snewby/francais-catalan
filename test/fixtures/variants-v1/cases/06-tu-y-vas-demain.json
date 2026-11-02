@@ -60,6 +60,12 @@
           "key": "demà hi aniràs",
           "ca": "Demà hi aniràs?",
           "verdict": null
+        },
+        {
+          "id": "6c-b",
+          "key": "hi aniràs demà",
+          "ca": "Hi aniràs demà?",
+          "verdict": null
         }
       ],
       "frLines": [
@@ -67,6 +73,12 @@
           "id": "6c-fr-a",
           "key": "demain, tu iras",
           "fr": "Demain, tu iras ?",
+          "verdict": null
+        },
+        {
+          "id": "6c-fr-b",
+          "key": "tu y iras demain",
+          "fr": "Tu y iras demain ?",
           "verdict": null
         }
       ]

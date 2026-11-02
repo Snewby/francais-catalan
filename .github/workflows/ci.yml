@@ -32,6 +32,12 @@ jobs:
       # changed since it was recorded (docs/model-eval.md).
       - run: npm run eval
 
+      # The phase 2 variant eval, offline: replays the variant recordings
+      # through the app's own client. Ungated while the variant model is
+      # provisional (docs/variant-eval.md), so it fails only when a recording
+      # no longer replays; `--gate <model>` is added once the floors are settled.
+      - run: npm run eval:variants
+
       # One Playwright smoke at 390 px against the production build under the
       # Pages base path: layout, overflow and tap targets jsdom cannot measure.
       - run: npx playwright install --with-deps chromium
