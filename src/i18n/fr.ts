@@ -142,6 +142,17 @@ export const fr = {
     transform: 'Transformer',
     // Two replies in a row failed the checks; the button stays live.
     unavailable: 'Variante indisponible.',
+    revert: 'Revenir à ma phrase',
+    // « Remplacer « el pa » par un pronom », around the object chunk's Catalan.
+    pronounBefore: 'Remplacer',
+    pronounAfter: 'par un pronom',
+    negation: 'Mettre à la négation',
+    on: 'Oui',
+    off: 'Non',
+    changedHeading: 'Ce qui a changé, et pourquoi',
+    seeNotion: 'Voir la notion',
+    anatomyHint:
+      'Touchez un fragment pour voir la notion. Les fragments modifiés par le dernier choix sont cerclés.',
   },
   // « Quand ? » button labels, keyed by Tense in src/variants/axes.ts.
   tenses: {

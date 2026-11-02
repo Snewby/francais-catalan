@@ -13,9 +13,11 @@
   interface Props {
     /** Injectable so a test can run the screens against a throwaway database. */
     database?: Dexie;
+    /** Variant prefetch on the Phrase screen; tests that count calls turn it off. */
+    prefetch?: boolean;
   }
 
-  let { database = db }: Props = $props();
+  let { database = db, prefetch = true }: Props = $props();
 
   // Read at mount, so a reload on any hash route draws the same screen.
   let route = $state(parseHash(window.location.hash));
@@ -43,7 +45,7 @@
       <!-- Keyed, so moving between two phrases tears the first screen down
            and cancels its request rather than reusing it. -->
       {#key route.id}
-        <Phrase id={route.id} {database} onopensettings={openSettings} />
+        <Phrase id={route.id} {database} {prefetch} onopensettings={openSettings} />
       {/key}
     {:else}
       <Stub heading={fr.screens[route.name]} />

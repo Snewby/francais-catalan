@@ -129,7 +129,8 @@ async function seed(reply: { input: string; body: unknown }, now?: number) {
 
 function renderAt(hash: string) {
   window.location.hash = hash;
-  return render(App, { database });
+  // Phase 1 behaviour, so its call counts are exact: no variant prefetch.
+  return render(App, { database, prefetch: false });
 }
 
 async function submitFromHome(text: string) {
