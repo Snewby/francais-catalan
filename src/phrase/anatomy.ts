@@ -76,7 +76,9 @@ export function droppedPronoun(
 }
 
 /** The chunks to draw, the implicit subject first. Empty when the anatomy failed. */
-export function anatomyOf(row: PhraseRow): AnatomyChunk[] {
+export function anatomyOf(
+  row: Pick<PhraseRow, 'chunks' | 'subject' | 'assumptions'>,
+): AnatomyChunk[] {
   const chunks: AnatomyChunk[] = row.chunks.map((chunk, index) => ({
     key: String(index),
     text: chunk.text,

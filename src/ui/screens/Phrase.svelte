@@ -7,7 +7,6 @@
 <script lang="ts">
   import type Dexie from 'dexie';
   import { onDestroy, onMount } from 'svelte';
-  import type { FailureKind } from '../../api/anthropic';
   import type { PhraseRow } from '../../db/rows';
   import { fr } from '../../i18n/fr';
   import { hrefFor } from '../../nav/router';
@@ -24,6 +23,7 @@
     startTranslation,
     translationFor,
   } from '../../phrase/session.svelte';
+  import { FAILURE_TEXT, RETRYABLE } from '../../phrase/failure';
   import { getPhrase } from '../../phrase/store';
   import ChunkSheet from '../ChunkSheet.svelte';
   import ReportSheet from '../ReportSheet.svelte';
@@ -46,15 +46,6 @@
   const row = $derived(live?.status === 'stored' ? live.row : (saved ?? undefined));
   const chunks = $derived(row === undefined ? [] : anatomyOf(row));
   const assumed = $derived(row === undefined ? null : assumptionsLine(row.assumptions));
-
-  const FAILURES: Record<Exclude<FailureKind, 'cancelled'>, string> = {
-    no_key: fr.failure.noKey,
-    key_rejected: fr.failure.keyRejected,
-    overloaded: fr.failure.overloaded,
-    offline: fr.failure.offline,
-    refused: fr.failure.refused,
-  };
-  const RETRYABLE: ReadonlySet<FailureKind> = new Set(['overloaded', 'offline']);
 
   onMount(() => {
     void getPhrase(database, id).then((found) => {
@@ -96,7 +87,7 @@
       <p lang="fr">{live.input}</p>
     </section>
     <section class="ac-card" role="alert">
-      <p>{FAILURES[live.kind]}</p>
+      <p>{FAILURE_TEXT[live.kind]}</p>
       {#if live.kind === 'no_key'}
         <button type="button" class="ac-button" onclick={onopensettings}
           >{fr.failure.openSettings}</button

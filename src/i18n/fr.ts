@@ -140,6 +140,8 @@ export const fr = {
     when: `Quand${NNBSP}?`,
     tournure: 'Tournure',
     transform: 'Transformer',
+    // Two replies in a row failed the checks; the button stays live.
+    unavailable: 'Variante indisponible.',
   },
   // « Quand ? » button labels, keyed by Tense in src/variants/axes.ts.
   tenses: {
