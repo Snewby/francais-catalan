@@ -252,11 +252,12 @@ describe('the phase 1 stores', () => {
 
   it('give every row a UUID and the three sync fields', async () => {
     await fill();
-    for (const table of database.tables) {
-      const rows = (await table.toArray()) as Record<string, unknown>[];
-      expect(rows.length, table.name).toBeGreaterThan(0);
+    // The phase 1 stores; test/variant-store.test.ts covers `variants`.
+    for (const name of ['phrases', 'events', 'reports']) {
+      const rows = (await database.table(name).toArray()) as Record<string, unknown>[];
+      expect(rows.length, name).toBeGreaterThan(0);
       for (const row of rows) {
-        expect(row.id, table.name).toMatch(UUID);
+        expect(row.id, name).toMatch(UUID);
         expect(typeof row.createdAt).toBe('number');
         expect(typeof row.updatedAt).toBe('number');
         expect(row.deletedAt).toBeNull();

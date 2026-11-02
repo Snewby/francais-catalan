@@ -4,7 +4,8 @@
  * A fresh start: the vanilla database is left untouched in the browser and
  * never opened, so nothing here names it. Version 1 declared no stores; phase 1
  * adds `phrases`, `events` and `reports` as version 2, each following the rules
- * in ./sync.ts. Their row shapes are in ./rows.ts.
+ * in ./sync.ts, and phase 2 adds `variants` as version 3. Their row shapes are
+ * in ./rows.ts.
  *
  * A factory over a plain Dexie instance rather than a Dexie subclass: with this
  * repository's compiler settings, any `transaction` call on a subclass exceeds
@@ -13,7 +14,7 @@
  */
 import Dexie, { type Table } from 'dexie';
 import { backupPort } from './backup';
-import type { EventRow, PhraseRow, ReportRow } from './rows';
+import type { EventRow, PhraseRow, ReportRow, VariantRow } from './rows';
 
 export const DATABASE_NAME = 'catala-v2';
 
@@ -27,6 +28,11 @@ export function createCatalaDatabase(name: string = DATABASE_NAME): Dexie {
     events: 'id, componentId, phraseId, at',
     reports: 'id, phraseId, at',
   });
+  // Variants by the phrase they vary, and by phrase and combination, which is
+  // the cache lookup.
+  database.version(3).stores({
+    variants: 'id, phraseId, [phraseId+comboKey]',
+  });
   return database;
 }
 
@@ -36,6 +42,8 @@ export const eventsOf = (database: Dexie): Table<EventRow, string> =>
   database.table('events');
 export const reportsOf = (database: Dexie): Table<ReportRow, string> =>
   database.table('reports');
+export const variantsOf = (database: Dexie): Table<VariantRow, string> =>
+  database.table('variants');
 
 export const db = createCatalaDatabase();
 

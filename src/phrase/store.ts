@@ -16,7 +16,7 @@ import {
 } from '../api/anthropic';
 import { promptHash, type CacheTtl } from '../api/prompt';
 import type { ComponentId } from '../api/schema';
-import { eventsOf, phrasesOf, reportsOf } from '../db/catala-v2';
+import { eventsOf, phrasesOf, reportsOf, variantsOf } from '../db/catala-v2';
 import {
   PHRASE_SCHEMA_VERSION,
   type EventRow,
@@ -76,6 +76,26 @@ export async function recentPhrases(database: Dexie, limit = 5): Promise<PhraseR
     .filter((row) => row.deletedAt === null)
     .limit(limit)
     .toArray();
+}
+
+/**
+ * Deletes a phrase the sync way: `deletedAt` is set, never a hard delete, and
+ * its variants go with it in the same transaction (phase 2 spec, « Store »).
+ */
+export async function tombstonePhrase(
+  database: Dexie,
+  id: string,
+  now: number = Date.now(),
+): Promise<void> {
+  const gone = { deletedAt: now, updatedAt: now };
+  await database.transaction('rw', ['phrases', 'variants'], async () => {
+    await phrasesOf(database).update(id, gone);
+    await variantsOf(database)
+      .where('phraseId')
+      .equals(id)
+      .filter((row) => row.deletedAt === null)
+      .modify(gone);
+  });
 }
 
 export async function addReport(

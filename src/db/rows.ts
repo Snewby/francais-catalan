@@ -5,7 +5,12 @@
  * model's understanding of the input, and `input` is the learner's own text.
  */
 import type { CacheUsage } from '../api/anthropic';
-import type { Assumption, Person } from '../api/phrase';
+import type {
+  Assumption,
+  NotApplicableReason,
+  Person,
+  VariantStatus,
+} from '../api/phrase';
 import type { SpannedChunk } from '../api/phrase-check';
 import type { ComponentId } from '../api/schema';
 import type { Direction, Evidence, Intent } from '../srs/evidence';
@@ -54,6 +59,42 @@ export interface EventRow extends SyncFields {
   readonly direction: Direction;
   readonly phraseId: string;
   readonly at: number;
+}
+
+/** The shape of a stored variant, bumped like PHRASE_SCHEMA_VERSION. */
+export const VARIANT_SCHEMA_VERSION = 1;
+
+/**
+ * One variant of a phrase for one target combination (phase 2 spec, « Store »),
+ * either a checked variant or a `not_applicable` reply, which is stored too so
+ * the button stays greyed on reopen with no call. Chunk data stays
+ * language-invariant: `fr` is the one French field.
+ */
+export interface VariantRow extends SyncFields {
+  readonly phraseId: string;
+  /** person·tense·tournure·pronoun·negation (src/variants/combination.ts). */
+  readonly comboKey: string;
+  readonly status: VariantStatus;
+  /** Null for `not_applicable`, as are `ca` and `subject`. */
+  readonly fr: string | null;
+  readonly ca: string | null;
+  readonly subject: { readonly person: Person; readonly expressed: boolean } | null;
+  readonly assumptions: readonly Assumption[];
+  readonly chunks: readonly SpannedChunk[];
+  /** Set only for `not_applicable`. */
+  readonly reason: NotApplicableReason | null;
+  readonly model: string;
+  readonly schemaVersion: number;
+  /** variantPromptHash: a prompt change makes the row stale without a migration. */
+  readonly promptHash: string;
+  readonly usage: CacheUsage;
+  readonly latencyMs: number;
+  /**
+   * When the learner first saw it. Null for a variant fetched ahead and never
+   * shown, which is why exposure is recorded at the first showing rather than
+   * at the call (src/variants/store.ts).
+   */
+  readonly seenAt: number | null;
 }
 
 /** « Signaler une erreur »: the learner's note on a phrase, stored locally. */
