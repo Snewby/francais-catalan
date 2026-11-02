@@ -32,6 +32,7 @@ import {
 } from './combination';
 import { NO_RINGS, changeCards, changeLine, changedKeys, frenchProse } from './display';
 import { switchNoteFr } from './notes';
+import { prefetchTargets } from './prefetch';
 import {
   fetchAndStoreVariant,
   findVariant,
@@ -329,6 +330,26 @@ export class VariantSession {
     this.cards = [];
     this.shown = this.original;
     this.combination = this.start.combination;
+  }
+
+  /**
+   * Warms the cache for the neighbours of the original (F1), one at a time
+   * so a burst of calls never competes with the learner's own tap. Writes no
+   * event: nothing fetched ahead has been seen. Skips what is stored already,
+   * and stops at the first failure, since the next call would fail the same
+   * way (no key, offline, the service saturated).
+   */
+  async prefetch(): Promise<void> {
+    for (const target of prefetchTargets(this.start)) {
+      if (
+        (await findVariant(this.database, this.phrase.id, comboKey(target))) !==
+        undefined
+      ) {
+        continue;
+      }
+      const outcome = await this.fetch(target);
+      if (outcome.status === 'error') return;
+    }
   }
 
   /** Leaving the screen: drops the tap in flight. A prefetch carries on and is cached. */
