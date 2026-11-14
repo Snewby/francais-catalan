@@ -23,7 +23,13 @@ import {
   registerRenderings,
   verdictTemplate,
 } from '../src/eval/review';
-import { gateFailures, percentile, renderReport, scoreModel } from '../src/eval/score';
+import {
+  gateFailures,
+  pendingFloors,
+  percentile,
+  renderReport,
+  scoreModel,
+} from '../src/eval/score';
 import { NNBSP } from '../src/i18n/fr';
 import { highPunctuationOffenders } from './helpers/typography';
 
@@ -475,6 +481,21 @@ describe('scoring', () => {
     const stale = scoreModel('claude-opus-5-5', runs, replayed, 'another prompt');
     expect(gateFailures(stale, 1)).toEqual(['prompt changed since runs 1, 2, 3']);
     expect(gateFailures(undefined, 1)).toEqual(['no recordings']);
+  });
+
+  it('lets a floor waiting on verdicts through, and names it', async () => {
+    const runs = [1, 2, 3].map((run) =>
+      recordingOf('claude-opus-5-5', run, [
+        { n: 12, bodies: [envelope(JA_NO_HO_FAIG)] },
+      ]),
+    );
+    const replayed: ReplayedReply[] = [];
+    for (const run of runs) replayed.push(...(await replies(run, [CASE_12])));
+    const unjudged = scoreModel('claude-opus-5-5', runs, replayed, HASH);
+    expect(unjudged.floors.accepted).toBe('pending');
+    expect(gateFailures(unjudged, 1)).toEqual([]);
+    expect(pendingFloors(unjudged)).toContain('accepted');
+    expect(pendingFloors(undefined)).toEqual([]);
   });
 
   it('uses nearest-rank percentiles', () => {

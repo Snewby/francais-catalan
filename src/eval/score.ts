@@ -302,6 +302,11 @@ export const FINALIST_RUNS = 3;
  * Why the app's model would no longer be the eval's choice, empty when it
  * still is. CI fails on any entry, so a prompt change (stale runs) or an
  * edited verdict that breaks a floor cannot reach main unnoticed.
+ *
+ * A floor still waiting on the speaker's verdicts is not a failure (decided
+ * 14 Nov, so a re-recording can land before its review): `pendingFloors`
+ * names them, and the gate still fails a floor the pending verdicts could no
+ * longer save, such as a case faux in two runs.
  */
 export function gateFailures(score: ModelScore | undefined, cases: number): string[] {
   if (score === undefined) return ['no recordings'];
@@ -315,8 +320,16 @@ export function gateFailures(score: ModelScore | undefined, cases: number): stri
       `${String(score.replies)} replies, not ${String(cases * FINALIST_RUNS)}`,
     );
   for (const [floor, status] of Object.entries(score.floors))
-    if (status !== 'pass') failures.push(`${floor} floor: ${status}`);
+    if (status === 'fail') failures.push(`${floor} floor: ${status}`);
   return failures;
+}
+
+/** The floors waiting on verdicts, which the gate lets through until they are in. */
+export function pendingFloors(score: ModelScore | undefined): string[] {
+  if (score === undefined) return [];
+  return Object.entries(score.floors)
+    .filter(([, status]) => status === 'pending')
+    .map(([floor]) => floor);
 }
 
 const usd = (value: number | null): string =>

@@ -17,6 +17,7 @@ import { promptHash } from '../src/api/prompt';
 import { replayRecording, type ReplayedReply } from '../src/eval/golden';
 import {
   gateFailures,
+  pendingFloors,
   renderReport,
   scoreModel,
   type ModelScore,
@@ -41,10 +42,14 @@ console.log(report);
 const out = argument('out');
 if (out !== undefined) writeFileSync(out, `${report}\n`, 'utf8');
 
-const failures = gateFailures(
-  scores.find((score) => score.model === MODEL),
-  cases.length,
-);
+const current = scores.find((score) => score.model === MODEL);
+const pending = pendingFloors(current);
+if (pending.length > 0) {
+  console.warn(
+    `\n${MODEL}: ${pending.join(', ')} still waiting on verdicts; not a failure until they are in.`,
+  );
+}
+const failures = gateFailures(current, cases.length);
 if (failures.length > 0) {
   console.error(`\n${MODEL} is no longer the eval's choice:`);
   for (const failure of failures) console.error(`- ${failure}`);

@@ -39,4 +39,4 @@ Opus wrote « Li'l vaig donar ahir » in two of its three runs, so learners may 
 
 ## Keeping it true
 
-CI runs `npm run eval`, which fails when the app's model (`MODEL` in `src/api/anthropic.ts`) has fewer than three current runs, a failed pre-check, a recording made under another prompt, or any floor not passed. Changing the prompt or a verdict therefore means re-recording with `npm run eval:record` (the only paid step, never run in CI) or revisiting this choice.
+CI runs `npm run eval`, which fails when the app's model (`MODEL` in `src/api/anthropic.ts`) has fewer than three current runs, a failed pre-check, a recording made under another prompt, or any floor failed. A floor still waiting on the speaker's verdicts (« pending ») is reported and let through until they are in (decided 14 Nov, so a re-recording can land before its review); a floor the pending verdicts could no longer save, such as a case faux in two runs, still fails. Changing the prompt or a verdict therefore means re-recording with `npm run eval:record` (the only paid step, never run in CI) or revisiting this choice.
