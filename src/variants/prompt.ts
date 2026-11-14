@@ -186,11 +186,21 @@ export function buildVariantUserContent(request: VariantRequest): string {
   return JSON.stringify(request);
 }
 
+let promptHashOnce: Promise<string> | undefined;
+
 /**
  * The fingerprint of a variant reply's prompt: all three blocks and the variant
  * schema. A cached variant or a recording made under another one is stale.
+ * Computed once: the prompt is fixed for a build, and every cache lookup
+ * needs it, so hashing the taxonomy on each tap only widened the window in
+ * which a newer tap could be overtaken.
  */
-export async function variantPromptHash(): Promise<string> {
+export function variantPromptHash(): Promise<string> {
+  promptHashOnce ??= hashVariantPrompt();
+  return promptHashOnce;
+}
+
+async function hashVariantPrompt(): Promise<string> {
   const source = JSON.stringify({
     system: buildVariantSystemBlocks().map((block) => block.text),
     schema: VARIANT_SCHEMA,

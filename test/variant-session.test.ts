@@ -248,6 +248,34 @@ describe('a tap', () => {
     expect(panel.waiting).toBeNull();
     expect(panel.line).toBeNull();
   });
+
+  it('lets a cached tap win over an uncached one made just before it', async () => {
+    const stub = stubFor(1);
+    const panel = session(1, stub);
+    await panel.tap('tense', 'avui');
+    panel.revert();
+    stub.hold();
+    // Both taps are made before either has read the store.
+    const uncached = panel.tap('person', 'ella');
+    const cached = panel.tap('tense', 'avui');
+    await cached;
+    stub.release();
+    await uncached;
+    expect(panel.shown.ca).toBe('Avui he comprat el pa al mercat.');
+    expect(panel.waiting).toBeNull();
+  });
+
+  it('keeps the original after « Revenir » made while a tap was reading the store', async () => {
+    const stub = stubFor(1);
+    const panel = session(1, stub);
+    stub.hold();
+    const pending = panel.tap('person', 'ella');
+    panel.revert();
+    stub.release();
+    await pending;
+    expect(panel.isOriginal).toBe(true);
+    expect(panel.waiting).toBeNull();
+  });
 });
 
 describe('greyed and not_applicable buttons', () => {

@@ -118,6 +118,11 @@ export class VariantSession {
   cards: readonly ComponentId[] = $state([]);
 
   #controller: AbortController | null = null;
+  // Bumped by every tap that may change the screen and by « Revenir »; a tap
+  // whose number is no longer current after an await draws nothing. The
+  // controller alone cannot do this: it exists only once the store has been
+  // read, so a tap still reading it has nothing to abort.
+  #generation = 0;
   // Calls in flight by combination, so a tap on a combination already being
   // fetched waits for that call instead of making a second one.
   // eslint-disable-next-line svelte/prefer-svelte-reactivity
@@ -219,10 +224,7 @@ export class VariantSession {
     if (state.kind === 'selected' || state.kind === 'waiting') return;
 
     // The latest tap wins: whatever the last one was waiting for is dropped.
-    this.#controller?.abort();
-    this.#controller = null;
-    this.waiting = null;
-    this.line = null;
+    const generation = this.#supersede();
 
     const target = applyTap(this.combination, axis, value);
     if (sameCombination(target, this.start.combination)) {
@@ -232,8 +234,9 @@ export class VariantSession {
 
     const key = comboKey(target);
     const cached = await findVariant(this.database, this.phrase.id, key);
+    if (generation !== this.#generation) return;
     if (cached !== undefined) {
-      await this.#settle(axis, value, { status: 'stored', row: cached });
+      await this.#settle(axis, value, { status: 'stored', row: cached }, generation);
       return;
     }
 
@@ -241,10 +244,20 @@ export class VariantSession {
     this.#controller = controller;
     this.waiting = { axis, value };
     const outcome = await this.fetch(target, controller.signal);
-    if (this.#controller !== controller) return;
+    if (generation !== this.#generation) return;
     this.#controller = null;
     this.waiting = null;
-    await this.#settle(axis, value, outcome);
+    await this.#settle(axis, value, outcome, generation);
+  }
+
+  /** Drops the tap in flight, whatever stage it is at, and returns the new generation. */
+  #supersede(): number {
+    this.#generation += 1;
+    this.#controller?.abort();
+    this.#controller = null;
+    this.waiting = null;
+    this.line = null;
+    return this.#generation;
   }
 
   /**
@@ -277,6 +290,7 @@ export class VariantSession {
     axis: A,
     value: Combination[A],
     outcome: VariantOutcome,
+    generation: number,
   ): Promise<void> {
     const group = GROUP_OF[axis];
     if (outcome.status === 'unavailable') {
@@ -305,6 +319,7 @@ export class VariantSession {
       this.shown.chunks,
       this.deps.now?.() ?? Date.now(),
     );
+    if (generation !== this.#generation) return;
     this.#show(axis, value, shownOf(seen), parseComboKey(seen.comboKey));
   }
 
@@ -322,10 +337,7 @@ export class VariantSession {
 
   /** « Revenir à ma phrase »: the original, with no call, rings and notes cleared. */
   revert(): void {
-    this.#controller?.abort();
-    this.#controller = null;
-    this.waiting = null;
-    this.line = null;
+    this.#supersede();
     this.previous = null;
     this.cards = [];
     this.shown = this.original;
@@ -354,7 +366,6 @@ export class VariantSession {
 
   /** Leaving the screen: drops the tap in flight. A prefetch carries on and is cached. */
   dispose(): void {
-    this.#controller?.abort();
-    this.#controller = null;
+    this.#supersede();
   }
 }
