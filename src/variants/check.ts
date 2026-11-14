@@ -95,9 +95,38 @@ function differingAxes(original: Combination, target: Combination): Axis[] {
   return AXES.filter((axis) => original[axis] !== target[axis]);
 }
 
+/** What « ja no » becomes once the negation is lifted. */
+const STILL = 'Encara';
+
+/**
+ * Lifting the negation from « ja no » (no longer) leaves « encara » (still),
+ * which is a time chunk the original never had: « Ja no ho faig » becomes
+ * « Encara ho faig ». The negation axis may add that one chunk and no other
+ * (decided 14 Nov, 12a). Read off the chunk's text, since a request's context
+ * carries no IDs.
+ */
+function liftsJaNo(context: VariantContext): boolean {
+  return (
+    !context.target.negation &&
+    context.original.combination.negation &&
+    context.original.chunks.some(
+      (chunk) => chunk.role === 'negation' && /^ja no$/i.test(straight(chunk.text)),
+    )
+  );
+}
+
+/** The time chunks a reply is held to: all of them, less one « encara » where 12a allows it. */
+function heldTimeChunks(context: VariantContext, chunks: readonly Chunk[]): Chunk[] {
+  const time = chunks.filter((chunk) => chunk.role === 'time');
+  if (!liftsJaNo(context)) return time;
+  const still = time.findIndex((chunk) => sameText(chunk.text, STILL));
+  return still < 0 ? time : time.filter((_, index) => index !== still);
+}
+
 function roleErrors(context: VariantContext, chunks: readonly Chunk[]): string[] {
   const axes = differingAxes(context.original.combination, context.target);
   const allowed = new Set(axes.flatMap((axis) => ROLES_BY_AXIS[axis]));
+  if (liftsJaNo(context)) allowed.add('time');
   return [...changedRoles(context.original.chunks, chunks)]
     .filter((role) => !allowed.has(role))
     .map(
@@ -107,7 +136,7 @@ function roleErrors(context: VariantContext, chunks: readonly Chunk[]): string[]
 }
 
 function timeWordErrors(context: VariantContext, chunks: readonly Chunk[]): string[] {
-  const time = chunks.filter((chunk) => chunk.role === 'time');
+  const time = heldTimeChunks(context, chunks);
   const { timeWord } = context;
   if (timeWord === DROP) {
     return time.length === 0

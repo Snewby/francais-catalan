@@ -154,7 +154,7 @@ One call per uncached tap, validated by code before it is shown or stored; one r
 | Tense | `verb`, `time`, `clitic` (elision: « el vaig comprar » to « l'he comprat ») |
 | Tournure | `verb`, `clitic` (« l'he de comprar ») |
 | Pronoun | `object_direct` (removed), `clitic` (added), `verb` (attached elision) |
-| Negation | `negation` |
+| Negation | `negation`. Added 14 Nov (12a): when the original has « ja no » and the negation is turned off, one `time` chunk « encara » may appear (« Ja no ho faig » to « Encara ho faig ») |
 
 ### Store (`catala-v2`)
 

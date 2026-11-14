@@ -395,6 +395,56 @@ describe('the target is realised', () => {
     ]);
   });
 
+  const ROW12_LIFTED = {
+    fr: 'Je le fais encore.',
+    subject: { person: '1sg' as const, expressed: false },
+  };
+
+  it('lets negation off turn « ja no » into « encara » as a time chunk (12a)', () => {
+    const variant = ok({
+      ...ROW12_LIFTED,
+      ca: 'Encara ho faig.',
+      chunks: [
+        { text: 'Encara', role: 'time', ids: ['ADV.temps.dixi'] },
+        { text: 'ho', role: 'clitic', ids: ['PRON.feble.ho'] },
+        { text: 'faig', role: 'verb', ids: ['VERB.ind.present'] },
+      ],
+    });
+    expect(errorsOf(variant, contextFor(12, 'jo·present·none·0·0'))).toEqual([]);
+  });
+
+  it('allows no other time chunk there, « ja » included (12a)', () => {
+    const variant = ok({
+      ...ROW12_LIFTED,
+      ca: 'Ja ho faig.',
+      chunks: [
+        { text: 'Ja', role: 'time', ids: ['ADV.temps.dixi'] },
+        { text: 'ho', role: 'clitic', ids: ['PRON.feble.ho'] },
+        { text: 'faig', role: 'verb', ids: ['VERB.ind.present'] },
+      ],
+    });
+    expect(errorsOf(variant, contextFor(12, 'jo·present·none·0·0'))).toEqual([
+      'no timeWord was sent but the time chunk changed',
+    ]);
+  });
+
+  it('keeps « encara » out when the negation stays (12a)', () => {
+    const variant = ok({
+      fr: 'Elle ne le fait pas encore.',
+      ca: 'Encara no ho fa.',
+      subject: { person: '3sg', expressed: false },
+      chunks: [
+        { text: 'Encara', role: 'time', ids: ['ADV.temps.dixi'] },
+        { text: 'no', role: 'negation', ids: ['NEG.simple.no'] },
+        { text: 'ho', role: 'clitic', ids: ['PRON.feble.ho'] },
+        { text: 'fa', role: 'verb', ids: ['VERB.ind.present'] },
+      ],
+    });
+    expect(errorsOf(variant, contextFor(12, 'ell·present·none·0·1'))).toContain(
+      'the time chunk changed, which no changed axis (person) allows',
+    );
+  });
+
   it('fails the pronoun swap when the object stays and no clitic appears (D-b)', () => {
     expect(errorsOf(ROW9_UNCHANGED, contextFor(9, 'jo·avui·none·1·0'))).toEqual([
       'pronoun is on but an object_direct chunk is left',
