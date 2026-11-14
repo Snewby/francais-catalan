@@ -363,6 +363,45 @@ describe('the target is realised', () => {
     ]);
   });
 
+  const ROW9_UNCHANGED = ok({
+    fr: 'J’ai acheté du pain.',
+    ca: 'He comprat pa.',
+    subject: { person: '1sg', expressed: false },
+    chunks: [
+      { text: 'He comprat', role: 'verb', ids: ['VERB.perf.present'] },
+      { text: 'pa', role: 'object_direct', ids: ['ART.indef.sense_partitiu'] },
+    ],
+  });
+
+  it('fails negation on when the sentence comes back without a negation chunk (D-b)', () => {
+    expect(errorsOf(ROW9_UNCHANGED, contextFor(9, 'jo·avui·none·0·1'))).toEqual([
+      'negation is on but there is no negation chunk',
+    ]);
+  });
+
+  it('fails negation off when the negation chunk is left (D-b)', () => {
+    const variant = ok({
+      fr: 'Je ne le fais plus.',
+      ca: 'Ja no ho faig.',
+      subject: { person: '1sg', expressed: false },
+      chunks: [
+        { text: 'Ja no', role: 'negation', ids: ['NEG.aspecte.ja_no'] },
+        { text: 'ho', role: 'clitic', ids: ['PRON.feble.ho'] },
+        { text: 'faig', role: 'verb', ids: ['VERB.ind.present'] },
+      ],
+    });
+    expect(errorsOf(variant, contextFor(12, 'jo·present·none·0·0'))).toEqual([
+      'negation is off but a negation chunk is left',
+    ]);
+  });
+
+  it('fails the pronoun swap when the object stays and no clitic appears (D-b)', () => {
+    expect(errorsOf(ROW9_UNCHANGED, contextFor(9, 'jo·avui·none·1·0'))).toEqual([
+      'pronoun is on but an object_direct chunk is left',
+      'pronoun is on but there is no clitic chunk',
+    ]);
+  });
+
   it('skips the tense check on a greyed tense axis (row 22, ella)', () => {
     const context = contextFor(22, 'ella·-·none·0·0');
     expect(context.target.tense).toBeNull();

@@ -159,6 +159,22 @@ function targetErrors(context: VariantContext, phrase: SpannedPhrase): string[] 
       );
     }
   }
+  // Without these two, a reply that returns the sentence untouched passes every
+  // other check and is stored as the negation or the pronoun swap (decided
+  // 14 Nov, D-b).
+  const has = (role: ChunkRole) => phrase.chunks.some((chunk) => chunk.role === role);
+  if (target.negation && !has('negation')) {
+    errors.push('negation is on but there is no negation chunk');
+  }
+  if (!target.negation && has('negation')) {
+    errors.push('negation is off but a negation chunk is left');
+  }
+  if (target.pronoun) {
+    if (has('object_direct')) {
+      errors.push('pronoun is on but an object_direct chunk is left');
+    }
+    if (!has('clitic')) errors.push('pronoun is on but there is no clitic chunk');
+  }
   return errors;
 }
 

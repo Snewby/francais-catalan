@@ -145,7 +145,7 @@ One call per uncached tap, validated by code before it is shown or stored; one r
 | Phase 1 checks | Ajv against `VARIANT_SCHEMA`; spans derived; chunks in order; uncovered text only whitespace or punctuation; `unlinked` exactly when `ids` is empty |
 | Only expected chunks changed | Compared with the original sentence. A chunk counts as changed when its role appears in only one of the two, or its text differs. Every changed role must be allowed by an axis that differs from the original (table below) |
 | Time word | When `timeWord` is a word, the `time` chunk's text equals it; when `drop`, no `time` chunk; when absent, the `time` chunk is unchanged or there is none |
-| Target realised | The verb chunk carries the tense and tournure IDs of the target; `subject.person` matches the target person |
+| Target realised | The verb chunk carries the tense and tournure IDs of the target; `subject.person` matches the target person. Added 14 Nov (D-b): negation on needs a `negation` chunk and off needs none; pronoun on needs a `clitic` chunk and no `object_direct` chunk |
 | French line | `fr` present and non-empty when `ok` |
 
 | Axis | Roles it may change |
