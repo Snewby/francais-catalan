@@ -66,7 +66,13 @@
     sessionOf = version;
     const next = new VariantSession(database, row, { apiKey: readApiKey });
     session = next;
-    void next.load().then(() => (prefetch ? next.prefetch() : undefined));
+    // Both only save taps later: a failed read leaves not_applicable buttons
+    // live until tapped, and a failed prefetch leaves the cache cold. Neither
+    // is worth an error on screen, nor an unhandled rejection.
+    void next
+      .load()
+      .then(() => (prefetch ? next.prefetch() : undefined))
+      .catch(() => undefined);
   });
 
   const shown = $derived(session?.shown ?? row);
