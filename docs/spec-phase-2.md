@@ -136,7 +136,7 @@ One call per uncached tap, validated by code before it is shown or stored; one r
 6. **Retry once** on a failed validation. Not a loop.
 7. **Second failure**: nothing is stored, the previous state stays, and an inline line « Variante indisponible. » with Réessayer appears under the panel. The button is not greyed.
 8. **Store** the reply in `variants`, `ok` or `not_applicable`.
-9. **Record exposure**: one `lookup` event per linked ID that the variant has and the previous state did not. `EVIDENCE_EFFECTS` is unchanged.
+9. **Record exposure**: one `lookup` event per linked ID that the variant has and the previous state did not. `EVIDENCE_EFFECTS` is unchanged. Departure recorded 14 Nov (D-d): the events are written once, the first time the learner sees that variant, not on every tap, so repeated taps cannot inflate exposure.
 
 ### Validation
 

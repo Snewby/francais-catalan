@@ -151,7 +151,10 @@ function linkedIds(chunks: readonly SpannedChunk[]): ComponentId[] {
 /**
  * The learner sees `row` for the first time, coming from `previous`: one
  * `lookup` event per ID the variant links and `previous` did not, and the row
- * marked seen, together. A second showing writes nothing.
+ * marked seen, together. A second showing writes nothing: the spec's step 9
+ * reads as one write per tap, and first sight only is the recorded departure
+ * from it (decided 14 Nov, D-d), so tapping back and forth cannot inflate
+ * exposure.
  */
 export async function recordFirstSight(
   database: Dexie,
