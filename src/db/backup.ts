@@ -8,7 +8,8 @@
  * IMPORT MERGES, IT DOES NOT REPLACE. Rows are never hard-deleted (see
  * ./sync.ts), so import upserts by UUID and leaves rows the file does not
  * mention alone. Clearing a table first would be exactly the hard delete the
- * sync rules forbid.
+ * sync rules forbid. Where both sides hold a row, the later `updatedAt` wins,
+ * so an older file cannot undo a tombstone or mark a seen variant unseen.
  */
 import type Dexie from 'dexie';
 
@@ -106,9 +107,25 @@ export async function importBackup(database: Dexie, backup: Backup): Promise<voi
 
   await database.transaction('rw', names, async () => {
     for (const name of names) {
-      await database.table(name).bulkPut([...(backup.tables[name] ?? [])]);
+      const table = database.table<Record<string, unknown>, string>(name);
+      const incoming = (backup.tables[name] ?? []) as Record<string, unknown>[];
+      const local = await table.bulkGet(incoming.map((row) => row.id as string));
+      await table.bulkPut(incoming.filter((row, index) => newer(row, local[index])));
     }
   });
+}
+
+/** True when `row` should replace `local`: there is none, or `row` changed later. */
+function newer(
+  row: Record<string, unknown>,
+  local: Record<string, unknown> | undefined,
+): boolean {
+  if (local === undefined) return true;
+  const theirs = row.updatedAt;
+  const ours = local.updatedAt;
+  // A row without the sync fields predates them; the file's copy is all there is to go on.
+  if (typeof theirs !== 'number' || typeof ours !== 'number') return true;
+  return theirs > ours;
 }
 
 export function backupFileName(backup: Backup): string {

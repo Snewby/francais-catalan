@@ -256,4 +256,37 @@ describe('the tombstone cascade and backup', () => {
       await copy.delete();
     }
   });
+
+  it('keeps the newer row on import, so an old file neither unsees nor revives', async () => {
+    await storeOne();
+    const file = await backupPort(database).exportFile();
+    const [fetched] = await variantsOf(database).toArray();
+    if (fetched === undefined) throw new Error('not stored');
+    const seen = await recordFirstSight(database, fetched, ROW1.chunks as never, 2_000);
+    const events = await eventsOf(database).count();
+    await tombstonePhrase(database, PHRASE_ID, 5_000);
+
+    await backupPort(database).importFile(file.text);
+    const [after] = await variantsOf(database).toArray();
+    expect(after?.seenAt).toBe(seen.seenAt);
+    expect(after?.deletedAt).toBe(5_000);
+    expect((await phrasesOf(database).get(PHRASE_ID))?.deletedAt).toBe(5_000);
+    expect(await eventsOf(database).count()).toBe(events);
+  });
+
+  it('takes a row from the file when it is newer than the local one', async () => {
+    await storeOne();
+    const copy = createCatalaDatabase(`variant-copy-${crypto.randomUUID()}`);
+    try {
+      await backupPort(copy).importFile((await backupPort(database).exportFile()).text);
+      const [fetched] = await variantsOf(database).toArray();
+      if (fetched === undefined) throw new Error('not stored');
+      await recordFirstSight(database, fetched, ROW1.chunks as never, 2_000);
+      await backupPort(copy).importFile((await backupPort(database).exportFile()).text);
+      const [imported] = await variantsOf(copy).toArray();
+      expect(imported?.seenAt).toBe(2_000);
+    } finally {
+      await copy.delete();
+    }
+  });
 });
