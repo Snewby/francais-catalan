@@ -350,6 +350,27 @@ describe('failure states', () => {
     expect(fetchFn).toHaveBeenCalledTimes(3);
     expect(await phrasesOf(database).count()).toBe(1);
   });
+
+  it('keeps rebuilding the anatomy when that Réessayer fails offline and is tried again', async () => {
+    const online = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(true);
+    const fetchFn = stubFetch(
+      ok(brokenAnatomy(HIER.body)),
+      ok(brokenAnatomy(HIER.body)),
+      ok(HIER.body),
+    );
+    vi.stubGlobal('fetch', fetchFn);
+    const user = await submitFromHome(HIER.input);
+    expect(await screen.findByText(fr.failure.analysisFailed)).toBeTruthy();
+
+    online.mockReturnValue(false);
+    await user.click(screen.getByRole('button', { name: fr.failure.retry }));
+    expect(await screen.findByText(fr.failure.offline)).toBeTruthy();
+
+    online.mockReturnValue(true);
+    await user.click(screen.getByRole('button', { name: fr.failure.retry }));
+    expect(await screen.findByText('Verbe · vaig cantar')).toBeTruthy();
+    expect(fetchFn).toHaveBeenCalledTimes(3);
+  });
 });
 
 describe('Home', () => {

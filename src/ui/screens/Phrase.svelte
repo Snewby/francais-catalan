@@ -136,8 +136,10 @@
           >{fr.failure.openSettings}</button
         >
       {:else if RETRYABLE.has(live.kind)}
-        <button type="button" class="ac-button" onclick={() => retry(live.input)}
-          >{fr.failure.retry}</button
+        <button
+          type="button"
+          class="ac-button"
+          onclick={() => retry(live.input, live.force)}>{fr.failure.retry}</button
         >
       {/if}
     </section>

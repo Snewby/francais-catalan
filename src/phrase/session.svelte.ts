@@ -17,6 +17,8 @@ export type Translation =
       readonly status: 'error';
       readonly input: string;
       readonly kind: Exclude<FailureKind, 'cancelled'>;
+      /** The failed attempt skipped the cache, so « Réessayer » must too. */
+      readonly force: boolean;
     }
   | { readonly status: 'stored'; readonly row: PhraseRow };
 
@@ -59,7 +61,12 @@ export function startTranslation(
     } else if (outcome.kind === 'cancelled') {
       delete translations[id];
     } else {
-      translations[id] = { status: 'error', input, kind: outcome.kind };
+      translations[id] = {
+        status: 'error',
+        input,
+        kind: outcome.kind,
+        force: options.force === true,
+      };
     }
   });
 }
