@@ -8,7 +8,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MODEL } from '../src/api/anthropic';
 import { checkPhraseReply } from '../src/api/phrase-check';
-import { createCatalaDatabase, eventsOf } from '../src/db/catala-v2';
+import { createCatalaDatabase, eventsOf, variantsOf } from '../src/db/catala-v2';
 import { PHRASE_SCHEMA_VERSION, type PhraseRow } from '../src/db/rows';
 import type { VariantRecording } from '../src/eval/variants';
 import { fr } from '../src/i18n/fr';
@@ -275,6 +275,44 @@ describe('a tap', () => {
     await pending;
     expect(panel.isOriginal).toBe(true);
     expect(panel.waiting).toBeNull();
+  });
+});
+
+describe('fetching ahead', () => {
+  it('does not repeat a call still in flight when the phrase is reopened', async () => {
+    const stub = stubFor(1);
+    const first = session(1, stub);
+    stub.hold();
+    const warming = first.prefetch();
+    await vi.waitFor(() => expect(stub.targets).toHaveLength(1));
+    first.dispose();
+    const reopened = session(1, stub);
+    const rewarming = reopened.prefetch();
+    stub.release();
+    await Promise.all([warming, rewarming]);
+    expect(stub.targets.length).toBeGreaterThan(1);
+    expect(stub.targets).toEqual([...new Set(stub.targets)]);
+    const stored = await variantsOf(database).toArray();
+    expect(stored.map((row) => row.comboKey)).toEqual([
+      ...new Set(stored.map((row) => row.comboKey)),
+    ]);
+  });
+
+  it('keeps warming after the tap whose call it was sharing is cancelled', async () => {
+    const stub = stubFor(1);
+    const panel = session(1, stub);
+    stub.hold();
+    const tap = panel.tap('tense', 'present');
+    await vi.waitFor(() => expect(stub.targets).toHaveLength(1));
+    const warming = panel.prefetch();
+    // The held call never returns on its own, so waiting only lets the
+    // prefetch read the store and join it.
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    await panel.tap('person', 'ella');
+    await Promise.all([tap, warming]);
+    expect(stub.targets).toEqual(
+      expect.arrayContaining(['tu·ahir·none·0·0', 'ell·ahir·none·0·0']),
+    );
   });
 });
 

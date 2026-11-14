@@ -103,6 +103,20 @@ function shownOf(row: VariantRow): Shown {
   };
 }
 
+/**
+ * Variant calls in flight, by database, phrase and combination. Module-wide,
+ * not per session: the Phrase screen builds a new session each time it opens,
+ * while a prefetch carries on after its session is disposed, so a reopened
+ * phrase must find the call the last session left running rather than pay
+ * for it again.
+ */
+// eslint-disable-next-line svelte/prefer-svelte-reactivity
+const inFlight = new Map<string, Promise<VariantOutcome>>();
+
+function isCancelled(outcome: VariantOutcome): boolean {
+  return outcome.status === 'error' && outcome.kind === 'cancelled';
+}
+
 export class VariantSession {
   readonly start: StartingState;
   readonly original: Shown;
@@ -123,10 +137,6 @@ export class VariantSession {
   // controller alone cannot do this: it exists only once the store has been
   // read, so a tap still reading it has nothing to abort.
   #generation = 0;
-  // Calls in flight by combination, so a tap on a combination already being
-  // fetched waits for that call instead of making a second one.
-  // eslint-disable-next-line svelte/prefer-svelte-reactivity
-  readonly #inFlight = new Map<string, Promise<VariantOutcome>>();
 
   constructor(
     private readonly database: Dexie,
@@ -261,14 +271,34 @@ export class VariantSession {
   }
 
   /**
-   * One call for `target`, shared with any other caller already fetching it.
-   * Public so prefetch can warm the cache through the same path.
+   * One call for `target`, shared with any other caller already fetching it,
+   * in this session or another. Public so prefetch can warm the cache through
+   * the same path.
    */
-  fetch(target: Combination, signal?: AbortSignal): Promise<VariantOutcome> {
-    const key = comboKey(target);
-    const running = this.#inFlight.get(key);
-    if (running !== undefined) return running;
-    const call = fetchAndStoreVariant(this.database, {
+  async fetch(target: Combination, signal?: AbortSignal): Promise<VariantOutcome> {
+    const key = `${this.database.name}|${this.phrase.id}|${comboKey(target)}`;
+    const running = inFlight.get(key);
+    if (running !== undefined) {
+      const shared = await running;
+      // A call is cancelled only by the tap that made it. A caller that
+      // shared it and still wants the answer makes its own call.
+      if (!isCancelled(shared) || signal?.aborted === true) return shared;
+      return this.fetch(target, signal);
+    }
+    const call: Promise<VariantOutcome> = this.#fetchOnce(target, signal).finally(
+      () => {
+        if (inFlight.get(key) === call) inFlight.delete(key);
+      },
+    );
+    inFlight.set(key, call);
+    return call;
+  }
+
+  async #fetchOnce(target: Combination, signal?: AbortSignal): Promise<VariantOutcome> {
+    // Another session may have stored it since this caller last looked.
+    const stored = await findVariant(this.database, this.phrase.id, comboKey(target));
+    if (stored !== undefined) return { status: 'stored', row: stored };
+    return fetchAndStoreVariant(this.database, {
       phraseId: this.phrase.id,
       original: {
         ca: this.phrase.ca,
@@ -281,9 +311,7 @@ export class VariantSession {
       ...(this.deps.fetchFn && { fetchFn: this.deps.fetchFn }),
       ...(this.deps.isOnline && { isOnline: this.deps.isOnline }),
       ...(this.deps.now && { now: this.deps.now() }),
-    }).finally(() => this.#inFlight.delete(key));
-    this.#inFlight.set(key, call);
-    return call;
+    });
   }
 
   async #settle<A extends Axis>(
