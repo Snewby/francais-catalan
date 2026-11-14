@@ -12,10 +12,7 @@ import { SWITCH_NOTES } from './notes';
 
 export const NO_RINGS: ReadonlySet<string> = new Set();
 
-/** French prose takes the typographic apostrophe; a model may write the straight one. */
-export function frenchProse(text: string): string {
-  return text.replaceAll("'", '’');
-}
+export { frenchProse } from '../i18n/fr';
 
 /**
  * Which drawn chunks differ from the state before, pairing chunks of one role

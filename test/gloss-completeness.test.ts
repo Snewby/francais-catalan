@@ -130,7 +130,7 @@ describe('French metalanguage conventions in taxonomy and overrides prose', () =
 
   it('uses no em-dashes', () => {
     for (const { id, field, text } of frenchProse) {
-      expect(text, `${id} ${field}`).not.toContain('—');
+      expect(text, `${id} ${field}`).not.toContain('\u2014');
     }
   });
 

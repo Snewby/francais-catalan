@@ -7,7 +7,7 @@
   import type Dexie from 'dexie';
   import { onMount } from 'svelte';
   import type { PhraseRow } from '../../db/rows';
-  import { fr, labelled } from '../../i18n/fr';
+  import { fr, frenchProse, labelled } from '../../i18n/fr';
   import { hrefFor } from '../../nav/router';
   import { startTranslation } from '../../phrase/session.svelte';
   import { findCached, recentPhrases } from '../../phrase/store';
@@ -94,7 +94,7 @@
           <li>
             <a class="ac-recent" href={hrefFor({ name: 'phrase', id: row.id })}>
               <span class="ac-recent__ca" lang="ca">{row.ca}</span>
-              <span class="ac-recent__fr" lang="fr">{row.fr}</span>
+              <span class="ac-recent__fr" lang="fr">{frenchProse(row.fr)}</span>
             </a>
           </li>
         {/each}

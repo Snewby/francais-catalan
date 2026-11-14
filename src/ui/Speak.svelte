@@ -11,11 +11,14 @@
 <script lang="ts">
   import { catalanVoice } from '../audio/catalan-voice.svelte';
   import { speakCatalan } from '../audio/voice';
-  import { fr, labelled } from '../i18n/fr';
+  import { NNBSP, fr } from '../i18n/fr';
 
   interface Props {
     text: string;
-    /** Names what is being read, for a screen reader and for the title. */
+    /**
+     * Names what is being read, for a screen reader and for the title. Read
+     * as Catalan, since the default is the Catalan itself.
+     */
     label?: string;
     /** Injectable so a test can assert what was spoken without a speech engine. */
     speak?: typeof speakCatalan;
@@ -32,6 +35,8 @@
   class="ac-button ac-button--quiet"
   hidden={catalanVoice() === null}
   title={named}
-  aria-label={labelled(fr.audio.speak, named)}
-  onclick={() => speak(text, catalanVoice())}>{fr.audio.speak}</button
+  onclick={() => speak(text, catalanVoice())}
+  >{fr.audio.speak}<span class="ac-visually-hidden"
+    >{NNBSP}: <span lang="ca">{named}</span></span
+  ></button
 >

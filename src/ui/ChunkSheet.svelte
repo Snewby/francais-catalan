@@ -9,9 +9,9 @@
   imports.
 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { fr } from '../i18n/fr';
   import type { AnatomyChunk } from '../phrase/anatomy';
+  import { modal } from '../platform/modal';
   import { leafById } from '../taxonomy/index';
 
   interface Props {
@@ -21,12 +21,9 @@
 
   let { chunk, onclose }: Props = $props();
 
-  let closeButton: HTMLButtonElement | undefined = $state();
   const leaves = $derived(
     chunk.ids.map((id) => leafById(id)).filter((leaf) => leaf !== undefined),
   );
-
-  onMount(() => closeButton?.focus());
 </script>
 
 <svelte:window
@@ -35,11 +32,17 @@
   }}
 />
 
-<div class="ac-sheet" role="dialog" aria-modal="true" aria-labelledby="ac-chunk-sheet">
+<div
+  class="ac-sheet"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ac-chunk-sheet"
+  use:modal
+>
   <header class="ac-header">
     <h2 id="ac-chunk-sheet" class="ac-title" lang="ca">{chunk.text}</h2>
     <button
-      bind:this={closeButton}
+      data-autofocus
       type="button"
       class="ac-button ac-button--quiet"
       onclick={onclose}>{fr.chunkSheet.close}</button

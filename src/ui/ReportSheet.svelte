@@ -6,8 +6,8 @@
 -->
 <script lang="ts">
   import type Dexie from 'dexie';
-  import { onMount } from 'svelte';
   import { fr } from '../i18n/fr';
+  import { modal } from '../platform/modal';
   import { kindsFor, type ReportKind, type ReportSnapshot } from '../phrase/report';
   import { addReport } from '../phrase/store';
 
@@ -25,12 +25,9 @@
   let kind: ReportKind | null = $state(null);
   let note = $state('');
   let status = $state('');
-  let first: HTMLInputElement | undefined = $state();
 
   const kinds = $derived(kindsFor(variantId !== null));
   const ready = $derived(kind !== null || note.trim() !== '');
-
-  onMount(() => first?.focus());
 
   async function save(event: SubmitEvent): Promise<void> {
     event.preventDefault();
@@ -54,7 +51,13 @@
   }}
 />
 
-<div class="ac-sheet" role="dialog" aria-modal="true" aria-labelledby="ac-report">
+<div
+  class="ac-sheet"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ac-report"
+  use:modal
+>
   <header class="ac-header">
     <h2 id="ac-report" class="ac-title">{fr.report.heading}</h2>
     <button type="button" class="ac-button ac-button--quiet" onclick={onclose}
@@ -67,22 +70,13 @@
       <legend>{fr.report.label}</legend>
       {#each kinds as option, index (option)}
         <label class="ac-kind">
-          {#if index === 0}
-            <input
-              bind:this={first}
-              type="radio"
-              name="ac-report-kind"
-              value={option}
-              bind:group={kind}
-            />
-          {:else}
-            <input
-              type="radio"
-              name="ac-report-kind"
-              value={option}
-              bind:group={kind}
-            />
-          {/if}
+          <input
+            type="radio"
+            name="ac-report-kind"
+            value={option}
+            bind:group={kind}
+            data-autofocus={index === 0 ? '' : undefined}
+          />
           <span>{fr.reportKinds[option]}</span>
         </label>
       {/each}

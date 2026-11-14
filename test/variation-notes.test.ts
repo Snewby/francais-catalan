@@ -54,7 +54,7 @@ describe('data/variation-notes.json', () => {
     for (const [id, note] of Object.entries(SWITCH_NOTES)) {
       expect(highPunctuationOffenders(note.fr), id).toEqual([]);
       expect(note.fr, id).not.toMatch(/« | »/);
-      expect(note.fr, id).not.toContain('—');
+      expect(note.fr, id).not.toContain('\u2014');
     }
     // French prose takes ’ and a Catalan form takes ', which is what keeps
     // exact matching on Catalan text possible wherever it is cited.

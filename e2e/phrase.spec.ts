@@ -27,7 +27,9 @@ test('Home and the Phrase screen fit 390 px with full-size targets', async ({
   expect(await horizontalOverflow(page)).toBe(0);
   expect(await smallTargets(page)).toEqual([]);
 
-  await page.getByRole('button', { name: /^vaig comprar, verbe/ }).click();
+  // The Catalan text and the French detail are separate elements, so each is
+  // read in its own language; the name may join them with a space.
+  await page.getByRole('button', { name: /^vaig comprar ?, verbe/ }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   expect(await horizontalOverflow(page)).toBe(0);
   expect(await smallTargets(page)).toEqual([]);

@@ -3,12 +3,12 @@
   import. The key is never shown back, only whether one is stored.
 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { clearApiKey, readApiKey, storeApiKey } from '../api/anthropic';
   import { BackupRejected, type BackupPort, type BackupRejection } from '../db/backup';
   import { backup as catalaBackup } from '../db/catala-v2';
   import { fr } from '../i18n/fr';
   import { downloadText } from '../platform/download';
+  import { modal } from '../platform/modal';
   import { readText } from '../platform/read-file';
 
   interface Props {
@@ -24,15 +24,12 @@
   let draft = $state('');
   let keyStatus = $state('');
   let dataStatus = $state('');
-  let closeButton: HTMLButtonElement | undefined = $state();
 
   const REJECTION: Record<BackupRejection, string> = {
     unreadable: fr.data.importUnreadable,
     'unknown-version': fr.data.importUnknownVersion,
     'wrong-shape': fr.data.importWrongShape,
   };
-
-  onMount(() => closeButton?.focus());
 
   function saveKey(event: SubmitEvent): void {
     event.preventDefault();
@@ -81,11 +78,17 @@
   }}
 />
 
-<div class="ac-sheet" role="dialog" aria-modal="true" aria-labelledby="ac-settings">
+<div
+  class="ac-sheet"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ac-settings"
+  use:modal
+>
   <header class="ac-header">
     <h2 id="ac-settings" class="ac-title">{fr.settings.heading}</h2>
     <button
-      bind:this={closeButton}
+      data-autofocus
       type="button"
       class="ac-button ac-button--quiet"
       onclick={onclose}>{fr.settings.close}</button

@@ -52,7 +52,7 @@ describe('French typography', () => {
 
   it('uses no em-dashes anywhere', () => {
     for (const value of allStrings()) {
-      expect(value, `em-dash in: ${value}`).not.toContain('—');
+      expect(value, `em-dash in: ${value}`).not.toContain('\u2014');
     }
   });
 

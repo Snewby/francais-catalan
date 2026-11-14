@@ -146,7 +146,7 @@ describe('the variant instruction', () => {
 
   it('follows French typography', () => {
     expect(highPunctuationOffenders(VARIANT_INSTRUCTION)).toEqual([]);
-    expect(VARIANT_INSTRUCTION).not.toContain('—');
+    expect(VARIANT_INSTRUCTION).not.toContain('\u2014');
   });
 });
 

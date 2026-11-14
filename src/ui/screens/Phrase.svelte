@@ -10,13 +10,13 @@
   import { readApiKey } from '../../api/anthropic';
   import type { ComponentId } from '../../api/schema';
   import type { PhraseRow } from '../../db/rows';
-  import { fr } from '../../i18n/fr';
+  import { fr, frenchProse } from '../../i18n/fr';
   import { hrefFor } from '../../nav/router';
   import {
-    accessibleNameOf,
+    accessibleDetailOf,
     anatomyOf,
     assumptionsLine,
-    captionOf,
+    captionPartsOf,
     toneOf,
     type AnatomyChunk,
   } from '../../phrase/anatomy';
@@ -106,10 +106,21 @@
     };
   }
 
+  /** Between a caption's role and its Catalan form, « Verbe · vaig cantar ». */
+  const SEPARATOR = ' · ';
+
   function retry(input: string, force = false): void {
     void startTranslation(database, id, input, { force });
   }
 </script>
+
+{#snippet caption(chunk: AnatomyChunk)}
+  <!-- The separator is an expression: a template line break around an {#if}
+       block is trimmed, which glued « Sujet· ». -->
+  {@const parts = captionPartsOf(chunk)}
+  {parts.role}{#if parts.ca !== undefined}{SEPARATOR}<span lang="ca">{parts.ca}</span
+    >{:else if parts.fr !== undefined}{SEPARATOR}{parts.fr}{/if}
+{/snippet}
 
 <section class="ac-screen">
   <header class="ac-header ac-header--back">
@@ -165,7 +176,7 @@
       >
         <h2 id="ac-in-catalan">{fr.phrase.inCatalan}</h2>
         <p class="ac-ca" lang="ca">{shown?.ca}</p>
-        <p class="ac-hint" lang="fr">{shown?.fr}</p>
+        <p class="ac-hint" lang="fr">{frenchProse(shown?.fr ?? '')}</p>
         {#if session !== null && session.changeLine !== null}
           <p class="ac-change-line" lang="ca">{session.changeLine}</p>
         {/if}
@@ -204,11 +215,14 @@
                   class="ac-chunk ac-chunk--{toneOf(chunk.role)}"
                   class:ac-chunk--implicit={chunk.implicit}
                   class:ac-chunk--ringed={rings.has(chunk.key)}
-                  aria-label={accessibleNameOf(chunk)}
                   onclick={() => (open = chunk)}
                 >
-                  <span class="ac-chunk__text" lang="ca">{chunk.text}</span>
-                  <span class="ac-chunk__caption">{captionOf(chunk)}</span>
+                  <span class="ac-chunk__text" lang="ca">{chunk.text}</span><span
+                    class="ac-visually-hidden">, {accessibleDetailOf(chunk)}</span
+                  >
+                  <span class="ac-chunk__caption" aria-hidden="true"
+                    >{@render caption(chunk)}</span
+                  >
                 </button>
               {:else}
                 <span
@@ -216,7 +230,7 @@
                   class:ac-chunk--ringed={rings.has(chunk.key)}
                 >
                   <span class="ac-chunk__text" lang="ca">{chunk.text}</span>
-                  <span class="ac-chunk__caption">{captionOf(chunk)}</span>
+                  <span class="ac-chunk__caption">{@render caption(chunk)}</span>
                 </span>
               {/if}
             </li>

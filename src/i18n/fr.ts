@@ -38,6 +38,11 @@ export function quote(text: string): string {
  * typeset as English, which is exactly how this character has been lost three
  * times already.
  */
+/** French prose takes the typographic apostrophe; a model may write the straight one. */
+export function frenchProse(text: string): string {
+  return text.replaceAll("'", '’');
+}
+
 export function labelled(caption: string, value: string): string {
   return `${caption}${NNBSP}: ${value}`;
 }

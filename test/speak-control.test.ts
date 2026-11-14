@@ -101,10 +101,14 @@ describe('the audio control', () => {
   it('names what it will read, for a screen reader on a touch device', () => {
     startVoiceWatch(synthWith([CATALAN]));
     const { container } = render(Speak, { text: 'Vaig cantar una cançó' });
-    expect(button(container).getAttribute('aria-label')).toContain(
+    const speak = button(container);
+    // Read from content rather than an aria-label, so the Catalan keeps its
+    // own language for the screen reader.
+    expect(speak.getAttribute('aria-label')).toBeNull();
+    expect(speak.firstChild?.textContent).toBe(fr.audio.speak);
+    expect(speak.querySelector('[lang="ca"]')?.textContent).toBe(
       'Vaig cantar una cançó',
     );
-    expect(button(container).textContent).toBe(fr.audio.speak);
   });
 });
 

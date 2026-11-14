@@ -182,7 +182,7 @@ describe('cached prefix', () => {
     // under the same rule all the same, and this is the only thing enforcing it.
     expect(hasHighPunctuation(SYSTEM_INSTRUCTION)).toBe(true);
     expect(highPunctuationOffenders(SYSTEM_INSTRUCTION)).toEqual([]);
-    expect(SYSTEM_INSTRUCTION).not.toContain('—');
+    expect(SYSTEM_INSTRUCTION).not.toContain('\u2014');
     // Straight apostrophes only inside cited Catalan, which is data.
     expect(SYSTEM_INSTRUCTION.replace(/«[^»]*»/g, '')).not.toContain("'");
   });

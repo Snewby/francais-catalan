@@ -106,7 +106,9 @@
         {fr.variants.negation}
       {/if}
     </span>
-    <span class="ac-toggle__state">
+    <!-- aria-pressed already says on or off; the visible Oui or Non is
+         hidden from a screen reader so the state is not read twice. -->
+    <span class="ac-toggle__state" aria-hidden="true">
       {#if state.kind === 'waiting'}{@render spinner()}{/if}
       {on ? fr.variants.on : fr.variants.off}
     </span>
@@ -158,5 +160,9 @@
     {@render reason('transform')}
   </div>
 
-  <p class="ac-visually-hidden" aria-live="polite">{session.line?.text ?? ''}</p>
+  <!-- The no-break space alternates with each new line, so a reason tapped
+       twice in a row still changes the region and is announced again. -->
+  <p class="ac-visually-hidden" aria-live="polite">
+    {session.line?.text ?? ''}{session.lineCount % 2 === 1 ? '\u00a0' : ''}
+  </p>
 </section>

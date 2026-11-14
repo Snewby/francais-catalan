@@ -102,26 +102,52 @@ export function anatomyOf(
   ];
 }
 
-/** « Verbe · vaig cantar »: the role, then the first leaf's Catalan form. */
-export function captionOf(chunk: AnatomyChunk): string {
-  const role = fr.roles[chunk.role];
-  const first = chunk.ids[0];
-  if (first === undefined) {
-    return `${role} · ${fr.unlinked[chunk.unlinked ?? 'no_notion']}`;
-  }
-  const leaf = leafById(first);
-  return leaf === undefined ? role : `${role} · ${leaf.ca}`;
+/**
+ * A caption in its two languages: the French role, then either the first
+ * leaf's Catalan form (`ca`) or the French reason it links nothing (`fr`).
+ * Kept apart so the screen can mark the Catalan part `lang="ca"`.
+ */
+export interface CaptionParts {
+  readonly role: string;
+  readonly ca?: string;
+  readonly fr?: string;
 }
 
-/** « vaig comprar, verbe, le passé périphrastique… »: text, role, first notion. */
-export function accessibleNameOf(chunk: AnatomyChunk): string {
+export function captionPartsOf(chunk: AnatomyChunk): CaptionParts {
+  const role = fr.roles[chunk.role];
+  const first = chunk.ids[0];
+  if (first === undefined)
+    return { role, fr: fr.unlinked[chunk.unlinked ?? 'no_notion'] };
+  const leaf = leafById(first);
+  return leaf === undefined ? { role } : { role, ca: leaf.ca };
+}
+
+/** « Verbe · vaig cantar »: the role, then the first leaf's Catalan form. */
+export function captionOf(chunk: AnatomyChunk): string {
+  const { role, ca, fr: reason } = captionPartsOf(chunk);
+  const tail = ca ?? reason;
+  return tail === undefined ? role : `${role} · ${tail}`;
+}
+
+/**
+ * « verbe, le passé périphrastique… »: the French half of a chunk's accessible
+ * name, read after its Catalan text. The two halves are separate elements so
+ * a screen reader reads each in its own language; one `aria-label` holding
+ * both would read the Catalan with French phonetics.
+ */
+export function accessibleDetailOf(chunk: AnatomyChunk): string {
   const role = fr.roles[chunk.role].toLocaleLowerCase('fr');
   const first = chunk.ids[0];
   const notion =
     first === undefined
       ? fr.unlinked[chunk.unlinked ?? 'no_notion']
       : (leafById(first)?.glosses.fr ?? first);
-  return `${chunk.text}, ${role}, ${notion}`;
+  return `${role}, ${notion}`;
+}
+
+/** « vaig comprar, verbe, le passé périphrastique… »: text, role, first notion. */
+export function accessibleNameOf(chunk: AnatomyChunk): string {
+  return `${chunk.text}, ${accessibleDetailOf(chunk)}`;
 }
 
 /** « On a supposé : tu, locutrice. », or null when nothing was assumed. */

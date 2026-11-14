@@ -127,7 +127,18 @@ export class VariantSession {
   previous: Shown | null = $state(null);
   waiting: { readonly axis: Axis; readonly value: Combination[Axis] } | null =
     $state(null);
-  line: ReasonLine | null = $state(null);
+  #line: ReasonLine | null = $state(null);
+  /** Counts every line shown, so the panel can announce the same reason twice. */
+  lineCount = $state(0);
+
+  get line(): ReasonLine | null {
+    return this.#line;
+  }
+
+  set line(value: ReasonLine | null) {
+    this.#line = value;
+    if (value !== null) this.lineCount += 1;
+  }
   notApplicable: Record<string, NotApplicableReason> = $state({});
   cards: readonly ComponentId[] = $state([]);
 

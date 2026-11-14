@@ -141,6 +141,27 @@ async function submitFromHome(text: string) {
   return user;
 }
 
+/** The Catalan line of the card. Écouter's hidden name repeats it, so text alone is ambiguous. */
+const CA_LINE = { selector: '.ac-ca' };
+
+/** The anatomy's captions as read, French role and Catalan form together. */
+function captions(): string[] {
+  return [...document.querySelectorAll('.ac-chunk__caption')].map((caption) =>
+    (caption.textContent ?? '').replace(/\s+/g, ' ').trim(),
+  );
+}
+
+/**
+ * A chunk's accessible name, from separate Catalan and French elements; the
+ * name computation may put a space before the comma that joins them.
+ */
+function chunkName(expected: string | RegExp): (name: string) => boolean {
+  return (name) => {
+    const joined = name.replace(/ ,/g, ',');
+    return typeof expected === 'string' ? joined === expected : expected.test(joined);
+  };
+}
+
 /** The screen's French, Catalan elements removed: it must hold no English. */
 function expectNoEnglish(): void {
   const copy = document.body.cloneNode(true) as HTMLElement;
@@ -161,7 +182,7 @@ describe('the Phrase screen, from a recorded reply', () => {
     const yours = await screen.findByRole('region', { name: fr.phrase.yourPhrase });
     expect(within(yours).getByText(HIER.input)).toBeTruthy();
     const card = screen.getByRole('region', { name: fr.phrase.inCatalan });
-    expect(within(card).getByText(row.ca).getAttribute('lang')).toBe('ca');
+    expect(within(card).getByText(row.ca, CA_LINE).getAttribute('lang')).toBe('ca');
     expect(within(card).getByText(row.fr)).toBeTruthy();
 
     const anatomy = screen.getByRole('region', { name: fr.phrase.anatomy });
@@ -170,10 +191,13 @@ describe('the Phrase screen, from a recorded reply', () => {
       .map((item) => item.querySelector('.ac-chunk__text')?.textContent);
     // Catalan drops « jo », so the app adds it, dashed, before the model's chunks.
     expect(texts).toEqual(['(jo)', ...row.chunks.map((chunk) => chunk.text)]);
-    expect(within(anatomy).getByText('Verbe · vaig cantar')).toBeTruthy();
+    expect(captions()).toContain('Verbe · vaig cantar');
+    expect(within(anatomy).getByText('vaig cantar').getAttribute('lang')).toBe('ca');
     expect(
       within(anatomy).getByRole('button', {
-        name: `vaig comprar, verbe, ${leafById('VERB.ind.passat_perifrastic')?.glosses.fr ?? ''}`,
+        name: chunkName(
+          `vaig comprar, verbe, ${leafById('VERB.ind.passat_perifrastic')?.glosses.fr ?? ''}`,
+        ),
       }),
     ).toBeTruthy();
     expectNoEnglish();
@@ -212,7 +236,7 @@ describe('the Phrase screen, from a recorded reply', () => {
 
     const verb = row.chunks.find((chunk) => chunk.text === 'vaig comprar');
     await user.click(
-      await screen.findByRole('button', { name: /^vaig comprar, verbe/ }),
+      await screen.findByRole('button', { name: chunkName(/^vaig comprar, verbe/) }),
     );
     const sheet = screen.getByRole('dialog');
     for (const id of verb?.ids ?? []) {
@@ -229,6 +253,45 @@ describe('the Phrase screen, from a recorded reply', () => {
     await user.click(within(sheet).getByRole('button', { name: fr.chunkSheet.close }));
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(await eventsOf(database).count()).toBe(events);
+  });
+
+  it('keeps focus in the chunk sheet and gives it back to the chunk on close', async () => {
+    const user = userEvent.setup();
+    const row = await seed(HIER);
+    renderAt(`#/phrase/${row.id}`);
+
+    const chunk = await screen.findByRole('button', {
+      name: chunkName(/^vaig comprar, verbe/),
+    });
+    await user.click(chunk);
+    const sheet = screen.getByRole('dialog');
+    const close = within(sheet).getByRole('button', { name: fr.chunkSheet.close });
+    expect(document.activeElement).toBe(close);
+    expect(document.querySelector('nav')?.closest('[inert]')).not.toBeNull();
+    expect(chunk.closest('[inert]')).not.toBeNull();
+
+    await user.tab();
+    expect(sheet.contains(document.activeElement)).toBe(true);
+
+    await user.click(close);
+    expect(document.querySelector('[inert]')).toBeNull();
+    expect(document.activeElement).toBe(chunk);
+  });
+
+  it('sets the original French line in typographic apostrophes', async () => {
+    const straight = {
+      input: HIER.input,
+      body: { ...(HIER.body as object), fr: "Hier, j'ai acheté le pain au marché." },
+    };
+    const row = await seed(straight);
+    renderAt(`#/phrase/${row.id}`);
+    const card = await screen.findByRole('region', { name: fr.phrase.inCatalan });
+    expect(within(card).getByText('Hier, j’ai acheté le pain au marché.')).toBeTruthy();
+
+    window.location.hash = '#/';
+    expect(
+      await screen.findByText('Hier, j’ai acheté le pain au marché.'),
+    ).toBeTruthy();
   });
 
   it('stores a report from « Signaler une erreur »', async () => {
@@ -329,7 +392,9 @@ describe('failure states', () => {
 
     online.mockReturnValue(true);
     await user.click(screen.getByRole('button', { name: fr.failure.retry }));
-    expect(await screen.findByText('Ahir vaig comprar el pa al mercat.')).toBeTruthy();
+    expect(
+      await screen.findByText('Ahir vaig comprar el pa al mercat.', CA_LINE),
+    ).toBeTruthy();
   });
 
   it('shows the Catalan without anatomy after two bad replies, and Réessayer rebuilds it', async () => {
@@ -342,11 +407,13 @@ describe('failure states', () => {
     const user = await submitFromHome(HIER.input);
 
     expect(await screen.findByText(fr.failure.analysisFailed)).toBeTruthy();
-    expect(screen.getByText('Ahir vaig comprar el pa al mercat.')).toBeTruthy();
+    expect(
+      screen.getByText('Ahir vaig comprar el pa al mercat.', CA_LINE),
+    ).toBeTruthy();
     expectNoEnglish();
 
     await user.click(screen.getByRole('button', { name: fr.failure.retry }));
-    expect(await screen.findByText('Verbe · vaig cantar')).toBeTruthy();
+    await waitFor(() => expect(captions()).toContain('Verbe · vaig cantar'));
     expect(fetchFn).toHaveBeenCalledTimes(3);
     expect(await phrasesOf(database).count()).toBe(1);
   });
@@ -368,7 +435,7 @@ describe('failure states', () => {
 
     online.mockReturnValue(true);
     await user.click(screen.getByRole('button', { name: fr.failure.retry }));
-    expect(await screen.findByText('Verbe · vaig cantar')).toBeTruthy();
+    await waitFor(() => expect(captions()).toContain('Verbe · vaig cantar'));
     expect(fetchFn).toHaveBeenCalledTimes(3);
   });
 });

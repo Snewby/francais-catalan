@@ -287,6 +287,30 @@ describe('each reason in the copy table renders', () => {
   });
 });
 
+describe('for a screen reader', () => {
+  it('announces the same reason again when it is tapped twice', async () => {
+    const { user } = await openPhrase(10);
+    const live = () => document.querySelector('[aria-live="polite"]')?.textContent;
+    const tu = () => within(group(fr.variants.who)).getByRole('button', { name: 'tu' });
+
+    await user.click(tu());
+    const once = live();
+    expect(once).toContain(fr.variantReasons.no_subject);
+    await user.click(tu());
+    expect(live()).toContain(fr.variantReasons.no_subject);
+    expect(live()).not.toBe(once);
+  });
+
+  it('gives a toggle its state once, through aria-pressed only', async () => {
+    await openPhrase(1);
+    const [pronoun] = within(group(fr.variants.transform)).getAllByRole('button');
+    expect(pronoun?.getAttribute('aria-pressed')).toBe('false');
+    expect(
+      pronoun?.querySelector('.ac-toggle__state')?.getAttribute('aria-hidden'),
+    ).toBe('true');
+  });
+});
+
 describe('copy', () => {
   it('shows no English after a tap', async () => {
     const { user } = await openPhrase(1);

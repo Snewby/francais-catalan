@@ -283,7 +283,7 @@ describe('the review sheet', () => {
     expect(instructions).toContain(`${NNBSP}:`);
     expect(highPunctuationOffenders(instructions)).toEqual([]);
     expect(instructions).not.toContain("'");
-    expect(sheet).not.toContain('—');
+    expect(sheet).not.toContain('\u2014');
   });
 
   it('gives Sean a template with every open reference and nothing else', () => {
